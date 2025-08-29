@@ -56,14 +56,16 @@ export const headerCurtain = style({
   },
 })
 
-// 서브메뉴 컨테이너
+// 서브메뉴 컨테이너 - desktopNav와 정확히 동일한 레이아웃
 export const submenuContainer = style({
   display: "flex",
-  justifyContent: "space-between", // space-between으로 균등 배치
-  width: "100%",
-  maxWidth: "1480px", // 헤더와 동일한 너비
+  alignItems: "center", // desktopNav와 동일
+  gap: "2.5rem", // desktopNav와 동일한 gap
+  height: "100%", // desktopNav와 동일한 높이
+  width: "1480px", // headerContent와 동일한 너비
+  maxWidth: "100%",
   margin: "0 auto",
-  padding: "0 60px",
+  padding: "0 60px", // container와 동일한 패딩
   boxSizing: "border-box",
   opacity: 0,
   transform: "translateY(-20px)",
@@ -84,12 +86,16 @@ export const submenuContainer = style({
   },
 })
 
-// 서브메뉴 그룹
+// 서브메뉴 그룹 - 타이틀 밑으로 세로 정렬
 export const submenuGroup = style({
   display: "flex",
   flexDirection: "column",
   gap: "12px",
-  minWidth: "143px",
+  alignItems: "center", // 중앙 정렬로 변경하여 헤더 링크와 정확히 일치
+  justifyContent: "flex-start", // 상단 정렬
+  // navLink와 정확히 동일한 크기 계산
+  // navLink: padding: "0.75rem 1.25rem" = 12px + 20px = 32px
+  minWidth: "32px", // navLink의 padding과 동일
   flex: "0 0 auto",
 })
 
@@ -115,6 +121,36 @@ export const submenuTitle = style({
       backgroundColor: "#14AEFF",
     },
   },
+})
+
+// 드롭다운 아이템
+export const dropdownItem = style({
+  fontFamily: "'S-Core Dream', 'Pretendard', Inter, sans-serif",
+  fontSize: "14px",
+  fontWeight: "400",
+  lineHeight: "22px",
+  letterSpacing: "0",
+  color: "#666666",
+  textDecoration: "none",
+  display: "block",
+  padding: "6px 0",
+  transition: "all 200ms ease",
+  ":hover": {
+    color: "#14AEFF",
+    paddingLeft: "8px",
+  },
+})
+
+// 드롭다운 아이템 활성 상태
+export const dropdownItemActive = style({
+  color: "#14AEFF",
+  fontWeight: "600",
+})
+
+// 드롭다운 아이템 플레이스홀더 (서브메뉴가 없는 경우)
+export const dropdownItemPlaceholder = style({
+  height: "1.5rem",
+  visibility: "hidden",
 })
 
 export const container = style({
@@ -238,6 +274,13 @@ export const navLink = style({
   },
 })
 
+// 네비게이션 링크 활성 상태
+export const navLinkActive = style({
+  backgroundColor: "rgba(255, 255, 255, 0.2)",
+  color: "#FFFFFF",
+  fontWeight: "600",
+})
+
 export const navItem = style({
   position: "relative",
   display: "inline-block",
@@ -266,22 +309,7 @@ export const dropdown = style({
   },
 })
 
-export const dropdownItem = style({
-  display: "block",
-  padding: "6px 0",
-  color: "#666666",
-  textDecoration: "none",
-  fontFamily: "'S-Core Dream', 'Pretendard', Inter, sans-serif",
-  fontSize: "16px",
-  fontWeight: "200", // Regular weight for S-Core Dream
-  lineHeight: "26px", // 160% of 16px
-  letterSpacing: "0",
-  transition: "all 200ms ease",
-  ":hover": {
-    color: "#14AEFF",
-    transform: "translateX(3px)",
-  },
-})
+// 중복 제거 - 위에 이미 dropdownItem이 정의되어 있음
 
 export const actionButtons = style({
   display: "none",

@@ -77,13 +77,14 @@ export const tokens = {
     },
   },
 
-  // z-index 레이어
+  // Z-Index 레이어 (헤더가 항상 최상위)
   zIndex: {
     base: 1,
+    video: 2,
+    overlay: 3,
     content: 1000,
-    text: 1002,
-    video: 1003,
-    overlay: 1004,
+    text: 1003,
+    header: 9999, // 헤더는 항상 최상위
   },
 
   // 애니메이션 지속시간
@@ -144,8 +145,9 @@ export const utilities = {
 
   // z-index 유틸리티
   z1: style({ zIndex: tokens.zIndex.base }),
+  z2: style({ zIndex: tokens.zIndex.video }),
+  z3: style({ zIndex: tokens.zIndex.overlay }),
   z1000: style({ zIndex: tokens.zIndex.content }),
-  z1002: style({ zIndex: tokens.zIndex.text }),
-  z1003: style({ zIndex: tokens.zIndex.video }),
-  z1004: style({ zIndex: tokens.zIndex.overlay }),
+  z1003: style({ zIndex: tokens.zIndex.text }),
+  z9999: style({ zIndex: tokens.zIndex.header }),
 }
