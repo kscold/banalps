@@ -183,7 +183,24 @@ export default function HeaderNavigation() {
       </header>
       
       {/* 헤더 뒤쪽 흰색 커튼 효과 */}
-      <div className={styles.headerCurtain} />
+      <div className={styles.headerCurtain}>
+        <div className={styles.submenuContainer}>
+          {NAVIGATION_ITEMS.map((item) => (
+            <div key={item.title} className={styles.submenuGroup}>
+              <h3 className={styles.submenuTitle}>{item.title}</h3>
+              {item.submenu.map((subItem) => (
+                <Link
+                  key={subItem.title}
+                  href={subItem.href}
+                  className={styles.dropdownItem}
+                >
+                  {subItem.title}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   )
 }

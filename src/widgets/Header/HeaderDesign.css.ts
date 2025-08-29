@@ -38,11 +38,81 @@ export const headerCurtain = style({
   width: "100%",
   height: "0px",
   background: "#FFFFFF",
-  transition: "height 400ms ease",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
+  transition: "all 400ms ease",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  paddingTop: "140px", // 헤더 높이 + 여백
+  overflow: "hidden", // 높이가 0일 때 내용 숨기기
+  opacity: 0,
+  visibility: "hidden",
   selectors: {
     [`${header}:hover ~ &`]: {
-      height: "400px",
+      height: "440px",
+      opacity: 1,
+      visibility: "visible",
+    },
+  },
+})
+
+// 서브메뉴 컨테이너
+export const submenuContainer = style({
+  display: "flex",
+  justifyContent: "space-between", // space-between으로 균등 배치
+  width: "100%",
+  maxWidth: "1480px", // 헤더와 동일한 너비
+  margin: "0 auto",
+  padding: "0 60px",
+  boxSizing: "border-box",
+  opacity: 0,
+  transform: "translateY(-20px)",
+  transition: "all 300ms ease",
+  selectors: {
+    [`${header}:hover ~ ${headerCurtain} &`]: {
+      opacity: 1,
+      transform: "translateY(0)",
+    },
+  },
+  "@media": {
+    "screen and (max-width: 1680px)": {
+      padding: "0 40px",
+    },
+    "screen and (max-width: 1200px)": {
+      padding: "0 30px",
+    },
+  },
+})
+
+// 서브메뉴 그룹
+export const submenuGroup = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "12px",
+  minWidth: "143px",
+  flex: "0 0 auto",
+})
+
+// 서브메뉴 타이틀
+export const submenuTitle = style({
+  fontFamily: "'S-Core Dream', 'Pretendard', Inter, sans-serif",
+  fontSize: "16px",
+  fontWeight: "500",
+  lineHeight: "26px", // 160% of 16px
+  letterSpacing: "0",
+  color: "#333333",
+  marginBottom: "12px",
+  position: "relative",
+  paddingBottom: "10px",
+  selectors: {
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "62px",
+      height: "2px",
+      backgroundColor: "#14AEFF",
     },
   },
 })
@@ -96,12 +166,12 @@ export const logoImage = style({
 })
 
 export const logoText = style({
-  fontFamily: "Inter, sans-serif",
-  fontSize: "20px",
-  fontWeight: "700",
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontSize: "18px",
+  fontWeight: "500",
   fontStyle: "normal",
-  lineHeight: "30px",
-  letterSpacing: "-3%",
+  lineHeight: "27px",
+  letterSpacing: "0",
   color: "#FFFFFF",
   textDecoration: "none",
   textShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -139,18 +209,19 @@ export const desktopNav = style({
 })
 
 export const navLink = style({
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
   textDecoration: "none",
-  fontSize: "20px",
-  fontWeight: "700",
-  lineHeight: "30px",
-  letterSpacing: "-3%",
+  fontSize: "18px",
+  fontWeight: "500",
+  lineHeight: "27px",
+  letterSpacing: "0",
   padding: "0.75rem 1.25rem",
   borderRadius: "12px",
   transition: "all 200ms ease",
   position: "relative",
   zIndex: 2,
+  textAlign: "center",
   "@media": {
     "screen and (max-width: 1200px)": {
       fontSize: "18px",
@@ -197,15 +268,18 @@ export const dropdown = style({
 
 export const dropdownItem = style({
   display: "block",
-  padding: "0.75rem 1.5rem",
-  color: "#1AA4F4",
+  padding: "6px 0",
+  color: "#666666",
   textDecoration: "none",
+  fontFamily: "'S-Core Dream', 'Pretendard', Inter, sans-serif",
   fontSize: "16px",
-  fontWeight: "500",
+  fontWeight: "200", // Regular weight for S-Core Dream
+  lineHeight: "26px", // 160% of 16px
+  letterSpacing: "0",
   transition: "all 200ms ease",
   ":hover": {
-    backgroundColor: "#F8FAFC",
-    color: "#1AA4F4",
+    color: "#14AEFF",
+    transform: "translateX(3px)",
   },
 })
 
@@ -222,12 +296,14 @@ export const actionButtons = style({
 })
 
 export const loginButton = style({
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
-  fontSize: "20px",
-  fontWeight: "700",
-  lineHeight: "30px",
-  letterSpacing: "-3%",
+  fontSize: "18px",
+  fontWeight: "500",
+  lineHeight: "27px",
+  letterSpacing: "0",
+  backgroundColor: "transparent",
+  border: "none",
   padding: "0.75rem 1.5rem",
   cursor: "pointer",
   transition: "all 300ms ease",
@@ -251,13 +327,15 @@ export const loginButton = style({
 })
 
 export const consultButton = style({
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
   padding: "0.75rem 2rem",
-  fontSize: "20px",
-  fontWeight: "700",
-  lineHeight: "30px",
-  letterSpacing: "-3%",
+  fontSize: "18px",
+  fontWeight: "500",
+  lineHeight: "27px",
+  letterSpacing: "0",
+  backgroundColor: "transparent",
+  border: "none",
   cursor: "pointer",
   transition: "all 300ms ease",
   position: "relative",
