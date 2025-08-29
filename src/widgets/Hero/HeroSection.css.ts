@@ -1,85 +1,4 @@
-import { style, keyframes } from "@vanilla-extract/css"
-
-// 매우 부드러운 페이드인 애니메이션
-const fadeInUp = keyframes({
-  "0%": {
-    opacity: 0,
-    transform: "translateY(60px) scale(0.95)",
-    filter: "blur(2px)",
-  },
-  "50%": {
-    opacity: 0.7,
-    transform: "translateY(20px) scale(0.98)",
-    filter: "blur(1px)",
-  },
-  "100%": {
-    opacity: 1,
-    transform: "translateY(0) scale(1)",
-    filter: "blur(0px)",
-  },
-})
-
-// 부드러운 슬라이드인 애니메이션
-const slideInRight = keyframes({
-  "0%": {
-    opacity: 0,
-    transform: "translateX(40px) translateY(0)",
-    filter: "blur(3px)",
-  },
-  "100%": {
-    opacity: 1,
-    transform: "translateX(0) translateY(0)",
-    filter: "blur(0px)",
-  },
-})
-
-// 부드러운 스케일 애니메이션
-const scaleIn = keyframes({
-  "0%": {
-    opacity: 0,
-    transform: "scale(0.8) translateY(30px)",
-    filter: "blur(2px)",
-  },
-  "100%": {
-    opacity: 1,
-    transform: "scale(1) translateY(0)",
-    filter: "blur(0px)",
-  },
-})
-
-// 스크롤 펄스 애니메이션
-const scrollPulse = keyframes({
-  "0%, 100%": {
-    opacity: 1,
-    transform: "translateY(0)",
-  },
-  "50%": {
-    opacity: 0.6,
-    transform: "translateY(-3px)",
-  },
-})
-
-// 부드러운 글리치 효과
-const glitch = keyframes({
-  "0%": {
-    transform: "translate(0)",
-  },
-  "20%": {
-    transform: "translate(-2px, 2px)",
-  },
-  "40%": {
-    transform: "translate(-2px, -2px)",
-  },
-  "60%": {
-    transform: "translate(2px, 2px)",
-  },
-  "80%": {
-    transform: "translate(2px, -2px)",
-  },
-  "100%": {
-    transform: "translate(0)",
-  },
-})
+import { style } from "@vanilla-extract/css"
 
 // 메인 컨테이너 - 스크롤 시 고정
 export const heroContainer = style({
@@ -126,18 +45,22 @@ export const vimeoIframe = style({
   minWidth: "177.77vh",
   transform: "translate(-50%, -50%)",
   pointerEvents: "none",
+  zIndex: 1001,
 })
 
-// 비디오 섹션
+// 비디오 섹션 - Hero 섹션과 같은 z-index에서 이어붙임
 export const videoSection = style({
-  position: "relative",
+  position: "fixed", // fixed로 변경하여 Hero 섹션과 같은 위치에 겹침
+  top: 0,
+  left: 0,
   width: "100vw",
   height: "100vh",
   overflow: "hidden",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  zIndex: 2, // heroContainer보다 높은 z-index
+  zIndex: 1, // Hero 섹션과 같은 z-index로 자연스러운 이어붙임
+  backgroundColor: "#000",
 })
 
 // 비디오 오버레이
@@ -342,21 +265,6 @@ export const quoteSubtext = style({
       lineHeight: "27px",
     },
   },
-})
-
-// 스크롤 인디케이터
-export const scrollIndicator = style({
-  position: "absolute",
-  bottom: "2rem",
-  left: "50%",
-  transform: "translateX(-50%)",
-  zIndex: 1004,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "0.5rem",
-  color: "white",
-  animation: `${scrollPulse} 2s infinite`,
 })
 
 // 스크롤 화살표
