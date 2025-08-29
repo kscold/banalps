@@ -1,100 +1,151 @@
-export const colors = {
-  primary: '#14AEFF',
-  primaryHover: '#0EA5E9',
-  primaryDark: '#0284C7',
-  
-  white: '#FFFFFF',
-  gray: {
-    50: '#F9FAFB',
-    100: '#F3F4F6',
-    200: '#E5E7EB',
-    300: '#D1D5DB',
-    400: '#9CA3AF',
-    500: '#6B7280',
-    600: '#4B5563',
-    700: '#374151',
-    800: '#1F2937',
-    900: '#111827',
-  },
-  
-  success: '#10B981',
-  warning: '#F59E0B',
-  error: '#EF4444',
-  
-  kakao: '#FEE500',
-  naver: '#03C75A',
-  google: '#4285F4',
-} as const;
+import { style } from "@vanilla-extract/css"
 
-export const typography = {
-  fontFamily: {
-    sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+// 반응형 12 그리드 시스템 기반 전역 토큰
+export const tokens = {
+  // 뷰포트 단위
+  viewport: {
+    height: "100vh",
+    width: "100vw",
   },
-  fontSize: {
-    xs: '0.75rem',      // 12px
-    sm: '0.875rem',     // 14px
-    base: '1rem',       // 16px
-    lg: '1.125rem',     // 18px
-    xl: '1.25rem',      // 20px
-    '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
-    '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
-    '6xl': '3.75rem',   // 60px
+
+  // 스크롤 섹션 높이 (실제 요소 높이 기반)
+  scroll: {
+    // 기본 스크롤 단위: 100px (12 그리드의 1/12)
+    unit: "100px",
+    // Hero 섹션 총 높이: 600px (6개 텍스트 × 100px)
+    heroTotal: "600px",
+    // 컨테이너 높이: 실제 요소 높이만큼만 (600px)
+    containerHeight: "600px", // 실제 요소 높이에 맞춤
   },
-  fontWeight: {
-    normal: '400',
-    medium: '500',
-    semibold: '600',
-    bold: '700',
-    extrabold: '800',
+
+  // 반응형 12 그리드 시스템 (375px 최소 ~ 데스크탑)
+  grid: {
+    columns: 12,
+    gap: "1rem",
+
+    // 모바일 (375px ~ 767px)
+    mobile: {
+      min: "375px",
+      max: "767px",
+      col1: "31.25px", // 375px ÷ 12 = 31.25px
+      col2: "62.5px", // 31.25px × 2
+      col3: "93.75px", // 31.25px × 3
+      col4: "125px", // 31.25px × 4
+      col5: "156.25px", // 31.25px × 5
+      col6: "187.5px", // 31.25px × 6
+      col7: "218.75px", // 31.25px × 7
+      col8: "250px", // 31.25px × 8
+      col9: "281.25px", // 31.25px × 9
+      col10: "312.5px", // 31.25px × 10
+      col11: "343.75px", // 31.25px × 11
+      col12: "375px", // 31.25px × 12
+    },
+
+    // 태블릿 (768px ~ 1023px)
+    tablet: {
+      min: "768px",
+      max: "1023px",
+      col1: "64px", // 768px ÷ 12 = 64px
+      col2: "128px", // 64px × 2
+      col3: "192px", // 64px × 3
+      col4: "256px", // 64px × 4
+      col5: "320px", // 64px × 5
+      col6: "384px", // 64px × 6
+      col7: "448px", // 64px × 7
+      col8: "512px", // 64px × 8
+      col9: "576px", // 64px × 9
+      col10: "640px", // 64px × 10
+      col11: "704px", // 64px × 11
+      col12: "768px", // 64px × 12
+    },
+
+    // 데스크탑 (1024px+)
+    desktop: {
+      min: "1024px",
+      col1: "85.33px", // 1024px ÷ 12 = 85.33px
+      col2: "170.67px", // 85.33px × 2
+      col3: "256px", // 85.33px × 3
+      col4: "341.33px", // 85.33px × 4
+      col5: "426.67px", // 85.33px × 5
+      col6: "512px", // 85.33px × 6
+      col7: "597.33px", // 85.33px × 7
+      col8: "682.67px", // 85.33px × 8
+      col9: "768px", // 85.33px × 9
+      col10: "853.33px", // 85.33px × 10
+      col11: "938.67px", // 85.33px × 11
+      col12: "1024px", // 85.33px × 12
+    },
   },
-  lineHeight: {
-    tight: '1.25',
-    normal: '1.5',
-    relaxed: '1.75',
+
+  // z-index 레이어
+  zIndex: {
+    base: 1,
+    content: 1000,
+    text: 1002,
+    video: 1003,
+    overlay: 1004,
   },
-} as const;
 
-export const spacing = {
-  px: '1px',
-  0: '0',
-  1: '0.25rem',   // 4px
-  2: '0.5rem',    // 8px
-  3: '0.75rem',   // 12px
-  4: '1rem',      // 16px
-  5: '1.25rem',   // 20px
-  6: '1.5rem',    // 24px
-  8: '2rem',      // 32px
-  10: '2.5rem',   // 40px
-  12: '3rem',     // 48px
-  16: '4rem',     // 64px
-  20: '5rem',     // 80px
-  24: '6rem',     // 96px
-  32: '8rem',     // 128px
-} as const;
+  // 애니메이션 지속시간
+  animation: {
+    fast: "0.3s",
+    normal: "0.6s",
+    slow: "0.8s",
+    verySlow: "1.2s",
+  },
 
-export const borderRadius = {
-  none: '0',
-  sm: '0.125rem',
-  md: '0.375rem',
-  lg: '0.5rem',
-  xl: '0.75rem',
-  '2xl': '1rem',
-  '3xl': '1.5rem',
-  full: '9999px',
-} as const;
+  // 색상
+  colors: {
+    white: "#FFFFFF",
+    black: "#000000",
+    transparent: "transparent",
+  },
 
-export const shadows = {
-  sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-  md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-  lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-  xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-  '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-} as const;
+  // 반응형 브레이크포인트
+  breakpoints: {
+    mobile: "375px",
+    tablet: "768px",
+    desktop: "1024px",
+  },
+}
 
-export const transitions = {
-  fast: '150ms ease',
-  normal: '300ms ease',
-  slow: '500ms ease',
-} as const;
+// 유틸리티 클래스들
+export const utilities = {
+  // 뷰포트 높이 유틸리티
+  vh100: style({ height: "100vh" }),
+  vh200: style({ height: "200vh" }),
+  vh300: style({ height: "300vh" }),
+  vh400: style({ height: "400vh" }),
+  vh500: style({ height: "500vh" }),
+  vh600: style({ height: "600vh" }),
+
+  // 실제 요소 높이 유틸리티
+  h600: style({ height: "600px" }), // 12 그리드 기반 실제 높이
+
+  // 반응형 그리드 컬럼 유틸리티
+  // 모바일 (375px 기준)
+  col1: style({ width: tokens.grid.mobile.col1 }),
+  col2: style({ width: tokens.grid.mobile.col2 }),
+  col3: style({ width: tokens.grid.mobile.col3 }),
+  col4: style({ width: tokens.grid.mobile.col4 }),
+  col5: style({ width: tokens.grid.mobile.col5 }),
+  col6: style({ width: tokens.grid.mobile.col6 }),
+  col7: style({ width: tokens.grid.mobile.col7 }),
+  col8: style({ width: tokens.grid.mobile.col8 }),
+  col9: style({ width: tokens.grid.mobile.col9 }),
+  col10: style({ width: tokens.grid.mobile.col10 }),
+  col11: style({ width: tokens.grid.mobile.col11 }),
+  col12: style({ width: tokens.grid.mobile.col12 }),
+
+  // 위치 유틸리티
+  fixed: style({ position: "fixed" }),
+  relative: style({ position: "relative" }),
+  absolute: style({ position: "absolute" }),
+
+  // z-index 유틸리티
+  z1: style({ zIndex: tokens.zIndex.base }),
+  z1000: style({ zIndex: tokens.zIndex.content }),
+  z1002: style({ zIndex: tokens.zIndex.text }),
+  z1003: style({ zIndex: tokens.zIndex.video }),
+  z1004: style({ zIndex: tokens.zIndex.overlay }),
+}

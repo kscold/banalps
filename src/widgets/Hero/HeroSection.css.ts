@@ -1,14 +1,14 @@
 import { style } from "@vanilla-extract/css"
 
-// 메인 컨테이너 - 스크롤 시 고정
+// 메인 컨테이너 - 100vh 고정
 export const heroContainer = style({
   position: "fixed",
   top: 0,
   left: 0,
-  width: "100vw",
-  height: "100vh",
-  overflow: "hidden",
+  width: "100%",
+  height: "100vh", // 100vh 고정
   zIndex: 1,
+  overflow: "hidden",
 })
 
 // 배경 이미지 - 고정
@@ -39,7 +39,7 @@ export const vimeoIframe = style({
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "100vw",
+  width: "100%",
   height: "56.25vw",
   minHeight: "100vh",
   minWidth: "177.77vh",
@@ -48,18 +48,18 @@ export const vimeoIframe = style({
   zIndex: 1001,
 })
 
-// 비디오 섹션 - Hero 섹션과 같은 z-index에서 이어붙임
+// 비디오 섹션 - Hero 섹션과 같은 위치
 export const videoSection = style({
-  position: "fixed", // fixed로 변경하여 Hero 섹션과 같은 위치에 겹침
+  position: "fixed",
   top: 0,
   left: 0,
-  width: "100vw",
+  width: "100%",
   height: "100vh",
   overflow: "hidden",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  zIndex: 1, // Hero 섹션과 같은 z-index로 자연스러운 이어붙임
+  zIndex: 2, // Hero 섹션보다 위에 표시
   backgroundColor: "#000",
 })
 
@@ -73,7 +73,7 @@ export const videoOverlay = style({
   zIndex: 2,
 })
 
-// 콘텐츠 래퍼 - 피그마 디자인 위치에 고정 (오른쪽 아래쪽)
+// 콘텐츠 래퍼 - 중앙 정렬
 export const contentWrapper = style({
   position: "absolute",
   top: "50%",
@@ -81,25 +81,19 @@ export const contentWrapper = style({
   transform: "translateY(-50%)", // 수직 중앙 정렬
   zIndex: 1000,
   width: "auto",
-  maxWidth: "600px",
   display: "flex",
   alignItems: "flex-end", // 하단 정렬
   justifyContent: "flex-end", // 오른쪽 정렬
   padding: "0 2rem",
   "@media": {
-    "screen and (max-width: 1024px)": {
-      right: "5%",
-      maxWidth: "500px",
-    },
     "screen and (max-width: 768px)": {
-      right: "2rem",
       padding: "0 1rem",
       maxWidth: "400px",
     },
   },
 })
 
-// 텍스트 콘텐츠 컨테이너 - 피그마 디자인 크기
+// 텍스트 콘텐츠 컨테이너 - 100vh에서 중앙 고정
 export const textContent = style({
   width: "439px",
   height: "570px",
@@ -121,29 +115,19 @@ export const textContent = style({
   },
 })
 
-// 텍스트 블록 - 기본 상태 (애니메이션 없음)
+// 텍스트 블록 - 중앙 고정
 export const textBlock = style({
-  position: "absolute", // 절대 위치
-  top: "50%", // 중앙 정렬
-  right: "0px",
-  transform: "translateY(-50%)", // 수직 중앙 정렬
-  opacity: 1, // 기본적으로 보임
-  zIndex: 1002,
   width: "100%",
-  textAlign: "right", // 오른쪽 정렬
+  textAlign: "center",
+  zIndex: 1002,
 })
 
-// 인용문 라인 - 기본 상태 (애니메이션 없음)
+// 인용문 라인 - 중앙 고정
 export const quoteLine = style({
-  position: "absolute", // 절대 위치
-  top: "50%", // 중앙 정렬
-  right: "0px",
-  transform: "translateY(-50%)", // 수직 중앙 정렬
-  opacity: 1, // 기본적으로 보임
+  width: "100%",
+  textAlign: "center",
   padding: "1.5rem 0",
   zIndex: 1002,
-  width: "100%",
-  textAlign: "right", // 오른쪽 정렬
 })
 
 // 스토리 텍스트 - S-Core Dream, Regular (200)
@@ -160,7 +144,7 @@ export const storyText = style({
   zIndex: 1003,
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
-  textAlign: "right", // 오른쪽 정렬
+  textAlign: "center", // 중앙 정렬
   display: "block",
   width: "100%",
   "@media": {
@@ -180,7 +164,7 @@ export const mainQuote = style({
   fontFamily: "'Pretendard', sans-serif",
   fontSize: "20px",
   fontWeight: "300",
-  color: "#FFFFFF", // 흰색
+  color: "#14AEFF", // 파란색으로 변경
   lineHeight: "30px",
   letterSpacing: "0%",
   textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8)",
@@ -189,7 +173,7 @@ export const mainQuote = style({
   zIndex: 1003,
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
-  textAlign: "right", // 오른쪽 정렬
+  textAlign: "center", // 중앙 정렬
   display: "block",
   width: "100%",
   "@media": {

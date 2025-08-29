@@ -8,7 +8,9 @@ interface TextContentRendererProps {
   currentTextIndex: number
 }
 
-export function TextContentRenderer({ currentTextIndex }: TextContentRendererProps) {
+export function TextContentRenderer({
+  currentTextIndex,
+}: TextContentRendererProps) {
   const getCurrentText = () => {
     switch (currentTextIndex) {
       case 0:
@@ -16,9 +18,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-0"
             className={styles.textBlock}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -30,7 +44,8 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
             >
               어느 밤, 침대에 기대앉아 아이들에게
               <br />
-              그림책을 읽어 주고 있었습니다. 그리고 책장 한 귀퉁이에서 마주한 문장.
+              그림책을 읽어 주고 있었습니다. 그리고 책장 한 귀퉁이에서 마주한
+              문장.
             </motion.p>
           </motion.div>
         )
@@ -39,9 +54,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-1"
             className={styles.quoteLine}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -60,9 +87,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-2"
             className={styles.textBlock}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -81,9 +120,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-3"
             className={styles.textBlock}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -104,9 +155,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-4"
             className={styles.textBlock}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -127,9 +190,21 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
           <motion.div
             key="text-5"
             className={`${styles.quoteLine} ${styles.finalQuote}`}
-            initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(2px)", x: 40 }}
+            initial={{
+              opacity: 0,
+              y: 60,
+              scale: 0.95,
+              filter: "blur(2px)",
+              x: 40,
+            }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", x: 0 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(3px)", x: -20 }}
+            exit={{
+              opacity: 0,
+              y: -30,
+              scale: 0.9,
+              filter: "blur(3px)",
+              x: -20,
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             layout
           >
@@ -151,6 +226,9 @@ export function TextContentRenderer({ currentTextIndex }: TextContentRendererPro
             </motion.p>
           </motion.div>
         )
+      case 6:
+        // 비디오 섹션이 활성화될 때는 아무것도 표시하지 않음
+        return null
       default:
         return null
     }
