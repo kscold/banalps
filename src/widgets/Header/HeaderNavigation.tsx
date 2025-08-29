@@ -53,13 +53,28 @@ export default function HeaderNavigation() {
             {/* 데스크톱 네비게이션 */}
             <nav className={styles.desktopNav}>
               {NAVIGATION_ITEMS.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={`${styles.navLink} ${isCurrentPage(item.href)}`}
-                >
-                  {item.title}
-                </Link>
+                <div key={item.title} className={styles.navItemWrapper}>
+                  <Link
+                    href={item.href}
+                    className={`${styles.navLink} ${isCurrentPage(item.href)}`}
+                  >
+                    {item.title}
+                  </Link>
+                  {/* 각 네비게이션 아이템 바로 아래에 드롭다운 */}
+                  <div className={styles.dropdownContent}>
+                    {item.submenu && item.submenu.map((subItem) => (
+                      <Link
+                        key={subItem.title}
+                        href={subItem.href}
+                        className={`${styles.dropdownItem} ${
+                          pathname === subItem.href ? styles.dropdownItemActive : ""
+                        }`}
+                      >
+                        {subItem.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </nav>
 
@@ -110,31 +125,8 @@ export default function HeaderNavigation() {
         </div>
       </header>
 
-      {/* 드롭다운 커튼 - 헤더 링크와 완벽하게 일치하는 레이아웃 */}
-      <div className={styles.headerCurtain}>
-        <div className={styles.submenuContainer}>
-          {NAVIGATION_ITEMS.map((category) => (
-            <div key={category.title} className={styles.submenuGroup}>
-              {category.submenu ? (
-                category.submenu.map((item) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className={`${styles.dropdownItem} ${
-                      pathname === item.href ? styles.dropdownItemActive : ""
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                ))
-              ) : (
-                // 서브메뉴가 없는 경우 빈 공간 유지
-                <div className={styles.dropdownItemPlaceholder} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) */}
+      <div className={styles.headerCurtain} />
 
       {/* 모바일 메뉴 */}
       {isMenuOpen && (

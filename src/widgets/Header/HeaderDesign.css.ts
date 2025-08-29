@@ -47,11 +47,19 @@ export const headerCurtain = style({
   overflow: "hidden", // 높이가 0일 때 내용 숨기기
   opacity: 0,
   visibility: "hidden",
+  pointerEvents: "none", // 기본적으로 클릭 불가
   selectors: {
     [`${header}:hover ~ &`]: {
       height: "440px",
       opacity: 1,
       visibility: "visible",
+      pointerEvents: "auto", // 호버시 클릭 가능
+    },
+    "&:hover": {
+      height: "440px",
+      opacity: 1,
+      visibility: "visible", 
+      pointerEvents: "auto", // 커튼 영역에 마우스 올려도 유지
     },
   },
 })
@@ -59,14 +67,13 @@ export const headerCurtain = style({
 // 서브메뉴 컨테이너 - desktopNav와 정확히 동일한 레이아웃
 export const submenuContainer = style({
   display: "flex",
-  alignItems: "center", // desktopNav와 동일
-  gap: "2.5rem", // desktopNav와 동일한 gap
-  height: "100%", // desktopNav와 동일한 높이
-  width: "1480px", // headerContent와 동일한 너비
-  maxWidth: "100%",
+  alignItems: "flex-start", // 상단 정렬
+  gap: "2.5rem", // desktopNav와 정확히 동일한 gap (2.5rem)
+  maxWidth: "1480px",
+  width: "100%",
   margin: "0 auto",
-  padding: "0 60px", // container와 동일한 패딩
-  boxSizing: "border-box",
+  position: "relative",
+  justifyContent: "center", // 중앙 정렬
   opacity: 0,
   transform: "translateY(-20px)",
   transition: "all 300ms ease",
@@ -76,14 +83,6 @@ export const submenuContainer = style({
       transform: "translateY(0)",
     },
   },
-  "@media": {
-    "screen and (max-width: 1680px)": {
-      padding: "0 40px",
-    },
-    "screen and (max-width: 1200px)": {
-      padding: "0 30px",
-    },
-  },
 })
 
 // 서브메뉴 그룹 - 타이틀 밑으로 세로 정렬
@@ -91,12 +90,9 @@ export const submenuGroup = style({
   display: "flex",
   flexDirection: "column",
   gap: "12px",
-  alignItems: "center", // 중앙 정렬로 변경하여 헤더 링크와 정확히 일치
+  alignItems: "center", // 중앙 정렬 (네비게이션 링크 중앙에 맞춤)
   justifyContent: "flex-start", // 상단 정렬
-  // navLink와 정확히 동일한 크기 계산
-  // navLink: padding: "0.75rem 1.25rem" = 12px + 20px = 32px
-  minWidth: "32px", // navLink의 padding과 동일
-  flex: "0 0 auto",
+  width: "max-content", // 콘텐츠 크기에 맞춤
 })
 
 // 서브메뉴 타이틀
@@ -134,10 +130,11 @@ export const dropdownItem = style({
   textDecoration: "none",
   display: "block",
   padding: "6px 0",
-  transition: "all 200ms ease",
+  textAlign: "center", // 중앙 정렬 추가
+  transition: "color 200ms ease", // 색상만 전환
   ":hover": {
     color: "#14AEFF",
-    paddingLeft: "8px",
+    // paddingLeft 제거 - 움직임 없음
   },
 })
 
@@ -234,12 +231,46 @@ export const logoText = style({
 
 export const desktopNav = style({
   display: "none",
-  alignItems: "center",
+  alignItems: "center", // 상단 정렬로 변경
   gap: "2.5rem",
   height: "100%",
+  position: "relative", // 드롭다운을 위한 relative 추가
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
+    },
+  },
+})
+
+// 네비게이션 아이템 래퍼 (링크 + 드롭다운 포함)
+export const navItemWrapper = style({
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+})
+
+// 드롭다운 콘텐츠 (각 네비게이션 아이템 아래에 위치)
+export const dropdownContent = style({
+  position: "absolute",
+  top: "calc(100% + 30px)", // 네비게이션 링크 아래
+  left: "50%",
+  transform: "translateX(-50%)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "12px",
+  padding: "20px 0",
+  minWidth: "150px",
+  opacity: 0,
+  visibility: "hidden",
+  transition: "all 300ms ease",
+  pointerEvents: "none",
+  selectors: {
+    [`${header}:hover &`]: {
+      opacity: 1,
+      visibility: "visible",
+      pointerEvents: "auto",
     },
   },
 })
