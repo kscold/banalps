@@ -73,7 +73,7 @@ export default function HeroSection() {
               style={{ animationDelay: "0.6s" }}
             >
               <h1 className={styles.mainQuote}>
-                "나는 바람 부는 날도 좋아요."
+                &quot;나는 바람 부는 날도 좋아요.&quot;
               </h1>
             </div>
 
@@ -119,7 +119,7 @@ export default function HeroSection() {
               style={{ animationDelay: "2.2s" }}
             >
               <h2 className={styles.finalQuoteText}>
-                "이제 바람 부는 날도 좋아요."
+                &quot;이제 바람 부는 날도 좋아요.&quot;
               </h2>
               <p className={styles.quoteSubtext}>
                 이 말은 언제든 들어도 기분이 좋습니다.

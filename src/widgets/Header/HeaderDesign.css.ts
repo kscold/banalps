@@ -31,32 +31,18 @@ export const header = style({
 // 헤더 뒤쪽에 나타나는 흰색 커튼 효과
 export const headerCurtain = style({
   position: "fixed",
-  top: "0px",
-  left: "50%",
-  transform: "translateX(-50%)",
+  top: 0,
+  left: 0,
+  right: 0,
   zIndex: 45, // 헤더보다 낮은 z-index
   width: "100%",
-  maxWidth: "1600px",
   height: "0px",
   background: "#FFFFFF",
-  transition: "height 400ms ease, opacity 300ms ease",
-  opacity: 0,
+  transition: "height 400ms ease",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
   selectors: {
     [`${header}:hover ~ &`]: {
-      height: "300px",
-      opacity: 1,
-    },
-  },
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      width: "95%",
-      borderRadius: "64px",
-    },
-    "screen and (max-width: 768px)": {
-      width: "95%",
-      borderRadius: "42px",
-      top: "15px",
+      height: "400px",
     },
   },
 })

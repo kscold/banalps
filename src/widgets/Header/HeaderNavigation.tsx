@@ -55,17 +55,10 @@ const NAVIGATION_ITEMS = [
 
 export default function HeaderNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeMenu, setActiveMenu] = useState("")
-
   const handleMenuToggle = () => {
     const newState = !isMenuOpen
     setIsMenuOpen(newState)
     console.log("[HeaderNavigation/메뉴토글] 모바일 메뉴 상태 변경:", newState)
-  }
-
-  const handleMenuHover = (menuTitle: string) => {
-    setActiveMenu(menuTitle)
-    console.log("[HeaderNavigation/메뉴호버] 활성 메뉴 변경:", menuTitle)
   }
 
   return (
@@ -109,7 +102,6 @@ export default function HeaderNavigation() {
                 key={item.title}
                 href={item.href}
                 className={styles.navLink}
-                onMouseEnter={() => handleMenuHover(item.title)}
               >
                 {item.title}
               </Link>
