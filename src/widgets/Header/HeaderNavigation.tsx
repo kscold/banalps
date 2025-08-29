@@ -8,12 +8,23 @@ import { NAVIGATION_ITEMS } from "../../shared/constants/navigation"
 
 export default function HeaderNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false)
   const pathname = usePathname()
 
   const handleMenuToggle = () => {
     const newState = !isMenuOpen
     setIsMenuOpen(newState)
     console.log("[HeaderNavigation/메뉴토글] 모바일 메뉴 상태 변경:", newState)
+  }
+
+  const handleHeaderMouseEnter = () => {
+    setIsHeaderHovered(true)
+    console.log("[HeaderNavigation/헤더호버] 헤더 호버 시작")
+  }
+
+  const handleHeaderMouseLeave = () => {
+    setIsHeaderHovered(false)
+    console.log("[HeaderNavigation/헤더호버] 헤더 호버 종료")
   }
 
   // 현재 페이지가 해당 네비게이션 항목에 속하는지 확인
@@ -25,7 +36,11 @@ export default function HeaderNavigation() {
   return (
     <>
       {/* 메인 헤더 - 네비게이션 바 */}
-      <header className={styles.header}>
+      <header
+        className={styles.header}
+        onMouseEnter={handleHeaderMouseEnter}
+        onMouseLeave={handleHeaderMouseLeave}
+      >
         <div className={styles.container}>
           <div className={styles.headerContent}>
             {/* 로고 영역 */}
@@ -61,19 +76,31 @@ export default function HeaderNavigation() {
                     {item.title}
                   </Link>
                   {/* 각 네비게이션 아이템 바로 아래에 드롭다운 */}
-                  <div className={styles.dropdownContent}>
-                    {item.submenu && item.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.title}
-                        href={subItem.href}
-                        className={`${styles.dropdownItem} ${
-                          pathname === subItem.href ? styles.dropdownItemActive : ""
-                        }`}
-                      >
-                        {subItem.title}
-                      </Link>
-                    ))}
-                  </div>
+                  {isHeaderHovered && item.submenu && (
+                    <div 
+                      className={styles.dropdownContent}
+                      style={{
+                        opacity: 1,
+                        visibility: "visible",
+                        transform: "translateX(-50%) translateY(0px)",
+                        pointerEvents: "auto"
+                      }}
+                    >
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.title}
+                          href={subItem.href}
+                          className={`${styles.dropdownItem} ${
+                            pathname === subItem.href
+                              ? styles.dropdownItemActive
+                              : ""
+                          }`}
+                        >
+                          {subItem.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </nav>
@@ -126,7 +153,22 @@ export default function HeaderNavigation() {
       </header>
 
       {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) */}
-      <div className={styles.headerCurtain} />
+      {isHeaderHovered && (
+        <div
+          className={styles.headerCurtain}
+          style={{
+            height: "440px",
+            opacity: 1,
+            visibility: "visible",
+            pointerEvents: "auto",
+          }}
+          onMouseEnter={() => setIsHeaderHovered(true)}
+          onMouseLeave={() => {
+            console.log("[HeaderNavigation/커튼] 커튼 영역 벗어남")
+            setIsHeaderHovered(false)
+          }}
+        />
+      )}
 
       {/* 모바일 메뉴 */}
       {isMenuOpen && (

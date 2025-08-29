@@ -58,7 +58,7 @@ export const headerCurtain = style({
     "&:hover": {
       height: "440px",
       opacity: 1,
-      visibility: "visible", 
+      visibility: "visible",
       pointerEvents: "auto", // 커튼 영역에 마우스 올려도 유지
     },
   },
