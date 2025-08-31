@@ -41,18 +41,27 @@ export const container = style({
   },
 });
 
-// 그리드 기본 스타일
+// Figma 디자인 기반 12 컬럼 그리드 시스템
 export const gridContainer = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
-  gap: '1rem',
+  gap: '20px', // Figma 디자인 기준
+  width: '100%',
+  maxWidth: '1600px',
+  margin: '0 auto',
+  padding: '0 160px',
   
   '@media': {
-    [`screen and (min-width: ${breakpoints.md})`]: {
-      gap: '1.5rem',
+    [`screen and (max-width: 1680px)`]: {
+      padding: '0 60px',
     },
-    [`screen and (min-width: ${breakpoints.lg})`]: {
-      gap: '2rem',
+    [`screen and (max-width: ${breakpoints.xl})`]: {
+      padding: '0 40px',
+    },
+    [`screen and (max-width: ${breakpoints.md})`]: {
+      gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+      gap: '12px',
+      padding: '0 16px',
     },
   },
 });

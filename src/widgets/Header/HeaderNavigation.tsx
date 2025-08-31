@@ -45,23 +45,8 @@ export default function HeaderNavigation() {
           <div className={styles.headerContent}>
             {/* 로고 영역 */}
             <div className={styles.logoWrapper}>
-              <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-                <img
-                  src="/main/logo/logo.svg"
-                  alt="바날 성형외과 로고"
-                  className={styles.logoImage}
-                  onLoad={() => {
-                    console.log(
-                      "[HeaderNavigation/로고로드] 로고 SVG 이미지 로드 성공"
-                    )
-                  }}
-                  onError={(e) => {
-                    console.error(
-                      "[HeaderNavigation/로고에러] 로고 SVG 이미지 로드 실패:",
-                      e
-                    )
-                  }}
-                />
+              <Link href="/" className={styles.logoLink}>
+                <span className={styles.logoText}>바날부는날에도</span>
               </Link>
             </div>
 
