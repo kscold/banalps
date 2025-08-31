@@ -41,7 +41,7 @@ export function VideoSection({ showVideoSection }: VideoSectionProps) {
               }}
             />
           </div>
-          <div className={styles.videoOverlay} />
+          <div className={styles.videoOverlay} style={{ pointerEvents: 'auto' }} />
         </motion.section>
       )}
     </AnimatePresence>

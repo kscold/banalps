@@ -20,13 +20,21 @@ export function useHeroScroll(): UseHeroScrollReturn {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault() // 기본 스크롤 동작 방지
       
+      console.log(`[useHeroScroll/휠이벤트] showVideoSection: ${showVideoSection}, isScrolling: ${isScrolling}, deltaY: ${e.deltaY}`)
+      
       // 이미 스크롤 중이면 무시
-      if (isScrolling) return
+      if (isScrolling) {
+        console.log("[useHeroScroll/휠이벤트] 스크롤 중 - 무시")
+        return
+      }
       
       const deltaY = e.deltaY
       
       // 최소 스크롤 임계값 설정 (너무 작은 움직임 무시)
-      if (Math.abs(deltaY) < 30) return
+      if (Math.abs(deltaY) < 30) {
+        console.log("[useHeroScroll/휠이벤트] 임계값 미달 - 무시")
+        return
+      }
       
       // 스크롤 잠금
       isScrolling = true
@@ -34,29 +42,35 @@ export function useHeroScroll(): UseHeroScrollReturn {
       // 스크롤 방향에 따라 처리
       if (deltaY > 0) {
         // 아래로 스크롤
-        setCurrentTextIndex(prevIndex => {
-          console.log(`[useHeroScroll/휠다운] 현재 index: ${prevIndex}, deltaY: ${deltaY}`)
-          
-          if (prevIndex < totalTexts - 1) {
-            // 다음 텍스트로 이동 (0→1→2→3→4→5)
-            const newIndex = prevIndex + 1
-            console.log(`[useHeroScroll/다음텍스트] ${prevIndex} → ${newIndex}`)
-            return newIndex
-          } else if (prevIndex === totalTexts - 1) {
-            // 마지막 텍스트(5)에서 추가 스크롤 시 비디오로
-            setTimeout(() => {
-              setShowVideoSection(true)
-              console.log("[useHeroScroll/비디오전환] 마지막 텍스트에서 비디오로 전환")
-            }, 0)
+        if (showVideoSection) {
+          // 비디오 섹션에서는 스크롤 무시 (이미 최하단)
+          console.log("[useHeroScroll/휠다운] 비디오 섹션 - 더 이상 진행 불가")
+        } else {
+          setCurrentTextIndex(prevIndex => {
+            console.log(`[useHeroScroll/휠다운] 현재 index: ${prevIndex}, deltaY: ${deltaY}`)
+            
+            if (prevIndex < totalTexts - 1) {
+              // 다음 텍스트로 이동 (0→1→2→3→4→5)
+              const newIndex = prevIndex + 1
+              console.log(`[useHeroScroll/다음텍스트] ${prevIndex} → ${newIndex}`)
+              return newIndex
+            } else if (prevIndex === totalTexts - 1) {
+              // 마지막 텍스트(5)에서 추가 스크롤 시 비디오로
+              setTimeout(() => {
+                setShowVideoSection(true)
+                console.log("[useHeroScroll/비디오전환] 마지막 텍스트에서 비디오로 전환")
+              }, 0)
+              return prevIndex
+            }
             return prevIndex
-          }
-          return prevIndex
-        })
+          })
+        }
       } else if (deltaY < 0) {
         // 위로 스크롤
         if (showVideoSection) {
           // 비디오에서 마지막 텍스트로 복귀
           setShowVideoSection(false)
+          setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
           console.log(`[useHeroScroll/비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
         } else {
           setCurrentTextIndex(prevIndex => {
@@ -116,6 +130,7 @@ export function useHeroScroll(): UseHeroScrollReturn {
           if (showVideoSection) {
             // 비디오에서 마지막 텍스트로
             setShowVideoSection(false)
+            setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
             console.log(`[useHeroScroll/키보드비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
           } else {
             setCurrentTextIndex(prevIndex => {
@@ -191,6 +206,7 @@ export function useHeroScroll(): UseHeroScrollReturn {
           // 아래로 스와이프 (이전으로)
           if (showVideoSection) {
             setShowVideoSection(false)
+            setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
             console.log(`[useHeroScroll/스와이프비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
           } else {
             setCurrentTextIndex(prevIndex => {
@@ -233,7 +249,7 @@ export function useHeroScroll(): UseHeroScrollReturn {
         clearTimeout(scrollTimeout)
       }
     }
-  }, [])
+  }, [showVideoSection])
 
   return {
     currentTextIndex,
