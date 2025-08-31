@@ -22,11 +22,11 @@ export const header = style({
       width: "calc(100% - 80px)", // 40px * 2
       borderRadius: "64px",
     },
-    "screen and (max-width: 768px)": {
+    "screen and (max-width: 1024px)": { // 1024px로 변경
       top: "0",
       width: "100%",
       borderRadius: "0",
-      height: "92px", // Figma 모바일 디자인
+      height: "92px",
       background: "#FFFFFF",
       boxShadow: "0 1px 0 rgba(0, 0, 0, 0.1)",
     },
@@ -82,6 +82,40 @@ export const submenuContainer = style({
   width: "100%",
   paddingTop: "125px", // 헤더 top(20px) + 헤더 height(85px) + gap(20px)
   paddingBottom: "40px",
+  paddingLeft: "60px",
+  paddingRight: "60px",
+  "@media": {
+    "screen and (max-width: 1680px)": {
+      paddingLeft: "30px",
+      paddingRight: "30px",
+    },
+    "screen and (max-width: 1280px)": {
+      paddingLeft: "20px",
+      paddingRight: "20px",
+    },
+  },
+})
+
+// 서브메뉴 내부 래퍼 - 네비게이션과 동일한 위치
+export const submenuInnerWrapper = style({
+  position: "relative",
+  display: "flex",
+  gap: "0",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+  width: "100%",
+  maxWidth: "875px",
+  "@media": {
+    "screen and (max-width: 1680px)": {
+      maxWidth: "750px",
+    },
+    "screen and (max-width: 1440px)": {
+      maxWidth: "650px",
+    },
+    "screen and (max-width: 1280px)": {
+      maxWidth: "550px",
+    },
+  },
 })
 
 // 서브메뉴 그룹 - 각 네비게이션 아이템 아래 정확히 위치
@@ -90,8 +124,8 @@ export const submenuGroup = style({
   flexDirection: "column",
   gap: "12px",
   alignItems: "center",
-  width: "175px",
-  flex: "0 0 175px",
+  flex: "1 1 0",
+  padding: "0",
 })
 
 // 서브메뉴 타이틀 (사용하지 않음 - 피그마 디자인에 없음)
@@ -116,6 +150,20 @@ export const dropdownItem = style({
   ":hover": {
     color: "#14AEFF",
   },
+  "@media": {
+    "screen and (max-width: 1680px)": {
+      fontSize: "15px",
+      lineHeight: "23px",
+    },
+    "screen and (max-width: 1440px)": {
+      fontSize: "14px",
+      lineHeight: "21px",
+    },
+    "screen and (max-width: 1280px)": {
+      fontSize: "13px",
+      lineHeight: "20px",
+    },
+  },
 })
 
 // 드롭다운 아이템 활성 상태
@@ -136,9 +184,9 @@ export const container = style({
   height: "100%",
   marginLeft: "auto",
   marginRight: "auto",
-  paddingTop: "28px",
+  display: "flex",
+  alignItems: "center",
   paddingRight: "160px", // Figma 그리드 offset
-  paddingBottom: "28px",
   paddingLeft: "160px", // Figma 그리드 offset
   "@media": {
     "screen and (max-width: 1680px)": {
@@ -162,12 +210,16 @@ export const headerContent = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  width: "1480px",
-  height: "35px",
-  maxWidth: "100%",
-  margin: "0 auto",
+  width: "100%",
+  height: "100%",
   position: "relative",
   zIndex: 1,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+  },
 })
 
 export const logoWrapper = style({
@@ -187,11 +239,11 @@ export const logoLink = style({
 
 export const logoText = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "18px", // Figma 디자인 기준
-  fontWeight: "500",
+  fontSize: "20px",
+  fontWeight: "600",
   fontStyle: "normal",
-  lineHeight: "27px",
-  letterSpacing: "-0.01em",
+  lineHeight: "30px",
+  letterSpacing: "-0.02em",
   color: "#FFFFFF",
   textDecoration: "none",
   transition: "all 200ms ease",
@@ -201,8 +253,12 @@ export const logoText = style({
     opacity: 0.9,
   },
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "16px", // 모바일
+    "screen and (max-width: 1280px)": {
+      fontSize: "16px", // 중간 사이즈
+      lineHeight: "24px",
+    },
+    "screen and (max-width: 1024px)": {
+      fontSize: "16px",
       lineHeight: "24px",
       fontWeight: "400",
       color: "#333333", // 모바일에서 검정색
@@ -213,14 +269,22 @@ export const logoText = style({
 export const desktopNav = style({
   display: "none",
   alignItems: "center",
-  gap: "0",
-  height: "100%",
-  position: "absolute",
-  left: "50%",
-  transform: "translateX(-50%)",
+  justifyContent: "space-between",
+  width: "100%",
+  maxWidth: "875px",
+  height: "35px",
   "@media": {
-    "screen and (min-width: 768px)": {
+    "screen and (min-width: 1024px)": { // 1024px로 변경
       display: "flex",
+    },
+    "screen and (max-width: 1680px)": {
+      maxWidth: "750px",
+    },
+    "screen and (max-width: 1440px)": {
+      maxWidth: "650px",
+    },
+    "screen and (max-width: 1280px)": {
+      maxWidth: "550px",
     },
   },
 })
@@ -262,12 +326,12 @@ export const navLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
   textDecoration: "none",
-  fontSize: "18px",
-  fontWeight: "500",
-  lineHeight: "27px",
-  letterSpacing: "0",
-  padding: "0.75rem 0",
-  width: "175px",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  letterSpacing: "-0.01em",
+  padding: "0",
+  flex: "1 1 0",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -276,18 +340,19 @@ export const navLink = style({
   position: "relative",
   zIndex: 2,
   textAlign: "center",
+  whiteSpace: "nowrap",
   "@media": {
-    "screen and (max-width: 1200px)": {
-      fontSize: "18px",
-      lineHeight: "27px",
+    "screen and (max-width: 1680px)": {
+      fontSize: "15px",
+      lineHeight: "23px",
     },
-    "screen and (max-width: 1024px)": {
-      fontSize: "16px",
-      lineHeight: "24px",
-    },
-    "screen and (max-width: 768px)": {
+    "screen and (max-width: 1440px)": {
       fontSize: "14px",
       lineHeight: "21px",
+    },
+    "screen and (max-width: 1280px)": {
+      fontSize: "13px",
+      lineHeight: "20px",
     },
   },
 })
@@ -332,12 +397,11 @@ export const dropdown = style({
 export const actionButtons = style({
   display: "none",
   alignItems: "center",
-  gap: "1rem",
+  justifyContent: "flex-end",
+  gap: "0.5rem",
   height: "100%",
-  position: "absolute",
-  right: "0",
   "@media": {
-    "screen and (min-width: 768px)": {
+    "screen and (min-width: 1024px)": { // 1024px로 변경
       display: "flex",
     },
   },
@@ -346,10 +410,10 @@ export const actionButtons = style({
 export const loginButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
-  fontSize: "18px",
-  fontWeight: "500",
-  lineHeight: "27px",
-  letterSpacing: "0",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  letterSpacing: "-0.01em",
   backgroundColor: "transparent",
   border: "none",
   padding: "0.75rem 1.5rem",
@@ -367,11 +431,11 @@ export const loginButton = style({
 export const consultButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
-  padding: "0.75rem 2rem",
-  fontSize: "18px",
-  fontWeight: "500",
-  lineHeight: "27px",
-  letterSpacing: "0",
+  padding: "0.5rem 1.5rem",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  letterSpacing: "-0.01em",
   backgroundColor: "transparent",
   border: "none",
   cursor: "pointer",
@@ -389,7 +453,8 @@ export const consultButton = style({
 })
 
 export const dropdownArrow = style({
-  fontSize: "14px",
+  fontSize: "12px",
+  marginLeft: "0.25rem",
   transition: "transform 200ms ease",
 })
 
@@ -397,7 +462,7 @@ export const mobileMenuButton = style({
   display: "flex",
   alignItems: "center",
   "@media": {
-    "screen and (min-width: 768px)": {
+    "screen and (min-width: 1024px)": { // 1024px로 변경
       display: "none",
     },
   },

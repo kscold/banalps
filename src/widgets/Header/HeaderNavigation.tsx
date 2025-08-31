@@ -46,7 +46,7 @@ export default function HeaderNavigation() {
             {/* 로고 영역 */}
             <div className={styles.logoWrapper}>
               <Link href="/" className={styles.logoLink}>
-                <span className={styles.logoText}>바날부는날에도</span>
+                <span className={styles.logoText}>바람부는날에도</span>
               </Link>
             </div>
 
@@ -135,27 +135,43 @@ export default function HeaderNavigation() {
       >
         {/* 서브메뉴 컨테이너 */}
         <div className={styles.submenuContainer}>
-          <div style={{ display: "flex", gap: "0", width: "875px" }}>
-            {NAVIGATION_ITEMS.map((item) => (
-              <div key={item.title} className={styles.submenuGroup}>
-                {item.submenu ? (
-                  item.submenu.map((subItem) => (
-                    <Link
-                      key={subItem.title}
-                      href={subItem.href}
-                      className={`${styles.dropdownItem} ${
-                        pathname === subItem.href ? styles.dropdownItemActive : ""
-                      }`}
-                    >
-                      {subItem.title}
-                    </Link>
-                  ))
-                ) : (
-                  // 서브메뉴가 없는 경우 빈 공간 유지
-                  <div className={styles.dropdownItemPlaceholder} />
-                )}
-              </div>
-            ))}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              maxWidth: "1600px",
+              margin: "0 auto",
+            }}
+          >
+            {/* 중앙 정렬된 서브메뉴 - 네비게이션 너비와 동일하게 반응형 */}
+            <div className={styles.submenuInnerWrapper}>
+              {NAVIGATION_ITEMS.map((item) => (
+                <div 
+                  key={item.title} 
+                  className={styles.submenuGroup}
+                >
+                  {item.submenu ? (
+                    item.submenu.map((subItem) => (
+                      <Link
+                        key={subItem.title}
+                        href={subItem.href}
+                        className={`${styles.dropdownItem} ${
+                          pathname === subItem.href
+                            ? styles.dropdownItemActive
+                            : ""
+                        }`}
+                      >
+                        {subItem.title}
+                      </Link>
+                    ))
+                  ) : (
+                    // 서브메뉴가 없는 경우 빈 공간 유지
+                    <div className={styles.dropdownItemPlaceholder} />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
