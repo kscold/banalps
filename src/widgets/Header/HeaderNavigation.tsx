@@ -36,7 +36,10 @@ export default function HeaderNavigation() {
             </div>
 
             {/* 데스크톱 네비게이션 */}
-            <DesktopNav showSubmenu={showSubmenu} isHeaderHovered={isHeaderHovered} />
+            <DesktopNav
+              showSubmenu={showSubmenu}
+              isHeaderHovered={isHeaderHovered}
+            />
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
@@ -62,7 +65,7 @@ export default function HeaderNavigation() {
           isHeaderHovered
             ? {
                 height: "auto",
-                maxHeight: "350px",
+                maxHeight: "410px",
                 opacity: 1,
                 visibility: "visible",
                 pointerEvents: "auto",

@@ -98,7 +98,7 @@ export function TextContentRenderer({
                 delay: 0.2,
               }}
             >
-              "나는 바람 부는 날도 좋아요."
+              {"나는 바람 부는 날도 좋아요."}
             </motion.p>
           </motion.div>
         )
@@ -274,7 +274,7 @@ export function TextContentRenderer({
                 delay: 0.2,
               }}
             >
-              "이제 바람 부는 날도 좋아요."
+              {"이제 바람 부는 날도 좋아요."}
               <br />이 말은 언제든 들어도 기분이 좋습니다.
             </motion.p>
           </motion.div>

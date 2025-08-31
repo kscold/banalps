@@ -8,6 +8,7 @@ import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation"
 interface DesktopNavProps {
   showSubmenu: boolean
   isHeaderHovered: boolean
+  renderSubmenuOnly?: boolean
 }
 
 export default function DesktopNav({ showSubmenu, isHeaderHovered }: DesktopNavProps) {
@@ -20,12 +21,15 @@ export default function DesktopNav({ showSubmenu, isHeaderHovered }: DesktopNavP
           <Link href={item.href} className={styles.navLink}>
             {item.title}
           </Link>
-          {/* 커튼이 열리고 서브메뉴가 준비되었을 때만 표시 */}
-          {isHeaderHovered && showSubmenu && item.submenu && (
+          {/* 커튼이 열려있으면 서브메뉴 항상 렌더링 */}
+          {item.submenu && (
             <div className={styles.dropdownContent} style={{
-              opacity: showSubmenu ? 1 : 0,
-              transition: 'opacity 100ms ease', // 더 빠른 트랜지션
-              pointerEvents: showSubmenu ? 'auto' : 'none'
+              opacity: isHeaderHovered && showSubmenu ? 1 : 0,
+              visibility: isHeaderHovered && showSubmenu ? 'visible' : 'hidden',
+              transition: isHeaderHovered && showSubmenu 
+                ? 'opacity 200ms ease 100ms, visibility 0ms' // 나타날 때: 부드럽게 페이드인
+                : 'opacity 0ms, visibility 0ms', // 사라질 때: 즉시 사라짐
+              pointerEvents: isHeaderHovered && showSubmenu ? 'auto' : 'none'
             }}>
               {item.submenu.map((subItem) => (
                 <Link

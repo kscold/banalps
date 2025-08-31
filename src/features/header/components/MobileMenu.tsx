@@ -33,7 +33,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   }
 
   // 메인 메뉴 클릭 핸들러
-  const handleMainMenuClick = (e: React.MouseEvent, item: any) => {
+  const handleMainMenuClick = (e: React.MouseEvent, item: typeof NAVIGATION_ITEMS[0]) => {
     e.preventDefault()
     if (item.submenu) {
       toggleMenuItem(item.title)

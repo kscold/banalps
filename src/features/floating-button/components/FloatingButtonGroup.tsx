@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import FloatingButton from "./FloatingButton"
-import * as buttonStyles from "./FloatingButton.css"
 import * as styles from "./FloatingButtonGroup.css"
 
 export interface FloatingButtonGroupProps {

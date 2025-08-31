@@ -68,7 +68,7 @@ export const headerCurtain = style({
   selectors: {
     [`${header}:hover ~ &`]: {
       height: "auto",
-      maxHeight: "350px",
+      maxHeight: "410px", // 410px로 변경
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
@@ -77,7 +77,7 @@ export const headerCurtain = style({
     },
     "&:hover": {
       height: "auto",
-      maxHeight: "350px",
+      maxHeight: "410px", // 410px로 변경
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
@@ -93,9 +93,9 @@ export const submenuContainer = style({
   justifyContent: "space-between",
   alignItems: "flex-start",
   gap: "0",
-  height: "600px",
+  height: "410px", // 커튼 높이와 동일하게 설정
   width: "100%",
-  paddingTop: "125px",
+  paddingTop: "125px", // 헤더 아래에 위치하도록 조정
   paddingBottom: "40px",
   paddingLeft: "160px",
   paddingRight: "160px",
@@ -155,15 +155,15 @@ export const dropdownItemActive = style({
 })
 
 export const container = style({
-  maxWidth: "1600px",
+  maxWidth: "1920px", // 1920px 기준으로 변경
   width: "100%",
   height: "100%",
   marginLeft: "auto",
   marginRight: "auto",
   display: "flex",
   alignItems: "center",
-  paddingRight: "160px",
-  paddingLeft: "160px",
+  paddingRight: "60px", // 오른쪽 패딩 60px
+  paddingLeft: "60px", // 왼쪽 패딩 60px
   "@media": {
     "screen and (max-width: 1680px)": {
       paddingLeft: "60px",
@@ -196,6 +196,18 @@ export const headerContent = style({
   height: "100%",
   position: "relative",
   zIndex: 1,
+  gap: "125px", // 요소 간 기본 간격 125px
+  "@media": {
+    "screen and (max-width: 1680px)": {
+      gap: "80px",
+    },
+    "screen and (max-width: 1280px)": {
+      gap: "40px",
+    },
+    "screen and (max-width: 1024px)": {
+      gap: "0", // 모바일에서는 space-between으로 처리
+    },
+  },
 })
 
 export const logoWrapper = style({
@@ -248,21 +260,25 @@ export const desktopNav = style({
   display: "none",
   alignItems: "center",
   justifyContent: "space-between",
-  width: "100%",
-  maxWidth: "875px",
+  flex: "1", // flex로 변경하여 중앙 영역 차지
   height: "35px",
+  marginLeft: "125px", // 로고와 125px 간격
+  marginRight: "125px", // 액션 버튼과 125px 간격
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
     },
     "screen and (max-width: 1680px)": {
-      maxWidth: "750px",
+      marginLeft: "80px",
+      marginRight: "80px",
     },
     "screen and (max-width: 1440px)": {
-      maxWidth: "650px",
+      marginLeft: "60px",
+      marginRight: "60px",
     },
     "screen and (max-width: 1280px)": {
-      maxWidth: "550px",
+      marginLeft: "40px",
+      marginRight: "40px",
     },
   },
 })
@@ -278,14 +294,14 @@ export const navItemWrapper = style({
 // 드롭다운 콘텐츠
 export const dropdownContent = style({
   position: "absolute",
-  top: "calc(100% + 20px)",
+  top: "100%", // 헤더 바로 아래 붙이기
   left: "50%",
   transform: "translateX(-50%)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: "12px",
-  padding: "16px 20px",
+  padding: "40px 20px 30px", // 상단 패딩 증가로 연결 영역 확보
   minWidth: "160px",
   opacity: 1,
   visibility: "visible",
@@ -338,6 +354,7 @@ export const actionButtons = style({
   justifyContent: "flex-end",
   gap: "0.5rem",
   height: "100%",
+  flexShrink: 0, // 버튼 영역 크기 고정
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",

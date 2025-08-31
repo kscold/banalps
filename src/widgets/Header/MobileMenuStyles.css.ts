@@ -154,9 +154,9 @@ export const mobileNavSubLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontSize: "16px",
   fontWeight: "200", // 4 Regular 스타일
-  color: "#444444", // Colors-Text-Subtle
+  color: "#272727", // Colors-Text-Subtle
   textDecoration: "none",
-  lineHeight: "150%", // 24px
+  lineHeight: "160%", // 24px
   letterSpacing: "0",
   transition: "color 200ms ease",
   ":hover": {
