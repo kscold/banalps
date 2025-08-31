@@ -108,49 +108,6 @@ export const submenuContainer = style({
   },
 })
 
-// 서브메뉴 내부 래퍼 - desktopNav와 완벽하게 일치하는 구조
-export const submenuInnerWrapper = style({
-  position: "relative",
-  display: "flex", // grid에서 flex로 변경하여 desktopNav와 동일한 구조
-  alignItems: "flex-start",
-  justifyContent: "space-between", // desktopNav와 동일한 정렬 방식
-  width: "100%",
-  maxWidth: "875px", // 헤더의 desktopNav와 정확히 동일한 maxWidth
-  height: "auto", // 높이 자동 조정
-  "@media": {
-    "screen and (max-width: 1680px)": {
-      maxWidth: "750px", // 헤더의 desktopNav와 정확히 동일
-    },
-    "screen and (max-width: 1440px)": {
-      maxWidth: "650px", // 헤더의 desktopNav와 정확히 동일
-    },
-    "screen and (max-width: 1280px)": {
-      maxWidth: "550px", // 헤더의 desktopNav와 정확히 동일
-    },
-    "screen and (max-width: 1024px)": {
-      display: "none", // 모바일에서는 드롭다운 숨김
-    },
-  },
-})
-
-// 서브메뉴 그룹 - desktopNav의 navItemWrapper와 완벽하게 일치하는 구조
-export const submenuGroup = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center", // 중앙 정렬
-  justifyContent: "flex-start",
-  width: "auto", // flex 아이템으로 자동 너비 조정
-  flex: "1 1 0", // desktopNav의 navLink와 동일한 flex 속성
-  padding: "0",
-  textAlign: "center", // 중앙 정렬
-  position: "relative", // 위치 기준점 설정
-})
-
-// 서브메뉴 타이틀 (사용하지 않음 - 피그마 디자인에 없음)
-export const submenuTitle = style({
-  display: "none",
-})
-
 // 드롭다운 아이템 - Figma 디자인 정확히 일치
 export const dropdownItem = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -331,9 +288,10 @@ export const dropdownContent = style({
   minWidth: "160px",
   opacity: 1, // 호버시 보이도록
   visibility: "visible",
-  transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
   pointerEvents: "auto",
   zIndex: 1000, // 높은 z-index로 다른 요소 위에 표시
+  // fadeIn 애니메이션을 위한 transition 설정
+  transition: "opacity 200ms ease 300ms, transform 200ms ease 300ms", // 300ms delay 후 애니메이션
 })
 
 export const navLink = style({
@@ -367,41 +325,6 @@ export const navLink = style({
     "screen and (max-width: 1280px)": {
       fontSize: "13px",
       lineHeight: "20px",
-    },
-  },
-})
-
-// 네비게이션 링크 활성 상태
-export const navLinkActive = style({
-  backgroundColor: "rgba(255, 255, 255, 0.2)",
-  color: "#FFFFFF",
-  fontWeight: "600",
-})
-
-export const navItem = style({
-  position: "relative",
-  display: "inline-block",
-})
-
-export const dropdown = style({
-  position: "absolute",
-  top: "100%",
-  left: "0",
-  backgroundColor: "#FFFFFF",
-  borderRadius: "0", // 말풍선 같은 둥근 모서리 제거
-  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", // 말풍선 같은 그림자 제거, 더 얇게
-  padding: "0.5rem 0",
-  minWidth: "200px",
-  opacity: 0,
-  visibility: "hidden",
-  transform: "translateY(-10px)",
-  transition: "all 300ms ease",
-  zIndex: 100,
-  selectors: {
-    [`${navItem}:hover &`]: {
-      opacity: 1,
-      visibility: "visible",
-      transform: "translateY(0)",
     },
   },
 })

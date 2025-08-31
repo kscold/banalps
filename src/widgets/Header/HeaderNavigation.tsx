@@ -9,6 +9,7 @@ import { NAVIGATION_ITEMS } from "../../shared/constants/navigation"
 export default function HeaderNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderHovered, setIsHeaderHovered] = useState(false)
+  const [showSubmenu, setShowSubmenu] = useState(false) // 서브메뉴 표시 상태
   const pathname = usePathname()
 
   const handleMenuToggle = () => {
@@ -19,11 +20,16 @@ export default function HeaderNavigation() {
 
   const handleHeaderMouseEnter = () => {
     setIsHeaderHovered(true)
+    // 커튼 애니메이션 완료 후 서브메뉴 표시 (300ms delay)
+    setTimeout(() => {
+      setShowSubmenu(true)
+    }, 300)
     console.log("[HeaderNavigation/헤더호버] 헤더 호버 시작")
   }
 
   const handleHeaderMouseLeave = () => {
     setIsHeaderHovered(false)
+    setShowSubmenu(false) // 즉시 서브메뉴 숨김
     console.log("[HeaderNavigation/헤더호버] 헤더 호버 종료")
   }
 
@@ -57,8 +63,8 @@ export default function HeaderNavigation() {
                   <Link href={item.href} className={styles.navLink}>
                     {item.title}
                   </Link>
-                  {/* 각 네비게이션 아이템 아래에 개별 드롭다운 */}
-                  {isHeaderHovered && item.submenu && (
+                  {/* 각 네비게이션 아이템 아래에 개별 드롭다운 - 커튼 애니메이션 완료 후 표시 */}
+                  {showSubmenu && item.submenu && (
                     <div className={styles.dropdownContent}>
                       {item.submenu.map((subItem) => (
                         <Link
