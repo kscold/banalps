@@ -99,10 +99,39 @@ export const pretendard = fontFace([
   },
 ])
 
+// Poppins Font Family Definition (from Google Fonts)
+export const poppins = fontFace([
+  {
+    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    fontWeight: 400,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    fontWeight: 500,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    fontWeight: 600,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    fontWeight: 700,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+])
+
 // Font Stack with S-Core Dream & Pretendard
 export const fontFamily = {
   scdream: `${sCoreDream}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
   pretendard: `${pretendard}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
+  poppins: `'Poppins', sans-serif`,
 }
 
 // Font Weight Variables

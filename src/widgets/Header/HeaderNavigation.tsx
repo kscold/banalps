@@ -36,7 +36,7 @@ export default function HeaderNavigation() {
             </div>
 
             {/* 데스크톱 네비게이션 */}
-            <DesktopNav showSubmenu={showSubmenu} />
+            <DesktopNav showSubmenu={showSubmenu} isHeaderHovered={isHeaderHovered} />
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>

@@ -7,9 +7,10 @@ import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation"
 
 interface DesktopNavProps {
   showSubmenu: boolean
+  isHeaderHovered: boolean
 }
 
-export default function DesktopNav({ showSubmenu }: DesktopNavProps) {
+export default function DesktopNav({ showSubmenu, isHeaderHovered }: DesktopNavProps) {
   const pathname = usePathname()
 
   return (
@@ -19,9 +20,13 @@ export default function DesktopNav({ showSubmenu }: DesktopNavProps) {
           <Link href={item.href} className={styles.navLink}>
             {item.title}
           </Link>
-          {/* 각 네비게이션 아이템 아래에 개별 드롭다운 */}
-          {showSubmenu && item.submenu && (
-            <div className={styles.dropdownContent}>
+          {/* 커튼이 열리고 서브메뉴가 준비되었을 때만 표시 */}
+          {isHeaderHovered && showSubmenu && item.submenu && (
+            <div className={styles.dropdownContent} style={{
+              opacity: showSubmenu ? 1 : 0,
+              transition: 'opacity 100ms ease', // 더 빠른 트랜지션
+              pointerEvents: showSubmenu ? 'auto' : 'none'
+            }}>
               {item.submenu.map((subItem) => (
                 <Link
                   key={subItem.title}
