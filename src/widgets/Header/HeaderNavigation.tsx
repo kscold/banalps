@@ -1,43 +1,22 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import * as styles from "./HeaderDesign.css"
-import { NAVIGATION_ITEMS } from "../../shared/constants/navigation"
+import { useHeaderState } from "../../features/header/hooks/useHeaderState"
+import DesktopNav from "../../features/header/components/DesktopNav"
+import MobileMenu from "../../features/header/components/MobileMenu"
+import MenuToggleButton from "../../features/header/components/MenuToggleButton"
 
 export default function HeaderNavigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isHeaderHovered, setIsHeaderHovered] = useState(false)
-  const [showSubmenu, setShowSubmenu] = useState(false) // 서브메뉴 표시 상태
-  const pathname = usePathname()
-
-  const handleMenuToggle = () => {
-    const newState = !isMenuOpen
-    setIsMenuOpen(newState)
-    console.log("[HeaderNavigation/메뉴토글] 모바일 메뉴 상태 변경:", newState)
-  }
-
-  const handleHeaderMouseEnter = () => {
-    setIsHeaderHovered(true)
-    // 커튼 애니메이션 완료 후 서브메뉴 표시 (300ms delay)
-    setTimeout(() => {
-      setShowSubmenu(true)
-    }, 300)
-    console.log("[HeaderNavigation/헤더호버] 헤더 호버 시작")
-  }
-
-  const handleHeaderMouseLeave = () => {
-    setIsHeaderHovered(false)
-    setShowSubmenu(false) // 즉시 서브메뉴 숨김
-    console.log("[HeaderNavigation/헤더호버] 헤더 호버 종료")
-  }
-
-  // 현재 페이지가 해당 네비게이션 항목에 속하는지 확인
-  const isCurrentPage = (href: string) => {
-    if (!pathname) return false
-    return pathname === href || pathname.startsWith(href + "/")
-  }
+  const {
+    isMenuOpen,
+    isHeaderHovered,
+    showSubmenu,
+    handleMenuToggle,
+    handleHeaderMouseEnter,
+    handleHeaderMouseLeave,
+    closeMenu,
+  } = useHeaderState()
 
   return (
     <>
@@ -56,34 +35,8 @@ export default function HeaderNavigation() {
               </Link>
             </div>
 
-            {/* 데스크톱 네비게이션 - 개별 드롭다운 포함 */}
-            <nav className={styles.desktopNav}>
-              {NAVIGATION_ITEMS.map((item) => (
-                <div key={item.title} className={styles.navItemWrapper}>
-                  <Link href={item.href} className={styles.navLink}>
-                    {item.title}
-                  </Link>
-                  {/* 각 네비게이션 아이템 아래에 개별 드롭다운 - 커튼 애니메이션 완료 후 표시 */}
-                  {showSubmenu && item.submenu && (
-                    <div className={styles.dropdownContent}>
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className={`${styles.dropdownItem} ${
-                            pathname === subItem.href
-                              ? styles.dropdownItemActive
-                              : ""
-                          }`}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </nav>
+            {/* 데스크톱 네비게이션 */}
+            <DesktopNav showSubmenu={showSubmenu} />
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
@@ -97,42 +50,12 @@ export default function HeaderNavigation() {
             </div>
 
             {/* 모바일 메뉴 버튼 */}
-            <div className={styles.mobileMenuButton}>
-              <button
-                className={styles.menuToggle}
-                onClick={handleMenuToggle}
-                aria-label="메뉴 열기"
-              >
-                <svg
-                  className={styles.menuIcon}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
+            <MenuToggleButton isOpen={isMenuOpen} onClick={handleMenuToggle} />
           </div>
         </div>
       </header>
 
-      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) - 전체 화면 커버 */}
+      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) */}
       <div
         className={styles.headerCurtain}
         style={
@@ -149,50 +72,15 @@ export default function HeaderNavigation() {
                 maxHeight: "0",
               }
         }
-        onMouseEnter={() => setIsHeaderHovered(true)}
-        onMouseLeave={() => {
-          console.log("[HeaderNavigation/커튼] 전체 화면 커튼 영역 벗어남")
-          setIsHeaderHovered(false)
-        }}
+        onMouseEnter={() => handleHeaderMouseEnter()}
+        onMouseLeave={() => handleHeaderMouseLeave()}
       >
         {/* 서브메뉴 컨테이너 - 5열 그리드 */}
         <div className={styles.submenuContainer} />
-        {/* 개별 드롭다운을 위한 배경 커튼 */}
-        {isHeaderHovered && (
-          <div
-            className={styles.headerCurtain}
-            onMouseEnter={() => setIsHeaderHovered(true)}
-            onMouseLeave={() => {
-              console.log("[HeaderNavigation/커튼] 커튼 영역 벗어남")
-              setIsHeaderHovered(false)
-            }}
-          />
-        )}
       </div>
 
       {/* 모바일 메뉴 */}
-      {isMenuOpen && (
-        <div className={styles.mobileMenu}>
-          <div className={styles.mobileMenuContent}>
-            {NAVIGATION_ITEMS.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className={`${styles.mobileNavLink} ${isCurrentPage(
-                  item.href
-                )}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
-            ))}
-            <div className={styles.mobileActions}>
-              <button className={styles.mobileLoginButton}>LOGIN</button>
-              <button className={styles.mobileConsultButton}>상담신청</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
     </>
   )
 }

@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css"
 
 export const header = style({
   position: "fixed",
-  top: "20px",
+  top: "50px", // 데스크톱: 50px
   left: "50%",
   transform: "translateX(-50%)",
   zIndex: 50,
@@ -23,21 +23,31 @@ export const header = style({
       borderRadius: "64px",
     },
     "screen and (max-width: 1024px)": {
-      // 1024px로 변경
-      top: "0",
-      width: "100%",
-      borderRadius: "0",
-      height: "92px",
-      background: "#FFFFFF",
-      boxShadow: "0 1px 0 rgba(0, 0, 0, 0.1)",
+      top: "38px", // 모바일: 38px
+      width: "calc(100% - 40px)", // 20px * 2
+      borderRadius: "64px",
+      height: "72px",
+      // 파란색 배경 유지
+    },
+    "screen and (max-width: 768px)": {
+      top: "38px", // 모바일: 38px 유지
+      width: "calc(100% - 32px)", // 16px * 2
+      borderRadius: "48px",
+      height: "64px",
+    },
+    "screen and (max-width: 480px)": {
+      top: "38px", // 모바일: 38px 유지
+      width: "calc(100% - 24px)", // 12px * 2
+      borderRadius: "40px",
+      height: "56px",
     },
   },
 })
 
-// 헤더 뒤쪽에 나타나는 커튼 스타일 배경 - 개별 드롭다운과 겹치지 않도록
+// 헤더 뒤쪽에 나타나는 커튼 스타일 배경
 export const headerCurtain = style({
   position: "fixed",
-  top: "0", // 화면 맨 위부터 시작
+  top: "0",
   left: 0,
   right: 0,
   zIndex: 45,
@@ -58,7 +68,7 @@ export const headerCurtain = style({
   selectors: {
     [`${header}:hover ~ &`]: {
       height: "auto",
-      maxHeight: "350px", // 헤더 높이 + 서브메뉴 높이 + 추가 여백 (85px + 240px + 25px)
+      maxHeight: "350px",
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
@@ -77,50 +87,46 @@ export const headerCurtain = style({
   },
 })
 
-// 서브메뉴 컨테이너 - 헤더 네비게이션과 정확히 수직 정렬 (5열 그리드 시스템)
+// 서브메뉴 컨테이너
 export const submenuContainer = style({
   display: "flex",
-  justifyContent: "space-between", // desktopNav와 동일한 정렬 방식
+  justifyContent: "space-between",
   alignItems: "flex-start",
   gap: "0",
   height: "600px",
   width: "100%",
-  paddingTop: "125px", // 헤더 height(85px)만큼만 패딩
+  paddingTop: "125px",
   paddingBottom: "40px",
-  paddingLeft: "160px", // container와 동일한 패딩으로 X축 정렬 맞춤
-  paddingRight: "160px", // container와 동일한 패딩으로 X축 정렬 맞춤
+  paddingLeft: "160px",
+  paddingRight: "160px",
   "@media": {
     "screen and (max-width: 1680px)": {
-      paddingLeft: "60px", // container와 동일한 반응형 패딩
+      paddingLeft: "60px",
       paddingRight: "60px",
     },
     "screen and (max-width: 1280px)": {
-      paddingLeft: "40px", // container와 동일한 반응형 패딩
+      paddingLeft: "40px",
       paddingRight: "40px",
     },
-    "screen and (max-width: 768px)": {
-      paddingLeft: "16px", // container와 동일한 반응형 패딩
-      paddingRight: "16px",
-    },
     "screen and (max-width: 1024px)": {
-      display: "none", // 모바일에서는 드롭다운 숨김
+      display: "none",
     },
   },
 })
 
-// 드롭다운 아이템 - Figma 디자인 정확히 일치
+// 드롭다운 아이템
 export const dropdownItem = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "16px", // Figma 디자인 기준
-  fontWeight: "200", // 4 Regular
+  fontSize: "16px",
+  fontWeight: "200",
   fontStyle: "4 Regular",
-  lineHeight: "160%", // 24px / 16px
+  lineHeight: "160%",
   letterSpacing: "0%",
-  color: "#272727", // Figma 디자인의 Colors-Text-Default
+  color: "#272727",
   textDecoration: "none",
   display: "block",
   padding: "8px 0",
-  textAlign: "center", // 중앙 정렬로 변경
+  textAlign: "center",
   transition: "color 200ms ease",
   whiteSpace: "nowrap",
   ":hover": {
@@ -148,12 +154,6 @@ export const dropdownItemActive = style({
   fontWeight: "600",
 })
 
-// 드롭다운 아이템 플레이스홀더 (서브메뉴가 없는 경우)
-export const dropdownItemPlaceholder = style({
-  height: "1.5rem",
-  visibility: "hidden",
-})
-
 export const container = style({
   maxWidth: "1600px",
   width: "100%",
@@ -162,8 +162,8 @@ export const container = style({
   marginRight: "auto",
   display: "flex",
   alignItems: "center",
-  paddingRight: "160px", // Figma 그리드 offset
-  paddingLeft: "160px", // Figma 그리드 offset
+  paddingRight: "160px",
+  paddingLeft: "160px",
   "@media": {
     "screen and (max-width: 1680px)": {
       paddingLeft: "60px",
@@ -173,11 +173,17 @@ export const container = style({
       paddingLeft: "40px",
       paddingRight: "40px",
     },
+    "screen and (max-width: 1024px)": {
+      paddingLeft: "28px",  // 태블릿: 28px
+      paddingRight: "28px",
+    },
     "screen and (max-width: 768px)": {
-      paddingLeft: "16px",
-      paddingRight: "16px",
-      paddingTop: "1rem",
-      paddingBottom: "1rem",
+      paddingLeft: "28px",  // 모바일: 28px
+      paddingRight: "28px",
+    },
+    "screen and (max-width: 480px)": {
+      paddingLeft: "28px",  // 작은 모바일: 28px
+      paddingRight: "28px",
     },
   },
 })
@@ -190,12 +196,6 @@ export const headerContent = style({
   height: "100%",
   position: "relative",
   zIndex: 1,
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-  },
 })
 
 export const logoWrapper = style({
@@ -210,8 +210,6 @@ export const logoLink = style({
   alignItems: "center",
   height: "100%",
 })
-
-// logoImage 스타일 제거 (더 이상 사용하지 않음)
 
 export const logoText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -230,14 +228,18 @@ export const logoText = style({
   },
   "@media": {
     "screen and (max-width: 1280px)": {
-      fontSize: "16px", // 중간 사이즈
-      lineHeight: "24px",
+      fontSize: "18px",
+      lineHeight: "27px",
     },
     "screen and (max-width: 1024px)": {
       fontSize: "16px",
       lineHeight: "24px",
-      fontWeight: "400",
-      color: "#333333", // 모바일에서 검정색
+      fontWeight: "500",
+      // 모바일에서도 흰색 유지
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "16px",
+      lineHeight: "21px",
     },
   },
 })
@@ -245,28 +247,27 @@ export const logoText = style({
 export const desktopNav = style({
   display: "none",
   alignItems: "center",
-  justifyContent: "space-between", // 5개 아이템 균등 배치
+  justifyContent: "space-between",
   width: "100%",
-  maxWidth: "875px", // 5개 컬럼 * 175px
+  maxWidth: "875px",
   height: "35px",
   "@media": {
     "screen and (min-width: 1024px)": {
-      // 1024px로 변경
       display: "flex",
     },
     "screen and (max-width: 1680px)": {
-      maxWidth: "750px", // 5개 컬럼 * 150px
+      maxWidth: "750px",
     },
     "screen and (max-width: 1440px)": {
-      maxWidth: "650px", // 5개 컬럼 * 130px
+      maxWidth: "650px",
     },
     "screen and (max-width: 1280px)": {
-      maxWidth: "550px", // 5개 컬럼 * 110px
+      maxWidth: "550px",
     },
   },
 })
 
-// 네비게이션 아이템 래퍼 (링크 + 드롭다운 포함)
+// 네비게이션 아이템 래퍼
 export const navItemWrapper = style({
   position: "relative",
   display: "flex",
@@ -274,24 +275,23 @@ export const navItemWrapper = style({
   alignItems: "center",
 })
 
-// 드롭다운 콘텐츠 - 각 네비게이션 아이템 아래에 정확히 정렬 (말풍선 효과 제거)
+// 드롭다운 콘텐츠
 export const dropdownContent = style({
   position: "absolute",
-  top: "calc(100% + 20px)", // 네비게이션 링크 바로 아래
+  top: "calc(100% + 20px)",
   left: "50%",
-  transform: "translateX(-50%)", // 중앙 정렬
+  transform: "translateX(-50%)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: "12px",
   padding: "16px 20px",
   minWidth: "160px",
-  opacity: 1, // 호버시 보이도록
+  opacity: 1,
   visibility: "visible",
   pointerEvents: "auto",
-  zIndex: 1000, // 높은 z-index로 다른 요소 위에 표시
-  // fadeIn 애니메이션을 위한 transition 설정
-  transition: "opacity 200ms ease 300ms, transform 200ms ease 300ms", // 300ms delay 후 애니메이션
+  zIndex: 1000,
+  transition: "opacity 200ms ease 300ms, transform 200ms ease 300ms",
 })
 
 export const navLink = style({
@@ -313,6 +313,9 @@ export const navLink = style({
   zIndex: 2,
   textAlign: "center",
   whiteSpace: "nowrap",
+  ":hover": {
+    opacity: 0.8,
+  },
   "@media": {
     "screen and (max-width: 1680px)": {
       fontSize: "15px",
@@ -329,8 +332,6 @@ export const navLink = style({
   },
 })
 
-// 중복 제거 - 위에 이미 dropdownItem이 정의되어 있음
-
 export const actionButtons = style({
   display: "none",
   alignItems: "center",
@@ -339,7 +340,6 @@ export const actionButtons = style({
   height: "100%",
   "@media": {
     "screen and (min-width: 1024px)": {
-      // 1024px로 변경
       display: "flex",
     },
   },
@@ -359,11 +359,6 @@ export const loginButton = style({
   transition: "all 300ms ease",
   position: "relative",
   overflow: "hidden",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      display: "none", // 모바일에서 숨김
-    },
-  },
 })
 
 export const consultButton = style({
@@ -383,11 +378,6 @@ export const consultButton = style({
   display: "flex",
   alignItems: "center",
   gap: "0.5rem",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      display: "none", // 모바일에서 숨김
-    },
-  },
 })
 
 export const dropdownArrow = style({
@@ -401,31 +391,7 @@ export const mobileMenuButton = style({
   alignItems: "center",
   "@media": {
     "screen and (min-width: 1024px)": {
-      // 1024px로 변경
       display: "none",
-    },
-  },
-})
-
-export const menuToggle = style({
-  color: "#FFFFFF",
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
-  border: "1px solid rgba(255, 255, 255, 0.2)",
-  cursor: "pointer",
-  padding: "0.75rem",
-  borderRadius: "12px",
-  transition: "all 200ms ease",
-  backdropFilter: "blur(10px)",
-  ":hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    transform: "translateY(-1px)",
-  },
-  "@media": {
-    "screen and (max-width: 768px)": {
-      color: "#333333",
-      backgroundColor: "transparent",
-      border: "none",
-      padding: "0.5rem",
     },
   },
 })
@@ -435,6 +401,7 @@ export const menuIcon = style({
   width: "1.5rem",
 })
 
+// 모바일 메뉴
 export const mobileMenu = style({
   display: "block",
   position: "fixed",
@@ -443,7 +410,7 @@ export const mobileMenu = style({
   right: "0",
   bottom: "0",
   zIndex: 9998,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "none",
@@ -457,63 +424,141 @@ export const mobileMenuContent = style({
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  paddingTop: "92px", // 모바일 헤더 높이
-  paddingLeft: "20px",
-  paddingRight: "20px",
+  paddingTop: "80px",
+  paddingLeft: "32px",
+  paddingRight: "32px",
+  paddingBottom: "32px",
+  overflowY: "auto",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      paddingTop: "72px",
+      paddingLeft: "24px",
+      paddingRight: "24px",
+      paddingBottom: "24px",
+    },
+  },
+})
+
+export const mobileMenuNavigation = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "24px",
+  flex: 1,
 })
 
 export const mobileNavLink = style({
   display: "block",
-  padding: "16px 0",
-  color: "#333333",
+  padding: "20px 0",
+  color: "#272727",
   textDecoration: "none",
-  fontSize: "20px",
+  fontSize: "18px",
   fontWeight: "500",
-  lineHeight: "30px",
-  borderBottom: "1px solid #E5E7EB",
+  lineHeight: "27px",
+  borderBottom: "1px solid rgba(39, 39, 39, 0.1)",
   transition: "all 200ms ease",
+  fontFamily: "'S-Core Dream', sans-serif",
   ":hover": {
-    color: "#14AEFF",
+    color: "#1AA4F4",
+  },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "16px",
+      lineHeight: "24px",
+      padding: "16px 0",
+    },
+  },
+})
+
+export const mobileNavLinkActive = style({
+  color: "#1AA4F4",
+  fontWeight: "600",
+})
+
+export const mobileSubmenu = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "12px",
+  paddingLeft: "24px",
+  paddingTop: "12px",
+  paddingBottom: "8px",
+})
+
+export const mobileSubmenuItem = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontSize: "14px",
+  fontWeight: "400",
+  color: "#666666",
+  textDecoration: "none",
+  lineHeight: "21px",
+  transition: "color 200ms ease",
+  ":hover": {
+    color: "#1AA4F4",
+  },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "13px",
+      lineHeight: "20px",
+    },
   },
 })
 
 export const mobileActions = style({
   display: "flex",
   flexDirection: "column",
-  gap: "0.75rem",
-  padding: "1.5rem 2rem 1rem",
-  borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-  marginTop: "1rem",
+  gap: "12px",
+  marginTop: "auto",
+  paddingTop: "32px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      gap: "8px",
+      paddingTop: "24px",
+    },
+  },
 })
 
 export const mobileLoginButton = style({
-  color: "#FFFFFF",
-  backgroundColor: "rgba(255, 255, 255, 0.1)",
-  border: "1px solid rgba(255, 255, 255, 0.2)",
-  fontSize: "1rem",
+  color: "#272727",
+  backgroundColor: "#FFFFFF",
+  border: "1px solid #DEDEDE",
+  fontSize: "16px",
   fontWeight: "500",
-  padding: "0.75rem 1.5rem",
-  borderRadius: "12px",
+  padding: "14px 24px",
+  borderRadius: "8px",
   cursor: "pointer",
   transition: "all 200ms ease",
   textAlign: "center",
+  fontFamily: "'S-Core Dream', sans-serif",
   ":hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    backgroundColor: "#F8F8F8",
+    borderColor: "#1AA4F4",
+  },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "14px",
+      padding: "12px 20px",
+    },
   },
 })
 
 export const mobileConsultButton = style({
-  backgroundColor: "#FFFFFF",
-  color: "#1AA4F4",
+  backgroundColor: "#1AA4F4",
+  color: "#FFFFFF",
   border: "none",
-  padding: "0.75rem 1.5rem",
-  borderRadius: "12px",
-  fontSize: "1rem",
+  padding: "14px 24px",
+  borderRadius: "8px",
+  fontSize: "16px",
   fontWeight: "600",
   cursor: "pointer",
   transition: "all 200ms ease",
   textAlign: "center",
+  fontFamily: "'S-Core Dream', sans-serif",
   ":hover": {
-    backgroundColor: "#F8FAFC",
+    backgroundColor: "#0EA5E9",
+  },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "14px",
+      padding: "12px 20px",
+    },
   },
 })
