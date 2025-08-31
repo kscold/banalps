@@ -1,37 +1,22 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import * as styles from "./HeaderDesign.css"
-import { NAVIGATION_ITEMS } from "../../shared/constants/navigation"
+import { useHeaderState } from "../../features/header/hooks/useHeaderState"
+import DesktopNav from "../../features/header/components/DesktopNav"
+import MobileMenu from "../../features/header/components/MobileMenu"
+import MenuToggleButton from "../../features/header/components/MenuToggleButton"
 
 export default function HeaderNavigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isHeaderHovered, setIsHeaderHovered] = useState(false)
-  const pathname = usePathname()
-
-  const handleMenuToggle = () => {
-    const newState = !isMenuOpen
-    setIsMenuOpen(newState)
-    console.log("[HeaderNavigation/메뉴토글] 모바일 메뉴 상태 변경:", newState)
-  }
-
-  const handleHeaderMouseEnter = () => {
-    setIsHeaderHovered(true)
-    console.log("[HeaderNavigation/헤더호버] 헤더 호버 시작")
-  }
-
-  const handleHeaderMouseLeave = () => {
-    setIsHeaderHovered(false)
-    console.log("[HeaderNavigation/헤더호버] 헤더 호버 종료")
-  }
-
-  // 현재 페이지가 해당 네비게이션 항목에 속하는지 확인
-  const isCurrentPage = (href: string) => {
-    if (!pathname) return false
-    return pathname === href || pathname.startsWith(href + "/")
-  }
+  const {
+    isMenuOpen,
+    isHeaderHovered,
+    showSubmenu,
+    handleMenuToggle,
+    handleHeaderMouseEnter,
+    handleHeaderMouseLeave,
+    closeMenu,
+  } = useHeaderState()
 
   return (
     <>
@@ -46,22 +31,12 @@ export default function HeaderNavigation() {
             {/* 로고 영역 */}
             <div className={styles.logoWrapper}>
               <Link href="/" className={styles.logoLink}>
-                <span className={styles.logoText}>바날부는날에도</span>
+                <span className={styles.logoText}>바람부는날에도</span>
               </Link>
             </div>
 
             {/* 데스크톱 네비게이션 */}
-            <nav className={styles.desktopNav}>
-              {NAVIGATION_ITEMS.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={styles.navLink}
-                >
-                  {item.title}
-                </Link>
-              ))}
-            </nav>
+            <DesktopNav showSubmenu={showSubmenu} isHeaderHovered={isHeaderHovered} />
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
@@ -75,42 +50,12 @@ export default function HeaderNavigation() {
             </div>
 
             {/* 모바일 메뉴 버튼 */}
-            <div className={styles.mobileMenuButton}>
-              <button
-                className={styles.menuToggle}
-                onClick={handleMenuToggle}
-                aria-label="메뉴 열기"
-              >
-                <svg
-                  className={styles.menuIcon}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
+            <MenuToggleButton isOpen={isMenuOpen} onClick={handleMenuToggle} />
           </div>
         </div>
       </header>
 
-      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) - 전체 화면 커버 */}
+      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) */}
       <div
         className={styles.headerCurtain}
         style={
@@ -127,62 +72,15 @@ export default function HeaderNavigation() {
                 maxHeight: "0",
               }
         }
-        onMouseEnter={() => setIsHeaderHovered(true)}
-        onMouseLeave={() => {
-          console.log("[HeaderNavigation/커튼] 전체 화면 커튼 영역 벗어남")
-          setIsHeaderHovered(false)
-        }}
+        onMouseEnter={() => handleHeaderMouseEnter()}
+        onMouseLeave={() => handleHeaderMouseLeave()}
       >
-        {/* 서브메뉴 컨테이너 */}
-        <div className={styles.submenuContainer}>
-          <div style={{ display: "flex", gap: "0", width: "875px" }}>
-            {NAVIGATION_ITEMS.map((item) => (
-              <div key={item.title} className={styles.submenuGroup}>
-                {item.submenu ? (
-                  item.submenu.map((subItem) => (
-                    <Link
-                      key={subItem.title}
-                      href={subItem.href}
-                      className={`${styles.dropdownItem} ${
-                        pathname === subItem.href ? styles.dropdownItemActive : ""
-                      }`}
-                    >
-                      {subItem.title}
-                    </Link>
-                  ))
-                ) : (
-                  // 서브메뉴가 없는 경우 빈 공간 유지
-                  <div className={styles.dropdownItemPlaceholder} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* 서브메뉴 컨테이너 - 5열 그리드 */}
+        <div className={styles.submenuContainer} />
       </div>
 
       {/* 모바일 메뉴 */}
-      {isMenuOpen && (
-        <div className={styles.mobileMenu}>
-          <div className={styles.mobileMenuContent}>
-            {NAVIGATION_ITEMS.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className={`${styles.mobileNavLink} ${isCurrentPage(
-                  item.href
-                )}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
-            ))}
-            <div className={styles.mobileActions}>
-              <button className={styles.mobileLoginButton}>LOGIN</button>
-              <button className={styles.mobileConsultButton}>상담신청</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
     </>
   )
 }
