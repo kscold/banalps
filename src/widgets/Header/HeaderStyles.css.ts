@@ -91,12 +91,6 @@ export const navLink = style({
   },
 })
 
-// 네비게이션 링크 활성 상태
-export const navLinkActive = style({
-  color: "#14AEFF",
-  backgroundColor: "rgba(20, 174, 255, 0.05)",
-})
-
 // 전체 드롭다운 메뉴 컨테이너 (3열 그리드)
 export const dropdownContainer = style({
   position: "fixed",

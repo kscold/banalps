@@ -68,40 +68,13 @@ export default function HeaderNavigation() {
             {/* 데스크톱 네비게이션 */}
             <nav className={styles.desktopNav}>
               {NAVIGATION_ITEMS.map((item) => (
-                <div key={item.title} className={styles.navItemWrapper}>
-                  <Link
-                    href={item.href}
-                    className={`${styles.navLink} ${isCurrentPage(item.href)}`}
-                  >
-                    {item.title}
-                  </Link>
-                  {/* 각 네비게이션 아이템 바로 아래에 드롭다운 */}
-                  {isHeaderHovered && item.submenu && (
-                    <div 
-                      className={styles.dropdownContent}
-                      style={{
-                        opacity: 1,
-                        visibility: "visible",
-                        transform: "translateX(-50%) translateY(0px)",
-                        pointerEvents: "auto"
-                      }}
-                    >
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          className={`${styles.dropdownItem} ${
-                            pathname === subItem.href
-                              ? styles.dropdownItemActive
-                              : ""
-                          }`}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className={styles.navLink}
+                >
+                  {item.title}
+                </Link>
               ))}
             </nav>
 
@@ -152,23 +125,55 @@ export default function HeaderNavigation() {
         </div>
       </header>
 
-      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) */}
-      {isHeaderHovered && (
-        <div
-          className={styles.headerCurtain}
-          style={{
-            height: "440px",
-            opacity: 1,
-            visibility: "visible",
-            pointerEvents: "auto",
-          }}
-          onMouseEnter={() => setIsHeaderHovered(true)}
-          onMouseLeave={() => {
-            console.log("[HeaderNavigation/커튼] 커튼 영역 벗어남")
-            setIsHeaderHovered(false)
-          }}
-        />
-      )}
+      {/* 드롭다운 배경 커튼 (헤더 호버시 나타남) - 전체 화면 커버 */}
+      <div
+        className={styles.headerCurtain}
+        style={
+          isHeaderHovered
+            ? {
+                height: "auto",
+                maxHeight: "350px",
+                opacity: 1,
+                visibility: "visible",
+                pointerEvents: "auto",
+              }
+            : {
+                height: "0",
+                maxHeight: "0",
+              }
+        }
+        onMouseEnter={() => setIsHeaderHovered(true)}
+        onMouseLeave={() => {
+          console.log("[HeaderNavigation/커튼] 전체 화면 커튼 영역 벗어남")
+          setIsHeaderHovered(false)
+        }}
+      >
+        {/* 서브메뉴 컨테이너 */}
+        <div className={styles.submenuContainer}>
+          <div style={{ display: "flex", gap: "0", width: "875px" }}>
+            {NAVIGATION_ITEMS.map((item) => (
+              <div key={item.title} className={styles.submenuGroup}>
+                {item.submenu ? (
+                  item.submenu.map((subItem) => (
+                    <Link
+                      key={subItem.title}
+                      href={subItem.href}
+                      className={`${styles.dropdownItem} ${
+                        pathname === subItem.href ? styles.dropdownItemActive : ""
+                      }`}
+                    >
+                      {subItem.title}
+                    </Link>
+                  ))
+                ) : (
+                  // 서브메뉴가 없는 경우 빈 공간 유지
+                  <div className={styles.dropdownItemPlaceholder} />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* 모바일 메뉴 */}
       {isMenuOpen && (
