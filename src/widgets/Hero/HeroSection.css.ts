@@ -93,15 +93,40 @@ export const contentWrapper = style({
       right: "5%",
       maxWidth: "500px",
     },
+    [`screen and (max-width: 1024px)`]: {
+      position: "fixed",
+      top: "240px",
+      left: "16px",
+      right: "auto",
+      transform: "none",
+      width: "343px",
+      height: "184px",
+      maxWidth: "none",
+      padding: 0,
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+    },
     [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
-      right: "2rem",
-      padding: "0 1rem",
-      maxWidth: "400px",
+      position: "fixed",
+      top: "240px",
+      left: "16px",
+      right: "auto",
+      transform: "none",
+      width: "343px",
+      height: "184px",
+      maxWidth: "none",
+      padding: 0,
     },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
-      right: "1rem",
-      padding: "0 0.5rem",
-      maxWidth: "90%",
+      position: "fixed",
+      top: "240px",
+      left: "16px",
+      right: "auto",
+      transform: "none",
+      width: "343px",
+      height: "184px",
+      maxWidth: "none",
+      padding: 0,
     },
   },
 })
@@ -122,11 +147,24 @@ export const textContent = style({
       maxWidth: "439px",
       alignItems: "flex-end",
     },
+    [`screen and (max-width: 1024px)`]: {
+      width: "100%",
+      height: "100%",
+      maxWidth: "none",
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+    },
     [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
-      maxWidth: "90%",
+      width: "100%",
+      height: "100%",
+      maxWidth: "none",
+      alignItems: "flex-start",
     },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
-      maxWidth: "95%",
+      width: "100%",
+      height: "100%",
+      maxWidth: "none",
+      alignItems: "flex-start",
     },
   },
 })
@@ -141,6 +179,20 @@ export const textBlock = style({
   zIndex: tokens.zIndex.text,
   width: "100%",
   textAlign: "right", // 오른쪽 정렬
+  "@media": {
+    [`screen and (max-width: 1024px)`]: {
+      position: "relative",
+      top: "auto",
+      right: "auto",
+      transform: "none",
+      width: "100%",
+      height: "auto",
+      textAlign: "left",
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    },
+  },
 })
 
 // 스토리 텍스트 - S-Core Dream, Regular (200)
@@ -162,13 +214,20 @@ export const storyText = style({
   width: "100%",
 
   "@media": {
+    [`screen and (max-width: 1024px)`]: {
+      textAlign: "left", // 모바일에서 왼쪽 정렬
+      fontSize: "18px",
+      lineHeight: "27px",
+    },
     [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
       fontSize: "18px",
       lineHeight: "27px",
+      textAlign: "left",
     },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
       fontSize: "16px",
       lineHeight: "24px",
+      textAlign: "left",
     },
   },
 })
