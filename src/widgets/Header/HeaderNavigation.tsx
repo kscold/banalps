@@ -50,16 +50,32 @@ export default function HeaderNavigation() {
               </Link>
             </div>
 
-            {/* 데스크톱 네비게이션 */}
+            {/* 데스크톱 네비게이션 - 개별 드롭다운 포함 */}
             <nav className={styles.desktopNav}>
               {NAVIGATION_ITEMS.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={styles.navLink}
-                >
-                  {item.title}
-                </Link>
+                <div key={item.title} className={styles.navItemWrapper}>
+                  <Link href={item.href} className={styles.navLink}>
+                    {item.title}
+                  </Link>
+                  {/* 각 네비게이션 아이템 아래에 개별 드롭다운 */}
+                  {isHeaderHovered && item.submenu && (
+                    <div className={styles.dropdownContent}>
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.title}
+                          href={subItem.href}
+                          className={`${styles.dropdownItem} ${
+                            pathname === subItem.href
+                              ? styles.dropdownItemActive
+                              : ""
+                          }`}
+                        >
+                          {subItem.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
 
@@ -133,47 +149,19 @@ export default function HeaderNavigation() {
           setIsHeaderHovered(false)
         }}
       >
-        {/* 서브메뉴 컨테이너 */}
-        <div className={styles.submenuContainer}>
+        {/* 서브메뉴 컨테이너 - 5열 그리드 */}
+        <div className={styles.submenuContainer} />
+        {/* 개별 드롭다운을 위한 배경 커튼 */}
+        {isHeaderHovered && (
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-              maxWidth: "1600px",
-              margin: "0 auto",
+            className={styles.headerCurtain}
+            onMouseEnter={() => setIsHeaderHovered(true)}
+            onMouseLeave={() => {
+              console.log("[HeaderNavigation/커튼] 커튼 영역 벗어남")
+              setIsHeaderHovered(false)
             }}
-          >
-            {/* 중앙 정렬된 서브메뉴 - 네비게이션 너비와 동일하게 반응형 */}
-            <div className={styles.submenuInnerWrapper}>
-              {NAVIGATION_ITEMS.map((item) => (
-                <div 
-                  key={item.title} 
-                  className={styles.submenuGroup}
-                >
-                  {item.submenu ? (
-                    item.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.title}
-                        href={subItem.href}
-                        className={`${styles.dropdownItem} ${
-                          pathname === subItem.href
-                            ? styles.dropdownItemActive
-                            : ""
-                        }`}
-                      >
-                        {subItem.title}
-                      </Link>
-                    ))
-                  ) : (
-                    // 서브메뉴가 없는 경우 빈 공간 유지
-                    <div className={styles.dropdownItemPlaceholder} />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          />
+        )}
       </div>
 
       {/* 모바일 메뉴 */}

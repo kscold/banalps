@@ -22,7 +22,8 @@ export const header = style({
       width: "calc(100% - 80px)", // 40px * 2
       borderRadius: "64px",
     },
-    "screen and (max-width: 1024px)": { // 1024px로 변경
+    "screen and (max-width: 1024px)": {
+      // 1024px로 변경
       top: "0",
       width: "100%",
       borderRadius: "0",
@@ -33,7 +34,7 @@ export const header = style({
   },
 })
 
-// 헤더 뒤쪽에 나타나는 흰색 커튼 효과 - 전체 화면 커버
+// 헤더 뒤쪽에 나타나는 커튼 스타일 배경 - 개별 드롭다운과 겹치지 않도록
 export const headerCurtain = style({
   position: "fixed",
   top: "0", // 화면 맨 위부터 시작
@@ -44,7 +45,8 @@ export const headerCurtain = style({
   height: "0",
   maxHeight: "0",
   background: "#FFFFFF",
-  transition: "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease",
+  transition:
+    "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease",
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
   display: "flex",
   justifyContent: "center",
@@ -60,7 +62,8 @@ export const headerCurtain = style({
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
-      transition: "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
+      transition:
+        "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
     },
     "&:hover": {
       height: "auto",
@@ -68,64 +71,79 @@ export const headerCurtain = style({
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
-      transition: "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
+      transition:
+        "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
     },
   },
 })
 
-// 서브메뉴 컨테이너 - 헤더 네비게이션과 정확히 수직 정렬
+// 서브메뉴 컨테이너 - 헤더 네비게이션과 정확히 수직 정렬 (5열 그리드 시스템)
 export const submenuContainer = style({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between", // desktopNav와 동일한 정렬 방식
   alignItems: "flex-start",
   gap: "0",
+  height: "600px",
   width: "100%",
-  paddingTop: "125px", // 헤더 top(20px) + 헤더 height(85px) + gap(20px)
+  paddingTop: "125px", // 헤더 height(85px)만큼만 패딩
   paddingBottom: "40px",
-  paddingLeft: "60px",
-  paddingRight: "60px",
+  paddingLeft: "160px", // container와 동일한 패딩으로 X축 정렬 맞춤
+  paddingRight: "160px", // container와 동일한 패딩으로 X축 정렬 맞춤
   "@media": {
     "screen and (max-width: 1680px)": {
-      paddingLeft: "30px",
-      paddingRight: "30px",
+      paddingLeft: "60px", // container와 동일한 반응형 패딩
+      paddingRight: "60px",
     },
     "screen and (max-width: 1280px)": {
-      paddingLeft: "20px",
-      paddingRight: "20px",
+      paddingLeft: "40px", // container와 동일한 반응형 패딩
+      paddingRight: "40px",
+    },
+    "screen and (max-width: 768px)": {
+      paddingLeft: "16px", // container와 동일한 반응형 패딩
+      paddingRight: "16px",
+    },
+    "screen and (max-width: 1024px)": {
+      display: "none", // 모바일에서는 드롭다운 숨김
     },
   },
 })
 
-// 서브메뉴 내부 래퍼 - 네비게이션과 동일한 위치
+// 서브메뉴 내부 래퍼 - desktopNav와 완벽하게 일치하는 구조
 export const submenuInnerWrapper = style({
   position: "relative",
-  display: "flex",
-  gap: "0",
-  justifyContent: "space-between",
+  display: "flex", // grid에서 flex로 변경하여 desktopNav와 동일한 구조
   alignItems: "flex-start",
+  justifyContent: "space-between", // desktopNav와 동일한 정렬 방식
   width: "100%",
-  maxWidth: "875px",
+  maxWidth: "875px", // 헤더의 desktopNav와 정확히 동일한 maxWidth
+  height: "auto", // 높이 자동 조정
   "@media": {
     "screen and (max-width: 1680px)": {
-      maxWidth: "750px",
+      maxWidth: "750px", // 헤더의 desktopNav와 정확히 동일
     },
     "screen and (max-width: 1440px)": {
-      maxWidth: "650px",
+      maxWidth: "650px", // 헤더의 desktopNav와 정확히 동일
     },
     "screen and (max-width: 1280px)": {
-      maxWidth: "550px",
+      maxWidth: "550px", // 헤더의 desktopNav와 정확히 동일
+    },
+    "screen and (max-width: 1024px)": {
+      display: "none", // 모바일에서는 드롭다운 숨김
     },
   },
 })
 
-// 서브메뉴 그룹 - 각 네비게이션 아이템 아래 정확히 위치
+// 서브메뉴 그룹 - desktopNav의 navItemWrapper와 완벽하게 일치하는 구조
 export const submenuGroup = style({
   display: "flex",
   flexDirection: "column",
-  gap: "12px",
-  alignItems: "center",
-  flex: "1 1 0",
+  alignItems: "center", // 중앙 정렬
+  justifyContent: "flex-start",
+  width: "auto", // flex 아이템으로 자동 너비 조정
+  flex: "1 1 0", // desktopNav의 navLink와 동일한 flex 속성
   padding: "0",
+  textAlign: "center", // 중앙 정렬
+  position: "relative", // 위치 기준점 설정
 })
 
 // 서브메뉴 타이틀 (사용하지 않음 - 피그마 디자인에 없음)
@@ -133,18 +151,19 @@ export const submenuTitle = style({
   display: "none",
 })
 
-// 드롭다운 아이템
+// 드롭다운 아이템 - Figma 디자인 정확히 일치
 export const dropdownItem = style({
-  fontFamily: "'S-Core Dream', 'Pretendard', Inter, sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   fontSize: "16px", // Figma 디자인 기준
-  fontWeight: "200",
-  lineHeight: "24px",
-  letterSpacing: "-0.01em",
-  color: "#333333",
+  fontWeight: "200", // 4 Regular
+  fontStyle: "4 Regular",
+  lineHeight: "160%", // 24px / 16px
+  letterSpacing: "0%",
+  color: "#272727", // Figma 디자인의 Colors-Text-Default
   textDecoration: "none",
   display: "block",
   padding: "8px 0",
-  textAlign: "center",
+  textAlign: "center", // 중앙 정렬로 변경
   transition: "color 200ms ease",
   whiteSpace: "nowrap",
   ":hover": {
@@ -269,22 +288,23 @@ export const logoText = style({
 export const desktopNav = style({
   display: "none",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "space-between", // 5개 아이템 균등 배치
   width: "100%",
-  maxWidth: "875px",
+  maxWidth: "875px", // 5개 컬럼 * 175px
   height: "35px",
   "@media": {
-    "screen and (min-width: 1024px)": { // 1024px로 변경
+    "screen and (min-width: 1024px)": {
+      // 1024px로 변경
       display: "flex",
     },
     "screen and (max-width: 1680px)": {
-      maxWidth: "750px",
+      maxWidth: "750px", // 5개 컬럼 * 150px
     },
     "screen and (max-width: 1440px)": {
-      maxWidth: "650px",
+      maxWidth: "650px", // 5개 컬럼 * 130px
     },
     "screen and (max-width: 1280px)": {
-      maxWidth: "550px",
+      maxWidth: "550px", // 5개 컬럼 * 110px
     },
   },
 })
@@ -297,29 +317,23 @@ export const navItemWrapper = style({
   alignItems: "center",
 })
 
-// 드롭다운 콘텐츠 (각 네비게이션 아이템 아래에 위치)
+// 드롭다운 콘텐츠 - 각 네비게이션 아이템 아래에 정확히 정렬 (말풍선 효과 제거)
 export const dropdownContent = style({
   position: "absolute",
-  top: "calc(100% + 30px)", // 네비게이션 링크 아래
+  top: "calc(100% + 20px)", // 네비게이션 링크 바로 아래
   left: "50%",
-  transform: "translateX(-50%)",
+  transform: "translateX(-50%)", // 중앙 정렬
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: "12px",
-  padding: "20px 0",
-  minWidth: "150px",
-  opacity: 0,
-  visibility: "hidden",
-  transition: "all 300ms ease",
-  pointerEvents: "none",
-  selectors: {
-    [`${header}:hover &`]: {
-      opacity: 1,
-      visibility: "visible",
-      pointerEvents: "auto",
-    },
-  },
+  padding: "16px 20px",
+  minWidth: "160px",
+  opacity: 1, // 호버시 보이도록
+  visibility: "visible",
+  transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+  pointerEvents: "auto",
+  zIndex: 1000, // 높은 z-index로 다른 요소 위에 표시
 })
 
 export const navLink = style({
@@ -374,8 +388,8 @@ export const dropdown = style({
   top: "100%",
   left: "0",
   backgroundColor: "#FFFFFF",
-  borderRadius: "12px",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
+  borderRadius: "0", // 말풍선 같은 둥근 모서리 제거
+  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", // 말풍선 같은 그림자 제거, 더 얇게
   padding: "0.5rem 0",
   minWidth: "200px",
   opacity: 0,
@@ -401,7 +415,8 @@ export const actionButtons = style({
   gap: "0.5rem",
   height: "100%",
   "@media": {
-    "screen and (min-width: 1024px)": { // 1024px로 변경
+    "screen and (min-width: 1024px)": {
+      // 1024px로 변경
       display: "flex",
     },
   },
@@ -462,7 +477,8 @@ export const mobileMenuButton = style({
   display: "flex",
   alignItems: "center",
   "@media": {
-    "screen and (min-width: 1024px)": { // 1024px로 변경
+    "screen and (min-width: 1024px)": {
+      // 1024px로 변경
       display: "none",
     },
   },
