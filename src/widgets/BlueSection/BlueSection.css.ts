@@ -238,9 +238,8 @@ export const imageGridSection = style({
 export const reYouSection = style({
   position: "relative",
   width: "100%",
-  height: "748px",
   maxWidth: "1600px",
-  minHeight: "748px",
+  aspectRatio: "1600 / 748",
   margin: "120px auto 240px",
   display: "flex",
   flexDirection: "column",
@@ -248,10 +247,16 @@ export const reYouSection = style({
   justifyContent: "flex-start",
   gap: "20px",
   "@media": {
+    "screen and (max-width: 1600px)": {
+      width: "calc(100% - 320px)",
+      padding: "0",
+    },
     "screen and (max-width: 1024px)": {
-      margin: "0 20px 80px",
+      width: "calc(100% - 40px)",
+      margin: "80px 20px",
+      aspectRatio: "auto",
       minHeight: "auto",
-      padding: "60px 0",
+      padding: "60px 20px",
     },
   },
 })
