@@ -64,6 +64,20 @@ export default function BlueSection() {
           />
         </div>
       </div>
+
+      {/* RE.YOU 텍스트 섹션 */}
+      <div className={styles.reYouSection}>
+        {/* 그래피티 배경 이미지 */}
+        <img
+          src="/main/banal_graffiti.svg"
+          alt="Banal Graffiti"
+          className={styles.graffitiBackground}
+        />
+        
+        {/* 텍스트 콘텐츠 */}
+        <h2 className={styles.reYouTitle}>RE.YOU</h2>
+        <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
+      </div>
     </section>
   )
 }

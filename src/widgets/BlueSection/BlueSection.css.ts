@@ -15,15 +15,12 @@ const fadeInUp = keyframes({
 // 메인 파란색 섹션
 export const blueSection = style({
   width: "100%",
-  minHeight: "100vh",
   background: "#73D5FA",
   position: "relative",
   display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "center",
+  flexDirection: "column",
+  alignItems: "center",
   overflow: "auto",
-  paddingTop: "240px",
-  paddingBottom: "240px",
   opacity: 0,
   transform: "translateY(20px)",
   transition: "all 800ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -38,19 +35,26 @@ export const visible = style({
 // 이미지 카드 섹션 - 중앙 컨테이너
 export const imageCardsSection = style({
   position: "relative",
-  width: "calc(100% - 320px)", // 양쪽 160px씩
-  maxWidth: "1600px", // 1920 - 320 = 1600
-  minHeight: "1200px", // 최소 높이 설정
-  margin: "0 160px",
+  width: "calc(100% - 320px)",
+  maxWidth: "1600px",
+  height: "1234px",
+  margin: "240px 160px auto 160px",
   "@media": {
+    "screen and (max-width: 1440px)": {
+      height: "850px",
+    },
+    "screen and (max-width: 1280px)": {
+      height: "750px",
+    },
     "screen and (max-width: 1024px)": {
       width: "100%",
       height: "auto",
-      margin: "0",
-      padding: "40px 20px",
+      margin: "80px 0",
+      padding: "0 20px",
       display: "flex",
       flexDirection: "column",
       gap: "30px",
+      overflow: "visible",
     },
   },
 })
@@ -67,14 +71,17 @@ export const imageCard1 = style({
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "0ms",
+  transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1400px)": {
-      width: "380px",
-      height: "550px",
+    "screen and (max-width: 1440px)": {
+      width: "400px",
+      height: "580px",
+      left: "28%",
     },
     "screen and (max-width: 1280px)": {
-      width: "350px",
-      height: "500px",
+      width: "360px",
+      height: "520px",
+      left: "25%",
     },
     "screen and (max-width: 1024px)": {
       position: "relative",
@@ -89,7 +96,7 @@ export const imageCard1 = style({
   },
 })
 
-// 이미지 카드 2 - 오른쪽 하단 (가장 큰 카드)
+// 이미지 카드 2 - 오른쪽 (가장 큰 카드)
 export const imageCard2 = style({
   position: "absolute",
   width: "470px",
@@ -101,14 +108,19 @@ export const imageCard2 = style({
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "400ms",
+  transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1400px)": {
+    "screen and (max-width: 1440px)": {
       width: "420px",
-      height: "620px",
+      height: "615px",
+      right: "7%",
+      top: "160px",
     },
     "screen and (max-width: 1280px)": {
       width: "380px",
-      height: "560px",
+      height: "555px",
+      right: "6%",
+      top: "140px",
     },
     "screen and (max-width: 1024px)": {
       position: "relative",
@@ -123,7 +135,7 @@ export const imageCard2 = style({
   },
 })
 
-// 이미지 카드 3 - 오른쪽 상단 (작은 카드)
+// 이미지 카드 3 - 왼쪽 하단 (작은 가로 카드)
 export const imageCard3 = style({
   position: "absolute",
   width: "327px",
@@ -135,19 +147,24 @@ export const imageCard3 = style({
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "800ms",
+  transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1400px)": {
-      right: "250px",
+    "screen and (max-width: 1440px)": {
+      width: "300px",
+      height: "245px",
+      left: "8%",
+      bottom: "100px",
     },
     "screen and (max-width: 1280px)": {
-      width: "280px",
+      width: "270px",
       height: "220px",
-      right: "200px",
+      left: "6%",
+      bottom: "80px",
     },
     "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
-      right: "auto",
+      left: "auto",
       margin: "20px auto",
       width: "90%",
       maxWidth: "400px",
@@ -169,14 +186,17 @@ export const imageCard4 = style({
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "1200ms",
+  transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1400px)": {
-      left: "300px",
+    "screen and (max-width: 1440px)": {
+      width: "290px",
+      height: "428px",
+      left: "40%",
     },
     "screen and (max-width: 1280px)": {
-      width: "270px",
-      height: "400px",
-      left: "250px",
+      width: "260px",
+      height: "385px",
+      left: "38%",
     },
     "screen and (max-width: 1024px)": {
       position: "relative",
@@ -258,4 +278,83 @@ export const imageText = style({
 
 export const imageGridSection = style({
   display: "none",
+})
+
+// RE.YOU 텍스트 섹션
+export const reYouSection = style({
+  position: "relative",
+  width: "100%",
+  maxWidth: "1600px",
+  minHeight: "400px",
+  margin: "120px auto 240px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  gap: "24px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      margin: "0 20px 80px",
+      minHeight: "auto",
+      padding: "60px 0",
+    },
+  },
+})
+
+// RE.YOU 타이틀
+export const reYouTitle = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 600,
+  fontSize: "70px",
+  lineHeight: "100%",
+  letterSpacing: "0",
+  color: "#FFFFFF",
+  margin: 0,
+  position: "relative",
+  zIndex: 1,
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "48px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "36px",
+    },
+  },
+})
+
+// 한글 서브타이틀
+export const reYouSubtitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "20px",
+  lineHeight: "140%",
+  letterSpacing: "0",
+  color: "#FFFFFF",
+  margin: 0,
+  opacity: 0.95,
+  position: "relative",
+  zIndex: 1,
+  textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "18px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "16px",
+    },
+  },
+})
+
+// 그래피티 배경 이미지
+export const graffitiBackground = style({
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0,
+  objectFit: "contain",
+  objectPosition: "center",
+  pointerEvents: "none",
+  zIndex: 0,
 })
