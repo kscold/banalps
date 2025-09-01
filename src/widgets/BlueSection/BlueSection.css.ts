@@ -35,16 +35,14 @@ export const visible = style({
 // 이미지 카드 섹션 - 중앙 컨테이너
 export const imageCardsSection = style({
   position: "relative",
-  width: "calc(100% - 320px)",
+  width: "100%",
   maxWidth: "1600px",
-  height: "1234px",
-  margin: "240px 160px auto 160px",
+  aspectRatio: "1600 / 950",
+  margin: "240px auto",
   "@media": {
-    "screen and (max-width: 1440px)": {
-      height: "850px",
-    },
-    "screen and (max-width: 1280px)": {
-      height: "750px",
+    "screen and (max-width: 1600px)": {
+      width: "calc(100% - 320px)",
+      margin: "240px auto",
     },
     "screen and (max-width: 1024px)": {
       width: "100%",
@@ -62,10 +60,10 @@ export const imageCardsSection = style({
 // 이미지 카드 1 - 왼쪽 상단
 export const imageCard1 = style({
   position: "absolute",
-  width: "441px",
-  height: "641px",
-  left: "436px",
-  top: "0px",
+  width: "27.5625%", // 441/1600
+  aspectRatio: "441 / 641",
+  left: "27.25%", // 436/1600
+  top: "0%",
   borderRadius: "15px",
   overflow: "hidden",
   opacity: 0,
@@ -73,16 +71,6 @@ export const imageCard1 = style({
   animationDelay: "0ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1440px)": {
-      width: "400px",
-      height: "580px",
-      left: "28%",
-    },
-    "screen and (max-width: 1280px)": {
-      width: "360px",
-      height: "520px",
-      left: "25%",
-    },
     "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
@@ -99,10 +87,10 @@ export const imageCard1 = style({
 // 이미지 카드 2 - 오른쪽 (가장 큰 카드)
 export const imageCard2 = style({
   position: "absolute",
-  width: "470px",
-  height: "689px",
-  top: "259px",
-  left: "926px",
+  width: "29.375%", // 470/1600
+  aspectRatio: "470 / 689",
+  top: "27.26%", // 259/950
+  left: "57.875%", // 926/1600
   borderRadius: "15px",
   overflow: "hidden",
   opacity: 0,
@@ -110,18 +98,6 @@ export const imageCard2 = style({
   animationDelay: "400ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1440px)": {
-      width: "420px",
-      height: "615px",
-      right: "7%",
-      top: "160px",
-    },
-    "screen and (max-width: 1280px)": {
-      width: "380px",
-      height: "555px",
-      right: "6%",
-      top: "140px",
-    },
     "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
@@ -138,10 +114,10 @@ export const imageCard2 = style({
 // 이미지 카드 3 - 왼쪽 하단 (작은 가로 카드)
 export const imageCard3 = style({
   position: "absolute",
-  width: "327px",
-  height: "267px",
-  top: "681px",
-  left: "210px",
+  width: "20.4375%", // 327/1600
+  aspectRatio: "327 / 267",
+  top: "71.68%", // 681/950
+  left: "13.125%", // 210/1600
   borderRadius: "15px",
   overflow: "hidden",
   opacity: 0,
@@ -149,18 +125,6 @@ export const imageCard3 = style({
   animationDelay: "800ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1440px)": {
-      width: "300px",
-      height: "245px",
-      left: "8%",
-      bottom: "100px",
-    },
-    "screen and (max-width: 1280px)": {
-      width: "270px",
-      height: "220px",
-      left: "6%",
-      bottom: "80px",
-    },
     "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
@@ -177,10 +141,10 @@ export const imageCard3 = style({
 // 이미지 카드 4 - 중앙 하단
 export const imageCard4 = style({
   position: "absolute",
-  width: "317px",
-  height: "468px",
-  top: "766px",
-  left: "574px",
+  width: "19.8125%", // 317/1600
+  aspectRatio: "317 / 468",
+  top: "80.63%", // 766/950
+  left: "35.875%", // 574/1600
   borderRadius: "15px",
   overflow: "hidden",
   opacity: 0,
@@ -188,16 +152,6 @@ export const imageCard4 = style({
   animationDelay: "1200ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1440px)": {
-      width: "290px",
-      height: "428px",
-      left: "40%",
-    },
-    "screen and (max-width: 1280px)": {
-      width: "260px",
-      height: "385px",
-      left: "38%",
-    },
     "screen and (max-width: 1024px)": {
       position: "relative",
       bottom: "auto",
@@ -284,14 +238,15 @@ export const imageGridSection = style({
 export const reYouSection = style({
   position: "relative",
   width: "100%",
+  height: "748px",
   maxWidth: "1600px",
-  minHeight: "400px",
+  minHeight: "748px",
   margin: "120px auto 240px",
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "flex-start",
-  gap: "24px",
+  gap: "20px",
   "@media": {
     "screen and (max-width: 1024px)": {
       margin: "0 20px 80px",
@@ -351,6 +306,7 @@ export const graffitiBackground = style({
   position: "absolute",
   width: "100%",
   height: "100%",
+  marginTop: "48px",
   top: 0,
   left: 0,
   objectFit: "contain",
