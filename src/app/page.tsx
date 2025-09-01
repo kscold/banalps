@@ -9,9 +9,9 @@ export default function Home() {
 
   const handleFloatingButtonClick = (variant: string) => {
     console.log(`[HomePage] ${variant} 플로팅 버튼 클릭됨`)
-    
+
     // 각 버튼별 동작 정의
-    switch(variant) {
+    switch (variant) {
       case "naver":
         window.open("https://www.naver.com", "_blank")
         break
@@ -35,9 +35,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Figma 디자인 기반 플로팅 버튼 그룹 */}
-      <FloatingButtonGroup
-        onButtonClick={handleFloatingButtonClick}
-      />
+      <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
     </main>
   )
 }

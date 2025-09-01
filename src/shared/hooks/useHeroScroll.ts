@@ -3,11 +3,15 @@ import { useState, useEffect } from "react"
 export interface UseHeroScrollReturn {
   currentTextIndex: number
   showVideoSection: boolean
+  showBlueSection: boolean
+  enableNormalScroll: boolean
 }
 
 export function useHeroScroll(): UseHeroScrollReturn {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [showVideoSection, setShowVideoSection] = useState(false)
+  const [showBlueSection, setShowBlueSection] = useState(false)
+  const [enableNormalScroll, setEnableNormalScroll] = useState(false)
 
   const totalTexts = 6
 
@@ -16,49 +20,75 @@ export function useHeroScroll(): UseHeroScrollReturn {
 
     let isScrolling = false
     let scrollTimeout: NodeJS.Timeout | null = null
-    
+
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault() // 기본 스크롤 동작 방지
+      // 일반 스크롤 모드에서는 기본 스크롤 허용
+      if (enableNormalScroll) {
+        console.log("[useHeroScroll/휠이벤트] 일반 스크롤 모드 - 기본 동작 허용")
+        return
+      }
       
-      console.log(`[useHeroScroll/휠이벤트] showVideoSection: ${showVideoSection}, isScrolling: ${isScrolling}, deltaY: ${e.deltaY}`)
-      
+      e.preventDefault() // 비디오/텍스트 스크롤 시에만 방지
+
+      console.log(
+        `[useHeroScroll/휠이벤트] showVideoSection: ${showVideoSection}, showBlueSection: ${showBlueSection}, isScrolling: ${isScrolling}, deltaY: ${e.deltaY}`
+      )
+
       // 이미 스크롤 중이면 무시
       if (isScrolling) {
         console.log("[useHeroScroll/휠이벤트] 스크롤 중 - 무시")
         return
       }
-      
+
       const deltaY = e.deltaY
-      
+
       // 최소 스크롤 임계값 설정 (너무 작은 움직임 무시)
       if (Math.abs(deltaY) < 30) {
         console.log("[useHeroScroll/휠이벤트] 임계값 미달 - 무시")
         return
       }
-      
+
       // 스크롤 잠금
       isScrolling = true
-      
+
       // 스크롤 방향에 따라 처리
       if (deltaY > 0) {
         // 아래로 스크롤
-        if (showVideoSection) {
-          // 비디오 섹션에서는 스크롤 무시 (이미 최하단)
-          console.log("[useHeroScroll/휠다운] 비디오 섹션 - 더 이상 진행 불가")
+        if (showBlueSection) {
+          // 파란색 섹션에서 추가 스크롤 시 일반 스크롤 활성화
+          setEnableNormalScroll(true)
+          console.log("[useHeroScroll/휠다운] 파란색 섹션 → 일반 스크롤 활성화")
+          // 스크롤 위치를 파란색 섹션의 시작 위치로 설정
+          setTimeout(() => {
+            const blueSection = document.querySelector('[class*="blueSection"]')
+            if (blueSection) {
+              blueSection.scrollIntoView({ behavior: 'smooth' })
+            }
+          }, 100)
+        } else if (showVideoSection) {
+          // 비디오 섹션에서 추가 스크롤 시 파란색 섹션 표시
+          setShowBlueSection(true)
+          console.log("[useHeroScroll/휠다운] 비디오 섹션 → 파란색 섹션 표시")
         } else {
-          setCurrentTextIndex(prevIndex => {
-            console.log(`[useHeroScroll/휠다운] 현재 index: ${prevIndex}, deltaY: ${deltaY}`)
-            
+          setCurrentTextIndex((prevIndex) => {
+            console.log(
+              `[useHeroScroll/휠다운] 현재 index: ${prevIndex}, deltaY: ${deltaY}`
+            )
+
             if (prevIndex < totalTexts - 1) {
               // 다음 텍스트로 이동 (0→1→2→3→4→5)
               const newIndex = prevIndex + 1
-              console.log(`[useHeroScroll/다음텍스트] ${prevIndex} → ${newIndex}`)
+              console.log(
+                `[useHeroScroll/다음텍스트] ${prevIndex} → ${newIndex}`
+              )
               return newIndex
             } else if (prevIndex === totalTexts - 1) {
               // 마지막 텍스트(5)에서 추가 스크롤 시 비디오로
               setTimeout(() => {
                 setShowVideoSection(true)
-                console.log("[useHeroScroll/비디오전환] 마지막 텍스트에서 비디오로 전환")
+                console.log(
+                  "[useHeroScroll/비디오전환] 마지막 텍스트에서 비디오로 전환"
+                )
               }, 0)
               return prevIndex
             }
@@ -67,31 +97,44 @@ export function useHeroScroll(): UseHeroScrollReturn {
         }
       } else if (deltaY < 0) {
         // 위로 스크롤
-        if (showVideoSection) {
+        if (showBlueSection) {
+          // 파란색 섹션에서 위로 스크롤 시 비디오로 복귀
+          setShowBlueSection(false)
+          setEnableNormalScroll(false) // 일반 스크롤 비활성화
+          console.log("[useHeroScroll/휠업] 파란색 섹션 → 비디오 섹션")
+        } else if (showVideoSection) {
           // 비디오에서 마지막 텍스트로 복귀
           setShowVideoSection(false)
           setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
-          console.log(`[useHeroScroll/비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
+          console.log(
+            `[useHeroScroll/비디오복귀] 비디오 → 마지막 텍스트(${
+              totalTexts - 1
+            })`
+          )
         } else {
-          setCurrentTextIndex(prevIndex => {
-            console.log(`[useHeroScroll/휠업] 현재 index: ${prevIndex}, deltaY: ${deltaY}`)
-            
+          setCurrentTextIndex((prevIndex) => {
+            console.log(
+              `[useHeroScroll/휠업] 현재 index: ${prevIndex}, deltaY: ${deltaY}`
+            )
+
             if (prevIndex > 0) {
               // 이전 텍스트로 이동
               const newIndex = prevIndex - 1
-              console.log(`[useHeroScroll/이전텍스트] ${prevIndex} → ${newIndex}`)
+              console.log(
+                `[useHeroScroll/이전텍스트] ${prevIndex} → ${newIndex}`
+              )
               return newIndex
             }
             return prevIndex
           })
         }
       }
-      
+
       // 이전 타이머가 있으면 취소
       if (scrollTimeout) {
         clearTimeout(scrollTimeout)
       }
-      
+
       // 스크롤 쿨다운 (더 긴 시간으로 설정)
       scrollTimeout = setTimeout(() => {
         isScrolling = false
@@ -102,51 +145,61 @@ export function useHeroScroll(): UseHeroScrollReturn {
     // 키보드 이벤트 처리 (위/아래 화살표)
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isScrolling) return
-      
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault()
         isScrolling = true
-        
-        if (e.key === 'ArrowDown') {
-          setCurrentTextIndex(prevIndex => {
+
+        if (e.key === "ArrowDown") {
+          setCurrentTextIndex((prevIndex) => {
             console.log(`[useHeroScroll/키보드다운] 현재 index: ${prevIndex}`)
-            
+
             if (prevIndex < totalTexts - 1) {
               // 다음 텍스트로 이동
               const newIndex = prevIndex + 1
-              console.log(`[useHeroScroll/키보드다음] ${prevIndex} → ${newIndex}`)
+              console.log(
+                `[useHeroScroll/키보드다음] ${prevIndex} → ${newIndex}`
+              )
               return newIndex
             } else if (prevIndex === totalTexts - 1) {
               // 마지막 텍스트에서 비디오로
               setTimeout(() => {
                 setShowVideoSection(true)
-                console.log("[useHeroScroll/키보드비디오] 마지막 텍스트에서 비디오로 전환")
+                console.log(
+                  "[useHeroScroll/키보드비디오] 마지막 텍스트에서 비디오로 전환"
+                )
               }, 0)
               return prevIndex
             }
             return prevIndex
           })
-        } else if (e.key === 'ArrowUp') {
+        } else if (e.key === "ArrowUp") {
           if (showVideoSection) {
             // 비디오에서 마지막 텍스트로
             setShowVideoSection(false)
             setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
-            console.log(`[useHeroScroll/키보드비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
+            console.log(
+              `[useHeroScroll/키보드비디오복귀] 비디오 → 마지막 텍스트(${
+                totalTexts - 1
+              })`
+            )
           } else {
-            setCurrentTextIndex(prevIndex => {
+            setCurrentTextIndex((prevIndex) => {
               console.log(`[useHeroScroll/키보드업] 현재 index: ${prevIndex}`)
-              
+
               if (prevIndex > 0) {
                 // 이전 텍스트로
                 const newIndex = prevIndex - 1
-                console.log(`[useHeroScroll/키보드이전] ${prevIndex} → ${newIndex}`)
+                console.log(
+                  `[useHeroScroll/키보드이전] ${prevIndex} → ${newIndex}`
+                )
                 return newIndex
               }
               return prevIndex
             })
           }
         }
-        
+
         // 키보드도 동일한 쿨다운 적용
         if (scrollTimeout) {
           clearTimeout(scrollTimeout)
@@ -169,7 +222,7 @@ export function useHeroScroll(): UseHeroScrollReturn {
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (isScrolling) return
-      
+
       const endY = e.changedTouches[0].clientY
       const endX = e.changedTouches[0].clientX
       const deltaY = startY - endY
@@ -181,22 +234,26 @@ export function useHeroScroll(): UseHeroScrollReturn {
       if (Math.abs(deltaY) > 50 && deltaX < 100) {
         isScrolling = true
         e.preventDefault()
-        
+
         if (deltaY > 0) {
           // 위로 스와이프 (다음으로)
-          setCurrentTextIndex(prevIndex => {
+          setCurrentTextIndex((prevIndex) => {
             console.log(`[useHeroScroll/스와이프업] 현재 index: ${prevIndex}`)
-            
+
             if (prevIndex < totalTexts - 1) {
               // 다음 텍스트로
               const newIndex = prevIndex + 1
-              console.log(`[useHeroScroll/스와이프다음] ${prevIndex} → ${newIndex}`)
+              console.log(
+                `[useHeroScroll/스와이프다음] ${prevIndex} → ${newIndex}`
+              )
               return newIndex
             } else if (prevIndex === totalTexts - 1) {
               // 마지막 텍스트에서 비디오로
               setTimeout(() => {
                 setShowVideoSection(true)
-                console.log("[useHeroScroll/스와이프비디오] 마지막 텍스트에서 비디오로 전환")
+                console.log(
+                  "[useHeroScroll/스와이프비디오] 마지막 텍스트에서 비디오로 전환"
+                )
               }, 0)
               return prevIndex
             }
@@ -207,22 +264,30 @@ export function useHeroScroll(): UseHeroScrollReturn {
           if (showVideoSection) {
             setShowVideoSection(false)
             setCurrentTextIndex(totalTexts - 1) // 마지막 텍스트로 설정
-            console.log(`[useHeroScroll/스와이프비디오복귀] 비디오 → 마지막 텍스트(${totalTexts - 1})`)
+            console.log(
+              `[useHeroScroll/스와이프비디오복귀] 비디오 → 마지막 텍스트(${
+                totalTexts - 1
+              })`
+            )
           } else {
-            setCurrentTextIndex(prevIndex => {
-              console.log(`[useHeroScroll/스와이프다운] 현재 index: ${prevIndex}`)
-              
+            setCurrentTextIndex((prevIndex) => {
+              console.log(
+                `[useHeroScroll/스와이프다운] 현재 index: ${prevIndex}`
+              )
+
               if (prevIndex > 0) {
                 // 이전 텍스트로
                 const newIndex = prevIndex - 1
-                console.log(`[useHeroScroll/스와이프이전] ${prevIndex} → ${newIndex}`)
+                console.log(
+                  `[useHeroScroll/스와이프이전] ${prevIndex} → ${newIndex}`
+                )
                 return newIndex
               }
               return prevIndex
             })
           }
         }
-        
+
         // 터치도 동일한 쿨다운 적용
         if (scrollTimeout) {
           clearTimeout(scrollTimeout)
@@ -249,10 +314,12 @@ export function useHeroScroll(): UseHeroScrollReturn {
         clearTimeout(scrollTimeout)
       }
     }
-  }, [showVideoSection])
+  }, [showVideoSection, showBlueSection, enableNormalScroll])
 
   return {
     currentTextIndex,
     showVideoSection,
+    showBlueSection,
+    enableNormalScroll,
   }
 }

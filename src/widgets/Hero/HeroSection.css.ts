@@ -50,18 +50,18 @@ export const vimeoIframe = style({
   zIndex: tokens.zIndex.video,
 })
 
-// 비디오 섹션 - Hero 섹션과 같은 위치
+// 비디오 섹션 - 전체 화면 차지
 export const videoSection = style({
   position: "fixed",
   top: 0,
   left: 0,
   width: "100%",
-  height: tokens.viewport.height, // 100vh
+  height: "100vh",
   overflow: "hidden",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  zIndex: tokens.zIndex.video, // Hero 섹션보다 위에 표시
+  zIndex: tokens.zIndex.video,
   backgroundColor: tokens.colors.black,
 })
 
@@ -73,6 +73,18 @@ export const videoOverlay = style({
   width: "100%",
   height: "100%",
   zIndex: tokens.zIndex.video,
+})
+
+// 파란색 섹션 오버레이 - 비디오 이후 스크롤 시 표시
+export const blueSectionOverlay = style({
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100vh",
+  zIndex: tokens.zIndex.video + 10, // 비디오보다 훨씬 위에 표시
+  overflow: "auto",
+  backgroundColor: "transparent",
 })
 
 // 콘텐츠 래퍼 - 피그마 디자인 위치에 고정 (오른쪽 아래쪽)

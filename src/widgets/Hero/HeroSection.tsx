@@ -6,11 +6,17 @@ import Image from "next/image"
 import { useHeroScroll } from "../../shared/hooks/useHeroScroll"
 import { TextContentRenderer } from "./TextContentRenderer"
 import { VideoSection } from "./VideoSection"
+import BlueSection from "../BlueSection"
 
 import * as styles from "./HeroSection.css"
 
 export default function HeroSection() {
-  const { currentTextIndex, showVideoSection } = useHeroScroll()
+  const {
+    currentTextIndex,
+    showVideoSection,
+    showBlueSection,
+    enableNormalScroll,
+  } = useHeroScroll()
 
   return (
     <>
@@ -42,6 +48,13 @@ export default function HeroSection() {
 
       {/* Video 섹션 */}
       <VideoSection showVideoSection={showVideoSection} />
+
+      {/* Blue Section - 비디오 이후 스크롤 시 표시 */}
+      {showBlueSection && (
+        <div className={styles.blueSectionOverlay}>
+          <BlueSection />
+        </div>
+      )}
     </>
   )
 }
