@@ -1,18 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
+
 import HeaderNavigation from "../../../widgets/Header/HeaderNavigation"
-import { ArrowButton } from "../../../shared/ui/ArrowButton"
 import * as styles from "./HairlinePage.css"
 
 export default function HairlinePage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
-    return () => clearTimeout(timer)
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
@@ -21,265 +23,287 @@ export default function HairlinePage() {
 
       {/* Hairline Hero Section */}
       <section className={styles.hairlineHeroSection}>
-        <div className={styles.hairlineHeroBackground}>
-          <div className={styles.hairlineHeroSVG}>
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 1920 1080"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Background */}
-              <rect width="1920" height="1080" fill="#73D5FA" />
+        <div className={styles.hairlineHeroContainer}>
+          {/* Hero Illustration - 왼쪽에 붙도록 */}
+          <div className={styles.hairlineHeroIllustration}>
+            <img
+              src="/hairline/hero-illustration.svg"
+              alt="헤어라인 모발이식 일러스트"
+              className={styles.heroIllustrationImage}
+            />
+          </div>
 
-              {/* Graffiti Pattern */}
-              <g opacity="0.15">
-                <path
-                  d="M100 200C200 100 300 150 400 200C500 250 600 200 700 250C800 300 900 250 1000 300C1100 350 1200 300 1300 350C1400 400 1500 350 1600 400C1700 450 1800 400 1900 450"
-                  stroke="#272727"
-                  strokeWidth="2"
-                  fill="none"
+          {/* Hero Title - 중앙에 배치 */}
+          <div className={styles.hairlineHeroTitleContainer}>
+            <h1 className={styles.hairlineHeroTitle}>
+              <span>
+                헤어라인
+                <br />
+                교정
+                <div className={styles.hairlineHeroTitleDot} />
+              </span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 1: 얼굴 윤곽의 완성은 헤어라인입니다 */}
+      <section className={styles.section1}>
+        <div className={styles.section1Content}>
+          <div className={styles.section1Left}>
+            <div className={styles.section1Text}>
+              <h2 className={styles.section1Title}>
+                얼굴 윤곽의 완성은
+                <br />
+                헤어라인입니다.
+              </h2>
+              <div className={styles.section1Image}>
+                <img
+                  src="/hairline/section1-illustration.jpg"
+                  alt="헤어라인 일러스트"
+                  className={styles.section1Illustration}
                 />
-                <path
-                  d="M50 400C150 350 250 400 350 450C450 500 550 450 650 500C750 550 850 500 950 550C1050 600 1150 550 1250 600C1350 650 1450 600 1550 650C1650 700 1750 650 1850 700"
-                  stroke="#272727"
-                  strokeWidth="2"
-                  fill="none"
+              </div>
+              <p className={styles.section1Description}>
+                헤어라인을 결정할 때는
+                <br />
+                모발이식과 이마축소 두 방법 중
+                <br />
+                <br />
+                이마의 모양과 비율에 가장 알맞은 방법으로 얼굴의 마지막 윤곽을
+                완성합니다.
+              </p>
+            </div>
+            <div className={styles.section1Number}>1</div>
+          </div>
+          <div className={styles.section1Right}>
+            <div className={styles.section1Images}>
+              <div className={styles.section1Image1}>
+                <img
+                  src="/hairline/hairline-1.jpg"
+                  alt="헤어라인 이미지 1"
+                  className={styles.section1ImageContent}
                 />
-                <circle cx="300" cy="300" r="50" fill="#272727" opacity="0.1" />
-                <circle cx="800" cy="500" r="80" fill="#272727" opacity="0.1" />
-                <circle
-                  cx="1400"
-                  cy="400"
-                  r="60"
-                  fill="#272727"
-                  opacity="0.1"
+              </div>
+              <div className={styles.section1Image2}>
+                <img
+                  src="/hairline/hairline-2-2.jpg"
+                  alt="헤어라인 이미지 2"
+                  className={styles.section1ImageContent}
                 />
-              </g>
-
-              {/* Main Content Area */}
-              <g transform="translate(960, 540)">
-                <text
-                  x="0"
-                  y="-50"
-                  textAnchor="middle"
-                  className={styles.hairlineHeroTitle}
-                >
-                  헤어라인 모발이식
-                </text>
-                <text
-                  x="0"
-                  y="20"
-                  textAnchor="middle"
-                  className={styles.hairlineHeroDescription}
-                >
-                  자연스럽고 아름다운 헤어라인을 만들어
-                </text>
-                <text
-                  x="0"
-                  y="50"
-                  textAnchor="middle"
-                  className={styles.hairlineHeroDescription}
-                >
-                  당신의 자신감을 되찾아드립니다
-                </text>
-              </g>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* Hairline Info Section */}
-      <section className={styles.hairlineInfoSection}>
-        <div className={styles.hairlineInfoContent}>
-          <div className={styles.hairlineInfoText}>
-            <h2 className={styles.hairlineInfoTitle}>헤어라인 모발이식이란?</h2>
-            <p className={styles.hairlineInfoDescription}>
-              헤어라인 모발이식은 이마와 머리카락 경계선을 자연스럽게 만들어주는
-              시술입니다.
-              <br />
-              개인의 얼굴형과 헤어스타일에 맞춰 최적의 헤어라인을 설계하고,
-              <br />
-              미세한 모발을 이식하여 자연스러운 결과를 얻을 수 있습니다.
-            </p>
-            <div className={styles.hairlineInfoFeatures}>
-              <div className={styles.hairlineFeature}>
-                <div className={styles.featureIcon}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
-                      fill="#73D5FA"
-                    />
-                  </svg>
-                </div>
-                <div className={styles.featureContent}>
-                  <h3 className={styles.hairlineFeatureTitle}>
-                    자연스러운 각도
-                  </h3>
-                  <p className={styles.hairlineFeatureDescription}>
-                    개인의 얼굴형에 맞는 최적의 헤어라인 각도 설계
-                  </p>
-                </div>
-              </div>
-              <div className={styles.hairlineFeature}>
-                <div className={styles.featureIcon}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
-                      fill="#73D5FA"
-                    />
-                  </svg>
-                </div>
-                <div className={styles.featureContent}>
-                  <h3 className={styles.hairlineFeatureTitle}>
-                    미세한 모발 이식
-                  </h3>
-                  <p className={styles.hairlineFeatureDescription}>
-                    1-2개 모발 단위의 정밀한 이식으로 자연스러운 밀도 구현
-                  </p>
-                </div>
-              </div>
-              <div className={styles.hairlineFeature}>
-                <div className={styles.featureIcon}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
-                      fill="#73D5FA"
-                    />
-                  </svg>
-                </div>
-                <div className={styles.featureContent}>
-                  <h3 className={styles.hairlineFeatureTitle}>
-                    개인 맞춤 설계
-                  </h3>
-                  <p className={styles.hairlineFeatureDescription}>
-                    환자의 얼굴형과 선호도에 맞는 헤어라인 디자인
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.hairlineInfoImage}>
-            <div className={styles.hairlineImageContainer}>
-              <div className={styles.hairlineImagePlaceholder}>
-                <div className={styles.hairlineImageContent}>
-                  <div className={styles.hairlineImageTitle}>
-                    헤어라인 모발이식
-                  </div>
-                  <div className={styles.hairlineImageSubtitle}>
-                    자연스러운 결과
-                  </div>
-                  <div className={styles.hairlineImageDescription}>
-                    개인 맞춤형 헤어라인 설계로
-                    <br />
-                    완벽한 얼굴 비율을 만들어드립니다
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Procedure Section */}
-      <section className={styles.procedureSection}>
-        <div className={styles.procedureContent}>
-          <h2 className={styles.procedureTitle}>헤어라인 모발이식 과정</h2>
-          <div className={styles.procedureSteps}>
-            <div className={styles.procedureStep}>
-              <div className={styles.stepNumber}>01</div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>상담 및 설계</h3>
-                <p className={styles.stepDescription}>
-                  환자의 얼굴형과 선호도를 분석하여
-                  <br />
-                  최적의 헤어라인을 설계합니다
-                </p>
-              </div>
+      {/* Section 2: 헤어라인 모발이식 */}
+      <section className={styles.section2}>
+        <div className={styles.section2Content}>
+          <div className={styles.section2Left}>
+            <div className={styles.section2Image}>
+              <img
+                src="/hairline/image-10.jpg"
+                alt="헤어라인 모발이식"
+                className={styles.section2ImageContent}
+              />
             </div>
-            <div className={styles.procedureStep}>
-              <div className={styles.stepNumber}>02</div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>모발 채취</h3>
-                <p className={styles.stepDescription}>
-                  후두부에서 건강한 모발을
-                  <br />
-                  정밀하게 채취합니다
-                </p>
-              </div>
+          </div>
+          <div className={styles.section2Right}>
+            <div className={styles.section2Text}>
+              <h2 className={styles.section2Title}>
+                헤어라인
+                <br />
+                모발이식
+              </h2>
+              <p className={styles.section2Description}>
+                헤어라인 모발이식은 이마가 넓어 보이거나 헤어라인이 후퇴한
+                경우에
+                <br />
+                <br />
+                자연스러운 헤어라인을 만들어 얼굴의 균형을 맞춰주는 수술입니다.
+                <br />
+                <br />
+                개인의 얼굴형과 이마 비율을 고려하여 가장 자연스러운 헤어라인을
+                <br />
+                설계하고, 1모발 단위로 정교하게 이식하여 자연스러운 결과를
+                얻습니다.
+              </p>
             </div>
-            <div className={styles.procedureStep}>
-              <div className={styles.stepNumber}>03</div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>이식 및 마무리</h3>
-                <p className={styles.stepDescription}>
-                  설계된 헤어라인에 따라
-                  <br />
-                  모발을 정밀하게 이식합니다
-                </p>
-              </div>
+            <div className={styles.section2Number}>2</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: 수술 결과 */}
+      <section className={styles.section3}>
+        <div className={styles.section3Content}>
+          <div className={styles.section3Left}>
+            <div className={styles.section3Text}>
+              <h2 className={styles.section3Title}>
+                자연스러운
+                <br />
+                헤어라인 완성
+              </h2>
+              <p className={styles.section3Description}>
+                헤어라인 모발이식 후 6개월이 지나면 이식한 모발이 완전히 자라
+                <br />
+                <br />
+                자연스럽고 빼곡한 헤어라인을 완성할 수 있습니다.
+                <br />
+                <br />
+                개인의 얼굴형에 맞는 헤어라인으로 더욱 균형잡힌 얼굴 윤곽을
+                <br />
+                만들어드립니다.
+              </p>
+            </div>
+            <div className={styles.section3Number}>3</div>
+          </div>
+          <div className={styles.section3Right}>
+            <div className={styles.section3Image}>
+              <img
+                src="/hairline/dsc01814-1.jpg"
+                alt="헤어라인 모발이식 결과"
+                className={styles.section3ImageContent}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Results Section */}
-      <section className={styles.resultsSection}>
-        <div className={styles.resultsContent}>
-          <h2 className={styles.resultsTitle}>헤어라인 모발이식 결과</h2>
-          <div className={styles.resultsGrid}>
-            <div className={styles.resultCard}>
-              <div className={styles.resultImage}>
-                <div className={styles.placeholderImage}>
-                  <span>수술 전</span>
-                </div>
-              </div>
-              <div className={styles.resultInfo}>
-                <h3 className={styles.resultTitle}>수술 전</h3>
-                <p className={styles.resultDescription}>
-                  헤어라인이 후퇴하여 이마가 넓어 보이는 상태
-                </p>
-              </div>
+      {/* Before & After Section */}
+      <section className={styles.beforeAfterSection}>
+        <div className={styles.beforeAfterContent}>
+          <h2 className={styles.beforeAfterTitle}>수술 전후 비교</h2>
+          <div className={styles.beforeAfterImages}>
+            <div className={styles.beforeAfterImage}>
+              <div className={styles.beforeAfterLabel}>수술 전</div>
+              <img
+                src="/hairline/before.jpg"
+                alt="수술 전"
+                className={styles.beforeAfterImage}
+              />
             </div>
-            <div className={styles.resultCard}>
-              <div className={styles.resultImage}>
-                <div className={styles.placeholderImage}>
-                  <span>수술 후</span>
-                </div>
-              </div>
-              <div className={styles.resultInfo}>
-                <h3 className={styles.resultTitle}>수술 후</h3>
-                <p className={styles.resultDescription}>
-                  자연스럽고 아름다운 헤어라인으로
-                  <br />
-                  얼굴 비율이 개선된 상태
-                </p>
-              </div>
+            <div className={styles.beforeAfterImage}>
+              <div className={styles.beforeAfterLabel}>수술 후</div>
+              <img
+                src="/hairline/after.jpg"
+                alt="수술 후"
+                className={styles.beforeAfterImage}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className={styles.contactSection}>
-        <div className={styles.contactContent}>
-          <h2 className={styles.contactTitle}>헤어라인 모발이식 상담</h2>
-          <p className={styles.contactDescription}>
-            개인 맞춤 헤어라인 설계와 상담을 위해
-            <br />
-            지금 바로 예약하세요
-          </p>
-          <div className={styles.contactButtons}>
-            <ArrowButton size="large" variant="primary">
-              상담 예약
-            </ArrowButton>
-            <ArrowButton size="large" variant="secondary">
-              전화 문의
-            </ArrowButton>
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
+        <div className={styles.featuresContent}>
+          <h2 className={styles.featuresTitle}>헤어라인 모발이식의 특징</h2>
+          <div className={styles.featuresGrid}>
+            <div className={styles.featureCard}>
+              <div className={styles.featuresIcon}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className={styles.featuresTitle}>자연스러운 헤어라인</h3>
+              <p className={styles.featureText}>
+                개인의 얼굴형과 이마 비율을 고려하여 가장 자연스러운 헤어라인을
+                설계합니다.
+              </p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featuresIcon}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className={styles.featuresTitle}>정교한 1모발 이식</h3>
+              <p className={styles.featureText}>
+                1모발 단위로 정교하게 이식하여 자연스럽고 빼곡한 헤어라인을
+                완성합니다.
+              </p>
+            </div>
+            <div className={styles.featureCard}>
+              <div className={styles.featuresIcon}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className={styles.featuresTitle}>영구적인 결과</h3>
+              <p className={styles.featureText}>
+                이식한 모발은 영구적으로 자라며, 자연스러운 헤어라인을
+                유지합니다.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <footer className={styles.footerSection}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerMain}>
+            <div className={styles.footerColumn}>
+              <div className={styles.footerInfo}>
+                <h3 className={styles.footerClinicName}>
+                  바람부는날에도 성형외과의원
+                </h3>
+                <p className={styles.footerRepresentative}>
+                  대표 박수호, 신승규
+                </p>
+              </div>
+              <p className={styles.footerCopyright}>
+                ©2025 BANAL PLASTIC SURGERY
+              </p>
+            </div>
+
+            <div className={styles.footerColumn}>
+              <p className={styles.footerAddress}>
+                서울시 서초구 신반포로 47길 66 바날하우스
+              </p>
+              <div className={styles.footerLinks}>
+                <a href="#" className={styles.footerLink}>
+                  이용약관
+                </a>
+                <a href="#" className={styles.footerLink}>
+                  개인정보처리방침
+                </a>
+              </div>
+            </div>
+
+            <div className={styles.footerColumn}>
+              <p className={styles.footerPhone}>TEL 02-540-0700</p>
+            </div>
+          </div>
+
+          <div className={styles.footerLogo}>
+            <div className={styles.footerLogoContainer}>
+              {/* 로고 이미지 또는 텍스트 */}
+              <span className={styles.footerLogoText}>BANAL</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -325,7 +325,6 @@ export const whatBanalSection = style({
   width: "100%",
   maxWidth: "1600px",
   margin: "0 auto 120px",
-  padding: "0 160px",
   "@media": {
     "screen and (max-width: 1600px)": {
       padding: "0 80px",
@@ -406,26 +405,6 @@ export const whatBanalSubDescription = style({
     "screen and (max-width: 768px)": {
       fontSize: "20px",
     },
-  },
-})
-
-export const viewMoreButton = style({
-  background: "#FFFFFF",
-  border: "none",
-  borderRadius: "24px",
-  padding: "12px 24px",
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 500,
-  fontSize: "20px",
-  color: "#272727",
-  cursor: "pointer",
-  transition: "all 300ms ease",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  ":hover": {
-    transform: "translateY(-2px)",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
   },
 })
 
@@ -584,6 +563,65 @@ export const doctorsGrid = style({
   },
 })
 
+// 신승규 원장 - 첫 번째 (상단)
+export const doctorCard1 = style({
+  position: "absolute",
+  left: "0",
+  top: "0",
+  width: "417px",
+  height: "556px",
+  zIndex: 3,
+  overflow: "visible",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "relative",
+      width: "100%",
+      height: "400px",
+    },
+  },
+})
+
+// 박수호 원장 - 두 번째 (중앙 오른쪽)
+export const doctorCard2 = style({
+  position: "absolute",
+  right: "0",
+  top: "266px",
+  width: "495px",
+  height: "626px",
+  zIndex: 2,
+  overflow: "visible",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "relative",
+      width: "100%",
+      height: "400px",
+      top: "auto",
+      right: "auto",
+    },
+  },
+})
+
+// 김나래 원장 - 세 번째 (하단)
+export const doctorCard3 = style({
+  position: "absolute",
+  left: "0",
+  bottom: "0",
+  width: "423px",
+  height: "564px",
+  zIndex: 1,
+  overflow: "visible",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "relative",
+      width: "100%",
+      height: "400px",
+      bottom: "auto",
+      left: "auto",
+    },
+  },
+})
+
+// 기존 레거시 스타일들 (사용하지 않지만 호환성을 위해 유지)
 export const doctorCard = style({
   display: "flex",
   flexDirection: "column",
@@ -591,75 +629,26 @@ export const doctorCard = style({
   textAlign: "center",
 })
 
-export const doctorImage = style({
-  width: "100%",
-  maxWidth: "400px",
-  aspectRatio: "1 / 1",
-  borderRadius: "8px",
-  overflow: "hidden",
-  marginBottom: "24px",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      maxWidth: "300px",
-    },
-  },
-})
-
-export const doctorPlaceholder = style({
-  width: "100%",
-  height: "100%",
-  background: "linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "8px",
-  border: "2px dashed #ccc",
-})
-
-export const placeholderText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
-  fontSize: "16px",
-  color: "#999",
-  textAlign: "center",
-})
-
-export const doctorInfo = style({
-  textAlign: "center",
-})
-
-export const doctorName = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 500,
-  fontSize: "140px",
-  lineHeight: "80%",
-  letterSpacing: "-4.2px",
+export const doctorNameOverlay = style({
+  position: "absolute",
+  bottom: "20px",
+  right: "20px",
   color: "#FFFFFF",
-  margin: "0 0 16px 0",
-  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "80px",
-      letterSpacing: "-2px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "60px",
-      letterSpacing: "-1px",
-    },
-  },
+  textAlign: "right",
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
 })
 
-export const doctorTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  fontSize: "24px",
-  lineHeight: "150%",
+export const doctorEnglishName = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 600,
+  fontSize: "28px",
+  lineHeight: "100%",
   letterSpacing: "0",
-  color: "#272727",
+  color: "#FFFFFF",
   margin: 0,
   "@media": {
     "screen and (max-width: 768px)": {
-      fontSize: "20px",
+      fontSize: "24px",
     },
   },
 })
@@ -833,10 +822,13 @@ export const mapImage = style({
 
 // 의료진 소개 섹션 - 피그마 디자인 기반
 export const doctorsSection = style({
+  position: "relative",
   width: "100%",
   maxWidth: "1600px",
+  height: "auto",
+  aspectRatio: "1600 / 950",
   margin: "0 auto 120px",
-  padding: "120px 160px",
+  // padding: "120px 160px",
   "@media": {
     "screen and (max-width: 1600px)": {
       padding: "80px 80px",
@@ -919,67 +911,275 @@ export const doctorsDescription = style({
 })
 
 export const doctorsImageGrid = style({
-  flex: 1,
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "40px",
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: "30px",
-    },
-    "screen and (max-width: 768px)": {
-      gridTemplateColumns: "1fr",
-      gap: "40px",
-    },
-  },
-})
-
-export const doctorImageContainer = style({
+  // flex: 1,
   position: "relative",
   width: "100%",
-  aspectRatio: "1 / 1",
-  borderRadius: "12px",
-  overflow: "hidden",
-  marginBottom: "16px",
-})
-
-export const doctorNameOverlay = style({
-  position: "absolute",
-  bottom: "20px",
-  right: "20px",
-  color: "#FFFFFF",
-  textAlign: "right",
-  textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-})
-
-export const doctorEnglishName = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 600,
-  fontSize: "28px",
-  lineHeight: "100%",
-  letterSpacing: "0",
-  color: "#FFFFFF",
-  margin: 0,
+  maxWidth: "1059px",
+  height: "1298px",
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "24px",
+    "screen and (max-width: 1024px)": {
+      height: "auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: "30px",
     },
   },
 })
 
+// 둘러싸는 이미지 컨테이너 (모든 의료진 공통)
+export const doctorImageContainer = style({
+  // position: "relative",
+  //   aspectRatio: "1 / 1",
+  width: "100%",
+  height: "100%",
+  borderRadius: "12px",
+  overflow: "visible", // 텍스트가 잘리지 않도록
+})
+
+// 신승규 원장 이름 오버레이 (전체 그리드 기준)
+export const doctorNameOverlay1 = style({
+  position: "absolute",
+  left: "250px",
+  top: "54px",
+  width: "718px",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      left: "40px",
+      top: "40px",
+      width: "auto",
+    },
+  },
+})
+
+// 박수호 원장 이름 오버레이 (전체 그리드 기준)
+export const doctorNameOverlay2 = style({
+  position: "absolute",
+  left: "416px",
+  top: "668px",
+  width: "467px",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "absolute",
+      left: "40px",
+      bottom: "40px",
+      top: "auto",
+      width: "auto",
+    },
+  },
+})
+
+// 김나래 원장 이름 오버레이 (전체 그리드 기준)
+export const doctorNameOverlay3 = style({
+  position: "absolute",
+  right: "0px",
+  bottom: "0px",
+  width: "415px",
+  textAlign: "right",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "absolute",
+      right: "40px",
+      top: "40px",
+      bottom: "auto",
+      width: "auto",
+    },
+  },
+})
+
+export const doctorImage1 = style({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "12px",
+  display: "block",
+  zIndex: 1,
+})
+
+export const doctorImage2 = style({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "12px",
+  display: "block",
+  zIndex: 1,
+})
+
+export const doctorImage3 = style({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "12px",
+  display: "block",
+  zIndex: 1,
+})
+
+// 신승규 원장 영어 이름
+export const doctorEnglishName1 = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "140px",
+  lineHeight: "80%",
+  letterSpacing: "-4.2px",
+  color: "#FFFFFF",
+  margin: 0,
+  whiteSpace: "nowrap",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      fontSize: "80px",
+      letterSpacing: "-2.4px",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "60px",
+      letterSpacing: "-1.8px",
+    },
+  },
+})
+
+// 박수호 원장 영어 이름
+export const doctorEnglishName2 = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "140px",
+  lineHeight: "80%",
+  letterSpacing: "-4.2px",
+  color: "#FFFFFF",
+  margin: 0,
+  whiteSpace: "nowrap",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      fontSize: "80px",
+      letterSpacing: "-2.4px",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "60px",
+      letterSpacing: "-1.8px",
+    },
+  },
+})
+
+// 김나래 원장 영어 이름
+export const doctorEnglishName3 = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "140px",
+  lineHeight: "80%",
+  letterSpacing: "-4.2px",
+  color: "#FFFFFF",
+  margin: 0,
+  whiteSpace: "nowrap",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      fontSize: "80px",
+      letterSpacing: "-2.4px",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "60px",
+      letterSpacing: "-1.8px",
+    },
+  },
+})
+
+// 한국어 이름 컨테이너들
+export const doctorKoreanNameContainer1 = style({
+  position: "absolute",
+  left: "270px",
+  top: "319px",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "static",
+      marginTop: "20px",
+      paddingLeft: "40px",
+    },
+  },
+})
+
+export const doctorKoreanNameContainer2 = style({
+  position: "absolute",
+  right: "233px",
+  top: "739px",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "static",
+      marginTop: "20px",
+      paddingLeft: "40px",
+    },
+  },
+})
+
+export const doctorKoreanNameContainer3 = style({
+  position: "absolute",
+  left: "270px",
+  top: "1078px",
+  zIndex: 10,
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      position: "static",
+      marginTop: "20px",
+      paddingLeft: "40px",
+    },
+  },
+})
+
+// 한국어 이름 스타일
 export const doctorKoreanName = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "18px",
+  fontSize: "24px",
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
-  textAlign: "center",
   "@media": {
     "screen and (max-width: 768px)": {
-      fontSize: "16px",
+      fontSize: "20px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "18px",
     },
   },
+})
+
+// 의료진 섹션 후 구분선
+export const doctorsSectionDivider = style({
+  width: "100%",
+  maxWidth: "1600px",
+  height: "1px",
+  backgroundColor: "rgba(255, 255, 255, 0.3)",
+  margin: "0 auto 120px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      margin: "0 auto 80px",
+    },
+  },
+})
+
+// 신승규 원장 아래 구분선
+export const doctorDivider1 = style({
+  position: "absolute",
+  left: "0",
+  top: "555px", // 신승규 사진 아래
+  width: "100%",
+  height: "2px",
+  backgroundColor: "#FFFFFF",
+  zIndex: 5,
+})
+
+// 박수호 원장 아래 구분선
+export const doctorDivider2 = style({
+  position: "absolute",
+  right: "0",
+  top: "891px", // 박수호 사진 아래
+  width: "100%",
+  maxWidth: "642px",
+  height: "2px",
+  backgroundColor: "#FFFFFF",
+  zIndex: 5,
 })

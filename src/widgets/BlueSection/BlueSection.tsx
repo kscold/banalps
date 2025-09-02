@@ -202,62 +202,71 @@ export default function BlueSection({
             </ArrowButton>
           </div>
 
-          {/* 우측 의료진 이미지 섹션 */}
+          {/* 우측 의료진 이미지 섹션 - 겹쳐진 레이아웃 */}
           <div className={styles.doctorsImageGrid}>
-            {/* 신승규 원장 */}
-            <div className={styles.doctorCard}>
-              <div className={styles.doctorImageContainer}>
-                <img
-                  src="/main/person/대표원장_신승규.jpg"
-                  alt="신승규 원장"
-                  className={styles.doctorImage}
-                />
-                <div className={styles.doctorNameOverlay}>
-                  <h3 className={styles.doctorEnglishName}>
-                    Shin
-                    <br />
-                    Seung gyu
-                  </h3>
-                </div>
-              </div>
+            {/* 이미지들 */}
+            <div className={styles.doctorCard1}>
+              <img
+                src="/main/person/대표원장_신승규.png"
+                alt="신승규 원장"
+                className={styles.doctorImage1}
+              />
+            </div>
+
+            <div className={styles.doctorCard2}>
+              <img
+                src="/main/person/대표원장_박수호.png"
+                alt="박수호 원장"
+                className={styles.doctorImage2}
+              />
+            </div>
+
+            <div className={styles.doctorCard3}>
+              <img
+                src="/main/person/대표원장_김나래.png"
+                alt="김나래 원장"
+                className={styles.doctorImage3}
+              />
+            </div>
+
+            {/* 구분선들 - 신승규, 박수호 사진 아래 */}
+            <div className={styles.doctorDivider1} />
+            <div className={styles.doctorDivider2} />
+
+            {/* 모든 텍스트 오버레이 - 그리드 컨테이너 기준 absolute */}
+            <div className={styles.doctorNameOverlay1}>
+              <h3 className={styles.doctorEnglishName1}>
+                Shin
+                <br />
+                Seung gyu
+              </h3>
+            </div>
+
+            <div className={styles.doctorKoreanNameContainer1}>
               <p className={styles.doctorKoreanName}>대표원장 신 승규</p>
             </div>
 
-            {/* 박수호 원장 */}
-            <div className={styles.doctorCard}>
-              <div className={styles.doctorImageContainer}>
-                <img
-                  src="/main/person/대표원장_박수호.jpg"
-                  alt="박수호 원장"
-                  className={styles.doctorImage}
-                />
-                <div className={styles.doctorNameOverlay}>
-                  <h3 className={styles.doctorEnglishName}>
-                    Park
-                    <br />
-                    Soo Ho
-                  </h3>
-                </div>
-              </div>
+            <div className={styles.doctorNameOverlay2}>
+              <h3 className={styles.doctorEnglishName2}>
+                Park
+                <br />
+                Soo Ho
+              </h3>
+            </div>
+
+            <div className={styles.doctorKoreanNameContainer2}>
               <p className={styles.doctorKoreanName}>대표원장 박 수호</p>
             </div>
 
-            {/* 김나래 원장 */}
-            <div className={styles.doctorCard}>
-              <div className={styles.doctorImageContainer}>
-                <img
-                  src="/main/person/대표원장_김나래.jpg"
-                  alt="김나래 원장"
-                  className={styles.doctorImage}
-                />
-                <div className={styles.doctorNameOverlay}>
-                  <h3 className={styles.doctorEnglishName}>
-                    Kim
-                    <br />
-                    Narae
-                  </h3>
-                </div>
-              </div>
+            <div className={styles.doctorNameOverlay3}>
+              <h3 className={styles.doctorEnglishName3}>
+                Kim
+                <br />
+                Narae
+              </h3>
+            </div>
+
+            <div className={styles.doctorKoreanNameContainer3}>
               <p className={styles.doctorKoreanName}>대표원장 김 나래</p>
             </div>
           </div>
