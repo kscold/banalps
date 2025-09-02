@@ -319,3 +319,667 @@ export const graffitiBackground = style({
   pointerEvents: "none",
   zIndex: 0,
 })
+
+// What Banal Does 섹션
+export const whatBanalSection = style({
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto 120px",
+  padding: "0 160px",
+  "@media": {
+    "screen and (max-width: 1600px)": {
+      padding: "0 80px",
+    },
+    "screen and (max-width: 1024px)": {
+      padding: "0 20px",
+      margin: "0 auto 80px",
+    },
+  },
+})
+
+export const whatBanalContent = style({
+  display: "flex",
+  gap: "120px",
+  alignItems: "flex-start",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flexDirection: "column",
+      gap: "60px",
+    },
+  },
+})
+
+export const whatBanalText = style({
+  flex: "0 0 520px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flex: "none",
+      width: "100%",
+    },
+  },
+})
+
+export const whatBanalTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "60px",
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  marginBottom: "80px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "48px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "36px",
+    },
+  },
+})
+
+export const whatBanalDescription = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontStyle: "5 Medium",
+  fontSize: "24px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 40px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const whatBanalSubDescription = style({
+  fontFamily: "'Pretendard', sans-serif",
+  fontWeight: 300,
+  fontStyle: "Light",
+  fontSize: "23px",
+  lineHeight: "35px",
+  letterSpacing: "0",
+  color: "#272727",
+  marginBottom: "80px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const viewMoreButton = style({
+  background: "#FFFFFF",
+  border: "none",
+  borderRadius: "24px",
+  padding: "12px 24px",
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "20px",
+  color: "#272727",
+  cursor: "pointer",
+  transition: "all 300ms ease",
+  display: "flex",
+  alignItems: "center",
+  gap: "8px",
+  ":hover": {
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+  },
+})
+
+export const featuresList = style({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  gap: "24px",
+})
+
+export const featureItem = style({
+  display: "flex",
+  alignItems: "flex-start",
+  gap: "24px",
+  padding: "16px 0",
+  borderBottom: "1px solid #14aeff",
+  ":last-child": {
+    borderBottom: "none",
+  },
+})
+
+export const featureNumber = style({
+  flex: "0 0 114px",
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "20px",
+  lineHeight: "140%",
+  letterSpacing: "0",
+  color: "#272727",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      flex: "0 0 80px",
+      fontSize: "18px",
+    },
+  },
+})
+
+export const featureContent = style({
+  flex: 1,
+})
+
+export const featureTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "24px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 8px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const featureDescription = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  fontSize: "16px",
+  lineHeight: "160%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  whiteSpace: "pre-line",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "14px",
+    },
+  },
+})
+
+// Specialist 섹션
+export const specialistSection = style({
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto 120px",
+  padding: "0 160px",
+  "@media": {
+    "screen and (max-width: 1600px)": {
+      padding: "0 80px",
+    },
+    "screen and (max-width: 1024px)": {
+      padding: "0 20px",
+      margin: "0 auto 80px",
+    },
+  },
+})
+
+export const specialistContent = style({
+  display: "flex",
+  gap: "120px",
+  alignItems: "flex-start",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flexDirection: "column",
+      gap: "60px",
+    },
+  },
+})
+
+export const specialistText = style({
+  flex: "0 0 520px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flex: "none",
+      width: "100%",
+    },
+  },
+})
+
+export const specialistTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "60px",
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 24px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "48px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "36px",
+    },
+  },
+})
+
+export const specialistDescription = style({
+  fontFamily: "'Pretendard', sans-serif",
+  fontWeight: 300,
+  fontSize: "23px",
+  lineHeight: "152%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 40px 0",
+  whiteSpace: "pre-line",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const doctorsGrid = style({
+  flex: 1,
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "40px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      gridTemplateColumns: "1fr",
+      gap: "30px",
+    },
+  },
+})
+
+export const doctorCard = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+})
+
+export const doctorImage = style({
+  width: "100%",
+  maxWidth: "400px",
+  aspectRatio: "1 / 1",
+  borderRadius: "8px",
+  overflow: "hidden",
+  marginBottom: "24px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      maxWidth: "300px",
+    },
+  },
+})
+
+export const doctorPlaceholder = style({
+  width: "100%",
+  height: "100%",
+  background: "linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "8px",
+  border: "2px dashed #ccc",
+})
+
+export const placeholderText = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  fontSize: "16px",
+  color: "#999",
+  textAlign: "center",
+})
+
+export const doctorInfo = style({
+  textAlign: "center",
+})
+
+export const doctorName = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "140px",
+  lineHeight: "80%",
+  letterSpacing: "-4.2px",
+  color: "#FFFFFF",
+  margin: "0 0 16px 0",
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "80px",
+      letterSpacing: "-2px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "60px",
+      letterSpacing: "-1px",
+    },
+  },
+})
+
+export const doctorTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "24px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+// 바날 로컬 위치 정보 카드
+export const locationCard = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+})
+
+export const locationImage = style({
+  width: "100%",
+  maxWidth: "400px",
+  aspectRatio: "1 / 1",
+  borderRadius: "8px",
+  overflow: "hidden",
+  marginBottom: "24px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      maxWidth: "300px",
+    },
+  },
+})
+
+export const locationInfo = style({
+  textAlign: "center",
+})
+
+export const locationName = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: "140px",
+  lineHeight: "80%",
+  letterSpacing: "-4.2px",
+  color: "#FFFFFF",
+  margin: "0 0 16px 0",
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "80px",
+      letterSpacing: "-2px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "60px",
+      letterSpacing: "-1px",
+    },
+  },
+})
+
+export const locationAddress = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "24px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 8px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const locationDetail = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  fontSize: "20px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "18px",
+    },
+  },
+})
+
+// 새로운 간결한 위치 섹션 - 피그마 디자인 기반
+export const locationSection = style({
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto 120px",
+  padding: "120px 160px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+  "@media": {
+    "screen and (max-width: 1600px)": {
+      padding: "80px 80px",
+    },
+    "screen and (max-width: 1024px)": {
+      padding: "60px 20px",
+      margin: "0 auto 80px",
+    },
+  },
+})
+
+export const locationContent = style({
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "60px",
+})
+
+export const locationHeader = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "8px",
+})
+
+export const locationQuote = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  fontSize: "36px",
+  lineHeight: "140%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  textAlign: "center",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "24px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const hospitalName = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 600,
+  fontSize: "36px",
+  lineHeight: "140%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  textAlign: "center",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "28px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "24px",
+    },
+  },
+})
+
+export const mapContainer = style({
+  width: "100%",
+  maxWidth: "1571px",
+  aspectRatio: "1571 / 582",
+  borderRadius: "12px",
+  overflow: "hidden",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+})
+
+export const mapImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+})
+
+// 의료진 소개 섹션 - 피그마 디자인 기반
+export const doctorsSection = style({
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto 120px",
+  padding: "120px 160px",
+  "@media": {
+    "screen and (max-width: 1600px)": {
+      padding: "80px 80px",
+    },
+    "screen and (max-width: 1024px)": {
+      padding: "60px 20px",
+      margin: "0 auto 80px",
+    },
+  },
+})
+
+export const doctorsContent = style({
+  display: "flex",
+  gap: "120px",
+  alignItems: "flex-start",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flexDirection: "column",
+      gap: "60px",
+    },
+  },
+})
+
+export const doctorsTextSection = style({
+  flex: "0 0 520px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      flex: "none",
+      width: "100%",
+    },
+  },
+})
+
+export const doctorsMainTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "60px",
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 24px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "48px",
+    },
+    "screen and (max-width: 480px)": {
+      fontSize: "36px",
+    },
+  },
+})
+
+export const doctorsSubTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  fontSize: "24px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 16px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const doctorsDescription = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  fontSize: "18px",
+  lineHeight: "160%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0 0 40px 0",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "16px",
+    },
+  },
+})
+
+export const doctorsImageGrid = style({
+  flex: 1,
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "40px",
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: "30px",
+    },
+    "screen and (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
+      gap: "40px",
+    },
+  },
+})
+
+export const doctorImageContainer = style({
+  position: "relative",
+  width: "100%",
+  aspectRatio: "1 / 1",
+  borderRadius: "12px",
+  overflow: "hidden",
+  marginBottom: "16px",
+})
+
+export const doctorNameOverlay = style({
+  position: "absolute",
+  bottom: "20px",
+  right: "20px",
+  color: "#FFFFFF",
+  textAlign: "right",
+  textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+})
+
+export const doctorEnglishName = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 600,
+  fontSize: "28px",
+  lineHeight: "100%",
+  letterSpacing: "0",
+  color: "#FFFFFF",
+  margin: 0,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "24px",
+    },
+  },
+})
+
+export const doctorKoreanName = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: "18px",
+  lineHeight: "150%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  textAlign: "center",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "16px",
+    },
+  },
+})

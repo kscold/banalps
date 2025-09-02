@@ -16,6 +16,7 @@ export default function HeroSection() {
     showVideoSection,
     showBlueSection,
     enableNormalScroll,
+    transitionToVideoFromBlue,
   } = useHeroScroll()
 
   return (
@@ -52,7 +53,10 @@ export default function HeroSection() {
       {/* Blue Section - 비디오 이후 스크롤 시 표시 */}
       {showBlueSection && (
         <div className={styles.blueSectionOverlay}>
-          <BlueSection />
+          <BlueSection 
+            isActive={showBlueSection}
+            onTransitionToVideo={transitionToVideoFromBlue}
+          />
         </div>
       )}
     </>

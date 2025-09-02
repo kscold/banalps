@@ -2,6 +2,7 @@
 
 import HeaderNavigation from "@/widgets/Header/HeaderNavigation"
 import HeroSection from "@/widgets/Hero/HeroSection"
+import BanalIntroSection from "@/widgets/BanalIntroSection"
 import { FloatingButtonGroup } from "@/features/floating-button"
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
     <main>
       <HeaderNavigation />
       <HeroSection />
+      <BanalIntroSection />
 
       {/* Figma 디자인 기반 플로팅 버튼 그룹 */}
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
