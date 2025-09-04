@@ -1,127 +1,345 @@
 import { style } from "@vanilla-extract/css"
+import {
+  vw,
+  responsiveFont,
+  responsiveContainer,
+  responsiveProperty,
+  breakpoints,
+} from "../../shared/styles/responsive.css"
 
-// 메인 섹션 컨테이너
+// 메인 섹션 컨테이너 (1920px 기준) - BlueSection과 동일하게
 export const whiteSection = style({
   width: "100%",
   backgroundColor: "#FFFFFF",
   position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  ...responsiveProperty("paddingBottom", 120), // 1920px 기준 120px
 })
 
-// 내부 컨테이너
+// 상단 히어로 이미지 컨테이너 (1920px 기준)
+export const heroImageContainer = style({
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
+  aspectRatio: "1600 / 400", // 적당한 비율 설정
+  overflow: "hidden",
+  borderRadius: vw(12),
+  marginTop: vw(240), // 1920px 기준 80px
+  marginBottom: vw(240), // 1920px 기준 80px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "240px",
+      marginBottom: "240px",
+      borderRadius: "12px",
+    },
+  },
+})
+
+// 히어로 이미지 (1920px 기준)
+export const heroImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+})
+
+// 내부 컨테이너 - BlueSection과 동일하게
 export const container = style({
-  maxWidth: "1600px",
-  margin: "0 auto",
-  padding: "0 60px",
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      padding: "0 40px",
-    },
-    "screen and (max-width: 768px)": {
-      padding: "0 20px",
-    },
-  },
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
 })
 
-// Hero 섹션
-export const heroSection = style({
-  padding: "120px 0",
-  position: "relative",
-})
-
+// 메인 타이틀 (1920px 기준)
 export const mainTitle = style({
-  fontSize: "60px",
-  fontWeight: "500",
-  lineHeight: "1.2",
-  color: "#000000",
-  marginBottom: "80px",
   fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60), // 1920px 기준 60px
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0",
+  ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
+})
+
+// 메인 콘텐츠 영역 (1920px 기준) - 헤더와 동일한 간단한 방식
+export const mainContent = style({
+  maxWidth: "1600px", // 헤더와 동일한 최대 너비
+  width: vw(1460), // 1024px-1920px 비례 스케일링
+  height: vw(628), // 1920px 기준 628px 높이
+  margin: "0 auto", // 중앙 정렬
+  position: "relative",
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-      marginBottom: "60px",
+    [breakpoints.desktopLarge]: {
+      width: "1600px", // 1920px 이상에서 고정
+      height: "628px",
+    },
+    [breakpoints.mobile]: {
+      width: "calc(100% - 40px)", // 모바일 마진
+      height: "auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: "30px",
     },
   },
 })
 
-// 서비스 카드 그리드
-export const serviceCards = style({
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gap: "30px",
-  marginBottom: "40px",
+// 카드 그리드 (1920px 기준) - 절대 위치로 정확한 배치
+export const cardGrid = style({
+  position: "absolute",
+  left: "0",
+  top: "0",
+  width: vw(1055), // 1920px 기준에서 줄임 (1460-385-20 = 1055px)
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(16), // 1920px 기준 16px
   "@media": {
-    "screen and (max-width: 1024px)": {
-      gridTemplateColumns: "repeat(2, 1fr)",
+    [breakpoints.desktopLarge]: {
+      width: "1055px", // 고정 크기도 조정
+      gap: "16px",
     },
-    "screen and (max-width: 640px)": {
-      gridTemplateColumns: "1fr",
+    [breakpoints.mobile]: {
+      position: "relative",
+      width: "100%",
+      gap: "20px",
     },
   },
 })
 
+// 상단 행 (1920px 기준)
+export const topRow = style({
+  display: "flex",
+  gap: vw(12), // 1920px 기준 12px
+  height: vw(308), // 1920px 기준 308px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "12px",
+      height: "308px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      height: "auto",
+      gap: "20px",
+    },
+  },
+})
+
+// 하단 행 (1920px 기준)
+export const bottomRow = style({
+  display: "flex",
+  gap: vw(12), // 1920px 기준 12px
+  height: vw(304), // 1920px 기준 304px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "12px",
+      height: "304px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      height: "auto",
+      gap: "20px",
+    },
+  },
+})
+
+// 서비스 카드 공통 (1920px 기준)
 export const serviceCard = style({
   position: "relative",
-  borderRadius: "20px",
+  borderRadius: vw(8),
   overflow: "hidden",
   backgroundColor: "#F5F5F5",
-})
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "300px",
+      aspectRatio: "auto",
+    },
+  },
 
-export const cardImage = style({
-  width: "100%",
-  aspectRatio: "4 / 5",
-  overflow: "hidden",
-  position: "relative",
-})
-
-export const cardButton = style({
-  width: "calc(100% - 32px)",
-  margin: "16px",
-  padding: "10px 16px",
-  backgroundColor: "#FFFFFF",
-  border: "none",
-  borderRadius: "42px",
-  fontSize: "20px",
-  fontWeight: "500",
-  fontFamily: "'S-Core Dream', sans-serif",
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  ":hover": {
-    backgroundColor: "#14AEFF",
-    color: "#FFFFFF",
+  // 첫 번째 카드 크기 (정수리 이식)
+  selectors: {
+    [`${topRow} &:first-child`]: {
+      width: vw(671), // 1920px 기준 671px
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          width: "671px",
+        },
+      },
+    },
+    // 두 번째 카드 크기 (헤어라인 교정)
+    [`${topRow} &:last-child`]: {
+      width: vw(520), // 1920px 기준 520px
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          width: "520px",
+        },
+      },
+    },
+    // 세 번째 카드 크기 (이마 축소 수술)
+    [`${bottomRow} &:first-child`]: {
+      width: vw(520), // 1920px 기준 520px
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          width: "520px",
+        },
+      },
+    },
+    // 네 번째 카드 크기 (바날 재수술)
+    [`${bottomRow} &:last-child`]: {
+      width: vw(671), // 1920px 기준 671px
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          width: "671px",
+        },
+      },
+    },
   },
 })
 
-// Other Service Box
+// 카드 이미지 (1920px 기준)
+export const cardImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+})
+
+// 카드 버튼 (1920px 기준)
+export const cardButton = style({
+  position: "absolute",
+  bottom: vw(20), // 1920px 기준 20px
+  left: vw(20), // 1920px 기준 20px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      bottom: "20px",
+      left: "20px",
+    },
+    [breakpoints.mobile]: {
+      bottom: "20px",
+      left: "20px",
+    },
+  },
+})
+
+// Other Medical Service 박스 (1920px 기준)
 export const otherServiceBox = style({
-  backgroundColor: "#F0F0F0",
-  borderRadius: "20px",
-  padding: "40px",
-  marginTop: "40px",
+  position: "absolute",
+  right: "0",
+  top: "0",
+  width: vw(385), // 1920px 기준 385px
+  height: "100%",
+  backgroundColor: "#73D5FA",
+  borderRadius: vw(8),
+  padding: vw(20), // 1920px 기준 20px
+  marginLeft: vw(20), // 1920px 기준 20px
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-between",
-  alignItems: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "385px",
+      borderRadius: "8px",
+      padding: "20px",
+    },
+    [breakpoints.mobile]: {
+      position: "relative",
+      width: "100%",
+      height: "300px",
+      marginTop: "20px",
+    },
+  },
 })
 
+// Other Service 타이틀 (1920px 기준)
 export const otherServiceTitle = style({
-  fontSize: "32px",
-  fontWeight: "500",
-  lineHeight: "1.2",
   fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(32), // 1920px 기준 32px
+  lineHeight: "100%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+    },
+  },
 })
 
+// View More 버튼 (1920px 기준)
 export const viewMoreButton = style({
-  padding: "12px 16px",
-  backgroundColor: "#14AEFF",
+  position: "absolute",
+  bottom: vw(20), // 1920px 기준 20px
+  left: vw(20), // 1920px 기준 20px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      bottom: "20px",
+      left: "20px",
+    },
+    [breakpoints.mobile]: {
+      bottom: "20px",
+      left: "20px",
+    },
+  },
+})
+
+// 카드 번호 배지 (1920px 기준) - 피그마 디자인 기준
+export const cardNumber = style({
+  position: "absolute",
+  top: vw(16), // 1920px 기준 16px (피그마에서 확인한 위치)
+  left: vw(16), // 1920px 기준 16px
+  width: vw(36), // 1920px 기준 36px
+  height: vw(36), // 1920px 기준 36px
+  borderRadius: "50%",
+  backgroundColor: "#BD4AF3",
   color: "#FFFFFF",
-  border: "none",
-  borderRadius: "8px",
-  fontSize: "20px",
-  fontWeight: "500",
-  fontFamily: "'Poppins', sans-serif",
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  ":hover": {
-    backgroundColor: "#0EA5E9",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 700,
+  ...responsiveFont(20), // 1920px 기준 20px
+  letterSpacing: "-0.6px",
+  zIndex: 10,
+  border: `${vw(4)} solid #FFFFFF`, // 흰색 테두리 추가
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      top: "16px",
+      left: "16px",
+      width: "36px",
+      height: "36px",
+      border: "4px solid #FFFFFF",
+    },
+  },
+})
+
+// Service 번호 배지 (Other Medical Service용) (1920px 기준)
+export const serviceNumber = style({
+  position: "absolute",
+  bottom: vw(56), // 1920px 기준 56px
+  left: vw(20), // 1920px 기준 20px
+  width: vw(36), // 1920px 기준 36px
+  height: vw(36), // 1920px 기준 36px
+  borderRadius: "50%",
+  backgroundColor: "#BD4AF3",
+  color: "#FFFFFF",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 700,
+  ...responsiveFont(20), // 1920px 기준 20px
+  letterSpacing: "-0.6px",
+  zIndex: 2,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      bottom: "56px",
+      left: "20px",
+      width: "36px",
+      height: "36px",
+    },
   },
 })
 

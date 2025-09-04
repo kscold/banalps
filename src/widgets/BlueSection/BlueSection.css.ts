@@ -906,7 +906,7 @@ export const doctorsContent = style({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between", // 양쪽 끝에 붙이기
-  minHeight: "50vw", // 최소 높이도 비례적으로
+  // minHeight: "50vw", // 최소 높이도 비례적으로
   "@media": {
     "screen and (min-width: 1600px)": {
       minHeight: "800px",
@@ -914,13 +914,13 @@ export const doctorsContent = style({
     [breakpoints.tablet]: {
       flexDirection: "column",
       gap: "80px",
-      minHeight: "auto",
+      // minHeight: "auto",
       justifyContent: "flex-start", // 태블릿에서는 일반 레이아웃
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "60px",
-      minHeight: "auto",
+      // minHeight: "auto",
       justifyContent: "flex-start", // 모바일에서는 일반 레이아웃
     },
   },

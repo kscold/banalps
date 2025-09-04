@@ -1,84 +1,120 @@
 "use client"
 
 import * as styles from "./WhiteSection.css"
+import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton"
 
 export default function WhiteSection() {
   return (
     <section className={styles.whiteSection}>
+      {/* 상단 단일 이미지 컨테이너 */}
+      <div className={styles.heroImageContainer}>
+        <img
+          src="/main/white-section/white_section_1.jpg"
+          alt="바날 성형외과 메인 이미지"
+          className={styles.heroImage}
+        />
+      </div>
+
       <div className={styles.container}>
-        {/* 메인 타이틀 섹션 */}
-        <div className={styles.heroSection}>
-          <h2 className={styles.mainTitle}>
-            모발 의학의
-            <br />
-            정점.
-          </h2>
+        {/* 메인 타이틀 */}
+        <h2 className={styles.mainTitle}>
+          모발 의학의
+          <br />
+          정점.
+        </h2>
 
-          {/* 의료 서비스 카드들 */}
-          <div className={styles.serviceCards}>
-            <div className={styles.serviceCard}>
-              <div className={styles.cardImage}>
-                <img src="/main/shot/shot1.png" alt="정수리 이식" />
+        {/* 메인 콘텐츠 영역 */}
+        <div className={styles.mainContent}>
+          {/* 왼쪽 카드 영역 */}
+          <div className={styles.cardGrid}>
+            {/* 상단 카드들 */}
+            <div className={styles.topRow}>
+              <div className={styles.serviceCard}>
+                <img
+                  src="/main/white-section/white_section_2.jpg"
+                  alt="정수리 이식"
+                  className={styles.cardImage}
+                />
+                <ArrowButton
+                  variant="primary"
+                  size="medium"
+                  className={styles.cardButton}
+                >
+                  정수리 이식
+                </ArrowButton>
+                <div className={styles.cardNumber}>1</div>
               </div>
-              <button className={styles.cardButton}>정수리 이식</button>
+
+              <div className={styles.serviceCard}>
+                <img
+                  src="/main/white-section/white_section_3.jpg"
+                  alt="헤어라인 교정"
+                  className={styles.cardImage}
+                />
+                <ArrowButton
+                  variant="primary"
+                  size="medium"
+                  className={styles.cardButton}
+                >
+                  헤어라인 교정
+                </ArrowButton>
+                <div className={styles.cardNumber}>2</div>
+              </div>
             </div>
 
-            <div className={styles.serviceCard}>
-              <div className={styles.cardImage}>
-                <img src="/main/shot/shot2.png" alt="헤어라인 교정" />
+            {/* 하단 카드들 */}
+            <div className={styles.bottomRow}>
+              <div className={styles.serviceCard}>
+                <img
+                  src="/main/white-section/white_section_4.jpg"
+                  alt="이마 축소 수술"
+                  className={styles.cardImage}
+                />
+                <ArrowButton
+                  variant="primary"
+                  size="medium"
+                  className={styles.cardButton}
+                >
+                  이마 축소 수술
+                </ArrowButton>
+                <div className={styles.cardNumber}>3</div>
               </div>
-              <button className={styles.cardButton}>헤어라인 교정</button>
-            </div>
 
-            <div className={styles.serviceCard}>
-              <div className={styles.cardImage}>
-                <img src="/main/shot/shot3.png" alt="이마 축소 수술" />
+              <div className={styles.serviceCard}>
+                <img
+                  src="/main/white-section/white_section_5.jpg"
+                  alt="바날 재수술"
+                  className={styles.cardImage}
+                />
+                <ArrowButton
+                  variant="primary"
+                  size="medium"
+                  className={styles.cardButton}
+                >
+                  바날 재수술
+                </ArrowButton>
+                <div className={styles.cardNumber}>4</div>
               </div>
-              <button className={styles.cardButton}>이마 축소 수술</button>
-            </div>
-
-            <div className={styles.serviceCard}>
-              <div className={styles.cardImage}>
-                <img src="/main/shot/shot4.png" alt="바날 재수술" />
-              </div>
-              <button className={styles.cardButton}>바날 재수술</button>
             </div>
           </div>
 
-          {/* Other Medical Service 박스 */}
+          {/* 오른쪽 Other Medical Service 박스 */}
           <div className={styles.otherServiceBox}>
             <h3 className={styles.otherServiceTitle}>
               Other Medical
               <br />
               Service.
             </h3>
-            <button className={styles.viewMoreButton}>View More</button>
-          </div>
-        </div>
 
-        {/* We're Ready 섹션 */}
-        <div className={styles.readySection}>
-          <div className={styles.readyContent}>
-            <h2 className={styles.readyTitle}>
-              We&apos;re Ready
-              <br />
-              When You Are.
-            </h2>
-            <p className={styles.readyDescription}>
-              신뢰할 수 있는 전문성과 정직한 마음으로
-              <br />
-              모든 준비를 마친 이곳에서 당신을 기다립니다.
-              <br />
-              <br />
-              이제, 바람부는날에도
-              <br />
-              기분 좋은 일상을 맞이하시길 바랍니다.
-            </p>
-          </div>
+            <div className={styles.serviceNumber}>5</div>
 
-          <div className={styles.readyImage}>
-            {/* 오른쪽 이미지 영역 */}
-            <img src="/main/ready-image.jpg" alt="바날 성형외과" />
+            <ArrowButton
+              variant="secondary"
+              size="medium"
+              className={styles.viewMoreButton}
+            >
+              View More
+            </ArrowButton>
           </div>
         </div>
 
@@ -106,15 +142,21 @@ export default function WhiteSection() {
                 <div className={styles.infoItem}>
                   <span className={styles.infoLabel}>진료시간</span>
                   <div className={styles.infoValue}>
-                    <p className={styles.infoValueParagraph}>평일 Am 09:00 ~ Pm 07:00</p>
-                    <p className={styles.infoValueParagraph}>토요일 Am 09:00 ~ Pm 05:00</p>
+                    <p className={styles.infoValueParagraph}>
+                      평일 Am 09:00 ~ Pm 07:00
+                    </p>
+                    <p className={styles.infoValueParagraph}>
+                      토요일 Am 09:00 ~ Pm 05:00
+                    </p>
                   </div>
                 </div>
 
                 <div className={styles.infoItem}>
                   <span className={styles.infoLabel}>오시는길</span>
                   <div className={styles.infoValue}>
-                    <p className={styles.infoValueParagraph}>서울특별시 서초구 신반포로 47길 66</p>
+                    <p className={styles.infoValueParagraph}>
+                      서울특별시 서초구 신반포로 47길 66
+                    </p>
                     <p className={styles.infoValueParagraph}>(잠원동 29-18)</p>
                     <p className={styles.subwayInfo}>
                       : 신사역 4번출구에서 331M
