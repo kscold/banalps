@@ -77,13 +77,9 @@ export const videoOverlay = style({
 
 // 파란색 섹션 오버레이 - 비디오 이후 스크롤 시 표시
 export const blueSectionOverlay = style({
-  position: "fixed",
-  top: 0,
-  left: 0,
+  position: "relative",
   width: "100%",
-  height: "100vh",
   zIndex: tokens.zIndex.video + 10, // 비디오보다 훨씬 위에 표시
-  overflow: "auto",
   backgroundColor: "transparent",
 })
 

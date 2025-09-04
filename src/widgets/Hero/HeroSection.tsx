@@ -19,37 +19,43 @@ export default function HeroSection() {
     enableNormalScroll,
     transitionToVideoFromBlue,
   } = useHeroScroll()
+  
+  console.log(`[HeroSection/상태] showVideoSection: ${showVideoSection}, showBlueSection: ${showBlueSection}, enableNormalScroll: ${enableNormalScroll}`)
 
   return (
     <>
-      {/* Hero 섹션 - 100vh 고정 */}
-      <section className={styles.heroContainer}>
-        <Image
-          src="/main/background/bg_sky.jpg"
-          alt="바날 성형외과 배경"
-          fill
-          priority
-          className={styles.backgroundImage}
-          onLoad={() => {
-            console.log("[HeroSection/배경이미지로드] 배경 이미지 로드 완료")
-          }}
-          onError={() => {
-            console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패")
-          }}
-        />
+      {!showBlueSection && (
+        <>
+          {/* Hero 섹션 - 100vh 고정 */}
+          <section className={styles.heroContainer}>
+            <Image
+              src="/main/background/bg_sky.jpg"
+              alt="바날 성형외과 배경"
+              fill
+              priority
+              className={styles.backgroundImage}
+              onLoad={() => {
+                console.log("[HeroSection/배경이미지로드] 배경 이미지 로드 완료")
+              }}
+              onError={() => {
+                console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패")
+              }}
+            />
 
-        {/* 콘텐츠 */}
-        <div className={styles.contentWrapper}>
-          <div className={styles.textContent}>
-            <AnimatePresence mode="wait">
-              <TextContentRenderer currentTextIndex={currentTextIndex} />
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
+            {/* 콘텐츠 */}
+            <div className={styles.contentWrapper}>
+              <div className={styles.textContent}>
+                <AnimatePresence mode="wait">
+                  <TextContentRenderer currentTextIndex={currentTextIndex} />
+                </AnimatePresence>
+              </div>
+            </div>
+          </section>
 
-      {/* Video 섹션 */}
-      <VideoSection showVideoSection={showVideoSection} />
+          {/* Video 섹션 */}
+          <VideoSection showVideoSection={showVideoSection} />
+        </>
+      )}
 
       {/* Blue Section - 비디오 이후 스크롤 시 표시 */}
       {showBlueSection && (

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import * as styles from "./Footer.css"
 
 export function Footer() {

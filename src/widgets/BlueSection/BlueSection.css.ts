@@ -1,4 +1,14 @@
 import { style, keyframes } from "@vanilla-extract/css"
+import {
+  vw,
+  responsiveFont,
+  responsiveContainer,
+  responsiveImageContainer,
+  responsiveCaptureContainer,
+  responsivePosition,
+  responsiveProperty,
+  breakpoints,
+} from "../../shared/styles/responsive.css"
 
 // 페이드인 상승 애니메이션
 const fadeInUp = keyframes({
@@ -20,7 +30,6 @@ export const blueSection = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  overflow: "auto",
   opacity: 0,
   transform: "translateY(20px)",
   transition: "all 800ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -32,46 +41,43 @@ export const visible = style({
   transform: "translateY(0)",
 })
 
-// 이미지 카드 섹션 - 중앙 컨테이너
+// 이미지 카드 섹션 - 중앙 컨테이너 (1920px 기준)
 export const imageCardsSection = style({
-  position: "relative",
-  width: "100%",
-  maxWidth: "1600px",
-  aspectRatio: "1600 / 950",
-  margin: "240px auto",
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
+  ...responsiveCaptureContainer(1600, 950), // 1600x950 캡처 컨테이너
+  marginTop: vw(240), // 1920px 기준 240px
+  marginBottom: vw(240),
   "@media": {
-    "screen and (max-width: 1600px)": {
-      width: "calc(100% - 320px)",
-      margin: "240px auto",
+    [breakpoints.desktopLarge]: {
+      marginTop: "240px", // 1920px 이상에서 고정
+      marginBottom: "240px",
     },
-    "screen and (max-width: 1024px)": {
-      width: "100%",
-      height: "auto",
-      margin: "80px 0",
-      padding: "0 20px",
-      display: "flex",
-      flexDirection: "column",
-      gap: "30px",
-      overflow: "visible",
+    [breakpoints.mobile]: {
+      margin: "80px auto", // 상하 마진만 설정
     },
   },
 })
 
-// 이미지 카드 1 - 왼쪽 상단
+// 이미지 카드 1 - 왼쪽 상단 (1920px 기준)
 export const imageCard1 = style({
   position: "absolute",
-  width: "27.5625%", // 441/1600
+  width: vw(441), // 1920px 기준 441px
   aspectRatio: "441 / 641",
-  left: "27.25%", // 436/1600
-  top: "0%",
-  borderRadius: "15px",
+  left: vw(436), // 1920px 기준 436px (1920 기준으로 컨테이너 중앙 맞춤)
+  top: 0,
+  borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "0ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "441px", // 1920px 이상에서 고정
+      left: "436px",
+      borderRadius: "15px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
       top: "auto",
       left: "auto",
@@ -84,24 +90,30 @@ export const imageCard1 = style({
   },
 })
 
-// 이미지 카드 2 - 오른쪽 (가장 큰 카드)
+// 이미지 카드 2 - 오른쪽 (가장 큰 카드) (1920px 기준)
 export const imageCard2 = style({
   position: "absolute",
-  width: "29.375%", // 470/1600
+  width: vw(470), // 1920px 기준 470px
   aspectRatio: "470 / 689",
-  top: "27.26%", // 259/950
-  left: "57.875%", // 926/1600
-  borderRadius: "15px",
+  top: vw(259), // 1920px 기준 259px
+  left: vw(926), // 1920px 기준 926px (1920 기준으로 컨테이너 중앙 맞춤)
+  borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "400ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "470px", // 1920px 이상에서 고정
+      top: "259px",
+      left: "926px",
+      borderRadius: "15px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
       top: "auto",
-      right: "auto",
+      left: "auto",
       margin: "20px auto",
       width: "90%",
       maxWidth: "400px",
@@ -111,21 +123,27 @@ export const imageCard2 = style({
   },
 })
 
-// 이미지 카드 3 - 왼쪽 하단 (작은 가로 카드)
+// 이미지 카드 3 - 왼쪽 하단 (작은 가로 카드) (1920px 기준)
 export const imageCard3 = style({
   position: "absolute",
-  width: "20.4375%", // 327/1600
+  width: vw(327), // 1920px 기준 327px
   aspectRatio: "327 / 267",
-  top: "71.68%", // 681/950
-  left: "13.125%", // 210/1600
-  borderRadius: "15px",
+  top: vw(681), // 1920px 기준 681px
+  left: vw(210), // 1920px 기준 210px (1920 기준으로 컨테이너 중앙 맞춤)
+  borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "800ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "327px", // 1920px 이상에서 고정
+      top: "681px",
+      left: "210px",
+      borderRadius: "15px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
       top: "auto",
       left: "auto",
@@ -138,23 +156,29 @@ export const imageCard3 = style({
   },
 })
 
-// 이미지 카드 4 - 중앙 하단
+// 이미지 카드 4 - 중앙 하단 (1920px 기준)
 export const imageCard4 = style({
   position: "absolute",
-  width: "19.8125%", // 317/1600
+  width: vw(317), // 1920px 기준 317px
   aspectRatio: "317 / 468",
-  top: "80.63%", // 766/950
-  left: "35.875%", // 574/1600
-  borderRadius: "15px",
+  top: vw(766), // 1920px 기준 766px
+  left: vw(574), // 1920px 기준 574px (1920 기준으로 컨테이너 중앙 맞춤)
+  borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
   animation: `${fadeInUp} 500ms ease-out forwards`,
   animationDelay: "1200ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "317px", // 1920px 이상에서 고정
+      top: "766px",
+      left: "574px",
+      borderRadius: "15px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
-      bottom: "auto",
+      top: "auto",
       left: "auto",
       margin: "20px auto",
       width: "90%",
@@ -234,38 +258,42 @@ export const imageGridSection = style({
   display: "none",
 })
 
-// RE.YOU 텍스트 섹션
+// RE.YOU 텍스트 섹션 (1920px 기준) - 헤더와 완전 일치
 export const reYouSection = style({
   position: "relative",
-  width: "100%",
-  maxWidth: "1600px",
-  aspectRatio: "1600 / 748",
-  margin: "120px auto 240px",
+  ...responsiveContainer(1600), // 헤더와 동일한 컨테이너 시스템만 사용
+  marginTop: vw(120), // 1920px 기준 120px
+  marginBottom: vw(240), // 1920px 기준 240px
+  minHeight: vw(748), // 최소 높이 설정 (이미지 컨테이너 대체)
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "flex-start",
-  gap: "20px",
+  gap: vw(20), // 1920px 기준 20px
   "@media": {
-    "screen and (max-width: 1600px)": {
-      width: "calc(100% - 320px)",
-      padding: "0",
+    [breakpoints.desktopLarge]: {
+      marginTop: "120px", // 1920px 이상에서 고정
+      marginBottom: "240px",
+      minHeight: "748px", // 고정 높이
+      gap: "20px",
     },
-    "screen and (max-width: 1024px)": {
-      width: "calc(100% - 40px)",
-      margin: "80px 20px",
-      aspectRatio: "auto",
-      minHeight: "auto",
-      padding: "60px 20px",
+    [breakpoints.tablet]: {
+      minHeight: "600px", // 태블릿에서 적당한 높이
+    },
+    [breakpoints.mobile]: {
+      margin: "80px auto", // 상하 마진만 설정
+      minHeight: "400px", // 모바일에서 작은 높이
+      paddingTop: "60px", // 상단 패딩만 유지
+      paddingBottom: "60px", // 하단 패딩만 유지
     },
   },
 })
 
-// RE.YOU 타이틀
+// RE.YOU 타이틀 (1920px 기준)
 export const reYouTitle = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 600,
-  fontSize: "70px",
+  ...responsiveFont(70), // 1920px 기준 70px
   lineHeight: "100%",
   letterSpacing: "0",
   color: "#FFFFFF",
@@ -273,21 +301,13 @@ export const reYouTitle = style({
   position: "relative",
   zIndex: 1,
   textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "36px",
-    },
-  },
 })
 
-// 한글 서브타이틀
+// 한글 서브타이틀 (1920px 기준)
 export const reYouSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "20px",
+  ...responsiveFont(20), // 1920px 기준 20px
   lineHeight: "140%",
   letterSpacing: "0",
   color: "#FFFFFF",
@@ -296,52 +316,50 @@ export const reYouSubtitle = style({
   position: "relative",
   zIndex: 1,
   textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "18px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "16px",
-    },
-  },
 })
 
-// 그래피티 배경 이미지
+// 그래피티 배경 이미지 (1920px 기준)
 export const graffitiBackground = style({
   position: "absolute",
   width: "100%",
   height: "100%",
-  marginTop: "48px",
+  marginTop: vw(48), // 1920px 기준 48px
   top: 0,
   left: 0,
   objectFit: "contain",
   objectPosition: "center",
   pointerEvents: "none",
   zIndex: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "48px", // 1920px 이상에서 고정
+    },
+  },
 })
 
-// What Banal Does 섹션
+// What Banal Does 섹션 (1920px 기준)
 export const whatBanalSection = style({
-  width: "100%",
-  maxWidth: "1600px",
-  margin: "0 auto 120px",
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
+  marginBottom: vw(120), // 1920px 기준 120px
   "@media": {
-    "screen and (max-width: 1600px)": {
-      padding: "0 80px",
+    [breakpoints.desktopLarge]: {
+      marginBottom: "120px", // 1920px 이상에서 고정
     },
-    "screen and (max-width: 1024px)": {
-      padding: "0 20px",
-      margin: "0 auto 80px",
+    [breakpoints.mobile]: {
+      marginBottom: "80px",
     },
   },
 })
 
 export const whatBanalContent = style({
   display: "flex",
-  gap: "120px",
+  gap: vw(120), // 1920px 기준 120px
   alignItems: "flex-start",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      gap: "120px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "60px",
     },
@@ -349,9 +367,12 @@ export const whatBanalContent = style({
 })
 
 export const whatBanalText = style({
-  flex: "0 0 520px",
+  flex: `0 0 ${vw(520)}`, // 1920px 기준 520px
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      flex: "0 0 520px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
     },
@@ -361,17 +382,14 @@ export const whatBanalText = style({
 export const whatBanalTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "60px",
+  ...responsiveFont(60), // 1920px 기준 60px
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
-  marginBottom: "80px",
+  marginBottom: vw(80), // 1920px 기준 80px
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "36px",
+    [breakpoints.desktopLarge]: {
+      marginBottom: "80px", // 1920px 이상에서 고정
     },
   },
 })
@@ -380,14 +398,14 @@ export const whatBanalDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   fontStyle: "5 Medium",
-  fontSize: "24px",
+  ...responsiveFont(24), // 1920px 기준 24px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0 0 40px 0",
+  marginBottom: vw(40), // 1920px 기준 40px
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "20px",
+    [breakpoints.desktopLarge]: {
+      marginBottom: "40px", // 1920px 이상에서 고정
     },
   },
 })
@@ -396,14 +414,15 @@ export const whatBanalSubDescription = style({
   fontFamily: "'Pretendard', sans-serif",
   fontWeight: 300,
   fontStyle: "Light",
-  fontSize: "23px",
-  lineHeight: "35px",
+  ...responsiveFont(23), // 1920px 기준 23px
+  lineHeight: vw(35), // 1920px 기준 35px
   letterSpacing: "0",
   color: "#272727",
-  marginBottom: "80px",
+  marginBottom: vw(80), // 1920px 기준 80px
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "20px",
+    [breakpoints.desktopLarge]: {
+      lineHeight: "35px", // 1920px 이상에서 고정
+      marginBottom: "80px",
     },
   },
 })
@@ -412,32 +431,60 @@ export const featuresList = style({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  gap: "24px",
+  gap: vw(24), // 1920px 기준 24px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "24px", // 1920px 이상에서 고정
+    },
+    [breakpoints.tablet]: {
+      gap: "20px", // 태블릿에서 조금 작게
+    },
+    [breakpoints.mobile]: {
+      gap: "16px", // 모바일에서 더 작게
+    },
+  },
 })
 
 export const featureItem = style({
   display: "flex",
   alignItems: "flex-start",
-  gap: "24px",
-  padding: "16px 0",
-  borderBottom: "1px solid #14aeff",
+  gap: vw(24), // 1920px 기준 24px
+  padding: `${vw(16)} 0`, // 1920px 기준 16px
+  borderBottom: `${vw(1)} solid #14aeff`, // 1920px 기준 1px
   ":last-child": {
     borderBottom: "none",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "24px", // 1920px 이상에서 고정
+      padding: "16px 0",
+      borderBottom: "1px solid #14aeff",
+    },
+    [breakpoints.tablet]: {
+      gap: "20px", // 태블릿에서 조금 작게
+      padding: "14px 0",
+    },
+    [breakpoints.mobile]: {
+      gap: "16px", // 모바일에서 더 작게
+      padding: "12px 0",
+    },
   },
 })
 
 export const featureNumber = style({
-  flex: "0 0 114px",
+  flex: `0 0 ${vw(114)}`, // 1920px 기준 114px
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "20px",
+  ...responsiveFont(20), // 1920px 기준 20px
   lineHeight: "140%",
   letterSpacing: "0",
   color: "#272727",
   "@media": {
-    "screen and (max-width: 768px)": {
+    [breakpoints.desktopLarge]: {
+      flex: "0 0 114px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
       flex: "0 0 80px",
-      fontSize: "18px",
     },
   },
 })
@@ -449,14 +496,14 @@ export const featureContent = style({
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "24px",
+  ...responsiveFont(24), // 1920px 기준 24px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0 0 8px 0",
+  marginBottom: vw(8), // 1920px 기준 8px
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "20px",
+    [breakpoints.desktopLarge]: {
+      marginBottom: "8px", // 1920px 이상에서 고정
     },
   },
 })
@@ -464,17 +511,12 @@ export const featureTitle = style({
 export const featureDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "16px",
+  ...responsiveFont(16), // 1920px 기준 16px
   lineHeight: "160%",
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
   whiteSpace: "pre-line",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "14px",
-    },
-  },
 })
 
 // Specialist 섹션
@@ -563,60 +605,91 @@ export const doctorsGrid = style({
   },
 })
 
-// 신승규 원장 - 첫 번째 (상단)
+// 신승규 원장 - 1920px 기준 (imageCard1처럼)
 export const doctorCard1 = style({
   position: "absolute",
-  left: "0",
+  width: vw(280), // 1920px 기준 280px
+  aspectRatio: "280 / 374",
+  left: "0", // 1920px 기준 컨테이너 왼쪽 맞춤
   top: "0",
-  width: "417px",
-  height: "556px",
+  borderRadius: vw(12),
+  overflow: "hidden",
   zIndex: 3,
-  overflow: "visible",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "280px", // 1920px 이상에서 고정
+      left: "0",
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
-      width: "100%",
-      height: "400px",
+      top: "auto",
+      left: "auto",
+      margin: "20px auto",
+      width: "90%",
+      maxWidth: "400px",
+      height: "auto",
+      aspectRatio: "280 / 374",
     },
   },
 })
 
-// 박수호 원장 - 두 번째 (중앙 오른쪽)
+// 박수호 원장 - 1920px 기준 (imageCard2처럼)
 export const doctorCard2 = style({
   position: "absolute",
-  right: "0",
-  top: "266px",
-  width: "495px",
-  height: "626px",
+  width: vw(332), // 1920px 기준 332px
+  aspectRatio: "332 / 420",
+  top: vw(190), // 1920px 기준 190px
+  right: "0", // 1920px 기준 컨테이너 오른쪽 맞춤
+  borderRadius: vw(12),
+  overflow: "hidden",
   zIndex: 2,
-  overflow: "visible",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "332px", // 1920px 이상에서 고정
+      top: "190px",
+      right: "0",
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
-      width: "100%",
-      height: "400px",
       top: "auto",
       right: "auto",
+      margin: "20px auto",
+      width: "90%",
+      maxWidth: "400px",
+      height: "auto",
+      aspectRatio: "332 / 420",
     },
   },
 })
 
-// 김나래 원장 - 세 번째 (하단)
+// 김나래 원장 - 1920px 기준 (imageCard3처럼)
 export const doctorCard3 = style({
   position: "absolute",
-  left: "0",
-  bottom: "0",
-  width: "423px",
-  height: "564px",
+  width: vw(284), // 1920px 기준 284px
+  aspectRatio: "284 / 403",
+  bottom: "0", // 1920px 기준 컨테이너 하단 맞춤
+  left: "0", // 1920px 기준 컨테이너 왼쪽 맞춤
+  borderRadius: vw(12),
+  overflow: "hidden",
   zIndex: 1,
-  overflow: "visible",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      width: "284px", // 1920px 이상에서 고정
+      bottom: "0",
+      left: "0",
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
       position: "relative",
-      width: "100%",
-      height: "400px",
-      bottom: "auto",
+      top: "auto",
       left: "auto",
+      margin: "20px auto",
+      width: "90%",
+      maxWidth: "400px",
+      height: "auto",
+      aspectRatio: "284 / 403",
     },
   },
 })
@@ -820,42 +893,48 @@ export const mapImage = style({
   display: "block",
 })
 
-// 의료진 소개 섹션 - 피그마 디자인 기반
+// 의료진 소개 섹션 - 1920px 기준 반응형
 export const doctorsSection = style({
-  position: "relative",
-  width: "100%",
-  maxWidth: "1600px",
-  height: "auto",
-  aspectRatio: "1600 / 950",
-  margin: "0 auto 120px",
-  // padding: "120px 160px",
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
   "@media": {
-    "screen and (max-width: 1600px)": {
-      padding: "80px 80px",
-    },
-    "screen and (max-width: 1024px)": {
-      padding: "60px 20px",
-      margin: "0 auto 80px",
-    },
+    [breakpoints.tablet]: {},
+    [breakpoints.mobile]: {},
   },
 })
 
 export const doctorsContent = style({
   display: "flex",
-  gap: "120px",
   alignItems: "flex-start",
+  justifyContent: "space-between", // 양쪽 끝에 붙이기
+  minHeight: "50vw", // 최소 높이도 비례적으로
   "@media": {
-    "screen and (max-width: 1024px)": {
+    "screen and (min-width: 1600px)": {
+      minHeight: "800px",
+    },
+    [breakpoints.tablet]: {
+      flexDirection: "column",
+      gap: "80px",
+      minHeight: "auto",
+      justifyContent: "flex-start", // 태블릿에서는 일반 레이아웃
+    },
+    [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "60px",
+      minHeight: "auto",
+      justifyContent: "flex-start", // 모바일에서는 일반 레이아웃
     },
   },
 })
 
 export const doctorsTextSection = style({
-  flex: "0 0 520px",
+  flexShrink: 0,
+  ...responsiveProperty("flexBasis", 520), // 1920px 기준 520px 고정 너비
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.tablet]: {
+      flex: "none",
+      width: "100%",
+    },
+    [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
     },
@@ -865,65 +944,38 @@ export const doctorsTextSection = style({
 export const doctorsMainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "60px",
+  ...responsiveFont(60), // 1920px 기준 60px
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0 0 24px 0",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "36px",
-    },
-  },
+  margin: "0",
+  ...responsiveProperty("marginBottom", 24), // 1920px 기준 24px
 })
 
 export const doctorsSubTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "24px",
+  ...responsiveFont(24), // 1920px 기준 24px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0 0 16px 0",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "20px",
-    },
-  },
+  margin: "0",
+  ...responsiveProperty("marginBottom", 16), // 1920px 기준 16px
 })
 
 export const doctorsDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "18px",
+  ...responsiveFont(18), // 1920px 기준 18px
   lineHeight: "160%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0 0 40px 0",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "16px",
-    },
-  },
+  margin: "0",
+  ...responsiveProperty("marginBottom", 40), // 1920px 기준 40px
 })
 
 export const doctorsImageGrid = style({
-  // flex: 1,
-  position: "relative",
-  width: "100%",
-  maxWidth: "1059px",
-  height: "1298px",
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      height: "auto",
-      display: "flex",
-      flexDirection: "column",
-      gap: "30px",
-    },
-  },
+  ...responsiveCaptureContainer(700, 800), // 1920px 기준 700x800 캡처 컨테이너
 })
 
 // 둘러싸는 이미지 컨테이너 (모든 의료진 공통)
@@ -936,55 +988,47 @@ export const doctorImageContainer = style({
   overflow: "visible", // 텍스트가 잘리지 않도록
 })
 
-// 신승규 원장 이름 오버레이 (전체 그리드 기준)
+// 신승규 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay1 = style({
   position: "absolute",
-  left: "250px",
-  top: "54px",
-  width: "718px",
   zIndex: 10,
+  ...responsiveProperty("left", 300), // 1920px 기준 300px
+  ...responsiveProperty("top", 30), // 1920px 기준 30px
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.mobile]: {
       left: "40px",
       top: "40px",
-      width: "auto",
     },
   },
 })
 
-// 박수호 원장 이름 오버레이 (전체 그리드 기준)
+// 박수호 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay2 = style({
   position: "absolute",
-  left: "416px",
-  top: "668px",
-  width: "467px",
   zIndex: 10,
+  ...responsiveProperty("left", 230), // 1920px 기준 230px
+  ...responsiveProperty("top", 380), // 1920px 기준 380px
   "@media": {
-    "screen and (max-width: 1024px)": {
-      position: "absolute",
+    [breakpoints.mobile]: {
       left: "40px",
       bottom: "40px",
       top: "auto",
-      width: "auto",
     },
   },
 })
 
-// 김나래 원장 이름 오버레이 (전체 그리드 기준)
+// 김나래 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay3 = style({
   position: "absolute",
-  right: "0px",
-  bottom: "0px",
-  width: "415px",
+  right: "0",
   textAlign: "right",
   zIndex: 10,
+  ...responsiveProperty("bottom", 120), // 1920px 기준 120px
   "@media": {
-    "screen and (max-width: 1024px)": {
-      position: "absolute",
+    [breakpoints.mobile]: {
       right: "40px",
       top: "40px",
       bottom: "auto",
-      width: "auto",
     },
   },
 })
@@ -1019,80 +1063,93 @@ export const doctorImage3 = style({
   zIndex: 1,
 })
 
-// 신승규 원장 영어 이름
+// 신승규 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName1 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: "140px",
+  fontSize: vw(80), // 1920px 기준 80px
   lineHeight: "80%",
-  letterSpacing: "-4.2px",
+  letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
-  whiteSpace: "nowrap",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
       fontSize: "80px",
       letterSpacing: "-2.4px",
     },
-    "screen and (max-width: 768px)": {
-      fontSize: "60px",
-      letterSpacing: "-1.8px",
+    [breakpoints.tablet]: {
+      fontSize: "64px", // 태블릿에서 80% 크기
+      letterSpacing: "-1.9px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "56px", // 모바일에서 70% 크기
+      letterSpacing: "-1.7px",
     },
   },
 })
 
-// 박수호 원장 영어 이름
+// 박수호 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName2 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: "140px",
+  fontSize: vw(80), // 1920px 기준 80px
   lineHeight: "80%",
-  letterSpacing: "-4.2px",
+  letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
-  whiteSpace: "nowrap",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
       fontSize: "80px",
       letterSpacing: "-2.4px",
     },
-    "screen and (max-width: 768px)": {
-      fontSize: "60px",
-      letterSpacing: "-1.8px",
+    [breakpoints.tablet]: {
+      fontSize: "64px", // 태블릿에서 80% 크기
+      letterSpacing: "-1.9px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "56px", // 모바일에서 70% 크기
+      letterSpacing: "-1.7px",
     },
   },
 })
 
-// 김나래 원장 영어 이름
+// 김나래 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName3 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: "140px",
+  fontSize: vw(80), // 1920px 기준 80px
   lineHeight: "80%",
-  letterSpacing: "-4.2px",
+  letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
-  whiteSpace: "nowrap",
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
       fontSize: "80px",
       letterSpacing: "-2.4px",
     },
-    "screen and (max-width: 768px)": {
-      fontSize: "60px",
-      letterSpacing: "-1.8px",
+    [breakpoints.tablet]: {
+      fontSize: "64px", // 태블릿에서 80% 크기
+      letterSpacing: "-1.9px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "56px", // 모바일에서 70% 크기
+      letterSpacing: "-1.7px",
     },
   },
 })
 
-// 한국어 이름 컨테이너들
+// 신승규 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer1 = style({
   position: "absolute",
-  left: "270px",
-  top: "319px",
+  left: vw(300), // 1920px 기준 300px
+  top: vw(180), // 1920px 기준 180px
   zIndex: 10,
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      left: "300px",
+      top: "180px",
+    },
+    [breakpoints.mobile]: {
       position: "static",
       marginTop: "20px",
       paddingLeft: "40px",
@@ -1100,13 +1157,18 @@ export const doctorKoreanNameContainer1 = style({
   },
 })
 
+// 박수호 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer2 = style({
   position: "absolute",
-  right: "233px",
-  top: "739px",
+  right: vw(155), // 1920px 기준 155px
+  top: vw(420), // 1920px 기준 420px
   zIndex: 10,
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      right: "155px",
+      top: "420px",
+    },
+    [breakpoints.mobile]: {
       position: "static",
       marginTop: "20px",
       paddingLeft: "40px",
@@ -1114,13 +1176,18 @@ export const doctorKoreanNameContainer2 = style({
   },
 })
 
+// 김나래 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer3 = style({
   position: "absolute",
-  left: "270px",
-  top: "1078px",
+  left: vw(300), // 1920px 기준 300px
+  top: vw(620), // 1920px 기준 620px
   zIndex: 10,
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      left: "300px",
+      top: "620px",
+    },
+    [breakpoints.mobile]: {
       position: "static",
       marginTop: "20px",
       paddingLeft: "40px",
@@ -1128,44 +1195,60 @@ export const doctorKoreanNameContainer3 = style({
   },
 })
 
-// 한국어 이름 스타일
+// 한국어 이름 스타일 - 1920px 기준
 export const doctorKoreanName = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: "24px",
+  fontSize: vw(18), // 1920px 기준 18px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
   "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+    },
     "screen and (max-width: 768px)": {
-      fontSize: "20px",
+      fontSize: "16px",
     },
     "screen and (max-width: 480px)": {
-      fontSize: "18px",
+      fontSize: "14px",
     },
   },
 })
 
-// 신승규 원장 아래 구분선
+// 신승규 원장 아래 구분선 - 1920px 기준
 export const doctorDivider1 = style({
   position: "absolute",
   left: "0",
-  top: "555px", // 신승규 사진 아래
-  width: "100%",
-  height: "2px",
+  top: vw(374), // 1920px 기준 374px
+  width: vw(700), // 1920px 기준 700px
+  height: vw(2),
   backgroundColor: "#FFFFFF",
   zIndex: 5,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      top: "374px",
+      width: "700px",
+      height: "2px",
+    },
+  },
 })
 
-// 박수호 원장 아래 구분선
+// 박수호 원장 아래 구분선 - 1920px 기준
 export const doctorDivider2 = style({
   position: "absolute",
   right: "0",
-  top: "891px", // 박수호 사진 아래
-  width: "100%",
-  maxWidth: "642px",
-  height: "2px",
+  top: vw(610), // 1920px 기준 610px
+  width: vw(400), // 1920px 기준 400px
+  height: vw(2),
   backgroundColor: "#FFFFFF",
   zIndex: 5,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      top: "610px",
+      width: "400px",
+      height: "2px",
+    },
+  },
 })

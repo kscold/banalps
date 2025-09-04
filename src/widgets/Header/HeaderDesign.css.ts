@@ -1,50 +1,41 @@
 import { style } from "@vanilla-extract/css"
+import {
+  vw,
+  breakpoints,
+  responsiveProperty,
+} from "../../shared/styles/responsive.css"
 
 export const header = style({
   position: "fixed",
-  top: "50px", // 데스크톱: 50px
   left: "50%",
   transform: "translateX(-50%)",
   zIndex: 50,
-  width: "calc(100% - 320px)", // 160px * 2 padding
-  maxWidth: "1600px",
-  height: "85px",
+  width: "calc(100% - 320px)", // 1024px+ 에서 양쪽 160px 마진 (BlueSection과 동일)
+  maxWidth: "1600px", // 1920px 기준 최대 너비
   background: "#1AA4F4D9",
   boxShadow: "0 4px 20px rgba(26, 164, 244, 0.3)",
   backdropFilter: "blur(10px)",
-  borderRadius: "128px",
   transition: "all 300ms ease",
+  ...responsiveProperty("top", 50), // 1920px 기준 50px
+  ...responsiveProperty("height", 85), // 1920px 기준 85px
+  ...responsiveProperty("borderRadius", 128), // 1920px 기준 128px
   "@media": {
-    "screen and (max-width: 1680px)": {
-      width: "calc(100% - 120px)", // 60px * 2
-    },
-    "screen and (max-width: 1280px)": {
-      width: "calc(100% - 80px)", // 40px * 2
+    [breakpoints.tablet]: {
+      // 태블릿: 768px~1023px (BlueSection과 동일)
+      width: "calc(100% - 80px)", // 양쪽 40px 마진
       borderRadius: "64px",
     },
-    "screen and (max-width: 1024px)": {
-      top: "36px", // 모바일: 36px
-      width: "calc(100% - 40px)", // 20px * 2
-      borderRadius: "64px",
-      height: "72px",
-      // 파란색 배경 유지
-    },
-    "screen and (max-width: 768px)": {
-      top: "36px", // 모바일: 36px 유지
-      width: "calc(100% - 32px)", // 16px * 2
+    [breakpoints.mobile]: {
+      // 모바일: 365px~767px (BlueSection과 동일)
+      top: "36px",
+      width: "calc(100% - 40px)", // 양쪽 20px 마진
       borderRadius: "48px",
       height: "64px",
-    },
-    "screen and (max-width: 480px)": {
-      top: "36px", // 모바일: 36px 유지
-      width: "calc(100% - 24px)", // 12px * 2
-      borderRadius: "40px",
-      height: "56px",
     },
   },
 })
 
-// 헤더 뒤쪽에 나타나는 커튼 스타일 배경
+// 헤더 뒤쪽에 나타나는 커튼 스타일 배경 (responsiveProperty로 정확한 1920px 기준 구현)
 export const headerCurtain = style({
   position: "fixed",
   top: "0",
@@ -68,56 +59,80 @@ export const headerCurtain = style({
   selectors: {
     [`${header}:hover ~ &`]: {
       height: "auto",
-      maxHeight: "410px", // 410px로 변경
+      maxHeight: vw(450), // 1920px 기준 450px (정확한 비례 계산)
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
       transition:
         "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          maxHeight: "450px", // 1920px+ 고정
+        },
+      },
     },
     "&:hover": {
       height: "auto",
-      maxHeight: "410px", // 410px로 변경
+      maxHeight: vw(450), // 1920px 기준 450px
       opacity: 1,
       visibility: "visible",
       pointerEvents: "auto",
       transition:
         "max-height 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, visibility 0ms",
+      "@media": {
+        [breakpoints.desktopLarge]: {
+          maxHeight: "450px", // 1920px+ 고정
+        },
+      },
+    },
+  },
+  "@media": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 축소
+      selectors: {
+        [`${header}:hover ~ &`]: {
+          maxHeight: "360px", // 450px * 0.8
+        },
+        "&:hover": {
+          maxHeight: "360px", // 450px * 0.8
+        },
+      },
     },
   },
 })
 
-// 서브메뉴 컨테이너
+// 서브메뉴 컨테이너 (responsiveProperty로 정확한 1920px 기준 구현)
 export const submenuContainer = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-start",
   gap: "0",
-  height: "410px", // 커튼 높이와 동일하게 설정
   width: "100%",
-  paddingTop: "125px", // 헤더 아래에 위치하도록 조정
-  paddingBottom: "40px",
-  paddingLeft: "160px",
-  paddingRight: "160px",
+  ...responsiveProperty("height", 450), // 1920px 기준 450px
+  ...responsiveProperty("paddingTop", 140), // 1920px 기준 140px (헤더top 50px + 헤더높이 85px + 간격 5px)
+  ...responsiveProperty("paddingBottom", 40), // 1920px 기준 40px
+  ...responsiveProperty("paddingLeft", 160), // 1920px 기준 160px
+  ...responsiveProperty("paddingRight", 160), // 1920px 기준 160px
   "@media": {
-    "screen and (max-width: 1680px)": {
-      paddingLeft: "60px",
-      paddingRight: "60px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      height: "360px",
+      paddingTop: "112px", // 140px * 0.8
+      paddingBottom: "32px",
+      paddingLeft: "128px",
+      paddingRight: "128px",
     },
-    "screen and (max-width: 1280px)": {
-      paddingLeft: "40px",
-      paddingRight: "40px",
-    },
-    "screen and (max-width: 1024px)": {
+    [breakpoints.mobile]: {
+      // 모바일에서는 숨김
       display: "none",
     },
   },
 })
 
-// 드롭다운 아이템
+// 드롭다운 아이템 - 1920px 기준 적용
 export const dropdownItem = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "16px",
+  fontSize: vw(16), // 1920px 기준 16px
   fontWeight: "200",
   fontStyle: "4 Regular",
   lineHeight: "160%",
@@ -125,7 +140,7 @@ export const dropdownItem = style({
   color: "#272727",
   textDecoration: "none",
   display: "block",
-  padding: "8px 0",
+  padding: `${vw(8)} 0`, // 1920px 기준 8px
   textAlign: "center",
   transition: "color 200ms ease",
   whiteSpace: "nowrap",
@@ -133,17 +148,20 @@ export const dropdownItem = style({
     color: "#14AEFF",
   },
   "@media": {
-    "screen and (max-width: 1680px)": {
-      fontSize: "15px",
-      lineHeight: "23px",
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+      fontSize: "16px",
+      padding: "8px 0",
     },
-    "screen and (max-width: 1440px)": {
-      fontSize: "14px",
-      lineHeight: "21px",
-    },
-    "screen and (max-width: 1280px)": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
       fontSize: "13px",
-      lineHeight: "20px",
+      padding: "6px 0",
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "11px",
+      padding: "6px 0",
     },
   },
 })
@@ -155,35 +173,25 @@ export const dropdownItemActive = style({
 })
 
 export const container = style({
-  maxWidth: "1920px", // 1920px 기준으로 변경
+  maxWidth: "1600px", // BlueSection과 동일한 maxWidth
   width: "100%",
   height: "100%",
   marginLeft: "auto",
   marginRight: "auto",
   display: "flex",
   alignItems: "center",
-  paddingRight: "60px", // 오른쪽 패딩 60px
-  paddingLeft: "60px", // 왼쪽 패딩 60px
+  ...responsiveProperty("paddingLeft", 60), // 1920px 기준 60px
+  ...responsiveProperty("paddingRight", 60), // 1920px 기준 60px
   "@media": {
-    "screen and (max-width: 1680px)": {
-      paddingLeft: "60px",
-      paddingRight: "60px",
-    },
-    "screen and (max-width: 1280px)": {
+    [breakpoints.tablet]: {
+      // 태블릿: 768px~1023px (BlueSection과 동일)
       paddingLeft: "40px",
       paddingRight: "40px",
     },
-    "screen and (max-width: 1024px)": {
-      paddingLeft: "28px", // 태블릿: 28px
-      paddingRight: "28px",
-    },
-    "screen and (max-width: 768px)": {
-      paddingLeft: "28px", // 모바일: 28px
-      paddingRight: "28px",
-    },
-    "screen and (max-width: 480px)": {
-      paddingLeft: "28px", // 작은 모바일: 28px
-      paddingRight: "28px",
+    [breakpoints.mobile]: {
+      // 모바일: 365px~767px (BlueSection과 동일)
+      paddingLeft: "20px",
+      paddingRight: "20px",
     },
   },
 })
@@ -196,16 +204,15 @@ export const headerContent = style({
   height: "100%",
   position: "relative",
   zIndex: 1,
-  gap: "125px", // 요소 간 기본 간격 125px
+  ...responsiveProperty("gap", 40), // 1920px 기준 40px 간격 (125px에서 크게 축소)
   "@media": {
-    "screen and (max-width: 1680px)": {
-      gap: "80px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 축소
+      gap: "32px", // 40px * 0.8
     },
-    "screen and (max-width: 1280px)": {
-      gap: "40px",
-    },
-    "screen and (max-width: 1024px)": {
-      gap: "0", // 모바일에서는 space-between으로 처리
+    [breakpoints.mobile]: {
+      // 모바일에서는 space-between으로 처리
+      gap: "0",
     },
   },
 })
@@ -225,10 +232,10 @@ export const logoLink = style({
 
 export const logoText = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "20px",
+  fontSize: vw(20), // 1920px 기준 20px
   fontWeight: "600",
   fontStyle: "normal",
-  lineHeight: "30px",
+  lineHeight: vw(30), // 1920px 기준 30px
   letterSpacing: "-0.02em",
   color: "#FFFFFF",
   textDecoration: "none",
@@ -239,19 +246,21 @@ export const logoText = style({
     opacity: 0.9,
   },
   "@media": {
-    "screen and (max-width: 1280px)": {
-      fontSize: "18px",
-      lineHeight: "27px",
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+      fontSize: "20px",
+      lineHeight: "30px",
     },
-    "screen and (max-width: 1024px)": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
       fontSize: "16px",
       lineHeight: "24px",
-      fontWeight: "500",
-      // 모바일에서도 흰색 유지
     },
-    "screen and (max-width: 768px)": {
-      fontSize: "16px",
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "14px",
       lineHeight: "21px",
+      fontWeight: "500",
     },
   },
 })
@@ -259,26 +268,24 @@ export const logoText = style({
 export const desktopNav = style({
   display: "none",
   alignItems: "center",
-  justifyContent: "space-between",
-  flex: "1", // flex로 변경하여 중앙 영역 차지
-  height: "35px",
-  marginLeft: "125px", // 로고와 125px 간격
-  marginRight: "125px", // 액션 버튼과 125px 간격
+  justifyContent: "center", // center로 변경해서 고정된 간격 유지
+  flexShrink: 0, // 크기 고정
+  ...responsiveProperty("height", 35), // 1920px 기준 35px
+  ...responsiveProperty("marginLeft", 80), // 1920px 기준 80px 간격 (125px에서 축소)
+  ...responsiveProperty("marginRight", 80), // 1920px 기준 80px 간격 (125px에서 축소)
+  ...responsiveProperty("gap", 75), // 1920px 기준 75px 네비게이션 아이템 간격 (80px에서 축소)
+  ...responsiveProperty("width", 580), // 1920px 기준 580px 고정 너비 (5개 링크 * 80px + 4개 간격 * 60px)
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
     },
-    "screen and (max-width: 1680px)": {
-      marginLeft: "80px",
-      marginRight: "80px",
-    },
-    "screen and (max-width: 1440px)": {
-      marginLeft: "60px",
-      marginRight: "60px",
-    },
-    "screen and (max-width: 1280px)": {
-      marginLeft: "40px",
-      marginRight: "40px",
+    [breakpoints.tablet]: {
+      // 태블릿에서는 비례 축소
+      height: "28px",
+      marginLeft: "64px", // 80px * 0.8
+      marginRight: "64px",
+      gap: "48px", // 60px * 0.8
+      width: "464px", // 580px * 0.8
     },
   },
 })
@@ -291,7 +298,7 @@ export const navItemWrapper = style({
   alignItems: "center",
 })
 
-// 드롭다운 콘텐츠
+// 드롭다운 콘텐츠 (1920px 기준 비례 스케일링)
 export const dropdownContent = style({
   position: "absolute",
   top: "100%", // 헤더 바로 아래 붙이기
@@ -300,50 +307,67 @@ export const dropdownContent = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  gap: "12px",
-  padding: "40px 20px 30px", // 상단 패딩 증가로 연결 영역 확보
-  minWidth: "160px",
   opacity: 1,
   visibility: "visible",
   pointerEvents: "auto",
   zIndex: 1000,
   transition: "opacity 150ms ease, transform 150ms ease", // 더 빠른 페이드인
+  ...responsiveProperty("gap", 12), // 1920px 기준 12px
+  ...responsiveProperty("paddingTop", 35), // 1920px 기준 35px (40px에서 축소)
+  ...responsiveProperty("paddingLeft", 20), // 1920px 기준 20px
+  ...responsiveProperty("paddingRight", 20), // 1920px 기준 20px
+  ...responsiveProperty("paddingBottom", 30), // 1920px 기준 30px
+  ...responsiveProperty("minWidth", 160), // 1920px 기준 160px
+  "@media": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 축소
+      gap: "10px",
+      paddingTop: "28px", // 35px * 0.8
+      paddingLeft: "16px",
+      paddingRight: "16px",
+      paddingBottom: "24px",
+      minWidth: "128px",
+    },
+  },
 })
 
 export const navLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
   textDecoration: "none",
-  fontSize: "16px",
   fontWeight: "400",
-  lineHeight: "24px",
   letterSpacing: "-0.01em",
   padding: "0",
-  flex: "1 1 0",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: "12px",
   transition: "all 200ms ease",
   position: "relative",
   zIndex: 2,
   textAlign: "center",
   whiteSpace: "nowrap",
+  flexShrink: 0, // 크기 고정
+  ...responsiveProperty("fontSize", 16), // 1920px 기준 16px
+  ...responsiveProperty("lineHeight", 24), // 1920px 기준 24px
+  ...responsiveProperty("borderRadius", 12), // 1920px 기준 12px
+  ...responsiveProperty("width", 80), // 1920px 기준 80px 고정 너비 (100px에서 축소)
   ":hover": {
     opacity: 0.8,
   },
   "@media": {
-    "screen and (max-width: 1680px)": {
-      fontSize: "15px",
-      lineHeight: "23px",
-    },
-    "screen and (max-width: 1440px)": {
-      fontSize: "14px",
-      lineHeight: "21px",
-    },
-    "screen and (max-width: 1280px)": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
       fontSize: "13px",
       lineHeight: "20px",
+      borderRadius: "10px",
+      width: "64px", // 80px * 0.8
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "11px",
+      lineHeight: "17px",
+      borderRadius: "8px",
+      width: "56px", // 80px * 0.7
     },
   },
 })
@@ -352,12 +376,17 @@ export const actionButtons = style({
   display: "none",
   alignItems: "center",
   justifyContent: "flex-end",
-  gap: "0.5rem",
   height: "100%",
   flexShrink: 0, // 버튼 영역 크기 고정
+  ...responsiveProperty("gap", 8), // 1920px 기준 8px 간격
+  ...responsiveProperty("width", 140), // 1920px 기준 140px 고정 너비
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
+    },
+    [breakpoints.tablet]: {
+      gap: "6px", // 8px * 0.75
+      width: "112px", // 140px * 0.8
     },
   },
 })
@@ -365,26 +394,46 @@ export const actionButtons = style({
 export const loginButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
-  fontSize: "16px",
+  fontSize: vw(16), // 1920px 기준 16px
   fontWeight: "400",
-  lineHeight: "24px",
+  lineHeight: vw(24), // 1920px 기준 24px
   letterSpacing: "-0.01em",
   backgroundColor: "transparent",
   border: "none",
-  padding: "0.75rem 1.5rem",
+  padding: `${vw(12)} ${vw(24)}`, // 1920px 기준 패딩
   cursor: "pointer",
   transition: "all 300ms ease",
   position: "relative",
   overflow: "hidden",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+      fontSize: "16px",
+      lineHeight: "24px",
+      padding: "12px 24px",
+    },
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      fontSize: "13px",
+      lineHeight: "20px",
+      padding: "10px 19px",
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "11px",
+      lineHeight: "17px",
+      padding: "8px 17px",
+    },
+  },
 })
 
 export const consultButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
   color: "#FFFFFF",
-  padding: "0.5rem 1.5rem",
-  fontSize: "16px",
+  padding: `${vw(8)} ${vw(24)}`, // 1920px 기준 패딩
+  fontSize: vw(16), // 1920px 기준 16px
   fontWeight: "400",
-  lineHeight: "24px",
+  lineHeight: vw(24), // 1920px 기준 24px
   letterSpacing: "-0.01em",
   backgroundColor: "transparent",
   border: "none",
@@ -394,13 +443,53 @@ export const consultButton = style({
   overflow: "hidden",
   display: "flex",
   alignItems: "center",
-  gap: "0.5rem",
+  gap: vw(8), // 1920px 기준 8px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+      padding: "8px 24px",
+      fontSize: "16px",
+      lineHeight: "24px",
+      gap: "8px",
+    },
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      padding: "6px 19px",
+      fontSize: "13px",
+      lineHeight: "20px",
+      gap: "6px",
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      padding: "6px 17px",
+      fontSize: "11px",
+      lineHeight: "17px",
+      gap: "6px",
+    },
+  },
 })
 
 export const dropdownArrow = style({
-  fontSize: "12px",
-  marginLeft: "0.25rem",
+  fontSize: vw(12), // 1920px 기준 12px
+  marginLeft: vw(4), // 1920px 기준 4px (0.25rem ≈ 4px)
   transition: "transform 200ms ease",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 고정
+      fontSize: "12px",
+      marginLeft: "4px",
+    },
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      fontSize: "10px",
+      marginLeft: "3px",
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "8px",
+      marginLeft: "3px",
+    },
+  },
 })
 
 export const mobileMenuButton = style({

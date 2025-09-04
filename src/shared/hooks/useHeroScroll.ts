@@ -42,10 +42,19 @@ export function useHeroScroll(): UseHeroScrollReturn {
           console.log("[useHeroScroll/블루섹션] 일반 스크롤 활성화")
         }
 
-        // 블루섹션에서는 위로 스크롤시 비디오 전환만 처리
+        // 위로 스크롤 시 페이지 최상단에서 비디오로 복귀
         if (e.deltaY < 0) {
-          // 위로 스크롤할 때 비디오 전환은 별도 useBlueScroll에서 처리
-          console.log("[useHeroScroll/블루섹션] 위 스크롤 - useBlueScroll에서 처리")
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          
+          // 페이지 최상단(5px 미만)에서 위로 스크롤할 때 비디오로 복귀
+          if (scrollTop < 5) {
+            console.log("[useHeroScroll/블루섹션] 최상단에서 위 스크롤 - 비디오로 복귀")
+            e.preventDefault()
+            setShowBlueSection(false)
+            setShowVideoSection(true)
+            setEnableNormalScroll(false)
+            return
+          }
         }
 
         // 블루섹션 내부에서는 완전 자유 스크롤 허용

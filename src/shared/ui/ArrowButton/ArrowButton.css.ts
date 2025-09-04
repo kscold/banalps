@@ -1,23 +1,17 @@
 import { style } from "@vanilla-extract/css"
+import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
 
-// 기본 버튼 스타일
+// 기본 버튼 스타일 (1920px 기준 반응형)
 export const arrowButton = style({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "10px",
-  width: "166px",
-  height: "44px",
-  padding: "16px 16px 16px 24px",
   border: "none",
-  borderRadius: "100px",
   backgroundColor: "#FFFFFF",
   cursor: "pointer",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: "20px",
-  lineHeight: "100%",
   letterSpacing: "0",
   textDecoration: "none",
   outline: "none",
@@ -25,6 +19,16 @@ export const arrowButton = style({
   overflow: "hidden",
   color: "#272727",
   boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+  lineHeight: "100%",
+  ...responsiveProperty("gap", 10), // 1920px 기준 10px
+  ...responsiveProperty("width", 166), // 1920px 기준 166px
+  ...responsiveProperty("height", 44), // 1920px 기준 44px
+  ...responsiveProperty("paddingTop", 16), // 1920px 기준 16px
+  ...responsiveProperty("paddingBottom", 16), // 1920px 기준 16px
+  ...responsiveProperty("paddingLeft", 24), // 1920px 기준 24px
+  ...responsiveProperty("paddingRight", 16), // 1920px 기준 16px
+  ...responsiveProperty("borderRadius", 100), // 1920px 기준 100px
+  ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
 
   ":hover": {
     backgroundColor: "#F8F9FA",
@@ -42,86 +46,100 @@ export const arrowButton = style({
   },
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      minWidth: "160px",
-      height: "50px",
-      padding: "12px 12px 12px 20px",
-      fontSize: "18px",
-      gap: "12px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      width: "133px", // 166px * 0.8
+      height: "35px", // 44px * 0.8
+      paddingTop: "13px",
+      paddingBottom: "13px", 
+      paddingLeft: "19px",
+      paddingRight: "13px",
+      fontSize: "16px", // 20px * 0.8
+      gap: "8px", // 10px * 0.8
     },
-    "screen and (max-width: 480px)": {
-      minWidth: "140px",
-      height: "44px",
-      padding: "10px 10px 10px 16px",
-      fontSize: "16px",
-      gap: "10px",
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      width: "116px", // 166px * 0.7
+      height: "31px", // 44px * 0.7
+      paddingTop: "11px",
+      paddingBottom: "11px",
+      paddingLeft: "17px", 
+      paddingRight: "11px",
+      fontSize: "14px", // 20px * 0.7
+      gap: "7px", // 10px * 0.7
     },
   },
 })
 
-// 버튼 텍스트
+// 버튼 텍스트 (1920px 기준 반응형)
 export const buttonText = style({
   flex: "1",
   color: "#272727",
   transition: "color 0.3s ease",
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: "20px",
-  lineHeight: "100%",
   letterSpacing: "0",
   whiteSpace: "nowrap",
+  lineHeight: "100%",
+  ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "18px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      fontSize: "16px", // 20px * 0.8
     },
-    "screen and (max-width: 480px)": {
-      fontSize: "16px",
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      fontSize: "14px", // 20px * 0.7
     },
   },
 })
 
-// 화살표 컨테이너
+// 화살표 컨테이너 (1920px 기준 반응형)
 export const arrowContainer = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "28px",
-  height: "28px",
   borderRadius: "50%",
   background: "#14AEFF",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   flexShrink: 0,
   boxShadow: "0 4px 12px rgba(20, 174, 255, 0.25)",
+  ...responsiveProperty("width", 28), // 1920px 기준 28px
+  ...responsiveProperty("height", 28), // 1920px 기준 28px
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      width: "32px",
-      height: "32px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      width: "22px", // 28px * 0.8
+      height: "22px",
     },
-    "screen and (max-width: 480px)": {
-      width: "28px",
-      height: "28px",
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      width: "20px", // 28px * 0.7
+      height: "20px",
     },
   },
 })
 
-// 화살표 아이콘
+// 화살표 아이콘 (1920px 기준 반응형)
 export const arrowIcon = style({
-  width: "18px",
-  height: "18px",
   color: "#FFFFFF",
   transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
   strokeWidth: "2",
+  ...responsiveProperty("width", 18), // 1920px 기준 18px
+  ...responsiveProperty("height", 18), // 1920px 기준 18px
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      width: "16px",
-      height: "16px",
-    },
-    "screen and (max-width: 480px)": {
-      width: "14px",
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      width: "14px", // 18px * 0.8
       height: "14px",
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      width: "13px", // 18px * 0.7
+      height: "13px",
     },
   },
 })
@@ -163,9 +181,33 @@ export const small = style({
 })
 
 export const medium = style({
-  padding: "12px 16px 12px 16px",
-  fontSize: "16px",
-  gap: "12px",
+  ...responsiveProperty("paddingTop", 12), // 1920px 기준 12px
+  ...responsiveProperty("paddingBottom", 12), // 1920px 기준 12px
+  ...responsiveProperty("paddingLeft", 16), // 1920px 기준 16px
+  ...responsiveProperty("paddingRight", 16), // 1920px 기준 16px
+  ...responsiveProperty("fontSize", 16), // 1920px 기준 16px
+  ...responsiveProperty("gap", 12), // 1920px 기준 12px
+
+  "@media": {
+    [breakpoints.tablet]: {
+      // 태블릿에서 80% 크기
+      paddingTop: "10px", // 12px * 0.8
+      paddingBottom: "10px",
+      paddingLeft: "13px", // 16px * 0.8
+      paddingRight: "13px",
+      fontSize: "13px", // 16px * 0.8
+      gap: "10px", // 12px * 0.8
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서 70% 크기
+      paddingTop: "8px", // 12px * 0.7
+      paddingBottom: "8px",
+      paddingLeft: "11px", // 16px * 0.7
+      paddingRight: "11px",
+      fontSize: "11px", // 16px * 0.7
+      gap: "8px", // 12px * 0.7
+    },
+  },
 })
 
 export const large = style({
