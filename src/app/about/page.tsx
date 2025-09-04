@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className={styles.aboutHeroContent}>
           <div className={styles.aboutHeroText}>
             <h1 className={styles.aboutHeroMainTitle}>
-              '평범한 일상을 새로운 일상으로 이어주는 곳'
+              &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
             </h1>
             <h2 className={styles.aboutHeroSubTitle}>
               바람부는날에도 성형외과의원

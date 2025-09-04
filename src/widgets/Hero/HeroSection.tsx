@@ -7,6 +7,7 @@ import { useHeroScroll } from "../../shared/hooks/useHeroScroll"
 import { TextContentRenderer } from "./TextContentRenderer"
 import { VideoSection } from "./VideoSection"
 import BlueSection from "../BlueSection"
+import WhiteSection from "../WhiteSection/WhiteSection"
 
 import * as styles from "./HeroSection.css"
 
@@ -52,12 +53,15 @@ export default function HeroSection() {
 
       {/* Blue Section - 비디오 이후 스크롤 시 표시 */}
       {showBlueSection && (
-        <div className={styles.blueSectionOverlay}>
-          <BlueSection 
-            isActive={showBlueSection}
-            onTransitionToVideo={transitionToVideoFromBlue}
-          />
-        </div>
+        <>
+          <div className={styles.blueSectionOverlay}>
+            <BlueSection
+              isActive={showBlueSection}
+              onTransitionToVideo={transitionToVideoFromBlue}
+            />
+            <WhiteSection />
+          </div>
+        </>
       )}
     </>
   )

@@ -1147,20 +1147,6 @@ export const doctorKoreanName = style({
   },
 })
 
-// 의료진 섹션 후 구분선
-export const doctorsSectionDivider = style({
-  width: "100%",
-  maxWidth: "1600px",
-  height: "1px",
-  backgroundColor: "rgba(255, 255, 255, 0.3)",
-  margin: "0 auto 120px",
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      margin: "0 auto 80px",
-    },
-  },
-})
-
 // 신승규 원장 아래 구분선
 export const doctorDivider1 = style({
   position: "absolute",
