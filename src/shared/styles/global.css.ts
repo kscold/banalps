@@ -14,8 +14,10 @@ globalStyle("html", {
 
 // 전역 CSS 변수 설정
 globalStyle(":root", {
-  // 1920px 기준 디자인 변수
-  "--design-base-width": "1920",
+  vars: {
+    // 1920px 기준 디자인 변수
+    "--design-base-width": "1920",
+  },
   
   "@media": {
     [breakpoints.desktopLarge]: {

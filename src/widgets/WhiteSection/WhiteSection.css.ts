@@ -62,18 +62,18 @@ export const mainTitle = style({
 
 // 메인 콘텐츠 영역 (1920px 기준) - 헤더와 동일한 간단한 방식
 export const mainContent = style({
-  maxWidth: "1600px", // 헤더와 동일한 최대 너비
-  width: vw(1460), // 1024px-1920px 비례 스케일링
-  height: vw(628), // 1920px 기준 628px 높이
-  margin: "0 auto", // 중앙 정렬
+  ...responsiveContainer(1600), // 헤더와 동일한 컨테이너 적용
   position: "relative",
+  display: "flex",
+  justifyContent: "space-between",
+  gap: vw(12), // 12px gap 추가
+  height: vw(628), // 1920px 기준 628px 높이
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1600px", // 1920px 이상에서 고정
       height: "628px",
+      gap: "12px",
     },
     [breakpoints.mobile]: {
-      width: "calc(100% - 40px)", // 모바일 마진
       height: "auto",
       display: "flex",
       flexDirection: "column",
@@ -82,23 +82,17 @@ export const mainContent = style({
   },
 })
 
-// 카드 그리드 (1920px 기준) - 절대 위치로 정확한 배치
+// 카드 그리드 (1920px 기준) - 왼쪽 2x2 그리드
 export const cardGrid = style({
-  position: "absolute",
-  left: "0",
-  top: "0",
-  width: vw(1055), // 1920px 기준에서 줄임 (1460-385-20 = 1055px)
-  height: "100%",
+  flex: "1", // 남은 공간 차지
   display: "flex",
   flexDirection: "column",
-  gap: vw(16), // 1920px 기준 16px
+  gap: vw(12), // 1920px 기준 12px gap
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1055px", // 고정 크기도 조정
-      gap: "16px",
+      gap: "12px",
     },
     [breakpoints.mobile]: {
-      position: "relative",
       width: "100%",
       gap: "20px",
     },
@@ -158,42 +152,19 @@ export const serviceCard = style({
     },
   },
 
-  // 첫 번째 카드 크기 (정수리 이식)
+  // 카드 크기 비율 적용 (56% : 44%)
   selectors: {
     [`${topRow} &:first-child`]: {
-      width: vw(671), // 1920px 기준 671px
-      "@media": {
-        [breakpoints.desktopLarge]: {
-          width: "671px",
-        },
-      },
+      flex: "0 0 56%", // 상단 첫 번째 카드
     },
-    // 두 번째 카드 크기 (헤어라인 교정)
     [`${topRow} &:last-child`]: {
-      width: vw(520), // 1920px 기준 520px
-      "@media": {
-        [breakpoints.desktopLarge]: {
-          width: "520px",
-        },
-      },
+      flex: "0 0 calc(44% - ${vw(12)})", // 상단 두 번째 카드 (gap 고려)
     },
-    // 세 번째 카드 크기 (이마 축소 수술)
     [`${bottomRow} &:first-child`]: {
-      width: vw(520), // 1920px 기준 520px
-      "@media": {
-        [breakpoints.desktopLarge]: {
-          width: "520px",
-        },
-      },
+      flex: "0 0 calc(44% - ${vw(12)})", // 하단 첫 번째 카드 (gap 고려)
     },
-    // 네 번째 카드 크기 (바날 재수술)
     [`${bottomRow} &:last-child`]: {
-      width: vw(671), // 1920px 기준 671px
-      "@media": {
-        [breakpoints.desktopLarge]: {
-          width: "671px",
-        },
-      },
+      flex: "0 0 56%", // 하단 두 번째 카드
     },
   },
 })
@@ -225,26 +196,18 @@ export const cardButton = style({
 
 // Other Medical Service 박스 (1920px 기준)
 export const otherServiceBox = style({
-  position: "absolute",
-  right: "0",
-  top: "0",
-  width: vw(385), // 1920px 기준 385px
+  position: "relative",
+  width: vw(390), // 1920px 기준 390px
   height: "100%",
-  backgroundColor: "#73D5FA",
   borderRadius: vw(8),
-  padding: vw(20), // 1920px 기준 20px
-  marginLeft: vw(20), // 1920px 기준 20px
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
+  overflow: "hidden",
+  flexShrink: 0, // 크기 고정
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "385px",
+      width: "390px",
       borderRadius: "8px",
-      padding: "20px",
     },
     [breakpoints.mobile]: {
-      position: "relative",
       width: "100%",
       height: "300px",
       marginTop: "20px",
@@ -254,6 +217,9 @@ export const otherServiceBox = style({
 
 // Other Service 타이틀 (1920px 기준)
 export const otherServiceTitle = style({
+  position: "absolute",
+  top: vw(40),
+  left: vw(40),
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
   ...responsiveFont(32), // 1920px 기준 32px
@@ -261,9 +227,11 @@ export const otherServiceTitle = style({
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
+  zIndex: 2,
   "@media": {
     [breakpoints.desktopLarge]: {
-      // 1920px 이상에서 고정
+      top: "40px",
+      left: "40px",
     },
   },
 })

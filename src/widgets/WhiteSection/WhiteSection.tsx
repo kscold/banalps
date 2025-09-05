@@ -115,6 +115,11 @@ export default function WhiteSection() {
             >
               View More
             </ArrowButton>
+            <img
+              src="/main/white-section/white_section_6.jpg"
+              alt="바날 재수술"
+              className={styles.cardImage}
+            />
           </div>
         </div>
 
