@@ -25,10 +25,11 @@ export default function WhiteSection() {
 
         {/* 메인 콘텐츠 영역 */}
         <div className={styles.mainContent}>
-          {/* 왼쪽 카드 영역 */}
+          {/* 왼쪽 2x2 카드 그리드 */}
           <div className={styles.cardGrid}>
-            {/* 상단 카드들 */}
+            {/* 상단 행 - 큰 카드(왼쪽) + 작은 카드(오른쪽) */}
             <div className={styles.topRow}>
+              {/* 카드 1: 정수리 이식 (왼쪽 위 - 큰 카드) */}
               <div className={styles.serviceCard}>
                 <img
                   src="/main/white-section/white_section_2.jpg"
@@ -45,6 +46,7 @@ export default function WhiteSection() {
                 <div className={styles.cardNumber}>1</div>
               </div>
 
+              {/* 카드 2: 헤어라인 교정 (오른쪽 위 - 작은 카드) */}
               <div className={styles.serviceCard}>
                 <img
                   src="/main/white-section/white_section_3.jpg"
@@ -62,8 +64,9 @@ export default function WhiteSection() {
               </div>
             </div>
 
-            {/* 하단 카드들 */}
+            {/* 하단 행 - 작은 카드(왼쪽) + 큰 카드(오른쪽) */}
             <div className={styles.bottomRow}>
+              {/* 카드 3: 이마 축소 수술 (왼쪽 아래 - 작은 카드) */}
               <div className={styles.serviceCard}>
                 <img
                   src="/main/white-section/white_section_4.jpg"
@@ -80,6 +83,7 @@ export default function WhiteSection() {
                 <div className={styles.cardNumber}>3</div>
               </div>
 
+              {/* 카드 4: 바날 재수술 (오른쪽 아래 - 큰 카드) */}
               <div className={styles.serviceCard}>
                 <img
                   src="/main/white-section/white_section_5.jpg"
@@ -117,7 +121,7 @@ export default function WhiteSection() {
             </ArrowButton>
             <img
               src="/main/white-section/white_section_6.jpg"
-              alt="바날 재수술"
+              alt="Other Medical Service"
               className={styles.cardImage}
             />
           </div>

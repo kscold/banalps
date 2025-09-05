@@ -60,34 +60,40 @@ export const mainTitle = style({
   ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
 })
 
-// 메인 콘텐츠 영역 (1920px 기준) - 헤더와 동일한 간단한 방식
+// 메인 콘텐츠 영역 - flex로 처리
 export const mainContent = style({
-  ...responsiveContainer(1600), // 헤더와 동일한 컨테이너 적용
-  position: "relative",
+  width: vw(1600), // 1920px 기준 1600px
+  maxWidth: "100%", // 화면 너비 초과 방지
+  margin: "0 auto", // 중앙 정렬
   display: "flex",
-  justifyContent: "space-between",
-  gap: vw(12), // 12px gap 추가
-  height: vw(628), // 1920px 기준 628px 높이
+  gap: vw(12), // 12px gap
+  height: vw(628), // 전체 높이
   "@media": {
     [breakpoints.desktopLarge]: {
+      width: "1600px", // 1920px 이상에서 고정
       height: "628px",
       gap: "12px",
     },
-    [breakpoints.mobile]: {
-      height: "auto",
-      display: "flex",
+    [breakpoints.tablet]: {
+      width: "calc(100% - 80px)",
       flexDirection: "column",
-      gap: "30px",
+      height: "auto",
+    },
+    [breakpoints.mobile]: {
+      width: "calc(100% - 40px)",
+      flexDirection: "column",
+      height: "auto",
+      gap: "20px",
     },
   },
 })
 
 // 카드 그리드 (1920px 기준) - 왼쪽 2x2 그리드
 export const cardGrid = style({
-  flex: "1", // 남은 공간 차지
+  flex: "1", // 남은 공간 모두 차지
   display: "flex",
   flexDirection: "column",
-  gap: vw(12), // 1920px 기준 12px gap
+  gap: vw(12), // 12px gap
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "12px",
@@ -121,11 +127,11 @@ export const topRow = style({
 export const bottomRow = style({
   display: "flex",
   gap: vw(12), // 1920px 기준 12px
-  height: vw(304), // 1920px 기준 304px
+  height: vw(308), // 1920px 기준 308px
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "12px",
-      height: "304px",
+      height: "308px",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -152,19 +158,19 @@ export const serviceCard = style({
     },
   },
 
-  // 카드 크기 비율 적용 (56% : 44%)
+  // 각 카드의 flex 크기 지정 - 피그마 디자인에 맞게
   selectors: {
     [`${topRow} &:first-child`]: {
-      flex: "0 0 56%", // 상단 첫 번째 카드
+      flex: "0 0 calc(56% - 6px)", // 상단 왼쪽 (큰 카드) - gap의 절반
     },
     [`${topRow} &:last-child`]: {
-      flex: "0 0 calc(44% - ${vw(12)})", // 상단 두 번째 카드 (gap 고려)
+      flex: "0 0 calc(44% - 6px)", // 상단 오른쪽 (작은 카드) - gap의 절반
     },
     [`${bottomRow} &:first-child`]: {
-      flex: "0 0 calc(44% - ${vw(12)})", // 하단 첫 번째 카드 (gap 고려)
+      flex: "0 0 calc(44% - 6px)", // 하단 왼쪽 (작은 카드) - gap의 절반
     },
     [`${bottomRow} &:last-child`]: {
-      flex: "0 0 56%", // 하단 두 번째 카드
+      flex: "0 0 calc(56% - 6px)", // 하단 오른쪽 (큰 카드) - gap의 절반
     },
   },
 })
@@ -194,10 +200,10 @@ export const cardButton = style({
   },
 })
 
-// Other Medical Service 박스 (1920px 기준)
+// Other Medical Service 박스 (1920px 기준) - 5번째 카드
 export const otherServiceBox = style({
   position: "relative",
-  width: vw(390), // 1920px 기준 390px
+  width: vw(390), // 390px 고정 너비
   height: "100%",
   borderRadius: vw(8),
   overflow: "hidden",
@@ -210,7 +216,6 @@ export const otherServiceBox = style({
     [breakpoints.mobile]: {
       width: "100%",
       height: "300px",
-      marginTop: "20px",
     },
   },
 })
