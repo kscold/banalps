@@ -1,22 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
-
 import HeaderNavigation from "../../../widgets/Header/HeaderNavigation"
 import * as styles from "./HairlinePage.css"
 
 export default function HairlinePage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
   return (
     <div className={styles.hairlinePage}>
       <HeaderNavigation />
@@ -51,6 +38,7 @@ export default function HairlinePage() {
       <section className={styles.section1}>
         <div className={styles.section1Content}>
           <div className={styles.section1Left}>
+            <div className={styles.section1Number}>1</div>
             <div className={styles.section1Text}>
               <h2 className={styles.section1Title}>
                 얼굴 윤곽의 완성은
@@ -59,8 +47,8 @@ export default function HairlinePage() {
               </h2>
               <div className={styles.section1Image}>
                 <img
-                  src="/hairline/section1-illustration.jpg"
-                  alt="헤어라인 일러스트"
+                  src="/hairline/illustration-1.svg"
+                  alt="헤어라인 일러스트 1"
                   className={styles.section1Illustration}
                 />
               </div>
@@ -74,24 +62,23 @@ export default function HairlinePage() {
                 완성합니다.
               </p>
             </div>
-            <div className={styles.section1Number}>1</div>
           </div>
           <div className={styles.section1Right}>
-            <div className={styles.section1Images}>
-              <div className={styles.section1Image1}>
-                <img
-                  src="/hairline/hairline-1.jpg"
-                  alt="헤어라인 이미지 1"
-                  className={styles.section1ImageContent}
-                />
-              </div>
-              <div className={styles.section1Image2}>
-                <img
-                  src="/hairline/hairline-2-2.jpg"
-                  alt="헤어라인 이미지 2"
-                  className={styles.section1ImageContent}
-                />
-              </div>
+            {/* 대형 이미지 - 오른쪽 상단 */}
+            <div className={styles.section1Image1}>
+              <img
+                src="/hairline/hairline-2.png"
+                alt="헤어라인 페이지 이미지 1"
+                className={styles.section1ImageContent}
+              />
+            </div>
+            {/* 소형 이미지 - 왼쪽 하단 */}
+            <div className={styles.section1Image2}>
+              <img
+                src="/hairline/hairline-1.png"
+                alt="헤어라인 페이지 이미지 2"
+                className={styles.section1ImageContent}
+              />
             </div>
           </div>
         </div>
@@ -103,34 +90,36 @@ export default function HairlinePage() {
           <div className={styles.section2Left}>
             <div className={styles.section2Image}>
               <img
-                src="/hairline/image-10.jpg"
-                alt="헤어라인 모발이식"
+                src="/hairline/hairline-3.png"
+                alt="헤어라인 페이지 이미지 3"
                 className={styles.section2ImageContent}
               />
             </div>
           </div>
           <div className={styles.section2Right}>
+            <div className={styles.section2NumberBg}>2</div>
             <div className={styles.section2Text}>
               <h2 className={styles.section2Title}>
-                헤어라인
+                빼곡하고
                 <br />
-                모발이식
+                자연스럽게.
               </h2>
               <p className={styles.section2Description}>
-                헤어라인 모발이식은 이마가 넓어 보이거나 헤어라인이 후퇴한
-                경우에
+                자연스러움 을 만드는 일은 어렵습니다.
+                <br />
+                어색하지 않아야 하며 결과는 1년을 기다려야 합니다.
                 <br />
                 <br />
-                자연스러운 헤어라인을 만들어 얼굴의 균형을 맞춰주는 수술입니다.
+                "헤어라인 교정만 10년을 하면서
+                <br />
+                자연스럽게 만드는 최적의 접점을 찾았습니다."
                 <br />
                 <br />
-                개인의 얼굴형과 이마 비율을 고려하여 가장 자연스러운 헤어라인을
+                이제 빼곡하면서 자연스러운 헤어라인도
                 <br />
-                설계하고, 1모발 단위로 정교하게 이식하여 자연스러운 결과를
-                얻습니다.
+                불가능하지 않습니다.
               </p>
             </div>
-            <div className={styles.section2Number}>2</div>
           </div>
         </div>
       </section>
@@ -139,31 +128,38 @@ export default function HairlinePage() {
       <section className={styles.section3}>
         <div className={styles.section3Content}>
           <div className={styles.section3Left}>
+            <div className={styles.section3NumberBg}>3</div>
             <div className={styles.section3Text}>
               <h2 className={styles.section3Title}>
-                자연스러운
+                결국,
                 <br />
-                헤어라인 완성
+                고객이 원하는 디자인이
+                <br />
+                좋은 디자인입니다.
               </h2>
               <p className={styles.section3Description}>
-                헤어라인 모발이식 후 6개월이 지나면 이식한 모발이 완전히 자라
+                의사만 만족하는 디자인은 결국 두 번 수술을 하게 됩니다. 고객이
+                불편해 하는 부분을
+                <br />
+                진심으로 공감하고 고민하며
                 <br />
                 <br />
-                자연스럽고 빼곡한 헤어라인을 완성할 수 있습니다.
-                <br />
-                <br />
-                개인의 얼굴형에 맞는 헤어라인으로 더욱 균형잡힌 얼굴 윤곽을
-                <br />
-                만들어드립니다.
+                바날의 헤어라인 디자인은 발전합니다.
               </p>
             </div>
-            <div className={styles.section3Number}>3</div>
+          </div>
+          <div className={styles.section3CenterIllustration}>
+            <img
+              src="/hairline/illustration-2.svg"
+              alt="헤어라인 일러스트 2"
+              className={styles.section3CenterIllustrationImage}
+            />
           </div>
           <div className={styles.section3Right}>
             <div className={styles.section3Image}>
               <img
-                src="/hairline/dsc01814-1.jpg"
-                alt="헤어라인 모발이식 결과"
+                src="/hairline/hairline-4.png"
+                alt="헤어라인 페이지 이미지 4"
                 className={styles.section3ImageContent}
               />
             </div>

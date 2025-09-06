@@ -12,8 +12,7 @@ export const NAVIGATION_ITEMS: readonly NavigationItem[] = [
     title: "바날소개",
     href: "/",
     submenu: [
-      { title: "바날소개", href: "/" },
-      { title: "About 바날", href: "/about" },
+      { title: "바날소개", href: "/about" },
       { title: "의료진소개", href: "/doctors" },
       { title: "진료안내", href: "/treatment-guide" },
     ],
