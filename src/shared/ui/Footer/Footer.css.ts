@@ -1,140 +1,9 @@
+import {
+  responsiveContainer,
+  responsiveFont,
+} from "./../../styles/responsive.css"
+import { breakpoints, vw } from "@/shared/styles/responsive.css"
 import { style } from "@vanilla-extract/css"
-
-// export const footer = style({
-//   width: "100%",
-//   backgroundColor: "#1A1A1A",
-//   color: "#FFFFFF",
-//   marginTop: "auto",
-//   borderTop: "1px solid #333333",
-// })
-
-// export const container = style({
-//   maxWidth: "1600px",
-//   margin: "0 auto",
-//   padding: "0 60px",
-//   "@media": {
-//     "screen and (max-width: 1024px)": {
-//       padding: "0 40px",
-//     },
-//     "screen and (max-width: 768px)": {
-//       padding: "0 20px",
-//     },
-//   },
-// })
-
-// export const content = style({
-//   padding: "80px 0",
-//   "@media": {
-//     "screen and (max-width: 768px)": {
-//       padding: "60px 0",
-//     },
-//   },
-// })
-
-// export const mainInfo = style({
-//   display: "grid",
-//   gridTemplateColumns: "1fr 1.5fr 1fr",
-//   gap: "60px",
-//   marginBottom: "60px",
-//   "@media": {
-//     "screen and (max-width: 1024px)": {
-//       gridTemplateColumns: "1fr",
-//       gap: "40px",
-//     },
-//   },
-// })
-
-// export const column = style({
-//   display: "flex",
-//   flexDirection: "column",
-//   gap: "16px",
-// })
-
-// export const clinicInfo = style({
-//   marginBottom: "24px",
-// })
-
-// export const clinicName = style({
-//   fontSize: "18px",
-//   fontWeight: "500",
-//   marginBottom: "8px",
-//   fontFamily: "'S-Core Dream', sans-serif",
-// })
-
-// export const representative = style({
-//   fontSize: "14px",
-//   fontWeight: "400",
-//   color: "#B0B0B0",
-//   fontFamily: "'S-Core Dream', sans-serif",
-// })
-
-// export const copyright = style({
-//   fontSize: "14px",
-//   fontWeight: "400",
-//   color: "#B0B0B0",
-//   fontFamily: "'Poppins', sans-serif",
-// })
-
-// export const address = style({
-//   fontSize: "14px",
-//   fontWeight: "400",
-//   lineHeight: "1.6",
-//   color: "#E0E0E0",
-//   fontFamily: "'S-Core Dream', sans-serif",
-// })
-
-// export const links = style({
-//   display: "flex",
-//   alignItems: "center",
-//   gap: "12px",
-//   marginTop: "16px",
-// })
-
-// export const link = style({
-//   fontSize: "14px",
-//   fontWeight: "400",
-//   color: "#B0B0B0",
-//   textDecoration: "none",
-//   fontFamily: "'S-Core Dream', sans-serif",
-//   transition: "color 0.3s ease",
-//   ":hover": {
-//     color: "#14AEFF",
-//   },
-// })
-
-// export const divider = style({
-//   color: "#666666",
-//   fontSize: "12px",
-// })
-
-// export const phone = style({
-//   fontSize: "16px",
-//   fontWeight: "500",
-//   color: "#E0E0E0",
-//   fontFamily: "'S-Core Dream', sans-serif",
-// })
-
-// export const logoSection = style({
-//   paddingTop: "40px",
-//   borderTop: "1px solid #333333",
-// })
-
-// export const logoContainer = style({
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "center",
-// })
-
-// export const logoText = style({
-//   fontSize: "48px",
-//   fontWeight: "600",
-//   fontFamily: "'Poppins', sans-serif",
-//   letterSpacing: "0.1em",
-//   background: "linear-gradient(90deg, #14AEFF 0%, #0EA5E9 100%)",
-//   WebkitBackgroundClip: "text",
-//   WebkitTextFillColor: "transparent",
-//   backgroundClip: "text",
-// })
 
 // Footer Section - Figma 디자인 기반
 export const footerSection = style({
@@ -273,3 +142,231 @@ export const footerLogoText = style({
   letterSpacing: "0.1em",
   color: "#ffffff",
 })
+
+// // Footer Section
+// export const footerSection = style({
+//   backgroundColor: "#73D5FA", // 피그마 정확한 색상
+//   padding: vw(48),
+//   position: "relative",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       padding: "48px",
+//     },
+//   },
+// })
+
+// export const footerContent = style({
+//   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
+//   display: "flex",
+//   justifyContent: "space-between",
+//   alignItems: "flex-start",
+//   "@media": {
+//     [breakpoints.tablet]: {
+//       flexDirection: "column",
+//       gap: "30px",
+//     },
+//     [breakpoints.mobile]: {
+//       flexDirection: "column",
+//       gap: "20px",
+//     },
+//   },
+// })
+
+// export const footerLeft = style({
+//   display: "flex",
+//   gap: vw(40), // 1920px 기준 40px
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       gap: "40px",
+//     },
+//     [breakpoints.tablet]: {
+//       flexDirection: "column",
+//       gap: "20px",
+//     },
+//     [breakpoints.mobile]: {
+//       flexDirection: "column",
+//       gap: "15px",
+//     },
+//   },
+// })
+
+// export const footerCompanyInfo = style({
+//   display: "flex",
+//   flexDirection: "column",
+//   gap: vw(20),
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       gap: "20px",
+//     },
+//   },
+// })
+
+// export const footerCompanyDetails = style({
+//   display: "flex",
+//   flexDirection: "column",
+//   gap: vw(4),
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       gap: "4px",
+//     },
+//   },
+// })
+
+// export const footerCompanyName = style({
+//   fontFamily: "'S-Core Dream', sans-serif",
+//   fontWeight: 400,
+//   ...responsiveFont(14), // 피그마 정확한 크기
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   margin: "0",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+// })
+
+// export const footerCEO = style({
+//   fontFamily: "'S-Core Dream', sans-serif",
+//   fontWeight: 400,
+//   ...responsiveFont(14),
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   margin: "0",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+// })
+
+// export const footerCopyright = style({
+//   fontFamily: "Poppins",
+//   fontWeight: 400,
+//   ...responsiveFont(14),
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   margin: "0",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+// })
+
+// export const footerAddress = style({
+//   display: "flex",
+//   flexDirection: "column",
+//   gap: vw(4),
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       gap: "4px",
+//     },
+//   },
+// })
+
+// export const footerAddressText = style({
+//   fontFamily: "'S-Core Dream', sans-serif",
+//   fontWeight: 400,
+//   ...responsiveFont(14),
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   margin: "0",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+// })
+
+// export const footerLinks = style({
+//   display: "flex",
+//   gap: vw(12), // 링크 사이 간격
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       gap: "12px",
+//     },
+//   },
+// })
+
+// export const footerLink = style({
+//   fontFamily: "'S-Core Dream', sans-serif",
+//   fontWeight: 400,
+//   ...responsiveFont(14),
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   cursor: "pointer",
+//   textDecoration: "none",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+//   ":hover": {
+//     textDecoration: "underline",
+//   },
+// })
+
+// export const footerPhone = style({
+//   fontFamily: "'S-Core Dream', sans-serif",
+//   fontWeight: 400,
+//   ...responsiveFont(14),
+//   lineHeight: vw(20),
+//   color: "#FFFFFF",
+//   margin: "0",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       lineHeight: "20px",
+//     },
+//   },
+// })
+
+// export const footerRight = style({
+//   display: "flex",
+//   alignItems: "center",
+// })
+
+// export const footerLogo = style({
+//   width: vw(158), // 피그마 로고 너비
+//   height: vw(37), // 피그마 로고 높이
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       width: "158px",
+//       height: "37px",
+//     },
+//   },
+// })
+
+// export const floatingButton = style({
+//   position: "absolute",
+//   top: vw(-30), // 푸터 위로 올라감
+//   right: vw(160), // 피그마 위치
+//   width: vw(60),
+//   height: vw(60),
+//   backgroundColor: "#FFFFFF",
+//   borderRadius: "50%",
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+//   cursor: "pointer",
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       top: "-30px",
+//       right: "160px",
+//       width: "60px",
+//       height: "60px",
+//     },
+//     [breakpoints.mobile]: {
+//       right: "20px",
+//       top: "-30px",
+//     },
+//   },
+//   ":hover": {
+//     transform: "translateY(-2px)",
+//     boxShadow: "0 6px 25px rgba(0, 0, 0, 0.2)",
+//   },
+// })
