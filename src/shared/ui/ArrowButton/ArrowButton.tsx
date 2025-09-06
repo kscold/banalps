@@ -6,6 +6,7 @@ interface ArrowButtonProps {
   children: React.ReactNode
   onClick?: () => void
   variant?: "primary" | "secondary"
+  color?: "white" | "blue" // 새로운 색상 prop 추가
   size?: "small" | "medium" | "large"
   disabled?: boolean
   className?: string
@@ -15,6 +16,7 @@ export default function ArrowButton({
   children,
   onClick,
   variant = "primary",
+  color = "white", // 기본값은 white
   size = "medium",
   disabled = false,
   className,
@@ -22,6 +24,13 @@ export default function ArrowButton({
   // 화살표 컨테이너 스타일 결정
   const getArrowContainerStyle = () => {
     let containerStyle = styles.arrowContainer
+
+    // Color에 따른 스타일 추가
+    if (color === "white") {
+      containerStyle += ` ${styles.whiteArrowContainer}`
+    } else if (color === "blue") {
+      containerStyle += ` ${styles.blueArrowContainer}`
+    }
 
     if (variant === "secondary") {
       containerStyle += ` ${styles.secondaryArrowContainer}`
@@ -40,6 +49,13 @@ export default function ArrowButton({
   const getArrowIconStyle = () => {
     let iconStyle = styles.arrowIcon
 
+    // Color에 따른 스타일 추가
+    if (color === "white") {
+      iconStyle += ` ${styles.whiteArrowIcon}`
+    } else if (color === "blue") {
+      iconStyle += ` ${styles.blueArrowIcon}`
+    }
+
     if (size === "small") {
       iconStyle += ` ${styles.smallArrowIcon}`
     } else if (size === "large") {
@@ -49,15 +65,28 @@ export default function ArrowButton({
     return iconStyle
   }
 
+  // 텍스트 스타일 결정
+  const getTextStyle = () => {
+    let textStyle = styles.buttonText
+
+    if (color === "white") {
+      textStyle += ` ${styles.whiteText}`
+    } else if (color === "blue") {
+      textStyle += ` ${styles.blueText}`
+    }
+
+    return textStyle
+  }
+
   return (
     <button
-      className={`${styles.arrowButton} ${styles[variant]} ${styles[size]} ${
+      className={`${styles.arrowButton} ${styles[variant]} ${styles[color]} ${styles[size]} ${
         className || ""
       }`}
       onClick={onClick}
       disabled={disabled}
     >
-      <span className={styles.buttonText}>{children}</span>
+      <span className={getTextStyle()}>{children}</span>
       <div
         className={`${getArrowContainerStyle()} ${styles.arrowContainerHover}`}
       >

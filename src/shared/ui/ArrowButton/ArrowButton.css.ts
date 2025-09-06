@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css"
 import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
 
-// 기본 버튼 스타일 (1920px 기준 반응형)
+// 기본 버튼 스타일 (1920px 기준 반응형) - 텍스트 길이에 따라 자동 조정
 export const arrowButton = style({
   display: "inline-flex",
   alignItems: "center",
@@ -20,13 +20,17 @@ export const arrowButton = style({
   color: "#272727",
   boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
   lineHeight: "100%",
-  ...responsiveProperty("gap", 10), // 1920px 기준 10px
-  ...responsiveProperty("width", 166), // 1920px 기준 166px
-  ...responsiveProperty("height", 44), // 1920px 기준 44px
-  ...responsiveProperty("paddingTop", 16), // 1920px 기준 16px
-  ...responsiveProperty("paddingBottom", 16), // 1920px 기준 16px
-  ...responsiveProperty("paddingLeft", 24), // 1920px 기준 24px
-  ...responsiveProperty("paddingRight", 16), // 1920px 기준 16px
+  // width 제거 - 텍스트 길이에 따라 자동 조정
+  minWidth: "auto", // 최소 너비 자동
+  width: "auto", // 자동 너비
+  gap: "8px !important", // 텍스트와 화살표 간격 항상 8px 고정
+  // 화살표 동그라미 기준 고정 패딩 - !important로 강제 적용
+  paddingTop: "12px !important", // 상하 8px 완전 고정
+  paddingBottom: "12px !important", // 상하 8px 완전 고정
+  paddingLeft: "16px !important", // 왼쪽 8px 완전 고정
+  paddingRight: "8px !important", // 오른쪽 8px 완전 고정 (화살표 동그라미 기준)
+  // 높이는 동그라미(28px) + 패딩(8px*2) = 44px로 고정
+  minHeight: "44px", // 최소 높이 고정
   ...responsiveProperty("borderRadius", 100), // 1920px 기준 100px
   ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
 
@@ -47,40 +51,36 @@ export const arrowButton = style({
 
   "@media": {
     [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      width: "133px", // 166px * 0.8
-      height: "35px", // 44px * 0.8
-      paddingTop: "13px",
-      paddingBottom: "13px", 
-      paddingLeft: "19px",
-      paddingRight: "13px",
+      // 태블릿에서도 패딩은 8px 고정 유지 - !important로 강제
+      paddingTop: "8px !important", // 8px 완전 고정
+      paddingBottom: "8px !important", // 8px 완전 고정
+      paddingLeft: "8px !important", // 8px 완전 고정
+      paddingRight: "8px !important", // 8px 완전 고정 (화살표 기준)
       fontSize: "16px", // 20px * 0.8
-      gap: "8px", // 10px * 0.8
+      gap: "8px !important", // 8px 완전 고정
     },
     [breakpoints.mobile]: {
-      // 모바일에서 70% 크기
-      width: "116px", // 166px * 0.7
-      height: "31px", // 44px * 0.7
-      paddingTop: "11px",
-      paddingBottom: "11px",
-      paddingLeft: "17px", 
-      paddingRight: "11px",
+      // 모바일에서도 패딩은 8px 고정 유지 - !important로 강제
+      paddingTop: "8px !important", // 8px 완전 고정
+      paddingBottom: "8px !important", // 8px 완전 고정
+      paddingLeft: "8px !important", // 8px 완전 고정
+      paddingRight: "8px !important", // 8px 완전 고정 (화살표 기준)
       fontSize: "14px", // 20px * 0.7
-      gap: "7px", // 10px * 0.7
+      gap: "8px !important", // 8px 완전 고정
     },
   },
 })
 
 // 버튼 텍스트 (1920px 기준 반응형)
 export const buttonText = style({
-  flex: "1",
   color: "#272727",
   transition: "color 0.3s ease",
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
   letterSpacing: "0",
-  whiteSpace: "nowrap",
+  whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
   lineHeight: "100%",
+  flexShrink: 0, // 텍스트가 줄어들지 않도록
   ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
 
   "@media": {
@@ -144,7 +144,24 @@ export const arrowIcon = style({
   },
 })
 
-// Variant 스타일들
+// Color Variant 스타일들
+export const white = style({
+  backgroundColor: "#FFFFFF",
+  color: "#272727",
+  ":hover": {
+    backgroundColor: "#F8F9FA",
+  },
+})
+
+export const blue = style({
+  backgroundColor: "#14AEFF",
+  color: "#FFFFFF",
+  ":hover": {
+    backgroundColor: "#0EA5E9",
+  },
+})
+
+// Style Variant 스타일들
 export const primary = style({
   borderColor: "#8B5CF6",
   color: "#272727",
@@ -160,7 +177,40 @@ export const secondary = style({
   },
 })
 
-// Secondary variant의 화살표 컨테이너 스타일
+// Color별 텍스트 스타일
+export const whiteText = style({
+  color: "#272727",
+})
+
+export const blueText = style({
+  color: "#FFFFFF",
+})
+
+// Color별 화살표 컨테이너 스타일
+export const whiteArrowContainer = style({
+  backgroundColor: "#14AEFF", // 흰색 버튼에는 파란 동그라미
+  ":hover": {
+    backgroundColor: "#0EA5E9",
+  },
+})
+
+export const blueArrowContainer = style({
+  backgroundColor: "#FFFFFF", // 파란색 버튼에는 흰 동그라미
+  ":hover": {
+    backgroundColor: "#F8F9FA",
+  },
+})
+
+// Color별 화살표 아이콘 스타일
+export const whiteArrowIcon = style({
+  color: "#FFFFFF", // 파란 동그라미 안에 흰 화살표
+})
+
+export const blueArrowIcon = style({
+  color: "#14AEFF", // 흰 동그라미 안에 파란 화살표
+})
+
+// Secondary variant의 화살표 컨테이너 스타일 (기존)
 export const secondaryArrowContainer = style({
   backgroundColor: "#6B7280",
 })
@@ -181,31 +231,18 @@ export const small = style({
 })
 
 export const medium = style({
-  ...responsiveProperty("paddingTop", 12), // 1920px 기준 12px
-  ...responsiveProperty("paddingBottom", 12), // 1920px 기준 12px
-  ...responsiveProperty("paddingLeft", 16), // 1920px 기준 16px
-  ...responsiveProperty("paddingRight", 16), // 1920px 기준 16px
-  ...responsiveProperty("fontSize", 16), // 1920px 기준 16px
-  ...responsiveProperty("gap", 12), // 1920px 기준 12px
+  // medium 사이즈도 8px 패딩 고정 - 기본 arrowButton 스타일이 우선 적용되도록 패딩 제거
+  // 패딩은 기본 arrowButton에서 8px로 고정되어 있음
+  ...responsiveProperty("fontSize", 16), // 1920px 기준 16px만 유지
 
   "@media": {
     [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      paddingTop: "10px", // 12px * 0.8
-      paddingBottom: "10px",
-      paddingLeft: "13px", // 16px * 0.8
-      paddingRight: "13px",
+      // 태블릿에서는 패딩 오버라이드 금지 - fontSize만 조정
       fontSize: "13px", // 16px * 0.8
-      gap: "10px", // 12px * 0.8
     },
     [breakpoints.mobile]: {
-      // 모바일에서 70% 크기
-      paddingTop: "8px", // 12px * 0.7
-      paddingBottom: "8px",
-      paddingLeft: "11px", // 16px * 0.7
-      paddingRight: "11px",
+      // 모바일에서는 패딩 오버라이드 금지 - fontSize만 조정
       fontSize: "11px", // 16px * 0.7
-      gap: "8px", // 12px * 0.7
     },
   },
 })
