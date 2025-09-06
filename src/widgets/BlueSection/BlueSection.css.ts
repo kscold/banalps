@@ -197,67 +197,6 @@ export const cardImage = style({
   borderRadius: "15px",
 })
 
-// 카드 하단 텍스트
-export const cardText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "14px",
-  fontWeight: "500",
-  color: "#FFFFFF",
-  textAlign: "center",
-  opacity: 0.95,
-  letterSpacing: "0.3px",
-  marginTop: "auto",
-  padding: "8px 0 4px",
-})
-
-// 카드 번호 (핑크색 원)
-export const cardNumber = style({
-  position: "absolute",
-  top: "-15px",
-  left: "-15px",
-  width: "36px",
-  height: "36px",
-  borderRadius: "50%",
-  background: "#FF1493",
-  color: "#FFFFFF",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "16px",
-  fontWeight: "700",
-  boxShadow: "0 4px 12px rgba(255, 20, 147, 0.4)",
-  zIndex: 2,
-})
-
-// 이전 스타일 호환성을 위한 더미 export
-export const imageGridContainer = style({
-  display: "none",
-})
-
-export const imageGrid = style({
-  display: "none",
-})
-
-export const imageCard = style({
-  display: "none",
-})
-
-export const imageItem = style({
-  display: "none",
-})
-
-export const gridImage = style({
-  display: "none",
-})
-
-export const imageText = style({
-  display: "none",
-})
-
-export const imageGridSection = style({
-  display: "none",
-})
-
 // RE.YOU 텍스트 섹션 (1920px 기준) - 헤더와 완전 일치
 export const reYouSection = style({
   position: "relative",

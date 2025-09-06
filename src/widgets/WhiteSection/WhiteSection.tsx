@@ -2,6 +2,9 @@
 
 import * as styles from "./WhiteSection.css"
 import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton"
+import GoogleMapEmbed, {
+  MapButtons,
+} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed"
 
 export default function WhiteSection() {
   return (
@@ -43,7 +46,6 @@ export default function WhiteSection() {
                 >
                   정수리 이식
                 </ArrowButton>
-                <div className={styles.cardNumber}>1</div>
               </div>
 
               {/* 카드 2: 헤어라인 교정 (오른쪽 위 - 작은 카드) */}
@@ -60,7 +62,6 @@ export default function WhiteSection() {
                 >
                   헤어라인 교정
                 </ArrowButton>
-                <div className={styles.cardNumber}>2</div>
               </div>
             </div>
 
@@ -80,7 +81,6 @@ export default function WhiteSection() {
                 >
                   이마 축소 수술
                 </ArrowButton>
-                <div className={styles.cardNumber}>3</div>
               </div>
 
               {/* 카드 4: 바날 재수술 (오른쪽 아래 - 큰 카드) */}
@@ -97,7 +97,6 @@ export default function WhiteSection() {
                 >
                   바날 재수술
                 </ArrowButton>
-                <div className={styles.cardNumber}>4</div>
               </div>
             </div>
           </div>
@@ -109,8 +108,6 @@ export default function WhiteSection() {
               <br />
               Service.
             </h3>
-
-            <div className={styles.serviceNumber}>5</div>
 
             <ArrowButton
               variant="secondary"
@@ -136,11 +133,24 @@ export default function WhiteSection() {
           </h2>
 
           <div className={styles.locationContent}>
-            <div className={styles.mapArea}>
-              {/* 지도 이미지 또는 임베드 */}
-              <div className={styles.mapPlaceholder}>지도 영역</div>
+            {/* Frame 311 - 왼쪽 이미지+지도 영역 */}
+            <div className={styles.leftContentArea}>
+              {/* Frame 416 - 왼쪽 이미지 영역 */}
+              <div className={styles.locationImageArea}>
+                <img
+                  src="/main/map/banal_house.jpg"
+                  alt="바날 성형외과 건물 이미지"
+                  className={styles.locationImage}
+                />
+              </div>
+
+              {/* Mask group - 지도 영역 */}
+              <div className={styles.mapArea}>
+                <GoogleMapEmbed />
+              </div>
             </div>
 
+            {/* Frame 318 - 오른쪽 정보 영역 */}
             <div className={styles.locationInfo}>
               <div className={styles.infoBox}>
                 <div className={styles.infoItem}>
@@ -175,10 +185,8 @@ export default function WhiteSection() {
                 </div>
               </div>
 
-              <div className={styles.mapButtons}>
-                <button className={styles.mapButton}>KAKAO MAP</button>
-                <button className={styles.mapButton}>NAVER MAP</button>
-              </div>
+              {/* 피그마 디자인대로 맵 버튼을 정보 섹션 아래에 추가 */}
+              <MapButtons />
             </div>
           </div>
         </div>

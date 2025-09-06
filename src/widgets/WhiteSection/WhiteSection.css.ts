@@ -62,25 +62,21 @@ export const mainTitle = style({
 
 // 메인 콘텐츠 영역 - flex로 처리
 export const mainContent = style({
-  width: vw(1600), // 1920px 기준 1600px
-  maxWidth: "100%", // 화면 너비 초과 방지
-  margin: "0 auto", // 중앙 정렬
+  width: "100%", // 컨테이너 전체 너비 사용
   display: "flex",
   gap: vw(12), // 12px gap
   height: vw(628), // 전체 높이
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1600px", // 1920px 이상에서 고정
       height: "628px",
       gap: "12px",
     },
     [breakpoints.tablet]: {
-      width: "calc(100% - 80px)",
       flexDirection: "column",
       height: "auto",
+      gap: "40px",
     },
     [breakpoints.mobile]: {
-      width: "calc(100% - 40px)",
       flexDirection: "column",
       height: "auto",
       gap: "20px",
@@ -258,36 +254,6 @@ export const viewMoreButton = style({
   },
 })
 
-// 카드 번호 배지 (1920px 기준) - 피그마 디자인 기준
-export const cardNumber = style({
-  position: "absolute",
-  top: vw(16), // 1920px 기준 16px (피그마에서 확인한 위치)
-  left: vw(16), // 1920px 기준 16px
-  width: vw(36), // 1920px 기준 36px
-  height: vw(36), // 1920px 기준 36px
-  borderRadius: "50%",
-  backgroundColor: "#BD4AF3",
-  color: "#FFFFFF",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontFamily: "'Inter', sans-serif",
-  fontWeight: 700,
-  ...responsiveFont(20), // 1920px 기준 20px
-  letterSpacing: "-0.6px",
-  zIndex: 10,
-  border: `${vw(4)} solid #FFFFFF`, // 흰색 테두리 추가
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      top: "16px",
-      left: "16px",
-      width: "36px",
-      height: "36px",
-      border: "4px solid #FFFFFF",
-    },
-  },
-})
-
 // Service 번호 배지 (Other Medical Service용) (1920px 기준)
 export const serviceNumber = style({
   position: "absolute",
@@ -371,39 +337,192 @@ export const readyImage = style({
   aspectRatio: "16 / 10",
 })
 
-// 위치 섹션
+// 위치 섹션 - 1920px 기준 responsiveContainer 적용
 export const locationSection = style({
-  padding: "120px 0",
+  width: "100%",
+  ...responsiveProperty("paddingTop", 120), // 1920px 기준 120px
+  ...responsiveProperty("paddingBottom", 120),
   borderTop: "1px solid #E0E0E0",
-})
-
-export const locationTitle = style({
-  fontSize: "60px",
-  fontWeight: "500",
-  lineHeight: "1.2",
-  marginBottom: "80px",
-  fontFamily: "'S-Core Dream', sans-serif",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-      marginBottom: "60px",
-    },
-  },
-})
-
-export const locationContent = style({
   display: "flex",
-  gap: "60px",
+  flexDirection: "column",
+  alignItems: "center",
+})
+
+// 위치 섹션 타이틀 - 1920px 기준
+export const locationTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60), // 1920px 기준 60px
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  margin: "0",
+  textAlign: "left",
+  width: "100%",
+  maxWidth: "1600px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
   "@media": {
-    "screen and (max-width: 1024px)": {
-      flexDirection: "column",
+    [`screen and (max-width: 1600px)`]: {
+      paddingLeft: "160px",
+      paddingRight: "160px",
+    },
+    [breakpoints.tablet]: {
+      paddingLeft: "40px",
+      paddingRight: "40px",
+    },
+    [breakpoints.mobile]: {
+      paddingLeft: "20px",
+      paddingRight: "20px",
     },
   },
 })
 
+// Frame 320 - 메인 콘텐츠 영역 (1600x500)
+export const locationContent = style({
+  width: "100%",
+  maxWidth: "1600px",
+  margin: "0 auto",
+  display: "flex",
+  ...responsiveProperty("gap", 78.7), // 피그마에서 Frame 311과 Frame 318 사이 간격
+  height: vw(500), // 피그마 디자인 높이 500px
+  boxSizing: "border-box", // 패딩 포함한 너비 계산
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      height: "500px",
+    },
+    [`screen and (max-width: 1600px)`]: {
+      width: "calc(100% - 320px)", // 좌우 160px 여백
+      paddingLeft: "0",
+      paddingRight: "0",
+    },
+    [breakpoints.tablet]: {
+      width: "calc(100% - 80px)", // 좌우 40px 여백
+      paddingLeft: "0",
+      paddingRight: "0",
+      flexDirection: "column",
+      height: "auto",
+      gap: "40px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      padding: "0 20px", // 모바일 좌우 20px 여백
+      flexDirection: "column",
+      height: "auto",
+      gap: "40px",
+    },
+  },
+})
+
+// Frame 311 - 왼쪽 이미지+지도 영역 (1121.29 x 500)
+export const leftContentArea = style({
+  flex: "1", // flex로 유연하게 크기 조정 (남은 공간 대부분 차지)
+  display: "flex",
+  ...responsiveProperty("gap", 20.29), // Frame 416과 Mask group 사이 간격
+  minHeight: vw(500),
+  minWidth: 0, // flex shrink를 위해 필요
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      minHeight: "500px",
+      gap: "20.29px",
+    },
+    [breakpoints.tablet]: {
+      flex: "1",
+      flexDirection: "column",
+      minHeight: "auto",
+      gap: "20px",
+    },
+    [breakpoints.mobile]: {
+      flex: "1",
+      flexDirection: "column",
+      minHeight: "auto",
+      gap: "20px",
+    },
+  },
+})
+
+// Frame 416 - 왼쪽 이미지 영역 (385 x 500)
+export const locationImageArea = style({
+  width: "34.3%", // 385 / 1121.29 ≈ 34.3% (비례적 크기)
+  aspectRatio: "385 / 500", // 비율 유지
+  borderRadius: vw(8),
+  overflow: "hidden",
+  backgroundColor: "#F5F5F5",
+  position: "relative",
+  flexShrink: 0, // 크기 유지
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "8px",
+    },
+    [breakpoints.tablet]: {
+      width: "100%",
+      aspectRatio: "16 / 10", // 태블릿에서 더 넓은 비율
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
+    },
+  },
+})
+
+// 왼쪽 이미지
+export const locationImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+})
+
+// Mask group - 지도 영역 (724.29 x 500)
 export const mapArea = style({
-  flex: "1",
-  minHeight: "500px",
+  flex: "1", // 남은 공간 모두 사용 (724.29 / 1121.29 ≈ 64.6%)
+  aspectRatio: "724.29 / 500", // 비율 유지
+  borderRadius: vw(8),
+  overflow: "hidden",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "8px",
+    },
+    [breakpoints.tablet]: {
+      width: "100%",
+      aspectRatio: "16 / 10", // 태블릿에서 더 넓은 비율
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
+    },
+  },
+})
+
+// Frame 318 - 오른쪽 정보 영역 (430.71 x 500)
+export const locationInfo = style({
+  width: "350px", // 고정 너비로 변경 (430.71px는 너무 크므로 350px로 조정)
+  minHeight: vw(500),
+  flexShrink: 0, // 크기 유지
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between", // infoBox와 MapButtons 사이 간격 최대화
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      minHeight: "500px",
+    },
+    [`screen and (max-width: 1400px)`]: {
+      width: "300px", // 중간 크기 화면에서 더 작게
+    },
+    [breakpoints.tablet]: {
+      width: "100%",
+      minHeight: "auto",
+      justifyContent: "flex-start", // 태블릿에서는 위쪽 정렬
+      gap: "40px", // 태블릿에서 간격
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      minHeight: "auto",
+      justifyContent: "flex-start", // 모바일에서는 위쪽 정렬
+      gap: "30px", // 모바일에서 간격
+    },
+  },
 })
 
 export const mapPlaceholder = style({
@@ -418,16 +537,19 @@ export const mapPlaceholder = style({
   color: "#999",
 })
 
-export const locationInfo = style({
-  flex: "1",
-  maxWidth: "500px",
-})
-
 export const infoBox = style({
   display: "flex",
   flexDirection: "column",
   gap: "40px",
-  marginBottom: "40px",
+  flex: "1", // 위쪽 공간 모두 차지
+  "@media": {
+    [breakpoints.tablet]: {
+      marginBottom: "0", // 태블릿에서는 마진 제거
+    },
+    [breakpoints.mobile]: {
+      marginBottom: "0", // 모바일에서는 마진 제거
+    },
+  },
 })
 
 export const infoItem = style({
@@ -463,6 +585,117 @@ export const subwayInfo = style({
   color: "#666666",
 })
 
+// Group 2449, 2448 - 번호 배지 (1, 2)
+export const locationNumberBadge = style({
+  position: "absolute",
+  width: "20%", // 이미지 크기에 비례
+  aspectRatio: "141 / 125", // 비율 유지
+  zIndex: 10,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "141px",
+      height: "125px",
+    },
+    [breakpoints.tablet]: {
+      display: "none", // 태블릿에서는 숨김
+    },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서는 숨김
+    },
+  },
+})
+
+// Group 2449 - "1" 배지 위치 (-24835, 11226)
+export const badge1 = style([
+  locationNumberBadge,
+  {
+    bottom: "15%", // 비례적 위치
+    left: "-10%", // 비례적 위치 (이미지 밖으로 살짝)
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        bottom: "74px",
+        left: "-148px",
+      },
+      [breakpoints.tablet]: {
+        display: "none", // 태블릿에서는 숨김
+      },
+      [breakpoints.mobile]: {
+        display: "none", // 모바일에서는 숨김
+      },
+    },
+  },
+])
+
+// Group 2448 - "2" 배지 위치 (-24687, 11226)
+export const badge2 = style([
+  locationNumberBadge,
+  {
+    bottom: "15%", // 비례적 위치
+    right: "10%", // 오른쪽에서 10% (이미지 내부)
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        bottom: "74px",
+        right: "50px",
+      },
+      [breakpoints.tablet]: {
+        display: "none", // 태블릿에서는 숨김
+      },
+      [breakpoints.mobile]: {
+        display: "none", // 모바일에서는 숨김
+      },
+    },
+  },
+])
+
+// 배지 내부 프레임
+export const badgeFrame = style({
+  width: "100%",
+  height: "100%",
+  border: `${vw(1)} solid #BD4AF3`,
+  borderRadius: vw(15),
+  position: "relative",
+  backgroundColor: "transparent",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      border: "1px solid #BD4AF3",
+      borderRadius: "15px",
+    },
+  },
+})
+
+// 배지 원형 배경
+export const badgeCircle = style({
+  position: "absolute",
+  top: vw(14), // 피그마 위치
+  left: vw(16), // 피그마 위치
+  width: vw(36),
+  height: vw(36),
+  borderRadius: "50%",
+  backgroundColor: "#BD4AF3",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      top: "14px",
+      left: "16px",
+      width: "36px",
+      height: "36px",
+    },
+  },
+})
+
+// 배지 숫자
+export const badgeNumber = style({
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 700,
+  ...responsiveFont(20),
+  letterSpacing: "-0.6px",
+  lineHeight: "30px",
+  color: "#FFFFFF",
+  textAlign: "center",
+})
+
 export const mapButtons = style({
   display: "flex",
   gap: "16px",
@@ -470,15 +703,24 @@ export const mapButtons = style({
 
 export const mapButton = style({
   padding: "9px 16px",
-  backgroundColor: "#14AEFF",
-  color: "#FFFFFF",
-  border: "none",
+  backgroundColor: "#FFFFFF",
+  color: "#14AEFF",
+  border: "2px solid #14AEFF",
   borderRadius: "8px",
   fontSize: "16px",
   fontWeight: "600",
   fontFamily: "'Poppins', sans-serif",
   cursor: "pointer",
   transition: "all 0.3s ease",
+  ":hover": {
+    backgroundColor: "#14AEFF",
+    color: "#FFFFFF",
+  },
+})
+
+export const activeMapButton = style({
+  backgroundColor: "#14AEFF",
+  color: "#FFFFFF",
   ":hover": {
     backgroundColor: "#0EA5E9",
   },
