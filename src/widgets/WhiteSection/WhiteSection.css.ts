@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css"
+
 import {
   vw,
   responsiveFont,
@@ -277,60 +278,7 @@ export const serviceNumber = style({
   },
 })
 
-// Ready 섹션
-export const readySection = style({
-  padding: "160px 0",
-  display: "flex",
-  gap: "80px",
-  alignItems: "center",
-  "@media": {
-    "screen and (max-width: 1024px)": {
-      flexDirection: "column",
-      padding: "120px 0",
-    },
-  },
-})
-
-export const readyContent = style({
-  flex: "1",
-  maxWidth: "600px",
-})
-
-export const readyTitle = style({
-  fontSize: "60px",
-  fontWeight: "500",
-  lineHeight: "1.3",
-  marginBottom: "80px",
-  fontFamily: "'Poppins', sans-serif",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "48px",
-      marginBottom: "60px",
-    },
-  },
-})
-
-export const readyDescription = style({
-  fontSize: "24px",
-  fontWeight: "400",
-  lineHeight: "1.5",
-  color: "#333333",
-  fontFamily: "'S-Core Dream', sans-serif",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: "18px",
-    },
-  },
-})
-
-export const readyImage = style({
-  flex: "1",
-  maxWidth: "700px",
-  borderRadius: "24px",
-  overflow: "hidden",
-  backgroundColor: "#F5F5F5",
-  aspectRatio: "16 / 10",
-})
+// 기존 ready 스타일들 정리됨 - We're Ready When You Are 섹션으로 교체
 
 // 위치 섹션 - 1920px 기준 responsiveContainer 적용
 export const locationSection = style({
@@ -545,316 +493,171 @@ export const subwayInfo = style({
   color: "#666666",
 })
 
-// Group 2449, 2448 - 번호 배지 (1, 2)
-export const locationNumberBadge = style({
-  position: "absolute",
-  width: "20%", // 이미지 크기에 비례
-  aspectRatio: "141 / 125", // 비율 유지
-  zIndex: 10,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "141px",
-      height: "125px",
-    },
-    [breakpoints.mobile]: {
-      display: "none", // 모바일에서는 숨김
-    },
-  },
-})
+// ==================== WE'RE READY WHEN YOU ARE SECTION ====================
 
-// Group 2449 - "1" 배지 위치 (-24835, 11226)
-export const badge1 = style([
-  locationNumberBadge,
-  {
-    bottom: "15%", // 비례적 위치
-    left: "-10%", // 비례적 위치 (이미지 밖으로 살짝)
-    "@media": {
-      [breakpoints.desktopLarge]: {
-        bottom: "74px",
-        left: "-148px",
-      },
-      [breakpoints.mobile]: {
-        display: "none", // 모바일에서는 숨김
-      },
-    },
-  },
-])
-
-// Group 2448 - "2" 배지 위치 (-24687, 11226)
-export const badge2 = style([
-  locationNumberBadge,
-  {
-    bottom: "15%", // 비례적 위치
-    right: "10%", // 오른쪽에서 10% (이미지 내부)
-    "@media": {
-      [breakpoints.desktopLarge]: {
-        bottom: "74px",
-        right: "50px",
-      },
-      [breakpoints.mobile]: {
-        display: "none", // 모바일에서는 숨김
-      },
-    },
-  },
-])
-
-// 배지 내부 프레임
-export const badgeFrame = style({
-  width: "100%",
-  height: "100%",
-  border: `${vw(1)} solid #BD4AF3`,
-  borderRadius: vw(15),
+// Ready Section - 헤어라인 페이지와 유사한 구조
+export const readySection = style({
   position: "relative",
-  backgroundColor: "transparent",
+  width: "100%",
+  // minHeight: "100vh",
+  overflow: "hidden",
+  backgroundColor: "#FFFFFF",
+  paddingTop: vw(120),
+  paddingBottom: vw(120),
+  marginBottom: vw(120),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      border: "1px solid #BD4AF3",
-      borderRadius: "15px",
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      paddingTop: "80px",
+      paddingBottom: "80px",
     },
   },
 })
 
-// 배지 원형 배경
-export const badgeCircle = style({
+export const readySectionContainer = style({
+  position: "relative",
+  width: "100%",
+  maxWidth: "1920px", // Hero는 1920px 전체 사용
+  margin: "0 auto",
+  minHeight: vw(600),
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      padding: "0 20px", // 모바일에서 좌우 패딩
+      minHeight: "auto",
+    },
+  },
+})
+
+// 일러스트 - 왼쪽 끝부터 헤더 컨테이너의 오른쪽 끝까지 (responsiveContainer와 정확히 동일한 계산)
+export const readyHeroIllustration = style({
   position: "absolute",
-  top: vw(14), // 피그마 위치
-  left: vw(16), // 피그마 위치
-  width: vw(36),
-  height: vw(36),
-  borderRadius: "50%",
-  backgroundColor: "#BD4AF3",
+  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
+  width: "1600px", // 헤더와 완전히 동일한 최대 너비
+  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  top: "50%",
+  transform: "translateY(-50%)",
+  height: vw(800), // 1920px 기준 800px 높이로 조정 (더 적절한 비율)
+  zIndex: 1,
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      position: "relative",
+      left: "auto",
+      right: "auto",
+      width: "100%",
+      maxWidth: "100%",
+      top: "auto",
+      transform: "none",
+      height: "250px",
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: "40px",
+    },
+  },
+})
+
+export const readyIllustrationImage = style({
+  width: "100%",
+  height: "100%", // 컨테이너 높이에 맞춤
+  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
+})
+
+// 타이틀 래퍼 - 1600px 컨테이너 내부에서 헤더 왼쪽 시작점에 정렬
+export const readyTitleWrapper = style({
+  ...responsiveContainer(1600), // 헤더와 동일한 1600px 컨테이너
+  position: "absolute",
+  top: "0",
+  bottom: "0",
+  left: "50%", // 중앙 정렬을 위한 기준점
+  transform: "translateX(-50%)", // 중앙 정렬
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      top: "14px",
-      left: "16px",
-      width: "36px",
-      height: "36px",
+    [breakpoints.mobile]: {
+      position: "relative",
+      top: "auto",
+      bottom: "auto",
+      left: "auto",
+      transform: "none",
     },
   },
 })
 
-// 배지 숫자
-export const badgeNumber = style({
-  fontFamily: "'Inter', sans-serif",
-  fontWeight: 700,
-  ...responsiveFont(20),
-  letterSpacing: "-0.6px",
-  lineHeight: "30px",
-  color: "#FFFFFF",
-  textAlign: "center",
-})
-
-export const mapButtons = style({
+export const readyTitleContainer = style({
   display: "flex",
-  gap: "16px",
+  flexDirection: "column",
+  alignItems: "flex-start", // 왼쪽 정렬
+  textAlign: "left", // 왼쪽 텍스트 정렬
+  gap: vw(40),
+  width: "100%",
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      gap: "30px",
+      alignItems: "center", // 모바일에서만 중앙 정렬
+      textAlign: "center",
+      paddingLeft: "0", // 모바일에서는 패딩 제거
+    },
+  },
 })
 
-export const mapButton = style({
-  padding: "9px 16px",
-  backgroundColor: "#FFFFFF",
+// 메인 타이틀 - Figma: Poppins Medium 60px, #14AEFF
+export const readyMainTitle = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60),
+  lineHeight: vw(78),
+  letterSpacing: "0",
   color: "#14AEFF",
-  border: "2px solid #14AEFF",
-  borderRadius: "8px",
-  fontSize: "16px",
-  fontWeight: "600",
-  fontFamily: "'Poppins', sans-serif",
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  ":hover": {
-    backgroundColor: "#14AEFF",
-    color: "#FFFFFF",
+  margin: 0,
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px",
+      lineHeight: "78px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "36px",
+      lineHeight: "48px",
+    },
   },
 })
 
-export const activeMapButton = style({
-  backgroundColor: "#14AEFF",
-  color: "#FFFFFF",
-  ":hover": {
-    backgroundColor: "#0EA5E9",
+// 설명 컨테이너
+export const readyDescription = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(24),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "24px",
+    },
+    [breakpoints.mobile]: {
+      gap: "20px",
+    },
   },
 })
 
-// 푸터 이미지
-export const footerImage = style({
-  position: "relative",
-  width: "100vw",
-  marginLeft: "-60px",
-  marginRight: "-60px",
-  height: "540px",
-  marginTop: "120px",
-  backgroundColor: "#F5F5F5",
-  backgroundImage: "url('/main/footer-bg.jpg')",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  borderRadius: "8px 8px 0 0",
-})
-
-export const footerOverlay = style({
-  position: "absolute",
-  bottom: "0",
-  left: "0",
-  right: "0",
-  padding: "80px 60px",
-  background: "rgba(255, 255, 255, 0.3)",
-  backdropFilter: "blur(10px)",
-})
-
-export const footerTitle = style({
-  fontSize: "20px",
-  fontWeight: "400",
-  lineHeight: "1.3",
-  color: "#FFFFFF",
-  marginBottom: "180px",
-  fontFamily: "'Poppins', sans-serif",
-})
-
-export const footerCopyright = style({
-  fontSize: "14px",
-  fontWeight: "400",
-  color: "#FFFFFF",
-  fontFamily: "'Poppins', sans-serif",
-})
-
-// Legacy styles (keeping for compatibility)
-export const gradientBackground = style({
-  display: "none",
-})
-
-export const titleSection = style({
-  display: "none",
-})
-
-export const titleLine1 = style({
-  display: "none",
-})
-
-export const titleLine2 = style({
-  display: "none",
-})
-
-export const subtitle = style({
-  display: "none",
-})
-
-export const contentSection = style({
-  display: "none",
-})
-
-export const imageArea = style({
-  display: "none",
-})
-
-export const mainImage = style({
-  display: "none",
-})
-
-export const textArea = style({
-  display: "none",
-})
-
-export const sectionTitle = style({
-  display: "none",
-})
-
-export const highlight = style({
-  display: "none",
-})
-
-export const description = style({
-  display: "none",
-})
-
-export const featuresList = style({
-  display: "none",
-})
-
-export const featureCard = style({
-  display: "none",
-})
-
-export const featureNumber = style({
-  display: "none",
-})
-
-export const featureTitle = style({
-  display: "none",
-})
-
-export const featureDesc = style({
-  display: "none",
-})
-
-export const beforeAfterSection = style({
-  display: "none",
-})
-
-export const galleryTitle = style({
-  display: "none",
-})
-
-export const galleryGrid = style({
-  display: "none",
-})
-
-export const beforeAfterCard = style({
-  display: "none",
-})
-
-export const beforeImage = style({
-  display: "none",
-})
-
-export const afterImage = style({
-  display: "none",
-})
-
-export const caseLabel = style({
-  display: "none",
-})
-
-export const topSection = style({
-  display: "none",
-})
-
-export const imageWrapper = style({
-  display: "none",
-})
-
-export const imagePlaceholder = style({
-  display: "none",
-})
-
-export const textContent = style({
-  display: "none",
-})
-
-export const title = style({
-  display: "none",
-})
-
-export const features = style({
-  display: "none",
-})
-
-export const featureItem = style({
-  display: "none",
-})
-
-export const featureIcon = style({
-  display: "none",
-})
-
-export const featureText = style({
-  display: "none",
-})
-
-export const gallerySection = style({
-  display: "none",
-})
-
-export const galleryItem = style({
-  display: "none",
+// 설명 텍스트 - Figma: S-Core Dream Regular 24px, #14AEFF
+export const readyDescriptionText = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  ...responsiveFont(24),
+  lineHeight: vw(36),
+  letterSpacing: "0",
+  color: "#14AEFF",
+  margin: 0,
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "24px",
+      lineHeight: "36px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "18px",
+      lineHeight: "28px",
+    },
+  },
 })

@@ -1,13 +1,9 @@
 "use client"
 
 import * as styles from "./DoctorsPage.css"
-import { useHistoryData } from "../../shared/hooks/useHistoryData"
 
 export default function DoctorsPage() {
   console.log("[DoctorsPage] 의료진 소개 페이지 렌더링")
-
-  const { selectedYear, availableYears, currentData, handleYearSelect } =
-    useHistoryData()
 
   return (
     <div className={styles.doctorsPage}>
@@ -321,62 +317,63 @@ export default function DoctorsPage() {
             </h2>
           </div>
 
-          {/* 연도 선택 부분 */}
-          <div className={styles.yearSelection}>
-            <div className={styles.yearButtons}>
-              {availableYears.map((year) => (
-                <button
-                  key={year}
-                  onClick={() => handleYearSelect(year)}
-                  className={`${styles.yearButton} ${
-                    selectedYear === year ? styles.yearButtonActive : ""
-                  }`}
-                >
-                  {year}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 학회 발표 및 논문 콘텐츠 */}
-          <div className={styles.historyContent}>
-            <div className={styles.historyGrid}>
-              {/* 왼쪽: 학회 발표 */}
-              <div className={styles.presentationSection}>
-                <h3 className={styles.sectionTitle}>학회 발표</h3>
-                <div className={styles.presentationList}>
-                  {currentData.presentations.map((presentation, index) => (
-                    <div key={index} className={styles.presentationItem}>
-                      <div className={styles.presentationDate}>
-                        {presentation.date}
-                      </div>
-                      <div className={styles.presentationContent}>
-                        <h4 className={styles.presentationTitle}>
-                          {presentation.title}
-                        </h4>
-                        <p className={styles.presentationDescription}>
-                          {presentation.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+          {/* 타임라인 레이아웃 */}
+          <div className={styles.timelineLayout}>
+            {/* 상단 타임라인 - 2011년 */}
+            <div className={styles.timelineRow}>
+              {/* 2011년 그룹 */}
+              <div className={styles.year2011Group}>
+                <div className={styles.yearLabel2011}>2011</div>
+                <div className={styles.year2011Content}>
+                  <p className={styles.year2011Text}>바람부는날에도 성형외과 개원</p>
+                  <p className={styles.year2011Text}>모발이식 전문 클리닉 시작</p>
                 </div>
               </div>
+              
+              {/* 화살표 */}
+              <div className={styles.timelineArrow}>
+                <svg className={styles.timelineArrowSvg} width="335" height="165" viewBox="0 0 335 165" fill="none">
+                  <path d="M2 82.5L333 82.5M333 82.5L283 32.5M333 82.5L283 132.5" stroke="#14AEFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              
+              {/* 2011년 흰색 프레임 */}
+              <div className={styles.whiteFrame2011}>
+                <div className={styles.frameContent}>
+                  <h4 className={styles.frameTitle}>개원 초기</h4>
+                  <p className={styles.frameText}>전문성을 바탕으로 한<br />모발이식 클리닉 개원</p>
+                </div>
+              </div>
+            </div>
 
-              {/* 오른쪽: 논문 */}
-              <div className={styles.paperSection}>
-                <h3 className={styles.sectionTitle}>논문</h3>
-                <div className={styles.paperList}>
-                  {currentData.papers.map((paper, index) => (
-                    <div key={index} className={styles.paperItem}>
-                      <div className={styles.paperDate}>{paper.date}</div>
-                      <div className={styles.paperContent}>
-                        <h4 className={styles.paperTitle}>{paper.title}</h4>
-                        <p className={styles.paperJournal}>{paper.journal}</p>
-                        <p className={styles.paperAuthors}>{paper.authors}</p>
-                      </div>
-                    </div>
-                  ))}
+            {/* 하단 타임라인 - 2024년 */}
+            <div className={styles.timelineRow}>
+              {/* 2024년 흰색 프레임 */}
+              <div className={styles.whiteFrame2024}>
+                <div className={styles.frameContent}>
+                  <h4 className={styles.frameTitle}>현재</h4>
+                  <p className={styles.frameText}>15년간의 경험과 노하우<br />최첨단 시설과 기술</p>
+                </div>
+              </div>
+              
+              {/* 원형 아이콘 그룹 */}
+              <div className={styles.circleIconGroup}>
+                <div className={styles.circleIcon}>
+                  <svg className={styles.circleIconSvg} width="154" height="139" viewBox="0 0 154 139" fill="none">
+                    <circle cx="77" cy="69.5" r="77" fill="#14AEFF"/>
+                    <path d="M77 25L95 43H59L77 25Z" fill="white"/>
+                    <rect x="65" y="43" width="24" height="52" fill="white"/>
+                    <rect x="50" y="95" width="54" height="8" fill="white"/>
+                  </svg>
+                </div>
+              </div>
+              
+              {/* 2024년 그룹 */}
+              <div className={styles.year2024Group}>
+                <div className={styles.yearLabel2024}>2024</div>
+                <div className={styles.year2024Content}>
+                  <p className={styles.year2024Text}>국제적 수준의 모발이식 클리닉</p>
+                  <p className={styles.year2024Text}>지속적인 연구와 학술활동</p>
                 </div>
               </div>
             </div>

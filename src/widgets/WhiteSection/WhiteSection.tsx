@@ -42,6 +42,7 @@ export default function WhiteSection() {
                 <ArrowButton
                   variant="primary"
                   size="medium"
+                  color="blue"
                   className={styles.cardButton}
                 >
                   정수리 이식
@@ -58,6 +59,7 @@ export default function WhiteSection() {
                 <ArrowButton
                   variant="primary"
                   size="medium"
+                  color="blue"
                   className={styles.cardButton}
                 >
                   헤어라인 교정
@@ -77,6 +79,7 @@ export default function WhiteSection() {
                 <ArrowButton
                   variant="primary"
                   size="medium"
+                  color="blue"
                   className={styles.cardButton}
                 >
                   이마 축소 수술
@@ -93,6 +96,7 @@ export default function WhiteSection() {
                 <ArrowButton
                   variant="primary"
                   size="medium"
+                  color="blue"
                   className={styles.cardButton}
                 >
                   바날 재수술
@@ -109,11 +113,7 @@ export default function WhiteSection() {
               Service.
             </h3>
 
-            <ArrowButton
-              variant="secondary"
-              size="medium"
-              className={styles.viewMoreButton}
-            >
+            <ArrowButton size="medium" className={styles.viewMoreButton}>
               View More
             </ArrowButton>
             <img
@@ -123,71 +123,107 @@ export default function WhiteSection() {
             />
           </div>
         </div>
+      </div>
+      {/* We're Ready When You Are 섹션 */}
+      <section className={styles.readySection}>
+        <div className={styles.readySectionContainer}>
+          {/* Hero Illustration - 왼쪽에 붙도록 */}
+          <div className={styles.readyHeroIllustration}>
+            <img
+              src="/hairline/hero-illustration.svg"
+              alt="메인 페이지 일러스트"
+              className={styles.readyIllustrationImage}
+            />
+          </div>
 
-        {/* 오시는 길 섹션 */}
-        <div className={styles.locationSection}>
-          <h2 className={styles.locationTitle}>
-            바날
-            <br />
-            오시는 길.
-          </h2>
+          {/* Ready Title - 중앙에 배치 */}
+          <div className={styles.readyTitleWrapper}>
+            <div className={styles.readyTitleContainer}>
+              <h2 className={styles.readyMainTitle}>
+                We're Ready
+                <br />
+                When You Are.
+              </h2>
+              <div className={styles.readyDescription}>
+                <p className={styles.readyDescriptionText}>
+                  신뢰할 수 있는 전문성과 정직한 마음으로
+                  <br />
+                  모든 준비를 마친 이곳에서 당신을 기다립니다.
+                </p>
+                <p className={styles.readyDescriptionText}>
+                  이제, 바람부는날에도
+                  <br />
+                  기분 좋은 일상을 맞이하시길 바랍니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className={styles.locationContent}>
-            {/* Frame 311 - 왼쪽 이미지+지도 영역 */}
-            <div className={styles.leftContentArea}>
-              {/* Frame 416 - 왼쪽 이미지 영역 */}
-              <div className={styles.locationImageArea}>
-                <img
-                  src="/main/map/banal_house.jpg"
-                  alt="바날 성형외과 건물 이미지"
-                  className={styles.locationImage}
-                />
+      {/* 오시는 길 섹션 */}
+      <div className={styles.locationSection}>
+        <h2 className={styles.locationTitle}>
+          바날
+          <br />
+          오시는 길.
+        </h2>
+
+        <div className={styles.locationContent}>
+          {/* Frame 311 - 왼쪽 이미지+지도 영역 */}
+          <div className={styles.leftContentArea}>
+            {/* Frame 416 - 왼쪽 이미지 영역 */}
+            <div className={styles.locationImageArea}>
+              <img
+                src="/main/map/banal_house.jpg"
+                alt="바날 성형외과 건물 이미지"
+                className={styles.locationImage}
+              />
+            </div>
+
+            {/* Mask group - 지도 영역 */}
+            <div className={styles.mapArea}>
+              <GoogleMapEmbed />
+            </div>
+          </div>
+
+          {/* Frame 318 - 오른쪽 정보 영역 */}
+          <div className={styles.locationInfo}>
+            <div className={styles.infoBox}>
+              <div className={styles.infoItem}>
+                <span className={styles.infoLabel}>전화번호</span>
+                <span className={styles.infoValue}>02.540.0700</span>
               </div>
 
-              {/* Mask group - 지도 영역 */}
-              <div className={styles.mapArea}>
-                <GoogleMapEmbed />
+              <div className={styles.infoItem}>
+                <span className={styles.infoLabel}>진료시간</span>
+                <div className={styles.infoValue}>
+                  <p className={styles.infoValueParagraph}>
+                    평일 Am 09:00 ~ Pm 07:00
+                  </p>
+                  <p className={styles.infoValueParagraph}>
+                    토요일 Am 09:00 ~ Pm 05:00
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.infoItem}>
+                <span className={styles.infoLabel}>오시는길</span>
+                <div className={styles.infoValue}>
+                  <p className={styles.infoValueParagraph}>
+                    서울특별시 서초구 신반포로 47길 66
+                  </p>
+                  <p className={styles.infoValueParagraph}>(잠원동 29-18)</p>
+                  <p className={styles.subwayInfo}>
+                    : 신사역 4번출구에서 331M
+                    <br />: 논현역 8번출구에서 330M
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Frame 318 - 오른쪽 정보 영역 */}
-            <div className={styles.locationInfo}>
-              <div className={styles.infoBox}>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>전화번호</span>
-                  <span className={styles.infoValue}>02.540.0700</span>
-                </div>
-
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>진료시간</span>
-                  <div className={styles.infoValue}>
-                    <p className={styles.infoValueParagraph}>
-                      평일 Am 09:00 ~ Pm 07:00
-                    </p>
-                    <p className={styles.infoValueParagraph}>
-                      토요일 Am 09:00 ~ Pm 05:00
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.infoItem}>
-                  <span className={styles.infoLabel}>오시는길</span>
-                  <div className={styles.infoValue}>
-                    <p className={styles.infoValueParagraph}>
-                      서울특별시 서초구 신반포로 47길 66
-                    </p>
-                    <p className={styles.infoValueParagraph}>(잠원동 29-18)</p>
-                    <p className={styles.subwayInfo}>
-                      : 신사역 4번출구에서 331M
-                      <br />: 논현역 8번출구에서 330M
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 피그마 디자인대로 맵 버튼을 정보 섹션 아래에 추가 */}
-              <MapButtons />
-            </div>
+            {/* 피그마 디자인대로 맵 버튼을 정보 섹션 아래에 추가 */}
+            <MapButtons />
           </div>
         </div>
       </div>

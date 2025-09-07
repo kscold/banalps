@@ -1165,361 +1165,334 @@ export const historyTitle = style({
   },
 })
 
-// 연도 선택 부분
-export const yearSelection = style({
-  display: "flex",
-  justifyContent: "center",
-  marginBottom: vw(80),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      marginBottom: "80px",
-    },
-    [breakpoints.mobile]: {
-      marginBottom: "60px",
-    },
-  },
-})
-
-export const yearButtons = style({
-  display: "flex",
-  gap: vw(24),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "24px",
-    },
-    [breakpoints.mobile]: {
-      gap: "16px",
-    },
-  },
-})
-
-export const yearButton = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(24),
-  lineHeight: vw(30),
-  letterSpacing: "0",
-  color: "#BBBBBB",
-  backgroundColor: "transparent",
-  border: "none",
-  padding: `${vw(16)} ${vw(32)}`,
-  borderRadius: vw(12),
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  position: "relative",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "24px",
-      lineHeight: "30px",
-      padding: "16px 32px",
-      borderRadius: "12px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "18px",
-      lineHeight: "24px",
-      padding: "12px 24px",
-    },
-  },
-  ":hover": {
-    color: "#14AEFF",
-    backgroundColor: "rgba(20, 174, 255, 0.1)",
-  },
-})
-
-export const yearButtonActive = style({
-  color: "#14AEFF !important",
-  backgroundColor: "rgba(20, 174, 255, 0.1)",
-  "::after": {
-    content: '""',
-    position: "absolute",
-    bottom: vw(-8),
-    left: "50%",
-    transform: "translateX(-50%)",
-    width: "60%",
-    height: vw(3),
-    backgroundColor: "#14AEFF",
-    borderRadius: vw(2),
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      "::after": {
-        bottom: "-8px",
-        height: "3px",
-        borderRadius: "2px",
-      },
-    },
-  },
-})
-
-// 연혁 콘텐츠
-export const historyContent = style({
+// 타임라인 레이아웃
+export const timelineLayout = style({
   width: "100%",
-})
-
-export const historyGrid = style({
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: vw(120),
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(80),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "120px",
+      gap: "80px",
     },
     [breakpoints.mobile]: {
-      gridTemplateColumns: "1fr",
       gap: "60px",
     },
   },
 })
 
-// 섹션 타이틀 (학회 발표, 논문)
-export const sectionTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(32),
-  lineHeight: vw(40),
-  letterSpacing: "0",
-  color: "#272727",
-  marginBottom: vw(40),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "32px",
-      lineHeight: "40px",
-      marginBottom: "40px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "24px",
-      lineHeight: "30px",
-      marginBottom: "30px",
-    },
-  },
-})
-
-// 학회 발표 섹션
-export const presentationSection = style({
+export const timelineRow = style({
   width: "100%",
-})
-
-export const presentationList = style({
   display: "flex",
-  flexDirection: "column",
-  gap: vw(32),
+  alignItems: "center",
+  gap: vw(60),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "32px",
-    },
-    [breakpoints.mobile]: {
-      gap: "24px",
-    },
-  },
-})
-
-export const presentationItem = style({
-  display: "flex",
-  gap: vw(24),
-  padding: vw(24),
-  backgroundColor: "#F8F9FA",
-  borderRadius: vw(16),
-  borderLeft: `${vw(4)} solid #14AEFF`,
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "24px",
-      padding: "24px",
-      borderRadius: "16px",
-      borderLeft: "4px solid #14AEFF",
+      gap: "60px",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: "16px",
-      padding: "20px",
+      gap: "30px",
     },
-  },
-  ":hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   },
 })
 
-export const presentationDate = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 600,
-  ...responsiveFont(16),
-  lineHeight: vw(20),
+// 2011년 그룹
+export const year2011Group = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  gap: vw(20),
+  width: vw(730),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+      width: "730px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      alignItems: "center",
+      textAlign: "center",
+    },
+  },
+})
+
+export const yearLabel2011 = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 700,
+  ...responsiveFont(80),
+  lineHeight: vw(96),
   color: "#14AEFF",
-  minWidth: vw(80),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "20px",
-      minWidth: "80px",
-    },
-    [breakpoints.mobile]: {
-      minWidth: "auto",
-    },
-  },
-})
-
-export const presentationContent = style({
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(8),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "8px",
-    },
-  },
-})
-
-export const presentationTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(18),
-  lineHeight: vw(24),
-  color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      lineHeight: "24px",
+      fontSize: "80px",
+      lineHeight: "96px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "48px",
+      lineHeight: "60px",
     },
   },
 })
 
-export const presentationDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
-  ...responsiveFont(14),
-  lineHeight: vw(20),
-  color: "#666666",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "14px",
-      lineHeight: "20px",
-    },
-  },
-})
-
-// 논문 섹션
-export const paperSection = style({
-  width: "100%",
-})
-
-export const paperList = style({
+export const year2011Content = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(32),
+  gap: vw(12),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "32px",
-    },
-    [breakpoints.mobile]: {
-      gap: "24px",
+      gap: "12px",
     },
   },
 })
 
-export const paperItem = style({
-  display: "flex",
-  gap: vw(24),
-  padding: vw(24),
-  backgroundColor: "#F8F9FA",
-  borderRadius: vw(16),
-  borderLeft: `${vw(4)} solid #FF6B6B`,
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "24px",
-      padding: "24px",
-      borderRadius: "16px",
-      borderLeft: "4px solid #FF6B6B",
-    },
-    [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "16px",
-      padding: "20px",
-    },
-  },
-  ":hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  },
-})
-
-export const paperDate = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 600,
-  ...responsiveFont(16),
-  lineHeight: vw(20),
-  color: "#FF6B6B",
-  minWidth: vw(80),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "20px",
-      minWidth: "80px",
-    },
-    [breakpoints.mobile]: {
-      minWidth: "auto",
-    },
-  },
-})
-
-export const paperContent = style({
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(8),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "8px",
-    },
-  },
-})
-
-export const paperTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(18),
-  lineHeight: vw(24),
-  color: "#272727",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      lineHeight: "24px",
-    },
-  },
-})
-
-export const paperJournal = style({
+export const year2011Text = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
-  ...responsiveFont(14),
-  lineHeight: vw(20),
-  color: "#14AEFF",
+  ...responsiveFont(20),
+  lineHeight: vw(28),
+  color: "#666666",
   margin: 0,
-  fontStyle: "italic",
   "@media": {
     [breakpoints.desktopLarge]: {
+      fontSize: "20px",
+      lineHeight: "28px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+  },
+})
+
+// 화살표
+export const timelineArrow = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: vw(335),
+  height: vw(165),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "335px",
+      height: "165px",
+    },
+    [breakpoints.mobile]: {
+      width: "200px",
+      height: "100px",
+      transform: "rotate(90deg)",
+    },
+  },
+})
+
+export const timelineArrowSvg = style({
+  width: "100%",
+  height: "100%",
+})
+
+// 흰색 프레임들
+export const whiteFrame2011 = style({
+  backgroundColor: "#FFFFFF",
+  borderRadius: vw(12),
+  width: vw(380),
+  height: vw(250),
+  padding: vw(32),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "12px",
+      width: "380px",
+      height: "250px",
+      padding: "32px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+      padding: "24px",
+    },
+  },
+})
+
+export const whiteFrame2024 = style({
+  backgroundColor: "#FFFFFF",
+  borderRadius: vw(12),
+  width: vw(300),
+  height: vw(250),
+  padding: vw(32),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "12px",
+      width: "300px",
+      height: "250px",
+      padding: "32px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+      padding: "24px",
+    },
+  },
+})
+
+export const frameContent = style({
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(16),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "16px",
+    },
+  },
+})
+
+export const frameTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(24),
+  lineHeight: vw(30),
+  color: "#272727",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "24px",
+      lineHeight: "30px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "20px",
+      lineHeight: "26px",
+    },
+  },
+})
+
+export const frameText = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 300,
+  ...responsiveFont(16),
+  lineHeight: vw(22),
+  color: "#666666",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      lineHeight: "22px",
+    },
+    [breakpoints.mobile]: {
       fontSize: "14px",
       lineHeight: "20px",
     },
   },
 })
 
-export const paperAuthors = style({
+// 원형 아이콘 그룹
+export const circleIconGroup = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: vw(248),
+  height: vw(248),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "248px",
+      height: "248px",
+    },
+    [breakpoints.mobile]: {
+      width: "150px",
+      height: "150px",
+    },
+  },
+})
+
+export const circleIcon = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+})
+
+export const circleIconSvg = style({
+  width: "100%",
+  height: "100%",
+})
+
+// 2024년 그룹
+export const year2024Group = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+  gap: vw(20),
+  width: vw(730),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+      width: "730px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      alignItems: "center",
+      textAlign: "center",
+    },
+  },
+})
+
+export const yearLabel2024 = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
-  ...responsiveFont(14),
-  lineHeight: vw(20),
+  fontWeight: 700,
+  ...responsiveFont(80),
+  lineHeight: vw(96),
+  color: "#14AEFF",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "80px",
+      lineHeight: "96px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "48px",
+      lineHeight: "60px",
+    },
+  },
+})
+
+export const year2024Content = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(12),
+  textAlign: "right",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "12px",
+    },
+    [breakpoints.mobile]: {
+      textAlign: "center",
+    },
+  },
+})
+
+export const year2024Text = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  ...responsiveFont(20),
+  lineHeight: vw(28),
   color: "#666666",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "14px",
-      lineHeight: "20px",
+      fontSize: "20px",
+      lineHeight: "28px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "16px",
+      lineHeight: "24px",
     },
   },
 })
