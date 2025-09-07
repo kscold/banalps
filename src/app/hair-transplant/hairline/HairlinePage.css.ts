@@ -33,9 +33,6 @@ export const hairlineHeroContainer = style({
   margin: "0 auto",
   height: "100vh",
   "@media": {
-    [breakpoints.tablet]: {
-      padding: "0 40px", // 태블릿에서 좌우 패딩
-    },
     [breakpoints.mobile]: {
       padding: "0 20px", // 모바일에서 좌우 패딩
     },
@@ -57,18 +54,6 @@ export const hairlineHeroIllustration = style({
     },
     "screen and (max-width: 1919px)": {
       right: vw(160), // 1024px~1919px에서 비례 스케일링
-    },
-    [breakpoints.tablet]: {
-      position: "relative",
-      left: "auto",
-      right: "auto",
-      top: "auto",
-      transform: "none",
-      height: "400px",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      marginBottom: "40px",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -106,11 +91,6 @@ export const hairlineHeroTitleWrapper = style({
     [breakpoints.desktopLarge]: {
       paddingRight: "60px", // 헤더와 동일한 고정 패딩
     },
-    [breakpoints.tablet]: {
-      position: "relative",
-      justifyContent: "center",
-      paddingRight: "0",
-    },
     [breakpoints.mobile]: {
       position: "relative",
       justifyContent: "center",
@@ -132,16 +112,6 @@ export const hairlineHeroTitleContainer = style({
       marginRight: "160px", // 1920px+ 고정 마진
       paddingLeft: "40px",
       paddingRight: "60px", // 헤더와 동일한 고정 패딩
-    },
-    [breakpoints.tablet]: {
-      position: "relative",
-      top: "auto",
-      transform: "none",
-      textAlign: "center",
-      marginRight: "0",
-      paddingLeft: "0",
-      paddingRight: "0",
-      right: "auto",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -171,9 +141,6 @@ export const hairlineHeroTitle = style({
     [breakpoints.desktopLarge]: {
       lineHeight: "72px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      lineHeight: "58px",
-    },
     [breakpoints.mobile]: {
       lineHeight: "44px",
     },
@@ -200,9 +167,6 @@ export const section1 = style({
       paddingTop: "120px", // 1920px+ 고정 (좌우 패딩 제거)
       paddingBottom: "120px",
     },
-    [breakpoints.tablet]: {
-      padding: "80px 20px", // 태블릿에서 축소
-    },
     [breakpoints.mobile]: {
       padding: "60px 20px", // 모바일에서 축소
     },
@@ -226,10 +190,6 @@ export const section1Left = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "80px", // 1920px+ 고정
-    },
-    [breakpoints.tablet]: {
-      position: "static",
-      paddingTop: "40px",
     },
     [breakpoints.mobile]: {
       position: "static",
@@ -255,10 +215,6 @@ export const section1Title = style({
       lineHeight: "56px",
       margin: "0 0 40px 0",
     },
-    [breakpoints.tablet]: {
-      lineHeight: "44px",
-      margin: "0 0 30px 0",
-    },
     [breakpoints.mobile]: {
       lineHeight: "44px",
       margin: "0 0 30px 0",
@@ -277,10 +233,6 @@ export const section1Image = style({
       width: "400px", // 1920px+ 고정
       marginTop: "40px",
       marginBottom: "40px",
-    },
-    [breakpoints.tablet]: {
-      width: "300px", // 태블릿에서 축소
-      margin: "30px 0",
     },
     [breakpoints.mobile]: {
       width: "250px", // 모바일에서 더 축소
@@ -316,10 +268,6 @@ export const section1Description = style({
       lineHeight: "30px",
       maxWidth: "500px",
     },
-    [breakpoints.tablet]: {
-      lineHeight: "28px",
-      maxWidth: "100%",
-    },
     [breakpoints.mobile]: {
       lineHeight: "28px",
       maxWidth: "100%",
@@ -346,9 +294,6 @@ export const section1Number = style({
       right: "-60px",
       lineHeight: "240px",
     },
-    [breakpoints.tablet]: {
-      display: "none", // 태블릿에서 숨김
-    },
     [breakpoints.mobile]: {
       display: "none", // 모바일에서 숨김
     },
@@ -361,12 +306,6 @@ export const section1Right = style({
   width: "100%",
   maxWidth: "100%", // 1920px+ 에서도 스케일링 방지
   "@media": {
-    [breakpoints.tablet]: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      alignItems: "center",
-    },
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
@@ -424,9 +363,6 @@ export const section2 = style({
     [breakpoints.desktopLarge]: {
       padding: "120px 0px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      padding: "80px 20px", // 태블릿에서 축소
-    },
     [breakpoints.mobile]: {
       padding: "60px 20px", // 모바일에서 축소
     },
@@ -442,13 +378,6 @@ export const section2Left = style({
   position: "relative",
   width: "100%",
   "@media": {
-    [breakpoints.tablet]: {
-      order: 2,
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      alignItems: "center",
-    },
     [breakpoints.mobile]: {
       order: 2,
       display: "flex",
@@ -468,13 +397,6 @@ export const section2Image = style({
   }),
   transform: "translateY(-50%)", // 수직 중앙 정렬
   "@media": {
-    [breakpoints.tablet]: {
-      position: "static" as const,
-      width: "100%",
-      maxWidth: "none",
-      aspectRatio: "auto",
-      transform: "none",
-    },
     [breakpoints.mobile]: {
       position: "static" as const,
       width: "100%",
@@ -505,11 +427,6 @@ export const section2Right = style({
     [breakpoints.desktopLarge]: {
       paddingTop: "80px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      order: 1,
-      position: "static",
-      paddingTop: "30px",
-    },
     [breakpoints.mobile]: {
       order: 1,
       position: "static",
@@ -530,14 +447,7 @@ export const section2NumberBg = style({
   color: "#272727", // 피그마 스펙: 일반 색상, opacity 없음
   zIndex: 3, // 배경 뒤가 아닌 앞으로
   "@media": {
-    [breakpoints.desktopLarge]: {
-      // top: "80px", // 1920px+ 고정 (제목과 같은 높이)
-      // right: "0px", // section1과 동일한 방식
-      // lineHeight: "240px",
-    },
-    [breakpoints.tablet]: {
-      display: "none", // 태블릿에서 숨김
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       display: "none", // 모바일에서 숨김
     },
@@ -561,10 +471,6 @@ export const section2Title = style({
       lineHeight: "56px", // 피그마 스펙
       margin: "0 0 40px 0",
     },
-    [breakpoints.tablet]: {
-      lineHeight: "44px",
-      margin: "0 0 30px 0",
-    },
     [breakpoints.mobile]: {
       lineHeight: "44px",
       margin: "0 0 30px 0",
@@ -583,9 +489,6 @@ export const section2Description = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "30px", // 피그마 스펙
-    },
-    [breakpoints.tablet]: {
-      lineHeight: "28px",
     },
     [breakpoints.mobile]: {
       lineHeight: "28px",
@@ -632,15 +535,6 @@ export const section2Quote = style({
         lineHeight: "30px",
       },
     },
-    [breakpoints.tablet]: {
-      lineHeight: "28px",
-      "::before": {
-        fontSize: "24px",
-      },
-      "::after": {
-        fontSize: "24px",
-      },
-    },
     [breakpoints.mobile]: {
       lineHeight: "28px",
       "::before": {
@@ -664,9 +558,6 @@ export const section3 = style({
     [breakpoints.desktopLarge]: {
       padding: "120px 20px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      padding: "80px 20px", // 태블릿에서 축소
-    },
     [breakpoints.mobile]: {
       padding: "60px 20px", // 모바일에서 축소
     },
@@ -687,9 +578,6 @@ export const section3Left = style({
   paddingTop: vw(10), // 제목을 위쪽에서 시작하도록
   "@media": {
     [breakpoints.desktopLarge]: {},
-    [breakpoints.tablet]: {
-      position: "static",
-    },
     [breakpoints.mobile]: {
       position: "static",
     },
@@ -714,9 +602,6 @@ export const section3NumberBg = style({
       left: "60px",
       lineHeight: "240px",
     },
-    [breakpoints.tablet]: {
-      display: "none", // 태블릿에서 숨김
-    },
     [breakpoints.mobile]: {
       display: "none", // 모바일에서 숨김
     },
@@ -739,9 +624,6 @@ export const section3Title = style({
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
     },
-    [breakpoints.tablet]: {
-      lineHeight: "44px",
-    },
     [breakpoints.mobile]: {
       lineHeight: "44px",
     },
@@ -759,9 +641,6 @@ export const section3Description = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "30px",
-    },
-    [breakpoints.tablet]: {
-      lineHeight: "28px",
     },
     [breakpoints.mobile]: {
       lineHeight: "28px",
@@ -783,9 +662,6 @@ export const section3Number = style({
   zIndex: 3, // 앞에 표시
   "@media": {
     [breakpoints.desktopLarge]: {},
-    [breakpoints.tablet]: {
-      display: "none", // 태블릿에서 숨김
-    },
     [breakpoints.mobile]: {
       display: "none", // 모바일에서 숨김
     },
@@ -802,14 +678,6 @@ export const section3Right = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       minHeight: "810px", // 1920px+ 고정
-    },
-    [breakpoints.tablet]: {
-      order: 2,
-      display: "flex",
-      flexDirection: "column",
-      gap: "20px",
-      alignItems: "center",
-      minHeight: "auto",
     },
     [breakpoints.mobile]: {
       order: 2,
@@ -840,13 +708,6 @@ export const section3CenterIllustration = style({
       // width: "449px", // 1920px+ 고정
       // height: "286px",
     },
-    [breakpoints.tablet]: {
-      position: "static", // 태블릿에서는 일반 배치
-      transform: "none",
-      // width: "300px", // 태블릿에서 축소
-      // height: "auto",
-      // margin: "20px 0",
-    },
     [breakpoints.mobile]: {
       position: "static", // 모바일에서는 일반 배치
       transform: "none",
@@ -866,13 +727,6 @@ export const section3Image = style({
   }),
   transform: "translateY(-50%)", // 수직 중앙 정렬
   "@media": {
-    [breakpoints.tablet]: {
-      position: "static" as const,
-      width: "100%",
-      maxWidth: "none",
-      aspectRatio: "auto",
-      transform: "none",
-    },
     [breakpoints.mobile]: {
       position: "static" as const,
       width: "100%",
@@ -901,9 +755,6 @@ export const beforeAfterSection = style({
     [breakpoints.desktopLarge]: {
       padding: "120px 20px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      padding: "80px 20px", // 태블릿에서 축소
-    },
     [breakpoints.mobile]: {
       padding: "60px 20px", // 모바일에서 축소
     },
@@ -927,12 +778,6 @@ export const beforeAfterHeader = style({
     [breakpoints.desktopLarge]: {
       maxWidth: "790px",
       marginBottom: "48px",
-    },
-    [breakpoints.tablet]: {
-      flexDirection: "column",
-      gap: "20px",
-      alignItems: "center",
-      textAlign: "center",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -998,9 +843,6 @@ export const beforeAfterSlider = style({
     [breakpoints.desktopLarge]: {
       maxWidth: "790px",
     },
-    [breakpoints.tablet]: {
-      maxWidth: "90%",
-    },
     [breakpoints.mobile]: {
       maxWidth: "100%",
     },
@@ -1050,9 +892,6 @@ export const featuresSection = style({
     [breakpoints.desktopLarge]: {
       padding: "120px 0px", // 1920px+ 고정
     },
-    [breakpoints.tablet]: {
-      padding: "80px 20px", // 태블릿에서 축소
-    },
     [breakpoints.mobile]: {
       padding: "60px 20px", // 모바일에서 축소
     },
@@ -1073,9 +912,6 @@ export const featuresHeader = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       minHeight: "160px",
-    },
-    [breakpoints.tablet]: {
-      minHeight: "140px",
     },
     [breakpoints.mobile]: {
       minHeight: "120px",
@@ -1119,11 +955,6 @@ export const quotationStart = style({
       height: "40px",
       top: "-35px",
     },
-    [breakpoints.tablet]: {
-      width: "32px",
-      height: "32px",
-      top: "-28px",
-    },
     [breakpoints.mobile]: {
       width: "28px",
       height: "28px",
@@ -1147,11 +978,6 @@ export const quotationEnd = style({
       height: "40px",
       bottom: "-35px",
     },
-    [breakpoints.tablet]: {
-      width: "32px",
-      height: "32px",
-      bottom: "-28px",
-    },
     [breakpoints.mobile]: {
       width: "28px",
       height: "28px",
@@ -1169,11 +995,6 @@ export const featuresGrid = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1600px",
-    },
-    [breakpoints.tablet]: {
-      display: "grid",
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: "30px",
     },
     [breakpoints.mobile]: {
       display: "grid",
@@ -1210,12 +1031,6 @@ export const featureCard = style({
       padding: "40px",
       paddingBottom: "80px",
     },
-    [breakpoints.tablet]: {
-      width: "100%",
-      height: "300px",
-      aspectRatio: "1/1",
-      borderRadius: "50%",
-    },
     [breakpoints.mobile]: {
       width: "100%",
       height: "280px",
@@ -1239,10 +1054,6 @@ export const featureIconContainer = style({
     [breakpoints.desktopLarge]: {
       // width: "120px",
       // height: "120px",
-    },
-    [breakpoints.tablet]: {
-      // width: "100px",
-      // height: "100px",
     },
     [breakpoints.mobile]: {
       // width: "80px",
@@ -1288,9 +1099,6 @@ export const featureText = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "30px",
-    },
-    [breakpoints.tablet]: {
-      lineHeight: "28px",
     },
     [breakpoints.mobile]: {
       lineHeight: "28px",

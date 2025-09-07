@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css"
+
 import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
 
 // 기본 버튼 스타일 (1920px 기준 반응형) - 텍스트 길이에 따라 자동 조정
@@ -50,15 +51,6 @@ export const arrowButton = style({
   },
 
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서도 패딩은 8px 고정 유지 - !important로 강제
-      paddingTop: "8px !important", // 8px 완전 고정
-      paddingBottom: "8px !important", // 8px 완전 고정
-      paddingLeft: "8px !important", // 8px 완전 고정
-      paddingRight: "8px !important", // 8px 완전 고정 (화살표 기준)
-      fontSize: "16px", // 20px * 0.8
-      gap: "8px !important", // 8px 완전 고정
-    },
     [breakpoints.mobile]: {
       // 모바일에서도 패딩은 8px 고정 유지 - !important로 강제
       paddingTop: "8px !important", // 8px 완전 고정
@@ -84,10 +76,6 @@ export const buttonText = style({
   ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
 
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "16px", // 20px * 0.8
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       fontSize: "14px", // 20px * 0.7
@@ -109,11 +97,6 @@ export const arrowContainer = style({
   ...responsiveProperty("height", 28), // 1920px 기준 28px
 
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      width: "22px", // 28px * 0.8
-      height: "22px",
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       width: "20px", // 28px * 0.7
@@ -131,11 +114,6 @@ export const arrowIcon = style({
   ...responsiveProperty("height", 18), // 1920px 기준 18px
 
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      width: "14px", // 18px * 0.8
-      height: "14px",
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       width: "13px", // 18px * 0.7
@@ -236,10 +214,6 @@ export const medium = style({
   ...responsiveProperty("fontSize", 16), // 1920px 기준 16px만 유지
 
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서는 패딩 오버라이드 금지 - fontSize만 조정
-      fontSize: "13px", // 16px * 0.8
-    },
     [breakpoints.mobile]: {
       // 모바일에서는 패딩 오버라이드 금지 - fontSize만 조정
       fontSize: "11px", // 16px * 0.7

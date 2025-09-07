@@ -1,145 +1,314 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import HeaderNavigation from "../../widgets/Header/HeaderNavigation"
-import BlueSection from "../../widgets/BlueSection/BlueSection"
 import { VideoSection } from "../../widgets/Hero/VideoSection"
-import { ArrowButton } from "../../shared/ui/ArrowButton"
+import { useAboutScroll } from "../../shared/hooks/useAboutScroll"
 import * as styles from "./AboutPage.css"
 
 export default function AboutPage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const { showMainContent } = useAboutScroll()
 
-  useEffect(() => {
-    console.log("[AboutPage/마운트] About 페이지 마운트")
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
-    return () => clearTimeout(timer)
-  }, [])
+  // 피그마 디자인에 따른 강점 데이터
+  const strengths = [
+    {
+      number: "01",
+      title: "알맞은 치료를 합니다.",
+      description:
+        "절개, 비절개, 이마축소, 약물치료, 모든 방법에 경험이 많은\n전문의가 각자의 상황에 가장 알맞은 치료를 권해드립니다.",
+    },
+    {
+      number: "02",
+      title: "부끄럽지 않습니다.",
+      description:
+        "정직한 홍보, 투명한 가격, 정확한 모수, 최고의 스텝, 최선의 수술\n모든 과정과 결과에 부끄럽지 않습니다",
+    },
+    {
+      number: "03",
+      title: "고객을 잘 이해합니다.",
+      description:
+        "먼저 불편한 점과 원하는 바를 잘 듣고, 전문가의 경험과 지식을\n바탕으로 고객이 가장 만족할 방법을 찾아갑니다.",
+    },
+    {
+      number: "04",
+      title: "시간을 지키겠습니다.",
+      description:
+        "약속한 시간에 기다리는 일이 없도록 한 분, 한 분의 진료 시간을\n넉넉히 잡습니다",
+    },
+    {
+      number: "05",
+      title: "비용은 투명합니다.",
+      description:
+        "상담 후에 비용을 알 수 있다는 말 대신, 사람마다 달라지는\n할인율 대신, 누구에게나 정확하고 투명한 비용을 말씀드립니다.",
+    },
+    {
+      number: "06",
+      title: "보람이 우선입니다.",
+      description:
+        "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
+    },
+  ]
 
   return (
     <div className={styles.aboutPage}>
       <HeaderNavigation />
 
-      {/* Video Section */}
-      <VideoSection showVideoSection={true} />
+      {/* Video Section - 스크롤하면 숨겨짐 */}
+      {!showMainContent && <VideoSection showVideoSection={true} />}
 
-      {/* About Hero Section */}
-      <section className={styles.aboutHeroSection}>
-        <div className={styles.aboutHeroBackground}>
-          <img
-            src="/main/banal_graffiti.svg"
-            alt="Banal Graffiti"
-            className={styles.aboutHeroGraffiti}
-          />
-        </div>
-        <div className={styles.aboutHeroContent}>
-          <div className={styles.aboutHeroText}>
-            <h1 className={styles.aboutHeroMainTitle}>
-              &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
-            </h1>
-            <h2 className={styles.aboutHeroSubTitle}>
-              바람부는날에도 성형외과의원
-            </h2>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      <section className={styles.missionSection}>
-        <div className={styles.missionContent}>
-          <div className={styles.missionText}>
-            <h2 className={styles.missionTitle}>
-              우리의
-              <br />
-              미션
-            </h2>
-            <p className={styles.missionDescription}>
-              바날은 단순한 모발 이식이 아닌, 당신의 새로운 시작을 돕습니다.
-              <br />
-              <br />
-              자신감 있는 모습으로 일상을 살아갈 수 있도록,
-              <br />
-              최고의 기술과 진심 어린 마음으로 함께하겠습니다.
-            </p>
-          </div>
-          <div className={styles.missionImage}>
-            <div className={styles.placeholderImage}>
-              <span>미션 이미지</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className={styles.valuesSection}>
-        <div className={styles.valuesContent}>
-          <h2 className={styles.valuesTitle}>바날의 가치</h2>
-          <div className={styles.valuesGrid}>
-            <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>
-                <span>💎</span>
+      {/* Main Content - 스크롤하면 비디오를 대체해서 나타남 */}
+      {showMainContent && (
+        <>
+          {/* Hero Section */}
+          <section className={styles.heroSection}>
+            <div className={styles.heroContainer}>
+              <div className={styles.heroContent}>
+                <h1 className={styles.heroQuote}>
+                  &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
+                </h1>
+                <h2 className={styles.heroTitle}>
+                  바람부는날에도 성형외과의원
+                </h2>
               </div>
-              <h3 className={styles.valueTitle}>품질</h3>
-              <p className={styles.valueDescription}>
-                최고의 기술과 장비로
-                <br />
-                완벽한 결과를 추구합니다
-              </p>
-            </div>
-            <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>
-                <span>🤝</span>
+              <div className={styles.heroIllustration}>
+                {/* 피그마의 일러스트 이미지 */}
+                <img
+                  src="/main/banal_graffiti.svg"
+                  alt="Healthcare Illustration"
+                  className={styles.illustrationImage}
+                />
               </div>
-              <h3 className={styles.valueTitle}>신뢰</h3>
-              <p className={styles.valueDescription}>
-                투명한 상담과 정직한
-                <br />
-                가격으로 신뢰를 쌓습니다
-              </p>
             </div>
-            <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>
-                <span>❤️</span>
+          </section>
+
+          {/* Values Section */}
+          <section className={styles.valuesSection}>
+            <div className={styles.valuesContainer}>
+              <div className={styles.valuesContent}>
+                <h2 className={styles.valuesMainTitle}>
+                  바날이
+                  <br />
+                  추구하는 가치.
+                </h2>
+                <p className={styles.valuesDescription}>
+                  바날은 모발 수술에 대한
+                  <br />
+                  섬세한 기술과 감각으로 시술 그 너머
+                  <br />
+                  당신의 내일을 설계 합니다.
+                </p>
               </div>
-              <h3 className={styles.valueTitle}>배려</h3>
-              <p className={styles.valueDescription}>
-                환자 한 분 한 분을
-                <br />
-                소중히 여기는 마음입니다
-              </p>
+              <div className={styles.valuesCards}>
+                <img
+                  src="/about/value.svg"
+                  alt="바날 가치"
+                  className={styles.valueCardsImage}
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Blue Section 재사용 */}
-      <BlueSection />
+          {/* RE.YOU Section */}
+          <section className={styles.reYouSection}>
+            <div className={styles.reYouContainer}>
+              {/* RE.YOU 텍스트 섹션 - 상단에 배치 */}
+              <div className={styles.reYouTextSection}>
+                <div className={styles.reYouContent}>
+                  <h2 className={styles.reYouTitle}>RE.YOU</h2>
+                  <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
+                </div>
+              </div>
 
-      {/* Contact Section */}
-      <section className={styles.contactSection}>
-        <div className={styles.contactContent}>
-          <h2 className={styles.contactTitle}>
-            바날과 함께
-            <br />
-            새로운 시작하세요
-          </h2>
-          <p className={styles.contactDescription}>
-            전문의와의 상담을 통해
-            <br />
-            당신에게 맞는 최적의 솔루션을 찾아보세요
-          </p>
-          <div className={styles.contactButtons}>
-            <ArrowButton size="large" variant="primary">
-              상담 예약하기
-            </ArrowButton>
-            <ArrowButton size="large" variant="secondary">
-              전화 문의하기
-            </ArrowButton>
-          </div>
-        </div>
-      </section>
+              {/* 이미지 카드 섹션 - 2x2 그리드 */}
+              <div className={styles.reYouImageCards}>
+                <div className={styles.reYouCard1}>
+                  <img
+                    src="/main/shot/shot1.png"
+                    alt="Shin Seung gyu"
+                    className={styles.reYouCardImage}
+                  />
+                </div>
+
+                <div className={styles.reYouCard2}>
+                  <img
+                    src="/main/shot/shot3.png"
+                    alt="Park Soo Ho"
+                    className={styles.reYouCardImage}
+                  />
+                </div>
+
+                <div className={styles.reYouCard3}>
+                  <img
+                    src="/main/shot/shot4.png"
+                    alt="Kim Narae"
+                    className={styles.reYouCardImage}
+                  />
+                </div>
+
+                <div className={styles.reYouCard4}>
+                  <img
+                    src="/main/shot/shot2.png"
+                    alt="의료진 4"
+                    className={styles.reYouCardImage}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Strengths Section */}
+          <section className={styles.strengthsSection}>
+            <div className={styles.strengthsContainer}>
+              <div className={styles.strengthsContent}>
+                {/* 왼쪽 영역 - 타이틀 + SVG */}
+                <div className={styles.strengthsLeftSection}>
+                  <h2 className={styles.strengthsTitle}>
+                    바날이
+                    <br />
+                    잘하는 일.
+                  </h2>
+                  <img
+                    src="/about/about-graffiti.svg"
+                    alt="바날 소개 그래피티"
+                    className={styles.strengthsGraffiti}
+                  />
+                </div>
+
+                {/* 오른쪽 영역 - 리스트 형태 */}
+                <div className={styles.strengthsList}>
+                  {strengths.map((strength, index) => (
+                    <div key={index} className={styles.strengthItem}>
+                      <div className={styles.strengthNumber}>
+                        {strength.number}
+                      </div>
+                      <h3 className={styles.strengthItemTitle}>
+                        {strength.title}
+                      </h3>
+                      <p className={styles.strengthDescription}>
+                        {strength.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Gallery Section */}
+          <section className={styles.gallerySection}>
+            <div className={styles.galleryContainer}>
+              {/* 상단: 타이틀 + 큰 수평 이미지 */}
+              <div className={styles.galleryTopSection}>
+                <div className={styles.galleryTitleSection}>
+                  <h2 className={styles.galleryTitle}>
+                    바날
+                    <br />
+                    둘러보기.
+                  </h2>
+                </div>
+
+                <div className={styles.galleryMainImage}>
+                  <img
+                    src="/about/gallery/gallery-1.png"
+                    alt="바날 갤러리 메인"
+                    className={styles.galleryImage}
+                  />
+                </div>
+              </div>
+
+              {/* 하단: 복합 그리드 레이아웃 - 피그마 정확한 구조 */}
+              <div className={styles.galleryGrid}>
+                {/* Row 1: Frame 219 - 왼쪽 큰 이미지 + 오른쪽 2개 스택 */}
+                <div className={styles.galleryRow1}>
+                  {/* 왼쪽 큰 이미지 */}
+                  <div className={styles.galleryLeftLarge}>
+                    <img
+                      src="/about/gallery/gallery-2.png"
+                      alt="바날 갤러리 2"
+                      className={styles.galleryImage}
+                    />
+                  </div>
+
+                  {/* 오른쪽 위 이미지 */}
+                  <div className={styles.galleryRightTop}>
+                    <img
+                      src="/about/gallery/gallery-3.png"
+                      alt="바날 갤러리 3"
+                      className={styles.galleryImage}
+                    />
+                  </div>
+
+                  {/* 오른쪽 아래 이미지 */}
+                  <div className={styles.galleryRightBottom}>
+                    <img
+                      src="/about/gallery/gallery-4.png"
+                      alt="바날 갤러리 4"
+                      className={styles.galleryImage}
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2: Frame 220 - 2개 나란히 */}
+                <div className={styles.galleryRow2}>
+                  <div className={styles.galleryGridItem}>
+                    <img
+                      src="/about/gallery/gallery-5.png"
+                      alt="바날 갤러리 5"
+                      className={styles.galleryImage}
+                    />
+                  </div>
+
+                  <div className={styles.galleryGridItem}>
+                    <img
+                      src="/about/gallery/gallery-6.png"
+                      alt="바날 갤러리 6"
+                      className={styles.galleryImage}
+                    />
+                  </div>
+                </div>
+
+                {/* Row 3: Frame 223 - 왼쪽 2개 스택 + 오른쪽 2개 스택 */}
+                <div className={styles.galleryRow3}>
+                  {/* 왼쪽 컬럼 */}
+                  <div className={styles.galleryLeftColumn}>
+                    <div className={styles.gallerySmallImage}>
+                      <img
+                        src="/about/gallery/gallery-7.png"
+                        alt="바날 갤러리 7"
+                        className={styles.galleryImage}
+                      />
+                    </div>
+                    <div className={styles.galleryLargeImage}>
+                      <img
+                        src="/about/gallery/gallery-9.png"
+                        alt="바날 갤러리 추가 1"
+                        className={styles.galleryImage}
+                      />
+                    </div>
+                  </div>
+
+                  {/* 오른쪽 컬럼 */}
+                  <div className={styles.galleryRightColumn}>
+                    <div className={styles.galleryLargeImage}>
+                      <img
+                        src="/about/gallery/gallery-8.png"
+                        alt="바날 갤러리 추가 2"
+                        className={styles.galleryImage}
+                      />
+                    </div>
+                    <div className={styles.gallerySmallImage}>
+                      <img
+                        src="/about/gallery/gallery-10.png"
+                        alt="바날 갤러리 추가 3"
+                        className={styles.galleryImage}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </div>
   )
 }

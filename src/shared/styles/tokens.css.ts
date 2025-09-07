@@ -23,10 +23,10 @@ export const tokens = {
     columns: 12,
     gap: "1rem",
 
-    // 모바일 (375px ~ 767px)
+    // 모바일 (375px ~ 1023px) - 태블릿 포함
     mobile: {
       min: "375px",
-      max: "767px",
+      max: "1023px",
       col1: "31.25px", // 375px ÷ 12 = 31.25px
       col2: "62.5px", // 31.25px × 2
       col3: "93.75px", // 31.25px × 3
@@ -41,23 +41,6 @@ export const tokens = {
       col12: "375px", // 31.25px × 12
     },
 
-    // 태블릿 (768px ~ 1023px)
-    tablet: {
-      min: "768px",
-      max: "1023px",
-      col1: "64px", // 768px ÷ 12 = 64px
-      col2: "128px", // 64px × 2
-      col3: "192px", // 64px × 3
-      col4: "256px", // 64px × 4
-      col5: "320px", // 64px × 5
-      col6: "384px", // 64px × 6
-      col7: "448px", // 64px × 7
-      col8: "512px", // 64px × 8
-      col9: "576px", // 64px × 9
-      col10: "640px", // 64px × 10
-      col11: "704px", // 64px × 11
-      col12: "768px", // 64px × 12
-    },
 
     // 데스크탑 (1024px+)
     desktop: {
@@ -105,7 +88,6 @@ export const tokens = {
   // 반응형 브레이크포인트
   breakpoints: {
     mobile: "375px",
-    tablet: "768px",
     desktop: "1024px",
   },
 }

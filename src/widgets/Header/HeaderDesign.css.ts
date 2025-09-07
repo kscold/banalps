@@ -20,11 +20,6 @@ export const header = style({
   ...responsiveProperty("height", 85), // 1920px 기준 85px
   ...responsiveProperty("borderRadius", 128), // 1920px 기준 128px
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿: 768px~1023px (BlueSection과 동일)
-      width: "calc(100% - 80px)", // 양쪽 40px 마진
-      borderRadius: "64px",
-    },
     [breakpoints.mobile]: {
       // 모바일: 365px~767px (BlueSection과 동일)
       top: "36px",
@@ -86,19 +81,7 @@ export const headerCurtain = style({
       },
     },
   },
-  "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 축소
-      selectors: {
-        [`${header}:hover ~ &`]: {
-          maxHeight: "360px", // 450px * 0.8
-        },
-        "&:hover": {
-          maxHeight: "360px", // 450px * 0.8
-        },
-      },
-    },
-  },
+  "@media": {},
 })
 
 // 서브메뉴 컨테이너 (responsiveProperty로 정확한 1920px 기준 구현)
@@ -114,14 +97,6 @@ export const submenuContainer = style({
   ...responsiveProperty("paddingLeft", 160), // 1920px 기준 160px
   ...responsiveProperty("paddingRight", 160), // 1920px 기준 160px
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      height: "360px",
-      paddingTop: "112px", // 140px * 0.8
-      paddingBottom: "32px",
-      paddingLeft: "128px",
-      paddingRight: "128px",
-    },
     [breakpoints.mobile]: {
       // 모바일에서는 숨김
       display: "none",
@@ -153,11 +128,6 @@ export const dropdownItem = style({
       fontSize: "16px",
       padding: "8px 0",
     },
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "13px",
-      padding: "6px 0",
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       fontSize: "11px",
@@ -183,11 +153,6 @@ export const container = style({
   ...responsiveProperty("paddingLeft", 60), // 1920px 기준 60px
   ...responsiveProperty("paddingRight", 60), // 1920px 기준 60px
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿: 768px~1023px (BlueSection과 동일)
-      paddingLeft: "40px",
-      paddingRight: "40px",
-    },
     [breakpoints.mobile]: {
       // 모바일: 365px~767px (BlueSection과 동일)
       paddingLeft: "20px",
@@ -206,10 +171,6 @@ export const headerContent = style({
   zIndex: 1,
   ...responsiveProperty("gap", 40), // 1920px 기준 40px 간격 (125px에서 크게 축소)
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 축소
-      gap: "32px", // 40px * 0.8
-    },
     [breakpoints.mobile]: {
       // 모바일에서는 space-between으로 처리
       gap: "0",
@@ -251,11 +212,6 @@ export const logoText = style({
       fontSize: "20px",
       lineHeight: "30px",
     },
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "16px",
-      lineHeight: "24px",
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       fontSize: "14px",
@@ -278,14 +234,6 @@ export const desktopNav = style({
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
-    },
-    [breakpoints.tablet]: {
-      // 태블릿에서는 비례 축소
-      height: "28px",
-      marginLeft: "64px", // 80px * 0.8
-      marginRight: "64px",
-      gap: "48px", // 60px * 0.8
-      width: "464px", // 580px * 0.8
     },
   },
 })
@@ -318,17 +266,7 @@ export const dropdownContent = style({
   ...responsiveProperty("paddingRight", 20), // 1920px 기준 20px
   ...responsiveProperty("paddingBottom", 30), // 1920px 기준 30px
   ...responsiveProperty("minWidth", 160), // 1920px 기준 160px
-  "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 축소
-      gap: "10px",
-      paddingTop: "28px", // 35px * 0.8
-      paddingLeft: "16px",
-      paddingRight: "16px",
-      paddingBottom: "24px",
-      minWidth: "128px",
-    },
-  },
+  "@media": {},
 })
 
 export const navLink = style({
@@ -355,13 +293,6 @@ export const navLink = style({
     opacity: 0.8,
   },
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "13px",
-      lineHeight: "20px",
-      borderRadius: "10px",
-      width: "64px", // 80px * 0.8
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       fontSize: "11px",
@@ -383,10 +314,6 @@ export const actionButtons = style({
   "@media": {
     "screen and (min-width: 1024px)": {
       display: "flex",
-    },
-    [breakpoints.tablet]: {
-      gap: "6px", // 8px * 0.75
-      width: "112px", // 140px * 0.8
     },
   },
 })
@@ -411,12 +338,6 @@ export const loginButton = style({
       fontSize: "16px",
       lineHeight: "24px",
       padding: "12px 24px",
-    },
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "13px",
-      lineHeight: "20px",
-      padding: "10px 19px",
     },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
@@ -452,13 +373,6 @@ export const consultButton = style({
       lineHeight: "24px",
       gap: "8px",
     },
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      padding: "6px 19px",
-      fontSize: "13px",
-      lineHeight: "20px",
-      gap: "6px",
-    },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
       padding: "6px 17px",
@@ -478,11 +392,6 @@ export const dropdownArrow = style({
       // 1920px 이상에서 고정
       fontSize: "12px",
       marginLeft: "4px",
-    },
-    [breakpoints.tablet]: {
-      // 태블릿에서 80% 크기
-      fontSize: "10px",
-      marginLeft: "3px",
     },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기

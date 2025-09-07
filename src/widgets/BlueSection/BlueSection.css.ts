@@ -216,9 +216,6 @@ export const reYouSection = style({
       minHeight: "748px", // 고정 높이
       gap: "20px",
     },
-    [breakpoints.tablet]: {
-      minHeight: "600px", // 태블릿에서 적당한 높이
-    },
     [breakpoints.mobile]: {
       margin: "80px auto", // 상하 마진만 설정
       minHeight: "400px", // 모바일에서 작은 높이
@@ -375,9 +372,6 @@ export const featuresList = style({
     [breakpoints.desktopLarge]: {
       gap: "24px", // 1920px 이상에서 고정
     },
-    [breakpoints.tablet]: {
-      gap: "20px", // 태블릿에서 조금 작게
-    },
     [breakpoints.mobile]: {
       gap: "16px", // 모바일에서 더 작게
     },
@@ -398,10 +392,6 @@ export const featureItem = style({
       gap: "24px", // 1920px 이상에서 고정
       padding: "16px 0",
       borderBottom: "1px solid #14aeff",
-    },
-    [breakpoints.tablet]: {
-      gap: "20px", // 태블릿에서 조금 작게
-      padding: "14px 0",
     },
     [breakpoints.mobile]: {
       gap: "16px", // 모바일에서 더 작게
@@ -836,7 +826,6 @@ export const mapImage = style({
 export const doctorsSection = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
   "@media": {
-    [breakpoints.tablet]: {},
     [breakpoints.mobile]: {},
   },
 })
@@ -849,12 +838,6 @@ export const doctorsContent = style({
   "@media": {
     "screen and (min-width: 1600px)": {
       minHeight: "800px",
-    },
-    [breakpoints.tablet]: {
-      flexDirection: "column",
-      gap: "80px",
-      // minHeight: "auto",
-      justifyContent: "flex-start", // 태블릿에서는 일반 레이아웃
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -869,10 +852,6 @@ export const doctorsTextSection = style({
   flexShrink: 0,
   ...responsiveProperty("flexBasis", 520), // 1920px 기준 520px 고정 너비
   "@media": {
-    [breakpoints.tablet]: {
-      flex: "none",
-      width: "100%",
-    },
     [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
@@ -1016,10 +995,6 @@ export const doctorEnglishName1 = style({
       fontSize: "80px",
       letterSpacing: "-2.4px",
     },
-    [breakpoints.tablet]: {
-      fontSize: "64px", // 태블릿에서 80% 크기
-      letterSpacing: "-1.9px",
-    },
     [breakpoints.mobile]: {
       fontSize: "56px", // 모바일에서 70% 크기
       letterSpacing: "-1.7px",
@@ -1041,10 +1016,6 @@ export const doctorEnglishName2 = style({
       fontSize: "80px",
       letterSpacing: "-2.4px",
     },
-    [breakpoints.tablet]: {
-      fontSize: "64px", // 태블릿에서 80% 크기
-      letterSpacing: "-1.9px",
-    },
     [breakpoints.mobile]: {
       fontSize: "56px", // 모바일에서 70% 크기
       letterSpacing: "-1.7px",
@@ -1065,10 +1036,6 @@ export const doctorEnglishName3 = style({
     [breakpoints.desktopLarge]: {
       fontSize: "80px",
       letterSpacing: "-2.4px",
-    },
-    [breakpoints.tablet]: {
-      fontSize: "64px", // 태블릿에서 80% 크기
-      letterSpacing: "-1.9px",
     },
     [breakpoints.mobile]: {
       fontSize: "56px", // 모바일에서 70% 크기

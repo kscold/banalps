@@ -5,95 +5,151 @@ import {
 import { breakpoints, vw } from "@/shared/styles/responsive.css"
 import { style } from "@vanilla-extract/css"
 
-// Footer Section - Figma 디자인 기반
+// Footer Section - 1920px 기준 피그마 디자인 기반
 export const footerSection = style({
-  backgroundColor: "#73d5fa", // Figma와 일치하는 파란색
-  padding: "50px 20px",
+  backgroundColor: "#73d5fa",
+  padding: vw(48),
   color: "#ffffff",
-})
-
-export const footerContent = style({
-  maxWidth: "1200px",
-  margin: "0 auto",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
   "@media": {
-    "screen and (max-width: 768px)": {
-      flexDirection: "column",
-      gap: "30px",
-      textAlign: "center",
+    [breakpoints.desktopLarge]: {
+      padding: "48px",
+    },
+    [breakpoints.mobile]: {
+      padding: "24px 20px",
     },
   },
 })
 
-export const footerMain = style({
+export const footerContent = style({
+  ...responsiveContainer(1600),
   display: "flex",
-  gap: "60px",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+  height: vw(104),
   "@media": {
-    "screen and (max-width: 768px)": {
+    [breakpoints.desktopLarge]: {
+      height: "104px",
+    },
+    [breakpoints.mobile]: {
       flexDirection: "column",
+      height: "auto",
+      gap: "20px",
+      alignItems: "flex-start",
+    },
+  },
+})
+
+export const footerLeft = style({
+  display: "flex",
+  gap: vw(135),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // gap: "250px",
+    },
+    [breakpoints.mobile]: {
+      // gap: "20px",
+      // flexDirection: "column",
+    },
+  },
+})
+
+export const footerLeftFirst = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(20),
+  "@media": {
+    [breakpoints.desktopLarge]: {
       gap: "20px",
     },
   },
 })
 
-export const footerColumn = style({
+export const footerCompanyInfo = style({
   display: "flex",
   flexDirection: "column",
-  gap: "8px",
-})
-
-export const footerInfo = style({
-  marginBottom: "8px",
+  gap: vw(4),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "4px",
+    },
+  },
 })
 
 export const footerClinicName = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
-  margin: "0 0 4px 0",
+  margin: "0",
   color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
 })
 
 export const footerRepresentative = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
   margin: "0",
   color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
 })
 
 export const footerCopyright = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 400,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
   margin: "0",
   color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
+})
+
+export const footerRightSection = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(4),
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+  },
 })
 
 export const footerAddress = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
-  margin: "0 0 4px 0",
+  margin: "0",
   color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
 })
 
-export const footerLinks = style({
+export const footerLinksContainer = style({
   display: "flex",
-  gap: "12px",
+  gap: vw(12),
   "@media": {
-    "screen and (max-width: 768px)": {
-      justifyContent: "center",
+    [breakpoints.desktopLarge]: {
+      gap: "12px",
     },
   },
 })
@@ -101,46 +157,54 @@ export const footerLinks = style({
 export const footerLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
   color: "#ffffff",
   textDecoration: "none",
-  transition: "opacity 0.3s ease",
+  cursor: "pointer",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
   ":hover": {
-    opacity: 0.8,
+    textDecoration: "underline",
   },
 })
 
 export const footerPhone = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 200,
-  fontSize: "14px",
-  lineHeight: "19.6px",
+  ...responsiveFont(14),
+  lineHeight: vw(20),
   letterSpacing: "0",
   margin: "0",
   color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "20px",
+    },
+  },
 })
 
-export const footerLogo = style({
+export const footerRight = style({
   display: "flex",
   alignItems: "center",
 })
 
 export const footerLogoContainer = style({
-  width: "158px",
-  height: "37px",
+  width: vw(158),
+  height: vw(37),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-})
-
-export const footerLogoText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 600,
-  fontSize: "24px",
-  letterSpacing: "0.1em",
-  color: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "158px",
+      height: "37px",
+    },
+  },
 })
 
 // // Footer Section

@@ -114,17 +114,6 @@ export const contentWrapper = style({
       alignItems: "flex-start",
       justifyContent: "flex-start",
     },
-    [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
-      position: "fixed",
-      top: "240px",
-      left: "16px",
-      right: "auto",
-      transform: "none",
-      width: "343px",
-      height: "184px",
-      maxWidth: "none",
-      padding: 0,
-    },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
       position: "fixed",
       top: "240px",
@@ -161,12 +150,6 @@ export const textContent = style({
       maxWidth: "none",
       alignItems: "flex-start",
       justifyContent: "flex-start",
-    },
-    [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
-      width: "100%",
-      height: "100%",
-      maxWidth: "none",
-      alignItems: "flex-start",
     },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
       width: "100%",
@@ -226,11 +209,6 @@ export const storyText = style({
       textAlign: "left", // 모바일에서 왼쪽 정렬
       fontSize: "18px",
       lineHeight: "27px",
-    },
-    [`screen and (max-width: ${tokens.breakpoints.tablet})`]: {
-      fontSize: "18px",
-      lineHeight: "27px",
-      textAlign: "left",
     },
     [`screen and (max-width: ${tokens.breakpoints.mobile})`]: {
       fontSize: "16px",

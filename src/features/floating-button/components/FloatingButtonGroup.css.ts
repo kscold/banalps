@@ -1,34 +1,38 @@
 import { style } from "@vanilla-extract/css"
 import { vw, breakpoints } from "../../../shared/styles/responsive.css"
 
-// Floating button group container - 1920px 기준 반응형 적용
+// Floating button group container - responsiveContainer(1600) 따르도록 수정
 export const floatingButtonContainer = style({
   position: "fixed",
-  bottom: vw(40), // 1920px 기준 40px
-  right: vw(40), // 1920px 기준 40px
+  bottom: vw(40), // 기본 위치: 화면 하단에서 40px
+  right: vw(160), // 1600px 컨테이너 기준 160px (좌우 여백과 일치)
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: vw(12), // 1920px 기준 12px
-  zIndex: 9999,
+  zIndex: 10000, // 푸터보다 높은 z-index
   "@media": {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 고정
-      bottom: "40px",
-      right: "40px",
+      bottom: "40px", // 기본 위치
+      right: "160px", // 1600px 컨테이너의 우측 여백
       gap: "12px",
     },
-    [breakpoints.tablet]: {
-      bottom: "32px", // 태블릿에서 80% 크기
-      right: "32px",
-      gap: "10px",
+    // 1600px 이하에서 동적 계산
+    [`screen and (max-width: 1600px)`]: {
+      right: "calc((100vw - min(100vw - 320px, 1600px)) / 2 + 40px)", // 컨테이너 우측 여백 + 40px
     },
     [breakpoints.mobile]: {
-      bottom: "20px", // 모바일에서 50% 크기
-      right: "20px",
+      right: "60px", // 모바일 20px 여백 + 40px
+      bottom: "20px", // 모바일 기본 위치
       gap: "8px",
     },
   },
+})
+
+// 푸터 위에 있을 때의 추가 스타일
+export const aboveFooter = style({
+  // 인라인 스타일로 동적 처리하므로 빈 스타일
 })
 
 // Expandable button list - 1920px 기준 적용
@@ -40,9 +44,6 @@ export const expandableList = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "12px", // 1920px 이상에서 고정
-    },
-    [breakpoints.tablet]: {
-      gap: "10px", // 태블릿에서 조금 작게
     },
     [breakpoints.mobile]: {
       gap: "8px", // 모바일에서 더 작게

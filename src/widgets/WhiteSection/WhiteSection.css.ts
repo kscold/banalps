@@ -71,11 +71,6 @@ export const mainContent = style({
       height: "628px",
       gap: "12px",
     },
-    [breakpoints.tablet]: {
-      flexDirection: "column",
-      height: "auto",
-      gap: "40px",
-    },
     [breakpoints.mobile]: {
       flexDirection: "column",
       height: "auto",
@@ -368,10 +363,6 @@ export const locationTitle = style({
       paddingLeft: "160px",
       paddingRight: "160px",
     },
-    [breakpoints.tablet]: {
-      paddingLeft: "40px",
-      paddingRight: "40px",
-    },
     [breakpoints.mobile]: {
       paddingLeft: "20px",
       paddingRight: "20px",
@@ -397,14 +388,6 @@ export const locationContent = style({
       paddingLeft: "0",
       paddingRight: "0",
     },
-    [breakpoints.tablet]: {
-      width: "calc(100% - 80px)", // 좌우 40px 여백
-      paddingLeft: "0",
-      paddingRight: "0",
-      flexDirection: "column",
-      height: "auto",
-      gap: "40px",
-    },
     [breakpoints.mobile]: {
       width: "100%",
       padding: "0 20px", // 모바일 좌우 20px 여백
@@ -427,12 +410,6 @@ export const leftContentArea = style({
       minHeight: "500px",
       gap: "20.29px",
     },
-    [breakpoints.tablet]: {
-      flex: "1",
-      flexDirection: "column",
-      minHeight: "auto",
-      gap: "20px",
-    },
     [breakpoints.mobile]: {
       flex: "1",
       flexDirection: "column",
@@ -454,10 +431,6 @@ export const locationImageArea = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       borderRadius: "8px",
-    },
-    [breakpoints.tablet]: {
-      width: "100%",
-      aspectRatio: "16 / 10", // 태블릿에서 더 넓은 비율
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -484,10 +457,6 @@ export const mapArea = style({
     [breakpoints.desktopLarge]: {
       borderRadius: "8px",
     },
-    [breakpoints.tablet]: {
-      width: "100%",
-      aspectRatio: "16 / 10", // 태블릿에서 더 넓은 비율
-    },
     [breakpoints.mobile]: {
       width: "100%",
       aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
@@ -509,12 +478,6 @@ export const locationInfo = style({
     },
     [`screen and (max-width: 1400px)`]: {
       width: "300px", // 중간 크기 화면에서 더 작게
-    },
-    [breakpoints.tablet]: {
-      width: "100%",
-      minHeight: "auto",
-      justifyContent: "flex-start", // 태블릿에서는 위쪽 정렬
-      gap: "40px", // 태블릿에서 간격
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -543,9 +506,6 @@ export const infoBox = style({
   gap: "40px",
   flex: "1", // 위쪽 공간 모두 차지
   "@media": {
-    [breakpoints.tablet]: {
-      marginBottom: "0", // 태블릿에서는 마진 제거
-    },
     [breakpoints.mobile]: {
       marginBottom: "0", // 모바일에서는 마진 제거
     },
@@ -596,9 +556,6 @@ export const locationNumberBadge = style({
       width: "141px",
       height: "125px",
     },
-    [breakpoints.tablet]: {
-      display: "none", // 태블릿에서는 숨김
-    },
     [breakpoints.mobile]: {
       display: "none", // 모바일에서는 숨김
     },
@@ -615,9 +572,6 @@ export const badge1 = style([
       [breakpoints.desktopLarge]: {
         bottom: "74px",
         left: "-148px",
-      },
-      [breakpoints.tablet]: {
-        display: "none", // 태블릿에서는 숨김
       },
       [breakpoints.mobile]: {
         display: "none", // 모바일에서는 숨김
@@ -636,9 +590,6 @@ export const badge2 = style([
       [breakpoints.desktopLarge]: {
         bottom: "74px",
         right: "50px",
-      },
-      [breakpoints.tablet]: {
-        display: "none", // 태블릿에서는 숨김
       },
       [breakpoints.mobile]: {
         display: "none", // 모바일에서는 숨김

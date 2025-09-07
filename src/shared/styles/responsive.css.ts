@@ -43,9 +43,6 @@ export const responsiveFont = (pixelValue: number) => ({
     [breakpoints.desktopLarge]: {
       fontSize: `${pixelValue}px`, // 1920px 이상에서는 고정
     },
-    [breakpoints.tablet]: {
-      fontSize: `${Math.max(pixelValue * 0.8, 14)}px`, // 태블릿에서 80% 크기, 최소 14px
-    },
     [breakpoints.mobile]: {
       fontSize: `${Math.max(pixelValue * 0.7, 16)}px`, // 모바일에서 70% 크기, 최소 16px
     },
@@ -116,12 +113,8 @@ export const responsiveContainer = (maxWidth: number = 1600) => ({
   maxWidth: `${maxWidth}px`, // 모든 해상도에서 완전 고정
   margin: "0 auto",
   "@media": {
-    [breakpoints.tablet]: {
-      // 태블릿: 768px~1023px
-      width: "calc(100% - 80px)", // 양쪽 40px 마진
-    },
     [breakpoints.mobile]: {
-      // 모바일: 365px~767px
+      // 모바일: 375px~1023px
       width: "calc(100% - 40px)", // 양쪽 20px 마진
     },
   },
@@ -143,11 +136,6 @@ export const responsiveImageContainer = (width: number, height: number) => ({
       width: `${width}px`, // 고정
       height: `${height}px`, // 고정
       maxWidth: `${width}px`, // 최대 너비도 고정
-    },
-    [breakpoints.tablet]: {
-      width: "100%", // 태블릿에서 전체 너비
-      height: "auto", // 높이는 자동
-      aspectRatio: `${width} / ${height}`, // 비율은 유지
     },
     [breakpoints.mobile]: {
       width: "100%", // 모바일에서 전체 너비
@@ -202,10 +190,6 @@ export const responsiveSplitContainer = () => ({
   gridTemplateColumns: "1fr 1fr", // 50:50 분할
   alignItems: "center",
   "@media": {
-    [breakpoints.tablet]: {
-      gridTemplateColumns: "1fr", // 단일 컬럼
-      gap: "40px",
-    },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr", // 단일 컬럼
       gap: "30px",
@@ -229,11 +213,6 @@ export const responsiveLeftContent = () => ({
       marginLeft: "160px", // 1920px+ 고정 마진
       paddingLeft: "60px", // 헤더와 동일한 고정 패딩
       paddingRight: "80px", // 더 큰 여백으로 조화롭게
-    },
-    [breakpoints.tablet]: {
-      marginLeft: "40px", // 태블릿 마진
-      paddingLeft: "0",
-      paddingRight: "40px",
     },
     [breakpoints.mobile]: {
       marginLeft: "20px", // 모바일 마진
@@ -260,11 +239,6 @@ export const responsiveRightContent = () => ({
       paddingLeft: "80px", // 더 큰 여백으로 텍스트 오버플로우 방지
       paddingRight: "60px", // 헤더와 동일한 고정 패딩
     },
-    [breakpoints.tablet]: {
-      marginRight: "40px", // 태블릿 마진
-      paddingLeft: "40px",
-      paddingRight: "0",
-    },
     [breakpoints.mobile]: {
       marginRight: "20px", // 모바일 마진
       paddingLeft: "20px",
@@ -289,14 +263,6 @@ export const responsiveAbsoluteImageContainer = (minHeight: number) => ({
     [breakpoints.desktopLarge]: {
       height: `${minHeight}px`, // 1920px+ 완전 고정
       maxWidth: "100%", // 최대 너비도 제한
-    },
-    [breakpoints.tablet]: {
-      position: "static" as const, // 태블릿에서는 일반 레이아웃
-      height: "auto",
-      overflow: "visible" as const,
-      display: "flex",
-      flexDirection: "column" as const,
-      gap: "20px",
     },
     [breakpoints.mobile]: {
       position: "static" as const, // 모바일에서는 일반 레이아웃
@@ -341,12 +307,6 @@ export const responsiveAbsoluteImage = ({
       maxWidth: `${maxWidth}px`, // 1920px+ 완전 고정
       width: `${maxWidth}px`, // 너비도 고정하여 스케일링 방지
     },
-    [breakpoints.tablet]: {
-      position: "static" as const, // 태블릿에서는 일반 레이아웃
-      width: "100%",
-      maxWidth: "none",
-      aspectRatio: "auto",
-    },
     [breakpoints.mobile]: {
       position: "static" as const, // 모바일에서는 일반 레이아웃
       width: "100%",
@@ -371,11 +331,6 @@ export const responsiveThreeColumnContainer = (maxWidth: number = 1920) => ({
   gridTemplateColumns: "1fr auto 1fr", // 왼쪽 텍스트, 중앙 일러스트, 오른쪽 이미지
   alignItems: "center",
   "@media": {
-    [breakpoints.tablet]: {
-      gridTemplateColumns: "1fr", // 태블릿에서는 단일 컬럼
-      gap: "40px",
-      padding: "0 40px", // 좌우 40px 마진
-    },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr", // 모바일에서는 단일 컬럼
       gap: "30px",
@@ -386,8 +341,7 @@ export const responsiveThreeColumnContainer = (maxWidth: number = 1920) => ({
 
 // 공통 반응형 브레이크포인트 (사용자 요청 기준)
 export const breakpoints = {
-  mobile: "screen and (max-width: 767px)", // 365px ~ 767px
-  tablet: "screen and (min-width: 768px) and (max-width: 1023px)", // 768px ~ 1023px
+  mobile: "screen and (max-width: 1023px)", // 375px ~ 1023px (tablet 통합)
   desktop: "screen and (min-width: 1024px) and (max-width: 1919px)", // 1024px ~ 1919px (1920px 기준 비례 스케일링)
   desktopLarge: "screen and (min-width: 1920px)", // 1920px 이상 (고정 크기)
 } as const
