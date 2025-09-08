@@ -3,6 +3,7 @@
 import HeaderNavigation from "../../../widgets/Header/HeaderNavigation"
 import BeforeAfterSlider from "../../../shared/ui/BeforeAfterSlider"
 import { ArrowButton } from "../../../shared/ui/ArrowButton"
+
 import * as styles from "./HairlinePage.css"
 
 export default function HairlinePage() {

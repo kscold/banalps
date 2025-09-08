@@ -150,7 +150,7 @@ export const hairlineHeroTitleDot = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "12px",
-      height: "12px", 
+      height: "12px",
       marginTop: "8px",
     },
     [breakpoints.mobile]: {
@@ -512,7 +512,7 @@ export const section2Quote = style({
 
   // 피그마 디자인에 맞는 더 큰 따옴표 (배포 환경 호환성을 위해 직접 계산)
   "::before": {
-    content: '"', // 시작 따옴표
+    content: '"\u201c"', // 시작 따옴표 (유니코드 사용)
     color: "#272727",
     fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
     fontWeight: 500, // 약간 더 굵게
@@ -520,7 +520,7 @@ export const section2Quote = style({
   },
 
   "::after": {
-    content: '"', // 끝 따옴표
+    content: '"\u201d"', // 끝 따옴표 (유니코드 사용)
     color: "#272727",
     fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
     fontWeight: 500, // 약간 더 굵게
