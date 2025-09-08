@@ -9,10 +9,6 @@ const withVanillaExtract = createVanillaExtractPlugin({
 const nextConfig: NextConfig = {
   output: 'standalone',
   productionBrowserSourceMaps: false, // 프로덕션 소스맵 비활성화
-  // 실험적 기능 설정 (Vanilla Extract 호환성)
-  experimental: {
-    optimizePackageImports: ['@vanilla-extract/css'],
-  },
   images: {
     unoptimized: true,
     remotePatterns: [
