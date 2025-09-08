@@ -1,4 +1,4 @@
-import { style, keyframes, globalStyle } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css"
 import {
   responsiveContainer,
   vw,
@@ -44,16 +44,14 @@ export const hairlineHeroIllustration = style({
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   top: "50%",
   transform: "translateY(-50%)",
-  right: "calc((100% - 1600px) / 2)", // 1600px 컨테이너가 끝나는 지점에서 종료
+  width: "1600px", // 직접적인 너비 설정으로 안정성 확보
+  maxWidth: "calc(100% - 320px)", // 양쪽 160px 마진
   height: vw(762), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
-      right: "160px", // 1920px+ 고정 (1920-1600)/2 = 160px
+      width: "1600px",
       height: "762px",
-    },
-    "screen and (max-width: 1919px)": {
-      right: vw(160), // 1024px~1919px에서 비례 스케일링
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -100,25 +98,20 @@ export const hairlineHeroTitleWrapper = style({
 })
 
 export const hairlineHeroTitleContainer = style({
-  position: "absolute",
-  top: "50%",
-  left: "0",
-  transform: "translateY(-50%)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
   textAlign: "left",
+  width: "100%",
   zIndex: 3,
-  right: "0", // 오른쪽에서 시작
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginRight: "160px", // 1920px+ 고정 마진
       paddingLeft: "40px",
-      paddingRight: "60px", // 헤더와 동일한 고정 패딩
+      paddingRight: "60px",
     },
     [breakpoints.mobile]: {
-      position: "relative",
-      top: "auto",
-      transform: "none",
       textAlign: "center",
-      marginRight: "0",
+      alignItems: "center",
       paddingLeft: "0",
       paddingRight: "0",
       right: "auto",
@@ -148,13 +141,24 @@ export const hairlineHeroTitle = style({
 })
 
 export const hairlineHeroTitleDot = style({
-  fontSize: "60px",
-  width: "12px",
-  height: "12px",
+  width: vw(12), // 1920px 기준 12px
+  height: vw(12), // 1920px 기준 12px
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
   flexShrink: 0,
-  marginTop: "8px", // 텍스트와 정렬을 위한 조정
+  marginTop: vw(8), // 1920px 기준 8px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "12px",
+      height: "12px", 
+      marginTop: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: "8px",
+      height: "8px",
+      marginTop: "6px",
+    },
+  },
 })
 
 // Section 1: 얼굴 윤곽의 완성은 헤어라인입니다
@@ -506,21 +510,21 @@ export const section2Quote = style({
   position: "relative",
   display: "inline",
 
-  // 피그마 디자인에 맞는 더 큰 따옴표
+  // 피그마 디자인에 맞는 더 큰 따옴표 (배포 환경 호환성을 위해 직접 계산)
   "::before": {
     content: '"', // 시작 따옴표
     color: "#272727",
-    fontSize: vw(28), // 더 큰 따옴표 크기
+    fontSize: `${(28 / 1920) * 100}vw`, // 28px을 직접 vw 계산
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: vw(30),
+    lineHeight: `${(30 / 1920) * 100}vw`, // 30px을 직접 vw 계산
   },
 
   "::after": {
     content: '"', // 끝 따옴표
     color: "#272727",
-    fontSize: vw(28), // 더 큰 따옴표 크기
+    fontSize: `${(28 / 1920) * 100}vw`, // 28px을 직접 vw 계산
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: vw(30),
+    lineHeight: `${(30 / 1920) * 100}vw`, // 30px을 직접 vw 계산
   },
 
   "@media": {

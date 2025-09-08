@@ -1,14 +1,14 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css"
 
-// 슬라이드 애니메이션
-const slideIn = keyframes({
-  from: {
-    transform: "translateX(100%)",
-  },
-  to: {
-    transform: "translateX(0)",
-  },
-})
+// 슬라이드 애니메이션 (미사용이지만 향후 사용 예정으로 보관)
+// const slideIn = keyframes({
+//   from: {
+//     transform: "translateX(100%)",
+//   },
+//   to: {
+//     transform: "translateX(0)",
+//   },
+// })
 
 // 배경 오버레이
 export const mobileMenuOverlay = style({
@@ -134,20 +134,20 @@ export const mobileNavSub = style({
   gap: "20px",
   marginTop: "20px",
   paddingLeft: "0",
-  animation: "slideDown 200ms ease-out",
+  // animation: "slideDown 200ms ease-out", // 애니메이션 임시 비활성화
 })
 
-// 슬라이드 다운 애니메이션
-const slideDown = keyframes({
-  from: {
-    opacity: 0,
-    maxHeight: "0",
-  },
-  to: {
-    opacity: 1,
-    maxHeight: "500px",
-  },
-})
+// 슬라이드 다운 애니메이션 (미사용이지만 향후 사용 예정으로 보관)
+// const slideDown = keyframes({
+//   from: {
+//     opacity: 0,
+//     maxHeight: "0",
+//   },
+//   to: {
+//     opacity: 1,
+//     maxHeight: "500px",
+//   },
+// })
 
 // 서브메뉴 링크
 export const mobileNavSubLink = style({

@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css"
-import { fontFamily, fontWeight } from "../../shared/styles/fonts.css"
+import { fontFamily } from "../../shared/styles/fonts.css"
 import { tokens } from "../../shared/styles/tokens.css"
 
 // 메인 컨테이너 - 100vh 고정

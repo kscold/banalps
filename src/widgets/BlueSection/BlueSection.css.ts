@@ -3,9 +3,7 @@ import {
   vw,
   responsiveFont,
   responsiveContainer,
-  responsiveImageContainer,
   responsiveCaptureContainer,
-  responsivePosition,
   responsiveProperty,
   breakpoints,
 } from "../../shared/styles/responsive.css"
