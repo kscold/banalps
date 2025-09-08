@@ -212,7 +212,7 @@ export const section1Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형
   lineHeight: vw(56), // 1920px 기준 56px
   letterSpacing: "0",
-  margin: `0 0 ${vw(40)} 0`, // 1920px 기준 40px 마진
+  margin: "0 0 2.083333333333333vw 0", // 1920px 기준 40px 마진 (40/1920*100)
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -468,7 +468,7 @@ export const section2Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형 (피그마 스펙)
   lineHeight: vw(56), // 1920px 기준 56px (피그마 스펙)
   letterSpacing: "0", // 피그마 스펙: 0
-  margin: `0 0 ${vw(40)} 0`, // 1920px 기준 40px 마진
+  margin: "0 0 2.083333333333333vw 0", // 1920px 기준 40px 마진 (40/1920*100)
   color: "#272727", // 피그마 스펙: #272727
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -514,17 +514,17 @@ export const section2Quote = style({
   "::before": {
     content: '"', // 시작 따옴표
     color: "#272727",
-    fontSize: `${(28 / 1920) * 100}vw`, // 28px을 직접 vw 계산
+    fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: `${(30 / 1920) * 100}vw`, // 30px을 직접 vw 계산
+    lineHeight: "1.5625vw", // 30px을 직접 vw 계산 (30/1920*100)
   },
 
   "::after": {
     content: '"', // 끝 따옴표
     color: "#272727",
-    fontSize: `${(28 / 1920) * 100}vw`, // 28px을 직접 vw 계산
+    fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: `${(30 / 1920) * 100}vw`, // 30px을 직접 vw 계산
+    lineHeight: "1.5625vw", // 30px을 직접 vw 계산 (30/1920*100)
   },
 
   "@media": {
@@ -622,7 +622,7 @@ export const section3Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형
   lineHeight: vw(56), // 1920px 기준 56px
   letterSpacing: "0",
-  margin: `0 0 ${vw(120)} 0`, // 1920px 기준 40px 마진
+  margin: "0 0 6.25vw 0", // 1920px 기준 120px 마진 (120/1920*100)
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -796,7 +796,7 @@ export const beforeAfterCategory = style({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: `${vw(8)} ${vw(35)}`,
+  padding: "0.416666666666667vw 1.822916666666667vw", // 8px 35px (8/1920*100, 35/1920*100)
   backgroundColor: "#14AEFF", // 피그마 Badge 배경색
   borderRadius: "999px", // 완전 둥근 모서리
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙
@@ -863,7 +863,7 @@ export const viewMoreButton = style({
   display: "flex",
   alignItems: "center",
   gap: vw(15),
-  padding: `${vw(16)} ${vw(28)}`,
+  padding: "0.833333333333333vw 1.458333333333333vw", // 16px 28px (16/1920*100, 28/1920*100)
   backgroundColor: "transparent",
   border: "none",
   borderRadius: vw(48),
