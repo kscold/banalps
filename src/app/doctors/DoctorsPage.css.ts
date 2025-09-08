@@ -5,6 +5,7 @@ import {
   responsiveFont,
   responsiveContainer,
   responsiveLeftContent,
+  responsiveImageContainer,
 } from "../../shared/styles/responsive.css"
 
 // 페이지 전체 스타일
@@ -1165,19 +1166,64 @@ export const historyTitle = style({
   },
 })
 
-// 타임라인 레이아웃
+// 타임라인 레이아웃 - 2라인 구조
 export const timelineLayout = style({
   width: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: vw(80),
+  gap: vw(40),
+  alignItems: "center",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "80px",
+      gap: "40px",
     },
     [breakpoints.mobile]: {
-      gap: "60px",
+      gap: "30px",
     },
+  },
+})
+
+// 첫 번째 라인: 2011 - 화살표 - 첫 번째 이미지 (왼쪽 정렬)
+export const timelineFirstRow = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between", // 요소들을 골고루 분배
+  gap: vw(40), // 간격 조정
+  width: "100%",
+  maxWidth: "1600px", // responsiveContainer(1600)에 맞춤
+  paddingLeft: 0,
+  // paddingRight: vw(400), // 오른쪽 여백으로 균형 조정
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "40px",
+      maxWidth: "1600px",
+      // paddingLeft: "0",
+      // paddingRight: "400px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      gap: "30px",
+      maxWidth: "none",
+      paddingLeft: "0",
+      paddingRight: "0",
+    },
+  },
+})
+
+// 두 번째 라인: 두 번째 이미지 - 파란색 원 - 2024 (오른쪽 정렬)
+export const timelineSecondRow = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between", // 요소들을 골고루 분배
+  gap: vw(20), // 간격 조정
+  width: "100%",
+  maxWidth: "1600px", // responsiveContainer(1600)에 맞춤
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      // paddingLeft: "400px",
+      // paddingRight: "0",
+    },
+    [breakpoints.mobile]: {},
   },
 })
 
@@ -1185,7 +1231,9 @@ export const timelineRow = style({
   width: "100%",
   display: "flex",
   alignItems: "center",
-  gap: vw(60),
+  justifyContent: "center",
+  gap: vw(60), // 간격 증가
+  maxWidth: "1600px", // 전체 너비 증가
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "60px",
@@ -1193,28 +1241,34 @@ export const timelineRow = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "30px",
+      maxWidth: "none",
     },
   },
 })
 
-// 2011년 그룹
+// 2011년 그룹 - 피그마 디자인 기준 대형 사이즈
 export const year2011Group = style({
   display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  gap: vw(20),
-  width: vw(730),
+  alignItems: "center",
+  justifyContent: "center",
+  width: vw(730), // 피그마 디자인 기준 730px
+  height: vw(258), // 피그마 디자인 기준 258px
+  flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "20px",
       width: "730px",
+      height: "258px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      alignItems: "center",
-      textAlign: "center",
+      width: "300px",
+      height: "120px",
     },
   },
+})
+
+export const year2011Image = style({
+  width: "100%",
+  height: "auto",
 })
 
 export const yearLabel2011 = style({
@@ -1266,24 +1320,75 @@ export const year2011Text = style({
   },
 })
 
-// 화살표
+// 화살표 - 피그마 디자인 기준 크기
 export const timelineArrow = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: vw(335),
-  height: vw(165),
+  width: vw(200), // 화살표 크기 증가
+  height: vw(100),
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "335px",
-      height: "165px",
-    },
-    [breakpoints.mobile]: {
       width: "200px",
       height: "100px",
+    },
+    [breakpoints.mobile]: {
+      width: "100px",
+      height: "50px",
       transform: "rotate(90deg)",
     },
   },
+})
+
+// 타임라인 중앙 이미지 - 피그마 디자인 기준 대형 사이즈
+export const timelineImage1 = style({
+  width: vw(380), // 크기 대폭 증가
+  height: vw(250),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: vw(12), // 모서리 둥글게
+  overflow: "hidden",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "380px",
+      height: "250px",
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
+      width: "160px",
+      height: "120px",
+      borderRadius: "8px",
+    },
+  },
+})
+
+// 타임라인 중앙 이미지 - 피그마 디자인 기준 대형 사이즈
+export const timelineImage2 = style({
+  width: vw(300), // 크기 대폭 증가
+  height: vw(250),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: vw(12), // 모서리 둥글게
+  overflow: "hidden",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "300px",
+      height: "250px",
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
+      width: "160px",
+      height: "120px",
+      borderRadius: "8px",
+    },
+  },
+})
+
+export const timelineImageContent = style({
+  width: "100%",
+  height: "100%",
 })
 
 export const timelineArrowSvg = style({
@@ -1392,12 +1497,12 @@ export const frameText = style({
   },
 })
 
-// 원형 아이콘 그룹
+// 원형 아이콘 그룹 - 피그마 디자인 기준 크기
 export const circleIconGroup = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: vw(248),
+  width: vw(248), // blueCircle과 일치
   height: vw(248),
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -1412,36 +1517,82 @@ export const circleIconGroup = style({
 })
 
 export const circleIcon = style({
-  width: "100%",
-  height: "100%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  width: vw(248), // 파란색 원과 같은 크기
+  height: vw(248),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "248px",
+      height: "248px",
+    },
+    [breakpoints.mobile]: {
+      width: "150px",
+      height: "150px",
+    },
+  },
 })
 
 export const circleIconSvg = style({
-  width: "100%",
-  height: "100%",
-})
-
-// 2024년 그룹
-export const year2024Group = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-end",
-  gap: vw(20),
-  width: vw(730),
+  width: vw(248), // 파란색 원과 같은 크기
+  height: vw(248),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "20px",
-      width: "730px",
+      width: "248px",
+      height: "248px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      alignItems: "center",
-      textAlign: "center",
+      width: "150px",
+      height: "150px",
     },
   },
+})
+
+// 파란색 원 - 피그마 디자인 기준
+export const blueCircle = style({
+  width: vw(248),
+  height: vw(248),
+  backgroundColor: "#73D5FA",
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "248px",
+      height: "248px",
+    },
+    [breakpoints.mobile]: {
+      width: "150px",
+      height: "150px",
+    },
+  },
+})
+
+// 2024년 그룹 - 피그마 디자인 기준 대형 사이즈
+export const year2024Group = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: vw(730), // 2011년과 동일한 크기
+  height: vw(258),
+  flexShrink: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "730px",
+      height: "258px",
+    },
+    [breakpoints.mobile]: {
+      width: "300px",
+      height: "120px",
+    },
+  },
+})
+
+export const year2024Image = style({
+  width: "100%",
+  height: "auto",
 })
 
 export const yearLabel2024 = style({
@@ -1495,4 +1646,982 @@ export const year2024Text = style({
       lineHeight: "24px",
     },
   },
+})
+
+// ==================== ACADEMIC ACTIVITIES SECTION ====================
+
+// 학술활동 섹션 - 전체 컨테이너
+export const academicActivitiesSection = style({
+  width: "100%",
+  backgroundColor: "#FFFFFF", // 흰색 배경
+  padding: `${vw(120)} 0`,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      padding: "120px 0",
+    },
+    [breakpoints.mobile]: {
+      padding: "80px 0",
+    },
+  },
+})
+
+export const academicActivitiesContainer = style({
+  ...responsiveContainer(1600),
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(80),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "80px",
+    },
+    [breakpoints.mobile]: {
+      gap: "60px",
+    },
+  },
+})
+
+// 학술활동 헤더
+export const academicActivitiesHeader = style({
+  textAlign: "left",
+  marginBottom: vw(60),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginBottom: "60px",
+    },
+    [breakpoints.mobile]: {
+      marginBottom: "40px",
+    },
+  },
+})
+
+export const academicActivitiesTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60),
+  lineHeight: vw(72),
+  letterSpacing: "0",
+  color: "#272727",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px",
+      lineHeight: "72px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "40px",
+      lineHeight: "48px",
+    },
+  },
+})
+
+// 콘텐츠 영역 - 왼쪽 필터 + 오른쪽 목록
+export const academicActivitiesContent = style({
+  display: "flex",
+  gap: vw(80),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "80px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      gap: "40px",
+    },
+  },
+})
+
+// 왼쪽 필터 사이드바
+export const academicFilterSidebar = style({
+  width: vw(240),
+  flexShrink: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "240px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+    },
+  },
+})
+
+export const filterTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(24),
+  lineHeight: vw(32),
+  color: "#272727",
+  margin: `0 0 ${vw(32)} 0`,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "24px",
+      lineHeight: "32px",
+      margin: "0 0 32px 0",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "20px",
+      lineHeight: "28px",
+      margin: "0 0 24px 0",
+    },
+  },
+})
+
+export const filterOptions = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(16),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "16px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "row",
+      gap: "12px",
+      overflowX: "auto",
+    },
+  },
+})
+
+export const filterButton = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  fontSize: vw(18),
+  lineHeight: vw(24),
+  color: "#666666",
+  backgroundColor: "transparent",
+  border: "none",
+  padding: `${vw(12)} ${vw(16)}`,
+  textAlign: "left",
+  cursor: "pointer",
+  borderRadius: vw(8),
+  transition: "all 0.2s ease",
+  ":hover": {
+    backgroundColor: "#F5F5F5",
+    color: "#272727",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+      lineHeight: "24px",
+      padding: "12px 16px",
+      borderRadius: "8px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "16px",
+      lineHeight: "22px",
+      padding: "10px 14px",
+      borderRadius: "6px",
+      textAlign: "center",
+      whiteSpace: "nowrap",
+    },
+  },
+})
+
+export const active = style({
+  backgroundColor: "#14AEFF",
+  color: "#FFFFFF",
+  fontWeight: 500,
+  ":hover": {
+    backgroundColor: "#0EA5E9",
+    color: "#FFFFFF",
+  },
+})
+
+// 오른쪽 학술활동 목록
+export const academicActivitiesList = style({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(60),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "60px",
+    },
+    [breakpoints.mobile]: {
+      gap: "40px",
+    },
+  },
+})
+
+export const academicYearGroup = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(32),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "32px",
+    },
+    [breakpoints.mobile]: {
+      gap: "24px",
+    },
+  },
+})
+
+export const academicYear = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 700,
+  ...responsiveFont(32),
+  lineHeight: vw(40),
+  color: "#14AEFF",
+  margin: 0,
+  paddingBottom: vw(16),
+  borderBottom: `${vw(2)} solid #E5E5E5`,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "32px",
+      lineHeight: "40px",
+      paddingBottom: "16px",
+      borderBottom: "2px solid #E5E5E5",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "28px",
+      lineHeight: "36px",
+      paddingBottom: "12px",
+      borderBottom: "2px solid #E5E5E5",
+    },
+  },
+})
+
+export const academicItems = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(40),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "40px",
+    },
+    [breakpoints.mobile]: {
+      gap: "32px",
+    },
+  },
+})
+
+export const academicItem = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(12),
+  padding: vw(32),
+  backgroundColor: "#FAFAFA",
+  borderRadius: vw(16),
+  border: `${vw(1)} solid #E5E5E5`,
+  transition: "all 0.2s ease",
+  ":hover": {
+    backgroundColor: "#F0F8FF",
+    borderColor: "#14AEFF",
+    transform: "translateY(-2px)",
+    boxShadow: "0 4px 20px rgba(20, 174, 255, 0.1)",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "12px",
+      padding: "32px",
+      borderRadius: "16px",
+      border: "1px solid #E5E5E5",
+    },
+    [breakpoints.mobile]: {
+      gap: "10px",
+      padding: "24px",
+      borderRadius: "12px",
+      border: "1px solid #E5E5E5",
+    },
+  },
+})
+
+export const academicDate = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  ...responsiveFont(16),
+  lineHeight: vw(22),
+  color: "#14AEFF",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      lineHeight: "22px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "14px",
+      lineHeight: "20px",
+    },
+  },
+})
+
+export const academicType = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(14),
+  lineHeight: vw(18),
+  color: "#FFFFFF",
+  backgroundColor: "#14AEFF",
+  padding: `${vw(6)} ${vw(12)}`,
+  borderRadius: vw(20),
+  display: "inline-block",
+  width: "fit-content",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "14px",
+      lineHeight: "18px",
+      padding: "6px 12px",
+      borderRadius: "20px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "12px",
+      lineHeight: "16px",
+      padding: "4px 10px",
+      borderRadius: "16px",
+    },
+  },
+})
+
+export const academicTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(20),
+  lineHeight: vw(28),
+  color: "#272727",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "20px",
+      lineHeight: "28px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "18px",
+      lineHeight: "26px",
+    },
+  },
+})
+
+export const academicDescription = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 300,
+  ...responsiveFont(16),
+  lineHeight: vw(24),
+  color: "#666666",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "14px",
+      lineHeight: "22px",
+    },
+  },
+})
+
+// Academic Activities Section - 새로운 피그마 디자인
+export const academicActivitiesLayout = style({
+  display: "flex",
+  gap: vw(138),
+  width: "100%",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "138px",
+    },
+    [breakpoints.desktop]: {
+      flexDirection: "column",
+      gap: "40px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      gap: "30px",
+    },
+  },
+})
+
+// 왼쪽 연도 필터
+export const yearFilterSidebar = style({
+  width: vw(132),
+  height: vw(628), // 테이블과 동일한 높이
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "132px",
+      height: "628px",
+    },
+    [breakpoints.desktop]: {
+      width: "100px",
+      height: "auto",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+    },
+  },
+})
+
+export const yearFilter = style({
+  display: "flex",
+  flexDirection: "column",
+  position: "relative",
+  height: vw(688), // academicContent와 동일한 높이
+  paddingTop: vw(20),
+  paddingBottom: vw(20),
+  justifyContent: "space-between", // 15개 연도를 균등 배치
+  "::before": {
+    content: '""',
+    position: "absolute",
+    left: vw(15), // yearCircle 중앙에 맞춤
+    top: vw(30),
+    bottom: vw(30),
+    width: "1px",
+    backgroundColor: "#DEDEDE",
+    zIndex: 1,
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      height: "688px",
+      paddingTop: "20px",
+      paddingBottom: "20px",
+      justifyContent: "space-between",
+      "::before": {
+        left: "15px",
+        top: "30px",
+        bottom: "30px",
+      },
+    },
+    [breakpoints.desktop]: {
+      gap: "30px",
+      height: "auto",
+      "::before": {
+        left: "12px",
+        top: "12px",
+        bottom: "12px",
+      },
+    },
+    [breakpoints.mobile]: {
+      gap: "25px",
+      height: "auto",
+      "::before": {
+        left: "10px",
+        top: "10px",
+        bottom: "10px",
+      },
+    },
+  },
+})
+
+export const yearFilterItem = style({
+  width: vw(132),
+  height: vw(14), // yearCircle과 동일한 높이
+  display: "flex",
+  alignItems: "center",
+  gap: vw(34),
+  cursor: "pointer",
+  position: "relative",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "132px",
+      height: "14px",
+      gap: "34px",
+    },
+    [breakpoints.desktop]: {
+      width: "auto",
+      height: "auto",
+      gap: "8px",
+      padding: "4px 0",
+    },
+    [breakpoints.mobile]: {
+      width: "auto",
+      height: "auto",
+      gap: "6px",
+      padding: "3px 0",
+    },
+  },
+})
+
+export const yearCircle = style({
+  width: vw(14),
+  height: vw(14),
+  borderRadius: "50%",
+  backgroundColor: "#F5F5F5", // 회색 배경
+  border: "none",
+  position: "absolute",
+  left: vw(8), // 중앙 정렬을 위해 조정
+  zIndex: 2, // 연결선보다 위에
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "14px",
+      height: "14px",
+      left: "8px",
+    },
+    [breakpoints.desktop]: {
+      width: "14px",
+      height: "14px",
+      left: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: "14px",
+      height: "14px",
+      left: "8px",
+    },
+  },
+})
+
+export const activeCircle = style({
+  width: vw(30),
+  height: vw(30),
+  backgroundColor: "transparent",
+  borderRadius: "50%",
+  border: "1px solid #14AEFF",
+  position: "absolute",
+  left: vw(0), // 회색 원의 중심에 맞춤
+  top: vw(0),
+  zIndex: 3,
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  // 내부 파란색 원
+  "::after": {
+    content: '""',
+    position: "absolute",
+    width: vw(14),
+    height: vw(14),
+    borderRadius: "50%",
+    backgroundColor: "#14AEFF",
+  },
+
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "30px",
+      height: "30px",
+      left: "0px",
+      top: "0px",
+      "::after": {
+        width: "14px",
+        height: "14px",
+      },
+    },
+    [breakpoints.desktop]: {
+      width: "24px",
+      height: "24px",
+      left: "0px",
+      top: "0px",
+      "::after": {
+        width: "12px",
+        height: "12px",
+      },
+    },
+    [breakpoints.mobile]: {
+      width: "20px",
+      height: "20px",
+      left: "0px",
+      top: "0px",
+      "::after": {
+        width: "10px",
+        height: "10px",
+      },
+    },
+  },
+})
+
+export const yearText = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(32),
+  color: "#707070",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "32px",
+    },
+    [breakpoints.desktop]: {
+      fontSize: "24px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "20px",
+    },
+  },
+})
+
+export const activeText = style({
+  color: "#14AEFF !important",
+  position: "absolute",
+  left: vw(70),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "70px",
+    },
+    [breakpoints.desktop]: {
+      left: "50px",
+    },
+    [breakpoints.mobile]: {
+      left: "40px",
+    },
+  },
+})
+
+export const hiddenText = style({
+  visibility: "hidden",
+})
+
+export const activeYear = style({
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  gap: vw(42),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "42px",
+    },
+    [breakpoints.desktop]: {
+      gap: "8px",
+    },
+    [breakpoints.mobile]: {
+      gap: "6px",
+    },
+  },
+})
+
+// 오른쪽 학술활동 콘텐츠
+export const academicContent = style({
+  width: vw(1330),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1330px",
+    },
+    [breakpoints.desktop]: {
+      width: "100%",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+    },
+  },
+})
+
+export const academicContentTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(24),
+  lineHeight: vw(36),
+  color: "#272727",
+  margin: 0,
+  marginBottom: vw(30),
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktop]: {
+      fontSize: "20px",
+      lineHeight: "30px",
+      marginBottom: "40px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "18px",
+      lineHeight: "28px",
+      marginBottom: "30px",
+    },
+  },
+})
+
+export const academicTable = style({
+  position: "relative",
+  width: "100%",
+  height: vw(628),
+  maxHeight: vw(628),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      height: "628px",
+      maxHeight: "628px",
+    },
+    [breakpoints.desktop]: {
+      height: "auto",
+      maxHeight: "628px",
+    },
+    [breakpoints.mobile]: {
+      height: "auto",
+      maxHeight: "400px",
+    },
+  },
+})
+
+export const academicTableContainer = style({
+  width: vw(1255),
+  height: "100%",
+  maxHeight: vw(628),
+  overflowY: "hidden",
+  overflowX: "hidden",
+  scrollbarWidth: "none",
+  "::-webkit-scrollbar": {
+    display: "none",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1255px",
+      height: "628px",
+    },
+    [breakpoints.desktop]: {
+      width: "100%",
+      height: "auto",
+      overflowY: "visible",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+      overflowY: "visible",
+    },
+  },
+})
+
+// 첫 번째 행 스타일
+export const firstRow = style({
+  borderTop: "2px solid #707070",
+})
+
+// 마지막 행 스타일
+export const lastRow = style({
+  borderBottom: "2px solid #707070 !important",
+})
+
+export const academicTableRow = style({
+  display: "flex",
+  alignItems: "center",
+  gap: vw(30),
+  padding: `${vw(30)} 0`,
+  borderBottom: "1px solid #707070",
+  height: vw(104),
+  minHeight: vw(104),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "30px",
+      padding: "30px 0",
+      height: "104px",
+      minHeight: "104px",
+    },
+    [breakpoints.desktop]: {
+      gap: "20px",
+      padding: "28px 0",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      minHeight: "auto",
+    },
+    [breakpoints.mobile]: {
+      gap: "16px",
+      padding: "24px 0",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      minHeight: "auto",
+    },
+  },
+})
+
+export const academicRowDate = style({
+  width: vw(120),
+  flexShrink: 0,
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  ...responsiveFont(20),
+  lineHeight: vw(30),
+  color: "#272727",
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "120px",
+      fontSize: "20px",
+      lineHeight: "30px",
+    },
+    [breakpoints.desktop]: {
+      width: "auto",
+      fontSize: "18px",
+      lineHeight: "27px",
+    },
+    [breakpoints.mobile]: {
+      width: "auto",
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+  },
+})
+
+export const academicRowCategory = style({
+  width: vw(150),
+  flexShrink: 0,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "150px",
+    },
+    [breakpoints.desktop]: {
+      width: "auto",
+      justifyContent: "flex-start",
+    },
+    [breakpoints.mobile]: {
+      width: "auto",
+      justifyContent: "flex-start",
+    },
+  },
+})
+
+export const categoryBadge = style({
+  width: vw(70),
+  height: vw(70),
+  borderRadius: "50%",
+  border: "2px solid #14AEFF",
+  backgroundColor: "transparent",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(20),
+  lineHeight: vw(28),
+  color: "#14AEFF",
+  flexShrink: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "70px",
+      height: "70px",
+      fontSize: "20px",
+      lineHeight: "28px",
+    },
+    [breakpoints.desktop]: {
+      width: "56px",
+      height: "56px",
+      fontSize: "16px",
+      lineHeight: "22px",
+    },
+    [breakpoints.mobile]: {
+      width: "48px",
+      height: "48px",
+      fontSize: "14px",
+      lineHeight: "20px",
+    },
+  },
+})
+
+export const academicRowEvent = style({
+  width: vw(320),
+  flexShrink: 0,
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(20),
+  lineHeight: vw(28),
+  color: "#272727",
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "320px",
+      fontSize: "20px",
+      lineHeight: "28px",
+    },
+    [breakpoints.desktop]: {
+      width: "100%",
+      fontSize: "18px",
+      lineHeight: "25px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      fontSize: "16px",
+      lineHeight: "22px",
+    },
+  },
+})
+
+export const academicRowTitle = style({
+  width: vw(485),
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 200,
+  ...responsiveFont(16),
+  lineHeight: vw(25.6),
+  color: "#272727",
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "485px",
+      fontSize: "16px",
+      lineHeight: "25.6px",
+    },
+    [breakpoints.desktop]: {
+      width: "100%",
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      fontSize: "14px",
+      lineHeight: "22px",
+    },
+  },
+})
+
+export const scrollIndicator = style({
+  position: "absolute",
+  top: 0,
+  right: 48,
+  width: vw(27),
+  height: vw(69),
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  writingMode: "vertical-rl",
+  gap: vw(0),
+  zIndex: 10,
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktop]: {
+      display: "none",
+    },
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+})
+
+export const scrollText = style({
+  position: "absolute",
+  top: vw(5),
+  left: vw(15),
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(18),
+  lineHeight: vw(27),
+  color: "#14AEFF",
+
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+      lineHeight: "27px",
+    },
+    [breakpoints.desktop]: {
+      fontSize: "16px",
+      lineHeight: "24px",
+    },
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+})
+
+export const scrollIcon = style({
+  width: vw(12),
+  height: vw(70),
+  objectFit: "contain",
+
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+  },
+})
+
+// 타임라인 그래피티 섹션
+export const timelineGraffitiSection = style({
+  width: "100%",
+  backgroundColor: "#FFFFFF",
+
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktop]: {},
+    [breakpoints.mobile]: {},
+  },
+})
+
+// 타임라인 그래피티 이미지
+export const timelineGraffiti = style({
+  width: "100%",
+  height: "auto",
+  display: "block",
 })

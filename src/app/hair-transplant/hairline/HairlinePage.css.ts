@@ -1,4 +1,4 @@
-import { style, keyframes, globalStyle } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css"
 import {
   responsiveContainer,
   vw,
