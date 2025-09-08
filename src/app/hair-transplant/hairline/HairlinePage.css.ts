@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style, keyframes, globalStyle } from "@vanilla-extract/css"
 import {
   responsiveContainer,
   vw,
@@ -44,14 +44,16 @@ export const hairlineHeroIllustration = style({
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   top: "50%",
   transform: "translateY(-50%)",
-  width: "1600px", // 직접적인 너비 설정으로 안정성 확보
-  maxWidth: "calc(100% - 320px)", // 양쪽 160px 마진
+  right: "calc((100% - 1600px) / 2)", // 1600px 컨테이너가 끝나는 지점에서 종료
   height: vw(762), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1600px",
+      right: "160px", // 1920px+ 고정 (1920-1600)/2 = 160px
       height: "762px",
+    },
+    "screen and (max-width: 1919px)": {
+      right: vw(160), // 1024px~1919px에서 비례 스케일링
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -98,20 +100,25 @@ export const hairlineHeroTitleWrapper = style({
 })
 
 export const hairlineHeroTitleContainer = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
+  position: "absolute",
+  top: "50%",
+  left: "0",
+  transform: "translateY(-50%)",
   textAlign: "left",
-  width: "100%",
   zIndex: 3,
+  right: "0", // 오른쪽에서 시작
   "@media": {
     [breakpoints.desktopLarge]: {
+      marginRight: "160px", // 1920px+ 고정 마진
       paddingLeft: "40px",
-      paddingRight: "60px",
+      paddingRight: "60px", // 헤더와 동일한 고정 패딩
     },
     [breakpoints.mobile]: {
+      position: "relative",
+      top: "auto",
+      transform: "none",
       textAlign: "center",
-      alignItems: "center",
+      marginRight: "0",
       paddingLeft: "0",
       paddingRight: "0",
       right: "auto",
@@ -141,24 +148,13 @@ export const hairlineHeroTitle = style({
 })
 
 export const hairlineHeroTitleDot = style({
-  width: vw(12), // 1920px 기준 12px
-  height: vw(12), // 1920px 기준 12px
+  fontSize: "60px",
+  width: "12px",
+  height: "12px",
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
   flexShrink: 0,
-  marginTop: vw(8), // 1920px 기준 8px
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "12px",
-      height: "12px",
-      marginTop: "8px",
-    },
-    [breakpoints.mobile]: {
-      width: "8px",
-      height: "8px",
-      marginTop: "6px",
-    },
-  },
+  marginTop: "8px", // 텍스트와 정렬을 위한 조정
 })
 
 // Section 1: 얼굴 윤곽의 완성은 헤어라인입니다
@@ -212,7 +208,7 @@ export const section1Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형
   lineHeight: vw(56), // 1920px 기준 56px
   letterSpacing: "0",
-  margin: "0 0 2.083333333333333vw 0", // 1920px 기준 40px 마진 (40/1920*100)
+  margin: `0 0 ${vw(40)} 0`, // 1920px 기준 40px 마진
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -468,7 +464,7 @@ export const section2Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형 (피그마 스펙)
   lineHeight: vw(56), // 1920px 기준 56px (피그마 스펙)
   letterSpacing: "0", // 피그마 스펙: 0
-  margin: "0 0 2.083333333333333vw 0", // 1920px 기준 40px 마진 (40/1920*100)
+  margin: `0 0 ${vw(40)} 0`, // 1920px 기준 40px 마진
   color: "#272727", // 피그마 스펙: #272727
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -510,21 +506,21 @@ export const section2Quote = style({
   position: "relative",
   display: "inline",
 
-  // 피그마 디자인에 맞는 더 큰 따옴표 (배포 환경 호환성을 위해 직접 계산)
+  // 피그마 디자인에 맞는 더 큰 따옴표
   "::before": {
-    content: '"\u201c"', // 시작 따옴표 (유니코드 사용)
+    content: '"\u201d"', // 시작 따옴표 (유니코드 사용)
     color: "#272727",
-    fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
+    fontSize: vw(28), // 더 큰 따옴표 크기
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: "1.5625vw", // 30px을 직접 vw 계산 (30/1920*100)
+    lineHeight: vw(30),
   },
 
   "::after": {
     content: '"\u201d"', // 끝 따옴표 (유니코드 사용)
     color: "#272727",
-    fontSize: "1.458333333333333vw", // 28px을 직접 vw 계산 (28/1920*100)
+    fontSize: vw(28), // 더 큰 따옴표 크기
     fontWeight: 500, // 약간 더 굵게
-    lineHeight: "1.5625vw", // 30px을 직접 vw 계산 (30/1920*100)
+    lineHeight: vw(30),
   },
 
   "@media": {
@@ -622,7 +618,7 @@ export const section3Title = style({
   ...responsiveFont(40), // 1920px 기준 40px 반응형
   lineHeight: vw(56), // 1920px 기준 56px
   letterSpacing: "0",
-  margin: "0 0 6.25vw 0", // 1920px 기준 120px 마진 (120/1920*100)
+  margin: `0 0 ${vw(120)} 0`, // 1920px 기준 40px 마진
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -796,7 +792,7 @@ export const beforeAfterCategory = style({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: "0.416666666666667vw 1.822916666666667vw", // 8px 35px (8/1920*100, 35/1920*100)
+  padding: `${vw(8)} ${vw(35)}`,
   backgroundColor: "#14AEFF", // 피그마 Badge 배경색
   borderRadius: "999px", // 완전 둥근 모서리
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙
@@ -863,7 +859,7 @@ export const viewMoreButton = style({
   display: "flex",
   alignItems: "center",
   gap: vw(15),
-  padding: "0.833333333333333vw 1.458333333333333vw", // 16px 28px (16/1920*100, 28/1920*100)
+  padding: `${vw(16)} ${vw(28)}`,
   backgroundColor: "transparent",
   border: "none",
   borderRadius: vw(48),
