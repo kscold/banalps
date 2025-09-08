@@ -1,10 +1,18 @@
 import type { NextConfig } from "next";
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 
-const withVanillaExtract = createVanillaExtractPlugin();
+const withVanillaExtract = createVanillaExtractPlugin({
+  // Vanilla Extract 최적화 설정
+  identifiers: process.env.NODE_ENV === 'development' ? 'debug' : 'short',
+});
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  productionBrowserSourceMaps: false, // 프로덕션 소스맵 비활성화
+  // 실험적 기능 설정 (Vanilla Extract 호환성)
+  experimental: {
+    optimizePackageImports: ['@vanilla-extract/css'],
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
