@@ -5,7 +5,7 @@ import * as styles from "./Footer.css"
 
 export default function Footer() {
   return (
-    <footer className={styles.footerSection}>
+    <footer className={styles.footerSection} data-footer="true">
       <div className={styles.footerContent}>
         {/* 왼쪽: 클리닉 정보와 주소 */}
         <div className={styles.footerLeft}>

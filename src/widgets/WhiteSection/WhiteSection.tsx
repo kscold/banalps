@@ -140,7 +140,7 @@ export default function WhiteSection() {
           <div className={styles.readyTitleWrapper}>
             <div className={styles.readyTitleContainer}>
               <h2 className={styles.readyMainTitle}>
-                We're Ready
+                We&apos;re Ready
                 <br />
                 When You Are.
               </h2>

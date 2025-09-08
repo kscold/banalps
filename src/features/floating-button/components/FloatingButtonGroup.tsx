@@ -16,14 +16,29 @@ export default function FloatingButtonGroup({
   const [isExpanded, setIsExpanded] = useState(false)
   const [isAboveFooter, setIsAboveFooter] = useState(false)
 
-  // 스크롤 위치에 따른 푸터와의 충돌 감지
+  // 스크롤 위치에 따른 실제 Footer 컴포넌트와의 충돌 감지
   useEffect(() => {
     const handleScroll = () => {
-      const footer = document.querySelector('footer')
-      console.log('[FloatingButtonGroup/푸터감지] footer 요소:', footer)
+      // 메인 페이지에서 Hero 섹션 상태 확인 (텍스트/비디오 영역에서는 푸터 감지 무시)
+      const isMainPage = window.location.pathname === '/'
+      if (isMainPage) {
+        // BlueSection이 보이지 않으면 (텍스트/비디오 영역) 푸터 감지 무시
+        const blueSectionOverlay = document.querySelector('[class*="blueSectionOverlay"]')
+        const isBlueSectionVisible = blueSectionOverlay && 
+          window.getComputedStyle(blueSectionOverlay).display !== 'none'
+        
+        if (!isBlueSectionVisible) {
+          console.log('[FloatingButtonGroup/푸터감지] 메인페이지 텍스트/비디오 영역 - 푸터 감지 무시')
+          setIsAboveFooter(false)
+          return
+        }
+      }
+
+      // Footer 컴포넌트를 더 정확하게 찾기 (실제 Footer.tsx 컴포넌트)
+      const footer = document.querySelector('footer[data-footer="true"]')
       
       if (!footer) {
-        console.log('[FloatingButtonGroup/푸터감지] footer 요소를 찾을 수 없음, isAboveFooter를 false로 설정')
+        // Footer 컴포넌트가 없다면 항상 기본 위치
         setIsAboveFooter(false)
         return
       }
@@ -31,36 +46,33 @@ export default function FloatingButtonGroup({
       const footerRect = footer.getBoundingClientRect()
       const windowHeight = window.innerHeight
       
-      console.log('[FloatingButtonGroup/푸터감지] footerRect.top:', footerRect.top, 'windowHeight:', windowHeight)
+      // 푸터가 실제로 화면에 보이기 시작할 때만 플로팅 버튼 이동
+      const shouldMoveAboveFooter = footerRect.top > 0 && footerRect.top < windowHeight - 100
       
-      // 푸터가 화면에 보이기 시작하면 플로팅 버튼을 푸터 위로 이동
-      const shouldMoveAboveFooter = footerRect.top < windowHeight - 100 // 100px 버퍼
-      console.log('[FloatingButtonGroup/푸터감지] shouldMoveAboveFooter:', shouldMoveAboveFooter)
+      console.log('[FloatingButtonGroup/푸터감지] isMainPage:', isMainPage, 'footerTop:', footerRect.top, 'shouldMove:', shouldMoveAboveFooter)
+      
       setIsAboveFooter(shouldMoveAboveFooter)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    // 스크롤 이벤트에 throttle 적용 (성능 최적화)
+    let ticking = false
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true })
     
-    // 초기 위치 설정을 지연시켜서 DOM이 완전히 렌더링된 후 실행
-    setTimeout(() => {
-      handleScroll()
-    }, 100)
-    
-    // 추가로 DOM 변경사항을 감지하는 MutationObserver 설정
-    const observer = new MutationObserver(() => {
-      setTimeout(() => {
-        handleScroll()
-      }, 50)
-    })
-    
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    })
+    // 초기 위치 설정
+    handleScroll()
     
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      observer.disconnect()
+      window.removeEventListener('scroll', throttledHandleScroll)
     }
   }, [])
 

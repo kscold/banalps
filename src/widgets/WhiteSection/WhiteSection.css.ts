@@ -506,7 +506,11 @@ export const readySection = style({
   paddingBottom: vw(120),
   marginBottom: vw(120),
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      paddingTop: "120px",
+      paddingBottom: "120px", 
+      marginBottom: "120px",
+    },
     [breakpoints.mobile]: {
       paddingTop: "80px",
       paddingBottom: "80px",
@@ -521,7 +525,9 @@ export const readySectionContainer = style({
   margin: "0 auto",
   minHeight: vw(600),
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      minHeight: "600px",
+    },
     [breakpoints.mobile]: {
       padding: "0 20px", // 모바일에서 좌우 패딩
       minHeight: "auto",
