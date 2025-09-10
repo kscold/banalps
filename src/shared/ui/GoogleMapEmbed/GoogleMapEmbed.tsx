@@ -17,8 +17,8 @@ interface GoogleMapEmbedProps {
 export default function GoogleMapEmbed({ showButtons = false }: GoogleMapEmbedProps) {
   const [mapLoaded, setMapLoaded] = useState(false)
 
-  // 핀 마커만 표시하는 구글맵 임베드 URL (컨트롤 최소화)
-  const simpleEmbedUrl = `https://maps.google.com/maps?q=${BANAL_LOCATION.lat},${BANAL_LOCATION.lng}&t=m&z=16&ie=UTF8&iwloc=&output=embed`
+  // Place API를 사용한 임베드 URL (마커 표시, 정보창 숨김)
+  const placeEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(BANAL_LOCATION.name)}&center=${BANAL_LOCATION.lat},${BANAL_LOCATION.lng}&zoom=16`
 
   const openKakaoMap = () => {
     window.open(`https://map.kakao.com/link/map/${BANAL_LOCATION.name},${BANAL_LOCATION.lat},${BANAL_LOCATION.lng}`, '_blank')
@@ -37,7 +37,7 @@ export default function GoogleMapEmbed({ showButtons = false }: GoogleMapEmbedPr
           </div>
         )}
         <iframe
-          src={simpleEmbedUrl}
+          src={placeEmbedUrl}
           width="100%"
           height="100%"
           style={{ border: 0 }}

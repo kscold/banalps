@@ -1,12 +1,21 @@
 import { style } from "@vanilla-extract/css"
+import { breakpoints, vw } from "../../../shared/styles/responsive.css"
 
 export const mapContainer = style({
   width: "100%",
   display: "flex",
-  gap: "20px",
+  gap: vw(20),
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+    },
+    [breakpoints.desktop]: {
       flexDirection: "column",
+      gap: "16px",
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+      gap: "12px",
     },
   },
 })
@@ -14,13 +23,23 @@ export const mapContainer = style({
 export const mapWrapper = style({
   position: "relative",
   width: "100%",
-  height: "500px",
+  height: "100%",
+  minHeight: vw(500),
   backgroundColor: "#F5F5F5",
-  borderRadius: "8px",
+  borderRadius: vw(20),
   overflow: "hidden",
   "@media": {
-    "screen and (max-width: 768px)": {
-      height: "400px",
+    [breakpoints.desktopLarge]: {
+      minHeight: "500px",
+      borderRadius: "20px",
+    },
+    [breakpoints.desktop]: {
+      minHeight: "450px",
+      borderRadius: "16px",
+    },
+    [breakpoints.mobile]: {
+      minHeight: "300px",
+      borderRadius: "12px",
     },
   },
 })
@@ -53,42 +72,68 @@ export const loadingText = style({
 
 export const mapButtons = style({
   display: "flex",
-  gap: "12px", // 피그마 디자인에 맞춘 간격 (약간 더 넓게)
-
+  gap: vw(20),
+  marginTop: vw(100),
   "@media": {
-    "screen and (max-width: 768px)": {
-      gap: "8px",
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+      marginTop: "100px",
+    },
+    [breakpoints.desktop]: {
+      gap: "16px",
+      marginTop: "80px",
+    },
+    [breakpoints.mobile]: {
+      gap: "12px",
+      marginTop: "60px",
     },
   },
 })
 
 const buttonBase = style({
-  padding: "9px 16px", // 피그마 디자인에 맞춘 패딩
-  fontSize: "16px",
+  padding: `${vw(9)} ${vw(16)}`,
+  fontSize: vw(16),
   fontFamily: "'Poppins', sans-serif",
-  fontWeight: "600", // SemiBold
+  fontWeight: 600,
   border: "none",
-  borderRadius: "24px", // 피그마와 동일
+  borderRadius: vw(24),
   cursor: "pointer",
   transition: "all 0.2s ease",
-  width: "125px", // 피그마 정확한 너비
-  height: "42px", // 피그마 정확한 높이
+  minWidth: vw(125),
+  height: vw(42),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  letterSpacing: "0", // 피그마와 동일
-  lineHeight: "24px", // 피그마와 동일
+  letterSpacing: 0,
+  lineHeight: vw(24),
   ":hover": {
     transform: "translateY(-2px)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
   },
   "@media": {
-    "screen and (max-width: 768px)": {
-      flex: 1,
-      width: "auto",
+    [breakpoints.desktopLarge]: {
+      padding: "9px 16px",
+      fontSize: "16px",
+      borderRadius: "24px",
+      minWidth: "125px",
+      height: "42px",
+      lineHeight: "24px",
+    },
+    [breakpoints.desktop]: {
+      padding: "8px 14px",
       fontSize: "14px",
-      padding: "8px 16px",
+      borderRadius: "20px",
+      minWidth: "110px",
       height: "38px",
+      lineHeight: "22px",
+    },
+    [breakpoints.mobile]: {
+      padding: "7px 12px",
+      fontSize: "14px",
+      borderRadius: "18px",
+      minWidth: "100px",
+      height: "36px",
+      lineHeight: "20px",
     },
   },
 })
@@ -96,17 +141,39 @@ const buttonBase = style({
 export const kakaoButton = style([
   buttonBase,
   {
-    backgroundColor: "#F3E362", // 피그마와 동일한 색상 (#f3e362)
-    color: "#272727", // 피그마와 동일한 텍스트 색상
-    width: "129px", // 피그마 정확한 카카오 버튼 너비 (네이버와 다름)
+    backgroundColor: "#F3E362",
+    color: "#272727",
+    minWidth: vw(129),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        minWidth: "129px",
+      },
+      [breakpoints.desktop]: {
+        minWidth: "115px",
+      },
+      [breakpoints.mobile]: {
+        minWidth: "105px",
+      },
+    },
   },
 ])
 
 export const naverButton = style([
   buttonBase,
   {
-    backgroundColor: "#58A54B", // 피그마와 동일한 네이버 색상
-    color: "#FFFFFF", // 피그마와 동일한 텍스트 색상
-    width: "125px", // 피그마 정확한 네이버 버튼 너비
+    backgroundColor: "#58A54B",
+    color: "#FFFFFF",
+    minWidth: vw(125),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        minWidth: "125px",
+      },
+      [breakpoints.desktop]: {
+        minWidth: "110px",
+      },
+      [breakpoints.mobile]: {
+        minWidth: "100px",
+      },
+    },
   },
 ])
