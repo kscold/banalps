@@ -4,8 +4,8 @@ import {
   breakpoints,
   vw,
   responsiveFont,
-  responsiveContainer,
 } from "../../shared/styles/responsive.css"
+import { fontFamily } from "../../shared/styles/fonts.css"
 
 // 페이지 전체 스타일
 export const treatmentGuidePage = style({
@@ -22,14 +22,14 @@ export const heroSection = style({
   overflow: "visible",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "255px",
-      paddingBottom: "340px",
-      minHeight: "1200px",
+      paddingTop: vw(255), // 1920px+ 에서도 vw로 스케일링 유지
+      paddingBottom: vw(340),
+      minHeight: vw(1200),
     },
     [breakpoints.desktop]: {
-      paddingTop: "180px",
-      paddingBottom: "240px",
-      minHeight: "900px",
+      paddingTop: vw(255),
+      paddingBottom: vw(340),
+      minHeight: vw(1200),
     },
     [breakpoints.mobile]: {
       paddingTop: "120px",
@@ -46,10 +46,10 @@ export const heroContainer = style({
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "248px",
+      gap: vw(248), // 1920px+ 에서도 vw로 스케일링 유지
     },
     [breakpoints.desktop]: {
-      gap: "120px",
+      gap: vw(248),
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -64,10 +64,10 @@ export const heroLeft = style({
   width: vw(587),
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "587px",
+      width: vw(587), // 1920px+ 에서도 vw로 스케일링 유지
     },
     [breakpoints.desktop]: {
-      width: "400px",
+      width: vw(587),
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -78,20 +78,20 @@ export const heroLeft = style({
 export const heroTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(60),
+  fontSize: vw(60),
   lineHeight: vw(72),
   color: "#272727",
   paddingTop: vw(245),
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "60px",
-      lineHeight: "72px",
-      paddingTop: "245px",
+      fontSize: vw(60), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(72),
+      paddingTop: vw(245),
     },
     [breakpoints.desktop]: {
-      fontSize: "48px",
-      lineHeight: "58px",
-      paddingTop: "160px",
+      fontSize: vw(60),
+      lineHeight: vw(72),
+      paddingTop: vw(245),
     },
     [breakpoints.mobile]: {
       fontSize: "36px",
@@ -109,10 +109,10 @@ export const heroRight = style({
   width: vw(1085),
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1085px",
+      width: vw(1085), // 1920px+ 에서도 vw로 스케일링 유지
     },
     [breakpoints.desktop]: {
-      width: "700px",
+      width: vw(1085),
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -130,14 +130,14 @@ export const heroImageWrapper = style({
   borderRadius: vw(20),
   "@media": {
     [breakpoints.desktopLarge]: {
-      height: "925px",
-      marginBottom: "180px",
-      borderRadius: "20px",
+      height: vw(925), // 1920px+ 에서도 vw로 스케일링 유지
+      marginBottom: vw(180),
+      borderRadius: vw(20),
     },
     [breakpoints.desktop]: {
-      height: "600px",
-      marginBottom: "120px",
-      borderRadius: "16px",
+      height: vw(925),
+      marginBottom: vw(180),
+      borderRadius: vw(20),
     },
     [breakpoints.mobile]: {
       height: "400px",
@@ -153,87 +153,71 @@ export const heroImage = style({
   objectFit: "cover",
 })
 
-// 바날하우스 텍스트 오버레이
-export const heroOverlay = style({
+// Power Your Organization's Potential With Banal House 텍스트
+export const heroOverlayMain = style({
   position: "absolute",
-  bottom: vw(60),
-  right: vw(60),
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-end",
-  gap: vw(20),
+  top: vw(60), // Banalhouse 텍스트 위쪽에 위치
+  left: vw(60),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      bottom: "60px",
-      right: "60px",
-      gap: "20px",
-    },
-    [breakpoints.desktop]: {
-      bottom: "40px",
-      right: "40px",
-      gap: "16px",
-    },
     [breakpoints.mobile]: {
-      bottom: "24px",
+      bottom: "80px",
       right: "24px",
-      gap: "12px",
     },
   },
 })
 
-export const heroOverlayText = style({
-  fontFamily: "Poppins, sans-serif",
+export const heroOverlayMainText = style({
+  fontFamily: fontFamily.poppins,
   fontWeight: 400,
   fontSize: vw(15),
   lineHeight: vw(20),
   color: "#FFFFFF",
-  textAlign: "right",
+  textAlign: "left",
   textShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
-  selectors: {
-    "&:last-child": {
-      fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 700,
-      fontSize: vw(32),
-      lineHeight: vw(40),
-    },
-  },
+  margin: 0,
+  letterSpacing: "0%",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "15px",
-      lineHeight: "20px",
-      selectors: {
-        "&:last-child": {
-          fontSize: "32px",
-          lineHeight: "40px",
-        },
-      },
-    },
-    [breakpoints.desktop]: {
-      fontSize: "14px",
-      lineHeight: "18px",
-      selectors: {
-        "&:last-child": {
-          fontSize: "28px",
-          lineHeight: "36px",
-        },
-      },
-    },
     [breakpoints.mobile]: {
       fontSize: "12px",
       lineHeight: "16px",
-      selectors: {
-        "&:last-child": {
-          fontSize: "20px",
-          lineHeight: "28px",
-        },
-      },
+    },
+  },
+})
+
+// Banalhouse 브랜드 텍스트
+export const heroOverlayBrand = style({
+  position: "absolute",
+  top: vw(430),
+  left: vw(60),
+  "@media": {
+    [breakpoints.mobile]: {
+      bottom: "24px",
+      right: "24px",
+    },
+  },
+})
+
+export const heroOverlayBrandText = style({
+  fontFamily: fontFamily.poppins,
+  fontWeight: 600,
+  fontSize: vw(50),
+  lineHeight: vw(40),
+  color: "#FFFFFF",
+  textAlign: "right",
+  textShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
+  margin: 0,
+  letterSpacing: "0%",
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: "20px",
+      lineHeight: "28px",
     },
   },
 })
 
 export const heroSubtitle = style({
   position: "absolute",
-  bottom: vw(-100),
+  bottom: vw(-180),
   left: vw(0),
   fontFamily: "Poppins, sans-serif",
   fontWeight: 500,
@@ -242,15 +226,15 @@ export const heroSubtitle = style({
   color: "#14AEFF",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "60px",
-      lineHeight: "78px",
-      bottom: "-100px",
-      left: "0px",
+      fontSize: vw(60), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(78),
+      bottom: vw(-180),
+      left: vw(0),
     },
     [breakpoints.desktop]: {
       fontSize: "48px",
       lineHeight: "62px",
-      bottom: "-80px",
+      bottom: "-120px",
       left: "0px",
     },
     [breakpoints.mobile]: {
@@ -264,22 +248,29 @@ export const heroSubtitle = style({
 
 // Contact Section
 export const contactSection = style({
-  ...responsiveContainer(1920),
   paddingBottom: vw(240),
+  marginTop: vw(420),
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingBottom: "240px",
+      marginTop: "420px",
     },
     [breakpoints.desktop]: {
       paddingBottom: "180px",
+      marginTop: "320px",
     },
     [breakpoints.mobile]: {
       paddingBottom: "120px",
+      marginTop: "200px",
     },
   },
 })
 
 export const contactContainer = style({
+  width: "100%",
+  maxWidth: "none",
+  margin: "0",
+  padding: "0",
   display: "flex",
   gap: vw(155),
   alignItems: "flex-start",
@@ -288,7 +279,7 @@ export const contactContainer = style({
       gap: "155px",
     },
     [breakpoints.desktop]: {
-      gap: "100px",
+      gap: vw(155), // 1024-1920px 구간에서 vw로 스케일링
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -310,9 +301,9 @@ export const mapContainer = style({
       borderRadius: "20px",
     },
     [breakpoints.desktop]: {
-      width: "700px",
-      height: "450px",
-      borderRadius: "16px",
+      width: vw(1085), // 1024-1920px 구간에서 vw로 스케일링
+      height: vw(700),
+      borderRadius: vw(20),
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -326,16 +317,21 @@ export const mapContainer = style({
 export const contactInfo = style({
   width: vw(458),
   paddingTop: vw(0),
+  marginLeft: "auto", // 오른쪽 정렬
+  marginRight: "max(calc((100vw - 1600px) / 2 + 60px), 220px)", // 헤더 마진 + 60px 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "458px",
-      paddingTop: "0",
+      width: vw(458), // 1920px+ 에서도 vw로 스케일링 유지
+      marginRight: "220px", // 160px(헤더 마진) + 60px(여백) = 220px
     },
     [breakpoints.desktop]: {
-      width: "400px",
+      width: vw(458), // 1024-1920px 구간에서 vw로 스케일링
+      marginRight: "max(calc((100vw - 1600px) / 2 + 60px), 220px)",
     },
     [breakpoints.mobile]: {
       width: "100%",
+      marginLeft: 0,
+      marginRight: "20px",
     },
   },
 })
@@ -350,8 +346,8 @@ export const contactItem = style({
       marginBottom: "58px",
     },
     [breakpoints.desktop]: {
-      gap: "16px",
-      marginBottom: "48px",
+      gap: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      marginBottom: vw(58),
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -371,14 +367,14 @@ export const contactLabel = style({
   flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      lineHeight: "28px",
-      width: "115px",
+      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(28),
+      width: vw(115),
     },
     [breakpoints.desktop]: {
-      fontSize: "18px",
-      lineHeight: "26px",
-      width: "100px",
+      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      lineHeight: vw(28),
+      width: vw(115),
     },
     [breakpoints.mobile]: {
       fontSize: "16px",
@@ -396,12 +392,12 @@ export const contactValue = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "32px",
-      lineHeight: "32px",
+      fontSize: vw(32), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(32),
     },
     [breakpoints.desktop]: {
-      fontSize: "28px",
-      lineHeight: "28px",
+      fontSize: vw(32), // 1024-1920px 구간에서 vw로 스케일링
+      lineHeight: vw(32),
     },
     [breakpoints.mobile]: {
       fontSize: "24px",
@@ -418,12 +414,12 @@ export const contactSchedule = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      lineHeight: "30px",
+      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(30),
     },
     [breakpoints.desktop]: {
-      fontSize: "18px",
-      lineHeight: "28px",
+      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      lineHeight: vw(30),
     },
     [breakpoints.mobile]: {
       fontSize: "16px",
@@ -438,10 +434,10 @@ export const contactAddress = style({
   gap: vw(20),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "20px",
+      gap: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
     },
     [breakpoints.desktop]: {
-      gap: "16px",
+      gap: vw(20), // 1024-1920px 구간에서 vw로 스케일링
     },
     [breakpoints.mobile]: {
       gap: "12px",
@@ -457,12 +453,12 @@ export const addressMain = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      lineHeight: "30px",
+      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(30),
     },
     [breakpoints.desktop]: {
-      fontSize: "18px",
-      lineHeight: "28px",
+      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      lineHeight: vw(30),
     },
     [breakpoints.mobile]: {
       fontSize: "16px",
@@ -479,12 +475,12 @@ export const subwayInfo = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "26px",
+      fontSize: vw(16), // 1920px+ 에서도 vw로 스케일링 유지
+      lineHeight: vw(26),
     },
     [breakpoints.desktop]: {
-      fontSize: "14px",
-      lineHeight: "22px",
+      fontSize: vw(16), // 1024-1920px 구간에서 vw로 스케일링
+      lineHeight: vw(26),
     },
     [breakpoints.mobile]: {
       fontSize: "14px",

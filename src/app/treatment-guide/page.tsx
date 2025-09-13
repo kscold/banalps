@@ -30,13 +30,18 @@ export default function TreatmentGuidePage() {
                 alt="바날 성형외과 전경"
                 className={styles.heroImage}
               />
-              <div className={styles.heroOverlay}>
-                <p className={styles.heroOverlayText}>
+              {/* Power Your Organization's Potential With Banal House 텍스트 */}
+              <div className={styles.heroOverlayMain}>
+                <p className={styles.heroOverlayMainText}>
                   Power Your Organization's Potential
                   <br />
                   With Banal House
                 </p>
-                <p className={styles.heroOverlayText}>Banalhouse</p>
+              </div>
+
+              {/* Banalhouse 텍스트 */}
+              <div className={styles.heroOverlayBrand}>
+                <p className={styles.heroOverlayBrandText}>Banalhouse</p>
               </div>
             </div>
 

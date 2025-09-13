@@ -76,12 +76,12 @@ export const mapButtons = style({
   marginTop: vw(100),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "20px",
-      marginTop: "100px",
+      gap: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      marginTop: vw(100),
     },
     [breakpoints.desktop]: {
-      gap: "16px",
-      marginTop: "80px",
+      gap: vw(20),
+      marginTop: vw(100),
     },
     [breakpoints.mobile]: {
       gap: "12px",
@@ -112,20 +112,20 @@ const buttonBase = style({
   },
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "9px 16px",
-      fontSize: "16px",
-      borderRadius: "24px",
-      minWidth: "125px",
-      height: "42px",
-      lineHeight: "24px",
+      padding: `${vw(9)} ${vw(16)}`, // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(16),
+      borderRadius: vw(24),
+      minWidth: vw(125),
+      height: vw(42),
+      lineHeight: vw(24),
     },
     [breakpoints.desktop]: {
-      padding: "8px 14px",
-      fontSize: "14px",
-      borderRadius: "20px",
-      minWidth: "110px",
-      height: "38px",
-      lineHeight: "22px",
+      padding: `${vw(9)} ${vw(16)}`,
+      fontSize: vw(16),
+      borderRadius: vw(24),
+      minWidth: vw(125),
+      height: vw(42),
+      lineHeight: vw(24),
     },
     [breakpoints.mobile]: {
       padding: "7px 12px",
@@ -146,10 +146,10 @@ export const kakaoButton = style([
     minWidth: vw(129),
     "@media": {
       [breakpoints.desktopLarge]: {
-        minWidth: "129px",
+        minWidth: vw(129), // 1920px+ 에서도 vw로 스케일링 유지
       },
       [breakpoints.desktop]: {
-        minWidth: "115px",
+        minWidth: vw(129),
       },
       [breakpoints.mobile]: {
         minWidth: "105px",
@@ -166,10 +166,10 @@ export const naverButton = style([
     minWidth: vw(125),
     "@media": {
       [breakpoints.desktopLarge]: {
-        minWidth: "125px",
+        minWidth: vw(125), // 1920px+ 에서도 vw로 스케일링 유지
       },
       [breakpoints.desktop]: {
-        minWidth: "110px",
+        minWidth: vw(125),
       },
       [breakpoints.mobile]: {
         minWidth: "100px",
