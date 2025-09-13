@@ -2,7 +2,6 @@ import { style } from "@vanilla-extract/css"
 import {
   breakpoints,
   vw,
-  responsiveLeftContent,
   responsiveFont,
   responsiveContainer,
 } from "../../../shared/styles/responsive.css"

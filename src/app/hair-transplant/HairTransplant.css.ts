@@ -629,7 +629,7 @@ export const section3NumberBg = style({
   position: "absolute",
   //   top: vw(45), // section2NumberBg와 동일한 높이
   right: vw(0), // 텍스트 영역 왼쪽으로 살짝 나가도록 (section2와 대칭)
-  fontFamily: "'Nordnet Sans Mono', monospace",
+  fontFamily: "'Nordnet Sans Mono', monospace", // Nordnet Sans Mono 글꼴 적용
   fontWeight: 400,
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
   lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)

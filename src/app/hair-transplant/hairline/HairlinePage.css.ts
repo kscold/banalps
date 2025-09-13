@@ -1,12 +1,1 @@
-import { style } from "@vanilla-extract/css"
-import {
-  responsiveContainer,
-  vw,
-  responsiveFont,
-  responsiveSplitContainer,
-  responsiveLeftContent,
-  responsiveRightContent,
-  responsiveAbsoluteImageContainer,
-  responsiveAbsoluteImage,
-  breakpoints,
-} from "../../../shared/styles/responsive.css"
+// 헤어라인 페이지 전용 스타일

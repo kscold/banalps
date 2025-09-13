@@ -23,7 +23,7 @@ export const NAVIGATION_ITEMS: readonly NavigationItem[] = [
     submenu: [
       { title: "헤어라인", href: "/hair-transplant/hairline" },
       { title: "재수술과 흉터이식", href: "/hair-transplant/reoperation" },
-      { title: "정수리 모발이식", href: "/hair-transplant/crown-transplant" },
+      { title: "정수리 모발이식", href: "/hair-transplant/crown" },
       { title: "절개와 비절개", href: "/hair-transplant/incision" },
     ],
   },

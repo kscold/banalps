@@ -179,6 +179,8 @@ export const actionButtons = style({
   alignItems: "center",
   gap: "1rem",
   height: "100%",
+  minWidth: "180px", // 최소 너비 확보로 버튼들이 충분한 공간을 가지도록
+  justifyContent: "flex-end", // 오른쪽 정렬
   "@media": {
     "screen and (min-width: 768px)": {
       display: "flex",
@@ -192,9 +194,23 @@ export const loginButton = style({
   border: "none",
   fontSize: "1rem",
   fontWeight: "500",
-  padding: "0.5rem 1rem",
+  padding: "0.75rem 1.5rem", // 패딩 더 증가
   borderRadius: "6px",
   cursor: "pointer",
+  minWidth: "80px", // 최소 너비 증가
+  textAlign: "center",
+  "@media": {
+    "screen and (min-width: 1024px) and (max-width: 1919px)": {
+      fontSize: "1.1rem", // 폰트 크기 증가
+      padding: "0.8rem 1.75rem", // 더 큰 패딩
+      minWidth: "90px",
+    },
+    "screen and (min-width: 1920px)": {
+      fontSize: "1.1rem", // 폰트 크기 증가
+      padding: "0.8rem 2rem", // 1920px+ 에서 가장 큰 패딩
+      minWidth: "100px",
+    },
+  },
   ":hover": {
     color: "#14AEFF",
     backgroundColor: "rgba(20, 174, 255, 0.05)",
