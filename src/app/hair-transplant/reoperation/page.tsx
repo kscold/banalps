@@ -2,14 +2,16 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+
 import HeaderNavigation from "../../../widgets/Header/HeaderNavigation"
 import BeforeAfterSlider from "../../../shared/ui/BeforeAfterSlider"
 import { ArrowButton } from "../../../shared/ui/ArrowButton"
 
 import * as styles from "../HairTransplant.css"
+import * as reoperationStyles from "./ReoperationPage.css"
 
-export default function HairlinePage() {
-  console.log("[HairlinePage] 헤어라인 페이지 렌더링")
+export default function ReoperationPage() {
+  console.log("[ReoperationPage] 재수술과 흉터이식 메인 페이지 렌더링")
 
   // Features Section 애니메이션
   const { ref: featuresRef, inView: featuresInView } = useInView({
@@ -29,11 +31,17 @@ export default function HairlinePage() {
     triggerOnce: true, // 한 번만 실행
   })
 
+  // Section3 이미지 애니메이션
+  const { ref: section3ImageRef, inView: section3ImageInView } = useInView({
+    threshold: 0.3, // 30% 보일 때 트리거
+    triggerOnce: true, // 한 번만 실행
+  })
+
   return (
     <div className={styles.HairTransplantPage}>
       <HeaderNavigation />
 
-      {/* Hairline Hero Section */}
+      {/* Hero Section */}
       <section className={styles.HairTransplantHeroSection}>
         <div className={styles.HairTransplantHeroContainer}>
           {/* Hero Illustration - 왼쪽에 붙도록 */}
@@ -50,9 +58,9 @@ export default function HairlinePage() {
             <div className={styles.HairTransplantHeroTitleContainer}>
               <h1 className={styles.HairTransplantHeroTitle}>
                 <span>
-                  헤어라인
+                  재수술과
                   <br />
-                  교정
+                  흉터이식
                   <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
@@ -61,32 +69,34 @@ export default function HairlinePage() {
         </div>
       </section>
 
-      {/* Section 1: 얼굴 윤곽의 완성은 헤어라인입니다 */}
+      {/* Section 1 */}
       <section className={styles.HairTransplantSection1}>
         <div className={styles.section1Content}>
           <div className={styles.section1Left}>
             <div className={styles.section1Number}>1</div>
             <div className={styles.section1Text}>
               <h2 className={styles.section1Title}>
-                얼굴 윤곽의 완성은
+                재수술, 흉터 수술의
                 <br />
-                헤어라인입니다.
+                추가 비용을
+                <br />
+                받지 않습니다.
               </h2>
-              <div className={styles.section1Image}>
-                <img
-                  src="/hair-transplant/hairline/illustration-1.svg"
-                  alt="헤어라인 일러스트 1"
-                  className={styles.section1Illustration}
-                />
-              </div>
-              <p className={styles.section1Description}>
-                헤어라인을 결정할 때는
+              <p className={reoperationStyles.reoperationSection1Description}>
+                재수술과 흉터이식은 힘든 수술입니다.
                 <br />
-                모발이식과 이마축소 두 방법 중
+                두피는 딱딱하고, 뒷머리는 부족하고,
+                <br />
+                헤어라인의 모발 방향이 잘못 되어 있기도 합니다.
+                <br />
+                생착률도 높이기 어렵죠.
                 <br />
                 <br />
-                이마의 모양과 비율에 가장 알맞은 방법으로 얼굴의 마지막 윤곽을
-                완성합니다.
+                그럼에도 불구하고
+                <br />
+                고맙다는 진심어린 말씀의 보람값이라 생각하고
+                <br />
+                재수술, 흉터 수술의 추가 비용을 더 받지 않습니다
               </p>
             </div>
           </div>
@@ -103,8 +113,8 @@ export default function HairlinePage() {
               transition={{ duration: 0.5, ease: "easeOut", delay: 0 }}
             >
               <img
-                src="/hair-transplant/hairline/hairline-2.png"
-                alt="헤어라인 페이지 이미지 1"
+                src="/hair-transplant/reoperation/reoperation-2.png"
+                alt="재수술과 흉터이식 페이지 이미지 2"
                 className={styles.section1ImageContent}
               />
             </motion.div>
@@ -120,8 +130,8 @@ export default function HairlinePage() {
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             >
               <img
-                src="/hair-transplant/hairline/hairline-1.png"
-                alt="헤어라인 페이지 이미지 2"
+                src="/hair-transplant/reoperation/reoperation-1.png"
+                alt="재수술과 흉터이식 페이지 이미지 1"
                 className={styles.section1ImageContent}
               />
             </motion.div>
@@ -129,92 +139,122 @@ export default function HairlinePage() {
         </div>
       </section>
 
-      {/* Section 2: 헤어라인 모발이식 */}
+      {/* Section 2: 밀도를 낮춰야 생착률은 높아집니다 */}
       <section className={styles.section2}>
         <div className={styles.section2Content}>
-          <div className={styles.section2Left}>
+          <motion.div
+            className={styles.section2Left}
+            ref={section2ImageRef}
+            initial={{ opacity: 0, y: 80 }}
+            animate={
+              section2ImageInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
+            }
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <div className={styles.section2Image}>
               <img
-                src="/hair-transplant/hairline/hairline-3.png"
-                alt="헤어라인 페이지 이미지 3"
+                src="/hair-transplant/reoperation/reoperation-3.png"
+                alt="재수술과 흉터이식 페이지 이미지 3"
                 className={styles.section2ImageContent}
               />
             </div>
-          </div>
+          </motion.div>
           <div className={styles.section2Right}>
             <div className={styles.section2NumberBg}>2</div>
-            <div className={styles.section2Text}>
+            <div
+              className={styles.section2Text}
+              style={{ position: "relative" }}
+            >
               <h2 className={styles.section2Title}>
-                빼곡하고
+                밀도를 낮춰야
                 <br />
-                자연스럽게.
+                생착률은 높아집니다.
               </h2>
+
+              {/* SVG 일러스트 추가 */}
+              <div className={reoperationStyles.section2SvgContainer}>
+                <img
+                  src="/hair-transplant/reoperation/illustration-1.svg"
+                  alt="재수술과 흉터이식 일러스트 1"
+                  className={reoperationStyles.section2SvgImage}
+                />
+              </div>
+
               <p className={styles.section2Description}>
-                자연스러움 을 만드는 일은 어렵습니다.
+                흉터에는 혈관이 부족해서 생착률이 떨어지기 때문에
                 <br />
-                어색하지 않아야 하며 결과는 1년을 기다려야 합니다.
-                <br />
-                <br />
-                <span className={styles.section2Quote}>
-                  헤어라인 교정만 10년을 하면서
-                  <br />
-                  자연스럽게 만드는 최적의 접점을 찾았습니다.
-                </span>
+                밀도를 많이 낮춰서 심는게 좋습니다.
                 <br />
                 <br />
-                이제 빼곡하면서 자연스러운 헤어라인도
+                오랜 경험과 시간으로
                 <br />
-                불가능하지 않습니다.
+                밀도있는 모발을 만들어 드릴 수 있게 되었으니
+                <br />
+                이제 안심하셔도 됩니다.
               </p>
+
+              {/* 절대 위치 SVG - 텍스트 영역 내부에 배치 */}
+              <div className={reoperationStyles.section2Svg2}>
+                <img
+                  src="/hair-transplant/reoperation/illustration-2.svg"
+                  alt="재수술과 흉터이식 일러스트 2"
+                  className={reoperationStyles.section2SvgImage}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 3: 수술 결과 */}
+      {/* Section 3 */}
       <section className={styles.section3}>
         <div className={styles.section3Content}>
-          <div className={styles.section3Number}>3</div>
           <div className={styles.section3Left}>
             <div className={styles.section3Text}>
+              <div className={styles.section3NumberBg}>3</div>
               <h2 className={styles.section3Title}>
-                결국,
+                수술 경험을 쌓는 건
                 <br />
-                고객이 원하는 디자인이
-                <br />
-                좋은 디자인입니다.
+                오래 걸립니다.
               </h2>
               <p className={styles.section3Description}>
-                의사만 만족하는 디자인은
+                재수술과 흉터 이식은 매일 할 수 있는 수술이 아닙니다.
                 <br />
-                결국 두 번 수술을 하게 됩니다.
-                <br />
-                <br />
-                고객이 불편해 하는 부분을
-                <br />
-                진심으로 공감하고 고민하며
+                그만큼 경험이 쌓이는 데 오래 걸리죠.
                 <br />
                 <br />
-                바날의 헤어라인 디자인은 발전합니다.
+                지금의 모습보다 반드시 나아질 수 있다는
+                <br />
+                자신감으로 재수술과 흉터 수술을 해왔습니다.
+                <br />
+                <br />
+                가리고 싶은 모습 때문에 오랜 시간 힘들어했던 분들이
+                <br />
+                좋아해 주시는 모습을 보면 밥을 안 먹어도 배부릅니다.
+                <br />
+                <br />더 활짝 웃으시는 모습을 위해 자만하지 않고 항상
+                노력하겠습니다.
               </p>
             </div>
           </div>
-          <div className={styles.section3CenterIllustration}>
-            <img
-              src="/hair-transplant/hairline/illustration-2.svg"
-              alt="헤어라인 일러스트 2"
-              className={styles.section3CenterIllustrationImage}
-            />
-          </div>
-          <div className={styles.section3Right}>
+
+          <motion.div
+            className={styles.section3Right}
+            ref={section3ImageRef}
+            initial={{ opacity: 0, y: 80 }}
+            animate={
+              section3ImageInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
+            }
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <div className={styles.section3Image}>
               <img
-                src="/hair-transplant/hairline/hairline-4.png"
-                alt="헤어라인 페이지 이미지 4"
+                src="/hair-transplant/reoperation/reoperation-4.png"
+                alt="재수술과 흉터이식 결과 이미지"
                 className={styles.section3ImageContent}
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -222,22 +262,21 @@ export default function HairlinePage() {
       <section className={styles.beforeAfterSection}>
         <div className={styles.beforeAfterContent}>
           <div className={styles.beforeAfterHeader}>
-            <div className={styles.beforeAfterCategory}>헤어라인</div>
-            <div className={styles.beforeAfterTitle}>모발이식 3000모</div>
+            <div className={styles.beforeAfterCategory}>재수술</div>
+            <h2 className={styles.beforeAfterTitle}>전후사진 보기</h2>
           </div>
           <div className={styles.beforeAfterSliderWrapper}>
-            <BeforeAfterSlider
-              beforeImage="/hair-transplant/hairline/slide/before.jpg"
-              afterImage="/hair-transplant/hairline/slide/after.jpg"
-              beforeAlt="헤어라인 수술 전"
-              afterAlt="헤어라인 수술 후"
-              className={styles.beforeAfterSlider}
-            />
+            <div className={styles.beforeAfterSlider}>
+              <BeforeAfterSlider
+                beforeImage="/hair-transplant/reoperation/slide/before.jpg"
+                afterImage="/hair-transplant/reoperation/slide/after.jpg"
+                beforeAlt="재수술 전"
+                afterAlt="재수술 후"
+              />
+            </div>
           </div>
           <div className={styles.beforeAfterActions}>
-            <ArrowButton variant="primary" color="blue" size="medium">
-              수술전후 더보기
-            </ArrowButton>
+            <ArrowButton>더 많은 전후사진 보기</ArrowButton>
           </div>
         </div>
       </section>
@@ -252,9 +291,9 @@ export default function HairlinePage() {
               className={styles.quotationStart}
             />
             <h2 className={styles.featuresMainTitle}>
-              풍부한 경험과 최신 기술로
+              독보적인 기술력과 사후 관리까지
               <br />
-              바날은 최상의 결과를 약속드립니다.
+              바날은 고객에 진심을 다합니다.
             </h2>
             <img
               src="/hair-transplant/double-quotation-end.svg"
@@ -283,7 +322,7 @@ export default function HairlinePage() {
                 <div className={styles.featureIcon}>
                   <img
                     src="/hair-transplant/feature-1.svg"
-                    alt="헤어라인 특징 1"
+                    alt="재수술 특징 1"
                   />
                 </div>
               </div>
@@ -305,7 +344,7 @@ export default function HairlinePage() {
                 <div className={styles.featureIcon}>
                   <img
                     src="/hair-transplant/feature-2.svg"
-                    alt="헤어라인 특징 2"
+                    alt="재수술 특징 2"
                   />
                 </div>
               </div>
@@ -327,7 +366,7 @@ export default function HairlinePage() {
                 <div className={styles.featureIcon}>
                   <img
                     src="/hair-transplant/feature-3.svg"
-                    alt="헤어라인 특징 3"
+                    alt="재수술 특징 3"
                   />
                 </div>
               </div>
@@ -349,7 +388,7 @@ export default function HairlinePage() {
                 <div className={styles.featureIcon}>
                   <img
                     src="/hair-transplant/feature-4.svg"
-                    alt="헤어라인 특징 4"
+                    alt="재수술 특징 4"
                   />
                 </div>
               </div>

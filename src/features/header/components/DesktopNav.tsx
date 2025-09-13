@@ -18,9 +18,15 @@ export default function DesktopNav({ showSubmenu, isHeaderHovered }: DesktopNavP
     <nav className={styles.desktopNav}>
       {NAVIGATION_ITEMS.map((item) => (
         <div key={item.title} className={styles.navItemWrapper}>
-          <Link href={item.href} className={styles.navLink}>
-            {item.title}
-          </Link>
+          {item.href ? (
+            <Link href={item.href} className={styles.navLink}>
+              {item.title}
+            </Link>
+          ) : (
+            <span className={styles.navLink}>
+              {item.title}
+            </span>
+          )}
           {/* 커튼이 열려있으면 서브메뉴 항상 렌더링 */}
           {item.submenu && (
             <div className={styles.dropdownContent} style={{

@@ -37,11 +37,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     e.preventDefault()
     if (item.submenu) {
       toggleMenuItem(item.title)
-    } else {
-      // 서브메뉴가 없으면 링크로 이동
+    } else if (item.href) {
+      // 서브메뉴가 없고 href가 있으면 링크로 이동
       window.location.href = item.href
       onClose()
     }
+    // href가 없는 경우 아무것도 하지 않음
   }
 
   // 언어 선택 핸들러
