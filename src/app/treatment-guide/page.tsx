@@ -33,7 +33,7 @@ export default function TreatmentGuidePage() {
               {/* Power Your Organization's Potential With Banal House 텍스트 */}
               <div className={styles.heroOverlayMain}>
                 <p className={styles.heroOverlayMainText}>
-                  Power Your Organization's Potential
+                  Power Your Organization&apos;s Potential
                   <br />
                   With Banal House
                 </p>
@@ -46,7 +46,7 @@ export default function TreatmentGuidePage() {
             </div>
 
             <h2 className={styles.heroSubtitle}>
-              We're Ready
+              We&apos;re Ready
               <br />
               When You Are.
             </h2>
