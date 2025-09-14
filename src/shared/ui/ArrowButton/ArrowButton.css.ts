@@ -1,6 +1,30 @@
-import { style } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css"
 
 import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
+
+// 화살표 순환 애니메이션 - 오른쪽으로 사라진 후 왼쪽에서 다시 나타나며 원래 위치로 돌아옴
+const arrowSlide = keyframes({
+  "0%": { 
+    transform: "translateX(0)",
+    opacity: "1"
+  },
+  "40%": { 
+    transform: "translateX(20px)",
+    opacity: "0"
+  },
+  "50%": { 
+    transform: "translateX(-20px)",
+    opacity: "0"
+  },
+  "90%": { 
+    transform: "translateX(0)",
+    opacity: "1"
+  },
+  "100%": { 
+    transform: "translateX(0)",
+    opacity: "1"
+  },
+})
 
 // 기본 버튼 스타일 (1920px 기준 반응형) - 텍스트 길이에 따라 자동 조정
 export const arrowButton = style({
@@ -108,10 +132,17 @@ export const arrowContainer = style({
 // 화살표 아이콘 (1920px 기준 반응형)
 export const arrowIcon = style({
   color: "#FFFFFF",
-  transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   strokeWidth: "2",
   ...responsiveProperty("width", 18), // 1920px 기준 18px
   ...responsiveProperty("height", 18), // 1920px 기준 18px
+
+  // 호버시 화살표 이동 애니메이션
+  selectors: {
+    [`${arrowButton}:hover &`]: {
+      animation: `${arrowSlide} 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+    },
+  },
 
   "@media": {
     [breakpoints.mobile]: {
@@ -167,16 +198,12 @@ export const blueText = style({
 // Color별 화살표 컨테이너 스타일
 export const whiteArrowContainer = style({
   backgroundColor: "#14AEFF", // 흰색 버튼에는 파란 동그라미
-  ":hover": {
-    backgroundColor: "#0EA5E9",
-  },
+  // 호버 시 배경색 변화 제거
 })
 
 export const blueArrowContainer = style({
   backgroundColor: "#FFFFFF", // 파란색 버튼에는 흰 동그라미
-  ":hover": {
-    backgroundColor: "#F8F9FA",
-  },
+  // 호버 시 배경색 변화 제거
 })
 
 // Color별 화살표 아이콘 스타일
@@ -256,25 +283,8 @@ export const largeArrowIcon = style({
   height: "16px",
 })
 
-// 호버 시 화살표 애니메이션
+// 호버 시 화살표 애니메이션 (배경색 변화 제거)
 export const arrowContainerHover = style({
-  ":hover": {
-    background: "#0EA5E9",
-    boxShadow: "0 6px 16px rgba(20, 174, 255, 0.35)",
-  },
-  selectors: {
-    [`${arrowButton}:hover &`]: {
-      background: "#0EA5E9",
-      boxShadow: "0 6px 16px rgba(20, 174, 255, 0.35)",
-    },
-  },
+  // 배경색 변화 제거 - 화살표 모션만 유지
 })
 
-// 화살표 호버 시 이동 애니메이션
-export const arrowIconHover = style({
-  selectors: {
-    [`${arrowContainer}:hover &`]: {
-      transform: "translateX(4px)",
-    },
-  },
-})

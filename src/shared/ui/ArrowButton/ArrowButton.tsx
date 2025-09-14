@@ -10,6 +10,8 @@ interface ArrowButtonProps {
   size?: "small" | "medium" | "large"
   disabled?: boolean
   className?: string
+  fontSize?: number // 폰트 크기 (px 단위)
+  paddingVertical?: number // 위아래 패딩 (px 단위)
 }
 
 export default function ArrowButton({
@@ -20,6 +22,8 @@ export default function ArrowButton({
   size = "medium",
   disabled = false,
   className,
+  fontSize, // 커스텀 폰트 크기
+  paddingVertical, // 커스텀 위아래 패딩
 }: ArrowButtonProps) {
   // 화살표 컨테이너 스타일 결정
   const getArrowContainerStyle = () => {
@@ -78,15 +82,33 @@ export default function ArrowButton({
     return textStyle
   }
 
+  // 커스텀 스타일 생성
+  const customStyle: React.CSSProperties = {}
+  
+  if (fontSize) {
+    customStyle.fontSize = `${fontSize}px`
+  }
+  
+  if (paddingVertical) {
+    customStyle.paddingTop = `${paddingVertical}px`
+    customStyle.paddingBottom = `${paddingVertical}px`
+  }
+
   return (
     <button
       className={`${styles.arrowButton} ${styles[variant]} ${styles[color]} ${styles[size]} ${
         className || ""
       }`}
+      style={customStyle}
       onClick={onClick}
       disabled={disabled}
     >
-      <span className={getTextStyle()}>{children}</span>
+      <span 
+        className={getTextStyle()}
+        style={fontSize ? { fontSize: `${fontSize}px` } : {}}
+      >
+        {children}
+      </span>
       <div
         className={`${getArrowContainerStyle()} ${styles.arrowContainerHover}`}
       >
