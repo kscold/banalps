@@ -1,12 +1,13 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css";
 import {
   vw,
+  mvw,
   responsiveFont,
   responsiveContainer,
   responsiveCaptureContainer,
   responsiveProperty,
   breakpoints,
-} from "../../shared/styles/responsive.css"
+} from "../../shared/styles/responsive.css";
 
 // 페이드인 상승 애니메이션
 const fadeInUp = keyframes({
@@ -18,7 +19,7 @@ const fadeInUp = keyframes({
     opacity: 1,
     transform: "translateY(0)",
   },
-})
+});
 
 // 메인 파란색 섹션
 export const blueSection = style({
@@ -31,13 +32,13 @@ export const blueSection = style({
   opacity: 0,
   transform: "translateY(20px)",
   transition: "all 800ms cubic-bezier(0.4, 0, 0.2, 1)",
-})
+});
 
 // 보이기 상태
 export const visible = style({
   opacity: 1,
   transform: "translateY(0)",
-})
+});
 
 // 이미지 카드 섹션 - 중앙 컨테이너 (1920px 기준)
 export const imageCardsSection = style({
@@ -51,10 +52,18 @@ export const imageCardsSection = style({
       marginBottom: "240px",
     },
     [breakpoints.mobile]: {
-      margin: "80px auto", // 상하 마진만 설정
+      display: "flex",
+      flexDirection: "column",
+      gap: "0", // 갭 없음
+      margin: "120px 0 0 0", // 상단에만 120px 마진
+      padding: 0,
+      position: "relative",
+      height: "auto",
+      width: "100%", // 전체 너비
+      maxWidth: "none",
     },
   },
-})
+});
 
 // 이미지 카드 1 - 왼쪽 상단 (1920px 기준)
 export const imageCard1 = style({
@@ -79,14 +88,19 @@ export const imageCard1 = style({
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "441 / 641",
+      margin: "0",
+      width: "100%",
+      height: mvw(260), // 375px 기준 260px가 비례적으로 커짐
+      aspectRatio: "auto",
+      borderRadius: mvw(12), // 375px 기준 12px 라운드
+      order: 1,
+    },
+    "screen and (max-width: 374px)": {
+      height: "260px", // 375px 미만에서는 고정
+      borderRadius: "12px",
     },
   },
-})
+});
 
 // 이미지 카드 2 - 오른쪽 (가장 큰 카드) (1920px 기준)
 export const imageCard2 = style({
@@ -112,14 +126,19 @@ export const imageCard2 = style({
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "470 / 689",
+      margin: "0",
+      width: "100%",
+      height: mvw(260), // 375px 기준 260px가 비례적으로 커짐
+      aspectRatio: "auto",
+      borderRadius: mvw(12), // 375px 기준 12px 라운드
+      order: 2,
+    },
+    "screen and (max-width: 374px)": {
+      height: "260px", // 375px 미만에서는 고정
+      borderRadius: "12px",
     },
   },
-})
+});
 
 // 이미지 카드 3 - 왼쪽 하단 (작은 가로 카드) (1920px 기준)
 export const imageCard3 = style({
@@ -145,14 +164,19 @@ export const imageCard3 = style({
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "327 / 267",
+      margin: "0",
+      width: "100%",
+      height: mvw(260), // 375px 기준 260px가 비례적으로 커짐
+      aspectRatio: "auto",
+      borderRadius: mvw(12), // 375px 기준 12px 라운드
+      order: 3,
+    },
+    "screen and (max-width: 374px)": {
+      height: "260px", // 375px 미만에서는 고정
+      borderRadius: "12px",
     },
   },
-})
+});
 
 // 이미지 카드 4 - 중앙 하단 (1920px 기준)
 export const imageCard4 = style({
@@ -178,14 +202,19 @@ export const imageCard4 = style({
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "317 / 468",
+      margin: "0",
+      width: "100%",
+      height: mvw(260), // 375px 기준 260px가 비례적으로 커짐
+      aspectRatio: "auto",
+      borderRadius: mvw(12), // 375px 기준 12px 라운드
+      order: 4,
+    },
+    "screen and (max-width: 374px)": {
+      height: "260px", // 375px 미만에서는 고정
+      borderRadius: "12px",
     },
   },
-})
+});
 
 // 카드 내부 이미지
 export const cardImage = style({
@@ -193,7 +222,7 @@ export const cardImage = style({
   height: "100%",
   objectFit: "cover",
   borderRadius: "15px",
-})
+});
 
 // RE.YOU 텍스트 섹션 (1920px 기준) - 헤더와 완전 일치
 export const reYouSection = style({
@@ -215,13 +244,22 @@ export const reYouSection = style({
       gap: "20px",
     },
     [breakpoints.mobile]: {
-      margin: "80px auto", // 상하 마진만 설정
-      minHeight: "400px", // 모바일에서 작은 높이
-      paddingTop: "60px", // 상단 패딩만 유지
-      paddingBottom: "60px", // 하단 패딩만 유지
+      // responsiveContainer와 동일한 마진 시스템 적용
+      width: `calc(100% - ${mvw(32)})`, // 375px 기준 32px 마진이 뷰포트에 따라 비례
+      margin: `${mvw(60)} auto ${mvw(80)} auto`, // 375px 기준 상단 60px, 하단 80px
+      minHeight: mvw(400), // 375px 기준 400px가 비례적으로 커짐
+      paddingTop: mvw(40), // 375px 기준 40px 패딩
+      paddingBottom: mvw(40), // 375px 기준 40px 패딩
+    },
+    "screen and (max-width: 374px)": {
+      width: "calc(100% - 32px)", // 375px 미만에서는 고정 32px 마진
+      margin: "60px auto 80px auto", // 고정 마진
+      minHeight: "400px", // 고정 높이
+      paddingTop: "40px", // 고정 패딩
+      paddingBottom: "40px", // 고정 패딩
     },
   },
-})
+});
 
 // RE.YOU 타이틀 (1920px 기준)
 export const reYouTitle = style({
@@ -235,7 +273,7 @@ export const reYouTitle = style({
   position: "relative",
   zIndex: 1,
   textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-})
+});
 
 // 한글 서브타이틀 (1920px 기준)
 export const reYouSubtitle = style({
@@ -250,7 +288,7 @@ export const reYouSubtitle = style({
   position: "relative",
   zIndex: 1,
   textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
-})
+});
 
 // 그래피티 배경 이미지 (1920px 기준)
 export const graffitiBackground = style({
@@ -269,7 +307,7 @@ export const graffitiBackground = style({
       marginTop: "48px", // 1920px 이상에서 고정
     },
   },
-})
+});
 
 // What Banal Does 섹션 (1920px 기준)
 export const whatBanalSection = style({
@@ -283,35 +321,52 @@ export const whatBanalSection = style({
       marginBottom: "80px",
     },
   },
-})
+});
 
 export const whatBanalContent = style({
   display: "flex",
+  flexDirection: "row", // 데스크탑에서 가로 배치
   gap: vw(120), // 1920px 기준 120px
   alignItems: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
+      display: "flex",
+      flexDirection: "row", // 1920px 이상에서도 확실히 가로 배치
       gap: "120px", // 1920px 이상에서 고정
     },
+    "screen and (min-width: 1024px)": {
+      display: "flex",
+      flexDirection: "row", // 1024px 이상에서 가로 배치 강제
+    },
     [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "60px",
+      flexDirection: "column", // 모바일에서만 세로 배치
+      gap: mvw(32), // 375px 기준 32px가 비례적으로 커짐
+    },
+    "screen and (max-width: 374px)": {
+      gap: "32px", // 375px 미만에서는 고정
     },
   },
-})
+});
 
 export const whatBanalText = style({
   flex: `0 0 ${vw(520)}`, // 1920px 기준 520px
   "@media": {
     [breakpoints.desktopLarge]: {
       flex: "0 0 520px", // 1920px 이상에서 고정
+      order: "unset", // 데스크탑에서 order 제거
+    },
+    "screen and (min-width: 1024px)": {
+      order: "unset", // 1024px 이상에서 order 제거
     },
     [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      order: 2, // 모바일에서만 featuresList(order: 1) 다음에 배치
     },
   },
-})
+});
 
 export const whatBanalTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -326,7 +381,7 @@ export const whatBanalTitle = style({
       marginBottom: "80px", // 1920px 이상에서 고정
     },
   },
-})
+});
 
 export const whatBanalDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -342,9 +397,25 @@ export const whatBanalDescription = style({
       marginBottom: "40px", // 1920px 이상에서 고정
     },
   },
-})
+});
 
-export const whatBanalSubDescription = style({
+export const whatBanalSubDescription1 = style({
+  fontFamily: "'Pretendard', sans-serif",
+  fontWeight: 300,
+  fontStyle: "Light",
+  ...responsiveFont(23), // 1920px 기준 23px
+  lineHeight: vw(35), // 1920px 기준 35px
+  letterSpacing: "0",
+  color: "#272727",
+  // marginBottom: vw(80), // 1920px 기준 80px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "35px", // 1920px 이상에서 고정
+    },
+  },
+});
+
+export const whatBanalSubDescription2 = style({
   fontFamily: "'Pretendard', sans-serif",
   fontWeight: 300,
   fontStyle: "Light",
@@ -356,69 +427,113 @@ export const whatBanalSubDescription = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "35px", // 1920px 이상에서 고정
-      marginBottom: "80px",
     },
   },
-})
+});
 
 export const featuresList = style({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  gap: vw(24), // 1920px 기준 24px
+  gap: 0, // gap 제거하고 각 아이템에 border로 처리
+  borderTop: `${vw(1)} solid #14aeff`, // 상단 파란선 추가
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "24px", // 1920px 이상에서 고정
+      gap: 0,
+      borderTop: "1px solid #14aeff",
+      order: "unset", // 데스크탑에서 order 제거
+    },
+    "screen and (min-width: 1024px)": {
+      order: "unset", // 1024px 이상에서 order 제거
     },
     [breakpoints.mobile]: {
-      gap: "16px", // 모바일에서 더 작게
+      gap: 0,
+      borderTop: `${mvw(1)} solid #14aeff`,
+      order: 1, // 모바일에서만 whatBanalText(order: 2) 앞에 배치
+    },
+    "screen and (max-width: 374px)": {
+      gap: 0,
+      borderTop: "1px solid #14aeff",
     },
   },
-})
+});
 
 export const featureItem = style({
   display: "flex",
+  flexDirection: "row", // 가로 배치 명시
   alignItems: "flex-start",
-  gap: vw(24), // 1920px 기준 24px
-  padding: `${vw(16)} 0`, // 1920px 기준 16px
-  borderBottom: `${vw(1)} solid #14aeff`, // 1920px 기준 1px
-  ":last-child": {
-    borderBottom: "none",
-  },
+  gap: vw(24), // 1920px 기준 24px로 늘림
+  padding: `${vw(20)} 0`, // 1920px 기준 20px로 늘림
+  borderBottom: `${vw(1)} solid #14aeff`, // 1920px 기준 1px (모든 아이템에 하단 border)
   "@media": {
     [breakpoints.desktopLarge]: {
+      display: "flex",
+      flexDirection: "row", // 데스크탑에서 확실히 가로 배치
       gap: "24px", // 1920px 이상에서 고정
-      padding: "16px 0",
+      padding: "20px 0", // 패딩 늘림
       borderBottom: "1px solid #14aeff",
     },
+    "screen and (min-width: 1024px)": {
+      display: "flex",
+      flexDirection: "row", // 1024px 이상에서 가로 배치 강제
+      gap: "24px", // 간격 늘림
+    },
     [breakpoints.mobile]: {
-      gap: "16px", // 모바일에서 더 작게
+      flexDirection: "column", // 모바일에서만 세로 배치
+      gap: mvw(8), // 375px 기준 8px가 비례적으로 커짐
+      padding: `${mvw(12)} 0`, // 375px 기준 12px 패딩
+      borderBottom: `${mvw(1)} solid #14aeff`,
+    },
+    "screen and (max-width: 374px)": {
+      gap: "8px", // 375px 미만에서는 고정
       padding: "12px 0",
+      borderBottom: "1px solid #14aeff",
     },
   },
-})
+});
 
 export const featureNumber = style({
-  flex: `0 0 ${vw(114)}`, // 1920px 기준 114px
+  flex: `0 0 ${vw(60)}`, // 1920px 기준 60px로 줄임
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(20), // 1920px 기준 20px
+  ...responsiveFont(18, 16), // 1920px 기준 18px, 모바일 16px
   lineHeight: "140%",
   letterSpacing: "0",
   color: "#272727",
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
-      flex: "0 0 114px", // 1920px 이상에서 고정
+      flex: "0 0 60px", // 1920px 이상에서 고정 (줄임)
     },
     [breakpoints.mobile]: {
-      flex: "0 0 80px",
+      flex: "0 0 40px", // 모바일에서 더 작게
     },
   },
-})
+});
 
 export const featureContent = style({
   flex: 1,
-})
+  display: "flex",
+  flexDirection: "row", // 데스크탑에서는 제목과 설명을 가로로 배치
+  alignItems: "flex-start",
+  gap: vw(24), // 1920px 기준 24px (제목과 설명 사이 간격)
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      flexDirection: "row", // 1920px 이상에서도 가로 배치
+      gap: "24px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      flexDirection: "column", // 모바일에서만 세로 배치
+      gap: mvw(6), // 375px 기준 6px
+    },
+    "screen and (max-width: 374px)": {
+      flexDirection: "column", // 375px 미만에서도 세로 배치
+      gap: "6px", // 375px 미만에서는 고정
+    },
+  },
+});
 
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -427,24 +542,30 @@ export const featureTitle = style({
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
-  marginBottom: vw(8), // 1920px 기준 8px
+  flex: `0 0 ${vw(240)}`, // 1920px 기준 240px 고정 너비로 모든 설명 시작점 통일
+  margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginBottom: "8px", // 1920px 이상에서 고정
+      flex: "0 0 240px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      flex: "none", // 모바일에서는 자동 너비
+      marginBottom: mvw(8), // 모바일에서만 아래 마진
     },
   },
-})
+});
 
 export const featureDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
-  ...responsiveFont(16), // 1920px 기준 16px
-  lineHeight: "160%",
+  fontWeight: 300,
+  ...responsiveFont(18, 14), // 1920px 기준 18px, 모바일 14px
+  lineHeight: "170%",
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
   whiteSpace: "pre-line",
-})
+  opacity: 0.9,
+});
 
 // Specialist 섹션
 export const specialistSection = style({
@@ -461,7 +582,7 @@ export const specialistSection = style({
       margin: "0 auto 80px",
     },
   },
-})
+});
 
 export const specialistContent = style({
   display: "flex",
@@ -473,7 +594,7 @@ export const specialistContent = style({
       gap: "60px",
     },
   },
-})
+});
 
 export const specialistText = style({
   flex: "0 0 520px",
@@ -483,7 +604,7 @@ export const specialistText = style({
       width: "100%",
     },
   },
-})
+});
 
 export const specialistTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -501,7 +622,7 @@ export const specialistTitle = style({
       fontSize: "36px",
     },
   },
-})
+});
 
 export const specialistDescription = style({
   fontFamily: "'Pretendard', sans-serif",
@@ -517,7 +638,7 @@ export const specialistDescription = style({
       fontSize: "20px",
     },
   },
-})
+});
 
 export const doctorsGrid = style({
   flex: 1,
@@ -530,7 +651,7 @@ export const doctorsGrid = style({
       gap: "30px",
     },
   },
-})
+});
 
 // 신승규 원장 - 1920px 기준 (imageCard1처럼)
 export const doctorCard1 = style({
@@ -548,18 +669,24 @@ export const doctorCard1 = style({
       left: "0",
       borderRadius: "12px",
     },
-    [breakpoints.mobile]: {
+    "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "280 / 374",
+      margin: "0 auto 20px",
+      width: "100%",
+      maxWidth: "300px",
+      height: "350px",
+      aspectRatio: "auto",
+      borderRadius: "12px",
+      order: 1,
+    },
+    "screen and (max-width: 767px)": {
+      height: "320px",
+      maxWidth: "280px",
     },
   },
-})
+});
 
 // 박수호 원장 - 1920px 기준 (imageCard2처럼)
 export const doctorCard2 = style({
@@ -578,18 +705,24 @@ export const doctorCard2 = style({
       right: "0",
       borderRadius: "12px",
     },
-    [breakpoints.mobile]: {
+    "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
       right: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "332 / 420",
+      margin: "0 auto 20px",
+      width: "100%",
+      maxWidth: "300px",
+      height: "350px",
+      aspectRatio: "auto",
+      borderRadius: "12px",
+      order: 2,
+    },
+    "screen and (max-width: 767px)": {
+      height: "320px",
+      maxWidth: "280px",
     },
   },
-})
+});
 
 // 김나래 원장 - 1920px 기준 (imageCard3처럼)
 export const doctorCard3 = style({
@@ -608,18 +741,24 @@ export const doctorCard3 = style({
       left: "0",
       borderRadius: "12px",
     },
-    [breakpoints.mobile]: {
+    "screen and (max-width: 1024px)": {
       position: "relative",
       top: "auto",
       left: "auto",
-      margin: "20px auto",
-      width: "90%",
-      maxWidth: "400px",
-      height: "auto",
-      aspectRatio: "284 / 403",
+      margin: "0 auto 20px",
+      width: "100%",
+      maxWidth: "300px",
+      height: "350px",
+      aspectRatio: "auto",
+      borderRadius: "12px",
+      order: 3,
+    },
+    "screen and (max-width: 767px)": {
+      height: "320px",
+      maxWidth: "280px",
     },
   },
-})
+});
 
 // 기존 레거시 스타일들 (사용하지 않지만 호환성을 위해 유지)
 export const doctorCard = style({
@@ -627,7 +766,7 @@ export const doctorCard = style({
   flexDirection: "column",
   alignItems: "center",
   textAlign: "center",
-})
+});
 
 export const doctorNameOverlay = style({
   position: "absolute",
@@ -636,7 +775,7 @@ export const doctorNameOverlay = style({
   color: "#FFFFFF",
   textAlign: "right",
   textShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-})
+});
 
 export const doctorEnglishName = style({
   fontFamily: "'Poppins', sans-serif",
@@ -651,7 +790,7 @@ export const doctorEnglishName = style({
       fontSize: "24px",
     },
   },
-})
+});
 
 // 바날 로컬 위치 정보 카드
 export const locationCard = style({
@@ -659,7 +798,7 @@ export const locationCard = style({
   flexDirection: "column",
   alignItems: "center",
   textAlign: "center",
-})
+});
 
 export const locationImage = style({
   width: "100%",
@@ -673,11 +812,11 @@ export const locationImage = style({
       maxWidth: "300px",
     },
   },
-})
+});
 
 export const locationInfo = style({
   textAlign: "center",
-})
+});
 
 export const locationName = style({
   fontFamily: "'Poppins', sans-serif",
@@ -698,7 +837,7 @@ export const locationName = style({
       letterSpacing: "-1px",
     },
   },
-})
+});
 
 export const locationAddress = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -713,7 +852,7 @@ export const locationAddress = style({
       fontSize: "20px",
     },
   },
-})
+});
 
 export const locationDetail = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -728,7 +867,7 @@ export const locationDetail = style({
       fontSize: "18px",
     },
   },
-})
+});
 
 // 새로운 간결한 위치 섹션 - 피그마 디자인 기반
 export const locationSection = style({
@@ -749,7 +888,7 @@ export const locationSection = style({
       margin: "0 auto 80px",
     },
   },
-})
+});
 
 export const locationContent = style({
   width: "100%",
@@ -757,14 +896,14 @@ export const locationContent = style({
   flexDirection: "column",
   alignItems: "center",
   gap: "60px",
-})
+});
 
 export const locationHeader = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   gap: "8px",
-})
+});
 
 export const locationQuote = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -783,7 +922,7 @@ export const locationQuote = style({
       fontSize: "20px",
     },
   },
-})
+});
 
 export const hospitalName = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -802,7 +941,7 @@ export const hospitalName = style({
       fontSize: "24px",
     },
   },
-})
+});
 
 export const mapContainer = style({
   width: "100%",
@@ -811,14 +950,14 @@ export const mapContainer = style({
   borderRadius: "12px",
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-})
+});
 
 export const mapImage = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   display: "block",
-})
+});
 
 // 의료진 소개 섹션 - 1920px 기준 반응형
 export const doctorsSection = style({
@@ -826,7 +965,7 @@ export const doctorsSection = style({
   "@media": {
     [breakpoints.mobile]: {},
   },
-})
+});
 
 export const doctorsContent = style({
   display: "flex",
@@ -837,25 +976,27 @@ export const doctorsContent = style({
     "screen and (min-width: 1600px)": {
       minHeight: "800px",
     },
-    [breakpoints.mobile]: {
+    "screen and (max-width: 1024px)": {
       flexDirection: "column",
-      gap: "60px",
-      // minHeight: "auto",
+      gap: "40px",
       justifyContent: "flex-start", // 모바일에서는 일반 레이아웃
     },
+    "screen and (max-width: 767px)": {
+      gap: "32px",
+    },
   },
-})
+});
 
 export const doctorsTextSection = style({
   flexShrink: 0,
   ...responsiveProperty("flexBasis", 520), // 1920px 기준 520px 고정 너비
   "@media": {
-    [breakpoints.mobile]: {
+    "screen and (max-width: 1024px)": {
       flex: "none",
       width: "100%",
     },
   },
-})
+});
 
 export const doctorsMainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -866,7 +1007,7 @@ export const doctorsMainTitle = style({
   color: "#272727",
   margin: "0",
   ...responsiveProperty("marginBottom", 24), // 1920px 기준 24px
-})
+});
 
 export const doctorsSubTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -877,7 +1018,7 @@ export const doctorsSubTitle = style({
   color: "#272727",
   margin: "0",
   ...responsiveProperty("marginBottom", 16), // 1920px 기준 16px
-})
+});
 
 export const doctorsDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -888,11 +1029,21 @@ export const doctorsDescription = style({
   color: "#272727",
   margin: "0",
   ...responsiveProperty("marginBottom", 40), // 1920px 기준 40px
-})
+});
 
 export const doctorsImageGrid = style({
   ...responsiveCaptureContainer(700, 800), // 1920px 기준 700x800 캡처 컨테이너
-})
+  "@media": {
+    "screen and (max-width: 1024px)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+      position: "relative",
+      width: "100%",
+      height: "auto",
+    },
+  },
+});
 
 // 둘러싸는 이미지 컨테이너 (모든 의료진 공통)
 export const doctorImageContainer = style({
@@ -902,7 +1053,7 @@ export const doctorImageContainer = style({
   height: "100%",
   borderRadius: "12px",
   overflow: "visible", // 텍스트가 잘리지 않도록
-})
+});
 
 // 신승규 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay1 = style({
@@ -916,7 +1067,7 @@ export const doctorNameOverlay1 = style({
       top: "40px",
     },
   },
-})
+});
 
 // 박수호 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay2 = style({
@@ -931,7 +1082,7 @@ export const doctorNameOverlay2 = style({
       top: "auto",
     },
   },
-})
+});
 
 // 김나래 원장 영어 이름 - 1920px 기준 정확한 비례 스케일링
 export const doctorNameOverlay3 = style({
@@ -947,7 +1098,7 @@ export const doctorNameOverlay3 = style({
       bottom: "auto",
     },
   },
-})
+});
 
 export const doctorImage1 = style({
   position: "relative",
@@ -957,7 +1108,7 @@ export const doctorImage1 = style({
   borderRadius: "12px",
   display: "block",
   zIndex: 1,
-})
+});
 
 export const doctorImage2 = style({
   position: "relative",
@@ -967,7 +1118,7 @@ export const doctorImage2 = style({
   borderRadius: "12px",
   display: "block",
   zIndex: 1,
-})
+});
 
 export const doctorImage3 = style({
   position: "relative",
@@ -977,7 +1128,7 @@ export const doctorImage3 = style({
   borderRadius: "12px",
   display: "block",
   zIndex: 1,
-})
+});
 
 // 신승규 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName1 = style({
@@ -998,7 +1149,7 @@ export const doctorEnglishName1 = style({
       letterSpacing: "-1.7px",
     },
   },
-})
+});
 
 // 박수호 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName2 = style({
@@ -1019,7 +1170,7 @@ export const doctorEnglishName2 = style({
       letterSpacing: "-1.7px",
     },
   },
-})
+});
 
 // 김나래 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName3 = style({
@@ -1040,26 +1191,23 @@ export const doctorEnglishName3 = style({
       letterSpacing: "-1.7px",
     },
   },
-})
+});
 
 // 신승규 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer1 = style({
   position: "absolute",
-  left: vw(300), // 1920px 기준 300px
-  top: vw(180), // 1920px 기준 180px
+  left: vw(150), // 1920px 기준 300px
+  top: vw(200), // 1920px 기준 180px
   zIndex: 10,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      left: "300px",
-      top: "180px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       position: "static",
       marginTop: "20px",
       paddingLeft: "40px",
     },
   },
-})
+});
 
 // 박수호 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer2 = style({
@@ -1078,7 +1226,7 @@ export const doctorKoreanNameContainer2 = style({
       paddingLeft: "40px",
     },
   },
-})
+});
 
 // 김나래 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer3 = style({
@@ -1097,7 +1245,7 @@ export const doctorKoreanNameContainer3 = style({
       paddingLeft: "40px",
     },
   },
-})
+});
 
 // 한국어 이름 스타일 - 1920px 기준
 export const doctorKoreanName = style({
@@ -1119,7 +1267,7 @@ export const doctorKoreanName = style({
       fontSize: "14px",
     },
   },
-})
+});
 
 // 신승규 원장 아래 구분선 - 1920px 기준
 export const doctorDivider1 = style({
@@ -1137,7 +1285,7 @@ export const doctorDivider1 = style({
       height: "2px",
     },
   },
-})
+});
 
 // 박수호 원장 아래 구분선 - 1920px 기준
 export const doctorDivider2 = style({
@@ -1155,4 +1303,4 @@ export const doctorDivider2 = style({
       height: "2px",
     },
   },
-})
+});

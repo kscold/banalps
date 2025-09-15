@@ -1,80 +1,80 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import * as styles from "./BlueSection.css"
-import { ArrowButton } from "../../shared/ui/ArrowButton"
-import { useBlueScroll } from "../../shared/hooks/useBlueScroll"
+import { useEffect, useState } from "react";
+import * as styles from "./BlueSection.css";
+import { ArrowButton } from "../../shared/ui/ArrowButton";
+import { useBlueScroll } from "../../shared/hooks/useBlueScroll";
 
 interface BlueSectionProps {
-  isActive?: boolean
-  onTransitionToVideo?: () => void
+  isActive?: boolean;
+  onTransitionToVideo?: () => void;
 }
 
 export default function BlueSection({
   isActive = false,
   onTransitionToVideo = () => {},
 }: BlueSectionProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   // 블루섹션 전용 스크롤 훅 사용
   const { canTransitionToVideo } = useBlueScroll({
     isActive,
     onTransitionToVideo,
-  })
+  });
 
   useEffect(() => {
-    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트")
+    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
     console.log(
       "[BlueSection/상태] isActive:",
       isActive,
       "canTransitionToVideo:",
       canTransitionToVideo
-    )
+    );
     const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
-    return () => clearTimeout(timer)
-  }, [isActive, canTransitionToVideo])
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [isActive, canTransitionToVideo]);
 
   // 바날 로컬 서비스 항목들
   const localServices = [
     {
       number: "01",
-      title: "서초구 지역 맞춤 서비스",
+      title: "알맞은 치료를 합니다.",
       description:
-        "서초구 신반포로 47길 66 위치의 바날하우스에서\n지역 주민들을 위한 맞춤형 모발 이식 서비스를 제공합니다.",
+        "절개, 비절개, 이마축소, 약물치료, 모든 방법에 경험이 많은\n전문의가 각자의 상황에 가장 알맞은 치료를 권해드립니다. ",
     },
     {
       number: "02",
-      title: "신사역 4번출구 331M",
+      title: "부끄럽지 않습니다.",
       description:
-        "신사역 4번출구에서 도보 5분 거리에 위치하여\n접근성이 뛰어난 위치에서 편리한 진료를 받으실 수 있습니다.",
+        "정직한 홍보, 투명한 가격, 정확한 모수, 최고의 스텝, 최선의 수술\n모든 과정과 결과에 부끄럽지 않습니다.",
     },
     {
       number: "03",
-      title: "논현역 8번출구 330M",
+      title: "고객을 잘 이해합니다.",
       description:
-        "논현역 8번출구에서도 가까운 거리에 위치하여\n지하철 이용이 편리한 환자분들을 위한 최적의 위치입니다.",
+        "먼저 불편한 점과 원하는 바를 잘 듣고, 전문가의 경험과 지식을\n바탕으로 고객이 가장 만족할 방법을 찾아갑니다.",
     },
     {
       number: "04",
-      title: "지역 커뮤니티 참여",
+      title: "시간을 지키겠습니다.",
       description:
-        "서초구 지역 커뮤니티와 함께하는 다양한 건강 프로그램과\n지역 주민을 위한 특별 혜택을 제공합니다.",
+        "약속한 시간에 기다리는 일이 없도록 한 분, 한 분의 진료 시간을\n넉넉히 잡습니다",
     },
     {
       number: "05",
-      title: "로컬 파트너십",
+      title: "비용은 투명합니다.",
       description:
-        "지역 내 미용실, 헤어샵과의 협력을 통한\n종합적인 헤어케어 솔루션을 제공합니다.",
+        "상담 후에 비용을 알 수 있다는 말 대신, 사람마다 달라지는\n할인율 대신, 누구에게나 정확하고 투명한 비용을 말씀드립니다.",
     },
     {
       number: "06",
-      title: "지역 맞춤 상담",
+      title: "보람이 우선입니다.",
       description:
-        "서초구 지역 특성을 고려한 맞춤형 상담과\n지역 주민만을 위한 특별 프로그램을 운영합니다.",
+        "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
     },
-  ]
+  ];
 
   return (
     <section
@@ -139,17 +139,19 @@ export default function BlueSection({
           {/* 왼쪽 텍스트 영역 */}
           <div className={styles.whatBanalText}>
             <h2 className={styles.whatBanalTitle}>
-              모발이식
+              바날이
               <br />
-              15년 전문의.
+              잘하는 일.
             </h2>
+            <p className={styles.whatBanalSubDescription1}>
+              평범한 일상을 새로운 일상으로 이어주는 곳,
+            </p>
             <p className={styles.whatBanalDescription}>
               모발 성형외과 전문의로서 15년
             </p>
-            <p className={styles.whatBanalSubDescription}>
-              수천 명의 일상 속 자신감을 지켜온 의료진이 다년간 축척된 시술
-              경험을 바탕으로 모든 과정과 결과에  부끄럽지 않은 최적의 결과를
-               만들어드립니다.
+            <p className={styles.whatBanalSubDescription2}>
+              바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
+              당신의 내일을 설계합니다.
             </p>
             <ArrowButton size="medium" variant="primary">
               View More
@@ -273,5 +275,5 @@ export default function BlueSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

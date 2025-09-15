@@ -1,20 +1,31 @@
 /**
- * 1920px 기준 반응형 디자인 시스템
+ * 듀얼 베이스 반응형 디자인 시스템
  * - 1920px 이상: 고정 크기
- * - 1024px ~ 1920px: 비례 축소/확대 (vw 단위)
- * - 1024px 미만: 모바일 반응형
+ * - 1024px ~ 1920px: 1920px 기준 비례 축소/확대 (vw 단위)
+ * - 375px ~ 1023px: 375px 기준 비례 확대/축소 (mvw 단위)
+ * - 375px 미만: 375px 고정
  */
 
 // 디자인 베이스 크기
-export const DESIGN_BASE_WIDTH = 1920
+export const DESIGN_BASE_WIDTH = 1920 // 데스크탑 기준
+export const MOBILE_BASE_WIDTH = 375 // 모바일 기준
 
 /**
- * 1920px 기준으로 vw 단위 계산
+ * 1920px 기준으로 vw 단위 계산 (데스크탑 1024px~1920px 구간)
  * @param pixelValue - 1920px 디자인에서의 픽셀 값
  * @returns vw 단위 문자열
  */
 export const vw = (pixelValue: number): string => {
   return `${(pixelValue / DESIGN_BASE_WIDTH) * 100}vw`
+}
+
+/**
+ * 375px 기준으로 mvw 단위 계산 (모바일 375px~1023px 구간)
+ * @param pixelValue - 375px 디자인에서의 픽셀 값
+ * @returns vw 단위 문자열 (모바일 기준)
+ */
+export const mvw = (pixelValue: number): string => {
+  return `${(pixelValue / MOBILE_BASE_WIDTH) * 100}vw`
 }
 
 /**
@@ -33,21 +44,29 @@ export const responsiveProperty = (property: string, pixelValue: number) => ({
 })
 
 /**
- * 1920px 기준 폰트 사이즈 계산 (새로운 브레이크포인트 적용)
- * @param pixelValue - 1920px 디자인에서의 폰트 크기
+ * 듀얼 베이스 폰트 사이즈 계산
+ * @param desktopValue - 1920px 디자인에서의 폰트 크기
+ * @param mobileValue - 375px 디자인에서의 폰트 크기 (선택사항, 기본값: desktopValue * 0.6)
  * @returns 반응형 폰트 사이즈 객체
  */
-export const responsiveFont = (pixelValue: number) => ({
-  fontSize: vw(pixelValue), // 1024px-1920px에서 비례 스케일링
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: `${pixelValue}px`, // 1920px 이상에서는 고정
+export const responsiveFont = (desktopValue: number, mobileValue?: number) => {
+  const mobileFontSize = mobileValue || Math.max(desktopValue * 0.6, 12)
+
+  return {
+    fontSize: vw(desktopValue), // 1024px-1920px에서 데스크탑 기준 비례 스케일링
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        fontSize: `${desktopValue}px`, // 1920px 이상에서는 고정
+      },
+      [breakpoints.mobile]: {
+        fontSize: mvw(mobileFontSize), // 375px-1023px에서 모바일 기준 비례 스케일링
+      },
+      "screen and (max-width: 374px)": {
+        fontSize: `${mobileFontSize}px`, // 375px 미만에서는 고정
+      },
     },
-    [breakpoints.mobile]: {
-      fontSize: `${Math.max(pixelValue * 0.7, 16)}px`, // 모바일에서 70% 크기, 최소 16px
-    },
-  },
-})
+  }
+}
 
 /**
  * 1920px 기준 크기 계산 (전역 고정 적용)
@@ -114,8 +133,11 @@ export const responsiveContainer = (maxWidth: number = 1600) => ({
   margin: "0 auto",
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일: 375px~1023px
-      width: "calc(100% - 40px)", // 양쪽 20px 마진
+      // 모바일: 375px~1023px - 375px 기준 32px 마진이 비례적으로 커짐
+      width: `calc(100% - ${mvw(32)})`, // 375px 기준 32px 마진이 뷰포트에 따라 비례
+    },
+    "screen and (max-width: 374px)": {
+      width: "calc(100% - 32px)", // 375px 미만에서는 고정 32px 마진
     },
   },
 })

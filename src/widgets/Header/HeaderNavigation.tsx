@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import * as styles from "./HeaderDesign.css"
-import { useHeaderState } from "../../features/header/hooks/useHeaderState"
-import DesktopNav from "../../features/header/components/DesktopNav"
-import MobileMenu from "../../features/header/components/MobileMenu"
-import MenuToggleButton from "../../features/header/components/MenuToggleButton"
+import Link from "next/link";
+import * as styles from "./HeaderDesign.css";
+import { useHeaderState } from "../../features/header/hooks/useHeaderState";
+import DesktopNav from "../../features/header/components/DesktopNav";
+import MobileMenu from "../../features/header/components/MobileMenu";
+import MenuToggleButton from "../../features/header/components/MenuToggleButton";
 
 export default function HeaderNavigation() {
   const {
@@ -16,7 +16,7 @@ export default function HeaderNavigation() {
     handleHeaderMouseEnter,
     handleHeaderMouseLeave,
     closeMenu,
-  } = useHeaderState()
+  } = useHeaderState();
 
   return (
     <>
@@ -85,5 +85,5 @@ export default function HeaderNavigation() {
       {/* 모바일 메뉴 */}
       <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
     </>
-  )
+  );
 }

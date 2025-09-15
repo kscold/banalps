@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as styles from "./WhiteSection.css"
-import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton"
+import * as styles from "./WhiteSection.css";
+import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton";
 import GoogleMapEmbed, {
   MapButtons,
-} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed"
+} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 
 export default function WhiteSection() {
   return (
@@ -130,7 +130,7 @@ export default function WhiteSection() {
           {/* Hero Illustration - 왼쪽에 붙도록 */}
           <div className={styles.readyHeroIllustration}>
             <img
-              src="/hairline/hero-illustration.svg"
+              src="/hair-transplant/hero-illustration.svg"
               alt="메인 페이지 일러스트"
               className={styles.readyIllustrationImage}
             />
@@ -228,5 +228,5 @@ export default function WhiteSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
