@@ -7,8 +7,8 @@
  */
 
 // 디자인 베이스 크기
-export const DESIGN_BASE_WIDTH = 1920 // 데스크탑 기준
-export const MOBILE_BASE_WIDTH = 375 // 모바일 기준
+export const DESIGN_BASE_WIDTH = 1920; // 데스크탑 기준
+export const MOBILE_BASE_WIDTH = 375; // 모바일 기준
 
 /**
  * 1920px 기준으로 vw 단위 계산 (데스크탑 1024px~1920px 구간)
@@ -16,8 +16,8 @@ export const MOBILE_BASE_WIDTH = 375 // 모바일 기준
  * @returns vw 단위 문자열
  */
 export const vw = (pixelValue: number): string => {
-  return `${(pixelValue / DESIGN_BASE_WIDTH) * 100}vw`
-}
+  return `${(pixelValue / DESIGN_BASE_WIDTH) * 100}vw`;
+};
 
 /**
  * 375px 기준으로 mvw 단위 계산 (모바일 375px~1023px 구간)
@@ -25,8 +25,8 @@ export const vw = (pixelValue: number): string => {
  * @returns vw 단위 문자열 (모바일 기준)
  */
 export const mvw = (pixelValue: number): string => {
-  return `${(pixelValue / MOBILE_BASE_WIDTH) * 100}vw`
-}
+  return `${(pixelValue / MOBILE_BASE_WIDTH) * 100}vw`;
+};
 
 /**
  * 1920px 기준 완전 반응형 스타일 (전역 고정 포함)
@@ -41,7 +41,7 @@ export const responsiveProperty = (property: string, pixelValue: number) => ({
       [property]: `${pixelValue}px`, // 1920px+ 전역 고정
     },
   },
-})
+});
 
 /**
  * 듀얼 베이스 폰트 사이즈 계산
@@ -50,7 +50,7 @@ export const responsiveProperty = (property: string, pixelValue: number) => ({
  * @returns 반응형 폰트 사이즈 객체
  */
 export const responsiveFont = (desktopValue: number, mobileValue?: number) => {
-  const mobileFontSize = mobileValue || Math.max(desktopValue * 0.6, 12)
+  const mobileFontSize = mobileValue || Math.max(desktopValue * 0.6, 12);
 
   return {
     fontSize: vw(desktopValue), // 1024px-1920px에서 데스크탑 기준 비례 스케일링
@@ -65,8 +65,8 @@ export const responsiveFont = (desktopValue: number, mobileValue?: number) => {
         fontSize: `${mobileFontSize}px`, // 375px 미만에서는 고정
       },
     },
-  }
-}
+  };
+};
 
 /**
  * 1920px 기준 크기 계산 (전역 고정 적용)
@@ -80,7 +80,7 @@ export const responsiveSize = (pixelValue: number) => ({
       width: `${pixelValue}px`, // 1920px+ 전역 고정
     },
   },
-})
+});
 
 /**
  * 1920px 기준 높이 계산
@@ -94,7 +94,7 @@ export const responsiveHeight = (pixelValue: number) => ({
       height: `${pixelValue}px`, // 1920px 이상에서는 고정
     },
   },
-})
+});
 
 /**
  * 1920px 기준 패딩/마진 계산
@@ -111,7 +111,7 @@ export const responsiveSpacing = (pixelValue: number) => ({
       padding: `${Math.max(pixelValue * 0.5, 8)}px`, // 모바일에서는 최소 8px
     },
   },
-})
+});
 
 /**
  * 1920px 기준 위치 계산 (top, left, right, bottom)
@@ -119,8 +119,8 @@ export const responsiveSpacing = (pixelValue: number) => ({
  * @returns vw 단위 문자열
  */
 export const responsivePosition = (pixelValue: number): string => {
-  return vw(pixelValue)
-}
+  return vw(pixelValue);
+};
 
 /**
  * 1920px 기준 반응형 컨테이너 시스템 (간단하고 일관된 방식)
@@ -133,14 +133,20 @@ export const responsiveContainer = (maxWidth: number = 1600) => ({
   margin: "0 auto",
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일: 375px~1023px - 375px 기준 32px 마진이 비례적으로 커짐
-      width: `calc(100% - ${mvw(32)})`, // 375px 기준 32px 마진이 뷰포트에 따라 비례
+      // 모바일: 375px~1023px - 16px 고정 마진
+      width: "100%",
+      maxWidth: "none",
+      padding: "0 16px", // 양쪽 16px 패딩
+      margin: "0", // 마진 제거
     },
     "screen and (max-width: 374px)": {
-      width: "calc(100% - 32px)", // 375px 미만에서는 고정 32px 마진
+      width: "100%",
+      maxWidth: "none",
+      padding: "0 16px", // 375px 미만에서도 16px 패딩
+      margin: "0",
     },
   },
-})
+});
 
 /**
  * AspectRatio와 함께 사용하는 반응형 이미지 컨테이너 (헤더와 동일한 고정 방식)
@@ -165,7 +171,7 @@ export const responsiveImageContainer = (width: number, height: number) => ({
       aspectRatio: "auto", // 모바일에서는 자동 높이
     },
   },
-})
+});
 
 /**
  * 절대 위치 기반 레이아웃 캡처 컨테이너 (imageCardsSection, doctorsImageGrid 방식)
@@ -196,7 +202,7 @@ export const responsiveCaptureContainer = (width: number, height: number) => ({
       aspectRatio: "auto", // 모바일에서는 자동 높이
     },
   },
-})
+});
 
 /**
  * 1920px 기준 좌우 분할 레이아웃 컨테이너 (헤어라인 페이지 Section1 방식)
@@ -217,7 +223,7 @@ export const responsiveSplitContainer = () => ({
       gap: "30px",
     },
   },
-})
+});
 
 /**
  * 헤어라인 페이지 왼쪽 컨텐츠 영역 (헤더와 완벽한 정렬)
@@ -242,7 +248,7 @@ export const responsiveLeftContent = () => ({
       paddingRight: "20px",
     },
   },
-})
+});
 
 /**
  * 헤어라인 페이지 오른쪽 컨텐츠 영역 (헤더와 완벽한 정렬)
@@ -267,7 +273,7 @@ export const responsiveRightContent = () => ({
       paddingRight: "0",
     },
   },
-})
+});
 
 /**
  * 1920px 기준 절대 위치 이미지 컨테이너 (우측 이미지 영역용)
@@ -295,7 +301,7 @@ export const responsiveAbsoluteImageContainer = (minHeight: number) => ({
       gap: "20px",
     },
   },
-})
+});
 
 /**
  * 1920px 기준 절대 위치 이미지 스타일 생성기
@@ -314,10 +320,10 @@ export const responsiveAbsoluteImage = ({
   aspectRatio,
   maxWidth,
 }: {
-  position: { top?: string; right?: string; bottom?: string; left?: string }
-  width: string // "50%", "30%" 등
-  aspectRatio: string // "600 / 660" 등
-  maxWidth: number // 1920px 기준 최대 너비
+  position: { top?: string; right?: string; bottom?: string; left?: string };
+  width: string; // "50%", "30%" 등
+  aspectRatio: string; // "600 / 660" 등
+  maxWidth: number; // 1920px 기준 최대 너비
 }) => ({
   position: "absolute" as const,
   ...position,
@@ -336,7 +342,7 @@ export const responsiveAbsoluteImage = ({
       aspectRatio: "auto",
     },
   },
-})
+});
 
 /**
  * 1920px 기준 3컬럼 레이아웃 컨테이너 (왼쪽 텍스트, 중앙 일러스트, 오른쪽 이미지)
@@ -359,11 +365,11 @@ export const responsiveThreeColumnContainer = (maxWidth: number = 1920) => ({
       padding: "0 20px", // 좌우 20px 마진
     },
   },
-})
+});
 
 // 공통 반응형 브레이크포인트 (사용자 요청 기준)
 export const breakpoints = {
   mobile: "screen and (max-width: 1023px)", // 375px ~ 1023px (tablet 통합)
   desktop: "screen and (min-width: 1024px) and (max-width: 1919px)", // 1024px ~ 1919px (1920px 기준 비례 스케일링)
   desktopLarge: "screen and (min-width: 1920px)", // 1920px 이상 (고정 크기)
-} as const
+} as const;

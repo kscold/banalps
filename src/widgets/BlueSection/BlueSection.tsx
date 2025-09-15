@@ -135,10 +135,31 @@ export default function BlueSection({
 
       {/* 바날 로컬 섹션 */}
       <div className={styles.whatBanalSection}>
+        {/* 모바일에서 제목 먼저 표시 */}
+        <h2 className={styles.whatBanalTitleMobile}>
+          바날이
+          <br />
+          잘하는 일.
+        </h2>
+
+        {/* 모바일에서 제목 바로 아래 표시되는 설명 텍스트 */}
+        <div className={styles.whatBanalMobileTop}>
+          <p className={styles.whatBanalSubDescription1Mobile}>
+            평범한 일상을 새로운 일상으로 이어주는 곳,
+          </p>
+          <p className={styles.whatBanalDescriptionMobile}>
+            모발 성형외과 전문의로서 15년
+          </p>
+          <p className={styles.whatBanalSubDescription2Mobile}>
+            바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
+            당신의 내일을 설계합니다.
+          </p>
+        </div>
+
         <div className={styles.whatBanalContent}>
           {/* 왼쪽 텍스트 영역 */}
           <div className={styles.whatBanalText}>
-            <h2 className={styles.whatBanalTitle}>
+            <h2 className={styles.whatBanalTitleDesktop}>
               바날이
               <br />
               잘하는 일.
@@ -153,9 +174,11 @@ export default function BlueSection({
               바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
               당신의 내일을 설계합니다.
             </p>
-            <ArrowButton size="medium" variant="primary">
-              View More
-            </ArrowButton>
+            <div className={styles.whatBanalButtonDesktop}>
+              <ArrowButton size="medium" variant="primary">
+                View More
+              </ArrowButton>
+            </div>
           </div>
 
           {/* 오른쪽 6개 항목 리스트 */}
@@ -172,6 +195,13 @@ export default function BlueSection({
               </div>
             ))}
           </div>
+        </div>
+
+        {/* 모바일에서만 보이는 버튼 - featuresList 다음에 위치 */}
+        <div className={styles.whatBanalButtonMobile}>
+          <ArrowButton size="medium" variant="primary">
+            View More
+          </ArrowButton>
         </div>
       </div>
 

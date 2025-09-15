@@ -318,7 +318,25 @@ export const whatBanalSection = style({
       marginBottom: "120px", // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
+      width: "100%", // 모바일에서 전체 너비
+      maxWidth: "none",
+      padding: "0 16px", // 양쪽 16px 패딩으로 오버라이드
+      margin: "0", // 마진 제거
       marginBottom: "80px",
+      paddingTop: mvw(60), // 375px 기준 60px 상단 패딩 추가
+    },
+  },
+});
+
+export const whatBanalWrapper = style({
+  width: "100%",
+  maxWidth: `${vw(1600)}`, // 1920px 기준 1600px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      maxWidth: "1600px",
+    },
+    [breakpoints.mobile]: {
+      maxWidth: "100%",
     },
   },
 });
@@ -339,11 +357,11 @@ export const whatBanalContent = style({
       flexDirection: "row", // 1024px 이상에서 가로 배치 강제
     },
     [breakpoints.mobile]: {
-      flexDirection: "column", // 모바일에서만 세로 배치
-      gap: mvw(32), // 375px 기준 32px가 비례적으로 커짐
+      flexDirection: "column", // 모바일에서 세로 배치
+      gap: mvw(40), // 375px 기준 40px가 비례적으로 커짐
     },
     "screen and (max-width: 374px)": {
-      gap: "32px", // 375px 미만에서는 고정
+      gap: "40px", // 375px 미만에서는 고정
     },
   },
 });
@@ -353,21 +371,57 @@ export const whatBanalText = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       flex: "0 0 520px", // 1920px 이상에서 고정
-      order: "unset", // 데스크탑에서 order 제거
-    },
-    "screen and (min-width: 1024px)": {
-      order: "unset", // 1024px 이상에서 order 제거
     },
     [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
       display: "flex",
       flexDirection: "column",
-      order: 2, // 모바일에서만 featuresList(order: 1) 다음에 배치
     },
   },
 });
 
+// 모바일에서만 보이는 제목 (whatBanalSection 상단)
+export const whatBanalTitleMobile = style({
+  display: "none", // 기본적으로 숨김 (데스크탑)
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: mvw(30), // 375px 기준 30px (Figma 디자인 맞춤)
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  marginBottom: mvw(20), // 375px 기준 20px - 설명 텍스트와 간격 줄임
+  marginTop: 0,
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block", // 모바일에서만 표시
+    },
+  },
+});
+
+// 데스크탑에서만 보이는 제목 (whatBanalText 내부)
+export const whatBanalTitleDesktop = style({
+  display: "block", // 데스크탑에서 표시
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60), // 1920px 기준 60px
+  lineHeight: "120%",
+  letterSpacing: "0",
+  color: "#272727",
+  marginBottom: vw(80), // 1920px 기준 80px
+  marginTop: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginBottom: "80px", // 1920px 이상에서 고정
+      marginTop: 0,
+    },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 숨김
+    },
+  },
+});
+
+// 구버전 호환성을 위해 유지
 export const whatBanalTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
@@ -376,9 +430,15 @@ export const whatBanalTitle = style({
   letterSpacing: "0",
   color: "#272727",
   marginBottom: vw(80), // 1920px 기준 80px
+  marginTop: 0, // 상단 마진 제거
   "@media": {
     [breakpoints.desktopLarge]: {
       marginBottom: "80px", // 1920px 이상에서 고정
+      marginTop: 0,
+    },
+    [breakpoints.mobile]: {
+      marginBottom: mvw(40), // 375px 기준 40px
+      marginTop: 0,
     },
   },
 });
@@ -396,6 +456,9 @@ export const whatBanalDescription = style({
     [breakpoints.desktopLarge]: {
       marginBottom: "40px", // 1920px 이상에서 고정
     },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 숨김 (모바일 전용 버전 사용)
+    },
   },
 });
 
@@ -412,6 +475,9 @@ export const whatBanalSubDescription1 = style({
     [breakpoints.desktopLarge]: {
       lineHeight: "35px", // 1920px 이상에서 고정
     },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 숨김 (모바일 전용 버전 사용)
+    },
   },
 });
 
@@ -423,10 +489,126 @@ export const whatBanalSubDescription2 = style({
   lineHeight: vw(35), // 1920px 기준 35px
   letterSpacing: "0",
   color: "#272727",
-  marginBottom: vw(80), // 1920px 기준 80px
+  marginBottom: vw(40), // 1920px 기준 40px로 줄임
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "35px", // 1920px 이상에서 고정
+      marginBottom: "40px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 숨김 (모바일 전용 버전 사용)
+    },
+  },
+});
+
+// 데스크탑에서만 보이는 버튼 래퍼 (whatBanalText 내부)
+export const whatBanalButtonDesktop = style({
+  display: "inline-block",
+  marginTop: vw(40), // 1920px 기준 40px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "40px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 숨김
+    },
+  },
+});
+
+// 모바일에서 제목 바로 아래 표시되는 설명 텍스트
+export const whatBanalMobileTop = style({
+  display: "none", // 기본적으로 숨김 (데스크탑)
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block", // 모바일에서만 표시
+      marginBottom: mvw(40), // 375px 기준 40px
+    },
+  },
+});
+
+// 모바일에서만 보이는 하단 섹션 (설명 텍스트 + 버튼) - 사용하지 않음
+export const whatBanalMobileBottom = style({
+  display: "none", // 기본적으로 숨김 (데스크탑)
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block", // 모바일에서만 표시
+      marginTop: mvw(40), // 375px 기준 40px
+    },
+  },
+});
+
+// 모바일 전용 설명 텍스트들
+export const whatBanalSubDescription1Mobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      fontFamily: "'Pretendard', sans-serif",
+      fontWeight: 300,
+      fontSize: mvw(14), // 375px 기준 14px (더 작게)
+      lineHeight: "150%", // 150% line height
+      letterSpacing: "0",
+      color: "#272727",
+      marginBottom: mvw(12),
+    },
+  },
+});
+
+export const whatBanalDescriptionMobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 500,
+      fontSize: mvw(18), // 375px 기준 18px (약간 작게)
+      lineHeight: "150%", // 150% line height
+      letterSpacing: "0",
+      color: "#272727",
+      marginBottom: mvw(12),
+    },
+  },
+});
+
+export const whatBanalSubDescription2Mobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      fontFamily: "'Pretendard', sans-serif",
+      fontWeight: 300,
+      fontSize: mvw(13), // 375px 기준 13px (더 작게)
+      lineHeight: "150%", // 150% line height
+      letterSpacing: "0",
+      color: "#272727",
+      marginBottom: 0, // 마지막 텍스트이므로 marginBottom 제거
+    },
+  },
+});
+
+// 모바일에서만 보이는 버튼 래퍼 (featuresList 아래)
+export const whatBanalButtonMobile = style({
+  display: "none", // 기본적으로 숨김 (데스크탑)
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "inline-block", // 모바일에서만 표시
+      marginTop: mvw(40), // 375px 기준 40px
+      marginBottom: mvw(60), // 375px 기준 60px 하단 마진
+    },
+  },
+});
+
+// 구버전 호환성을 위해 유지
+export const whatBanalButton = style({
+  display: "inline-block",
+  marginTop: vw(40), // 1920px 기준 40px
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "40px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      marginTop: mvw(32), // 375px 기준 32px
+      marginBottom: mvw(60), // 375px 기준 60px 하단 마진
     },
   },
 });
@@ -441,15 +623,10 @@ export const featuresList = style({
     [breakpoints.desktopLarge]: {
       gap: 0,
       borderTop: "1px solid #14aeff",
-      order: "unset", // 데스크탑에서 order 제거
-    },
-    "screen and (min-width: 1024px)": {
-      order: "unset", // 1024px 이상에서 order 제거
     },
     [breakpoints.mobile]: {
       gap: 0,
       borderTop: `${mvw(1)} solid #14aeff`,
-      order: 1, // 모바일에서만 whatBanalText(order: 2) 앞에 배치
     },
     "screen and (max-width: 374px)": {
       gap: 0,
@@ -480,8 +657,8 @@ export const featureItem = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column", // 모바일에서만 세로 배치
-      gap: mvw(8), // 375px 기준 8px가 비례적으로 커짐
-      padding: `${mvw(12)} 0`, // 375px 기준 12px 패딩
+      gap: mvw(12), // 375px 기준 12px로 늘림
+      padding: `${mvw(20)} 0`, // 375px 기준 20px 패딩
       borderBottom: `${mvw(1)} solid #14aeff`,
     },
     "screen and (max-width: 374px)": {
@@ -508,7 +685,8 @@ export const featureNumber = style({
       flex: "0 0 60px", // 1920px 이상에서 고정 (줄임)
     },
     [breakpoints.mobile]: {
-      flex: "0 0 40px", // 모바일에서 더 작게
+      flex: "none", // 모바일에서 자동 너비
+      marginBottom: mvw(8), // 375px 기준 8px 하단 마진
     },
   },
 });
@@ -526,7 +704,7 @@ export const featureContent = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column", // 모바일에서만 세로 배치
-      gap: mvw(6), // 375px 기준 6px
+      gap: mvw(8), // 375px 기준 8px
     },
     "screen and (max-width: 374px)": {
       flexDirection: "column", // 375px 미만에서도 세로 배치
@@ -550,7 +728,7 @@ export const featureTitle = style({
     },
     [breakpoints.mobile]: {
       flex: "none", // 모바일에서는 자동 너비
-      marginBottom: mvw(8), // 모바일에서만 아래 마진
+      marginBottom: mvw(12), // 모바일에서 12px 아래 마진
     },
   },
 });
@@ -565,6 +743,12 @@ export const featureDescription = style({
   margin: 0,
   whiteSpace: "pre-line",
   opacity: 0.9,
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: mvw(14), // 375px 기준 14px
+      lineHeight: "160%",
+    },
+  },
 });
 
 // Specialist 섹션
