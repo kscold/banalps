@@ -16,6 +16,11 @@ export default function WhiteSection() {
           alt="바날 성형외과 메인 이미지"
           className={styles.heroImage}
         />
+        <img
+          src="/main/white-section/mobile/white-section-mobile-1.png"
+          alt="바날 성형외과 모바일 메인 이미지"
+          className={styles.heroImageMobile}
+        />
       </div>
 
       <div className={styles.container}>
@@ -25,6 +30,93 @@ export default function WhiteSection() {
           <br />
           정점.
         </h2>
+
+        {/* 모바일 전용 카드 리스트 */}
+        <div className={styles.mobileCardList}>
+          {/* 정수리 이식 카드 */}
+          <div className={styles.mobileServiceCard}>
+            <img
+              src="/main/white-section/white_section_2.jpg"
+              alt="정수리 이식"
+              className={styles.mobileCardImage}
+            />
+            <ArrowButton
+              variant="primary"
+              size="large"
+              color="blue"
+              className={styles.mobileCardButton}
+            >
+              정수리이식
+            </ArrowButton>
+          </div>
+
+          {/* 이마 축소 수술 카드 */}
+          <div className={styles.mobileServiceCard}>
+            <img
+              src="/main/white-section/white_section_4.jpg"
+              alt="이마 축소 수술"
+              className={styles.mobileCardImage}
+            />
+            <ArrowButton
+              variant="primary"
+              size="large"
+              color="blue"
+              className={styles.mobileCardButton}
+            >
+              이마 축소 수술
+            </ArrowButton>
+          </div>
+
+          {/* 헤어라인 교정 카드 */}
+          <div className={styles.mobileServiceCard}>
+            <img
+              src="/main/white-section/white_section_3.jpg"
+              alt="헤어라인 교정"
+              className={styles.mobileCardImage}
+            />
+            <ArrowButton
+              variant="primary"
+              size="large"
+              color="blue"
+              className={styles.mobileCardButton}
+            >
+              헤어라인 교정
+            </ArrowButton>
+          </div>
+
+          {/* 바날 재수술 카드 */}
+          <div className={styles.mobileServiceCard}>
+            <img
+              src="/main/white-section/white_section_5.jpg"
+              alt="바날 재수술"
+              className={styles.mobileCardImage}
+            />
+            <ArrowButton
+              variant="primary"
+              size="large"
+              color="blue"
+              className={styles.mobileCardButton}
+            >
+              바날 재수술
+            </ArrowButton>
+          </div>
+
+          {/* Other Medical Service 모바일 박스 */}
+          <div className={styles.mobileOtherServiceBox}>
+            <img
+              src="/main/white-section/mobile/white-section-mobile-2.png"
+              alt="Other Medical Service"
+              className={styles.mobileOtherServiceImage}
+            />
+            <ArrowButton
+              size="large"
+              variant="primary"
+              className={styles.mobileViewMoreButton}
+            >
+              View More
+            </ArrowButton>
+          </div>
+        </div>
 
         {/* 메인 콘텐츠 영역 */}
         <div className={styles.mainContent}>

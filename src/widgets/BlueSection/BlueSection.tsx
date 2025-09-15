@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import * as styles from "./BlueSection.css"
-import { ArrowButton } from "../../shared/ui/ArrowButton"
-import { useBlueScroll } from "../../shared/hooks/useBlueScroll"
+import { useEffect, useState } from "react";
+import * as styles from "./BlueSection.css";
+import { ArrowButton } from "../../shared/ui/ArrowButton";
+import { useBlueScroll } from "../../shared/hooks/useBlueScroll";
 
 interface BlueSectionProps {
-  isActive?: boolean
-  onTransitionToVideo?: () => void
+  isActive?: boolean;
+  onTransitionToVideo?: () => void;
 }
 
 export default function BlueSection({
   isActive = false,
   onTransitionToVideo = () => {},
 }: BlueSectionProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   // 블루섹션 전용 스크롤 훅 사용
   const { canTransitionToVideo } = useBlueScroll({
     isActive,
     onTransitionToVideo,
-  })
+  });
 
   useEffect(() => {
-    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트")
+    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
     console.log(
       "[BlueSection/상태] isActive:",
       isActive,
       "canTransitionToVideo:",
       canTransitionToVideo
-    )
+    );
     const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
-    return () => clearTimeout(timer)
-  }, [isActive, canTransitionToVideo])
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [isActive, canTransitionToVideo]);
 
   // 바날 로컬 서비스 항목들
   const localServices = [
@@ -74,7 +74,7 @@ export default function BlueSection({
       description:
         "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
     },
-  ]
+  ];
 
   return (
     <section
@@ -197,7 +197,12 @@ export default function BlueSection({
               당신의 내일을 설계합니다.
             </p>
             <div className={styles.whatBanalButtonDesktop}>
-              <ArrowButton size="medium" variant="primary">
+              <ArrowButton
+                size="medium"
+                variant="primary"
+                fontSize={16}
+                paddingVertical={16}
+              >
                 View More
               </ArrowButton>
             </div>
@@ -221,7 +226,13 @@ export default function BlueSection({
 
         {/* 모바일에서만 보이는 버튼 - featuresList 다음에 위치 */}
         <div className={styles.whatBanalButtonMobile}>
-          <ArrowButton size="medium" variant="primary">
+          <ArrowButton
+            size="large"
+            variant="primary"
+            fontSize={20}
+            paddingVertical={20}
+            className={styles.fullWidthButton}
+          >
             View More
           </ArrowButton>
         </div>
@@ -229,6 +240,100 @@ export default function BlueSection({
 
       {/* 의료진 소개 섹션 - 피그마 디자인 기반 */}
       <div className={styles.doctorsSection}>
+        {/* 모바일 상단 텍스트 영역 */}
+        <div className={styles.doctorsMobileHeader}>
+          <h2 className={styles.doctorsMobileTitle}>
+            모발이식
+            <br />
+            15년 전문의.
+          </h2>
+        </div>
+
+        {/* 모바일 의료진 전체 화면 리스트 */}
+        <div className={styles.doctorsMobileCards}>
+          {/* 신승규 원장 */}
+          <div className={styles.doctorMobileFullCard}>
+            <img
+              src="/main/person/대표원장_신승규.png"
+              alt="신승규 원장"
+              className={styles.doctorMobileFullImage}
+            />
+            <div className={styles.doctorMobileOverlay}>
+              <h3 className={styles.doctorMobileFullName}>
+                Shin
+                <br />
+                Seung
+                <br />
+                gyu
+              </h3>
+              <p className={styles.doctorMobileFullKorean}>대표원장 신 승규</p>
+            </div>
+          </div>
+
+          {/* 박수호 원장 */}
+          <div className={styles.doctorMobileFullCard}>
+            <img
+              src="/main/person/대표원장_박수호.png"
+              alt="박수호 원장"
+              className={styles.doctorMobileFullImage}
+            />
+            <div className={styles.doctorMobileOverlay}>
+              <h3 className={styles.doctorMobileFullName}>
+                Park
+                <br />
+                Soo Ho
+              </h3>
+              <p className={styles.doctorMobileFullKorean}>대표원장 박 수호</p>
+            </div>
+          </div>
+
+          {/* 김나래 원장 */}
+          <div className={styles.doctorMobileFullCard}>
+            <img
+              src="/main/person/대표원장_김나래.png"
+              alt="김나래 원장"
+              className={styles.doctorMobileFullImage}
+            />
+            <div className={styles.doctorMobileOverlay}>
+              <h3 className={styles.doctorMobileFullName}>
+                Kim
+                <br />
+                Narae
+              </h3>
+              <p className={styles.doctorMobileFullKorean}>대표원장 김 나래</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 모바일 하단 설명 텍스트 */}
+        <div className={styles.doctorsMobileBottom}>
+          <p className={styles.doctorsMobileDescription}>
+            모발 성형외과 전문의로서 15년.
+          </p>
+          <p className={styles.doctorsMobileSubDescription}>
+            수술 전에 정교한 디자인을 통해
+            <br />
+            의료진과 디테일 상담을 통해 정확한
+            <br />
+            바람으로 고객의 니즈를 정확히 이해하고
+            <br />
+            상처와 콤플 렉스를 만들어드립니다.
+          </p>
+          {/* 모바일 View More 버튼 (하단) */}
+          <div className={styles.doctorsMobileButtonBottom}>
+            <ArrowButton
+              size="large"
+              variant="primary"
+              fontSize={20}
+              paddingVertical={20}
+              className={styles.fullWidthButton}
+            >
+              View More
+            </ArrowButton>
+          </div>
+        </div>
+
+        {/* 데스크탑 버전 (기존 코드) */}
         <div className={styles.doctorsContent}>
           {/* 좌측 텍스트 영역 */}
           <div className={styles.doctorsTextSection}>
@@ -251,7 +356,12 @@ export default function BlueSection({
               <br />
               완페밤습니다.
             </p>
-            <ArrowButton size="medium" variant="primary">
+            <ArrowButton
+              size="medium"
+              variant="primary"
+              fontSize={16}
+              paddingVertical={16}
+            >
               View More
             </ArrowButton>
           </div>
@@ -327,5 +437,5 @@ export default function BlueSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

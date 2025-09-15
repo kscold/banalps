@@ -1,6 +1,6 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css";
 
-import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
+import { responsiveProperty, breakpoints } from "../../styles/responsive.css";
 
 // 화살표 순환 애니메이션 - 오른쪽으로 사라진 후 왼쪽에서 다시 나타나며 원래 위치로 돌아옴
 const arrowSlide = keyframes({
@@ -24,7 +24,7 @@ const arrowSlide = keyframes({
     transform: "translateX(0)",
     opacity: "1",
   },
-})
+});
 
 // 기본 버튼 스타일 (1920px 기준 반응형) - 텍스트 길이에 따라 자동 조정
 export const arrowButton = style({
@@ -81,8 +81,8 @@ export const arrowButton = style({
       margin: "0 2px !important", // 좌우 2px 마진
       paddingTop: "12px !important", // 상하 패딩
       paddingBottom: "12px !important", // 상하 패딩
-      paddingLeft: "16px !important", // 좌측 패딩
-      paddingRight: "8px !important", // 우측 패딩 (화살표 기준)
+      // paddingLeft: "16px !important", // 좌측 패딩
+      // paddingRight: "8px !important", // 우측 패딩 (화살표 기준)
       fontSize: "14px", // 폰트 크기
       gap: "8px !important", // 간격
       minHeight: "44px", // 높이
@@ -90,7 +90,7 @@ export const arrowButton = style({
       justifyContent: "space-between", // 텍스트와 화살표 사이 공간
     },
   },
-})
+});
 
 // 버튼 텍스트 (1920px 기준 반응형)
 export const buttonText = style({
@@ -110,7 +110,7 @@ export const buttonText = style({
       fontSize: "14px", // 원래 크기
     },
   },
-})
+});
 
 // 화살표 컨테이너 (1920px 기준 반응형)
 export const arrowContainer = style({
@@ -132,7 +132,7 @@ export const arrowContainer = style({
       height: "20px",
     },
   },
-})
+});
 
 // 화살표 아이콘 (1920px 기준 반응형)
 export const arrowIcon = style({
@@ -156,7 +156,7 @@ export const arrowIcon = style({
       height: "13px",
     },
   },
-})
+});
 
 // Color Variant 스타일들
 export const white = style({
@@ -165,7 +165,7 @@ export const white = style({
   ":hover": {
     backgroundColor: "#F8F9FA",
   },
-})
+});
 
 export const blue = style({
   backgroundColor: "#14AEFF",
@@ -173,13 +173,13 @@ export const blue = style({
   ":hover": {
     backgroundColor: "#0EA5E9",
   },
-})
+});
 
 // Style Variant 스타일들
 export const primary = style({
   borderColor: "#8B5CF6",
   color: "#272727",
-})
+});
 
 export const secondary = style({
   borderColor: "#6B7280",
@@ -189,41 +189,41 @@ export const secondary = style({
     backgroundColor: "rgba(107, 114, 128, 0.05)",
     borderColor: "#4B5563",
   },
-})
+});
 
 // Color별 텍스트 스타일
 export const whiteText = style({
   color: "#272727",
-})
+});
 
 export const blueText = style({
   color: "#FFFFFF",
-})
+});
 
 // Color별 화살표 컨테이너 스타일
 export const whiteArrowContainer = style({
   backgroundColor: "#14AEFF", // 흰색 버튼에는 파란 동그라미
   // 호버 시 배경색 변화 제거
-})
+});
 
 export const blueArrowContainer = style({
   backgroundColor: "#FFFFFF", // 파란색 버튼에는 흰 동그라미
   // 호버 시 배경색 변화 제거
-})
+});
 
 // Color별 화살표 아이콘 스타일
 export const whiteArrowIcon = style({
   color: "#FFFFFF", // 파란 동그라미 안에 흰 화살표
-})
+});
 
 export const blueArrowIcon = style({
   color: "#14AEFF", // 흰 동그라미 안에 파란 화살표
-})
+});
 
 // Secondary variant의 화살표 컨테이너 스타일 (기존)
 export const secondaryArrowContainer = style({
   backgroundColor: "#6B7280",
-})
+});
 
 // Size 스타일들
 export const small = style({
@@ -238,20 +238,24 @@ export const small = style({
       gap: "6px",
     },
   },
-})
+});
 
 export const medium = style({
   // medium 사이즈도 8px 패딩 고정 - 기본 arrowButton 스타일이 우선 적용되도록 패딩 제거
   // 패딩은 기본 arrowButton에서 8px로 고정되어 있음
   ...responsiveProperty("fontSize", 16), // 1920px 기준 16px만 유지
+  minHeight: "44px", // 데스크탑에서 최소 높이 44px
+  padding: "10px 16px", // 데스크탑에서 적절한 패딩
 
   "@media": {
     [breakpoints.mobile]: {
       // 모바일에서는 원래 폰트 크기 유지
       fontSize: "14px", // 원래 크기
+      minHeight: "auto", // 모바일에서는 자동 높이
+      padding: "8px", // 모바일 기본 패딩
     },
   },
-})
+});
 
 export const large = style({
   padding: "20px 32px",
@@ -259,36 +263,55 @@ export const large = style({
   gap: "16px",
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      padding: "18px 28px",
+    "screen and (max-width: 1023px)": {
+      padding: "18px 60px 18px 28px", // 오른쪽에 원 공간 확보
       fontSize: "16px",
       gap: "14px",
+      position: "relative",
+      justifyContent: "center", // 텍스트 가운데 정렬
     },
   },
-})
+});
 
 // Size별 화살표 컨테이너 스타일
 export const smallArrowContainer = style({
   width: "22px",
   height: "22px",
-})
+});
 
 export const smallArrowIcon = style({
   width: "11px",
   height: "11px",
-})
+});
 
 export const largeArrowContainer = style({
-  width: "32px",
-  height: "32px",
-})
+  width: "40px",
+  height: "40px",
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "32px", // 적절한 크기
+      height: "32px",
+      position: "absolute",
+      right: "8px", // 오른쪽 8px 여백
+      top: "8px", // 상단 8px 여백
+      bottom: "8px", // 하단 8px 여백
+      margin: "auto 0", // 세로 중앙
+    },
+  },
+});
 
 export const largeArrowIcon = style({
-  width: "16px",
-  height: "16px",
-})
+  width: "18px",
+  height: "18px",
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "18px", // 모바일에서 적절한 크기
+      height: "18px",
+    },
+  },
+});
 
 // 호버 시 화살표 애니메이션 (배경색 변화 제거)
 export const arrowContainerHover = style({
   // 배경색 변화 제거 - 화살표 모션만 유지
-})
+});

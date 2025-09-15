@@ -1,16 +1,17 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
   responsiveFont,
   responsiveContainer,
-} from "../../shared/styles/responsive.css"
+  mvw,
+} from "../../shared/styles/responsive.css";
 
 // 페이지 전체 스타일
 export const aboutPage = style({
   minHeight: "100vh",
   backgroundColor: "#FFFFFF",
-})
+});
 
 // 페이드 인 애니메이션 키프레임
 const fadeInUp = keyframes({
@@ -22,7 +23,7 @@ const fadeInUp = keyframes({
     opacity: 1,
     transform: "translateY(0)",
   },
-})
+});
 
 // Hero Section - 피그마의 첫 번째 섹션
 export const heroSection = style({
@@ -37,7 +38,7 @@ export const heroSection = style({
       padding: "120px 0 60px 0",
     },
   },
-})
+});
 
 export const heroContainer = style({
   ...responsiveContainer(1600),
@@ -56,7 +57,7 @@ export const heroContainer = style({
       gap: "30px",
     },
   },
-})
+});
 
 export const heroContent = style({
   display: "flex",
@@ -68,7 +69,7 @@ export const heroContent = style({
       maxWidth: "618px",
     },
   },
-})
+});
 
 export const heroQuote = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -82,7 +83,7 @@ export const heroQuote = style({
       margin: "0 0 30px 0",
     },
   },
-})
+});
 
 export const heroTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -91,7 +92,7 @@ export const heroTitle = style({
   lineHeight: "140%",
   color: "#272727",
   margin: 0,
-})
+});
 
 export const heroIllustration = style({
   width: "100%",
@@ -103,7 +104,7 @@ export const heroIllustration = style({
       maxWidth: "1571px",
     },
   },
-})
+});
 
 export const illustrationImage = style({
   width: "100%",
@@ -120,7 +121,7 @@ export const illustrationImage = style({
       maxHeight: "300px",
     },
   },
-})
+});
 
 // Values Section - 가치 섹션
 export const valuesSection = style({
@@ -134,7 +135,7 @@ export const valuesSection = style({
       padding: "60px 0",
     },
   },
-})
+});
 
 export const valuesContainer = style({
   ...responsiveContainer(1600),
@@ -149,11 +150,11 @@ export const valuesContainer = style({
       gap: "40px",
     },
   },
-})
+});
 
 export const valuesContent = style({
   flex: "0 0 385px", // 피그마 기준 너비
-})
+});
 
 export const valuesMainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -168,7 +169,7 @@ export const valuesMainTitle = style({
       margin: "0 0 32px 0",
     },
   },
-})
+});
 
 export const valuesDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -177,14 +178,14 @@ export const valuesDescription = style({
   lineHeight: "150%",
   color: "#6B7280",
   margin: 0,
-})
+});
 
 export const valuesCards = style({
   flex: 1,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-})
+});
 
 // Values 카드 SVG 이미지 스타일
 export const valueCardsImage = style({
@@ -200,7 +201,7 @@ export const valueCardsImage = style({
       maxWidth: "100%",
     },
   },
-})
+});
 
 // 페이드인 상승 애니메이션 (RE.YOU 섹션용)
 const reYouFadeInUp = keyframes({
@@ -212,7 +213,7 @@ const reYouFadeInUp = keyframes({
     opacity: 1,
     transform: "translateY(0)",
   },
-})
+});
 
 // RE.YOU Section - 깔끔한 레이아웃
 export const reYouSection = style({
@@ -224,10 +225,11 @@ export const reYouSection = style({
       // padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      // padding: "60px 0",
+      padding: "0",
+      marginBottom: "0",
     },
   },
-})
+});
 
 export const reYouContainer = style({
   position: "relative",
@@ -240,7 +242,7 @@ export const reYouContainer = style({
 
     [breakpoints.mobile]: {},
   },
-})
+});
 
 // 이미지 카드들 컨테이너 - 전체 너비 사용 (1920px 기준)
 export const reYouImageCards = style({
@@ -257,7 +259,7 @@ export const reYouImageCards = style({
       padding: "0 20px", // 모바일에서만 패딩
     },
   },
-})
+});
 
 // 첫 번째 카드 - 왼쪽 큰 수술 이미지
 export const reYouCard1 = style({
@@ -285,7 +287,7 @@ export const reYouCard1 = style({
       margin: "0 0 20px 0",
     },
   },
-})
+});
 
 // 두 번째 카드 - 중앙 하단 김나래 이미지
 export const reYouCard2 = style({
@@ -315,7 +317,7 @@ export const reYouCard2 = style({
       margin: "0 0 20px 0",
     },
   },
-})
+});
 
 // 세 번째 카드 - 하단 작은 모발 확대 이미지
 export const reYouCard3 = style({
@@ -333,7 +335,7 @@ export const reYouCard3 = style({
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {},
   },
-})
+});
 
 // 네 번째 카드 - 오른쪽 끝 안경 쓴 의사 이미지
 export const reYouCard4 = style({
@@ -351,7 +353,7 @@ export const reYouCard4 = style({
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {},
   },
-})
+});
 
 // 공통 카드 이미지 스타일
 export const reYouCardImage = style({
@@ -362,7 +364,7 @@ export const reYouCardImage = style({
   ":hover": {
     transform: "scale(1.05)",
   },
-})
+});
 
 // RE.YOU 텍스트 섹션 - absolute 포지셔닝
 export const reYouTextSection = style({
@@ -378,12 +380,12 @@ export const reYouTextSection = style({
       margin: "0 0 40px 0",
     },
   },
-})
+});
 
 export const reYouContent = style({
   position: "relative",
   zIndex: 3,
-})
+});
 
 export const reYouTitle = style({
   fontFamily: "'Poppins', sans-serif",
@@ -397,7 +399,7 @@ export const reYouTitle = style({
       margin: "0 0 20px 0",
     },
   },
-})
+});
 
 export const reYouSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -406,7 +408,7 @@ export const reYouSubtitle = style({
   lineHeight: "140%",
   color: "#FFFFFF", // 흰색으로 변경
   margin: 0,
-})
+});
 
 // 바날이 잘하는 일 섹션 - 피그마 디자인 정확히 매칭
 export const strengthsSection = style({
@@ -419,11 +421,11 @@ export const strengthsSection = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const strengthsContainer = style({
   ...responsiveContainer(1600),
-})
+});
 
 export const strengthsContent = style({
   display: "flex",
@@ -436,7 +438,7 @@ export const strengthsContent = style({
       gap: "60px",
     },
   },
-})
+});
 
 // 왼쪽 영역 - 타이틀 + SVG (끝과 끝에 배치)
 export const strengthsLeftSection = style({
@@ -456,7 +458,7 @@ export const strengthsLeftSection = style({
       justifyContent: "flex-start", // 모바일에서는 기본 배치
     },
   },
-})
+});
 
 export const strengthsTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -475,7 +477,7 @@ export const strengthsTitle = style({
       marginBottom: "40px", // 모바일에서만 margin 유지
     },
   },
-})
+});
 
 export const strengthsGraffiti = style({
   width: vw(320), // 크기 조정
@@ -489,7 +491,7 @@ export const strengthsGraffiti = style({
       width: "240px",
     },
   },
-})
+});
 
 // 오른쪽 영역 - 깔끔한 리스트 (피그마 디자인 정확히 매칭)
 export const strengthsList = style({
@@ -498,7 +500,7 @@ export const strengthsList = style({
   flexDirection: "column",
   gap: 0,
   backgroundColor: "transparent", // 배경 투명
-})
+});
 
 export const strengthItem = style({
   display: "flex",
@@ -522,7 +524,7 @@ export const strengthItem = style({
       padding: "24px 0",
     },
   },
-})
+});
 
 export const strengthNumber = style({
   flex: "0 0 auto",
@@ -541,7 +543,7 @@ export const strengthNumber = style({
       minWidth: "40px",
     },
   },
-})
+});
 
 export const strengthItemTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -562,7 +564,7 @@ export const strengthItemTitle = style({
       minWidth: "auto",
     },
   },
-})
+});
 
 export const strengthDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -581,7 +583,7 @@ export const strengthDescription = style({
       fontSize: "14px",
     },
   },
-})
+});
 
 // Gallery Section - 바날 둘러보기 (피그마 디자인)
 export const gallerySection = style({
@@ -595,7 +597,7 @@ export const gallerySection = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const galleryContainer = style({
   ...responsiveContainer(1600),
@@ -610,7 +612,7 @@ export const galleryContainer = style({
       gap: "40px",
     },
   },
-})
+});
 
 // 상단 섹션: 타이틀 + 큰 이미지 (피그마 Frame 224, 1600x580)
 export const galleryTopSection = style({
@@ -630,7 +632,7 @@ export const galleryTopSection = style({
       gap: "30px",
     },
   },
-})
+});
 
 // 갤러리 타이틀 영역 (피그마 정확한 790px)
 export const galleryTitleSection = style({
@@ -650,7 +652,7 @@ export const galleryTitleSection = style({
       height: "auto",
     },
   },
-})
+});
 
 // 메인 이미지 (Frame 15392, 790x580)
 export const galleryMainImage = style({
@@ -678,7 +680,7 @@ export const galleryMainImage = style({
       aspectRatio: "790 / 580", // 모바일에서도 비율 유지
     },
   },
-})
+});
 
 export const galleryTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -706,7 +708,7 @@ export const galleryTitle = style({
       textAlign: "left", // 모바일에서도 왼쪽 정렬 유지
     },
   },
-})
+});
 
 // 하단 복합 그리드 - 피그마 Frame 219, 220, 223 정확한 레이아웃
 export const galleryGrid = style({
@@ -722,7 +724,7 @@ export const galleryGrid = style({
       gap: "15px",
     },
   },
-})
+});
 
 // Row 1: Frame 219 (1600x925) - 왼쪽 큰 이미지 + 오른쪽 2개 스택
 export const galleryRow1 = style({
@@ -745,7 +747,7 @@ export const galleryRow1 = style({
       gap: "15px",
     },
   },
-})
+});
 
 // Row 2: Frame 220 (1600x925) - 2개 나란히
 export const galleryRow2 = style({
@@ -768,7 +770,7 @@ export const galleryRow2 = style({
       gap: "15px",
     },
   },
-})
+});
 
 // Row 3: Frame 223 (1600x1395) - 왼쪽 2개 스택 + 오른쪽 2개 스택
 export const galleryRow3 = style({
@@ -791,7 +793,7 @@ export const galleryRow3 = style({
       gap: "15px",
     },
   },
-})
+});
 
 // 왼쪽 큰 이미지 (Frame 219)
 export const galleryLeftLarge = style({
@@ -814,7 +816,7 @@ export const galleryLeftLarge = style({
       gridRow: "1",
     },
   },
-})
+});
 
 // 오른쪽 위 (Frame 219 - 790x455)
 export const galleryRightTop = style({
@@ -842,7 +844,7 @@ export const galleryRightTop = style({
       alignSelf: "stretch",
     },
   },
-})
+});
 
 // 오른쪽 아래 (Frame 219 - 790x455)
 export const galleryRightBottom = style({
@@ -870,7 +872,7 @@ export const galleryRightBottom = style({
       alignSelf: "stretch",
     },
   },
-})
+});
 
 // 일반 그리드 아이템 (Frame 220)
 export const galleryGridItem = style({
@@ -887,7 +889,7 @@ export const galleryGridItem = style({
       borderRadius: "16px",
     },
   },
-})
+});
 
 // Frame 223 왼쪽 컬럼 컨테이너
 export const galleryLeftColumn = style({
@@ -906,7 +908,7 @@ export const galleryLeftColumn = style({
       gap: "15px",
     },
   },
-})
+});
 
 // Frame 223 오른쪽 컬럼 컨테이너
 export const galleryRightColumn = style({
@@ -925,7 +927,7 @@ export const galleryRightColumn = style({
       gap: "15px",
     },
   },
-})
+});
 
 // Frame 223 - 작은 이미지 (790x455)
 export const gallerySmallImage = style({
@@ -947,7 +949,7 @@ export const gallerySmallImage = style({
       height: "200px",
     },
   },
-})
+});
 
 // Frame 223 - 큰 이미지 (790x925)
 export const galleryLargeImage = style({
@@ -969,7 +971,7 @@ export const galleryLargeImage = style({
       height: "200px",
     },
   },
-})
+});
 
 // 갤러리 이미지 공통 스타일
 export const galleryImage = style({
@@ -981,7 +983,7 @@ export const galleryImage = style({
   ":hover": {
     transform: "scale(1.05)",
   },
-})
+});
 
 export const galleryPlaceholder = style({
   width: "100%",
@@ -1004,4 +1006,4 @@ export const galleryPlaceholder = style({
       height: "250px",
     },
   },
-})
+});

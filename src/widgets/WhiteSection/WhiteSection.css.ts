@@ -1,12 +1,13 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 
 import {
   vw,
+  mvw,
   responsiveFont,
   responsiveContainer,
   responsiveProperty,
   breakpoints,
-} from "../../shared/styles/responsive.css"
+} from "../../shared/styles/responsive.css";
 
 // 메인 섹션 컨테이너 (1920px 기준) - BlueSection과 동일하게
 export const whiteSection = style({
@@ -17,7 +18,7 @@ export const whiteSection = style({
   flexDirection: "column",
   alignItems: "center",
   ...responsiveProperty("paddingBottom", 120), // 1920px 기준 120px
-})
+});
 
 // 상단 히어로 이미지 컨테이너 (1920px 기준)
 export const heroImageContainer = style({
@@ -33,8 +34,18 @@ export const heroImageContainer = style({
       marginBottom: "240px",
       borderRadius: "12px",
     },
+    [breakpoints.mobile]: {
+      width: "100vw", // 뷰포트 전체 너비
+      maxWidth: "100vw", // 최대 너비 100vw
+      padding: 0, // 패딩 제거
+      margin: 0, // 마진 제거
+      marginLeft: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
+      marginRight: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
+      borderRadius: 0, // 보더 라디우스 제거
+      aspectRatio: "375 / 600", // 모바일 비율
+    },
   },
-})
+});
 
 // 히어로 이미지 (1920px 기준)
 export const heroImage = style({
@@ -42,12 +53,30 @@ export const heroImage = style({
   height: "100%",
   objectFit: "cover",
   display: "block",
-})
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서 기본 이미지 숨김
+    },
+  },
+});
+
+// 모바일 히어로 이미지
+export const heroImageMobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    },
+  },
+});
 
 // 내부 컨테이너 - BlueSection과 동일하게
 export const container = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
-})
+});
 
 // 메인 타이틀 (1920px 기준)
 export const mainTitle = style({
@@ -59,7 +88,15 @@ export const mainTitle = style({
   color: "#272727",
   margin: "0",
   ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
-})
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: mvw(36), // 모바일에서 더 큰 폰트 사이즈 (BlueSection과 동일)
+      lineHeight: "110%",
+      marginBottom: mvw(32),
+      margin: `${mvw(120)} 0 ${mvw(80)} 0`,
+    },
+  },
+});
 
 // 메인 콘텐츠 영역 - flex로 처리
 export const mainContent = style({
@@ -73,12 +110,10 @@ export const mainContent = style({
       gap: "12px",
     },
     [breakpoints.mobile]: {
-      flexDirection: "column",
-      height: "auto",
-      gap: "20px",
+      display: "none", // 모바일에서 데스크탑 콘텐츠 숨김
     },
   },
-})
+});
 
 // 카드 그리드 (1920px 기준) - 왼쪽 2x2 그리드
 export const cardGrid = style({
@@ -91,11 +126,10 @@ export const cardGrid = style({
       gap: "12px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      gap: "20px",
+      display: "none", // 모바일에서 카드 그리드 숨김
     },
   },
-})
+});
 
 // 상단 행 (1920px 기준)
 export const topRow = style({
@@ -113,7 +147,7 @@ export const topRow = style({
       gap: "20px",
     },
   },
-})
+});
 
 // 하단 행 (1920px 기준)
 export const bottomRow = style({
@@ -131,7 +165,7 @@ export const bottomRow = style({
       gap: "20px",
     },
   },
-})
+});
 
 // 서비스 카드 공통 (1920px 기준)
 export const serviceCard = style({
@@ -144,9 +178,7 @@ export const serviceCard = style({
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      height: "300px",
-      aspectRatio: "auto",
+      display: "none", // 모바일에서 데스크탑 서비스 카드 숨김
     },
   },
 
@@ -165,7 +197,7 @@ export const serviceCard = style({
       flex: "0 0 calc(56% - 6px)", // 하단 오른쪽 (큰 카드) - gap의 절반
     },
   },
-})
+});
 
 // 카드 이미지 (1920px 기준)
 export const cardImage = style({
@@ -173,7 +205,7 @@ export const cardImage = style({
   height: "100%",
   objectFit: "cover",
   display: "block",
-})
+});
 
 // 카드 버튼 (1920px 기준)
 export const cardButton = style({
@@ -190,7 +222,7 @@ export const cardButton = style({
       left: "20px",
     },
   },
-})
+});
 
 // Other Medical Service 박스 (1920px 기준) - 5번째 카드
 export const otherServiceBox = style({
@@ -210,7 +242,7 @@ export const otherServiceBox = style({
       height: "300px",
     },
   },
-})
+});
 
 // Other Service 타이틀 (1920px 기준)
 export const otherServiceTitle = style({
@@ -231,7 +263,7 @@ export const otherServiceTitle = style({
       left: "40px",
     },
   },
-})
+});
 
 // View More 버튼 (1920px 기준)
 export const viewMoreButton = style({
@@ -248,7 +280,7 @@ export const viewMoreButton = style({
       left: "20px",
     },
   },
-})
+});
 
 // Service 번호 배지 (Other Medical Service용) (1920px 기준)
 export const serviceNumber = style({
@@ -276,7 +308,7 @@ export const serviceNumber = style({
       height: "36px",
     },
   },
-})
+});
 
 // 기존 ready 스타일들 정리됨 - We're Ready When You Are 섹션으로 교체
 
@@ -289,7 +321,7 @@ export const locationSection = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-})
+});
 
 // 위치 섹션 타이틀 - 1920px 기준
 export const locationTitle = style({
@@ -316,7 +348,7 @@ export const locationTitle = style({
       paddingRight: "20px",
     },
   },
-})
+});
 
 // Frame 320 - 메인 콘텐츠 영역 (1600x500)
 export const locationContent = style({
@@ -344,7 +376,7 @@ export const locationContent = style({
       gap: "40px",
     },
   },
-})
+});
 
 // Frame 311 - 왼쪽 이미지+지도 영역 (1121.29 x 500)
 export const leftContentArea = style({
@@ -365,7 +397,7 @@ export const leftContentArea = style({
       gap: "20px",
     },
   },
-})
+});
 
 // Frame 416 - 왼쪽 이미지 영역 (385 x 500)
 export const locationImageArea = style({
@@ -385,7 +417,7 @@ export const locationImageArea = style({
       aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
     },
   },
-})
+});
 
 // 왼쪽 이미지
 export const locationImage = style({
@@ -393,7 +425,7 @@ export const locationImage = style({
   height: "100%",
   objectFit: "cover",
   display: "block",
-})
+});
 
 // Mask group - 지도 영역 (724.29 x 500)
 export const mapArea = style({
@@ -410,7 +442,7 @@ export const mapArea = style({
       aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
     },
   },
-})
+});
 
 // Frame 318 - 오른쪽 정보 영역 (430.71 x 500)
 export const locationInfo = style({
@@ -434,7 +466,7 @@ export const locationInfo = style({
       gap: "30px", // 모바일에서 간격
     },
   },
-})
+});
 
 export const mapPlaceholder = style({
   width: "100%",
@@ -446,7 +478,7 @@ export const mapPlaceholder = style({
   justifyContent: "center",
   fontSize: "24px",
   color: "#999",
-})
+});
 
 export const infoBox = style({
   display: "flex",
@@ -458,12 +490,12 @@ export const infoBox = style({
       marginBottom: "0", // 모바일에서는 마진 제거
     },
   },
-})
+});
 
 export const infoItem = style({
   display: "flex",
   gap: "20px",
-})
+});
 
 export const infoLabel = style({
   width: "115px",
@@ -472,7 +504,7 @@ export const infoLabel = style({
   color: "#000000",
   flexShrink: 0,
   fontFamily: "'S-Core Dream', sans-serif",
-})
+});
 
 export const infoValue = style({
   flex: "1",
@@ -480,18 +512,18 @@ export const infoValue = style({
   lineHeight: "1.5",
   color: "#333333",
   fontFamily: "'S-Core Dream', sans-serif",
-})
+});
 
 export const infoValueParagraph = style({
   margin: 0,
   marginBottom: "8px",
-})
+});
 
 export const subwayInfo = style({
   marginTop: "20px",
   fontSize: "16px",
   color: "#666666",
-})
+});
 
 // ==================== WE'RE READY WHEN YOU ARE SECTION ====================
 
@@ -508,7 +540,7 @@ export const readySection = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "120px",
-      paddingBottom: "120px", 
+      paddingBottom: "120px",
       marginBottom: "120px",
     },
     [breakpoints.mobile]: {
@@ -516,7 +548,7 @@ export const readySection = style({
       paddingBottom: "80px",
     },
   },
-})
+});
 
 export const readySectionContainer = style({
   position: "relative",
@@ -529,11 +561,13 @@ export const readySectionContainer = style({
       minHeight: "600px",
     },
     [breakpoints.mobile]: {
-      padding: "0 20px", // 모바일에서 좌우 패딩
+      display: "flex",
+      flexDirection: "column",
+      padding: 0, // 패딩 제거
       minHeight: "auto",
     },
   },
-})
+});
 
 // 일러스트 - 왼쪽 끝부터 헤더 컨테이너의 오른쪽 끝까지 (responsiveContainer와 정확히 동일한 계산)
 export const readyHeroIllustration = style({
@@ -549,26 +583,30 @@ export const readyHeroIllustration = style({
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       position: "relative",
+      width: "100vw", // 뷰포트 전체 너비
+      maxWidth: "100vw",
+      marginLeft: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
+      marginRight: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
       left: "auto",
       right: "auto",
-      width: "100%",
-      maxWidth: "100%",
       top: "auto",
       transform: "none",
-      height: "250px",
+      height: mvw(300),
       display: "flex",
       justifyContent: "center",
-      marginBottom: "40px",
+      order: 2, // 모바일에서 두 번째로 표시
+      marginTop: mvw(40),
+      marginBottom: 0,
     },
   },
-})
+});
 
 export const readyIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
   objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
-})
+});
 
 // 타이틀 래퍼 - 1600px 컨테이너 내부에서 헤더 왼쪽 시작점에 정렬
 export const readyTitleWrapper = style({
@@ -587,9 +625,13 @@ export const readyTitleWrapper = style({
       bottom: "auto",
       left: "auto",
       transform: "none",
+      order: 1, // 모바일에서 첫 번째로 표시
+      padding: `0 ${mvw(20)}`, // 좌우 패딩
+      width: "100%",
+      maxWidth: "100%",
     },
   },
-})
+});
 
 export const readyTitleContainer = style({
   display: "flex",
@@ -601,13 +643,13 @@ export const readyTitleContainer = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      gap: "30px",
-      alignItems: "center", // 모바일에서만 중앙 정렬
-      textAlign: "center",
+      gap: mvw(24),
+      alignItems: "left", // 모바일에서만 중앙 정렬
+      textAlign: "left",
       paddingLeft: "0", // 모바일에서는 패딩 제거
     },
   },
-})
+});
 
 // 메인 타이틀 - Figma: Poppins Medium 60px, #14AEFF
 export const readyMainTitle = style({
@@ -625,11 +667,12 @@ export const readyMainTitle = style({
       lineHeight: "78px",
     },
     [breakpoints.mobile]: {
-      fontSize: "36px",
-      lineHeight: "48px",
+      fontSize: mvw(40),
+      lineHeight: "120%",
+      textAlign: "left",
     },
   },
-})
+});
 
 // 설명 컨테이너
 export const readyDescription = style({
@@ -644,7 +687,7 @@ export const readyDescription = style({
       gap: "20px",
     },
   },
-})
+});
 
 // 설명 텍스트 - Figma: S-Core Dream Regular 24px, #14AEFF
 export const readyDescriptionText = style({
@@ -662,8 +705,117 @@ export const readyDescriptionText = style({
       lineHeight: "36px",
     },
     [breakpoints.mobile]: {
-      fontSize: "18px",
-      lineHeight: "28px",
+      fontSize: mvw(16),
+      lineHeight: "150%",
+      textAlign: "left",
     },
   },
-})
+});
+
+// 모바일 카드 리스트 컨테이너
+export const mobileCardList = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: mvw(16),
+      padding: 0, // 패딩 제거
+      marginTop: mvw(24), // 상단 마진 줄이기
+    },
+  },
+});
+
+// 모바일 서비스 카드
+export const mobileServiceCard = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      position: "relative",
+      width: "100%", // 양쪽 패딩
+      // margin: `0 ${mvw(16)}`, // 좌우 16px 마진
+      borderRadius: mvw(12), // 둥근 모서리
+      overflow: "hidden",
+      backgroundColor: "#F8F9FA",
+    },
+  },
+});
+
+// 모바일 카드 이미지
+export const mobileCardImage = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: mvw(220),
+      objectFit: "cover",
+    },
+  },
+});
+
+// 모바일 카드 버튼
+export const mobileCardButton = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      position: "absolute",
+      bottom: mvw(16),
+      left: mvw(16),
+      right: "auto", // 오른쪽 자동
+      width: "auto", // 너비 자동
+      maxWidth: `calc(100% - ${mvw(32)})`, // 최대 너비 제한
+      fontSize: mvw(14), // 폰트 크기 명시
+      fontWeight: 500, // 폰트 굵기
+    },
+  },
+});
+
+// 모바일 Other Service 박스
+export const mobileOtherServiceBox = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      position: "relative",
+      width: "100%", // 전체 너비
+      borderRadius: mvw(12), // 둥근 모서리
+      overflow: "hidden",
+      backgroundColor: "#B3E5FC",
+      minHeight: mvw(220),
+    },
+  },
+});
+
+// 모바일 Other Service 이미지
+export const mobileOtherServiceImage = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: mvw(220),
+      objectFit: "cover",
+    },
+  },
+});
+
+// 모바일 View More 버튼
+export const mobileViewMoreButton = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "inline-flex",
+      position: "absolute",
+      bottom: mvw(20),
+      left: mvw(20),
+      backgroundColor: "#FFFFFF",
+      width: "auto", // 자동 너비
+      maxWidth: `calc(100% - ${mvw(40)})`, // 최대 너비 제한
+      fontSize: mvw(14), // 폰트 크기 명시
+      fontWeight: 500, // 폰트 굵기
+    },
+  },
+});

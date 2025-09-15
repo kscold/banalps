@@ -2,7 +2,7 @@ import {
   responsiveContainer,
   responsiveFont,
 } from "./../../styles/responsive.css"
-import { breakpoints, vw } from "@/shared/styles/responsive.css"
+import { breakpoints, vw, mvw } from "@/shared/styles/responsive.css"
 import { style } from "@vanilla-extract/css"
 
 // Footer Section - 1920px 기준 피그마 디자인 기반
@@ -15,7 +15,8 @@ export const footerSection = style({
       padding: "48px",
     },
     [breakpoints.mobile]: {
-      padding: "24px 20px",
+      padding: `${mvw(40)} ${mvw(20)}`,
+      backgroundColor: "#73D5FA",
     },
   },
 })
@@ -203,6 +204,184 @@ export const footerLogoContainer = style({
     [breakpoints.desktopLarge]: {
       width: "158px",
       height: "37px",
+    },
+  },
+})
+
+// 데스크탑 레이아웃 컨테이너
+export const desktopLayout = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+  width: "100%",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+})
+
+// 모바일 레이아웃 컨테이너
+export const mobileLayout = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
+      gap: 0,
+      width: "100%",
+    },
+  },
+})
+
+// 모바일 로고
+export const mobileLogo = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: mvw(24),
+      fontSize: mvw(28),
+      fontWeight: 600,
+      color: "#FFFFFF",
+      fontFamily: "'Poppins', sans-serif",
+    },
+  },
+})
+
+// 모바일 클리닉 정보
+export const mobileInfo = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: mvw(4),
+      marginBottom: mvw(24),
+    },
+  },
+})
+
+export const mobileClinicName = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(13),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      margin: 0,
+    },
+  },
+})
+
+export const mobileRepresentative = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(13),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      margin: 0,
+    },
+  },
+})
+
+// 모바일 연락처
+export const mobileContact = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: mvw(8),
+      marginBottom: mvw(32),
+    },
+  },
+})
+
+export const mobileAddress = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(13),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      margin: 0,
+    },
+  },
+})
+
+export const mobilePhone = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(13),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      margin: 0,
+    },
+  },
+})
+
+// 모바일 링크
+export const mobileLinks = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      alignItems: "center",
+      gap: mvw(12),
+      marginBottom: mvw(24),
+    },
+  },
+})
+
+export const mobileLinkItem = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(12),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      textDecoration: "underline",
+      cursor: "pointer",
+      ":hover": {
+        opacity: 0.8,
+      },
+    },
+  },
+})
+
+export const mobileLinkDivider = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "1px",
+      height: mvw(12),
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
+    },
+  },
+})
+
+// 모바일 카피라이트
+export const mobileCopyright = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'Poppins', sans-serif",
+      fontWeight: 400,
+      fontSize: mvw(11),
+      lineHeight: "150%",
+      color: "#FFFFFF",
+      margin: 0,
+      opacity: 0.8,
     },
   },
 })

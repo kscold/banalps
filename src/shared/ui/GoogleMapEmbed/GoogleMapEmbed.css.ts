@@ -1,5 +1,5 @@
-import { style } from "@vanilla-extract/css"
-import { breakpoints, vw } from "../../../shared/styles/responsive.css"
+import { style } from "@vanilla-extract/css";
+import { breakpoints, vw } from "../../../shared/styles/responsive.css";
 
 export const mapContainer = style({
   width: "100%",
@@ -18,7 +18,7 @@ export const mapContainer = style({
       gap: "12px",
     },
   },
-})
+});
 
 export const mapWrapper = style({
   position: "relative",
@@ -42,14 +42,14 @@ export const mapWrapper = style({
       borderRadius: "12px",
     },
   },
-})
+});
 
 export const mapIframe = style({
   width: "100%",
   height: "100%",
   display: "block",
   border: "none",
-})
+});
 
 export const loadingOverlay = style({
   position: "absolute",
@@ -62,13 +62,13 @@ export const loadingOverlay = style({
   justifyContent: "center",
   backgroundColor: "#F5F5F5",
   zIndex: 1,
-})
+});
 
 export const loadingText = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontSize: "16px",
   color: "#666",
-})
+});
 
 export const mapButtons = style({
   display: "flex",
@@ -88,7 +88,7 @@ export const mapButtons = style({
       marginTop: "60px",
     },
   },
-})
+});
 
 const buttonBase = style({
   padding: `${vw(9)} ${vw(16)}`,
@@ -136,7 +136,7 @@ const buttonBase = style({
       lineHeight: "20px",
     },
   },
-})
+});
 
 export const kakaoButton = style([
   buttonBase,
@@ -156,13 +156,13 @@ export const kakaoButton = style([
       },
     },
   },
-])
+]);
 
 export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#FFFFFF",
+    color: "#000000",
     minWidth: vw(125),
     "@media": {
       [breakpoints.desktopLarge]: {
@@ -176,4 +176,4 @@ export const naverButton = style([
       },
     },
   },
-])
+]);
