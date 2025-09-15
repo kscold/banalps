@@ -4,25 +4,25 @@ import { responsiveProperty, breakpoints } from "../../styles/responsive.css"
 
 // 화살표 순환 애니메이션 - 오른쪽으로 사라진 후 왼쪽에서 다시 나타나며 원래 위치로 돌아옴
 const arrowSlide = keyframes({
-  "0%": { 
+  "0%": {
     transform: "translateX(0)",
-    opacity: "1"
+    opacity: "1",
   },
-  "40%": { 
+  "40%": {
     transform: "translateX(20px)",
-    opacity: "0"
+    opacity: "0",
   },
-  "50%": { 
+  "50%": {
     transform: "translateX(-20px)",
-    opacity: "0"
+    opacity: "0",
   },
-  "90%": { 
+  "90%": {
     transform: "translateX(0)",
-    opacity: "1"
+    opacity: "1",
   },
-  "100%": { 
+  "100%": {
     transform: "translateX(0)",
-    opacity: "1"
+    opacity: "1",
   },
 })
 
@@ -76,13 +76,18 @@ export const arrowButton = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서도 패딩은 8px 고정 유지 - !important로 강제
-      paddingTop: "8px !important", // 8px 완전 고정
-      paddingBottom: "8px !important", // 8px 완전 고정
-      paddingLeft: "8px !important", // 8px 완전 고정
-      paddingRight: "8px !important", // 8px 완전 고정 (화살표 기준)
-      fontSize: "14px", // 20px * 0.7
-      gap: "8px !important", // 8px 완전 고정
+      // 모바일에서 거의 100% 너비 (최소한의 마진만)
+      width: "calc(100% - 4px) !important", // 좌우 2px씩만 마진 제외
+      margin: "0 2px !important", // 좌우 2px 마진
+      paddingTop: "12px !important", // 상하 패딩
+      paddingBottom: "12px !important", // 상하 패딩
+      paddingLeft: "16px !important", // 좌측 패딩
+      paddingRight: "8px !important", // 우측 패딩 (화살표 기준)
+      fontSize: "14px", // 폰트 크기
+      gap: "8px !important", // 간격
+      minHeight: "44px", // 높이
+      borderRadius: "22px", // 둥근 모서리
+      justifyContent: "space-between", // 텍스트와 화살표 사이 공간
     },
   },
 })
@@ -101,8 +106,8 @@ export const buttonText = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 70% 크기
-      fontSize: "14px", // 20px * 0.7
+      // 모바일에서 원래 크기 유지
+      fontSize: "14px", // 원래 크기
     },
   },
 })
@@ -122,8 +127,8 @@ export const arrowContainer = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 70% 크기
-      width: "20px", // 28px * 0.7
+      // 모바일에서 원래 크기 유지
+      width: "20px", // 원래 크기
       height: "20px",
     },
   },
@@ -146,8 +151,8 @@ export const arrowIcon = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 70% 크기
-      width: "13px", // 18px * 0.7
+      // 모바일에서 원래 크기 유지
+      width: "13px", // 원래 크기
       height: "13px",
     },
   },
@@ -242,8 +247,8 @@ export const medium = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서는 패딩 오버라이드 금지 - fontSize만 조정
-      fontSize: "11px", // 16px * 0.7
+      // 모바일에서는 원래 폰트 크기 유지
+      fontSize: "14px", // 원래 크기
     },
   },
 })
@@ -287,4 +292,3 @@ export const largeArrowIcon = style({
 export const arrowContainerHover = style({
   // 배경색 변화 제거 - 화살표 모션만 유지
 })
-

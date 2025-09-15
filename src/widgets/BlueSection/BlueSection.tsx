@@ -1,40 +1,40 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import * as styles from "./BlueSection.css";
-import { ArrowButton } from "../../shared/ui/ArrowButton";
-import { useBlueScroll } from "../../shared/hooks/useBlueScroll";
+import { useEffect, useState } from "react"
+import * as styles from "./BlueSection.css"
+import { ArrowButton } from "../../shared/ui/ArrowButton"
+import { useBlueScroll } from "../../shared/hooks/useBlueScroll"
 
 interface BlueSectionProps {
-  isActive?: boolean;
-  onTransitionToVideo?: () => void;
+  isActive?: boolean
+  onTransitionToVideo?: () => void
 }
 
 export default function BlueSection({
   isActive = false,
   onTransitionToVideo = () => {},
 }: BlueSectionProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   // 블루섹션 전용 스크롤 훅 사용
   const { canTransitionToVideo } = useBlueScroll({
     isActive,
     onTransitionToVideo,
-  });
+  })
 
   useEffect(() => {
-    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
+    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트")
     console.log(
       "[BlueSection/상태] isActive:",
       isActive,
       "canTransitionToVideo:",
       canTransitionToVideo
-    );
+    )
     const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [isActive, canTransitionToVideo]);
+      setIsVisible(true)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [isActive, canTransitionToVideo])
 
   // 바날 로컬 서비스 항목들
   const localServices = [
@@ -74,12 +74,29 @@ export default function BlueSection({
       description:
         "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
     },
-  ];
+  ]
 
   return (
     <section
       className={`${styles.blueSection} ${isVisible ? styles.visible : ""}`}
     >
+      {/* 모바일 헤더 섹션 - 피그마 디자인 기반 */}
+      <div className={styles.mobileHeaderSection}>
+        <h1 className={styles.mobileMainTitle}>
+          바람부는날에도
+          <br />
+          잘하는 일.
+        </h1>
+        <p className={styles.mobileSubDescription}>
+          평범한 일상을 새로운 일상으로 이어주는 곳, 모발 성형외과 전문의로서
+          15년
+        </p>
+        <p className={styles.mobileDescription}>
+          바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머, 당신의
+          내일을 설계합니다.
+        </p>
+      </div>
+
       {/* 이미지 카드 섹션 - Figma 정확 반영 */}
       <div className={styles.imageCardsSection}>
         {/* 이미지 카드 1 */}
@@ -145,13 +162,18 @@ export default function BlueSection({
         {/* 모바일에서 제목 바로 아래 표시되는 설명 텍스트 */}
         <div className={styles.whatBanalMobileTop}>
           <p className={styles.whatBanalSubDescription1Mobile}>
-            평범한 일상을 새로운 일상으로 이어주는 곳,
+            평범한 일상을 새로운 일상으로
+            <br />
+            이어주는 곳,
           </p>
           <p className={styles.whatBanalDescriptionMobile}>
-            모발 성형외과 전문의로서 15년
+            바람부는날에도 성형외과의원
           </p>
           <p className={styles.whatBanalSubDescription2Mobile}>
-            바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
+            바날은 모발 수술에 대한
+            <br />
+            섬세한 기술과 감각으로 시술 그 너머,
+            <br />
             당신의 내일을 설계합니다.
           </p>
         </div>
@@ -168,7 +190,7 @@ export default function BlueSection({
               평범한 일상을 새로운 일상으로 이어주는 곳,
             </p>
             <p className={styles.whatBanalDescription}>
-              모발 성형외과 전문의로서 15년
+              바람부는날에도 성형외과의원
             </p>
             <p className={styles.whatBanalSubDescription2}>
               바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
@@ -305,5 +327,5 @@ export default function BlueSection({
         </div>
       </div>
     </section>
-  );
+  )
 }
