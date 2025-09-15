@@ -64,8 +64,6 @@ export default function ScarReductionPage() {
 
   return (
     <div className={styles.HairTransplantPage}>
-      <HeaderNavigation />
-
       {/* Hero Section */}
       <section className={styles.HairTransplantHeroSection}>
         <div className={styles.HairTransplantHeroContainer}>

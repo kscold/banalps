@@ -31,8 +31,6 @@ export default function HairlinePage() {
 
   return (
     <div className={styles.HairTransplantPage}>
-      <HeaderNavigation />
-
       {/* Hairline Hero Section */}
       <section className={styles.HairTransplantHeroSection}>
         <div className={styles.HairTransplantHeroContainer}>

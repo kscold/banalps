@@ -50,8 +50,6 @@ export default function AboutPage() {
 
   return (
     <div className={styles.aboutPage}>
-      <HeaderNavigation />
-
       {/* Video Section - 스크롤하면 숨겨짐 */}
       {!showMainContent && <VideoSection showVideoSection={true} />}
 
