@@ -1,11 +1,11 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
   mvw,
   responsiveFont,
   responsiveContainer,
-} from "../../shared/styles/responsive.css"
+} from "../../shared/styles/responsive.css";
 
 // 메인 페이지 컨테이너
 export const doctorIntroductionPage = style({
@@ -22,7 +22,7 @@ export const doctorIntroductionPage = style({
       paddingBottom: "60px",
     },
   },
-})
+});
 
 // 타이틀 섹션 - 데스크톱에서만 표시
 export const titleSection = style({
@@ -40,7 +40,7 @@ export const titleSection = style({
       display: "none", // 모바일에서 숨김
     },
   },
-})
+});
 
 export const mainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -60,7 +60,7 @@ export const mainTitle = style({
       whiteSpace: "pre-line",
     },
   },
-})
+});
 
 // 의료진 섹션
 export const doctorsSection = style({
@@ -76,7 +76,7 @@ export const doctorsSection = style({
       gap: "0",
     },
   },
-})
+});
 
 // 모바일 타이틀 섹션
 export const mobileTitle = style({
@@ -89,7 +89,7 @@ export const mobileTitle = style({
       zIndex: 20,
     },
   },
-})
+});
 
 export const mobileTitleText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -103,7 +103,7 @@ export const mobileTitleText = style({
       whiteSpace: "pre-line",
     },
   },
-})
+});
 
 // 개별 의료진 카드 - 파란색 배경
 export const doctorCard = style({
@@ -153,7 +153,7 @@ export const doctorCard = style({
       },
     },
   },
-})
+});
 
 // 의료진 프로필 섹션 - 피그마 디자인 기준 (이미지 왼쪽, 텍스트 오른쪽)
 export const doctorProfile = style({
@@ -179,7 +179,7 @@ export const doctorProfile = style({
       backgroundColor: "#73D5FA",
     },
   },
-})
+});
 
 export const doctorImageArea = style({
   position: "relative",
@@ -200,7 +200,7 @@ export const doctorImageArea = style({
       zIndex: 10,
     },
   },
-})
+});
 
 export const doctorImage = style({
   width: "100%",
@@ -212,7 +212,7 @@ export const doctorImage = style({
       objectPosition: "center bottom", // 모바일에서 하단 정렬
     },
   },
-})
+});
 
 export const doctorInfo = style({
   flex: "1",
@@ -233,7 +233,7 @@ export const doctorInfo = style({
       paddingLeft: "0",
     },
   },
-})
+});
 
 export const doctorNameEn = style({
   fontFamily: "'Poppins', sans-serif",
@@ -256,7 +256,7 @@ export const doctorNameEn = style({
       textAlign: "right", // 모바일에서 오른쪽 정렬
     },
   },
-})
+});
 
 export const doctorDetails = style({
   display: "flex",
@@ -272,7 +272,7 @@ export const doctorDetails = style({
       alignItems: "flex-end", // 모바일에서 오른쪽 정렬
     },
   },
-})
+});
 
 export const doctorTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -291,7 +291,7 @@ export const doctorTitle = style({
       textAlign: "right", // 모바일에서 오른쪽 정렬
     },
   },
-})
+});
 
 export const doctorSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -311,7 +311,7 @@ export const doctorSubtitle = style({
       textAlign: "right", // 모바일에서 오른쪽 정렬
     },
   },
-})
+});
 
 export const doctorNameKo = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -331,7 +331,7 @@ export const doctorNameKo = style({
       textAlign: "right", // 모바일에서 오른쪽 정렬
     },
   },
-})
+});
 
 // 명언 섹션
 export const quoteSection = style({
@@ -347,7 +347,7 @@ export const quoteSection = style({
       height: "248px",
     },
   },
-})
+});
 
 export const quoteContent = style({
   display: "flex",
@@ -368,7 +368,7 @@ export const quoteContent = style({
       maxWidth: mvw(240),
     },
   },
-})
+});
 
 export const quoteIcon = style({
   fontFamily: "serif",
@@ -382,7 +382,7 @@ export const quoteIcon = style({
       fontSize: mvw(24),
     },
   },
-})
+});
 
 export const quoteTexts = style({
   display: "flex",
@@ -396,7 +396,7 @@ export const quoteTexts = style({
       gap: mvw(12),
     },
   },
-})
+});
 
 export const quoteText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -417,7 +417,7 @@ export const quoteText = style({
       lineHeight: mvw(24),
     },
   },
-})
+});
 
 // 경력 섹션
 export const credentialsSection = style({
@@ -441,7 +441,7 @@ export const credentialsSection = style({
       margin: "0 auto",
     },
   },
-})
+});
 
 export const credential = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -460,7 +460,7 @@ export const credential = style({
       lineHeight: mvw(24),
     },
   },
-})
+});
 
 // 학술활동 섹션
 export const academicSection = style({
@@ -477,7 +477,7 @@ export const academicSection = style({
       marginBottom: mvw(60),
     },
   },
-})
+});
 
 export const academicTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -498,11 +498,11 @@ export const academicTitle = style({
       marginBottom: mvw(60),
     },
   },
-})
+});
 
 export const academicTimeline = style({
   // 추후 구현
-})
+});
 
 // 논문 발표 섹션
 export const publicationSection = style({
@@ -516,7 +516,7 @@ export const publicationSection = style({
       marginBottom: mvw(80),
     },
   },
-})
+});
 
 export const publicationTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -538,7 +538,7 @@ export const publicationTitle = style({
       marginBottom: mvw(24),
     },
   },
-})
+});
 
 export const publicationList = style({
   display: "flex",
@@ -552,7 +552,7 @@ export const publicationList = style({
       border: `${mvw(1)} solid #707070`,
     },
   },
-})
+});
 
 export const publicationCard = style({
   display: "flex",
@@ -571,7 +571,7 @@ export const publicationCard = style({
       minHeight: mvw(192),
     },
   },
-})
+});
 
 export const publicationLeft = style({
   width: vw(106),
@@ -592,7 +592,7 @@ export const publicationLeft = style({
       gap: mvw(16),
     },
   },
-})
+});
 
 export const publicationBadge = style({
   width: vw(70),
@@ -614,7 +614,7 @@ export const publicationBadge = style({
       border: `${mvw(2)} solid #14AEFF`,
     },
   },
-})
+});
 
 export const publicationBadgeText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -632,7 +632,7 @@ export const publicationBadgeText = style({
       lineHeight: mvw(27),
     },
   },
-})
+});
 
 export const publicationDate = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -652,7 +652,7 @@ export const publicationDate = style({
       lineHeight: mvw(18),
     },
   },
-})
+});
 
 export const publicationRight = style({
   flex: "1",
@@ -671,7 +671,7 @@ export const publicationRight = style({
       gap: mvw(16),
     },
   },
-})
+});
 
 export const publicationConference = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -691,7 +691,7 @@ export const publicationConference = style({
       lineHeight: mvw(22),
     },
   },
-})
+});
 
 export const publicationTitleText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -711,4 +711,4 @@ export const publicationTitleText = style({
       lineHeight: mvw(24),
     },
   },
-})
+});

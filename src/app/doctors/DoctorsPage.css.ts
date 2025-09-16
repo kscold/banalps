@@ -1,4 +1,4 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
@@ -7,13 +7,13 @@ import {
   responsiveContainer,
   responsiveLeftContent,
   responsiveImageContainer,
-} from "../../shared/styles/responsive.css"
+} from "../../shared/styles/responsive.css";
 
 // 페이지 전체 스타일
 export const doctorsPage = style({
   minHeight: "100vh",
   background: "#73D5FA",
-})
+});
 
 // 로딩 스타일
 export const loadingContainer = style({
@@ -22,12 +22,12 @@ export const loadingContainer = style({
   alignItems: "center",
   minHeight: "100vh",
   backgroundColor: "#FFFFFF",
-})
+});
 
 const spin = keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },
-})
+});
 
 export const loadingSpinner = style({
   width: vw(40),
@@ -44,7 +44,7 @@ export const loadingSpinner = style({
       borderTop: "4px solid #14AEFF",
     },
   },
-})
+});
 
 // Medical Team Section - 피그마 의료진 소개
 export const medicalTeamSection = style({
@@ -59,7 +59,7 @@ export const medicalTeamSection = style({
       background: "#FFFFFF",
     },
   },
-})
+});
 
 export const medicalTeamContainer = style({
   ...responsiveLeftContent(),
@@ -73,7 +73,7 @@ export const medicalTeamContainer = style({
       width: "100%",
     },
   },
-})
+});
 
 // 헤더 섹션 - Frame 234 (1920x1025)
 export const medicalTeamHeader = style({
@@ -88,7 +88,7 @@ export const medicalTeamHeader = style({
       display: "none",
     },
   },
-})
+});
 
 // 왼쪽 타이틀 - Frame 323 (661x634)
 export const medicalTeamTitleSection = style({
@@ -109,7 +109,7 @@ export const medicalTeamTitleSection = style({
       paddingLeft: "0",
     },
   },
-})
+});
 
 export const medicalTeamMainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -130,7 +130,7 @@ export const medicalTeamMainTitle = style({
       lineHeight: "48px",
     },
   },
-})
+});
 
 // 인트로 이미지 1 - 오른쪽 상단
 export const doctorsIntroImage1 = style({
@@ -149,7 +149,7 @@ export const doctorsIntroImage1 = style({
       display: "none",
     },
   },
-})
+});
 
 // Banal Medical Team 텍스트 - 인트로 이미지 위에 절대 위치
 export const medicalTeamHeroSection = style({
@@ -163,7 +163,7 @@ export const medicalTeamHeroSection = style({
       display: "none",
     },
   },
-})
+});
 
 export const medicalTeamHeroText = style({
   padding: 0, // 패딩 제거
@@ -175,7 +175,7 @@ export const medicalTeamHeroText = style({
       padding: 0,
     },
   },
-})
+});
 
 export const medicalTeamHeroTitle = style({
   fontFamily: "'Poppins', sans-serif",
@@ -195,7 +195,7 @@ export const medicalTeamHeroTitle = style({
       lineHeight: "28px",
     },
   },
-})
+});
 
 // 의사 섹션들 - 파란 배경 (Frame 299: 1920x1221)
 export const doctorSection = style({
@@ -225,7 +225,7 @@ export const doctorSection = style({
       overflow: "hidden",
     },
   },
-})
+});
 
 export const doctorContent = style({
   display: "flex",
@@ -240,7 +240,7 @@ export const doctorContent = style({
       display: "none",
     },
   },
-})
+});
 
 // 박수호 원장용 역순 레이아웃
 export const doctorContentReversed = style({
@@ -257,7 +257,7 @@ export const doctorContentReversed = style({
       display: "none",
     },
   },
-})
+});
 
 // 메인 이미지 컨테이너 (600x850) - 피그마 Frame 15400 위치 정확히 맞춤
 export const doctorImageContainer = style({
@@ -285,14 +285,14 @@ export const doctorImageContainer = style({
       height: "400px",
     },
   },
-})
+});
 
 export const doctorMainImage = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   objectPosition: "center",
-})
+});
 
 // 박수호 원장용 이미지 컨테이너 - 오른쪽 위치 (Reversed 레이아웃)
 export const doctorImageContainer2 = style({
@@ -320,7 +320,7 @@ export const doctorImageContainer2 = style({
       height: "400px",
     },
   },
-})
+});
 
 // 박수호 원장용 텍스트 섹션 - 오른쪽에서 왼쪽으로
 export const doctorTextSection2 = style({
@@ -347,7 +347,7 @@ export const doctorTextSection2 = style({
       height: "auto",
     },
   },
-})
+});
 
 // 박수호 원장용 인포 섹션
 export const doctorInfo2 = style({
@@ -376,7 +376,7 @@ export const doctorInfo2 = style({
       gap: "20px",
     },
   },
-})
+});
 
 // 김나래 원장용 - 신승규와 동일한 레이아웃 (왼쪽 이미지, 오른쪽 텍스트)
 export const doctorImageContainer3 = style({
@@ -404,7 +404,7 @@ export const doctorImageContainer3 = style({
       height: "400px",
     },
   },
-})
+});
 
 export const doctorTextSection3 = style({
   position: "absolute",
@@ -430,7 +430,7 @@ export const doctorTextSection3 = style({
       height: "auto",
     },
   },
-})
+});
 
 export const doctorInfo3 = style({
   position: "absolute",
@@ -458,7 +458,7 @@ export const doctorInfo3 = style({
       gap: "20px",
     },
   },
-})
+});
 
 // 텍스트 섹션 - 피그마 기준 중앙 위치
 // 텍스트 섹션 - 피그마 디자인 정확한 위치 (의사 사진과 겹치도록)
@@ -486,7 +486,7 @@ export const doctorTextSection = style({
       height: "auto",
     },
   },
-})
+});
 
 // 의사 이름 (Poppins 160px)
 export const doctorName = style({
@@ -499,7 +499,7 @@ export const doctorName = style({
       marginBottom: "40px",
     },
   },
-})
+});
 
 export const doctorNameText = style({
   fontFamily: "'Poppins', sans-serif",
@@ -519,7 +519,7 @@ export const doctorNameText = style({
       lineHeight: "60px",
     },
   },
-})
+});
 
 // 의사 정보 - 피그마 디자인 기준 absolute 위치
 export const doctorInfo = style({
@@ -548,7 +548,7 @@ export const doctorInfo = style({
       gap: "20px",
     },
   },
-})
+});
 
 export const doctorTitle = style({
   marginBottom: vw(40),
@@ -560,7 +560,7 @@ export const doctorTitle = style({
       marginBottom: "20px",
     },
   },
-})
+});
 
 export const doctorSpecialty = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -577,7 +577,7 @@ export const doctorSpecialty = style({
       margin: "0 0 12px 0",
     },
   },
-})
+});
 
 export const doctorPosition = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -593,7 +593,7 @@ export const doctorPosition = style({
       lineHeight: "36px",
     },
   },
-})
+});
 
 // 자격증 컨테이너 - 피그마 Frame 294 기준
 export const doctorCredentials = style({
@@ -615,7 +615,7 @@ export const doctorCredentials = style({
       marginTop: "15px",
     },
   },
-})
+});
 
 // 자격증 컬럼 - 피그마 Frame 292/293 기준 (338px 너비)
 export const credentialColumn = style({
@@ -633,7 +633,7 @@ export const credentialColumn = style({
       height: "auto",
     },
   },
-})
+});
 
 export const credentialList = style({
   listStyle: "none",
@@ -697,7 +697,7 @@ export const credentialList = style({
       },
     },
   },
-})
+});
 
 // li 요소를 위한 별도 스타일
 export const credentialItem = style({
@@ -715,7 +715,7 @@ export const credentialItem = style({
       marginBottom: "16px",
     },
   },
-})
+});
 
 // 의사 인용구 - 피그마 Frame 303 위치
 export const doctorQuote1 = style({
@@ -750,7 +750,7 @@ export const doctorQuote1 = style({
       padding: "20px",
     },
   },
-})
+});
 
 export const doctorQuoteText1 = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -766,7 +766,7 @@ export const doctorQuoteText1 = style({
       lineHeight: "30px",
     },
   },
-})
+});
 
 // 박수호/김나래 원장용 인용문
 export const doctorQuote = style({
@@ -801,7 +801,7 @@ export const doctorQuote = style({
       padding: "20px",
     },
   },
-})
+});
 
 export const doctorQuoteText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -817,7 +817,7 @@ export const doctorQuoteText = style({
       lineHeight: "30px",
     },
   },
-})
+});
 
 // 서브 이미지들 컨테이너 - 맨 아래 1px 가로선 추가
 export const doctorSubImages = style({
@@ -845,7 +845,7 @@ export const doctorSubImages = style({
       display: "none", // 모바일에서 숨김
     },
   },
-})
+});
 
 // 첫 번째 서브 이미지 - 피그마 Frame 15393 위치 (-7352, 1201)
 export const doctorSubImage = style({
@@ -874,7 +874,7 @@ export const doctorSubImage = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 // 두 번째 서브 이미지 - 피그마 Frame 15394 위치 (-6286, 1955)
 export const doctorSubImage2 = style({
@@ -903,14 +903,14 @@ export const doctorSubImage2 = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 export const doctorSubImg = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   objectPosition: "center",
-})
+});
 
 // 박수호 원장용 서브 이미지 컨테이너 (reversed 레이아웃)
 export const doctorSubImages2 = style({
@@ -937,7 +937,7 @@ export const doctorSubImages2 = style({
       display: "none", // 모바일에서 숨김
     },
   },
-})
+});
 
 // 박수호 원장용 첫번째 서브 이미지 - 오른쪽 위치
 export const doctorSubImagePark1 = style({
@@ -966,7 +966,7 @@ export const doctorSubImagePark1 = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 export const doctorSubImagePark2 = style({
   position: "absolute",
@@ -994,7 +994,7 @@ export const doctorSubImagePark2 = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 // 김나래 원장용 서브 이미지 컨테이너 - 신승규와 동일
 export const doctorSubImages3 = style({
@@ -1021,7 +1021,7 @@ export const doctorSubImages3 = style({
       display: "none", // 모바일에서 숨김
     },
   },
-})
+});
 
 export const doctorSubImageKim1 = style({
   position: "absolute",
@@ -1049,7 +1049,7 @@ export const doctorSubImageKim1 = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 export const doctorSubImageKim2 = style({
   position: "absolute",
@@ -1077,7 +1077,7 @@ export const doctorSubImageKim2 = style({
       flexShrink: 0,
     },
   },
-})
+});
 
 // ==================== HISTORY SECTION ====================
 
@@ -1094,7 +1094,7 @@ export const historySection = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const historyContainer = style({
   ...responsiveContainer(1600),
@@ -1109,7 +1109,7 @@ export const historyContainer = style({
       gap: "60px",
     },
   },
-})
+});
 
 // 연혁 헤더
 export const historyHeader = style({
@@ -1123,7 +1123,7 @@ export const historyHeader = style({
       marginBottom: "40px",
     },
   },
-})
+});
 
 export const historyTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1143,7 +1143,7 @@ export const historyTitle = style({
       lineHeight: "48px",
     },
   },
-})
+});
 
 // 타임라인 레이아웃 - 2라인 구조
 export const timelineLayout = style({
@@ -1160,7 +1160,7 @@ export const timelineLayout = style({
       gap: "30px",
     },
   },
-})
+});
 
 // 첫 번째 라인: 2011 - 화살표 - 첫 번째 이미지 (왼쪽 정렬)
 export const timelineFirstRow = style({
@@ -1187,7 +1187,7 @@ export const timelineFirstRow = style({
       paddingRight: "0",
     },
   },
-})
+});
 
 // 두 번째 라인: 두 번째 이미지 - 파란색 원 - 2024 (오른쪽 정렬)
 export const timelineSecondRow = style({
@@ -1204,7 +1204,7 @@ export const timelineSecondRow = style({
     },
     [breakpoints.mobile]: {},
   },
-})
+});
 
 export const timelineRow = style({
   width: "100%",
@@ -1223,7 +1223,7 @@ export const timelineRow = style({
       maxWidth: "none",
     },
   },
-})
+});
 
 // 2011년 그룹 - 피그마 디자인 기준 대형 사이즈
 export const year2011Group = style({
@@ -1243,12 +1243,12 @@ export const year2011Group = style({
       height: "120px",
     },
   },
-})
+});
 
 export const year2011Image = style({
   width: "100%",
   height: "auto",
-})
+});
 
 export const yearLabel2011 = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1267,7 +1267,7 @@ export const yearLabel2011 = style({
       lineHeight: "60px",
     },
   },
-})
+});
 
 export const year2011Content = style({
   display: "flex",
@@ -1278,7 +1278,7 @@ export const year2011Content = style({
       gap: "12px",
     },
   },
-})
+});
 
 export const year2011Text = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1297,7 +1297,7 @@ export const year2011Text = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 // 화살표 - 피그마 디자인 기준 크기
 export const timelineArrow = style({
@@ -1317,7 +1317,7 @@ export const timelineArrow = style({
       transform: "rotate(90deg)",
     },
   },
-})
+});
 
 // 타임라인 중앙 이미지 - 피그마 디자인 기준 대형 사이즈
 export const timelineImage1 = style({
@@ -1340,7 +1340,7 @@ export const timelineImage1 = style({
       borderRadius: "8px",
     },
   },
-})
+});
 
 // 타임라인 중앙 이미지 - 피그마 디자인 기준 대형 사이즈
 export const timelineImage2 = style({
@@ -1363,17 +1363,17 @@ export const timelineImage2 = style({
       borderRadius: "8px",
     },
   },
-})
+});
 
 export const timelineImageContent = style({
   width: "100%",
   height: "100%",
-})
+});
 
 export const timelineArrowSvg = style({
   width: "100%",
   height: "100%",
-})
+});
 
 // 흰색 프레임들
 export const whiteFrame2011 = style({
@@ -1399,7 +1399,7 @@ export const whiteFrame2011 = style({
       padding: "24px",
     },
   },
-})
+});
 
 export const whiteFrame2024 = style({
   backgroundColor: "#FFFFFF",
@@ -1424,7 +1424,7 @@ export const whiteFrame2024 = style({
       padding: "24px",
     },
   },
-})
+});
 
 export const frameContent = style({
   textAlign: "center",
@@ -1436,7 +1436,7 @@ export const frameContent = style({
       gap: "16px",
     },
   },
-})
+});
 
 export const frameTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1455,7 +1455,7 @@ export const frameTitle = style({
       lineHeight: "26px",
     },
   },
-})
+});
 
 export const frameText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1474,7 +1474,7 @@ export const frameText = style({
       lineHeight: "20px",
     },
   },
-})
+});
 
 // 원형 아이콘 그룹 - 피그마 디자인 기준 크기
 export const circleIconGroup = style({
@@ -1493,7 +1493,7 @@ export const circleIconGroup = style({
       height: "150px",
     },
   },
-})
+});
 
 export const circleIcon = style({
   display: "flex",
@@ -1511,7 +1511,7 @@ export const circleIcon = style({
       height: "150px",
     },
   },
-})
+});
 
 export const circleIconSvg = style({
   width: vw(248), // 파란색 원과 같은 크기
@@ -1526,7 +1526,7 @@ export const circleIconSvg = style({
       height: "150px",
     },
   },
-})
+});
 
 // 파란색 원 - 피그마 디자인 기준
 export const blueCircle = style({
@@ -1547,7 +1547,7 @@ export const blueCircle = style({
       height: "150px",
     },
   },
-})
+});
 
 // 2024년 그룹 - 피그마 디자인 기준 대형 사이즈
 export const year2024Group = style({
@@ -1567,12 +1567,12 @@ export const year2024Group = style({
       height: "120px",
     },
   },
-})
+});
 
 export const year2024Image = style({
   width: "100%",
   height: "auto",
-})
+});
 
 export const yearLabel2024 = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1591,7 +1591,7 @@ export const yearLabel2024 = style({
       lineHeight: "60px",
     },
   },
-})
+});
 
 export const year2024Content = style({
   display: "flex",
@@ -1606,7 +1606,7 @@ export const year2024Content = style({
       textAlign: "center",
     },
   },
-})
+});
 
 export const year2024Text = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1625,7 +1625,7 @@ export const year2024Text = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 // ==================== ACADEMIC ACTIVITIES SECTION ====================
 
@@ -1642,7 +1642,7 @@ export const academicActivitiesSection = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const academicActivitiesContainer = style({
   ...responsiveContainer(1600),
@@ -1657,7 +1657,7 @@ export const academicActivitiesContainer = style({
       gap: "60px",
     },
   },
-})
+});
 
 // 학술활동 헤더
 export const academicActivitiesHeader = style({
@@ -1671,7 +1671,7 @@ export const academicActivitiesHeader = style({
       marginBottom: "40px",
     },
   },
-})
+});
 
 export const academicActivitiesTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1691,7 +1691,7 @@ export const academicActivitiesTitle = style({
       lineHeight: "48px",
     },
   },
-})
+});
 
 // 콘텐츠 영역 - 왼쪽 필터 + 오른쪽 목록
 export const academicActivitiesContent = style({
@@ -1706,7 +1706,7 @@ export const academicActivitiesContent = style({
       gap: "40px",
     },
   },
-})
+});
 
 // 왼쪽 필터 사이드바
 export const academicFilterSidebar = style({
@@ -1720,7 +1720,7 @@ export const academicFilterSidebar = style({
       width: "100%",
     },
   },
-})
+});
 
 export const filterTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1741,7 +1741,7 @@ export const filterTitle = style({
       margin: "0 0 24px 0",
     },
   },
-})
+});
 
 export const filterOptions = style({
   display: "flex",
@@ -1757,7 +1757,7 @@ export const filterOptions = style({
       overflowX: "auto",
     },
   },
-})
+});
 
 export const filterButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1792,7 +1792,7 @@ export const filterButton = style({
       whiteSpace: "nowrap",
     },
   },
-})
+});
 
 export const active = style({
   backgroundColor: "#14AEFF",
@@ -1802,7 +1802,7 @@ export const active = style({
     backgroundColor: "#0EA5E9",
     color: "#FFFFFF",
   },
-})
+});
 
 // 오른쪽 학술활동 목록
 export const academicActivitiesList = style({
@@ -1818,7 +1818,7 @@ export const academicActivitiesList = style({
       gap: "40px",
     },
   },
-})
+});
 
 export const academicYearGroup = style({
   display: "flex",
@@ -1832,7 +1832,7 @@ export const academicYearGroup = style({
       gap: "24px",
     },
   },
-})
+});
 
 export const academicYear = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1857,7 +1857,7 @@ export const academicYear = style({
       borderBottom: "2px solid #E5E5E5",
     },
   },
-})
+});
 
 export const academicItems = style({
   display: "flex",
@@ -1871,7 +1871,7 @@ export const academicItems = style({
       gap: "32px",
     },
   },
-})
+});
 
 export const academicItem = style({
   display: "flex",
@@ -1902,7 +1902,7 @@ export const academicItem = style({
       border: "1px solid #E5E5E5",
     },
   },
-})
+});
 
 export const academicDate = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1921,7 +1921,7 @@ export const academicDate = style({
       lineHeight: "20px",
     },
   },
-})
+});
 
 export const academicType = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1949,7 +1949,7 @@ export const academicType = style({
       borderRadius: "16px",
     },
   },
-})
+});
 
 export const academicTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1968,7 +1968,7 @@ export const academicTitle = style({
       lineHeight: "26px",
     },
   },
-})
+});
 
 export const academicDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -1987,7 +1987,7 @@ export const academicDescription = style({
       lineHeight: "22px",
     },
   },
-})
+});
 
 // Academic Activities Section - 새로운 피그마 디자인
 export const academicActivitiesLayout = style({
@@ -2007,7 +2007,7 @@ export const academicActivitiesLayout = style({
       gap: "30px",
     },
   },
-})
+});
 
 // 왼쪽 연도 필터
 export const yearFilterSidebar = style({
@@ -2027,7 +2027,7 @@ export const yearFilterSidebar = style({
       height: "auto",
     },
   },
-})
+});
 
 export const yearFilter = style({
   display: "flex",
@@ -2078,7 +2078,7 @@ export const yearFilter = style({
       },
     },
   },
-})
+});
 
 export const yearFilterItem = style({
   width: vw(132),
@@ -2107,7 +2107,7 @@ export const yearFilterItem = style({
       padding: "3px 0",
     },
   },
-})
+});
 
 export const yearCircle = style({
   width: vw(14),
@@ -2135,7 +2135,7 @@ export const yearCircle = style({
       left: "8px",
     },
   },
-})
+});
 
 export const activeCircle = style({
   width: vw(30),
@@ -2194,7 +2194,7 @@ export const activeCircle = style({
       },
     },
   },
-})
+});
 
 export const yearText = style({
   fontFamily: "'Poppins', sans-serif",
@@ -2213,7 +2213,7 @@ export const yearText = style({
       fontSize: "20px",
     },
   },
-})
+});
 
 export const activeText = style({
   color: "#14AEFF !important",
@@ -2230,11 +2230,11 @@ export const activeText = style({
       left: "40px",
     },
   },
-})
+});
 
 export const hiddenText = style({
   visibility: "hidden",
-})
+});
 
 export const activeYear = style({
   position: "absolute",
@@ -2254,7 +2254,7 @@ export const activeYear = style({
       gap: "6px",
     },
   },
-})
+});
 
 // 오른쪽 학술활동 콘텐츠
 export const academicContent = style({
@@ -2270,7 +2270,7 @@ export const academicContent = style({
       width: "100%",
     },
   },
-})
+});
 
 export const academicContentTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -2293,7 +2293,7 @@ export const academicContentTitle = style({
       marginBottom: "30px",
     },
   },
-})
+});
 
 export const academicTable = style({
   position: "relative",
@@ -2314,7 +2314,7 @@ export const academicTable = style({
       maxHeight: "400px",
     },
   },
-})
+});
 
 export const academicTableContainer = style({
   width: vw(1255),
@@ -2342,17 +2342,17 @@ export const academicTableContainer = style({
       overflowY: "visible",
     },
   },
-})
+});
 
 // 첫 번째 행 스타일
 export const firstRow = style({
   borderTop: "2px solid #707070",
-})
+});
 
 // 마지막 행 스타일
 export const lastRow = style({
   borderBottom: "2px solid #707070 !important",
-})
+});
 
 export const academicTableRow = style({
   display: "flex",
@@ -2384,7 +2384,7 @@ export const academicTableRow = style({
       minHeight: "auto",
     },
   },
-})
+});
 
 export const academicRowDate = style({
   width: vw(120),
@@ -2412,7 +2412,7 @@ export const academicRowDate = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 export const academicRowCategory = style({
   width: vw(150),
@@ -2433,7 +2433,7 @@ export const academicRowCategory = style({
       justifyContent: "flex-start",
     },
   },
-})
+});
 
 export const categoryBadge = style({
   width: vw(70),
@@ -2470,7 +2470,7 @@ export const categoryBadge = style({
       lineHeight: "20px",
     },
   },
-})
+});
 
 export const academicRowEvent = style({
   width: vw(320),
@@ -2498,7 +2498,7 @@ export const academicRowEvent = style({
       lineHeight: "22px",
     },
   },
-})
+});
 
 export const academicRowTitle = style({
   width: vw(485),
@@ -2525,7 +2525,7 @@ export const academicRowTitle = style({
       lineHeight: "22px",
     },
   },
-})
+});
 
 export const scrollIndicator = style({
   position: "absolute",
@@ -2549,7 +2549,7 @@ export const scrollIndicator = style({
       display: "none",
     },
   },
-})
+});
 
 export const scrollText = style({
   position: "absolute",
@@ -2574,7 +2574,7 @@ export const scrollText = style({
       display: "none",
     },
   },
-})
+});
 
 export const scrollIcon = style({
   width: vw(12),
@@ -2584,7 +2584,7 @@ export const scrollIcon = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
   },
-})
+});
 
 // 타임라인 그래피티 섹션
 export const timelineGraffitiSection = style({
@@ -2596,14 +2596,14 @@ export const timelineGraffitiSection = style({
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {},
   },
-})
+});
 
 // 타임라인 그래피티 이미지
 export const timelineGraffiti = style({
   width: "100%",
   height: "auto",
   display: "block",
-})
+});
 
 // ========== 모바일 전용 스타일 ==========
 
@@ -2612,14 +2612,16 @@ export const doctorMobileContainer = style({
   display: "none",
   "@media": {
     [breakpoints.mobile]: {
-      display: "block",
+      display: "flex",
+      flexDirection: "column",
       width: "100vw",
+      height: "100vh",
       backgroundColor: "#73D5FA",
       position: "relative",
       overflow: "hidden",
     },
   },
-})
+});
 
 // 모바일 헤더 (신승규 원장만)
 export const doctorMobileHeader = style({
@@ -2627,13 +2629,12 @@ export const doctorMobileHeader = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: `${mvw(80)} ${mvw(16)} ${mvw(60)} ${mvw(16)}`,
+      padding: `${mvw(40)} ${mvw(16)} ${mvw(20)} ${mvw(16)}`,
       backgroundColor: "#73D5FA",
+      flex: "0 0 auto",
     },
   },
-})
+});
 
 // 모바일 타이틀
 export const doctorMobileTitle = style({
@@ -2642,14 +2643,14 @@ export const doctorMobileTitle = style({
   fontSize: mvw(36),
   lineHeight: "120%",
   color: "#000000",
-  textAlign: "center",
+  textAlign: "left",
   margin: 0,
   "@media": {
     [breakpoints.desktop]: {
       display: "none",
     },
   },
-})
+});
 
 // 모바일 의사 이미지 컨테이너
 export const doctorMobileImage = style({
@@ -2658,12 +2659,12 @@ export const doctorMobileImage = style({
     [breakpoints.mobile]: {
       display: "block",
       width: "100vw",
-      height: mvw(400),
+      flex: "1 1 auto",
       position: "relative",
       overflow: "hidden",
     },
   },
-})
+});
 
 // 모바일 의사 이미지
 export const doctorMobileImg = style({
@@ -2671,7 +2672,7 @@ export const doctorMobileImg = style({
   height: "100%",
   objectFit: "cover",
   objectPosition: "center top",
-})
+});
 
 // 모바일 의사 정보
 export const doctorMobileInfo = style({
@@ -2680,13 +2681,14 @@ export const doctorMobileInfo = style({
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
-      padding: `${mvw(32)} ${mvw(24)}`,
+      padding: `${mvw(24)} ${mvw(24)} ${mvw(32)} ${mvw(24)}`,
       backgroundColor: "#73D5FA",
-      gap: mvw(16),
+      gap: mvw(12),
       alignItems: "flex-start",
+      flex: "0 0 auto",
     },
   },
-})
+});
 
 // 모바일 의사 이름
 export const doctorMobileName = style({
@@ -2697,7 +2699,7 @@ export const doctorMobileName = style({
   letterSpacing: "-0.02em",
   color: "#FFFFFF",
   margin: 0,
-})
+});
 
 // 모바일 의사 직책
 export const doctorMobilePosition = style({
@@ -2708,7 +2710,7 @@ export const doctorMobilePosition = style({
   color: "#000000",
   margin: 0,
   opacity: 0.8,
-})
+});
 
 // 모바일 Quote 섹션
 export const doctorMobileQuote = style({
@@ -2722,7 +2724,7 @@ export const doctorMobileQuote = style({
       borderRadius: 0,
     },
   },
-})
+});
 
 // 모바일 Quote 텍스트
 export const doctorMobileQuoteText = style({
@@ -2733,7 +2735,7 @@ export const doctorMobileQuoteText = style({
   color: "#000000",
   textAlign: "center",
   margin: 0,
-})
+});
 
 // 모바일 자격사항 섹션
 export const doctorMobileCredentials = style({
@@ -2746,7 +2748,7 @@ export const doctorMobileCredentials = style({
       backgroundColor: "#73D5FA",
     },
   },
-})
+});
 
 // 모바일 자격사항 리스트
 export const doctorMobileCredentialList = style({
@@ -2756,7 +2758,7 @@ export const doctorMobileCredentialList = style({
   display: "flex",
   flexDirection: "column",
   gap: mvw(12),
-})
+});
 
 // 모바일 자격사항 아이템
 export const doctorMobileCredentialItem = style({
@@ -2774,4 +2776,4 @@ export const doctorMobileCredentialItem = style({
     left: 0,
     color: "#FFFFFF",
   },
-})
+});

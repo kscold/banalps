@@ -37,14 +37,6 @@ export const heroSection = style({
     [breakpoints.desktopLarge]: {
       padding: "240px 0 120px 0",
     },
-    // [breakpoints.mobile]: {
-    //   padding: `${mvw(100)} ${mvw(16)} ${mvw(80)} ${mvw(16)}`,
-    //   minHeight: "100vh",
-    //   display: "flex",
-    //   flexDirection: "column",
-    //   justifyContent: "center",
-    // },
-
     [breakpoints.mobile]: {
       display: "flex", // 명시적으로 flex 설정
       paddingTop: "40px", // 상단 패딩 추가
@@ -323,6 +315,7 @@ export const valueCardsImageMobile = style({
 export const reYouSection = style({
   width: "100%",
   background: "#73D5FA",
+  position: "relative", // overflow 제거를 위해 relative 추가
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
@@ -334,14 +327,33 @@ export const reYouSection = style({
 
 export const reYouContainer = style({
   position: "relative",
-  width: "100%",
-  maxWidth: "100vw",
-  overflowX: "hidden",
-  height: "auto", // 모바일에서 auto로 변경
-  margin: 0,
+  width: "100%", // 전체 너비 사용
+  height: vw(1220), // 피그마 기준 높이
+  maxWidth: "none", // 최대 너비 제한 없음
+  margin: 0, // 중앙 정렬 제거
   "@media": {
     [breakpoints.desktopLarge]: {},
+
     [breakpoints.mobile]: {
+      height: "auto",
+      overflow: "hidden",
+    },
+  },
+});
+
+// 이미지 카드들 컨테이너 - 전체 너비 사용 (1920px 기준)
+export const reYouImageCards = style({
+  position: "relative",
+  width: "100%", // 전체 너비 사용
+  height: "100%",
+  maxWidth: "none", // 최대 너비 제한 없음
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "static",
+      display: "flex",
+      flexDirection: "column",
+      gap: "0px",
+      maxWidth: "100vw",
       height: "auto",
     },
   },
@@ -356,27 +368,6 @@ const cardFadeInUp = keyframes({
   to: {
     opacity: 1,
     transform: "translateY(0)",
-  },
-});
-
-// 이미지 카드들 컨테이너 - 전체 너비 사용 (1920px 기준)
-export const reYouImageCards = style({
-  position: "relative",
-  width: "100%",
-  maxWidth: "100vw",
-  overflowX: "hidden",
-  height: "100%",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      maxWidth: "none",
-    },
-    [breakpoints.mobile]: {
-      position: "static",
-      display: "flex",
-      flexDirection: "column",
-      gap: "0px",
-      maxWidth: "100vw",
-    },
   },
 });
 
@@ -475,7 +466,7 @@ export const reYouCard3 = style({
 export const reYouCard4 = style({
   position: "absolute",
   right: 0, // 완전히 오른쪽 끝에 붙임
-  top: vw(200),
+  top: vw(200), // 아래로 내려서 흰색 영역에 걸치도록
   width: vw(600),
   height: vw(900),
   borderRadius: vw(15),
@@ -483,8 +474,8 @@ export const reYouCard4 = style({
   opacity: 0,
   animation: `${cardFadeInUp} 500ms ease-out forwards`,
   animationDelay: "1200ms",
+  zIndex: 10, // 다른 섹션 위에 표시
   "@media": {
-    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       position: "static",
       width: "100vw",
@@ -494,6 +485,7 @@ export const reYouCard4 = style({
       opacity: 0,
       animation: `${cardFadeInUp} 500ms ease-out forwards`,
       animationDelay: "1200ms",
+      zIndex: 1,
     },
   },
 });
