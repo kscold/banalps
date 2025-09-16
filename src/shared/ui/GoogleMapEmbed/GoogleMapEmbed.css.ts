@@ -72,60 +72,58 @@ export const loadingText = style({
 
 export const mapButtons = style({
   display: "flex",
-  gap: vw(20),
-  marginTop: vw(100),
+  gap: vw(12),
+  marginTop: "auto", // 하단으로 밀기
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
-      marginTop: vw(100),
+      gap: "12px",
     },
     [breakpoints.desktop]: {
-      gap: vw(20),
-      marginTop: vw(100),
+      gap: vw(12),
     },
     [breakpoints.mobile]: {
-      gap: "12px",
-      marginTop: "60px",
+      gap: "8px",
+      marginTop: "20px",
     },
   },
 });
 
 const buttonBase = style({
-  padding: `${vw(9)} ${vw(16)}`,
-  fontSize: vw(16),
+  padding: `${vw(10)} ${vw(20)}`,
+  fontSize: vw(14),
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 600,
   border: "none",
-  borderRadius: vw(24),
+  borderRadius: vw(20),
   cursor: "pointer",
   transition: "all 0.2s ease",
-  minWidth: vw(125),
-  height: vw(42),
+  minWidth: vw(120),
+  height: vw(40),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   letterSpacing: 0,
-  lineHeight: vw(24),
+  lineHeight: vw(20),
   ":hover": {
-    transform: "translateY(-2px)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    transform: "translateY(-1px)",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
   },
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: `${vw(9)} ${vw(16)}`, // 1920px+ 에서도 vw로 스케일링 유지
-      fontSize: vw(16),
-      borderRadius: vw(24),
-      minWidth: vw(125),
-      height: vw(42),
-      lineHeight: vw(24),
+      padding: "10px 20px",
+      fontSize: "14px",
+      borderRadius: "20px",
+      minWidth: "120px",
+      height: "40px",
+      lineHeight: "20px",
     },
     [breakpoints.desktop]: {
-      padding: `${vw(9)} ${vw(16)}`,
-      fontSize: vw(16),
-      borderRadius: vw(24),
-      minWidth: vw(125),
-      height: vw(42),
-      lineHeight: vw(24),
+      padding: `${vw(10)} ${vw(20)}`,
+      fontSize: vw(14),
+      borderRadius: vw(20),
+      minWidth: vw(120),
+      height: vw(40),
+      lineHeight: vw(20),
     },
     [breakpoints.mobile]: {
       padding: "7px 12px",
@@ -143,16 +141,15 @@ export const kakaoButton = style([
   {
     backgroundColor: "#F3E362",
     color: "#272727",
-    minWidth: vw(129),
     "@media": {
       [breakpoints.desktopLarge]: {
-        minWidth: vw(129), // 1920px+ 에서도 vw로 스케일링 유지
+        minWidth: "120px",
       },
       [breakpoints.desktop]: {
-        minWidth: vw(129),
+        minWidth: vw(120),
       },
       [breakpoints.mobile]: {
-        minWidth: "105px",
+        minWidth: "100px",
       },
     },
   },
@@ -162,14 +159,13 @@ export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#000000",
-    minWidth: vw(125),
+    color: "#FFFFFF",
     "@media": {
       [breakpoints.desktopLarge]: {
-        minWidth: vw(125), // 1920px+ 에서도 vw로 스케일링 유지
+        minWidth: "120px",
       },
       [breakpoints.desktop]: {
-        minWidth: vw(125),
+        minWidth: vw(120),
       },
       [breakpoints.mobile]: {
         minWidth: "100px",

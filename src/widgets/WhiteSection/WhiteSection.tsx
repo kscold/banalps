@@ -7,6 +7,8 @@ import GoogleMapEmbed, {
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 
 export default function WhiteSection() {
+  console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
+  
   return (
     <section className={styles.whiteSection}>
       {/* 상단 단일 이미지 컨테이너 */}
@@ -313,8 +315,8 @@ export default function WhiteSection() {
                 </div>
               </div>
             </div>
-
-            {/* 피그마 디자인대로 맵 버튼을 정보 섹션 아래에 추가 */}
+            
+            {/* 카카오맵/네이버맵 버튼을 정보 섹션 하단에 추가 */}
             <MapButtons />
           </div>
         </div>

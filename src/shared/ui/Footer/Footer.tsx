@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import React from "react";
-import * as styles from "./Footer.css";
+import React from "react"
+import * as styles from "./Footer.css"
 
 export default function Footer() {
   return (
@@ -56,10 +56,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 모바일 레이아웃 */}
+        {/* 모바일 레이아웃 - 피그마 디자인 기준 */}
         <div className={styles.mobileLayout}>
           {/* 로고 */}
           <div className={styles.mobileLogo}>
+            {/* SVG 로고가 제공되면 교체 예정 */}
             <img src="/footer/footer-logo.svg" alt="BANAL" />
           </div>
 
@@ -84,7 +85,6 @@ export default function Footer() {
             <a href="/terms" className={styles.mobileLinkItem}>
               이용약관
             </a>
-            <span className={styles.mobileLinkDivider}></span>
             <a href="/privacy" className={styles.mobileLinkItem}>
               개인정보처리방침
             </a>
@@ -95,5 +95,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

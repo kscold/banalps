@@ -18,6 +18,15 @@ export const whiteSection = style({
   flexDirection: "column",
   alignItems: "center",
   ...responsiveProperty("paddingBottom", 120), // 1920px 기준 120px
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex", // 명시적으로 flex 설정
+      paddingTop: "40px", // 상단 패딩 추가
+      paddingBottom: "60px",
+      minHeight: "100vh", // 최소 화면 높이 설정
+      backgroundColor: "#FFFFFF", // 배경색 명시적 설정
+    },
+  },
 });
 
 // 상단 히어로 이미지 컨테이너 (1920px 기준)
@@ -38,11 +47,14 @@ export const heroImageContainer = style({
       width: "100vw", // 뷰포트 전체 너비
       maxWidth: "100vw", // 최대 너비 100vw
       padding: 0, // 패딩 제거
-      margin: 0, // 마진 제거
+      margin: "0", // 마진 초기화
+      marginTop: "0", // 상단 마진 제거
+      marginBottom: "40px", // 하단 마진만 유지
       marginLeft: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
       marginRight: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
       borderRadius: 0, // 보더 라디우스 제거
       aspectRatio: "375 / 600", // 모바일 비율
+      height: "600px", // 명시적 높이 설정
     },
   },
 });
@@ -76,6 +88,14 @@ export const heroImageMobile = style({
 // 내부 컨테이너 - BlueSection과 동일하게
 export const container = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex", // 명시적으로 flex 설정
+      flexDirection: "column",
+      width: "100%",
+      padding: "0 16px", // 좌우 패딩 설정
+    },
+  },
 });
 
 // 메인 타이틀 (1920px 기준)
@@ -110,7 +130,7 @@ export const mainContent = style({
       gap: "12px",
     },
     [breakpoints.mobile]: {
-      display: "none", // 모바일에서 데스크탑 콘텐츠 숨김
+      display: "none", // 모바일에서는 데스크탑 콘텐츠 숨김 (mobileCardList 사용)
     },
   },
 });
@@ -433,6 +453,7 @@ export const mapArea = style({
   aspectRatio: "724.29 / 500", // 비율 유지
   borderRadius: vw(8),
   overflow: "hidden",
+  position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
       borderRadius: "8px",
@@ -446,15 +467,18 @@ export const mapArea = style({
 
 // Frame 318 - 오른쪽 정보 영역 (430.71 x 500)
 export const locationInfo = style({
-  width: "350px", // 고정 너비로 변경 (430.71px는 너무 크므로 350px로 조정)
+  width: vw(350), // vw 단위로 변경
   minHeight: vw(500),
   flexShrink: 0, // 크기 유지
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between", // infoBox와 MapButtons 사이 간격 최대화
+  gap: vw(20), // 요소들 사이 간격
   "@media": {
     [breakpoints.desktopLarge]: {
+      width: "350px",
       minHeight: "500px",
+      gap: "20px",
     },
     [`screen and (max-width: 1400px)`]: {
       width: "300px", // 중간 크기 화면에서 더 작게
@@ -483,46 +507,94 @@ export const mapPlaceholder = style({
 export const infoBox = style({
   display: "flex",
   flexDirection: "column",
-  gap: "40px",
+  gap: vw(40),
   flex: "1", // 위쪽 공간 모두 차지
   "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "40px",
+    },
     [breakpoints.mobile]: {
       marginBottom: "0", // 모바일에서는 마진 제거
+      gap: "32px",
     },
   },
 });
 
 export const infoItem = style({
   display: "flex",
-  gap: "20px",
+  gap: vw(20),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+    },
+    [breakpoints.mobile]: {
+      gap: "16px",
+    },
+  },
 });
 
 export const infoLabel = style({
-  width: "115px",
-  fontSize: "20px",
+  width: vw(115),
+  fontSize: vw(20),
   fontWeight: "500",
   color: "#000000",
   flexShrink: 0,
   fontFamily: "'S-Core Dream', sans-serif",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "115px",
+      fontSize: "20px",
+    },
+    [breakpoints.mobile]: {
+      width: "80px",
+      fontSize: "14px",
+    },
+  },
 });
 
 export const infoValue = style({
   flex: "1",
-  fontSize: "20px",
+  fontSize: vw(20),
   lineHeight: "1.5",
   color: "#333333",
   fontFamily: "'S-Core Dream', sans-serif",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "20px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "14px",
+    },
+  },
 });
 
 export const infoValueParagraph = style({
   margin: 0,
-  marginBottom: "8px",
+  marginBottom: vw(8),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginBottom: "8px",
+    },
+    [breakpoints.mobile]: {
+      marginBottom: "6px",
+    },
+  },
 });
 
 export const subwayInfo = style({
-  marginTop: "20px",
-  fontSize: "16px",
+  marginTop: vw(20),
+  fontSize: vw(16),
   color: "#666666",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "20px",
+      fontSize: "16px",
+    },
+    [breakpoints.mobile]: {
+      marginTop: "12px",
+      fontSize: "12px",
+    },
+  },
 });
 
 // ==================== WE'RE READY WHEN YOU ARE SECTION ====================
@@ -722,6 +794,8 @@ export const mobileCardList = style({
       gap: mvw(16),
       padding: 0, // 패딩 제거
       marginTop: mvw(24), // 상단 마진 줄이기
+      width: "100%",
+      minHeight: "400px", // 최소 높이 설정
     },
   },
 });

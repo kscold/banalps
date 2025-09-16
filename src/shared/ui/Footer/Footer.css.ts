@@ -15,8 +15,10 @@ export const footerSection = style({
       padding: "48px",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(40)} ${mvw(20)}`,
+      padding: "80px 16px 120px 16px", // Figma: 상단 80px, 좌우 16px, 하단 120px
       backgroundColor: "#73D5FA",
+      minHeight: "556px", // Figma: 556px 높이
+      position: "relative",
     },
   },
 })
@@ -32,9 +34,13 @@ export const footerContent = style({
       height: "104px",
     },
     [breakpoints.mobile]: {
+      width: "100%",
+      maxWidth: "100%",
+      padding: "0",
+      margin: "0",
       flexDirection: "column",
       height: "auto",
-      gap: "20px",
+      gap: "0",
       alignItems: "flex-start",
     },
   },
@@ -228,8 +234,8 @@ export const mobileLayout = style({
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      textAlign: "center",
+      alignItems: "flex-start", // 피그마: 왼쪽 정렬
+      textAlign: "left", // 피그마: 왼쪽 정렬
       gap: 0,
       width: "100%",
     },
@@ -242,13 +248,38 @@ export const mobileLogo = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      marginBottom: mvw(24),
-      fontSize: mvw(28),
+      flexDirection: "column",
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      marginBottom: "74px", // Figma: 로고와 다음 섹션 간격
+      gap: "0",
+    },
+  },
+})
+
+export const mobileLogoMain = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: "48px", // 크기 증가
       fontWeight: 600,
       color: "#FFFFFF",
-      fontFamily: "'Poppins', sans-serif",
+      lineHeight: "48px",
+      letterSpacing: "-0.02em",
+      marginBottom: "8px",
+    },
+  },
+})
+
+export const mobileLogoSub = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontSize: "18px", // 크기 증가
+      fontWeight: 400,
+      color: "#FFFFFF",
+      lineHeight: "18px",
+      letterSpacing: "0.12em",
     },
   },
 })
@@ -260,8 +291,8 @@ export const mobileInfo = style({
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
-      gap: mvw(4),
-      marginBottom: mvw(24),
+      gap: "8px", // Figma: 줄 간격
+      marginBottom: "32px", // Figma: 다음 섹션과의 간격
     },
   },
 })
@@ -270,9 +301,9 @@ export const mobileClinicName = style({
   "@media": {
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 400,
-      fontSize: mvw(13),
-      lineHeight: "150%",
+      fontWeight: 500,
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "14px", // Figma: 14px
       color: "#FFFFFF",
       margin: 0,
     },
@@ -283,9 +314,9 @@ export const mobileRepresentative = style({
   "@media": {
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 400,
-      fontSize: mvw(13),
-      lineHeight: "150%",
+      fontWeight: 500,
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "14px", // Figma: 14px
       color: "#FFFFFF",
       margin: 0,
     },
@@ -299,8 +330,8 @@ export const mobileContact = style({
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
-      gap: mvw(8),
-      marginBottom: mvw(32),
+      gap: "8px", // Figma: 줄 간격
+      marginBottom: "32px", // Figma: 다음 섹션과의 간격
     },
   },
 })
@@ -309,9 +340,9 @@ export const mobileAddress = style({
   "@media": {
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 400,
-      fontSize: mvw(13),
-      lineHeight: "150%",
+      fontWeight: 500,
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "14px", // Figma: 14px
       color: "#FFFFFF",
       margin: 0,
     },
@@ -322,9 +353,9 @@ export const mobilePhone = style({
   "@media": {
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 400,
-      fontSize: mvw(13),
-      lineHeight: "150%",
+      fontWeight: 500,
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "14px", // Figma: 14px
       color: "#FFFFFF",
       margin: 0,
     },
@@ -338,8 +369,8 @@ export const mobileLinks = style({
     [breakpoints.mobile]: {
       display: "flex",
       alignItems: "center",
-      gap: mvw(12),
-      marginBottom: mvw(24),
+      gap: "16px", // Figma: 링크 간 간격
+      marginBottom: "74px", // Figma: 카피라이트와의 간격
     },
   },
 })
@@ -348,11 +379,11 @@ export const mobileLinkItem = style({
   "@media": {
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 400,
-      fontSize: mvw(12),
-      lineHeight: "150%",
+      fontWeight: 500,
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "14px", // Figma: 14px
       color: "#FFFFFF",
-      textDecoration: "underline",
+      textDecoration: "none",
       cursor: "pointer",
       ":hover": {
         opacity: 0.8,
@@ -377,11 +408,11 @@ export const mobileCopyright = style({
     [breakpoints.mobile]: {
       fontFamily: "'Poppins', sans-serif",
       fontWeight: 400,
-      fontSize: mvw(11),
-      lineHeight: "150%",
+      fontSize: "12px", // Figma: 12px
+      lineHeight: "18px", // Figma: 18px
       color: "#FFFFFF",
       margin: 0,
-      opacity: 0.8,
+      textTransform: "uppercase",
     },
   },
 })
