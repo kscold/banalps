@@ -32,11 +32,20 @@ globalStyle("*", {
   boxSizing: "border-box",
 });
 
+// 가로 스크롤 방지를 위한 전역 설정
+globalStyle("html", {
+  overflowX: "hidden",
+  maxWidth: "100vw",
+});
+
 // 바디 기본 설정  
 globalStyle("body", {
   margin: 0,
   padding: 0,
-  fontFamily: "'S-Core Dream', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+  fontFamily: "'S-Core Dream', -apple-system, BlinkMacSystemFont, 'Segue UI', Roboto, sans-serif",
+  overflowX: "hidden", 
+  maxWidth: "100vw",
+  position: "relative",
   
   "@media": {
     [breakpoints.desktopLarge]: {

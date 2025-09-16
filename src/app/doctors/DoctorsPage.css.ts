@@ -149,12 +149,7 @@ export const doctorsIntroImage1 = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      position: "relative",
-      top: "0",
-      right: "0",
-      width: "100%",
-      height: "150px",
-      margin: "20px 0",
+      display: "none",
     },
   },
 })
@@ -168,8 +163,7 @@ export const medicalTeamHeroSection = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      left: "20px",
-      bottom: "20px",
+      display: "none",
     },
   },
 })
@@ -851,11 +845,7 @@ export const doctorSubImages = style({
       },
     },
     [breakpoints.mobile]: {
-      display: "flex",
-      flexDirection: "row",
-      gap: "20px",
-      overflowX: "auto",
-      position: "relative",
+      display: "none", // 모바일에서 숨김
     },
   },
 })
@@ -947,11 +937,7 @@ export const doctorSubImages2 = style({
       },
     },
     [breakpoints.mobile]: {
-      display: "flex",
-      flexDirection: "row",
-      gap: "20px",
-      overflowX: "auto",
-      position: "relative",
+      display: "none", // 모바일에서 숨김
     },
   },
 })
@@ -1035,11 +1021,7 @@ export const doctorSubImages3 = style({
       },
     },
     [breakpoints.mobile]: {
-      display: "flex",
-      flexDirection: "row",
-      gap: "20px",
-      overflowX: "auto",
-      position: "relative",
+      display: "none", // 모바일에서 숨김
     },
   },
 })

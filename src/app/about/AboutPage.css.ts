@@ -11,6 +11,9 @@ import {
 export const aboutPage = style({
   minHeight: "100vh",
   backgroundColor: "#FFFFFF",
+  width: "100%",
+  maxWidth: "100vw",
+  overflowX: "hidden",
 });
 
 // 페이드 인 애니메이션 키프레임
@@ -233,30 +236,40 @@ export const reYouSection = style({
 
 export const reYouContainer = style({
   position: "relative",
-  width: "100%", // 전체 너비 사용
-  height: vw(1220), // 피그마 기준 높이
-  maxWidth: "none", // 최대 너비 제한 없음
-  margin: 0, // 중앙 정렬 제거
+  width: "100%",
+  maxWidth: "100vw",
+  overflowX: "hidden", 
+  height: "auto", // 모바일에서 auto로 변경
+  margin: 0,
   "@media": {
-    [breakpoints.desktopLarge]: {},
-
-    [breakpoints.mobile]: {},
+    [breakpoints.desktopLarge]: {
+      height: "1220px",
+    },
+    [breakpoints.mobile]: {
+      height: "auto",
+      padding: "40px 0",
+    },
   },
 });
 
 // 이미지 카드들 컨테이너 - 전체 너비 사용 (1920px 기준)
 export const reYouImageCards = style({
   position: "relative",
-  width: "100%", // 전체 너비 사용
+  width: "100%",
+  maxWidth: "100vw",
+  overflowX: "hidden",
   height: "100%",
-  maxWidth: "none", // 최대 너비 제한 없음
   "@media": {
+    [breakpoints.desktopLarge]: {
+      maxWidth: "none",
+    },
     [breakpoints.mobile]: {
       position: "static",
       display: "flex",
       flexDirection: "column",
       gap: "20px",
-      padding: "0 20px", // 모바일에서만 패딩
+      padding: "0 20px",
+      maxWidth: "100vw",
     },
   },
 });
@@ -637,15 +650,17 @@ export const galleryTopSection = style({
 // 갤러리 타이틀 영역 (피그마 정확한 790px)
 export const galleryTitleSection = style({
   flex: "0 0 auto",
-  width: vw(790), // 피그마 정확한 너비
-  height: vw(144), // 피그마 텍스트 높이
+  width: "100%",
+  maxWidth: "100vw",
+  height: "auto",
   display: "flex",
-  alignItems: "flex-start", // 상단 정렬
-  justifyContent: "flex-start", // 왼쪽 정렬
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "790px",
       height: "144px",
+      maxWidth: "790px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -656,11 +671,12 @@ export const galleryTitleSection = style({
 
 // 메인 이미지 (Frame 15392, 790x580)
 export const galleryMainImage = style({
-  flex: "0 0 auto", // 고정 크기
-  width: vw(790), // 피그마 정확한 너비
-  height: vw(580), // 피그마 정확한 높이
-  aspectRatio: "790 / 580", // 피그마 정확한 비율
-  borderRadius: vw(16),
+  flex: "0 0 auto",
+  width: "100%",
+  maxWidth: "100vw",
+  height: "auto",
+  aspectRatio: "790 / 580",
+  borderRadius: "16px",
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -672,12 +688,12 @@ export const galleryMainImage = style({
     [breakpoints.desktopLarge]: {
       width: "790px",
       height: "580px",
-      borderRadius: "16px",
+      maxWidth: "790px",
     },
     [breakpoints.mobile]: {
       width: "100%",
       height: "auto",
-      aspectRatio: "790 / 580", // 모바일에서도 비율 유지
+      aspectRatio: "790 / 580",
     },
   },
 });
@@ -729,10 +745,11 @@ export const galleryGrid = style({
 // Row 1: Frame 219 (1600x925) - 왼쪽 큰 이미지 + 오른쪽 2개 스택
 export const galleryRow1 = style({
   display: "grid",
-  gridTemplateColumns: vw(790) + " " + vw(790), // 정확한 2등분
-  gridTemplateRows: vw(925), // 높이 고정
-  gap: vw(20),
-  height: vw(925),
+  gridTemplateColumns: "1fr",
+  gridTemplateRows: "auto",
+  gap: "20px",
+  width: "100%",
+  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
       gridTemplateColumns: "790px 790px",
@@ -752,10 +769,11 @@ export const galleryRow1 = style({
 // Row 2: Frame 220 (1600x925) - 2개 나란히
 export const galleryRow2 = style({
   display: "grid",
-  gridTemplateColumns: vw(790) + " " + vw(790), // 정확한 2등분
-  gridTemplateRows: vw(925),
-  gap: vw(20),
-  height: vw(925),
+  gridTemplateColumns: "1fr",
+  gridTemplateRows: "auto",
+  gap: "20px",
+  width: "100%",
+  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
       gridTemplateColumns: "790px 790px",
@@ -775,10 +793,11 @@ export const galleryRow2 = style({
 // Row 3: Frame 223 (1600x1395) - 왼쪽 2개 스택 + 오른쪽 2개 스택
 export const galleryRow3 = style({
   display: "grid",
-  gridTemplateColumns: vw(790) + " " + vw(790), // 정확한 2등분
-  gridTemplateRows: vw(1395),
-  gap: vw(20),
-  height: vw(1395),
+  gridTemplateColumns: "1fr",
+  gridTemplateRows: "auto",
+  gap: "20px",
+  width: "100%",
+  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
       gridTemplateColumns: "790px 790px",
