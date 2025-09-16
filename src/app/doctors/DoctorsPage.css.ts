@@ -2615,21 +2615,81 @@ export const doctorMobileContainer = style({
       display: "flex",
       flexDirection: "column",
       width: "100vw",
-      height: "100vh",
+      minHeight: "100vh",
       backgroundColor: "#73D5FA",
+      position: "relative",
+    },
+  },
+});
+
+// 모바일 의사 정보 섹션 - 이미지로 대체
+export const doctorMobileInfoSection = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: "auto",
+      position: "relative",
+    },
+  },
+});
+
+export const doctorMobileInfoImage = style({
+  width: mvw(210),
+  height: mvw(300),
+  display: "block",
+});
+
+// 모바일 메인 섹션 - 초기 100vh 영역 (단일 이미지) - 더 이상 사용하지 않음
+export const doctorMobileMainSection = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100vw",
+      height: "100vh",
       position: "relative",
       overflow: "hidden",
     },
   },
 });
 
-// 모바일 헤더 (신승규 원장만)
+export const doctorMobileMainImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  objectPosition: "center",
+});
+
+// 모바일 명언 섹션 - 이미지로 대체
+export const doctorMobileQuoteSection = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100vw",
+      height: mvw(248),
+      position: "relative",
+    },
+  },
+});
+
+export const doctorMobileQuoteImage = style({
+  width: "100%",
+  height: mvw(248),
+  display: "block",
+});
+
+// 모바일 헤더 - 타이틀 영역
 export const doctorMobileHeader = style({
   display: "none",
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
-      padding: `${mvw(40)} ${mvw(16)} ${mvw(20)} ${mvw(16)}`,
+      alignItems: "left",
+      justifyContent: "left",
+      padding: `${mvw(152)} ${mvw(16)} ${mvw(40)} ${mvw(16)}`,
       backgroundColor: "#73D5FA",
       flex: "0 0 auto",
     },
@@ -2690,26 +2750,55 @@ export const doctorMobileInfo = style({
   },
 });
 
+export const doctorMobileInfoOverlay = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      position: "absolute",
+      top: mvw(0),
+      right: mvw(16),
+      zIndex: 10,
+    },
+  },
+});
+
 // 모바일 의사 이름
 export const doctorMobileName = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: mvw(44),
+  fontSize: mvw(60),
   lineHeight: mvw(48),
-  letterSpacing: "-0.02em",
+  letterSpacing: "0%",
   color: "#FFFFFF",
   margin: 0,
+  textAlign: "right",
+  width: mvw(192),
+  height: mvw(182),
+  marginBottom: mvw(40),
 });
 
-// 모바일 의사 직책
 export const doctorMobilePosition = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
+  fontWeight: 200,
   fontSize: mvw(14),
-  lineHeight: mvw(20),
+  lineHeight: "130%",
+  color: "#000000",
+  textAlign: "right",
+  letterSpacing: "0%",
+  marginBottom: mvw(4),
+});
+
+// 모바일 의사 이름
+export const doctorMobileNameBold = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: mvw(18),
+  lineHeight: "150%",
   color: "#000000",
   margin: 0,
-  opacity: 0.8,
+  textAlign: "right",
+  letterSpacing: "0%",
 });
 
 // 모바일 Quote 섹션

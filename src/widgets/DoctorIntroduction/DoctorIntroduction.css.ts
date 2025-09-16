@@ -349,6 +349,13 @@ export const quoteSection = style({
   },
 });
 
+export const quoteSectionImage = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  objectPosition: "center",
+});
+
 export const quoteContent = style({
   display: "flex",
   flexDirection: "column",
