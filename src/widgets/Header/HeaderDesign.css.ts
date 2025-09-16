@@ -1,9 +1,10 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 import {
   vw,
   breakpoints,
   responsiveProperty,
-} from "../../shared/styles/responsive.css"
+  mvw,
+} from "../../shared/styles/responsive.css";
 
 export const header = style({
   position: "fixed",
@@ -23,12 +24,12 @@ export const header = style({
     [breakpoints.mobile]: {
       // 모바일: 365px~767px (BlueSection과 동일)
       top: "36px",
-      width: "calc(100% - 40px)", // 양쪽 20px 마진
+      width: `calc(100% - ${mvw(32)})`, // 양쪽 20px 마진
       borderRadius: "48px",
-      height: "64px",
+      height: mvw(56),
     },
   },
-})
+});
 
 // 헤더 뒤쪽에 나타나는 커튼 스타일 배경 (responsiveProperty로 정확한 1920px 기준 구현)
 export const headerCurtain = style({
@@ -82,7 +83,7 @@ export const headerCurtain = style({
     },
   },
   "@media": {},
-})
+});
 
 // 서브메뉴 컨테이너 (responsiveProperty로 정확한 1920px 기준 구현)
 export const submenuContainer = style({
@@ -102,7 +103,7 @@ export const submenuContainer = style({
       display: "none",
     },
   },
-})
+});
 
 // 드롭다운 아이템 - 1920px 기준 적용
 export const dropdownItem = style({
@@ -134,13 +135,13 @@ export const dropdownItem = style({
       padding: "6px 0",
     },
   },
-})
+});
 
 // 드롭다운 아이템 활성 상태
 export const dropdownItemActive = style({
   color: "#14AEFF",
   fontWeight: "600",
-})
+});
 
 export const container = style({
   maxWidth: "1600px", // BlueSection과 동일한 maxWidth
@@ -155,11 +156,11 @@ export const container = style({
   "@media": {
     [breakpoints.mobile]: {
       // 모바일: 365px~767px (BlueSection과 동일)
-      paddingLeft: "20px",
-      paddingRight: "20px",
+      paddingLeft: mvw(28),
+      paddingRight: mvw(28),
     },
   },
-})
+});
 
 export const headerContent = style({
   display: "flex",
@@ -176,20 +177,20 @@ export const headerContent = style({
       gap: "0",
     },
   },
-})
+});
 
 export const logoWrapper = style({
   display: "flex",
   alignItems: "center",
   height: "100%",
-})
+});
 
 export const logoLink = style({
   textDecoration: "none",
   display: "flex",
   alignItems: "center",
   height: "100%",
-})
+});
 
 export const logoText = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -209,17 +210,17 @@ export const logoText = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 고정
-      fontSize: "20px",
-      lineHeight: "30px",
+      // fontSize: "20px",
+      // lineHeight: "30px",
     },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
-      fontSize: "14px",
+      fontSize: mvw(20),
       lineHeight: "21px",
       fontWeight: "500",
     },
   },
-})
+});
 
 export const desktopNav = style({
   display: "none",
@@ -236,7 +237,7 @@ export const desktopNav = style({
       display: "flex",
     },
   },
-})
+});
 
 // 네비게이션 아이템 래퍼
 export const navItemWrapper = style({
@@ -244,7 +245,7 @@ export const navItemWrapper = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-})
+});
 
 // 드롭다운 콘텐츠 (1920px 기준 비례 스케일링)
 export const dropdownContent = style({
@@ -267,7 +268,7 @@ export const dropdownContent = style({
   ...responsiveProperty("paddingBottom", 30), // 1920px 기준 30px
   ...responsiveProperty("minWidth", 160), // 1920px 기준 160px
   "@media": {},
-})
+});
 
 export const navLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -301,7 +302,7 @@ export const navLink = style({
       width: "56px", // 80px * 0.7
     },
   },
-})
+});
 
 export const actionButtons = style({
   display: "none",
@@ -316,7 +317,7 @@ export const actionButtons = style({
       display: "flex",
     },
   },
-})
+});
 
 export const loginButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -346,7 +347,7 @@ export const loginButton = style({
       padding: "8px 17px",
     },
   },
-})
+});
 
 export const consultButton = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -381,7 +382,7 @@ export const consultButton = style({
       gap: "6px",
     },
   },
-})
+});
 
 export const dropdownArrow = style({
   fontSize: vw(12), // 1920px 기준 12px
@@ -399,22 +400,22 @@ export const dropdownArrow = style({
       marginLeft: "3px",
     },
   },
-})
+});
 
 export const mobileMenuButton = style({
   display: "flex",
   alignItems: "center",
   "@media": {
-    "screen and (min-width: 1024px)": {
+    [breakpoints.desktop]: {
       display: "none",
     },
   },
-})
+});
 
 export const menuIcon = style({
-  height: "1.5rem",
-  width: "1.5rem",
-})
+  height: mvw(24),
+  width: mvw(24),
+});
 
 // 모바일 메뉴
 export const mobileMenu = style({
@@ -427,11 +428,11 @@ export const mobileMenu = style({
   zIndex: 9998,
   backgroundColor: "#FFFDF7",
   "@media": {
-    "screen and (min-width: 1024px)": {
+    [breakpoints.desktop]: {
       display: "none",
     },
   },
-})
+});
 
 export const mobileMenuContent = style({
   position: "relative",
@@ -445,14 +446,14 @@ export const mobileMenuContent = style({
   paddingBottom: "32px",
   overflowY: "auto",
   "@media": {
-    "screen and (max-width: 768px)": {
+    [breakpoints.mobile]: {
       paddingTop: "72px",
       paddingLeft: "24px",
       paddingRight: "24px",
       paddingBottom: "24px",
     },
   },
-})
+});
 
 export const mobileMenuNavigation = style({
   display: "flex",
@@ -460,7 +461,7 @@ export const mobileMenuNavigation = style({
   gap: "0",
   flex: 1,
   marginTop: "20px",
-})
+});
 
 export const mobileNavLink = style({
   display: "flex",
@@ -485,12 +486,12 @@ export const mobileNavLink = style({
       padding: "16px 0",
     },
   },
-})
+});
 
 export const mobileNavLinkActive = style({
   color: "#0EA5E9", // 더 진한 파란색
   fontWeight: "700",
-})
+});
 
 export const mobileSubmenu = style({
   display: "flex",
@@ -501,7 +502,7 @@ export const mobileSubmenu = style({
   paddingBottom: "12px",
   overflow: "hidden",
   animation: "slideDown 200ms ease-out",
-})
+});
 
 export const mobileSubmenuItem = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -524,7 +525,7 @@ export const mobileSubmenuItem = style({
       padding: "8px 0 8px 20px",
     },
   },
-})
+});
 
 export const mobileActions = style({
   display: "flex",
@@ -536,7 +537,7 @@ export const mobileActions = style({
       gap: "8px",
     },
   },
-})
+});
 
 export const mobileLoginButton = style({
   color: "#272727",
@@ -560,7 +561,7 @@ export const mobileLoginButton = style({
       padding: "12px 20px",
     },
   },
-})
+});
 
 export const mobileConsultButton = style({
   backgroundColor: "#1AA4F4",
@@ -583,7 +584,7 @@ export const mobileConsultButton = style({
       padding: "12px 20px",
     },
   },
-})
+});
 
 // 모바일 메뉴 아이템 래퍼
 export const mobileMenuItemWrapper = style({
@@ -591,7 +592,7 @@ export const mobileMenuItemWrapper = style({
   ":last-child": {
     borderBottom: "none",
   },
-})
+});
 
 // 모바일 메뉴 화살표
 export const mobileMenuArrow = style({
@@ -599,14 +600,14 @@ export const mobileMenuArrow = style({
   color: "#1AA4F4",
   transition: "transform 200ms ease",
   display: "inline-block",
-})
+});
 
 // 모바일 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
   justifyContent: "flex-end",
   paddingBottom: "20px",
-})
+});
 
 // 모바일 메뉴 닫기 버튼
 export const mobileMenuClose = style({
@@ -620,21 +621,21 @@ export const mobileMenuClose = style({
   ":hover": {
     opacity: 0.6,
   },
-})
+});
 
 // 모바일 메뉴 푸터
 export const mobileMenuFooter = style({
   marginTop: "auto",
   paddingTop: "32px",
   borderTop: "1px solid rgba(39, 39, 39, 0.1)",
-})
+});
 
 // 모바일 언어 선택 래퍼
 export const mobileLanguageWrapper = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
-})
+});
 
 // 모바일 언어 버튼
 export const mobileLanguageButton = style({
@@ -658,20 +659,20 @@ export const mobileLanguageButton = style({
       fontSize: "14px",
     },
   },
-})
+});
 
 // 언어 화살표
 export const languageArrow = style({
   fontSize: "12px",
   color: "inherit",
-})
+});
 
 // 서브메뉴 활성 상태
 export const mobileSubmenuItemActive = style({
   color: "#1AA4F4",
   fontWeight: "500",
   backgroundColor: "rgba(26, 164, 244, 0.1)",
-})
+});
 
 // 모바일 메뉴 액션 (LOGIN과 KR 버튼 컨테이너)
 export const mobileMenuActions = style({
@@ -684,7 +685,7 @@ export const mobileMenuActions = style({
       gap: "8px",
     },
   },
-})
+});
 
 // 모바일 메뉴 상단바
 export const mobileMenuTopBar = style({
@@ -694,7 +695,7 @@ export const mobileMenuTopBar = style({
   paddingBottom: "24px",
   borderBottom: "1px solid rgba(39, 39, 39, 0.1)",
   marginBottom: "16px",
-})
+});
 
 // 모바일 상단 LOGIN 버튼
 export const mobileTopLoginButton = style({
@@ -710,7 +711,7 @@ export const mobileTopLoginButton = style({
   ":hover": {
     opacity: 0.7,
   },
-})
+});
 
 // 모바일 메뉴 닫기 버튼
 export const mobileMenuCloseButton = style({
@@ -727,7 +728,7 @@ export const mobileMenuCloseButton = style({
   ":hover": {
     opacity: 0.6,
   },
-})
+});
 
 // 모바일 메뉴 아이템 컨테이너
 export const mobileMenuItemContainer = style({
@@ -735,7 +736,7 @@ export const mobileMenuItemContainer = style({
   ":last-child": {
     borderBottom: "none",
   },
-})
+});
 
 // 모바일 메뉴 아이템
 export const mobileMenuItem = style({
@@ -748,7 +749,7 @@ export const mobileMenuItem = style({
   ":hover": {
     opacity: 0.8,
   },
-})
+});
 
 // 모바일 메뉴 아이템 텍스트
 export const mobileMenuItemText = style({
@@ -757,12 +758,12 @@ export const mobileMenuItemText = style({
   fontWeight: "600",
   color: "#1AA4F4",
   lineHeight: "24px",
-})
+});
 
 // 모바일 메뉴 아이템 활성 상태
 export const mobileMenuItemActive = style({
   opacity: 1,
-})
+});
 
 // 모바일 메뉴 아이템 화살표
 export const mobileMenuItemArrow = style({
@@ -770,13 +771,13 @@ export const mobileMenuItemArrow = style({
   color: "#1AA4F4",
   transition: "transform 200ms ease",
   display: "inline-block",
-})
+});
 
 // 모바일 서브메뉴 컨테이너
 export const mobileSubmenuContainer = style({
   paddingBottom: "12px",
   animation: "slideDown 200ms ease-out",
-})
+});
 
 // 모바일 서브메뉴 링크
 export const mobileSubmenuLink = style({
@@ -793,14 +794,14 @@ export const mobileSubmenuLink = style({
     color: "#1AA4F4",
     backgroundColor: "rgba(26, 164, 244, 0.05)",
   },
-})
+});
 
 // 모바일 서브메뉴 링크 활성 상태
 export const mobileSubmenuLinkActive = style({
   color: "#1AA4F4",
   fontWeight: "500",
   backgroundColor: "rgba(26, 164, 244, 0.08)",
-})
+});
 
 // 모바일 메뉴 하단바
 export const mobileMenuBottomBar = style({
@@ -810,7 +811,7 @@ export const mobileMenuBottomBar = style({
   display: "flex",
   alignItems: "center",
   gap: "12px",
-})
+});
 
 // 모바일 언어 선택기
 export const mobileLanguageSelector = style({
@@ -829,10 +830,10 @@ export const mobileLanguageSelector = style({
   ":hover": {
     color: "#1AA4F4",
   },
-})
+});
 
 // 언어 드롭다운 아이콘
 export const languageDropdownIcon = style({
   fontSize: "10px",
   color: "inherit",
-})
+});

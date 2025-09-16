@@ -2,6 +2,7 @@ import { style, keyframes } from "@vanilla-extract/css"
 import {
   breakpoints,
   vw,
+  mvw,
   responsiveFont,
   responsiveContainer,
   responsiveLeftContent,
@@ -54,24 +55,22 @@ export const medicalTeamSection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: "80px 0",
+      padding: 0,
+      background: "#FFFFFF",
     },
   },
 })
 
 export const medicalTeamContainer = style({
   ...responsiveLeftContent(),
-  //   ...responsiveContainer(1600),
   padding: vw(0),
   display: "flex",
   flexDirection: "column",
-  //   gap: vw(120),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      //   gap: "120px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      gap: "80px",
+      padding: 0,
+      width: "100%",
     },
   },
 })
@@ -86,9 +85,7 @@ export const medicalTeamHeader = style({
       height: "1025px",
     },
     [breakpoints.mobile]: {
-      flexDirection: "column",
-      height: "auto",
-      gap: "40px",
+      display: "none",
     },
   },
 })
@@ -205,7 +202,7 @@ export const doctorSection = style({
   width: vw(1920),
   height: vw(1221),
   position: "relative",
-  backgroundColor: "#73D5FA", // 파란 배경
+  backgroundColor: "#73D5FA",
   borderRadius: vw(24),
   margin: `${vw(60)} auto`,
   padding: 0,
@@ -218,10 +215,14 @@ export const doctorSection = style({
       margin: "60px auto",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      height: "auto",
-      padding: "20px",
-      margin: "40px auto",
+      width: "100vw",
+      height: mvw(812),
+      padding: 0,
+      margin: 0,
+      borderRadius: 0,
+      backgroundColor: "#73D5FA",
+      position: "relative",
+      overflow: "hidden",
     },
   },
 })
@@ -236,9 +237,7 @@ export const doctorContent = style({
   left: 0,
   "@media": {
     [breakpoints.mobile]: {
-      position: "relative",
-      flexDirection: "column",
-      gap: "40px",
+      display: "none",
     },
   },
 })
@@ -255,9 +254,7 @@ export const doctorContentReversed = style({
   flexDirection: "row-reverse",
   "@media": {
     [breakpoints.mobile]: {
-      position: "relative",
-      flexDirection: "column",
-      gap: "40px",
+      display: "none",
     },
   },
 })
@@ -2606,4 +2603,175 @@ export const timelineGraffiti = style({
   width: "100%",
   height: "auto",
   display: "block",
+})
+
+// ========== 모바일 전용 스타일 ==========
+
+// 모바일 전용 컨테이너
+export const doctorMobileContainer = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100vw",
+      backgroundColor: "#73D5FA",
+      position: "relative",
+      overflow: "hidden",
+    },
+  },
+})
+
+// 모바일 헤더 (신승규 원장만)
+export const doctorMobileHeader = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: `${mvw(80)} ${mvw(16)} ${mvw(60)} ${mvw(16)}`,
+      backgroundColor: "#73D5FA",
+    },
+  },
+})
+
+// 모바일 타이틀
+export const doctorMobileTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  fontSize: mvw(36),
+  lineHeight: "120%",
+  color: "#000000",
+  textAlign: "center",
+  margin: 0,
+  "@media": {
+    [breakpoints.desktop]: {
+      display: "none",
+    },
+  },
+})
+
+// 모바일 의사 이미지 컨테이너
+export const doctorMobileImage = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100vw",
+      height: mvw(400),
+      position: "relative",
+      overflow: "hidden",
+    },
+  },
+})
+
+// 모바일 의사 이미지
+export const doctorMobileImg = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  objectPosition: "center top",
+})
+
+// 모바일 의사 정보
+export const doctorMobileInfo = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      padding: `${mvw(32)} ${mvw(24)}`,
+      backgroundColor: "#73D5FA",
+      gap: mvw(16),
+      alignItems: "flex-start",
+    },
+  },
+})
+
+// 모바일 의사 이름
+export const doctorMobileName = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+  fontSize: mvw(44),
+  lineHeight: mvw(48),
+  letterSpacing: "-0.02em",
+  color: "#FFFFFF",
+  margin: 0,
+})
+
+// 모바일 의사 직책
+export const doctorMobilePosition = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 300,
+  fontSize: mvw(14),
+  lineHeight: mvw(20),
+  color: "#000000",
+  margin: 0,
+  opacity: 0.8,
+})
+
+// 모바일 Quote 섹션
+export const doctorMobileQuote = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      padding: `${mvw(32)} ${mvw(24)}`,
+      backgroundColor: "rgba(255, 255, 255, 0.9)",
+      borderRadius: 0,
+    },
+  },
+})
+
+// 모바일 Quote 텍스트
+export const doctorMobileQuoteText = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 300,
+  fontSize: mvw(16),
+  lineHeight: mvw(24),
+  color: "#000000",
+  textAlign: "center",
+  margin: 0,
+})
+
+// 모바일 자격사항 섹션
+export const doctorMobileCredentials = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      padding: `${mvw(40)} ${mvw(24)}`,
+      backgroundColor: "#73D5FA",
+    },
+  },
+})
+
+// 모바일 자격사항 리스트
+export const doctorMobileCredentialList = style({
+  listStyle: "none",
+  padding: 0,
+  margin: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: mvw(12),
+})
+
+// 모바일 자격사항 아이템
+export const doctorMobileCredentialItem = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 300,
+  fontSize: mvw(14),
+  lineHeight: mvw(20),
+  color: "#FFFFFF",
+  margin: 0,
+  paddingLeft: mvw(16),
+  position: "relative",
+  "::before": {
+    content: '"•"',
+    position: "absolute",
+    left: 0,
+    color: "#FFFFFF",
+  },
 })

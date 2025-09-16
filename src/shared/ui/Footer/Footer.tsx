@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React from "react"
-import * as styles from "./Footer.css"
+import React from "react";
+import * as styles from "./Footer.css";
 
 export default function Footer() {
   return (
@@ -61,7 +61,11 @@ export default function Footer() {
           {/* 로고 */}
           <div className={styles.mobileLogo}>
             {/* SVG 로고가 제공되면 교체 예정 */}
-            <img src="/footer/footer-logo.svg" alt="BANAL" />
+            <img
+              src="/footer/footer-logo-mobile.svg"
+              alt="BANAL"
+              style={{ width: "100%", height: "100%" }}
+            />
           </div>
 
           {/* 클리닉 정보 */}
@@ -95,5 +99,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

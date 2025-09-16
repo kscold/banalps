@@ -30,15 +30,26 @@ const fadeInUp = keyframes({
 
 // Hero Section - 피그마의 첫 번째 섹션
 export const heroSection = style({
-  padding: `${vw(240)} 0 ${vw(120)} 0`, // 1920px 기준
+  padding: `${vw(240)} 0 ${vw(120)} 0`,
   background: "#73D5FA",
   animation: `${fadeInUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "240px 0 120px 0", // 1920px+ 고정
+      padding: "240px 0 120px 0",
     },
+    // [breakpoints.mobile]: {
+    //   padding: `${mvw(100)} ${mvw(16)} ${mvw(80)} ${mvw(16)}`,
+    //   minHeight: "100vh",
+    //   display: "flex",
+    //   flexDirection: "column",
+    //   justifyContent: "center",
+    // },
+
     [breakpoints.mobile]: {
-      padding: "120px 0 60px 0",
+      display: "flex", // 명시적으로 flex 설정
+      paddingTop: "40px", // 상단 패딩 추가
+      paddingBottom: "60px",
+      minHeight: "100vh", // 최소 화면 높이 설정
     },
   },
 });
@@ -51,13 +62,15 @@ export const heroContainer = style({
   justifyContent: "center",
   textAlign: "center",
   height: "100%",
-  gap: vw(60), // 1920px 기준
+  gap: vw(60),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "60px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      gap: "30px",
+      marginTop: mvw(120),
+      gap: mvw(60),
+      width: "100vw",
+      padding: 0,
+      maxWidth: "100%",
     },
   },
 });
@@ -79,11 +92,18 @@ export const heroQuote = style({
   fontWeight: 400,
   ...responsiveFont(36),
   lineHeight: "140%",
-  color: "#272727",
+  color: "#000000",
   margin: `0 0 ${vw(30)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
       margin: "0 0 30px 0",
+    },
+    [breakpoints.mobile]: {
+      minWidth: mvw(204),
+      fontSize: mvw(18),
+      lineHeight: "140%",
+      margin: `0 0 ${mvw(48)} 0`,
+      color: "#000000",
     },
   },
 });
@@ -93,8 +113,16 @@ export const heroTitle = style({
   fontWeight: 600,
   ...responsiveFont(36),
   lineHeight: "140%",
-  color: "#272727",
+  color: "#000000",
   margin: 0,
+  "@media": {
+    [breakpoints.mobile]: {
+      minWidth: mvw(135),
+      fontSize: mvw(20),
+      lineHeight: "140%",
+      color: "#000000",
+    },
+  },
 });
 
 export const heroIllustration = style({
@@ -106,14 +134,34 @@ export const heroIllustration = style({
     [breakpoints.desktopLarge]: {
       maxWidth: "1571px",
     },
+    [breakpoints.mobile]: {
+      maxWidth: "100%",
+      padding: `0 ${mvw(20)}`,
+    },
+  },
+});
+
+export const heroIllustrationMobile = style({
+  width: "100%",
+  maxWidth: vw(1571), // 피그마 기준 일러스트 너비
+  display: "flex",
+  justifyContent: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      maxWidth: "1571px",
+    },
+    [breakpoints.mobile]: {
+      maxWidth: "100%",
+      padding: `0 ${mvw(20)}`,
+    },
   },
 });
 
 export const illustrationImage = style({
   width: "100%",
   height: "auto",
-  maxWidth: vw(1571), // 피그마 기준
-  maxHeight: vw(582), // 피그마 기준 높이
+  maxWidth: vw(1571),
+  maxHeight: vw(582),
   objectFit: "contain",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -121,7 +169,7 @@ export const illustrationImage = style({
       maxHeight: "582px",
     },
     [breakpoints.mobile]: {
-      maxHeight: "300px",
+      display: "none",
     },
   },
 });
@@ -135,7 +183,13 @@ export const valuesSection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: "60px 0",
+      padding: 0,
+      background: "#73D5FA",
+      width: "100vw",
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 });
@@ -150,13 +204,30 @@ export const valuesContainer = style({
       gap: "80px",
     },
     [breakpoints.mobile]: {
-      gap: "40px",
+      width: "100%",
+      flexDirection: "column",
+      gap: mvw(80),
+      padding: `${mvw(100)} ${mvw(20)} ${mvw(80)} ${mvw(20)}`,
+      alignItems: "left",
+      justifyContent: "left",
+      maxWidth: "100%",
     },
   },
 });
 
 export const valuesContent = style({
-  flex: "0 0 385px", // 피그마 기준 너비
+  flex: "0 0 385px",
+  "@media": {
+    [breakpoints.mobile]: {
+      flex: "0 0 auto",
+      textAlign: "left",
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "left",
+      justifyContent: "left",
+    },
+  },
 });
 
 export const valuesMainTitle = style({
@@ -165,11 +236,19 @@ export const valuesMainTitle = style({
   ...responsiveFont(60),
   lineHeight: "120%",
   letterSpacing: "-1.8px",
-  color: "#272727",
+  color: "#000000",
   margin: `0 0 ${vw(32)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
       margin: "0 0 32px 0",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(36),
+      lineHeight: "120%",
+      margin: `0 0 ${mvw(80)} 0`,
+      textAlign: "left",
+      letterSpacing: "0em",
+      color: "#000000",
     },
   },
 });
@@ -179,8 +258,17 @@ export const valuesDescription = style({
   fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: "150%",
-  color: "#6B7280",
+  color: "#000000",
   margin: 0,
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: mvw(18),
+      lineHeight: "150%",
+      textAlign: "left",
+      color: "#000000",
+      whiteSpace: "pre-line",
+    },
+  },
 });
 
 export const valuesCards = style({
@@ -188,12 +276,20 @@ export const valuesCards = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  "@media": {
+    [breakpoints.mobile]: {
+      flex: "0 0 auto",
+      width: mvw(335),
+      maxWidth: "90vw",
+      // marginTop: mvw(60),
+    },
+  },
 });
 
 // Values 카드 SVG 이미지 스타일
 export const valueCardsImage = style({
   width: "100%",
-  maxWidth: vw(957), // 피그마 기준 너비
+  maxWidth: vw(957),
   height: "auto",
   objectFit: "contain",
   "@media": {
@@ -201,20 +297,25 @@ export const valueCardsImage = style({
       maxWidth: "957px",
     },
     [breakpoints.mobile]: {
-      maxWidth: "100%",
+      display: "none",
     },
   },
 });
 
-// 페이드인 상승 애니메이션 (RE.YOU 섹션용)
-const reYouFadeInUp = keyframes({
-  from: {
-    opacity: 0,
-    transform: "translateY(80px)",
-  },
-  to: {
-    opacity: 1,
-    transform: "translateY(0)",
+export const valueCardsImageMobile = style({
+  width: "100%",
+  maxWidth: vw(957),
+  height: "auto",
+  objectFit: "contain",
+  display: "none",
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: "auto",
+      maxWidth: "100%",
+    },
   },
 });
 
@@ -222,11 +323,8 @@ const reYouFadeInUp = keyframes({
 export const reYouSection = style({
   width: "100%",
   background: "#73D5FA",
-  // padding: `${vw(120)} 0`,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      // padding: "120px 0",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       padding: "0",
       marginBottom: "0",
@@ -238,17 +336,26 @@ export const reYouContainer = style({
   position: "relative",
   width: "100%",
   maxWidth: "100vw",
-  overflowX: "hidden", 
+  overflowX: "hidden",
   height: "auto", // 모바일에서 auto로 변경
   margin: 0,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      height: "1220px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       height: "auto",
-      padding: "40px 0",
     },
+  },
+});
+
+// 페이드인 애니메이션 for 이미지 카드
+const cardFadeInUp = keyframes({
+  from: {
+    opacity: 0,
+    transform: "translateY(40px)",
+  },
+  to: {
+    opacity: 1,
+    transform: "translateY(0)",
   },
 });
 
@@ -267,8 +374,7 @@ export const reYouImageCards = style({
       position: "static",
       display: "flex",
       flexDirection: "column",
-      gap: "20px",
-      padding: "0 20px",
+      gap: "0px",
       maxWidth: "100vw",
     },
   },
@@ -284,7 +390,7 @@ export const reYouCard1 = style({
   borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
-  animation: `${reYouFadeInUp} 500ms ease-out forwards`,
+  animation: `${cardFadeInUp} 500ms ease-out forwards`,
   animationDelay: "0ms",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -292,12 +398,15 @@ export const reYouCard1 = style({
       height: "850px",
       borderRadius: "15px",
     },
-    "screen and (max-width: 1023px)": {
-      // 375px ~ 1023px 통합
+    [breakpoints.mobile]: {
       position: "static",
-      width: "100%",
-      height: "300px",
-      margin: "0 0 20px 0",
+      width: "100vw",
+      height: mvw(260),
+      margin: 0,
+      borderRadius: 0,
+      opacity: 0,
+      animation: `${cardFadeInUp} 500ms ease-out forwards`,
+      animationDelay: "0ms",
     },
   },
 });
@@ -312,8 +421,8 @@ export const reYouCard2 = style({
   borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
-  animation: `${reYouFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "200ms",
+  animation: `${cardFadeInUp} 500ms ease-out forwards`,
+  animationDelay: "400ms",
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
@@ -322,12 +431,15 @@ export const reYouCard2 = style({
       height: "610px",
       borderRadius: "15px",
     },
-    "screen and (max-width: 1023px)": {
-      // 375px ~ 1023px 통합
+    [breakpoints.mobile]: {
       position: "static",
-      width: "100%",
-      height: "300px",
-      margin: "0 0 20px 0",
+      width: "100vw",
+      height: mvw(260),
+      margin: 0,
+      borderRadius: 0,
+      opacity: 0,
+      animation: `${cardFadeInUp} 500ms ease-out forwards`,
+      animationDelay: "400ms",
     },
   },
 });
@@ -342,11 +454,20 @@ export const reYouCard3 = style({
   borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
-  animation: `${reYouFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "400ms",
+  animation: `${cardFadeInUp} 500ms ease-out forwards`,
+  animationDelay: "800ms",
   "@media": {
     [breakpoints.desktopLarge]: {},
-    [breakpoints.mobile]: {},
+    [breakpoints.mobile]: {
+      position: "static",
+      width: "100vw",
+      height: mvw(260),
+      margin: 0,
+      borderRadius: 0,
+      opacity: 0,
+      animation: `${cardFadeInUp} 500ms ease-out forwards`,
+      animationDelay: "800ms",
+    },
   },
 });
 
@@ -360,11 +481,20 @@ export const reYouCard4 = style({
   borderRadius: vw(15),
   overflow: "hidden",
   opacity: 0,
-  animation: `${reYouFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "600ms",
+  animation: `${cardFadeInUp} 500ms ease-out forwards`,
+  animationDelay: "1200ms",
   "@media": {
     [breakpoints.desktopLarge]: {},
-    [breakpoints.mobile]: {},
+    [breakpoints.mobile]: {
+      position: "static",
+      width: "100vw",
+      height: mvw(260),
+      margin: 0,
+      borderRadius: 0,
+      opacity: 0,
+      animation: `${cardFadeInUp} 500ms ease-out forwards`,
+      animationDelay: "1200ms",
+    },
   },
 });
 
@@ -388,9 +518,10 @@ export const reYouTextSection = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
+      padding: `0 ${mvw(20)}`,
       position: "static",
       textAlign: "center",
-      margin: "0 0 40px 0",
+      margin: `0 0 ${mvw(80)} 0`,
     },
   },
 });
@@ -402,7 +533,7 @@ export const reYouContent = style({
 
 export const reYouTitle = style({
   fontFamily: "'Poppins', sans-serif",
-  fontWeight: 600,
+  fontWeight: 500,
   ...responsiveFont(70),
   lineHeight: "100%",
   color: "#FFFFFF", // 흰색으로 변경
@@ -411,44 +542,68 @@ export const reYouTitle = style({
     [breakpoints.desktopLarge]: {
       margin: "0 0 20px 0",
     },
+    [breakpoints.mobile]: {
+      fontSize: mvw(48),
+      textAlign: "left",
+      color: "#FFFFFF", // 흰색으로 변경
+      margin: `0 0 ${mvw(12)} 0`,
+    },
   },
 });
 
 export const reYouSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
+  fontWeight: 200,
   ...responsiveFont(20),
   lineHeight: "140%",
   color: "#FFFFFF", // 흰색으로 변경
   margin: 0,
+  "@media": {
+    [breakpoints.mobile]: {
+      textAlign: "left",
+      fontSize: mvw(18),
+      color: "#FFFFFF", // 흰색으로 변경
+    },
+  },
 });
 
 // 바날이 잘하는 일 섹션 - 피그마 디자인 정확히 매칭
 export const strengthsSection = style({
   padding: `${vw(240)} 0`,
   marginTop: `${vw(240)}`,
-  backgroundColor: "#FFFFFF", // 화이트 배경으로 변경
+  backgroundColor: "#FFFFFF",
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      padding: "80px 0",
+      width: "100%",
+      padding: `${mvw(120)} ${mvw(16)}`,
+      marginTop: 0,
+      backgroundColor: "#FFFFFF",
     },
   },
 });
 
 export const strengthsContainer = style({
   ...responsiveContainer(1600),
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: 0,
+      width: "100%",
+      maxWidth: "100%",
+    },
+  },
 });
 
 export const strengthsContent = style({
   display: "flex",
   alignItems: "flex-start",
-  gap: vw(156), // 간격 줄임
+  gap: vw(156),
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: "60px",
+      gap: mvw(40),
+      width: "100%",
     },
   },
 });
@@ -459,16 +614,20 @@ export const strengthsLeftSection = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-  justifyContent: "space-between", // 양 끝에 배치
+  justifyContent: "space-between",
   position: "relative",
   maxWidth: vw(400),
-  height: "100%", // 전체 높이 차지
-  minHeight: vw(600), // 최소 높이 보장
+  height: "100%",
+  minHeight: vw(600),
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       minHeight: "auto",
-      justifyContent: "flex-start", // 모바일에서는 기본 배치
+      maxWidth: "100%",
+      alignItems: "flex-start",
+      textAlign: "left",
+      gap: mvw(32),
+      justifyContent: "flex-start",
     },
   },
 });
@@ -480,20 +639,22 @@ export const strengthsTitle = style({
   lineHeight: "120%",
   letterSpacing: "-0.03em",
   color: "#272727",
-  margin: 0, // margin 제거로 space-between 효과 극대화
+  margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",
     },
     [breakpoints.mobile]: {
-      fontSize: "40px",
-      marginBottom: "40px", // 모바일에서만 margin 유지
+      fontSize: mvw(36),
+      lineHeight: "120%",
+      textAlign: "left",
+      alignSelf: "flex-start",
     },
   },
 });
 
 export const strengthsGraffiti = style({
-  width: vw(320), // 크기 조정
+  width: vw(320),
   height: "auto",
   display: "block",
   "@media": {
@@ -501,7 +662,9 @@ export const strengthsGraffiti = style({
       width: "320px",
     },
     [breakpoints.mobile]: {
-      width: "240px",
+      width: mvw(343),
+      marginBottom: mvw(48),
+      alignSelf: "center",
     },
   },
 });
@@ -512,29 +675,60 @@ export const strengthsList = style({
   display: "flex",
   flexDirection: "column",
   gap: 0,
-  backgroundColor: "transparent", // 배경 투명
+  backgroundColor: "transparent",
+  position: "relative",
+  "::after": {
+    content: '""',
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: "2px",
+    backgroundColor: "#14AEFF",
+  },
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "100%",
+      "::after": {
+        display: "none",
+      },
+    },
+  },
 });
 
 export const strengthItem = style({
   display: "flex",
-  flexDirection: "row", // 가로 배치로 변경
+  flexDirection: "row",
   alignItems: "flex-start",
-  gap: vw(32), // 간격 늘림
+  gap: vw(60),
   padding: `${vw(32)} 0`,
-  borderBottom: "2px solid #14AEFF", // 파란색 굵은 선
-  ":last-child": {
-    borderBottom: "2px solid #14AEFF", // 마지막에도 선 유지
-  },
+  borderTop: "2px solid #14AEFF",
   backgroundColor: "transparent",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "32px",
+      gap: "60px",
       padding: "32px 0",
     },
     [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "12px",
-      padding: "24px 0",
+      display: "none",
+    },
+  },
+});
+
+export const strengthItemMobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "row",
+      gap: mvw(12),
+      padding: `${mvw(32)} 0`,
+      borderTop: "1px solid #14AEFF",
+      width: "100%",
+      boxSizing: "border-box",
+      ":last-child": {
+        borderBottom: "1px solid #14AEFF",
+      },
     },
   },
 });
@@ -542,18 +736,66 @@ export const strengthItem = style({
 export const strengthNumber = style({
   flex: "0 0 auto",
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 600,
-  ...responsiveFont(24), // 크기 증가
-  color: "#272727", // 검은색으로 변경
-  minWidth: vw(60), // 번호 영역 너비
+  fontWeight: 700,
+  fontSize: vw(24),
+  lineHeight: vw(29),
+  color: "#272727",
+  minWidth: vw(60),
+  textAlign: "left",
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "24px",
+      lineHeight: "29px",
       minWidth: "60px",
     },
+  },
+});
+
+export const strengthNumberMobile = style({
+  "@media": {
     [breakpoints.mobile]: {
-      fontSize: "20px",
-      minWidth: "40px",
+      flex: "0 0 auto",
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 500,
+      color: "#000000",
+      fontSize: mvw(18),
+      minWidth: mvw(106),
+      marginBottom: 0,
+    },
+  },
+});
+
+// strengthItemContent 스타일 추가
+export const strengthItemContent = style({
+  flex: "1 1 auto",
+  display: "contents", // 자식 요소들을 부모의 직접 자식으로 만듦
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      flex: "1 1 auto",
+      minWidth: 0,
+      gap: mvw(8),
+      width: "100%",
+      overflow: "hidden",
+    },
+  },
+});
+
+// strengthItemContent 스타일 추가
+export const strengthItemContentMobile = style({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(16),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "16px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(225),
+      gap: mvw(12),
+      flex: 1,
     },
   },
 });
@@ -561,20 +803,33 @@ export const strengthNumber = style({
 export const strengthItemTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 600,
-  ...responsiveFont(20),
-  lineHeight: "140%",
-  color: "#272727", // 검은색으로 변경
+  fontSize: vw(20),
+  lineHeight: vw(28),
+  color: "#272727",
   margin: 0,
   flex: "0 0 auto",
-  minWidth: vw(280), // 제목 영역 고정 너비
+  minWidth: vw(200),
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
-      minWidth: "280px",
+      lineHeight: "28px",
+      minWidth: "200px",
     },
+  },
+});
+
+export const strengthItemTitleMobile = style({
+  "@media": {
     [breakpoints.mobile]: {
-      fontSize: "18px",
-      minWidth: "auto",
+      display: "block",
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 500,
+      fontSize: mvw(20),
+      lineHeight: "140%",
+      color: "#000000",
+      whiteSpace: "pre-line",
+      wordBreak: "keep-all",
+      margin: 0,
     },
   },
 });
@@ -582,18 +837,31 @@ export const strengthItemTitle = style({
 export const strengthDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
-  ...responsiveFont(16),
-  lineHeight: "150%",
-  color: "#272727", // 검은색으로 변경
+  fontSize: vw(16),
+  lineHeight: vw(24),
+  letterSpacing: "0",
+  color: "#272727",
   margin: 0,
   whiteSpace: "pre-line",
-  flex: 1, // 나머지 공간 차지
+  flex: "1 1 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "16px",
+      lineHeight: "24px",
     },
+  },
+});
+
+export const strengthDescriptionMobile = style({
+  "@media": {
     [breakpoints.mobile]: {
-      fontSize: "14px",
+      fontSize: mvw(16),
+      fontWeight: 200,
+      lineHeight: "160%",
+      color: "#000000",
+      whiteSpace: "pre-line",
+      wordBreak: "keep-all",
+      overflowWrap: "break-word",
     },
   },
 });
@@ -601,13 +869,13 @@ export const strengthDescription = style({
 // Gallery Section - 바날 둘러보기 (피그마 디자인)
 export const gallerySection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF", // 화이트 배경
+  backgroundColor: "#FFFFFF",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: "80px 0",
+      padding: 0,
     },
   },
 });
@@ -615,14 +883,15 @@ export const gallerySection = style({
 export const galleryContainer = style({
   ...responsiveContainer(1600),
   display: "flex",
-  flexDirection: "column", // 세로 배치로 변경
-  gap: vw(80), // 상단과 하단 사이 간격
+  flexDirection: "column",
+  gap: vw(15),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "80px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      gap: "40px",
+      width: "100%",
+      gap: mvw(16),
+      padding: `0 ${mvw(16)}`,
+      marginBottom: mvw(120),
     },
   },
 });
@@ -632,8 +901,10 @@ export const galleryTopSection = style({
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
-  gap: vw(20), // 790px + 20px + 790px = 1600px
-  height: vw(580), // 피그마 정확한 높이
+  justifyContent: "space-between",
+  gap: vw(20),
+  height: vw(580),
+  width: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
@@ -642,86 +913,86 @@ export const galleryTopSection = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       height: "auto",
-      gap: "30px",
+      gap: mvw(30),
     },
   },
 });
 
-// 갤러리 타이틀 영역 (피그마 정확한 790px)
+// 갤러리 타이틀 영역 (피그마 정확한 50% - gap 고려)
 export const galleryTitleSection = style({
-  flex: "0 0 auto",
-  width: "100%",
-  maxWidth: "100vw",
-  height: "auto",
+  flex: "1 1 50%",
+  maxWidth: `calc(50% - ${vw(10)})`,
+  height: vw(144),
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "790px",
+      maxWidth: "calc(50% - 10px)",
       height: "144px",
-      maxWidth: "790px",
     },
     [breakpoints.mobile]: {
+      maxWidth: "100%",
       width: "100%",
       height: "auto",
+      flex: "none",
     },
   },
 });
 
-// 메인 이미지 (Frame 15392, 790x580)
+// 메인 이미지 (Frame 15392, 50% 영역)
 export const galleryMainImage = style({
-  flex: "0 0 auto",
-  width: "100%",
-  maxWidth: "100vw",
-  height: "auto",
-  aspectRatio: "790 / 580",
-  borderRadius: "16px",
+  flex: "1 1 50%",
+  maxWidth: `calc(50% - ${vw(10)})`,
+  height: vw(580),
+  borderRadius: vw(16),
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "790px",
+      maxWidth: "calc(50% - 10px)",
       height: "580px",
-      maxWidth: "790px",
+      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
+      maxWidth: "100%",
       width: "100%",
-      height: "auto",
-      aspectRatio: "790 / 580",
+      height: mvw(200),
+      borderRadius: mvw(8),
+      flex: "none",
     },
   },
 });
 
 export const galleryTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500, // 피그마 Medium (500)
-  ...responsiveFont(60), // 피그마 정확한 폰트 크기
-  lineHeight: vw(72), // 피그마 정확한 라인 높이 (72px)
-  letterSpacing: "0", // 피그마 letterSpacing 0
-  color: "#272727", // 피그마 정확한 색상
-  textAlign: "left", // LEFT 정렬
+  fontWeight: 500,
+  ...responsiveFont(60),
+  lineHeight: vw(72),
+  letterSpacing: "0",
+  color: "#272727",
+  textAlign: "left",
   margin: 0,
-  width: "100%", // 전체 너비 차지
-  height: "100%", // 전체 높이 차지
+  // width: "100%",
+  height: "100%",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start", // 상단 시작
-  alignItems: "flex-start", // 왼쪽 시작
+  justifyContent: "flex-start",
+  alignItems: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",
       lineHeight: "72px",
     },
     [breakpoints.mobile]: {
-      fontSize: "40px",
-      lineHeight: "48px",
-      textAlign: "left", // 모바일에서도 왼쪽 정렬 유지
+      fontSize: mvw(40),
+      lineHeight: "120%",
+      textAlign: "left",
     },
   },
 });
@@ -730,14 +1001,14 @@ export const galleryTitle = style({
 export const galleryGrid = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(20), // 세로 간격
+  gap: vw(20),
   width: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
     },
     [breakpoints.mobile]: {
-      gap: "15px",
+      gap: mvw(16),
     },
   },
 });
@@ -745,23 +1016,23 @@ export const galleryGrid = style({
 // Row 1: Frame 219 (1600x925) - 왼쪽 큰 이미지 + 오른쪽 2개 스택
 export const galleryRow1 = style({
   display: "grid",
-  gridTemplateColumns: "1fr",
-  gridTemplateRows: "auto",
-  gap: "20px",
+  gridTemplateColumns: `repeat(2, calc(50% - ${vw(10)}))`,
+  gridTemplateRows: vw(925),
+  gap: vw(20),
+  height: vw(925),
   width: "100%",
-  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gridTemplateColumns: "790px 790px",
+      gridTemplateColumns: "repeat(2, calc(50% - 10px))",
       gridTemplateRows: "925px",
       gap: "20px",
       height: "925px",
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: "300px 150px 150px",
+      gridTemplateRows: `${mvw(250)} ${mvw(150)} ${mvw(150)}`,
       height: "auto",
-      gap: "15px",
+      gap: mvw(16),
     },
   },
 });
@@ -769,23 +1040,23 @@ export const galleryRow1 = style({
 // Row 2: Frame 220 (1600x925) - 2개 나란히
 export const galleryRow2 = style({
   display: "grid",
-  gridTemplateColumns: "1fr",
-  gridTemplateRows: "auto",
-  gap: "20px",
+  gridTemplateColumns: `repeat(2, calc(50% - ${vw(10)}))`,
+  gridTemplateRows: vw(925),
+  gap: vw(20),
+  height: vw(925),
   width: "100%",
-  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gridTemplateColumns: "790px 790px",
+      gridTemplateColumns: "repeat(2, calc(50% - 10px))",
       gridTemplateRows: "925px",
       gap: "20px",
       height: "925px",
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: "300px 300px",
+      gridTemplateRows: `${mvw(250)} ${mvw(250)}`,
       height: "auto",
-      gap: "15px",
+      gap: mvw(16),
     },
   },
 });
@@ -793,23 +1064,23 @@ export const galleryRow2 = style({
 // Row 3: Frame 223 (1600x1395) - 왼쪽 2개 스택 + 오른쪽 2개 스택
 export const galleryRow3 = style({
   display: "grid",
-  gridTemplateColumns: "1fr",
-  gridTemplateRows: "auto",
-  gap: "20px",
+  gridTemplateColumns: `repeat(2, calc(50% - ${vw(10)}))`,
+  gridTemplateRows: vw(1395),
+  gap: vw(20),
+  height: vw(1395),
   width: "100%",
-  maxWidth: "100vw",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gridTemplateColumns: "790px 790px",
+      gridTemplateColumns: "repeat(2, calc(50% - 10px))",
       gridTemplateRows: "1395px",
       gap: "20px",
       height: "1395px",
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: "repeat(4, 200px)",
+      gridTemplateRows: `repeat(4, ${mvw(180)})`,
       height: "auto",
-      gap: "15px",
+      gap: mvw(16),
     },
   },
 });
@@ -822,10 +1093,10 @@ export const galleryLeftLarge = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       borderRadius: "16px",
@@ -833,6 +1104,7 @@ export const galleryLeftLarge = style({
     [breakpoints.mobile]: {
       gridColumn: "1",
       gridRow: "1",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -841,16 +1113,16 @@ export const galleryLeftLarge = style({
 export const galleryRightTop = style({
   gridColumn: "2",
   gridRow: "1",
-  height: vw(455), // 정확한 높이
+  height: vw(455),
   alignSelf: "start",
   borderRadius: vw(16),
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
@@ -861,6 +1133,7 @@ export const galleryRightTop = style({
       gridRow: "2",
       height: "auto",
       alignSelf: "stretch",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -875,10 +1148,10 @@ export const galleryRightBottom = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
@@ -889,6 +1162,7 @@ export const galleryRightBottom = style({
       gridRow: "3",
       height: "auto",
       alignSelf: "stretch",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -899,13 +1173,16 @@ export const galleryGridItem = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       borderRadius: "16px",
+    },
+    [breakpoints.mobile]: {
+      borderRadius: mvw(8),
     },
   },
 });
@@ -955,17 +1232,18 @@ export const gallerySmallImage = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      height: "200px",
+      height: mvw(180),
+      borderRadius: mvw(8),
     },
   },
 });
@@ -977,17 +1255,18 @@ export const galleryLargeImage = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  },
+  // ":hover": {
+  //   transform: "translateY(-8px)",
+  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
+  // },
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "925px",
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      height: "200px",
+      height: mvw(180),
+      borderRadius: mvw(8),
     },
   },
 });
@@ -999,9 +1278,9 @@ export const galleryImage = style({
   objectFit: "cover",
   objectPosition: "center",
   transition: "transform 0.3s ease",
-  ":hover": {
-    transform: "scale(1.05)",
-  },
+  // ":hover": {
+  //   transform: "scale(1.05)",
+  // },
 });
 
 export const galleryPlaceholder = style({

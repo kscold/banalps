@@ -184,6 +184,64 @@ export default function DoctorsPage() {
 
         {/* 신승규 원장 */}
         <div className={styles.doctorSection}>
+          {/* 모바일 전용 컨테이너 */}
+          <div className={styles.doctorMobileContainer}>
+            <div className={styles.doctorMobileHeader}>
+              <h1 className={styles.doctorMobileTitle}>
+                모발이식
+                <br />
+                15년 전문의.
+              </h1>
+            </div>
+            <div className={styles.doctorMobileImage}>
+              <img
+                src="/doctors/mobile/shin-mobile.png"
+                alt="신승규 원장 모바일"
+                className={styles.doctorMobileImg}
+              />
+            </div>
+            <div className={styles.doctorMobileInfo}>
+              <h2 className={styles.doctorMobileName}>Shin<br />Seung<br />gyu</h2>
+              <p className={styles.doctorMobilePosition}>성형외과 전문의<br />대표원장 신 승규</p>
+            </div>
+            <div className={styles.doctorMobileQuote}>
+              <p className={styles.doctorMobileQuoteText}>
+                순서와 방법을 잘 정해야 합니다.
+                <br />
+                순서가 뒤바뀌면 최선의 결과를 놓쳐요.
+              </p>
+            </div>
+            <div className={styles.doctorMobileCredentials}>
+              <ul className={styles.doctorMobileCredentialList}>
+                <li className={styles.doctorMobileCredentialItem}>
+                  현) 바람부는날에도 성형외과 대표원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  전) 모제림성형외과 여성센터 전담원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  전) 브라운 성형외과 원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  국제모발이식학회 (ISHRS) 정회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한성형외과학회 (KSPRS) 종신회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한미용성형외과학회 (KSAPS) 재무위원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한성형외과학회 모발성형연구회 정회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한모발이식학회 (KSHRS) 정회원
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 데스크탑 컨텐츠 */}
           <div className={styles.doctorContent}>
             <div className={styles.doctorImageContainer}>
               <img
@@ -273,6 +331,56 @@ export default function DoctorsPage() {
 
         {/* 박수호 원장 */}
         <div className={styles.doctorSection}>
+          {/* 모바일 전용 컨테이너 */}
+          <div className={styles.doctorMobileContainer}>
+            <div className={styles.doctorMobileImage}>
+              <img
+                src="/doctors/mobile/park-mobile.png"
+                alt="박수호 원장 모바일"
+                className={styles.doctorMobileImg}
+              />
+            </div>
+            <div className={styles.doctorMobileInfo}>
+              <h2 className={styles.doctorMobileName}>Park<br />Soo Ho</h2>
+              <p className={styles.doctorMobilePosition}>성형외과 전문의<br />미국 모발이식외과 자격의 (ABHRS)<br />대표원장 박 수호</p>
+            </div>
+            <div className={styles.doctorMobileQuote}>
+              <p className={styles.doctorMobileQuoteText}>
+                가장 중요한 건 환자가 원하는 거예요.
+                <br />
+                의사가 원하는 대로만 하면
+                <br />
+                결국 두 번 수술을 하게 됩니다.
+              </p>
+            </div>
+            <div className={styles.doctorMobileCredentials}>
+              <ul className={styles.doctorMobileCredentialList}>
+                <li className={styles.doctorMobileCredentialItem}>
+                  현) 바람부는날에도 성형외과 대표원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  전) 모제림성형외과 여성센터 대표원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  국제모발이식학회 (ISHRS) 정회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한성형외과학회 (KSPRS) 종신회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한미용성형외과학회 (KSAPS) 학술위원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한성형외과학회 모발성형연구회 정회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한모발이식학회 (KSHRS) 상임 학술이사
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 데스크탑 컨텐츠 */}
           <div className={styles.doctorContentReversed}>
             <div className={styles.doctorTextSection2}>
               <div className={styles.doctorName}>
@@ -364,6 +472,58 @@ export default function DoctorsPage() {
 
         {/* 김나래 원장 */}
         <div className={styles.doctorSection}>
+          {/* 모바일 전용 컨테이너 */}
+          <div className={styles.doctorMobileContainer}>
+            <div className={styles.doctorMobileImage}>
+              <img
+                src="/doctors/mobile/kim-mobile.png"
+                alt="김나래 원장 모바일"
+                className={styles.doctorMobileImg}
+              />
+            </div>
+            <div className={styles.doctorMobileInfo}>
+              <h2 className={styles.doctorMobileName}>Kim<br />Narae</h2>
+              <p className={styles.doctorMobilePosition}>성형외과 전문의<br />대표원장 김 나래</p>
+            </div>
+            <div className={styles.doctorMobileQuote}>
+              <p className={styles.doctorMobileQuoteText}>
+                자연스러운 아름다움과 함께가는 치료를
+                <br />
+                추구합니다. 획일화된 사람이 아니라
+                <br />
+                각자 한 번 살 인생게 오히려 무한하고
+                <br />
+                아름다울 수포를 시작합니다.
+              </p>
+            </div>
+            <div className={styles.doctorMobileCredentials}>
+              <ul className={styles.doctorMobileCredentialList}>
+                <li className={styles.doctorMobileCredentialItem}>
+                  현) 바람부는날에도 성형외과 대표원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  전) 다나 성형외과 여성 대표원장
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한모발이식학회 정회원
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  국제모발이식학회(ISHRS) 펜딩멤버
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  대한비만미용학회(KOAT) 학술이사
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  경희대학교 의과대학 졸업
+                </li>
+                <li className={styles.doctorMobileCredentialItem}>
+                  경희의료원 전문의 수료
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 데스크탑 컨텐츠 */}
           <div className={styles.doctorContent}>
             <div className={styles.doctorImageContainer3}>
               <img
