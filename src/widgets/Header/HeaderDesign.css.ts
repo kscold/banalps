@@ -413,8 +413,13 @@ export const mobileMenuButton = style({
 });
 
 export const menuIcon = style({
-  height: mvw(24),
-  width: mvw(24),
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      height: mvw(24),
+      width: mvw(24),
+    },
+  },
 });
 
 // 모바일 메뉴

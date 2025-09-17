@@ -177,20 +177,17 @@ export default function DoctorsPage() {
                 15년 전문의.
               </h1>
             </div>
-            <img
-              src="/doctors/intro/doctors-intro-1.png"
-              alt="의료진 소개 인트로 1"
-              className={styles.doctorsIntroImage1}
-            />
-
             <div className={styles.medicalTeamHeroSection}>
-              <div className={styles.medicalTeamHeroText}>
-                <h2 className={styles.medicalTeamHeroTitle}>
-                  Banal
-                  <br />
-                  Medical Team
-                </h2>
-              </div>
+              <img
+                src="/doctors/intro/doctors-intro-1.png"
+                alt="의료진 소개 인트로 1"
+                className={styles.doctorsIntroImage1}
+              />
+              <h2 className={styles.medicalTeamHeroTitle}>
+                Banal
+                <br />
+                Medical Team
+              </h2>
             </div>
           </div>
         </div>
@@ -273,88 +270,97 @@ export default function DoctorsPage() {
           ) : (
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
+              <div className={styles.doctorName}>
+                <h3 className={styles.doctorNameText}>
+                  Shin
+                  <br />
+                  Seung gyu
+                </h3>
+              </div>
+
+              <div className={styles.doctorTitle}>
+                <p className={styles.doctorSpecialty}>성형외과 전문의</p>
+                <h4 className={styles.doctorPosition}>대표원장 신 승규</h4>
+              </div>
+
+              <div className={styles.doctorInfo}>
+                <div className={styles.doctorCredentials}>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 현) 바람부는날에도 성형외과 대표원장
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 전) 모제림성형외과 여성센터 전담원장
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 전) 브라운 성형외과 원장
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 국제모발이식학회 (ISHRS) 정회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한성형외과학회 (KSPRS) 종신회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한미용성형외과학회 (KSAPS) 재무위원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한성형외과학회 모발성형연구회 정회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한모발이식학회 (KSHRS) 정회원
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.doctorQuote1}>
+                <div className={styles.doctorQuoteText1}>
+                  <img
+                    src="/doctors/profile/double-quotation-start.svg"
+                    alt="따옴표 시작"
+                    className={styles.quotationStart}
+                  />
+                  <p className={styles.doctorQuoteTextParagraph}>
+                    첫 수술부터 순서와 방법을 잘 정해야 합니다.
+                    <br />
+                    순서가 뒤바뀌면 최선의 결과를 놓칠 수도 있습니다.
+                  </p>
+                  <img
+                    src="/doctors/profile/double-quotation-end.svg"
+                    alt="따옴표 끝"
+                    className={styles.quotationEnd}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.doctorSubImage}>
+                <img
+                  src="/doctors/profile/doctors-profile-1.png"
+                  alt="의료진 소개 인트로 2"
+                  className={styles.doctorSubImg}
+                />
+              </div>
+              <div className={styles.doctorSubImage2}>
+                <img
+                  src="/doctors/profile/doctors-profile-2.png"
+                  alt="신승규 원장 서브 이미지 2"
+                  className={styles.doctorSubImg}
+                />
+              </div>
+
               <div className={styles.doctorImageContainer}>
                 <img
                   src="/main/person/대표원장_신승규.png"
                   alt="신승규 원장"
                   className={styles.doctorMainImage}
                 />
-              </div>
-
-              <div className={styles.doctorTextSection}>
-                <div className={styles.doctorName}>
-                  <h3 className={styles.doctorNameText}>
-                    Shin
-                    <br />
-                    Seung gyu
-                  </h3>
-                </div>
-              </div>
-
-              <div className={styles.doctorSubImages}>
-                <div className={styles.doctorSubImage}>
-                  <img
-                    src="/doctors/profile/doctors-profile-1.png"
-                    alt="의료진 소개 인트로 2"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
-                <div className={styles.doctorSubImage2}>
-                  <img
-                    src="/doctors/profile/doctors-profile-2.png"
-                    alt="신승규 원장 서브 이미지 2"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
-                <div className={styles.doctorQuote1}>
-                  <p className={styles.doctorQuoteText1}>
-                    첫 수술부터 순서와 방법을 잘 정해야 합니다.
-                    <br />
-                    순서가 뒤바뀌면 최선의 결과를 놓칠 수도 있습니다.
-                  </p>
-                </div>
-
-                <div className={styles.doctorInfo}>
-                  <div className={styles.doctorTitle}>
-                    <p className={styles.doctorSpecialty}>성형외과 전문의</p>
-                    <h4 className={styles.doctorPosition}>대표원장 신 승규</h4>
-                  </div>
-
-                  <div className={styles.doctorCredentials}>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 현) 바람부는날에도 성형외과 대표원장
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 전) 모제림성형외과 여성센터 전담원장
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 전) 브라운 성형외과 원장
-                        </li>
-                      </ul>
-                    </div>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 국제모발이식학회 (ISHRS) 정회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한성형외과학회 (KSPRS) 종신회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한미용성형외과학회 (KSAPS) 재무위원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한성형외과학회 모발성형연구회 정회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한모발이식학회 (KSHRS) 정회원
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           )}
@@ -365,35 +371,40 @@ export default function DoctorsPage() {
           {/* 모바일 전용 컨테이너 */}
           {isMobile ? (
             <div className={styles.doctorMobileContainer}>
-              <div className={styles.doctorMobileImage}>
-                <img
-                  src="/doctors/mobile/park-mobile.png"
-                  alt="박수호 원장 모바일"
-                  className={styles.doctorMobileImg}
-                />
-              </div>
-              <div className={styles.doctorMobileInfo}>
-                <h2 className={styles.doctorMobileName}>
-                  Park
-                  <br />
-                  Soo Ho
-                </h2>
-                <p className={styles.doctorMobilePosition}>
-                  성형외과 전문의
-                  <br />
-                  미국 모발이식외과 자격의 (ABHRS)
-                  <br />
-                  대표원장 박 수호
-                </p>
-              </div>
-              <div className={styles.doctorMobileQuote}>
-                <p className={styles.doctorMobileQuoteText}>
-                  가장 중요한 건 환자가 원하는 거예요.
-                  <br />
-                  의사가 원하는 대로만 하면
-                  <br />
-                  결국 두 번 수술을 하게 됩니다.
-                </p>
+              <div className={styles.doctorMobileMainSection}>
+                {/* 의사 정보 - 이미지와 텍스트 오버레이 */}
+                <div className={styles.doctorMobileInfoSection}>
+                  <img
+                    src="/doctors/mobile/doctor-parksoohyo-mobile.png"
+                    alt="박수호 원장 모바일"
+                    className={styles.doctorMobileInfoImage}
+                  />
+                  <div className={styles.doctorMobileInfoOverlay}>
+                    <h2 className={styles.doctorMobileName2}>
+                      Park
+                      <br />
+                      Soo Ho
+                    </h2>
+                    <p className={styles.doctorMobilePosition}>
+                      성형외과 전문의
+                      <br />
+                      미국 모발이식외과 자격의
+                      <br />
+                      (ABHRS)
+                    </p>
+                    <p className={styles.doctorMobileNameBold}>
+                      대표원장 박 수호
+                    </p>
+                  </div>
+                </div>
+                {/* 명언 섹션 - 이미지로 대체 */}
+                <div className={styles.doctorMobileQuoteSection}>
+                  <img
+                    src="/doctors/mobile/doctor-parksoohyo-mobile-talk.png"
+                    alt="박수호 원장 명언"
+                    className={styles.doctorMobileQuoteImage}
+                  />
+                </div>
               </div>
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
@@ -424,65 +435,90 @@ export default function DoctorsPage() {
           ) : (
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContentReversed}>
-              <div className={styles.doctorTextSection2}>
-                <div className={styles.doctorName}>
-                  <h3 className={styles.doctorNameText}>
-                    Park
-                    <br />
-                    Soo Ho
-                  </h3>
-                </div>
+              <div className={styles.doctorName2}>
+                <h3 className={styles.doctorNameText}>
+                  Park
+                  <br />
+                  Soo Ho
+                </h3>
+              </div>
 
-                <div className={styles.doctorInfo2}>
-                  <div className={styles.doctorTitle}>
-                    <p className={styles.doctorSpecialty}>
-                      성형외과 전문의
-                      <br />
-                      미국 모발이식외과 자격의 (ABHRS)
-                    </p>
-                    <h4 className={styles.doctorPosition}>대표원장 박 수호</h4>
+              <div className={styles.doctorTitle2}>
+                <p className={styles.doctorSpecialty}>
+                  성형외과 전문의
+                  <br />
+                  미국 모발이식외과 자격의 (ABHRS)
+                </p>
+                <h4 className={styles.doctorPosition}>대표원장 박 수호</h4>
+              </div>
+
+              <div className={styles.doctorInfo2}>
+                <div className={styles.doctorCredentials}>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 현) 바람부는날에도 성형외과 대표원장
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 전) 모제림성형외과 여성센터 대표원장
+                      </li>
+                    </ul>
                   </div>
-
-                  <div className={styles.doctorCredentials}>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 현) 바람부는날에도 성형외과 대표원장
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 전) 모제림성형외과 여성센터 대표원장
-                        </li>
-                      </ul>
-                    </div>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 국제모발이식학회 (ISHRS) 정회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한성형외과학회 (KSPRS) 종신회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한미용성형외과학회 (KSAPS) 학술위원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한성형외과학회 모발성형연구회 정회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한모발이식학회 (KSHRS) 상임 학술이사
-                        </li>
-                      </ul>
-                    </div>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 국제모발이식학회 (ISHRS) 정회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한성형외과학회 (KSPRS) 종신회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한미용성형외과학회 (KSAPS) 학술위원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한성형외과학회 모발성형연구회 정회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한모발이식학회 (KSHRS) 상임 학술이사
+                      </li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <div className={styles.doctorQuote}>
-                  <p className={styles.doctorQuoteText}>
+              <div className={styles.doctorQuote2}>
+                <div className={styles.doctorQuoteText2}>
+                  <img
+                    src="/doctors/profile/double-quotation-start.svg"
+                    alt="따옴표 시작"
+                    className={styles.quotationStart}
+                  />
+                  <p className={styles.doctorQuoteTextParagraph}>
                     가장 중요한 건 환자가 원하는 거예요.
                     <br />
                     의사가 원하는 대로만 하면 결국 두 번 수술을 하게 됩니다.
                   </p>
+                  <img
+                    src="/doctors/profile/double-quotation-end.svg"
+                    alt="따옴표 끝"
+                    className={styles.quotationEnd}
+                  />
                 </div>
+              </div>
+
+              <div className={styles.doctorSubImagePark1}>
+                <img
+                  src="/doctors/profile/doctors-profile-3.png"
+                  alt="박수호 원장 서브 이미지 1"
+                  className={styles.doctorSubImg}
+                />
+              </div>
+              <div className={styles.doctorSubImagePark2}>
+                <img
+                  src="/doctors/profile/doctors-profile-4.png"
+                  alt="박수호 원장 서브 이미지 2"
+                  className={styles.doctorSubImg}
+                />
               </div>
 
               <div className={styles.doctorImageContainer2}>
@@ -491,23 +527,6 @@ export default function DoctorsPage() {
                   alt="박수호 원장"
                   className={styles.doctorMainImage}
                 />
-              </div>
-
-              <div className={styles.doctorSubImages2}>
-                <div className={styles.doctorSubImagePark1}>
-                  <img
-                    src="/doctors/profile/doctors-profile-3.png"
-                    alt="박수호 원장 서브 이미지 1"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
-                <div className={styles.doctorSubImagePark2}>
-                  <img
-                    src="/doctors/profile/doctors-profile-4.png"
-                    alt="박수호 원장 서브 이미지 2"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
               </div>
             </div>
           )}
@@ -518,35 +537,34 @@ export default function DoctorsPage() {
           {/* 모바일 전용 컨테이너 */}
           {isMobile ? (
             <div className={styles.doctorMobileContainer}>
-              <div className={styles.doctorMobileImage}>
-                <img
-                  src="/doctors/mobile/kim-mobile.png"
-                  alt="김나래 원장 모바일"
-                  className={styles.doctorMobileImg}
-                />
-              </div>
-              <div className={styles.doctorMobileInfo}>
-                <h2 className={styles.doctorMobileName}>
-                  Kim
-                  <br />
-                  Narae
-                </h2>
-                <p className={styles.doctorMobilePosition}>
-                  성형외과 전문의
-                  <br />
-                  대표원장 김 나래
-                </p>
-              </div>
-              <div className={styles.doctorMobileQuote}>
-                <p className={styles.doctorMobileQuoteText}>
-                  자연스러운 아름다움과 함께가는 치료를
-                  <br />
-                  추구합니다. 획일화된 사람이 아니라
-                  <br />
-                  각자 한 번 살 인생게 오히려 무한하고
-                  <br />
-                  아름다울 수포를 시작합니다.
-                </p>
+              <div className={styles.doctorMobileMainSection}>
+                <div className={styles.doctorMobileInfoSection}>
+                  <img
+                    src="/doctors/mobile/doctor-kimnarae-mobile.png"
+                    alt="김나래 원장 모바일"
+                    className={styles.doctorMobileInfoImage}
+                  />
+                  <div className={styles.doctorMobileInfoOverlay}>
+                    <h2 className={styles.doctorMobileName}>
+                      Kim
+                      <br />
+                      Narae
+                    </h2>
+                    <p className={styles.doctorMobilePosition}>
+                      성형외과 전문의
+                    </p>
+                    <p className={styles.doctorMobileNameBold}>
+                      대표원장 김 나래
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.doctorMobileQuoteSection}>
+                  <img
+                    src="/doctors/mobile/doctor-kimnarae-mobile-talk.png"
+                    alt="김나래 원장 quote"
+                    className={styles.doctorMobileQuoteImage}
+                  />
+                </div>
               </div>
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
@@ -577,86 +595,94 @@ export default function DoctorsPage() {
           ) : (
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
+              <div className={styles.doctorName3}>
+                <h3 className={styles.doctorNameText}>
+                  Kim
+                  <br />
+                  Narae
+                </h3>
+              </div>
+
+              <div className={styles.doctorTitle3}>
+                <p className={styles.doctorSpecialty}>성형외과 전문의</p>
+                <h4 className={styles.doctorPosition}>대표원장 김 나래</h4>
+              </div>
+
+              <div className={styles.doctorInfo}>
+                <div className={styles.doctorCredentials}>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 현) 바람부는날에도 성형외과 대표원장
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 전) 다나 성형외과 여성 대표원장
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={styles.credentialColumn}>
+                    <ul className={styles.credentialList}>
+                      <li className={styles.credentialItem}>
+                        • 대한모발이식학회 정회원
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 국제모발이식학회(ISHRS) 펜딩멤버
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 대한비만미용학회(KOAT) 학술이사
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 경희대학교 의과대학 졸업
+                      </li>
+                      <li className={styles.credentialItem}>
+                        • 경희의료원 전문의 수료
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.doctorQuote3}>
+                <div className={styles.doctorQuoteText3}>
+                  <img
+                    src="/doctors/profile/double-quotation-start.svg"
+                    alt="따옴표 시작"
+                    className={styles.quotationStart}
+                  />
+                  <p className={styles.doctorQuoteTextParagraph}>
+                    가장 중요한 건 환자가 원하는 거예요.
+                    <br />
+                    의사가 원하는 대로만 하면 결국 두 번 수술을 하게 됩니다.
+                  </p>
+                  <img
+                    src="/doctors/profile/double-quotation-end.svg"
+                    alt="따옴표 끝"
+                    className={styles.quotationEnd}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.doctorSubImageKim1}>
+                <img
+                  src="/doctors/profile/doctors-profile-5.png"
+                  alt="김나래 원장 서브 이미지 1"
+                  className={styles.doctorSubImg}
+                />
+              </div>
+              <div className={styles.doctorSubImageKim2}>
+                <img
+                  src="/doctors/profile/doctors-profile-6.png"
+                  alt="김나래 원장 서브 이미지 2"
+                  className={styles.doctorSubImg}
+                />
+              </div>
+
               <div className={styles.doctorImageContainer3}>
                 <img
                   src="/main/person/대표원장_김나래.png"
                   alt="김나래 원장"
                   className={styles.doctorMainImage}
                 />
-              </div>
-
-              <div className={styles.doctorTextSection3}>
-                <div className={styles.doctorName}>
-                  <h3 className={styles.doctorNameText}>
-                    Kim
-                    <br />
-                    Narae
-                  </h3>
-                </div>
-
-                <div className={styles.doctorInfo3}>
-                  <div className={styles.doctorTitle}>
-                    <p className={styles.doctorSpecialty}>성형외과 전문의</p>
-                    <h4 className={styles.doctorPosition}>대표원장 김 나래</h4>
-                  </div>
-
-                  <div className={styles.doctorCredentials}>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 현) 바람부는날에도 성형외과 대표원장
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 전) 다나 성형외과 여성 대표원장
-                        </li>
-                      </ul>
-                    </div>
-                    <div className={styles.credentialColumn}>
-                      <ul className={styles.credentialList}>
-                        <li className={styles.credentialItem}>
-                          • 대한모발이식학회 정회원
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 국제모발이식학회(ISHRS) 펜딩멤버
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 대한비만미용학회(KOAT) 학술이사
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 경희대학교 의과대학 졸업
-                        </li>
-                        <li className={styles.credentialItem}>
-                          • 경희의료원 전문의 수료
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={styles.doctorQuote}>
-                  <p className={styles.doctorQuoteText}>
-                    가장 중요한 건 환자가 원하는 거예요.
-                    <br />
-                    의사가 원하는 대로만 하면 결국 두 번 수술을 하게 됩니다.
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.doctorSubImages3}>
-                <div className={styles.doctorSubImageKim1}>
-                  <img
-                    src="/doctors/profile/doctors-profile-5.png"
-                    alt="김나래 원장 서브 이미지 1"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
-                <div className={styles.doctorSubImageKim2}>
-                  <img
-                    src="/doctors/profile/doctors-profile-6.png"
-                    alt="김나래 원장 서브 이미지 2"
-                    className={styles.doctorSubImg}
-                  />
-                </div>
               </div>
             </div>
           )}
@@ -675,70 +701,87 @@ export default function DoctorsPage() {
             </h2>
           </div>
 
-          {/* 타임라인 레이아웃 - 2라인 구조 */}
-          <div className={styles.timelineLayout}>
-            {/* 첫 번째 라인: 2011 - 화살표 - 첫 번째 이미지 */}
-            <div className={styles.timelineFirstRow}>
-              {/* 2011년 그룹 */}
-              <div className={styles.year2011Group}>
-                <img
-                  src="/doctors/timeline/2011.svg"
-                  alt="2011년 그룹"
-                  className={styles.year2011Image}
-                />
+          {/* 데스크탑 타임라인 */}
+          <div className={styles.timelineDesktop}>
+            <div className={styles.timelineLayout}>
+              {/* 첫 번째 라인: 2011 - 화살표 - 첫 번째 이미지 */}
+              <div className={styles.timelineFirstRow}>
+                {/* 2011년 그룹 */}
+                <div className={styles.year2011Group}>
+                  <img
+                    src="/doctors/timeline/2011.svg"
+                    alt="2011년 그룹"
+                    className={styles.year2011Image}
+                  />
+                </div>
+
+                {/* 화살표 */}
+                <div className={styles.timelineArrow}>
+                  <img
+                    src="/doctors/timeline/arrow.svg"
+                    alt="화살표"
+                    className={styles.timelineArrowSvg}
+                  />
+                </div>
+
+                {/* 첫 번째 프로필 이미지 */}
+                <div className={styles.timelineImage1}>
+                  <img
+                    src="/doctors/timeline/timeline-profile-1.png"
+                    alt="타임라인 프로필 1"
+                    className={styles.timelineImageContent}
+                  />
+                </div>
               </div>
 
-              {/* 화살표 */}
-              <div className={styles.timelineArrow}>
-                <img
-                  src="/doctors/timeline/arrow.svg"
-                  alt="화살표"
-                  className={styles.timelineArrowSvg}
-                />
-              </div>
+              {/* 두 번째 라인: 두 번째 이미지 - 파란색 원 - 2024 */}
+              <div className={styles.timelineSecondRow}>
+                {/* 두 번째 프로필 이미지 */}
+                <div className={styles.timelineImage2}>
+                  <img
+                    src="/doctors/timeline/timeline-profile-2.png"
+                    alt="타임라인 프로필 2"
+                    className={styles.timelineImageContent}
+                  />
+                </div>
 
-              {/* 첫 번째 프로필 이미지 */}
-              <div className={styles.timelineImage1}>
-                <img
-                  src="/doctors/timeline/timeline-profile-1.png"
-                  alt="타임라인 프로필 1"
-                  className={styles.timelineImageContent}
-                />
+                {/* SVG 아이콘 */}
+                <div className={styles.circleIcon}>
+                  <img
+                    src="/doctors/timeline/design-circle.svg"
+                    alt="타임라인 디자인 원형"
+                    className={styles.circleIconSvg}
+                  />
+                </div>
+
+                {/* 파란색 원형 */}
+                <div className={styles.circleIconGroup}>
+                  <div className={styles.blueCircle}></div>
+                </div>
+
+                {/* 2024년 그룹 */}
+                <div className={styles.year2024Group}>
+                  <img
+                    src="/doctors/timeline/2024.svg"
+                    alt="2024년 그룹"
+                    className={styles.year2024Image}
+                  />
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* 두 번째 라인: 두 번째 이미지 - 파란색 원 - 2024 */}
-            <div className={styles.timelineSecondRow}>
-              {/* 두 번째 프로필 이미지 */}
-              <div className={styles.timelineImage2}>
-                <img
-                  src="/doctors/timeline/timeline-profile-2.png"
-                  alt="타임라인 프로필 2"
-                  className={styles.timelineImageContent}
-                />
+          {/* 모바일 타임라인 */}
+          <div className={styles.timelineMobile}>
+            <div className={styles.timelineMobileContent}>
+              <div className={styles.timelineMobileYear}>
+                <img src="/doctors/mobile/2011.svg" alt="2011년" />
               </div>
-
-              {/* SVG 아이콘 */}
-              <div className={styles.circleIcon}>
-                <img
-                  src="/doctors/timeline/design-circle.svg"
-                  alt="타임라인 디자인 원형"
-                  className={styles.circleIconSvg}
-                />
+              <div className={styles.timelineArrowMobile}>
+                <img src="/doctors/mobile/arrow.svg" alt="화살표" />
               </div>
-
-              {/* 파란색 원형 */}
-              <div className={styles.circleIconGroup}>
-                <div className={styles.blueCircle}></div>
-              </div>
-
-              {/* 2024년 그룹 */}
-              <div className={styles.year2024Group}>
-                <img
-                  src="/doctors/timeline/2024.svg"
-                  alt="2024년 그룹"
-                  className={styles.year2024Image}
-                />
+              <div className={styles.timelineMobileYear}>
+                <img src="/doctors/mobile/2024.svg" alt="2024년" />
               </div>
             </div>
           </div>
@@ -752,39 +795,6 @@ export default function DoctorsPage() {
       >
         <div className={styles.academicActivitiesContainer}>
           <div className={styles.academicActivitiesLayout}>
-            {/* 왼쪽 연도 필터 */}
-            <div className={styles.yearFilterSidebar} ref={yearFilterRef}>
-              <div className={styles.yearFilter}>
-                {/* 동적으로 위치가 이동하는 파란색 원 */}
-                <div
-                  className={styles.activeCircle}
-                  style={{
-                    top: getActiveCirclePosition(), // 첫 번째 연도 위치 + 간격 * 인덱스
-                    transition: "top 0.3s ease",
-                  }}
-                ></div>
-
-                {yearsList.map((year) => (
-                  <div
-                    key={year}
-                    className={styles.yearFilterItem}
-                    onClick={() => handleYearClick(year)}
-                  >
-                    <div className={styles.yearCircle}></div>
-                    <span
-                      className={`${styles.yearText} ${
-                        selectedYear === year
-                          ? styles.activeText
-                          : styles.hiddenText
-                      }`}
-                    >
-                      {year}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* 오른쪽 학술활동 콘텐츠 */}
             <div className={styles.academicContent}>
               {/* 제목 */}
@@ -862,6 +872,11 @@ export default function DoctorsPage() {
           src="/doctors/timeline/timeline_graffiti.svg"
           alt="timeline_graffiti"
           className={styles.timelineGraffiti}
+        />
+        <img
+          src="/doctors/mobile/timeline-graffiti-mobile.svg"
+          alt="timeline_graffiti"
+          className={styles.timelineGraffitiMobile}
         />
       </section>
     </div>
