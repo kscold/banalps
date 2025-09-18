@@ -222,23 +222,42 @@ export const medicalTeamHeroTitle = style({
 // 의사 섹션들 - 파란 배경 (Frame 299: 1920x1221)
 export const doctorSection = style({
   width: vw(1920),
-  height: vw(1221),
   position: "relative",
   backgroundColor: "#73D5FA",
   borderRadius: vw(24),
-  margin: `${vw(60)} auto`,
   padding: 0,
   transition: "transform 0.3s ease",
-  ":last-child": {
-    height: vw(912),
-    marginBottom: vw(0),
+  selectors: {
+    // 첫번째 섹션 (신승규 원장) - medicalTeamContainer 다음이므로 2번째
+    "&:nth-child(2)": {
+      height: vw(1221),
+    },
+    // 두번째 섹션 (박수호 원장)
+    "&:nth-child(3)": {
+      height: vw(1112),
+    },
+    // 세번째 섹션 (김나래 원장)
+    "&:nth-child(4)": {
+      height: vw(912),
+      marginBottom: vw(0),
+    },
   },
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "1920px",
-      height: "1221px",
       borderRadius: "24px",
-      margin: "60px auto",
+      selectors: {
+        "&:nth-child(2)": {
+          height: "1221px",
+        },
+        "&:nth-child(3)": {
+          height: "1112px",
+        },
+        "&:nth-child(4)": {
+          height: "912px",
+          marginBottom: "0px",
+        },
+      },
     },
     [breakpoints.mobile]: {
       width: "100vw",
@@ -249,10 +268,22 @@ export const doctorSection = style({
       backgroundColor: "#73D5FA",
       position: "relative",
       overflow: "visible",
+      selectors: {
+        "&:nth-child(2)": {
+          height: "auto",
+        },
+        "&:nth-child(3)": {
+          height: "auto",
+        },
+        "&:nth-child(4)": {
+          height: "auto",
+        },
+      },
     },
   },
 });
 
+// 신승규, 김나래 원장용 컨텐츠 컨테이너
 export const doctorContent = style({
   display: "flex",
   alignItems: "flex-start",
@@ -272,10 +303,6 @@ export const doctorContent = style({
     backgroundColor: "#FFFFFF",
     opacity: 0.5,
     zIndex: 100,
-  },
-
-  ":last-child": {
-    height: vw(912),
   },
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -321,28 +348,28 @@ export const doctorContentReversed = style({
   },
 });
 
-// 메인 이미지 컨테이너 (600x850) - 피그마 Frame 15400 위치 정확히 맞춤
+// 메인 이미지 컨테이너 (600x850) - 신승규 원장
 export const doctorImageContainer = style({
   position: "absolute",
-  left: 0, // 왼쪽 끝에 붙임
-  top: vw(371), // 1572 - 1201 = 371px from top
+  left: 0,
+  bottom: 0, // 하단 기준으로 변경
   width: vw(600),
   height: vw(850),
   borderRadius: 0,
   overflow: "visible",
-  zIndex: 10, // 텍스트보다 위에
+  zIndex: 10,
   transition: "transform 0.3s ease",
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "0px",
-      top: "371px",
+      bottom: "0px",
       width: "600px",
       height: "850px",
     },
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
-      top: "auto",
+      bottom: "auto",
       width: "100%",
       height: "400px",
     },
@@ -359,8 +386,8 @@ export const doctorMainImage = style({
 // 박수호 원장용 이미지 컨테이너 - 오른쪽 위치 (Reversed 레이아웃)
 export const doctorImageContainer2 = style({
   position: "absolute",
-  right: 0, // 오른쪽 끝에 붙임 (박수호 원장은 reversed)
-  top: vw(371),
+  right: 0,
+  bottom: 0, // 하단 기준으로 변경
   width: vw(600),
   height: vw(850),
   borderRadius: 0,
@@ -370,14 +397,14 @@ export const doctorImageContainer2 = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       right: "0px",
-      top: "371px",
+      bottom: "0px",
       width: "600px",
       height: "850px",
     },
     [breakpoints.mobile]: {
       position: "relative",
       right: "auto",
-      top: "auto",
+      bottom: "auto",
       width: "100%",
       height: "400px",
     },
@@ -415,22 +442,22 @@ export const doctorTextSection2 = style({
 export const doctorInfo2 = style({
   position: "absolute",
   left: vw(490),
-  bottom: vw(20),
+  bottom: vw(0), // 하단 여백 조정
   width: vw(740),
-  height: vw(150),
+  height: vw(196),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "490px",
-      bottom: "20px",
+      bottom: "0px",
       width: "740px",
-      height: "150px",
+      height: "196px",
     },
     [breakpoints.desktop]: {
       left: "calc(490px * (100vw / 1920))",
-      bottom: "calc(20px * (100vw / 1920))",
+      bottom: "calc(0px * (100vw / 1920))",
       width: "calc(740px * (100vw / 1920))",
-      height: "calc(150px * (100vw / 1920))",
+      height: "calc(196px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -552,24 +579,24 @@ export const doctorTextSection = style({
   },
 });
 
-// 의사 이름 (Poppins 160px)
+// 의사 이름 (Poppins 160px) - 신승규 원장
 export const doctorName = style({
   position: "absolute",
   left: vw(357),
-  top: vw(382),
+  top: vw(380),
   width: vw(859),
   height: vw(320),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
-      left: "700px",
-      top: "382px",
+      left: "357px",
+      top: "380px",
       width: "859px",
       height: "320px",
     },
     [breakpoints.desktop]: {
-      left: "calc(700px * (100vw / 1920))",
-      top: "calc(382px * (100vw / 1920))",
+      left: "calc(357px * (100vw / 1920))",
+      top: "calc(380px * (100vw / 1920))",
       width: "calc(859px * (100vw / 1920))",
       height: "calc(320px * (100vw / 1920))",
     },
@@ -588,20 +615,20 @@ export const doctorName = style({
 export const doctorName2 = style({
   position: "absolute",
   right: vw(317),
-  top: vw(382),
+  top: vw(410),
   width: vw(558),
   height: vw(320),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       right: "317px",
-      top: "382px",
+      top: "410px",
       width: "558px",
       height: "320px",
     },
     [breakpoints.desktop]: {
       right: "calc(317px * (100vw / 1920))",
-      top: "calc(382px * (100vw / 1920))",
+      top: "calc(410px * (100vw / 1920))",
       width: "calc(558px * (100vw / 1920))",
       height: "calc(320px * (100vw / 1920))",
     },
@@ -615,7 +642,7 @@ export const doctorName2 = style({
   },
 });
 
-// 의사 이름 (Poppins 160px)
+// 김나래 원장용 이름 (Poppins 160px)
 export const doctorName3 = style({
   position: "absolute",
   left: vw(410),
@@ -631,7 +658,7 @@ export const doctorName3 = style({
       height: "320px",
     },
     [breakpoints.desktop]: {
-      left: "calc(700px * (100vw / 1920))",
+      left: "calc(410px * (100vw / 1920))",
       top: "calc(90px * (100vw / 1920))",
       width: "calc(490px * (100vw / 1920))",
       height: "calc(320px * (100vw / 1920))",
@@ -671,22 +698,22 @@ export const doctorNameText = style({
 export const doctorInfo = style({
   position: "absolute",
   left: vw(700),
-  bottom: vw(20),
+  bottom: vw(0),
   width: vw(740),
-  height: vw(150),
+  height: vw(196),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
-      bottom: "20px",
+      bottom: "0px",
       width: "740px",
-      height: "150px",
+      height: "196px",
     },
     [breakpoints.desktop]: {
       left: "calc(700px * (100vw / 1920))",
-      bottom: "calc(20px * (100vw / 1920))",
+      bottom: "calc(0px * (100vw / 1920))",
       width: "calc(740px * (100vw / 1920))",
-      height: "calc(150px * (100vw / 1920))",
+      height: "calc(196px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -701,27 +728,27 @@ export const doctorInfo = style({
 export const doctorTitle = style({
   position: "absolute",
   left: vw(700),
-  top: vw(907),
+  bottom: vw(250),
   width: vw(176),
   height: vw(68),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
-      top: "907px",
+      bottom: "250px",
       width: "176px",
       height: "68px",
     },
     [breakpoints.desktop]: {
       left: "calc(700px * (100vw / 1920))",
-      top: "calc(907px * (100vw / 1920))",
+      bottom: "calc(250px * (100vw / 1920))",
       width: "calc(176px * (100vw / 1920))",
       height: "calc(68px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
-      top: "auto",
+      bottom: "auto",
       width: "100%",
       height: "auto",
       marginBottom: "20px",
@@ -733,27 +760,27 @@ export const doctorTitle = style({
 export const doctorTitle2 = style({
   position: "absolute",
   right: vw(658),
-  top: vw(772),
+  bottom: vw(250),
   width: vw(217),
   height: vw(88),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       right: "658px",
-      top: "772px",
+      bottom: "250px",
       width: "217px",
       height: "88px",
     },
     [breakpoints.desktop]: {
       right: "calc(658px * (100vw / 1920))",
-      top: "calc(772px * (100vw / 1920))",
+      bottom: "calc(250px * (100vw / 1920))",
       width: "calc(217px * (100vw / 1920))",
       height: "calc(88px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
-      left: "auto",
-      top: "auto",
+      right: "auto",
+      bottom: "auto",
       width: "100%",
       height: "auto",
     },
@@ -763,27 +790,27 @@ export const doctorTitle2 = style({
 export const doctorTitle3 = style({
   position: "absolute",
   left: vw(700),
-  top: vw(598),
+  bottom: vw(250),
   width: vw(183),
   height: vw(68),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
-      top: "598px",
+      bottom: "250px",
       width: "183px",
       height: "68px",
     },
     [breakpoints.desktop]: {
       left: "calc(700px * (100vw / 1920))",
-      top: "calc(907px * (100vw / 1920))",
+      bottom: "calc(250px * (100vw / 1920))",
       width: "calc(183px * (100vw / 1920))",
       height: "calc(68px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
-      top: "auto",
+      bottom: "auto",
       width: "100%",
       height: "auto",
       marginBottom: "20px",
@@ -828,18 +855,18 @@ export const doctorPosition = style({
 export const doctorCredentials = style({
   display: "flex",
   gap: vw(64), // 두 컬럼 사이 간격
-  width: "100%",
-  height: vw(150), // 피그마 프레임 높이
-  marginTop: vw(20),
+  width: vw(740),
+  height: vw(196), // 피그마 프레임 높이
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "64px",
-      height: "150px",
-      marginTop: "20px",
+      width: "740px",
+      height: "196px",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "20px",
+      width: "100%",
       height: "auto",
       marginTop: "15px",
     },
@@ -850,12 +877,12 @@ export const doctorCredentials = style({
 export const credentialColumn = style({
   flex: "0 0 auto",
   width: vw(338), // 피그마 정확한 컬럼 너비
-  height: vw(146), // 피그마 컬럼 높이
+  height: vw(196), // 피그마 컬럼 높이
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "338px",
-      height: "146px",
+      height: "196px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -866,9 +893,8 @@ export const credentialColumn = style({
 
 export const credentialList = style({
   listStyle: "none",
-  padding: 0,
   margin: 0,
-  paddingLeft: vw(18),
+  padding: `${vw(16)} 0 ${vw(16)} ${vw(18)}`,
   position: "relative",
   height: "100%",
   // 수직선 - 수평선에서 딱 끊기도록
@@ -876,7 +902,7 @@ export const credentialList = style({
     content: '""',
     position: "absolute",
     left: vw(-1), // 선 중앙 위치 (2px 선의 중앙 = -1px)
-    top: vw(-10), // 원 아래부터 시작
+    top: vw(0), // 원 아래부터 시작
     bottom: 0, // 수평선에서 딱 끊김 (컨테이너 bottom과 일치)
     width: vw(2), // 얇은 선
     backgroundColor: "#FFFFFF",
@@ -887,7 +913,7 @@ export const credentialList = style({
     content: '""',
     position: "absolute",
     left: vw(-5.5), // 선 정중앙에 맞춤 (-1 - 10/2 = -6)
-    top: vw(-15),
+    top: vw(0),
     width: vw(10),
     height: vw(10),
     backgroundColor: "#FFFFFF",
@@ -899,13 +925,13 @@ export const credentialList = style({
       paddingLeft: "18px", // 1920px+ 고정
       "::before": {
         left: "-1px", // 선 중앙 고정
-        top: "-10px",
+        top: "0px",
         bottom: "0px", // 수평선에서 딱 끊김
         width: "2px", // 고정 두께
       },
       "::after": {
         left: "-5.5px", // 원 정중앙 맞춤 고정
-        top: "-15px",
+        top: "0px",
         width: "10px", // 고정 크기
         height: "10px",
       },
@@ -1348,23 +1374,21 @@ export const doctorSubImages2 = style({
 export const doctorSubImagePark1 = style({
   position: "absolute",
   right: vw(805),
-  top: vw(0),
+  top: vw(100),
   width: vw(360),
   height: vw(260),
-  borderRadius: 0,
   overflow: "visible",
   transition: "transform 0.3s ease",
   "@media": {
     [breakpoints.desktopLarge]: {
       right: "805px",
-      top: "0px",
+      top: "100px",
       width: "360px",
       height: "260px",
-      borderRadius: 0,
     },
     [breakpoints.desktop]: {
       right: "calc(309px * (100vw / 1920))",
-      top: "0px",
+      top: "100px",
       width: "calc(360px * (100vw / 1920))",
       height: "calc(260px * (100vw / 1920))",
     },
@@ -1701,23 +1725,20 @@ export const updateBadge = style({
 export const timelineFirstRow = style({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between", // 요소들을 골고루 분배
-  gap: vw(40), // 간격 조정
+  justifyContent: "space-between",
+  gap: vw(20),
   width: "100%",
-  maxWidth: "1600px", // responsiveContainer(1600)에 맞춤
   paddingLeft: 0,
-  // paddingRight: vw(400), // 오른쪽 여백으로 균형 조정
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "40px",
-      maxWidth: "1600px",
-      // paddingLeft: "0",
-      // paddingRight: "400px",
+      gap: "20px",
+    },
+    [breakpoints.desktop]: {
+      gap: vw(20),
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: "30px",
-      maxWidth: "none",
+      gap: mvw(20),
       paddingLeft: "0",
       paddingRight: "0",
     },
@@ -1728,17 +1749,20 @@ export const timelineFirstRow = style({
 export const timelineSecondRow = style({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between", // 요소들을 골고루 분배
-  gap: vw(20), // 간격 조정
+  justifyContent: "space-between",
+  gap: vw(20),
   width: "100%",
-  maxWidth: "1600px", // responsiveContainer(1600)에 맞춤
+  flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
-      // paddingLeft: "400px",
-      // paddingRight: "0",
     },
-    [breakpoints.mobile]: {},
+    [breakpoints.desktop]: {
+      gap: vw(20),
+    },
+    [breakpoints.mobile]: {
+      gap: mvw(20),
+    },
   },
 });
 
@@ -1766,17 +1790,21 @@ export const year2011Group = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: vw(500), // 크기 조정
-  height: vw(200), // 크기 조정
+  width: vw(730),
+  height: vw(258),
   flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "500px",
-      height: "200px",
+      width: "730px",
+      height: "258px",
     },
     [breakpoints.desktop]: {
-      width: "calc(500px * 0.8)",
-      height: "calc(200px * 0.8)",
+      width: vw(600),
+      height: vw(258),
+    },
+    "screen and (min-width: 1024px) and (max-width: 1324px)": {
+      width: vw(500),
+      height: vw(258),
     },
     [breakpoints.mobile]: {
       width: "300px",
@@ -1787,56 +1815,7 @@ export const year2011Group = style({
 
 export const year2011Image = style({
   width: "100%",
-  height: "auto",
-});
-
-export const yearLabel2011 = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 700,
-  ...responsiveFont(80),
-  lineHeight: vw(96),
-  color: "#14AEFF",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "80px",
-      lineHeight: "96px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "48px",
-      lineHeight: "60px",
-    },
-  },
-});
-
-export const year2011Content = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(12),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "12px",
-    },
-  },
-});
-
-export const year2011Text = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
-  ...responsiveFont(20),
-  lineHeight: vw(28),
-  color: "#666666",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      lineHeight: "28px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "16px",
-      lineHeight: "24px",
-    },
-  },
+  height: "100%",
 });
 
 // 화살표 - 피그마 디자인 기준 크기
@@ -1844,12 +1823,16 @@ export const timelineArrow = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: vw(200), // 화살표 크기 증가
-  height: vw(100),
+  width: vw(335), // 화살표 크기 증가
+  height: vw(164),
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "200px",
-      height: "100px",
+      width: "335px",
+      height: "164px",
+    },
+    [breakpoints.desktop]: {
+      width: vw(335),
+      height: vw(164),
     },
     [breakpoints.mobile]: {
       width: "100px",
@@ -1877,9 +1860,8 @@ export const timelineImage1 = style({
       borderRadius: "12px",
     },
     [breakpoints.desktop]: {
-      width: "calc(380px * 0.8)", // 비율 유지하면서 축소
-      height: "calc(250px * 0.8)",
-      borderRadius: "10px",
+      width: vw(380),
+      height: vw(250),
     },
     [breakpoints.mobile]: {
       width: "160px",
@@ -1907,8 +1889,8 @@ export const timelineImage2 = style({
       borderRadius: "12px",
     },
     [breakpoints.desktop]: {
-      width: "calc(300px * 0.8)", // 비율 유지하면서 축소
-      height: "calc(250px * 0.8)",
+      width: vw(300),
+      height: vw(250),
       borderRadius: "10px",
     },
     [breakpoints.mobile]: {
@@ -1929,107 +1911,6 @@ export const timelineArrowSvg = style({
   height: "100%",
 });
 
-// 흰색 프레임들
-export const whiteFrame2011 = style({
-  backgroundColor: "#FFFFFF",
-  borderRadius: vw(12),
-  width: vw(380),
-  height: vw(250),
-  padding: vw(32),
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "12px",
-      width: "380px",
-      height: "250px",
-      padding: "32px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      height: "auto",
-      padding: "24px",
-    },
-  },
-});
-
-export const whiteFrame2024 = style({
-  backgroundColor: "#FFFFFF",
-  borderRadius: vw(12),
-  width: vw(300),
-  height: vw(250),
-  padding: vw(32),
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "12px",
-      width: "300px",
-      height: "250px",
-      padding: "32px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      height: "auto",
-      padding: "24px",
-    },
-  },
-});
-
-export const frameContent = style({
-  textAlign: "center",
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(16),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "16px",
-    },
-  },
-});
-
-export const frameTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(24),
-  lineHeight: vw(30),
-  color: "#272727",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "24px",
-      lineHeight: "30px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "20px",
-      lineHeight: "26px",
-    },
-  },
-});
-
-export const frameText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
-  ...responsiveFont(16),
-  lineHeight: vw(22),
-  color: "#666666",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "22px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "14px",
-      lineHeight: "20px",
-    },
-  },
-});
-
 // 원형 아이콘 그룹 - 피그마 디자인 기준 크기
 export const circleIconGroup = style({
   display: "flex",
@@ -2041,6 +1922,10 @@ export const circleIconGroup = style({
     [breakpoints.desktopLarge]: {
       width: "248px",
       height: "248px",
+    },
+    [breakpoints.desktop]: {
+      width: vw(248),
+      height: vw(248),
     },
     [breakpoints.mobile]: {
       width: "150px",
@@ -2061,6 +1946,10 @@ export const circleIcon = style({
       width: "248px",
       height: "248px",
     },
+    [breakpoints.desktop]: {
+      width: vw(248),
+      height: vw(248),
+    },
     [breakpoints.mobile]: {
       width: "150px",
       height: "150px",
@@ -2069,8 +1958,8 @@ export const circleIcon = style({
 });
 
 export const circleIconSvg = style({
-  width: vw(248), // 파란색 원과 같은 크기
-  height: vw(248),
+  width: "100%",
+  height: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "248px",
@@ -2110,17 +1999,21 @@ export const year2024Group = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: vw(500), // 크기 조정
-  height: vw(200),
+  width: vw(730),
+  height: vw(258),
   flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "500px",
-      height: "200px",
+      width: "730px",
+      height: "258px",
     },
     [breakpoints.desktop]: {
-      width: "calc(500px * 0.8)",
-      height: "calc(200px * 0.8)",
+      width: vw(600),
+      height: vw(258),
+    },
+    "screen and (min-width: 1024px) and (max-width: 1324px)": {
+      width: vw(500),
+      height: vw(258),
     },
     [breakpoints.mobile]: {
       width: "300px",
@@ -2131,7 +2024,7 @@ export const year2024Group = style({
 
 export const year2024Image = style({
   width: "100%",
-  height: "auto",
+  height: "100%",
 });
 
 export const yearLabel2024 = style({
@@ -2194,18 +2087,23 @@ export const academicActivitiesSection = style({
   width: "100%",
   backgroundColor: "#FFFFFF", // 흰색 배경
   padding: `${vw(120)} 0`,
+  position: "relative",
+  zIndex: 2,
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(60)} ${mvw(16)}`,
+      padding: `${mvw(60)} ${mvw(16)} ${mvw(60)} ${mvw(16)}`,
+      display: "block",
+      overflow: "hidden",
     },
   },
 });
 
 export const academicActivitiesContainer = style({
   ...responsiveContainer(1600),
+  height: vw(704),
   display: "flex",
   flexDirection: "column",
   gap: vw(80),
@@ -2215,6 +2113,7 @@ export const academicActivitiesContainer = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
+      height: "auto",
       gap: "60px",
     },
   },
@@ -2553,6 +2452,7 @@ export const academicDescription = style({
 // Academic Activities Section - 새로운 피그마 디자인
 export const academicActivitiesLayout = style({
   display: "flex",
+  justifyContent: "center",
   gap: vw(138),
   width: "100%",
   "@media": {
@@ -2566,193 +2466,6 @@ export const academicActivitiesLayout = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "30px",
-    },
-  },
-});
-
-// 왼쪽 연도 필터
-export const yearFilterSidebar = style({
-  width: vw(132),
-  height: vw(628), // 테이블과 동일한 높이
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "132px",
-      height: "628px",
-    },
-    [breakpoints.desktop]: {
-      width: "100px",
-      height: "auto",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      height: "auto",
-    },
-  },
-});
-
-export const yearFilter = style({
-  display: "flex",
-  flexDirection: "column",
-  position: "relative",
-  height: vw(688), // academicContent와 동일한 높이
-  paddingTop: vw(20),
-  paddingBottom: vw(20),
-  justifyContent: "space-between", // 15개 연도를 균등 배치
-  "::before": {
-    content: '""',
-    position: "absolute",
-    left: vw(15), // yearCircle 중앙에 맞춤
-    top: vw(30),
-    bottom: vw(30),
-    width: "1px",
-    backgroundColor: "#DEDEDE",
-    zIndex: 1,
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      height: "688px",
-      paddingTop: "20px",
-      paddingBottom: "20px",
-      justifyContent: "space-between",
-      "::before": {
-        left: "15px",
-        top: "30px",
-        bottom: "30px",
-      },
-    },
-    [breakpoints.desktop]: {
-      gap: "30px",
-      height: "auto",
-      "::before": {
-        left: "12px",
-        top: "12px",
-        bottom: "12px",
-      },
-    },
-    [breakpoints.mobile]: {
-      gap: "25px",
-      height: "auto",
-      "::before": {
-        left: "10px",
-        top: "10px",
-        bottom: "10px",
-      },
-    },
-  },
-});
-
-export const yearFilterItem = style({
-  width: vw(132),
-  height: vw(14), // yearCircle과 동일한 높이
-  display: "flex",
-  alignItems: "center",
-  gap: vw(34),
-  cursor: "pointer",
-  position: "relative",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "132px",
-      height: "14px",
-      gap: "34px",
-    },
-    [breakpoints.desktop]: {
-      width: "auto",
-      height: "auto",
-      gap: "8px",
-      padding: "4px 0",
-    },
-    [breakpoints.mobile]: {
-      width: "auto",
-      height: "auto",
-      gap: "6px",
-      padding: "3px 0",
-    },
-  },
-});
-
-export const yearCircle = style({
-  width: vw(14),
-  height: vw(14),
-  borderRadius: "50%",
-  backgroundColor: "#F5F5F5", // 회색 배경
-  border: "none",
-  position: "absolute",
-  left: vw(8), // 중앙 정렬을 위해 조정
-  zIndex: 2, // 연결선보다 위에
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "14px",
-      height: "14px",
-      left: "8px",
-    },
-    [breakpoints.desktop]: {
-      width: "14px",
-      height: "14px",
-      left: "8px",
-    },
-    [breakpoints.mobile]: {
-      width: "14px",
-      height: "14px",
-      left: "8px",
-    },
-  },
-});
-
-export const activeCircle = style({
-  width: vw(30),
-  height: vw(30),
-  backgroundColor: "transparent",
-  borderRadius: "50%",
-  border: "1px solid #14AEFF",
-  position: "absolute",
-  left: vw(0), // 회색 원의 중심에 맞춤
-  top: vw(0),
-  zIndex: 3,
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  // 내부 파란색 원
-  "::after": {
-    content: '""',
-    position: "absolute",
-    width: vw(14),
-    height: vw(14),
-    borderRadius: "50%",
-    backgroundColor: "#14AEFF",
-  },
-
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "30px",
-      height: "30px",
-      left: "0px",
-      top: "0px",
-      "::after": {
-        width: "14px",
-        height: "14px",
-      },
-    },
-    [breakpoints.desktop]: {
-      width: "24px",
-      height: "24px",
-      left: "0px",
-      top: "0px",
-      "::after": {
-        width: "12px",
-        height: "12px",
-      },
-    },
-    [breakpoints.mobile]: {
-      width: "20px",
-      height: "20px",
-      left: "0px",
-      top: "0px",
-      "::after": {
-        width: "10px",
-        height: "10px",
-      },
     },
   },
 });
@@ -2819,10 +2532,10 @@ export const activeYear = style({
 
 // 오른쪽 학술활동 콘텐츠
 export const academicContent = style({
-  width: vw(1330),
+  width: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1330px",
+      width: "100%",
     },
     [breakpoints.desktop]: {
       width: "100%",
@@ -2879,20 +2592,20 @@ export const academicTable = style({
 
 export const academicTableContainer = style({
   width: "100%",
-  height: "100%",
-  maxHeight: vw(628),
+  height: vw(704),
   overflowY: "auto",
   overflowX: "hidden",
   scrollbarWidth: "thin",
+  borderTop: "2px solid #1A1A1A",
+  borderBottom: "2px solid #1A1A1A",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "100%",
-      maxHeight: "628px",
+      height: "704px",
     },
     [breakpoints.desktop]: {
       width: "100%",
-      height: "auto",
-      overflowY: "visible",
+      height: vw(704),
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -2935,6 +2648,15 @@ export const academicTableRow = style({
   borderBottom: "1px solid #D9D9D9",
   height: "auto",
   minHeight: vw(90),
+
+  selectors: {
+    "&:first-child": {
+      borderTop: "none",
+    },
+    "&:last-child": {
+      borderBottom: "none",
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "30px",
@@ -3138,74 +2860,21 @@ export const academicRowTitle = style({
   },
 });
 
-export const scrollIndicator = style({
-  position: "absolute",
-  top: 0,
-  right: 48,
-  width: vw(27),
-  height: vw(69),
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
-  writingMode: "vertical-rl",
-  gap: vw(0),
-  zIndex: 10,
-  "@media": {
-    [breakpoints.desktopLarge]: {},
-    [breakpoints.desktop]: {
-      display: "none",
-    },
-    [breakpoints.mobile]: {
-      display: "none",
-    },
-  },
-});
-
-export const scrollText = style({
-  position: "absolute",
-  top: vw(5),
-  left: vw(15),
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(18),
-  lineHeight: vw(27),
-  color: "#14AEFF",
-
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      lineHeight: "27px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "16px",
-      lineHeight: "24px",
-    },
-    [breakpoints.mobile]: {
-      display: "none",
-    },
-  },
-});
-
-export const scrollIcon = style({
-  width: vw(12),
-  height: vw(70),
-  objectFit: "contain",
-
-  "@media": {
-    [breakpoints.desktopLarge]: {},
-  },
-});
-
 // 타임라인 그래피티 섹션
 export const timelineGraffitiSection = style({
   width: "100%",
   backgroundColor: "#FFFFFF",
-
+  position: "relative",
+  clear: "both",
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},
-    [breakpoints.mobile]: {},
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      paddingTop: mvw(60),
+      backgroundColor: "#FFFFFF",
+    },
   },
 });
 
@@ -3228,7 +2897,7 @@ export const timelineGraffitiMobile = style({
       display: "block",
       width: "100%",
       height: "auto",
-      padding: `${mvw(120)} 0`,
+      padding: 0,
     },
   },
 });

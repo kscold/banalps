@@ -129,7 +129,7 @@ export default function DoctorsPage() {
   const [selectedYear, setSelectedYear] = useState<number>(2021);
 
   // 스크롤 관련 ref
-  const yearFilterRef = useRef<HTMLDivElement>(null);
+
   const academicSectionRef = useRef<HTMLElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
@@ -150,18 +150,6 @@ export default function DoctorsPage() {
     2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014,
     2013, 2012, 2011,
   ];
-  const selectedYearIndex = yearsList.indexOf(selectedYear);
-
-  // 동적 위치 계산 (1920px 기준: 첫 번째 연도 위치 + 간격 * 인덱스)
-  const getActiveCirclePosition = () => {
-    const basePosition = 12; // padding(20px) - 파란원 중심 조정(8px)
-    const containerHeight = 688; // yearFilter 전체 높이
-    const padding = 40; // 상하 padding 합계
-    const availableHeight = containerHeight - padding; // 648px
-    const itemSpacing = availableHeight / 14; // 15개 연도, 14개 간격
-    const calculatedPosition = basePosition + selectedYearIndex * itemSpacing;
-    return `${calculatedPosition}px`;
-  };
 
   return (
     <div className={styles.doctorsPage}>
@@ -850,16 +838,6 @@ export default function DoctorsPage() {
                       <div className={styles.academicRowTitle}>-</div>
                     </div>
                   )}
-                </div>
-
-                {/* 스크롤 표시 */}
-                <div className={styles.scrollIndicator}>
-                  <span className={styles.scrollText}>Scroll</span>
-                  <img
-                    src="/doctors/timeline/scroll-arrow.svg"
-                    alt="scroll"
-                    className={styles.scrollIcon}
-                  />
                 </div>
               </div>
             </div>
