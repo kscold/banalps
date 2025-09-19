@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, vw } from "../../../shared/styles/responsive.css";
+import { breakpoints, vw, mvw } from "../../../shared/styles/responsive.css";
 
 export const mapContainer = style({
   width: "100%",
@@ -73,7 +73,7 @@ export const loadingText = style({
 export const mapButtons = style({
   display: "flex",
   gap: vw(12),
-  marginTop: "auto", // 하단으로 밀기
+  marginTop: "auto",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "12px",
@@ -82,8 +82,9 @@ export const mapButtons = style({
       gap: vw(12),
     },
     [breakpoints.mobile]: {
-      gap: "8px",
-      marginTop: "20px",
+      gap: mvw(20),
+      marginTop: mvw(60),
+      width: "100%",
     },
   },
 });
@@ -104,10 +105,7 @@ const buttonBase = style({
   justifyContent: "center",
   letterSpacing: 0,
   lineHeight: vw(20),
-  ":hover": {
-    transform: "translateY(-1px)",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-  },
+
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "10px 20px",
@@ -126,12 +124,14 @@ const buttonBase = style({
       lineHeight: vw(20),
     },
     [breakpoints.mobile]: {
-      padding: "7px 12px",
-      fontSize: "14px",
-      borderRadius: "18px",
-      minWidth: "100px",
-      height: "36px",
-      lineHeight: "20px",
+      padding: `${mvw(16)} ${mvw(24)}`,
+      fontSize: mvw(16),
+      borderRadius: mvw(30),
+      minWidth: "auto",
+      height: mvw(40),
+      lineHeight: mvw(24),
+      flex: 1,
+      fontWeight: 700,
     },
   },
 });
@@ -149,7 +149,8 @@ export const kakaoButton = style([
         minWidth: vw(120),
       },
       [breakpoints.mobile]: {
-        minWidth: "100px",
+        flex: 1,
+        minWidth: "auto",
       },
     },
   },
@@ -159,7 +160,7 @@ export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#FFFFFF",
+    color: "#272727",
     "@media": {
       [breakpoints.desktopLarge]: {
         minWidth: "120px",
@@ -168,7 +169,8 @@ export const naverButton = style([
         minWidth: vw(120),
       },
       [breakpoints.mobile]: {
-        minWidth: "100px",
+        flex: 1,
+        minWidth: "auto",
       },
     },
   },

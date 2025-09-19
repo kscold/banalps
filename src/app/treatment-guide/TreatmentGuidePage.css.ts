@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, vw } from "../../shared/styles/responsive.css";
+import { breakpoints, mvw, vw } from "../../shared/styles/responsive.css";
 import { fontFamily } from "../../shared/styles/fonts.css";
 
 // 페이지 전체 스타일
@@ -26,7 +26,6 @@ export const heroSection = style({
     },
     [breakpoints.mobile]: {
       paddingTop: "120px",
-      paddingBottom: "160px",
       minHeight: "auto",
     },
   },
@@ -72,7 +71,7 @@ export const heroLeft = style({
       paddingTop: vw(245),
     },
     [breakpoints.mobile]: {
-      marginLeft: "20px",
+      marginLeft: "0px",
       paddingLeft: "0",
       width: "100%",
       paddingTop: "0",
@@ -150,9 +149,9 @@ export const heroImageWrapper = style({
       borderRadius: vw(20),
     },
     [breakpoints.mobile]: {
-      height: "400px",
-      marginBottom: "80px",
-      borderRadius: "12px",
+      height: mvw(478),
+      marginBottom: "0px",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -189,8 +188,12 @@ export const heroOverlayMainText = style({
   letterSpacing: "0%",
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: "12px",
-      lineHeight: "16px",
+      fontSize: mvw(14),
+      lineHeight: "100%",
+      fontFamily: fontFamily.poppins,
+      fontWeight: 400,
+      fontStyle: "Regular",
+      letterSpacing: "0%",
     },
   },
 });
@@ -198,12 +201,21 @@ export const heroOverlayMainText = style({
 // Banalhouse 브랜드 텍스트
 export const heroOverlayBrand = style({
   position: "absolute",
-  top: vw(430),
-  left: vw(60),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      top: "430px",
+      left: "60px",
+    },
+    [breakpoints.desktop]: {
+      top: vw(430),
+      left: vw(60),
+    },
     [breakpoints.mobile]: {
-      bottom: "24px",
-      right: "24px",
+      bottom: mvw(24),
+      left: "50%",
+      transform: "translateX(-50%)",
+      right: "auto",
+      top: "auto",
     },
   },
 });
@@ -220,7 +232,7 @@ export const heroOverlayBrandText = style({
   letterSpacing: "0%",
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: "20px",
+      fontSize: mvw(48),
       lineHeight: "28px",
     },
   },
@@ -242,9 +254,7 @@ export const heroSubtitle = style({
       lineHeight: vw(78),
     },
     [breakpoints.mobile]: {
-      fontSize: "36px",
-      lineHeight: "46px",
-      marginTop: "40px",
+      display: "none",
     },
   },
 });
@@ -252,14 +262,12 @@ export const heroSubtitle = style({
 // Contact Section
 export const contactSection = style({
   position: "relative",
-
   marginTop: 0,
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      paddingBottom: "120px",
-      marginTop: "120px",
+      marginTop: mvw(40),
     },
   },
 });
@@ -287,10 +295,10 @@ export const contactContainer = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: "60px",
-      padding: "0 20px",
+      gap: mvw(60),
+      padding: `0 ${mvw(20)}`,
       paddingTop: "0",
-      paddingBottom: "120px",
+      paddingBottom: mvw(120),
     },
   },
 });
@@ -315,8 +323,9 @@ export const mapContainer = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      height: "300px",
-      borderRadius: "12px",
+      height: mvw(300),
+      borderRadius: mvw(12),
+      marginBottom: mvw(40),
     },
   },
 });
@@ -335,6 +344,7 @@ export const contactInfo = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
+      paddingTop: mvw(20),
     },
   },
 });
@@ -349,13 +359,14 @@ export const contactItem = style({
       marginBottom: "58px",
     },
     [breakpoints.desktop]: {
-      gap: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      gap: vw(20),
       marginBottom: vw(58),
     },
     [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "12px",
-      marginBottom: "36px",
+      flexDirection: "row",
+      gap: mvw(20),
+      marginBottom: mvw(40),
+      alignItems: "flex-start",
     },
   },
 });
@@ -370,19 +381,20 @@ export const contactLabel = style({
   flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(20),
       lineHeight: vw(28),
       width: vw(115),
     },
     [breakpoints.desktop]: {
-      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      fontSize: vw(20),
       lineHeight: vw(28),
       width: vw(115),
     },
     [breakpoints.mobile]: {
-      fontSize: "16px",
-      lineHeight: "24px",
-      width: "auto",
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      width: mvw(70),
+      flexShrink: 0,
     },
   },
 });
@@ -395,16 +407,16 @@ export const contactValue = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(32), // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(32),
       lineHeight: vw(32),
     },
     [breakpoints.desktop]: {
-      fontSize: vw(32), // 1024-1920px 구간에서 vw로 스케일링
+      fontSize: vw(32),
       lineHeight: vw(32),
     },
     [breakpoints.mobile]: {
-      fontSize: "24px",
-      lineHeight: "24px",
+      fontSize: mvw(24),
+      lineHeight: mvw(32),
     },
   },
 });
@@ -417,16 +429,16 @@ export const contactSchedule = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(20),
       lineHeight: vw(30),
     },
     [breakpoints.desktop]: {
-      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      fontSize: vw(20),
       lineHeight: vw(30),
     },
     [breakpoints.mobile]: {
-      fontSize: "16px",
-      lineHeight: "24px",
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
     },
   },
 });
@@ -437,13 +449,13 @@ export const contactAddress = style({
   gap: vw(20),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      gap: vw(20),
     },
     [breakpoints.desktop]: {
-      gap: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      gap: vw(20),
     },
     [breakpoints.mobile]: {
-      gap: "12px",
+      gap: 0,
     },
   },
 });
@@ -454,18 +466,20 @@ export const addressMain = style({
   fontSize: vw(20),
   lineHeight: vw(30),
   color: "#272727",
+  margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(20), // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(20),
       lineHeight: vw(30),
     },
     [breakpoints.desktop]: {
-      fontSize: vw(20), // 1024-1920px 구간에서 vw로 스케일링
+      fontSize: vw(20),
       lineHeight: vw(30),
     },
     [breakpoints.mobile]: {
-      fontSize: "16px",
-      lineHeight: "24px",
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      marginBottom: mvw(12),
     },
   },
 });
@@ -478,16 +492,16 @@ export const subwayInfo = style({
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(16), // 1920px+ 에서도 vw로 스케일링 유지
+      fontSize: vw(16),
       lineHeight: vw(26),
     },
     [breakpoints.desktop]: {
-      fontSize: vw(16), // 1024-1920px 구간에서 vw로 스케일링
+      fontSize: vw(16),
       lineHeight: vw(26),
     },
     [breakpoints.mobile]: {
-      fontSize: "14px",
-      lineHeight: "20px",
+      fontSize: mvw(14),
+      lineHeight: mvw(20),
     },
   },
 });
