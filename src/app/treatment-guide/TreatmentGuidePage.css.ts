@@ -1,35 +1,28 @@
-import { responsiveLeftContent } from "./../../shared/styles/responsive.css"
-import { style } from "@vanilla-extract/css"
-import {
-  breakpoints,
-  vw,
-  responsiveFont,
-} from "../../shared/styles/responsive.css"
-import { fontFamily } from "../../shared/styles/fonts.css"
+import { style } from "@vanilla-extract/css";
+import { breakpoints, vw } from "../../shared/styles/responsive.css";
+import { fontFamily } from "../../shared/styles/fonts.css";
 
 // 페이지 전체 스타일
 export const treatmentGuidePage = style({
   minHeight: "100vh",
-  backgroundColor: "#FFFDF7",
-})
+  backgroundColor: "#FFFFFF",
+});
 
 // Hero Section
 export const heroSection = style({
   position: "relative",
+  width: "100%",
   paddingTop: vw(255),
-  paddingBottom: vw(340),
-  minHeight: vw(1200),
+  minHeight: vw(1511),
   overflow: "visible",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: vw(255), // 1920px+ 에서도 vw로 스케일링 유지
-      paddingBottom: vw(340),
-      minHeight: vw(1200),
+      paddingTop: "255px",
+      minHeight: "1511px",
     },
     [breakpoints.desktop]: {
       paddingTop: vw(255),
-      paddingBottom: vw(340),
-      minHeight: vw(1200),
+      minHeight: vw(1511),
     },
     [breakpoints.mobile]: {
       paddingTop: "120px",
@@ -37,79 +30,94 @@ export const heroSection = style({
       minHeight: "auto",
     },
   },
-})
+});
 
 export const heroContainer = style({
-  display: "flex",
-  gap: vw(248),
-  alignItems: "flex-start",
   position: "relative",
+  width: "100%",
+  maxWidth: "1920px",
+  margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: vw(248), // 1920px+ 에서도 vw로 스케일링 유지
+      maxWidth: "1920px",
     },
     [breakpoints.desktop]: {
-      gap: vw(248),
+      maxWidth: "1920px",
     },
     [breakpoints.mobile]: {
+      display: "flex",
       flexDirection: "column",
       gap: "60px",
+      alignItems: "flex-start",
+      padding: "0 20px",
     },
   },
-})
+});
 
-// 왼쪽 타이틀
+// 왼쪽 타이틀 컨테이너 - 헤더와 동일한 responsiveContainer 방식 사용
 export const heroLeft = style({
-  ...responsiveLeftContent(),
+  marginLeft: "max(calc((100vw - 1600px) / 2), 160px)", // 헤더와 동일한 마진
   width: vw(587),
+  paddingTop: vw(245),
+  zIndex: 3,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: vw(587), // 1920px+ 에서도 vw로 스케일링 유지
+      marginLeft: "160px",
+      width: "587px",
+      paddingTop: "245px",
     },
     [breakpoints.desktop]: {
+      marginLeft: "max(calc((100vw - 1600px) / 2), 160px)",
       width: vw(587),
+      paddingTop: vw(245),
     },
     [breakpoints.mobile]: {
+      marginLeft: "20px",
+      paddingLeft: "0",
       width: "100%",
+      paddingTop: "0",
     },
   },
-})
+});
 
 export const heroTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   fontSize: vw(60),
-  lineHeight: vw(72),
+  lineHeight: "120%",
+  letterSpacing: "0%",
   color: "#272727",
-  paddingTop: vw(245),
+  margin: 0,
+  width: vw(267),
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(60), // 1920px+ 에서도 vw로 스케일링 유지
-      lineHeight: vw(72),
-      paddingTop: vw(245),
+      fontSize: "60px",
+      lineHeight: "72px",
+      width: "267px",
     },
     [breakpoints.desktop]: {
       fontSize: vw(60),
       lineHeight: vw(72),
-      paddingTop: vw(245),
+      width: vw(267),
     },
     [breakpoints.mobile]: {
       fontSize: "36px",
       lineHeight: "44px",
-      paddingTop: "0",
+      width: "100%",
     },
   },
-})
+});
 
 // 오른쪽 콘텐츠
 export const heroRight = style({
   position: "absolute",
   top: 0,
-  right: 0,
+  right: "0",
   width: vw(1085),
+  zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: vw(1085), // 1920px+ 에서도 vw로 스케일링 유지
+      width: "1085px",
     },
     [breakpoints.desktop]: {
       width: vw(1085),
@@ -117,9 +125,11 @@ export const heroRight = style({
     [breakpoints.mobile]: {
       position: "relative",
       width: "100%",
+      top: "auto",
+      right: "auto",
     },
   },
-})
+});
 
 export const heroImageWrapper = style({
   position: "relative",
@@ -130,9 +140,9 @@ export const heroImageWrapper = style({
   borderRadius: vw(20),
   "@media": {
     [breakpoints.desktopLarge]: {
-      height: vw(925), // 1920px+ 에서도 vw로 스케일링 유지
-      marginBottom: vw(180),
-      borderRadius: vw(20),
+      height: "925px",
+      marginBottom: "180px",
+      borderRadius: "20px",
     },
     [breakpoints.desktop]: {
       height: vw(925),
@@ -145,13 +155,14 @@ export const heroImageWrapper = style({
       borderRadius: "12px",
     },
   },
-})
+});
 
 export const heroImage = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
-})
+  objectPosition: "center",
+});
 
 // Power Your Organization's Potential With Banal House 텍스트
 export const heroOverlayMain = style({
@@ -164,7 +175,7 @@ export const heroOverlayMain = style({
       right: "24px",
     },
   },
-})
+});
 
 export const heroOverlayMainText = style({
   fontFamily: fontFamily.poppins,
@@ -182,7 +193,7 @@ export const heroOverlayMainText = style({
       lineHeight: "16px",
     },
   },
-})
+});
 
 // Banalhouse 브랜드 텍스트
 export const heroOverlayBrand = style({
@@ -195,7 +206,7 @@ export const heroOverlayBrand = style({
       right: "24px",
     },
   },
-})
+});
 
 export const heroOverlayBrandText = style({
   fontFamily: fontFamily.poppins,
@@ -213,83 +224,80 @@ export const heroOverlayBrandText = style({
       lineHeight: "28px",
     },
   },
-})
+});
 
 export const heroSubtitle = style({
-  position: "absolute",
-  bottom: vw(-180),
-  left: vw(0),
   fontFamily: "Poppins, sans-serif",
   fontWeight: 500,
-  ...responsiveFont(60),
+  fontSize: vw(60),
   lineHeight: vw(78),
   color: "#14AEFF",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(60), // 1920px+ 에서도 vw로 스케일링 유지
-      lineHeight: vw(78),
-      bottom: vw(-180),
-      left: vw(0),
+      fontSize: "60px",
+      lineHeight: "78px",
     },
     [breakpoints.desktop]: {
-      fontSize: "48px",
-      lineHeight: "62px",
-      bottom: "-120px",
-      left: "0px",
+      fontSize: vw(60),
+      lineHeight: vw(78),
     },
     [breakpoints.mobile]: {
       fontSize: "36px",
       lineHeight: "46px",
-      position: "static",
       marginTop: "40px",
     },
   },
-})
+});
 
 // Contact Section
 export const contactSection = style({
-  paddingBottom: vw(240),
-  marginTop: vw(420),
+  position: "relative",
+
+  marginTop: 0,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      paddingBottom: "240px",
-      marginTop: "420px",
-    },
-    [breakpoints.desktop]: {
-      paddingBottom: "180px",
-      marginTop: "320px",
-    },
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       paddingBottom: "120px",
-      marginTop: "200px",
+      marginTop: "120px",
     },
   },
-})
+});
 
 export const contactContainer = style({
+  position: "relative",
   width: "100%",
-  maxWidth: "none",
-  margin: "0",
-  padding: "0",
+  maxWidth: "1920px",
+  margin: "0 auto",
   display: "flex",
   gap: vw(155),
   alignItems: "flex-start",
+  paddingTop: vw(240),
+  paddingBottom: vw(240),
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "155px",
+      paddingTop: "240px",
+      paddingBottom: "240px",
     },
     [breakpoints.desktop]: {
-      gap: vw(155), // 1024-1920px 구간에서 vw로 스케일링
+      gap: vw(155),
+      paddingTop: vw(240),
+      paddingBottom: vw(240),
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "60px",
+      padding: "0 20px",
+      paddingTop: "0",
+      paddingBottom: "120px",
     },
   },
-})
+});
 
 // 지도 컨테이너
 export const mapContainer = style({
+  flex: "0 0 auto",
   width: vw(1085),
   height: vw(700),
   borderRadius: vw(20),
@@ -301,7 +309,7 @@ export const mapContainer = style({
       borderRadius: "20px",
     },
     [breakpoints.desktop]: {
-      width: vw(1085), // 1024-1920px 구간에서 vw로 스케일링
+      width: vw(1085),
       height: vw(700),
       borderRadius: vw(20),
     },
@@ -311,30 +319,25 @@ export const mapContainer = style({
       borderRadius: "12px",
     },
   },
-})
+});
 
 // 연락처 정보
 export const contactInfo = style({
+  flex: "0 0 auto",
   width: vw(458),
   paddingTop: vw(0),
-  marginLeft: "auto", // 오른쪽 정렬
-  marginRight: "max(calc((100vw - 1600px) / 2 + 60px), 220px)", // 헤더 마진 + 60px 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: vw(458), // 1920px+ 에서도 vw로 스케일링 유지
-      marginRight: "220px", // 160px(헤더 마진) + 60px(여백) = 220px
+      width: "458px",
     },
     [breakpoints.desktop]: {
-      width: vw(458), // 1024-1920px 구간에서 vw로 스케일링
-      marginRight: "max(calc((100vw - 1600px) / 2 + 60px), 220px)",
+      width: vw(458),
     },
     [breakpoints.mobile]: {
       width: "100%",
-      marginLeft: 0,
-      marginRight: "20px",
     },
   },
-})
+});
 
 export const contactItem = style({
   display: "flex",
@@ -355,7 +358,7 @@ export const contactItem = style({
       marginBottom: "36px",
     },
   },
-})
+});
 
 export const contactLabel = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -382,7 +385,7 @@ export const contactLabel = style({
       width: "auto",
     },
   },
-})
+});
 
 export const contactValue = style({
   fontFamily: "Poppins, sans-serif",
@@ -404,7 +407,7 @@ export const contactValue = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 export const contactSchedule = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -426,7 +429,7 @@ export const contactSchedule = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 export const contactAddress = style({
   display: "flex",
@@ -443,7 +446,7 @@ export const contactAddress = style({
       gap: "12px",
     },
   },
-})
+});
 
 export const addressMain = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -465,7 +468,7 @@ export const addressMain = style({
       lineHeight: "24px",
     },
   },
-})
+});
 
 export const subwayInfo = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -487,4 +490,4 @@ export const subwayInfo = style({
       lineHeight: "20px",
     },
   },
-})
+});

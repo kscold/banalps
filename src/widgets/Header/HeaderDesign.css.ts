@@ -413,8 +413,10 @@ export const mobileMenuButton = style({
 });
 
 export const menuIcon = style({
-  display: "none",
   "@media": {
+    [breakpoints.desktop]: {
+      display: "none",
+    },
     [breakpoints.mobile]: {
       height: mvw(24),
       width: mvw(24),

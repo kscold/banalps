@@ -2592,7 +2592,7 @@ export const academicTable = style({
 
 export const academicTableContainer = style({
   width: "100%",
-  height: vw(704),
+  height: vw(628),
   overflowY: "auto",
   overflowX: "hidden",
   scrollbarWidth: "thin",
@@ -2601,11 +2601,11 @@ export const academicTableContainer = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "100%",
-      height: "704px",
+      height: "628px",
     },
     [breakpoints.desktop]: {
       width: "100%",
-      height: vw(704),
+      height: vw(628),
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -2621,7 +2621,6 @@ export const academicTableContainer = style({
 
 // 첫 번째 행 스타일
 export const firstRow = style({
-  borderTop: "2px solid #707070",
   "@media": {
     [breakpoints.mobile]: {
       borderTop: "none",
@@ -2632,7 +2631,6 @@ export const firstRow = style({
 
 // 마지막 행 스타일
 export const lastRow = style({
-  borderBottom: "2px solid #707070 !important",
   "@media": {
     [breakpoints.mobile]: {
       borderBottom: "1px solid #D9D9D9",
@@ -2648,7 +2646,6 @@ export const academicTableRow = style({
   borderBottom: "1px solid #D9D9D9",
   height: "auto",
   minHeight: vw(90),
-
   selectors: {
     "&:first-child": {
       borderTop: "none",
@@ -2688,28 +2685,25 @@ export const academicTableRow = style({
 });
 
 export const academicRowDate = style({
-  minWidth: vw(120),
   width: vw(120),
   flexShrink: 0,
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
-  ...responsiveFont(16),
+  fontSize: vw(16),
   lineHeight: vw(24),
   color: "#333333",
   textAlign: "left",
   whiteSpace: "nowrap",
   "@media": {
     [breakpoints.desktopLarge]: {
-      minWidth: "120px",
       width: "120px",
       fontSize: "16px",
       lineHeight: "24px",
     },
     [breakpoints.desktop]: {
-      minWidth: "110px",
-      width: "110px",
-      fontSize: "16px",
-      lineHeight: "24px",
+      width: vw(120),
+      fontSize: vw(16),
+      lineHeight: vw(24),
     },
     [breakpoints.mobile]: {
       width: mvw(77),
@@ -2789,30 +2783,28 @@ export const categoryBadge = style({
 });
 
 export const academicRowEvent = style({
-  flex: "0 0 auto",
-  minWidth: vw(380),
+  flex: "0 1 auto",
   width: vw(380),
+  minWidth: 0,
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(16),
+  fontSize: vw(16),
   lineHeight: vw(24),
   color: "#333333",
   textAlign: "left",
-  // whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
   "@media": {
     [breakpoints.desktopLarge]: {
-      minWidth: "380px",
       width: "380px",
       fontSize: "16px",
       lineHeight: "24px",
     },
     [breakpoints.desktop]: {
-      minWidth: "350px",
-      width: "350px",
-      fontSize: "15px",
-      lineHeight: "22px",
+      width: vw(380),
+      fontSize: vw(16),
+      lineHeight: vw(24),
     },
     [breakpoints.mobile]: {
       minWidth: mvw(217),
@@ -2828,10 +2820,10 @@ export const academicRowEvent = style({
 
 export const academicRowTitle = style({
   flex: "1 1 auto",
-  minWidth: vw(450),
+  minWidth: 0,
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
-  ...responsiveFont(14),
+  fontSize: vw(14),
   lineHeight: vw(21),
   color: "#666666",
   textAlign: "left",
@@ -2840,14 +2832,12 @@ export const academicRowTitle = style({
   textOverflow: "ellipsis",
   "@media": {
     [breakpoints.desktopLarge]: {
-      minWidth: "450px",
       fontSize: "14px",
       lineHeight: "21px",
     },
     [breakpoints.desktop]: {
-      minWidth: "400px",
-      fontSize: "13px",
-      lineHeight: "20px",
+      fontSize: vw(14),
+      lineHeight: vw(21),
     },
     [breakpoints.mobile]: {
       fontSize: mvw(14),
@@ -2867,8 +2857,14 @@ export const timelineGraffitiSection = style({
   position: "relative",
   clear: "both",
   "@media": {
-    [breakpoints.desktopLarge]: {},
-    [breakpoints.desktop]: {},
+    [breakpoints.desktopLarge]: {
+      paddingTop: "120px",
+      paddingBottom: "45px",
+    },
+    [breakpoints.desktop]: {
+      paddingTop: mvw(120),
+      paddingBottom: mvw(45),
+    },
     [breakpoints.mobile]: {
       display: "block",
       width: "100%",
