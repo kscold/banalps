@@ -5,10 +5,11 @@ import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton";
 import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
+import { vw } from "../../shared/styles/responsive.css";
 
 export default function WhiteSection() {
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
-  
+
   return (
     <section className={styles.whiteSection}>
       {/* 상단 단일 이미지 컨테이너 */}
@@ -44,8 +45,8 @@ export default function WhiteSection() {
             />
             <ArrowButton
               variant="primary"
-              size="large"
               color="blue"
+              size="medium"
               className={styles.mobileCardButton}
             >
               정수리이식
@@ -61,7 +62,7 @@ export default function WhiteSection() {
             />
             <ArrowButton
               variant="primary"
-              size="large"
+              size="medium"
               color="blue"
               className={styles.mobileCardButton}
             >
@@ -78,7 +79,7 @@ export default function WhiteSection() {
             />
             <ArrowButton
               variant="primary"
-              size="large"
+              size="medium"
               color="blue"
               className={styles.mobileCardButton}
             >
@@ -95,7 +96,7 @@ export default function WhiteSection() {
             />
             <ArrowButton
               variant="primary"
-              size="large"
+              size="medium"
               color="blue"
               className={styles.mobileCardButton}
             >
@@ -111,8 +112,10 @@ export default function WhiteSection() {
               className={styles.mobileOtherServiceImage}
             />
             <ArrowButton
-              size="large"
+              size="medium"
               variant="primary"
+              width="100%"
+              textAlign="center"
               className={styles.mobileViewMoreButton}
             >
               View More
@@ -315,7 +318,7 @@ export default function WhiteSection() {
                 </div>
               </div>
             </div>
-            
+
             {/* 카카오맵/네이버맵 버튼을 정보 섹션 하단에 추가 */}
             <MapButtons />
           </div>

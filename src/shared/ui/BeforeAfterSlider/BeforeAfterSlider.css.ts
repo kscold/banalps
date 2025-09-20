@@ -1,11 +1,12 @@
-import { style } from "@vanilla-extract/css"
+import { breakpoints, mvw, vw } from "@/shared/styles/responsive.css";
+import { style } from "@vanilla-extract/css";
 
 export const container = style({
   position: "relative",
   width: "100%",
   cursor: "ew-resize",
   userSelect: "none",
-})
+});
 
 export const imageContainer = style({
   position: "relative",
@@ -14,7 +15,7 @@ export const imageContainer = style({
   overflow: "hidden",
   borderRadius: "12px",
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-})
+});
 
 export const afterImageWrapper = style({
   position: "absolute",
@@ -22,7 +23,7 @@ export const afterImageWrapper = style({
   left: 0,
   width: "100%",
   height: "100%",
-})
+});
 
 export const beforeImageWrapper = style({
   position: "absolute",
@@ -30,32 +31,58 @@ export const beforeImageWrapper = style({
   left: 0,
   width: "100%",
   height: "100%",
-})
+});
 
 export const image = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   display: "block",
-})
+});
 
-export const labelsContainer = style({
+// 모바일용 라벨 스타일
+export const labelsContainerMobile = style({
+  position: "absolute",
+  bottom: "16px",
+  left: "0",
+  right: "0",
+  display: "flex",
+  justifyContent: "space-around",
+  pointerEvents: "none",
+  zIndex: 10,
+  padding: "0 20px",
+});
+
+export const labelMobile = style({
+  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
+  fontWeight: 600,
+  fontSize: "18px",
+  lineHeight: "20px",
+  color: "#FFFFFF",
+  margin: "0",
+  textAlign: "center",
+  flex: "0 0 auto",
+});
+
+// 데스크탑용 라벨 스타일
+export const labelsContainerDesktop = style({
   position: "relative",
   display: "flex",
+  justifyContent: "space-around",
   width: "100%",
-  marginTop: "20px", // 이미지 컨테이너 아래 간격
-})
+  marginTop: "20px",
+});
 
-export const label = style({
-  width: "50%",
-  textAlign: "center",
-  fontFamily: "Poppins",
+export const labelDesktop = style({
+  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
   fontWeight: 500,
   fontSize: "20px",
   lineHeight: "20px",
   color: "#272727",
   margin: "0",
-})
+  textAlign: "center",
+  flex: "0 0 auto",
+});
 
 export const sliderLine = style({
   position: "absolute",
@@ -66,15 +93,15 @@ export const sliderLine = style({
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   transform: "translateX(-50%)",
   pointerEvents: "none",
-})
+});
 
 export const sliderHandle = style({
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "64px",
-  height: "64px",
+  width: vw(64),
+  height: vw(64),
   backgroundColor: "transparent", // 완전 투명 배경
   borderRadius: "50%",
   display: "flex",
@@ -84,15 +111,22 @@ export const sliderHandle = style({
   boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)", // 미세한 외곽선
   cursor: "ew-resize",
   pointerEvents: "auto",
-  
+  "@media": {
+    [breakpoints.mobile]: {
+      width: mvw(30),
+      height: mvw(30),
+      border: "2px solid #FFFFFF",
+    },
+  },
+
   ":hover": {
     backgroundColor: "rgba(255, 255, 255, 0.1)", // 호버 시 아주 미세한 배경
     transform: "translate(-50%, -50%) scale(1.05)",
     boxShadow: "0 0 0 2px rgba(0, 0, 0, 0.15)",
   },
-  
+
   ":active": {
     backgroundColor: "rgba(255, 255, 255, 0.2)", // 클릭 시만 약간의 배경
     transform: "translate(-50%, -50%) scale(0.95)",
   },
-})
+});

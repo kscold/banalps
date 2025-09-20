@@ -1,172 +1,285 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
+import SidePreviewSlider from "@/shared/ui/SidePreviewSlider/SidePreviewSlider";
 import * as styles from "./BeforeAfterPage.css";
 
 // 카테고리 타입 정의
-type Category = "모발이식" | "눈" | "코" | "얼굴윤곽" | "가슴" | "지방이식" | "쁘띠" | "기타";
+type Category =
+  | "이마축소"
+  | "흉터&재수술"
+  | "헤어라인(남성)"
+  | "헤어라인(여성)"
+  | "정수리";
 
 // 수술 전후 데이터 타입
 interface BeforeAfterItem {
   id: number;
   category: Category;
-  title: string;
+  title?: string;
   description?: string;
   beforeImage: string;
   afterImage: string;
 }
 
-// 더미 데이터 (실제 데이터로 교체 필요)
+// 더미 데이터
 const beforeAfterData: BeforeAfterItem[] = [
+  // 이마축소
   {
     id: 1,
-    category: "모발이식",
-    title: "M자 탈모 개선",
-    description: "3,000모 이식",
-    beforeImage: "/before-after/hair-transplant-1-before.jpg",
-    afterImage: "/before-after/hair-transplant-1-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_1년경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
   },
   {
     id: 2,
-    category: "모발이식",
-    title: "정수리 탈모 개선",
-    description: "2,500모 이식",
-    beforeImage: "/before-after/hair-transplant-2-before.jpg",
-    afterImage: "/before-after/hair-transplant-2-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
   },
   {
     id: 3,
-    category: "눈",
-    title: "쌍꺼풀 수술",
-    description: "자연스러운 인아웃 라인",
-    beforeImage: "/before-after/eye-1-before.jpg",
-    afterImage: "/before-after/eye-1-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_3개월경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
   },
+  // 흉터&재수술
   {
     id: 4,
-    category: "코",
-    title: "콧대 + 코끝 성형",
-    description: "자연스러운 라인",
-    beforeImage: "/before-after/nose-1-before.jpg",
-    afterImage: "/before-after/nose-1-after.jpg",
+    category: "흉터&재수술",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
   },
-  // 더 많은 데이터 추가 가능
+  {
+    id: 5,
+    category: "흉터&재수술",
+    title: "흉터재수술 6개월경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
+  // 헤어라인(여성)
+  {
+    id: 6,
+    category: "헤어라인(여성)",
+    title: "3400모(여)_1년경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
+  // 헤어라인(남성)
+  {
+    id: 7,
+    category: "헤어라인(남성)",
+    title: "4000모(남)_1년경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
+  {
+    id: 8,
+    category: "헤어라인(남성)",
+    title: "3500모(남)_8개월경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
+  {
+    id: 9,
+    category: "헤어라인(남성)",
+    title: "3000모(남)_6개월경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
+  // 정수리
+  {
+    id: 10,
+    category: "정수리",
+    title: "5500모(남)_8개월 경과",
+    description: "",
+    beforeImage: "/placeholder-before.jpg",
+    afterImage: "/placeholder-after.jpg",
+  },
 ];
 
+// 카테고리별 캐러셀 컴포넌트
+function CategoryCarousel({
+  category,
+  items,
+}: {
+  category: string;
+  items: BeforeAfterItem[];
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+  };
+
+  // Get previous and next indices for side images
+  const getPrevIndex = (index: number) =>
+    index === 0 ? items.length - 1 : index - 1;
+  const getNextIndex = (index: number) =>
+    index === items.length - 1 ? 0 : index + 1;
+
+  return (
+    <div className={styles.carouselSection}>
+      <div className={styles.carouselHeader}>
+        <span className={styles.categoryBadge}>{category}</span>
+        {items[currentIndex]?.title && (
+          <span className={styles.itemTitle}>{items[currentIndex].title}</span>
+        )}
+      </div>
+
+      <div className={styles.carouselContainer}>
+        {/* Left side preview */}
+        <div className={`${styles.sidePreview} ${styles.sidePreviewLeft}`}>
+          <SidePreviewSlider
+            beforeImage={items[getPrevIndex(currentIndex)].beforeImage}
+            afterImage={items[getPrevIndex(currentIndex)].afterImage}
+            showBefore={false} // After 쪽만 보여줌
+            onClick={handlePrevious}
+          />
+        </div>
+
+        {/* Arrow Left */}
+        <button
+          className={`${styles.carouselArrow} ${styles.carouselArrowLeft}`}
+          onClick={handlePrevious}
+          aria-label="이전"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* Main carousel viewport */}
+        <div className={styles.carouselViewport} ref={carouselRef}>
+          <div className={styles.mainSlide}>
+            <BeforeAfterSlider
+              beforeImage={items[currentIndex].beforeImage}
+              afterImage={items[currentIndex].afterImage}
+              beforeAlt={`${items[currentIndex].title} - Before`}
+              afterAlt={`${items[currentIndex].title} - After`}
+            />
+          </div>
+        </div>
+
+        {/* Arrow Right */}
+        <button
+          className={`${styles.carouselArrow} ${styles.carouselArrowRight}`}
+          onClick={handleNext}
+          aria-label="다음"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* Right side preview */}
+        <div className={`${styles.sidePreview} ${styles.sidePreviewRight}`}>
+          <SidePreviewSlider
+            beforeImage={items[getNextIndex(currentIndex)].beforeImage}
+            afterImage={items[getNextIndex(currentIndex)].afterImage}
+            showBefore={true} // Before 쪽만 보여줌
+            onClick={handleNext}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BeforeAfterPage() {
-  const [selectedCategory, setSelectedCategory] = useState<Category | "전체">("전체");
-  const [filteredData, setFilteredData] = useState<BeforeAfterItem[]>(beforeAfterData);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1023);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (selectedCategory === "전체") {
-      setFilteredData(beforeAfterData);
-    } else {
-      setFilteredData(beforeAfterData.filter(item => item.category === selectedCategory));
+  // 카테고리별로 그룹화
+  const groupedData = beforeAfterData.reduce((acc, item) => {
+    if (!acc[item.category]) {
+      acc[item.category] = [];
     }
-  }, [selectedCategory]);
+    acc[item.category].push(item);
+    return acc;
+  }, {} as Record<Category, BeforeAfterItem[]>);
 
-  const categories: (Category | "전체")[] = [
-    "전체",
-    "모발이식",
-    "눈",
-    "코",
-    "얼굴윤곽",
-    "가슴",
-    "지방이식",
-    "쁘띠",
-    "기타"
+  // 카테고리 순서 정의
+  const categoryOrder: Category[] = [
+    "이마축소",
+    "흉터&재수술",
+    "헤어라인(남성)",
+    "헤어라인(여성)",
+    "정수리",
   ];
 
   return (
     <div className={styles.beforeAfterPage}>
-      {/* 헤더 섹션 */}
-      <section className={styles.headerSection}>
-        <div className={styles.headerContainer}>
-          <h1 className={styles.pageTitle}>수술 전후</h1>
-          <p className={styles.pageSubtitle}>
-            바람부는날에도의 실제 수술 전후 사진을 확인해보세요
-          </p>
-        </div>
-      </section>
-
-      {/* 카테고리 탭 */}
-      <section className={styles.categorySection}>
-        <div className={styles.categoryContainer}>
-          <div className={styles.categoryTabs}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`${styles.categoryTab} ${
-                  selectedCategory === category ? styles.categoryTabActive : ""
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
+      <section className={styles.BeforeAfterHeroSection}>
+        <div className={styles.BeforeAfterHeroContainer}>
+          {/* Hero Title - 중앙에 배치 */}
+          <div className={styles.BeforeAfterHeroTitleWrapper}>
+            <div className={styles.BeforeAfterHeroTitleContainer}>
+              <h1 className={styles.BeforeAfterHeroTitle}>
+                <span>
+                  헤어라인
+                  <br />
+                  교정
+                  <div className={styles.BeforeAfterHeroTitleDot} />
+                </span>
+              </h1>
+            </div>
+          </div>
+          {/* Hero Illustration - 왼쪽에 붙도록 */}
+          <div className={styles.BeforeAfterHeroIllustration}>
+            <img
+              src="/hair-transplant/hero-illustration.svg"
+              alt="헤어라인 모발이식 일러스트"
+              className={styles.BeforeAfterHeroIllustrationImage}
+            />
           </div>
         </div>
+        <img
+          src="/hair-transplant/mobile/hero-illustration-mobile.svg"
+          alt="헤어라인 모발이식 일러스트"
+          className={styles.BeforeAfterHeroIllustrationImageMobile}
+        />
       </section>
-
-      {/* 전후 사진 그리드 */}
-      <section className={styles.contentSection}>
-        <div className={styles.contentContainer}>
-          <div className={styles.beforeAfterGrid}>
-            {filteredData.map((item) => (
-              <div key={item.id} className={styles.beforeAfterCard}>
-                <div className={styles.cardHeader}>
-                  <span className={styles.cardCategory}>{item.category}</span>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  {item.description && (
-                    <p className={styles.cardDescription}>{item.description}</p>
-                  )}
-                </div>
-                <div className={styles.sliderWrapper}>
-                  <BeforeAfterSlider
-                    beforeImage={item.beforeImage}
-                    afterImage={item.afterImage}
-                    beforeAlt={`${item.title} - 수술 전`}
-                    afterAlt={`${item.title} - 수술 후`}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* 더보기 버튼 */}
-          <div className={styles.loadMoreContainer}>
-            <button className={styles.loadMoreButton}>
-              더보기
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 상담 예약 CTA 섹션 */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaContainer}>
-          <h2 className={styles.ctaTitle}>
-            만족스러운 결과를 원하신다면<br />
-            바람부는날에도와 함께하세요
-          </h2>
-          <button className={styles.ctaButton}>
-            상담 예약하기
-          </button>
+      {/* 전후 사진 캐러셀 섹션들 */}
+      <section className={styles.mainSection}>
+        <div className={styles.mainContainer}>
+          {categoryOrder.map(
+            (category) =>
+              groupedData[category] && (
+                <CategoryCarousel
+                  key={category}
+                  category={category}
+                  items={groupedData[category]}
+                />
+              )
+          )}
         </div>
       </section>
     </div>

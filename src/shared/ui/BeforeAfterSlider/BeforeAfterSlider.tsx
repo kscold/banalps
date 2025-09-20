@@ -21,6 +21,16 @@ export default function BeforeAfterSlider({
   const [sliderPosition, setSliderPosition] = useState(50) // 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1023)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   const updateSliderPosition = useCallback((clientX: number) => {
     if (!containerRef.current) return
@@ -113,25 +123,55 @@ export default function BeforeAfterSlider({
         {/* 슬라이더 라인 */}
         <div className={styles.sliderLine} style={{ left: `${sliderPosition}%` }}>
           <div className={styles.sliderHandle}>
-            <svg width="38" height="16" viewBox="0 0 38 16" fill="none">
-              <polygon
-                points="8,2 2,8 8,14"
-                fill="#FFFFFF"
-              />
-              <polygon
-                points="30,14 36,8 30,2"
-                fill="#FFFFFF"
-              />
+            <svg
+              width={isMobile ? "20" : "38"}
+              height={isMobile ? "10" : "16"}
+              viewBox={isMobile ? "0 0 20 10" : "0 0 38 16"}
+              fill="none"
+            >
+              {isMobile ? (
+                <>
+                  <polygon
+                    points="5,1 1,5 5,9"
+                    fill="#FFFFFF"
+                  />
+                  <polygon
+                    points="15,9 19,5 15,1"
+                    fill="#FFFFFF"
+                  />
+                </>
+              ) : (
+                <>
+                  <polygon
+                    points="8,2 2,8 8,14"
+                    fill="#FFFFFF"
+                  />
+                  <polygon
+                    points="30,14 36,8 30,2"
+                    fill="#FFFFFF"
+                  />
+                </>
+              )}
             </svg>
           </div>
         </div>
+
+        {/* 모바일: 라벨을 이미지 안에 위치 */}
+        {isMobile && (
+          <div className={styles.labelsContainerMobile}>
+            <div className={styles.labelMobile}>Before</div>
+            <div className={styles.labelMobile}>After</div>
+          </div>
+        )}
       </div>
 
-      {/* Before/After 라벨 - 이미지 아래 */}
-      <div className={styles.labelsContainer}>
-        <div className={styles.label}>Before</div>
-        <div className={styles.label}>After</div>
-      </div>
+      {/* 데스크탑: 라벨을 이미지 아래 위치 */}
+      {!isMobile && (
+        <div className={styles.labelsContainerDesktop}>
+          <div className={styles.labelDesktop}>Before</div>
+          <div className={styles.labelDesktop}>After</div>
+        </div>
+      )}
     </div>
   )
 }

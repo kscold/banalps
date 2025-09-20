@@ -1,6 +1,6 @@
 import { style, keyframes } from "@vanilla-extract/css";
 
-import { responsiveProperty, breakpoints } from "../../styles/responsive.css";
+import { breakpoints, vw, mvw } from "../../styles/responsive.css";
 
 // 화살표 순환 애니메이션 - 오른쪽으로 사라진 후 왼쪽에서 다시 나타나며 원래 위치로 돌아옴
 const arrowSlide = keyframes({
@@ -9,11 +9,11 @@ const arrowSlide = keyframes({
     opacity: "1",
   },
   "40%": {
-    transform: "translateX(20px)",
+    transform: `translateX(${vw(20)})`,
     opacity: "0",
   },
   "50%": {
-    transform: "translateX(-20px)",
+    transform: `translateX(-${vw(20)})`,
     opacity: "0",
   },
   "90%": {
@@ -43,51 +43,52 @@ export const arrowButton = style({
   position: "relative",
   overflow: "hidden",
   color: "#272727",
-  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+  boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   lineHeight: "100%",
   // width 제거 - 텍스트 길이에 따라 자동 조정
   minWidth: "auto", // 최소 너비 자동
   width: "auto", // 자동 너비
-  gap: "8px !important", // 텍스트와 화살표 간격 항상 8px 고정
+  gap: `${vw(8)} !important`, // 텍스트와 화살표 간격
   // 화살표 동그라미 기준 고정 패딩 - !important로 강제 적용
-  paddingTop: "12px !important", // 상하 8px 완전 고정
-  paddingBottom: "12px !important", // 상하 8px 완전 고정
-  paddingLeft: "16px !important", // 왼쪽 8px 완전 고정
-  paddingRight: "8px !important", // 오른쪽 8px 완전 고정 (화살표 동그라미 기준)
+  paddingTop: vw(12),
+  paddingBottom: vw(12),
+  paddingLeft: vw(16),
+  paddingRight: vw(8),
   // 높이는 동그라미(28px) + 패딩(8px*2) = 44px로 고정
-  minHeight: "44px", // 최소 높이 고정
-  ...responsiveProperty("borderRadius", 100), // 1920px 기준 100px
-  ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
+  minHeight: vw(44), // 최소 높이 고정
+  borderRadius: vw(100), // 1920px 기준 100px
+  fontSize: vw(20), // 1920px 기준 20px
 
   ":hover": {
     backgroundColor: "#F8F9FA",
-    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
+    boxShadow: `0 ${vw(8)} ${vw(24)} rgba(0, 0, 0, 0.12)`,
   },
 
   ":active": {
-    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+    boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   },
 
   ":disabled": {
     opacity: 0.4,
     cursor: "not-allowed",
-    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+    boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   },
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 거의 100% 너비 (최소한의 마진만)
-      width: "calc(100% - 4px) !important", // 좌우 2px씩만 마진 제외
-      margin: "0 2px !important", // 좌우 2px 마진
-      paddingTop: "12px !important", // 상하 패딩
-      paddingBottom: "12px !important", // 상하 패딩
-      // paddingLeft: "16px !important", // 좌측 패딩
-      // paddingRight: "8px !important", // 우측 패딩 (화살표 기준)
-      fontSize: "14px", // 폰트 크기
-      gap: "8px !important", // 간격
-      minHeight: "44px", // 높이
-      borderRadius: "22px", // 둥근 모서리
-      justifyContent: "space-between", // 텍스트와 화살표 사이 공간
+      // 모바일에서 자동 너비 (position: absolute일 때는 width: auto로)
+      width: "auto", // 기본값은 auto
+      paddingTop: `${mvw(8)}`, // 상하 패딩
+      paddingBottom: `${mvw(8)}`, // 상하 패딩
+      paddingLeft: `${mvw(16)}`, // 좌측 패딩
+      paddingRight: `${mvw(44)}`, // 우측 패딩 (화살표 공간 확보)
+      fontSize: mvw(14), // 폰트 크기
+      gap: `${mvw(8)}`, // 간격
+      minHeight: mvw(44), // 높이
+      borderRadius: mvw(100), // 완전 둥근 모서리
+      justifyContent: "flex-start", // 텍스트 왼쪽 정렬
+      boxShadow: `0 ${mvw(4)} ${mvw(16)} rgba(0, 0, 0, 0.08)`,
+      position: "relative", // 화살표 absolute 포지셔닝을 위해
     },
   },
 });
@@ -102,12 +103,11 @@ export const buttonText = style({
   whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
   lineHeight: "100%",
   flexShrink: 0, // 텍스트가 줄어들지 않도록
-  ...responsiveProperty("fontSize", 20), // 1920px 기준 20px
+  fontSize: vw(20), // 1920px 기준 20px
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 원래 크기 유지
-      fontSize: "14px", // 원래 크기
+      fontSize: mvw(14), // 모바일 크기
     },
   },
 });
@@ -121,15 +121,20 @@ export const arrowContainer = style({
   background: "#14AEFF",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   flexShrink: 0,
-  boxShadow: "0 4px 12px rgba(20, 174, 255, 0.25)",
-  ...responsiveProperty("width", 28), // 1920px 기준 28px
-  ...responsiveProperty("height", 28), // 1920px 기준 28px
+  boxShadow: `0 ${vw(4)} ${vw(12)} rgba(20, 174, 255, 0.25)`,
+  width: vw(28), // 1920px 기준 28px
+  height: vw(28), // 1920px 기준 28px
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 원래 크기 유지
-      width: "20px", // 원래 크기
-      height: "20px",
+      width: mvw(28),
+      height: mvw(28),
+      position: "absolute",
+      right: mvw(8),
+      top: "50%",
+      transform: "translateY(-50%)",
+      boxShadow: `0 ${mvw(4)} ${mvw(12)} rgba(20, 174, 255, 0.25)`,
+      zIndex: 1, // 화살표가 버튼 내부에 표시되도록
     },
   },
 });
@@ -139,8 +144,8 @@ export const arrowIcon = style({
   color: "#FFFFFF",
   transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   strokeWidth: "2",
-  ...responsiveProperty("width", 18), // 1920px 기준 18px
-  ...responsiveProperty("height", 18), // 1920px 기준 18px
+  width: vw(18), // 1920px 기준 18px
+  height: vw(18), // 1920px 기준 18px
 
   // 호버시 화살표 이동 애니메이션
   selectors: {
@@ -151,9 +156,8 @@ export const arrowIcon = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서 원래 크기 유지
-      width: "13px", // 원래 크기
-      height: "13px",
+      width: mvw(13),
+      height: mvw(13),
     },
   },
 });
@@ -227,46 +231,43 @@ export const secondaryArrowContainer = style({
 
 // Size 스타일들
 export const small = style({
-  padding: "12px 20px",
-  fontSize: "14px",
-  gap: "8px",
+  padding: `${vw(12)} ${vw(20)}`,
+  fontSize: vw(14),
+  gap: vw(8),
 
   "@media": {
-    "screen and (max-width: 768px)": {
-      padding: "10px 16px",
-      fontSize: "12px",
-      gap: "6px",
+    [breakpoints.mobile]: {
+      padding: `${mvw(10)} ${mvw(16)}`,
+      fontSize: mvw(12),
+      gap: mvw(6),
     },
   },
 });
 
 export const medium = style({
-  // medium 사이즈도 8px 패딩 고정 - 기본 arrowButton 스타일이 우선 적용되도록 패딩 제거
-  // 패딩은 기본 arrowButton에서 8px로 고정되어 있음
-  ...responsiveProperty("fontSize", 16), // 1920px 기준 16px만 유지
-  minHeight: "44px", // 데스크탑에서 최소 높이 44px
-  padding: "10px 16px", // 데스크탑에서 적절한 패딩
+  fontSize: vw(16), // 1920px 기준 16px
+  minHeight: vw(44), // 데스크탑에서 최소 높이 44px
+  padding: `${vw(10)} ${vw(16)}`, // 데스크탑에서 적절한 패딩
 
   "@media": {
     [breakpoints.mobile]: {
-      // 모바일에서는 원래 폰트 크기 유지
-      fontSize: "14px", // 원래 크기
-      minHeight: "auto", // 모바일에서는 자동 높이
-      padding: "8px", // 모바일 기본 패딩
+      fontSize: mvw(14),
+      // minHeight: "auto", // 모바일에서는 자동 높이
+      padding: mvw(8), // 모바일 기본 패딩
     },
   },
 });
 
 export const large = style({
-  padding: "20px 32px",
-  fontSize: "18px",
-  gap: "16px",
+  padding: `${vw(20)} ${vw(32)}`,
+  fontSize: vw(18),
+  gap: vw(16),
 
   "@media": {
-    "screen and (max-width: 1023px)": {
-      padding: "18px 60px 18px 28px", // 오른쪽에 원 공간 확보
-      fontSize: "16px",
-      gap: "14px",
+    [breakpoints.mobile]: {
+      padding: `${mvw(18)} ${mvw(60)} ${mvw(18)} ${mvw(28)}`, // 오른쪽에 원 공간 확보
+      fontSize: mvw(16),
+      gap: mvw(14),
       position: "relative",
       justifyContent: "center", // 텍스트 가운데 정렬
     },
@@ -275,38 +276,50 @@ export const large = style({
 
 // Size별 화살표 컨테이너 스타일
 export const smallArrowContainer = style({
-  width: "22px",
-  height: "22px",
+  width: vw(22),
+  height: vw(22),
+  "@media": {
+    [breakpoints.mobile]: {
+      width: mvw(22),
+      height: mvw(22),
+    },
+  },
 });
 
 export const smallArrowIcon = style({
-  width: "11px",
-  height: "11px",
+  width: vw(11),
+  height: vw(11),
+  "@media": {
+    [breakpoints.mobile]: {
+      width: mvw(11),
+      height: mvw(11),
+    },
+  },
 });
 
 export const largeArrowContainer = style({
-  width: "40px",
-  height: "40px",
+  width: vw(40),
+  height: vw(40),
   "@media": {
     [breakpoints.mobile]: {
-      width: "32px", // 적절한 크기
-      height: "32px",
+      width: mvw(32),
+      height: mvw(32),
       position: "absolute",
-      right: "8px", // 오른쪽 8px 여백
-      top: "8px", // 상단 8px 여백
-      bottom: "8px", // 하단 8px 여백
+      right: mvw(8), // 오른쪽 여백
+      top: mvw(8), // 상단 여백
+      bottom: mvw(8), // 하단 여백
       margin: "auto 0", // 세로 중앙
     },
   },
 });
 
 export const largeArrowIcon = style({
-  width: "18px",
-  height: "18px",
+  width: vw(18),
+  height: vw(18),
   "@media": {
     [breakpoints.mobile]: {
-      width: "18px", // 모바일에서 적절한 크기
-      height: "18px",
+      width: mvw(18),
+      height: mvw(18),
     },
   },
 });

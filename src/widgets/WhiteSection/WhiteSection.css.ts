@@ -296,8 +296,7 @@ export const viewMoreButton = style({
       left: "20px",
     },
     [breakpoints.mobile]: {
-      bottom: "20px",
-      left: "20px",
+      display: "none", // 모바일에서는 숨김 (별도 모바일 버튼 사용)
     },
   },
 });
@@ -807,10 +806,9 @@ export const mobileServiceCard = style({
     [breakpoints.mobile]: {
       display: "block",
       position: "relative",
-      width: "100%", // 양쪽 패딩
-      // margin: `0 ${mvw(16)}`, // 좌우 16px 마진
+      width: "100%",
       borderRadius: mvw(12), // 둥근 모서리
-      overflow: "hidden",
+      overflow: "hidden", // 이미지가 모서리를 벗어나지 않도록
       backgroundColor: "#F8F9FA",
     },
   },
@@ -838,11 +836,9 @@ export const mobileCardButton = style({
       position: "absolute",
       bottom: mvw(16),
       left: mvw(16),
-      right: "auto", // 오른쪽 자동
-      width: "auto", // 너비 자동
-      maxWidth: `calc(100% - ${mvw(32)})`, // 최대 너비 제한
-      fontSize: mvw(14), // 폰트 크기 명시
-      fontWeight: 500, // 폰트 굵기
+      right: mvw(16),
+      width: `calc(100% - ${mvw(32)}) !important`, // 좌우 16px씩 제외한 전체 너비
+      justifyContent: "center !important", // 텍스트 가운데 정렬
     },
   },
 });
@@ -885,9 +881,11 @@ export const mobileViewMoreButton = style({
       position: "absolute",
       bottom: mvw(20),
       left: mvw(20),
+      right: mvw(20),
+      width: `calc(100% - ${mvw(40)}) !important`, // 좌우 16px씩 제외한 전체 너비
+      justifyContent: "center !important", // 텍스트 가운데 정렬
       backgroundColor: "#FFFFFF",
-      width: "auto", // 자동 너비
-      maxWidth: `calc(100% - ${mvw(40)})`, // 최대 너비 제한
+      // width와 maxWidth 제거 - ArrowButton에서 자체 처리
       fontSize: mvw(14), // 폰트 크기 명시
       fontWeight: 500, // 폰트 굵기
     },

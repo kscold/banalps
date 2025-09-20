@@ -3,83 +3,281 @@ import {
   breakpoints,
   vw,
   mvw,
+  responsiveContainer,
+  responsiveFont,
 } from "../../shared/styles/responsive.css";
+import { fontFamily } from "../../shared/styles/fonts.css";
 
 // 페이지 전체 컨테이너
 export const beforeAfterPage = style({
   minHeight: "100vh",
   backgroundColor: "#FFFFFF",
+  padding: 0,
 });
 
-// ========== 헤더 섹션 ==========
-export const headerSection = style({
+// ========== 메인 섹션 ==========
+export const mainSection = style({
   width: "100%",
-  padding: `${vw(120)} 0 ${vw(80)} 0`,
-  backgroundColor: "#73D5FA",
+});
+
+export const mainContainer = style({
+  width: "100%",
+});
+
+// Hairline Hero Section
+export const BeforeAfterHeroSection = style({
+  position: "relative",
+  width: "100%",
+  minHeight: "100vh",
+  overflow: "hidden",
+  // Hero 섹션은 전체 1920px 사용
   "@media": {
     [breakpoints.mobile]: {
-      padding: `${mvw(80)} 0 ${mvw(60)} 0`,
+      // minHeight: mvw(600), // 모바일 전체 높이 축소
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      paddingTop: mvw(90), // 상단 여백
     },
   },
 });
 
-export const headerContainer = style({
-  width: vw(1920),
+export const BeforeAfterHeroContainer = style({
+  position: "relative",
+  width: "100%",
+  maxWidth: "1920px", // Hero는 1920px 전체 사용
   margin: "0 auto",
-  padding: `0 ${vw(60)}`,
-  textAlign: "center",
+  height: "100vh",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "1920px",
-      padding: "0 60px",
-    },
-    [breakpoints.desktop]: {
-      width: "100%",
-      maxWidth: "1200px",
-      padding: "0 40px",
-    },
     [breakpoints.mobile]: {
-      width: "100%",
-      padding: `0 ${mvw(24)}`,
+      padding: `0 ${mvw(20)}`, // 모바일 좌우 패딩
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
     },
   },
 });
 
-export const pageTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(48),
-  fontWeight: 700,
-  lineHeight: "120%",
-  color: "#000000",
-  marginBottom: vw(16),
+export const BeforeAfterHeroIllustration = style({
+  position: "absolute",
+  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
+  width: "1750px", // 헤더와 완전히 동일한 최대 너비
+  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  top: "50%",
+  transform: "translateY(-50%)",
+  height: vw(765), // 1920px 기준 762px 높이
+  zIndex: 1,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "48px",
-      marginBottom: "16px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "42px",
-      marginBottom: "14px",
-    },
     [breakpoints.mobile]: {
-      fontSize: mvw(32),
-      marginBottom: mvw(12),
+      display: "none",
     },
   },
 });
 
-export const pageSubtitle = style({
+export const BeforeAfterHeroIllustrationImage = style({
+  width: "100%",
+  height: "100%", // 컨테이너 높이에 맞춤
+  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
+export const BeforeAfterHeroIllustrationImageMobile = style({
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      display: "none",
+    },
+    [breakpoints.desktop]: {
+      display: "none",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "100%",
+      marginTop: mvw(80),
+    },
+  },
+});
+
+export const BeforeAfterHeroTitleWrapper = style({
+  ...responsiveContainer(1600), // 헤더와 일치하는 1600px 컨테이너
+  position: "absolute",
+  top: "0",
+  right: "0",
+  left: "0",
+  bottom: "0",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end", // 오른쪽 정렬
+  paddingRight: vw(60), // 헤더와 동일한 패딩
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingRight: "60px", // 헤더와 동일한 고정 패딩
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      position: "relative",
+      justifyContent: "center",
+      paddingRight: "0",
+      alignItems: "center",
+      paddingTop: "0",
+      top: "0px",
+      zIndex: 10,
+    },
+  },
+});
+
+export const BeforeAfterHeroTitleContainer = style({
+  position: "absolute",
+  top: "50%",
+  left: "0",
+  transform: "translateY(-50%)",
+  textAlign: "left",
+  zIndex: 3,
+  right: "0", // 오른쪽에서 시작
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginRight: "160px", // 1920px+ 고정 마진
+      paddingLeft: "40px",
+      paddingRight: "60px", // 헤더와 동일한 고정 패딩
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      position: "static",
+      top: "0px",
+      transform: "none",
+      textAlign: "center",
+      marginRight: "0",
+      paddingLeft: "0",
+      paddingRight: "0",
+      right: "auto",
+    },
+  },
+});
+
+// Hairline Hero Title - Figma 디자인에 맞게 60px
+export const BeforeAfterHeroTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(20),
+  fontWeight: 500, // Figma에서 Medium weight
+  ...responsiveFont(60, 40), // 1920px 기준 60px, 모바일 40px
+  letterSpacing: "0", // Figma에서 0
+  lineHeight: vw(72), // Figma에서 72px
+  color: "#272727",
+  margin: "0",
+  textAlign: "left",
+
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px",
+      lineHeight: "72px", // 1920px+ 고정
+    },
+    [breakpoints.mobile]: {
+      marginTop: mvw(58),
+      lineHeight: mvw(48),
+      fontSize: mvw(40),
+    },
+  },
+});
+
+export const BeforeAfterHeroTitleDot = style({
+  display: "inline-block",
+  width: vw(20),
+  height: vw(20),
+  backgroundColor: "#14AEFF",
+  borderRadius: "50%",
+  marginLeft: vw(20),
+  flexShrink: 0,
+  verticalAlign: "middle", // 텍스트와 수직 정렬
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "20px",
+      height: "20px",
+      marginLeft: "20px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(14),
+      height: mvw(14),
+      marginLeft: mvw(14),
+    },
+  },
+});
+
+// ========== 캐러셀 섹션 ==========
+export const carouselSection = style({
+  width: "100%",
+  height: vw(990),
+  paddingTop: vw(160),
+  paddingBottom: vw(160),
+  "@media": {
+    [breakpoints.desktopLarge]: {},
+    [breakpoints.mobile]: {
+      padding: `${mvw(40)} ${mvw(20)}`,
+    },
+  },
+  selectors: {
+    "&:nth-child(odd)": {
+      backgroundColor: "#FFFFFF",
+    },
+    "&:nth-child(even)": {
+      backgroundColor: "#D5FEFF",
+    },
+  },
+});
+
+export const carouselHeader = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  marginBottom: vw(24),
+  gap: vw(40),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginBottom: "24px",
+    },
+    [breakpoints.mobile]: {
+      marginBottom: mvw(20),
+    },
+  },
+});
+
+export const categoryBadge = style({
+  display: "inline-block",
+  padding: `${vw(10)} ${vw(32)}`,
+  backgroundColor: "#73D5FA",
+  color: "#FFFFFF",
+  background: "#14AEFF",
+  borderRadius: vw(30),
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(18),
+  fontWeight: 500,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      padding: "10px 32px",
+      borderRadius: "30px",
+      fontSize: "18px",
+    },
+    [breakpoints.mobile]: {
+      padding: `${mvw(8)} ${mvw(24)}`,
+      borderRadius: mvw(20),
+      fontSize: mvw(16),
+    },
+  },
+});
+
+export const itemTitle = style({
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(18),
   fontWeight: 400,
-  lineHeight: "150%",
-  color: "#000000",
-  opacity: 0.8,
+  color: "#14AEFF",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-    },
-    [breakpoints.desktop]: {
       fontSize: "18px",
     },
     [breakpoints.mobile]: {
@@ -88,435 +286,300 @@ export const pageSubtitle = style({
   },
 });
 
-// ========== 카테고리 섹션 ==========
-export const categorySection = style({
-  width: "100%",
-  padding: `${vw(60)} 0`,
-  backgroundColor: "#FFFFFF",
-  borderBottom: "1px solid #E5E5E5",
-  position: "sticky",
-  top: 0,
-  zIndex: 100,
-  "@media": {
-    [breakpoints.mobile]: {
-      padding: `${mvw(40)} 0`,
-    },
-  },
-});
-
-export const categoryContainer = style({
-  width: vw(1920),
-  margin: "0 auto",
-  padding: `0 ${vw(60)}`,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "1920px",
-      padding: "0 60px",
-    },
-    [breakpoints.desktop]: {
-      width: "100%",
-      maxWidth: "1200px",
-      padding: "0 40px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      padding: `0 ${mvw(24)}`,
-      overflowX: "auto",
-    },
-  },
-});
-
-export const categoryTabs = style({
+export const carouselContainer = style({
+  position: "relative",
   display: "flex",
-  gap: vw(24),
-  justifyContent: "center",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "24px",
-    },
-    [breakpoints.desktop]: {
-      gap: "20px",
-    },
-    [breakpoints.mobile]: {
-      gap: mvw(16),
-      justifyContent: "flex-start",
-    },
-  },
-});
-
-export const categoryTab = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(18),
-  fontWeight: 400,
-  lineHeight: "150%",
-  color: "#999999",
-  background: "none",
-  border: "none",
-  padding: `${vw(12)} ${vw(24)}`,
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  borderRadius: vw(24),
-  whiteSpace: "nowrap",
-  ":hover": {
-    color: "#333333",
-    backgroundColor: "#F5F5F5",
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      padding: "12px 24px",
-      borderRadius: "24px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "16px",
-      padding: "10px 20px",
-      borderRadius: "20px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      padding: `${mvw(10)} ${mvw(20)}`,
-      borderRadius: mvw(20),
-    },
-  },
-});
-
-export const categoryTabActive = style({
-  fontWeight: 600,
-  color: "#FFFFFF",
-  backgroundColor: "#14AEFF",
-  ":hover": {
-    color: "#FFFFFF",
-    backgroundColor: "#14AEFF",
-  },
-});
-
-// ========== 콘텐츠 섹션 ==========
-export const contentSection = style({
-  width: "100%",
-  padding: `${vw(80)} 0`,
-  backgroundColor: "#FFFFFF",
-  "@media": {
-    [breakpoints.mobile]: {
-      padding: `${mvw(60)} 0`,
-    },
-  },
-});
-
-export const contentContainer = style({
-  width: vw(1920),
-  margin: "0 auto",
-  padding: `0 ${vw(60)}`,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "1920px",
-      padding: "0 60px",
-    },
-    [breakpoints.desktop]: {
-      width: "100%",
-      maxWidth: "1200px",
-      padding: "0 40px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      padding: `0 ${mvw(24)}`,
-    },
-  },
-});
-
-export const beforeAfterGrid = style({
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
+  alignItems: "center",
   gap: vw(40),
-  marginBottom: vw(80),
+  justifyContent: "space-between",
+  width: "100%",
+  maxWidth: "1920px",
+  margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "40px",
-      marginBottom: "80px",
-    },
-    [breakpoints.desktop]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: "30px",
-      marginBottom: "60px",
     },
     [breakpoints.mobile]: {
-      gridTemplateColumns: "1fr",
-      gap: mvw(30),
-      marginBottom: mvw(60),
+      gap: mvw(12),
+      justifyContent: "center",
     },
   },
 });
 
-export const beforeAfterCard = style({
-  backgroundColor: "#FFFFFF",
-  borderRadius: vw(16),
-  overflow: "hidden",
-  boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  ":hover": {
-    transform: "translateY(-4px)",
-    boxShadow: "0px 8px 30px rgba(0, 0, 0, 0.12)",
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
-    },
-    [breakpoints.desktop]: {
-      borderRadius: "12px",
-    },
-    [breakpoints.mobile]: {
-      borderRadius: mvw(12),
-    },
-  },
-});
-
-export const cardHeader = style({
-  padding: vw(24),
-  borderBottom: "1px solid #F0F0F0",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      padding: "24px",
-    },
-    [breakpoints.desktop]: {
-      padding: "20px",
-    },
-    [breakpoints.mobile]: {
-      padding: mvw(20),
-    },
-  },
-});
-
-export const cardCategory = style({
-  display: "inline-block",
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(14),
-  fontWeight: 500,
-  lineHeight: "150%",
-  color: "#14AEFF",
-  backgroundColor: "#E8F7FF",
-  padding: `${vw(4)} ${vw(12)}`,
+export const carouselViewport = style({
+  flex: "1",
+  maxWidth: vw(900),
+  height: "auto",
   borderRadius: vw(12),
-  marginBottom: vw(8),
+  backgroundColor: "#FFFFFF",
+  margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "14px",
-      padding: "4px 12px",
+      maxWidth: "900px",
+      height: "auto",
       borderRadius: "12px",
-      marginBottom: "8px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "13px",
-      padding: "3px 10px",
-      borderRadius: "10px",
-      marginBottom: "6px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(12),
-      padding: `${mvw(3)} ${mvw(10)}`,
-      borderRadius: mvw(10),
-      marginBottom: mvw(6),
+      maxWidth: mvw(320),
+      height: "auto",
+      borderRadius: mvw(8),
     },
   },
 });
 
-export const cardTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(20),
-  fontWeight: 600,
-  lineHeight: "150%",
-  color: "#000000",
-  marginBottom: vw(4),
+export const carouselTrack = style({
+  display: "flex",
+  transition: "transform 0.5s ease",
+});
+
+export const carouselSlide = style({
+  flex: "0 0 100%",
+  position: "relative",
+});
+
+export const mainSlide = style({
+  width: "100%",
+  position: "relative",
+});
+
+export const sidePreview = style({
+  flex: "0 0 auto",
+  width: vw(360),
+  height: "auto",
+  position: "relative",
+  transition: "opacity 0.3s ease",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      marginBottom: "4px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "18px",
-      marginBottom: "3px",
+      width: "360px",
+      height: "auto",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      marginBottom: mvw(3),
+      display: "none", // Hide side previews on mobile
     },
   },
 });
 
-export const cardDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(16),
-  fontWeight: 400,
-  lineHeight: "150%",
+export const sidePreviewLeft = style({});
+export const sidePreviewRight = style({});
+
+export const sidePreviewImage = style({
+  position: "absolute",
+  width: "200%",
+  height: "100%",
+  objectFit: "cover",
+  top: 0,
+  selectors: {
+    [`${sidePreviewLeft} &`]: {
+      right: 0, // Show right half for left preview
+    },
+    [`${sidePreviewRight} &`]: {
+      left: 0, // Show left half for right preview
+    },
+  },
+});
+
+export const sidePreviewLabel = style({
+  position: "absolute",
+  bottom: vw(16),
+  left: "50%",
+  transform: "translateX(-50%)",
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(13),
+  fontWeight: 500,
   color: "#666666",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "14px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(13),
+      bottom: "16px",
+      fontSize: "13px",
     },
   },
 });
 
 export const sliderWrapper = style({
   width: "100%",
-  padding: vw(24),
+  position: "relative",
+});
+
+export const sliderLabels = style({
+  position: "absolute",
+  bottom: vw(20),
+  left: vw(20),
+  right: vw(20),
+  display: "flex",
+  justifyContent: "space-between",
+  pointerEvents: "none",
+  zIndex: 100,
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "24px",
-    },
-    [breakpoints.desktop]: {
-      padding: "20px",
+      bottom: "20px",
+      left: "20px",
+      right: "20px",
     },
     [breakpoints.mobile]: {
-      padding: mvw(20),
+      bottom: mvw(16),
+      left: mvw(16),
+      right: mvw(16),
     },
   },
 });
 
-// ========== 더보기 버튼 ==========
-export const loadMoreContainer = style({
+export const beforeLabel = style({
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(16),
+  fontWeight: 600,
+  color: "#333333",
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  padding: `${vw(4)} ${vw(12)}`,
+  borderRadius: vw(4),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      padding: "4px 12px",
+      borderRadius: "4px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(14),
+      padding: `${mvw(3)} ${mvw(8)}`,
+      borderRadius: mvw(3),
+    },
+  },
+});
+
+export const afterLabel = style({
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(16),
+  fontWeight: 600,
+  color: "#333333",
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  padding: `${vw(4)} ${vw(12)}`,
+  borderRadius: vw(4),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      padding: "4px 12px",
+      borderRadius: "4px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(14),
+      padding: `${mvw(3)} ${mvw(8)}`,
+      borderRadius: mvw(3),
+    },
+  },
+});
+
+export const carouselArrow = style({
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: vw(48),
+  height: vw(48),
+  borderRadius: vw(8),
+  backgroundColor: "#FFFFFF",
+  border: "2px solid #E8F7FF",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+  flexShrink: 0,
+  color: "#73D5FA",
+  zIndex: 10,
+  ":hover": {
+    backgroundColor: "#73D5FA",
+    borderColor: "#73D5FA",
+    color: "#FFFFFF",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "48px",
+      height: "48px",
+      borderRadius: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(40),
+      height: mvw(40),
+      borderRadius: mvw(6),
+    },
+  },
+});
+
+export const carouselArrowLeft = style({
+  left: vw(400),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "400px",
+    },
+    [breakpoints.mobile]: {
+      left: mvw(10),
+    },
+  },
+});
+
+export const carouselArrowRight = style({
+  right: vw(400),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      right: "400px",
+    },
+    [breakpoints.mobile]: {
+      right: mvw(10),
+    },
+  },
+});
+
+export const carouselDots = style({
   display: "flex",
   justifyContent: "center",
-  marginTop: vw(60),
+  gap: vw(8),
+  marginTop: vw(24),
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginTop: "60px",
-    },
-    [breakpoints.desktop]: {
-      marginTop: "50px",
+      gap: "8px",
+      marginTop: "24px",
     },
     [breakpoints.mobile]: {
-      marginTop: mvw(40),
+      gap: mvw(6),
+      marginTop: mvw(16),
     },
   },
 });
 
-export const loadMoreButton = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(18),
-  fontWeight: 500,
-  lineHeight: "150%",
-  color: "#14AEFF",
-  backgroundColor: "#FFFFFF",
-  border: `2px solid #14AEFF`,
-  borderRadius: vw(30),
-  padding: `${vw(16)} ${vw(60)}`,
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-  ":hover": {
-    color: "#FFFFFF",
-    backgroundColor: "#14AEFF",
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      borderRadius: "30px",
-      padding: "16px 60px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "16px",
-      borderRadius: "25px",
-      padding: "14px 50px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      borderRadius: mvw(25),
-      padding: `${mvw(14)} ${mvw(50)}`,
-    },
-  },
-});
-
-// ========== CTA 섹션 ==========
-export const ctaSection = style({
-  width: "100%",
-  padding: `${vw(120)} 0`,
-  backgroundColor: "#73D5FA",
-  "@media": {
-    [breakpoints.mobile]: {
-      padding: `${mvw(80)} 0`,
-    },
-  },
-});
-
-export const ctaContainer = style({
-  width: vw(1920),
-  margin: "0 auto",
-  padding: `0 ${vw(60)}`,
-  textAlign: "center",
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "1920px",
-      padding: "0 60px",
-    },
-    [breakpoints.desktop]: {
-      width: "100%",
-      maxWidth: "1200px",
-      padding: "0 40px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      padding: `0 ${mvw(24)}`,
-    },
-  },
-});
-
-export const ctaTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(36),
-  fontWeight: 600,
-  lineHeight: "150%",
-  color: "#000000",
-  marginBottom: vw(40),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "36px",
-      marginBottom: "40px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "32px",
-      marginBottom: "35px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(24),
-      marginBottom: mvw(30),
-    },
-  },
-});
-
-export const ctaButton = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: vw(20),
-  fontWeight: 600,
-  lineHeight: "150%",
-  color: "#FFFFFF",
-  backgroundColor: "#000000",
+export const carouselDot = style({
+  width: vw(8),
+  height: vw(8),
+  borderRadius: "50%",
   border: "none",
-  borderRadius: vw(30),
-  padding: `${vw(20)} ${vw(80)}`,
+  backgroundColor: "#E0E0E0",
   cursor: "pointer",
   transition: "all 0.3s ease",
+  padding: 0,
   ":hover": {
-    backgroundColor: "#333333",
-    transform: "scale(1.05)",
+    backgroundColor: "#73D5FA",
   },
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      borderRadius: "30px",
-      padding: "20px 80px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "18px",
-      borderRadius: "25px",
-      padding: "18px 70px",
+      width: "8px",
+      height: "8px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      borderRadius: mvw(25),
-      padding: `${mvw(16)} ${mvw(60)}`,
+      width: mvw(6),
+      height: mvw(6),
+    },
+  },
+});
+
+export const carouselDotActive = style({
+  backgroundColor: "#73D5FA",
+  width: vw(24),
+  borderRadius: vw(4),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "24px",
+      borderRadius: "4px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(18),
+      borderRadius: mvw(3),
     },
   },
 });

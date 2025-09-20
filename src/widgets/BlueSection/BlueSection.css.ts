@@ -753,7 +753,7 @@ export const whatBanalButtonMobile = style({
 export const fullWidthButton = style({
   "@media": {
     [breakpoints.mobile]: {
-      width: "100%", // 버튼을 전체 너비로
+      // width 제거 - ArrowButton 자체에서 calc(100% - mvw(4))로 설정됨
       display: "flex",
       justifyContent: "center", // 텍스트 가운데 정렬
       position: "relative",
@@ -1398,15 +1398,25 @@ export const doctorsDescription = style({
 });
 
 export const doctorsImageGrid = style({
-  ...responsiveCaptureContainer(700, 800), // 1920px 기준 700x800 캡처 컨테이너
+  // ...responsiveCaptureContainer(700, 800), // 1920px 기준 700x800 캡처 컨테이너
+
+  position: "relative",
+  width: vw(1059), // 1024px-1920px에서 컨테이너만 비례 스케일링
+  height: vw(1298), // 높이도 비례 스케일링
+  aspectRatio: `${1059} / ${1298}`, // 비율 유지
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.desktopLarge]: {
+      // 1920px 이상에서 완전 고정 (헤더와 동일한 방식)
+      width: `1059px`,
+      height: `1298px`,
+    },
+    [breakpoints.mobile]: {
+      // 모바일에서는 일반적인 flex 레이아웃으로 전환
       display: "flex",
       flexDirection: "column",
-      gap: "20px",
-      position: "relative",
-      width: "100%",
-      height: "auto",
+      gap: "30px",
+      overflow: "visible",
+      aspectRatio: "auto", // 모바일에서는 자동 높이
     },
   },
 });

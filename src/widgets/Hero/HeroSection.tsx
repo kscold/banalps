@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { AnimatePresence } from "framer-motion"
-import Image from "next/image"
+import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
-import { useHeroScroll } from "../../shared/hooks/useHeroScroll"
-import { TextContentRenderer } from "./TextContentRenderer"
-import { VideoSection } from "./VideoSection"
-import BlueSection from "../BlueSection"
-import WhiteSection from "../WhiteSection/WhiteSection"
+import { useHeroScroll } from "../../shared/hooks/useHeroScroll";
+import { TextContentRenderer } from "./TextContentRenderer";
+import { VideoSection } from "./VideoSection";
+import BlueSection from "../BlueSection";
+import WhiteSection from "../WhiteSection/WhiteSection";
 
-import * as styles from "./HeroSection.css"
+import * as styles from "./HeroSection.css";
 
 export default function HeroSection() {
   const {
@@ -18,9 +18,11 @@ export default function HeroSection() {
     showBlueSection,
     enableNormalScroll,
     transitionToVideoFromBlue,
-  } = useHeroScroll()
-  
-  console.log(`[HeroSection/상태] showVideoSection: ${showVideoSection}, showBlueSection: ${showBlueSection}, enableNormalScroll: ${enableNormalScroll}`)
+  } = useHeroScroll();
+
+  console.log(
+    `[HeroSection/상태] showVideoSection: ${showVideoSection}, showBlueSection: ${showBlueSection}, enableNormalScroll: ${enableNormalScroll}`
+  );
 
   return (
     <>
@@ -35,10 +37,14 @@ export default function HeroSection() {
               priority
               className={styles.backgroundImage}
               onLoad={() => {
-                console.log("[HeroSection/배경이미지로드] 배경 이미지 로드 완료")
+                console.log(
+                  "[HeroSection/배경이미지로드] 배경 이미지 로드 완료"
+                );
               }}
               onError={() => {
-                console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패")
+                console.error(
+                  "[HeroSection/배경이미지에러] 배경 이미지 로드 실패"
+                );
               }}
             />
 
@@ -70,5 +76,5 @@ export default function HeroSection() {
         </>
       )}
     </>
-  )
+  );
 }

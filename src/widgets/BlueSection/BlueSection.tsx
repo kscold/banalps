@@ -227,10 +227,12 @@ export default function BlueSection({
         {/* 모바일에서만 보이는 버튼 - featuresList 다음에 위치 */}
         <div className={styles.whatBanalButtonMobile}>
           <ArrowButton
-            size="large"
+            size="medium"
             variant="primary"
-            fontSize={20}
-            paddingVertical={20}
+            fontSize={16}
+            paddingVertical={16}
+            width="100%"
+            textAlign="center"
             className={styles.fullWidthButton}
           >
             View More
@@ -322,10 +324,12 @@ export default function BlueSection({
           {/* 모바일 View More 버튼 (하단) */}
           <div className={styles.doctorsMobileButtonBottom}>
             <ArrowButton
-              size="large"
+              size="medium"
               variant="primary"
-              fontSize={20}
-              paddingVertical={20}
+              fontSize={16}
+              paddingVertical={16}
+              width="100%"
+              textAlign="center"
               className={styles.fullWidthButton}
             >
               View More

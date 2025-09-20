@@ -5,7 +5,7 @@
  * Pretendard: https://github.com/orioncactus/pretendard
  */
 
-import { fontFace } from "@vanilla-extract/css"
+import { fontFace } from "@vanilla-extract/css";
 
 // S-Core Dream Font Family Definition
 export const sCoreDream = fontFace([
@@ -63,7 +63,7 @@ export const sCoreDream = fontFace([
     fontStyle: "normal",
     fontDisplay: "swap",
   },
-])
+]);
 
 // Pretendard Font Family Definition
 export const pretendard = fontFace([
@@ -97,7 +97,7 @@ export const pretendard = fontFace([
     fontStyle: "normal",
     fontDisplay: "swap",
   },
-])
+]);
 
 // Poppins Font Family Definition (from Google Fonts)
 export const poppins = fontFace([
@@ -125,14 +125,14 @@ export const poppins = fontFace([
     fontStyle: "normal",
     fontDisplay: "swap",
   },
-])
+]);
 
 // Font Stack with S-Core Dream & Pretendard
 export const fontFamily = {
   scdream: `${sCoreDream}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
   pretendard: `${pretendard}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
   poppins: `'Poppins', sans-serif`,
-}
+};
 
 // Font Weight Variables
 export const fontWeight = {
@@ -145,4 +145,4 @@ export const fontWeight = {
   bold: 700,
   extrabold: 800,
   black: 900,
-} as const
+} as const;

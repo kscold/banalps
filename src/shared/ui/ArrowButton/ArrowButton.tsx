@@ -12,6 +12,8 @@ interface ArrowButtonProps {
   className?: string
   fontSize?: number // 폰트 크기 (px 단위)
   paddingVertical?: number // 위아래 패딩 (px 단위)
+  width?: number | string // 너비 (px 단위 또는 문자열)
+  textAlign?: "left" | "center" | "right" // 텍스트 정렬
 }
 
 export default function ArrowButton({
@@ -24,6 +26,8 @@ export default function ArrowButton({
   className,
   fontSize, // 커스텀 폰트 크기
   paddingVertical, // 커스텀 위아래 패딩
+  width, // 커스텀 너비
+  textAlign = "left", // 기본값은 left
 }: ArrowButtonProps) {
   // 화살표 컨테이너 스타일 결정
   const getArrowContainerStyle = () => {
@@ -84,14 +88,22 @@ export default function ArrowButton({
 
   // 커스텀 스타일 생성
   const customStyle: React.CSSProperties = {}
-  
+
   if (fontSize) {
     customStyle.fontSize = `${fontSize}px`
   }
-  
+
   if (paddingVertical) {
     customStyle.paddingTop = `${paddingVertical}px`
     customStyle.paddingBottom = `${paddingVertical}px`
+  }
+
+  if (width) {
+    customStyle.width = typeof width === 'number' ? `${width}px` : width
+  }
+
+  if (textAlign) {
+    customStyle.justifyContent = textAlign === 'center' ? 'center' : textAlign === 'right' ? 'flex-end' : 'flex-start'
   }
 
   return (
