@@ -3,6 +3,7 @@
 import HeaderNavigation from "@/widgets/Header/HeaderNavigation"
 import { Footer } from "@/shared/ui/Footer"
 import { FloatingButtonGroup } from "@/features/floating-button"
+import LoginModal from "@/shared/components/LoginModal/LoginModal"
 
 export default function ClientLayout({
   children,
@@ -41,6 +42,7 @@ export default function ClientLayout({
         <Footer />
       </div>
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
+      <LoginModal />
     </>
   )
 }

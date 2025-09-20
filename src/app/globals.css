@@ -112,3 +112,8 @@ body {
   color: var(--foreground);
   font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+section {
+  border: none !important;
+  outline: none !important;
+}

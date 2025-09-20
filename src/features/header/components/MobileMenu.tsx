@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as styles from "../../../widgets/Header/MobileMenuStyles.css"
 import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation"
+import { useAuthStore } from "@/shared/stores/useAuthStore"
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -13,6 +14,7 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname()
+  const { openLoginModal } = useAuthStore()
   const [expandedItems, setExpandedItems] = useState<string[]>([])
   const [isLangOpen, setIsLangOpen] = useState(false)
   const [selectedLang, setSelectedLang] = useState("KR")
@@ -78,7 +80,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className={styles.mobileMenuContent}>
           {/* 상단 영역 - LOGIN과 X 버튼 */}
           <div className={styles.mobileMenuHeader}>
-            <button className={styles.mobileLoginBtn}>LOGIN</button>
+            <button
+              className={styles.mobileLoginBtn}
+              onClick={() => {
+                openLoginModal()
+                onClose()
+              }}
+            >
+              LOGIN
+            </button>
             <button
               className={styles.mobileCloseBtn}
               onClick={onClose}

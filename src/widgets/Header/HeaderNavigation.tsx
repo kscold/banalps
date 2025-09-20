@@ -3,6 +3,7 @@
 import Link from "next/link";
 import * as styles from "./HeaderDesign.css";
 import { useHeaderState } from "../../features/header/hooks/useHeaderState";
+import { useAuthStore } from "@/shared/stores/useAuthStore";
 import DesktopNav from "../../features/header/components/DesktopNav";
 import MobileMenu from "../../features/header/components/MobileMenu";
 import MenuToggleButton from "../../features/header/components/MenuToggleButton";
@@ -17,6 +18,8 @@ export default function HeaderNavigation() {
     handleHeaderMouseLeave,
     closeMenu,
   } = useHeaderState();
+
+  const { openLoginModal } = useAuthStore();
 
   return (
     <>
@@ -43,7 +46,7 @@ export default function HeaderNavigation() {
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
-              <button className={styles.loginButton}>LOGIN</button>
+              <button className={styles.loginButton} onClick={openLoginModal}>LOGIN</button>
 
               {/* 언어 선택 버튼 */}
               <button className={styles.consultButton}>
