@@ -312,7 +312,7 @@ export default function HairlinePage() {
         <div className={styles.section3Content}>
           {isMobile ? (
             <>
-              {/* 모바일: 숫자 → 제목 → 이미지 → 텍스트 → 일러스트 순서 */}
+              {/* 모바일: 가로 배치 */}
               <div className={styles.section3Number}>3</div>
 
               <div className={styles.section3Left}>
@@ -324,15 +324,15 @@ export default function HairlinePage() {
                     <br />
                     좋은 디자인입니다.
                   </h2>
-
-                  <div className={styles.section3Image}>
-                    <img
-                      src="/hair-transplant/hairline/hairline-4.png"
-                      alt="헤어라인 페이지 이미지 4"
-                      className={styles.section3ImageContent}
-                    />
+                  <div className={styles.section3Right}>
+                    <div className={styles.section3Image}>
+                      <img
+                        src="/hair-transplant/hairline/hairline-4.png"
+                        alt="헤어라인 페이지 이미지 4"
+                        className={styles.section3ImageContent}
+                      />
+                    </div>
                   </div>
-
                   <p className={styles.section3Description}>
                     의사만 만족하는 디자인은
                     <br />
@@ -403,7 +403,9 @@ export default function HairlinePage() {
         <div className={styles.beforeAfterContent}>
           <div className={styles.beforeAfterHeader}>
             <div className={styles.beforeAfterCategory}>헤어라인</div>
-            <div className={styles.beforeAfterTitle}>모발이식 3000모</div>
+            <div className={styles.beforeAfterTitle}>
+              3400모(여)_1년경과
+            </div>
           </div>
           <div className={styles.beforeAfterSliderWrapper}>
             <BeforeAfterSlider

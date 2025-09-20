@@ -823,6 +823,7 @@ export const section3 = style({
       padding: "120px 20px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
+      position: "relative",
       paddingTop: mvw(100),
       paddingBottom: 0,
       paddingLeft: 0,
@@ -842,13 +843,13 @@ export const section3Content = style({
       margin: "0 auto",
     },
     [breakpoints.mobile]: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 0,
-      padding: `0 ${mvw(20)}`,
-      alignItems: "flex-start",
       position: "relative",
-      minHeight: mvw(1050),
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      padding: `0 ${mvw(20)}`,
+      gap: mvw(20),
+      width: "100%",
     },
   },
 });
@@ -863,14 +864,14 @@ export const section3Left = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      position: "static",
-      display: "flex",
-      flexDirection: "column",
-      gap: 0,
-      alignItems: "flex-start",
       width: "100%",
-      padding: 0,
-      marginTop: mvw(20),
+      height: "100%",
+      position: "static",
+      paddingTop: "0",
+      padding: "0",
+      order: 2,
+      alignItems: "center",
+      textAlign: "center",
     },
   },
 });
@@ -911,6 +912,18 @@ export const section3Text = style({
   },
 });
 
+// 모바일에서 숫자와 제목을 함께 배치하는 컨테이너
+export const section3TitleContainer = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: mvw(12),
+      marginBottom: mvw(30),
+    },
+  },
+});
+
 export const section3Title = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
@@ -924,11 +937,17 @@ export const section3Title = style({
       lineHeight: "56px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(20),
-      lineHeight: "150%",
-      margin: `0 0 ${mvw(30)} 0`,
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: mvw(204),
+      height: mvw(106),
       textAlign: "left",
-      width: mvw(200),
+      fontSize: mvw(20),
+      margin: `0 0 ${mvw(30)} 0`,
+      lineHeight: "150%",
+      letterSpacing: "0%",
     },
   },
 });
@@ -948,35 +967,41 @@ export const section3Description = style({
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(28),
+      textAlign: "left",
     },
   },
 });
 
 export const section3Number = style({
+  zIndex: 3, // 앞에 표시
+
+  fontFamily: "'Nordnet Sans Mono', monospace", // 피그마 스펙
   position: "absolute",
   top: vw(125), // section3Left의 paddingTop과 맞춤
-  left: vw(750), // 피그마 x: 537 기준 위치
-  fontFamily: "'Nordnet Sans Mono', monospace", // 피그마 스펙
   fontWeight: 400, // 피그마 스펙: Regular
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
   lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)
   color: "#272727", // 피그마 스펙: #272727
   textAlign: "right", // 피그마 스펙: 우측 정렬
   width: vw(118), // 피그마 너비
-  zIndex: 3, // 앞에 표시
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      left: vw(750), // 피그마 x: 537 기준 위치
+    },
+    [breakpoints.desktop]: {
+      left: vw(750), // 피그마 x: 537 기준 위치
+    },
     [breakpoints.mobile]: {
       position: "absolute",
-      top: mvw(0),
-      right: mvw(16),
       fontSize: mvw(60),
-      width: "auto",
-      height: "auto",
+      width: mvw(36),
+      height: mvw(72),
+      top: mvw(0),
+
+      right: mvw(20),
       lineHeight: mvw(72),
       textAlign: "center",
       zIndex: 1,
-      transform: "none",
     },
   },
 });
@@ -999,6 +1024,7 @@ export const section3Right = style({
       gap: mvw(20),
       alignItems: "center",
       minHeight: "auto",
+      width: "100%",
     },
   },
 });
@@ -1055,14 +1081,18 @@ export const section3Image = style({
       }),
     },
     [breakpoints.mobile]: {
+      position: "static",
       width: "100%",
       height: mvw(305),
-      marginTop: mvw(40),
-      marginBottom: mvw(40),
-      transform: "none",
-      borderRadius: 0,
+      maxWidth: mvw(375),
+      top: "auto",
+      right: "auto",
+      aspectRatio: "auto",
+      borderRadius: mvw(12),
       overflow: "hidden",
+      marginBottom: mvw(40),
       display: "block",
+      transform: "none",
     },
   },
 });
@@ -1120,6 +1150,7 @@ export const beforeAfterHeader = style({
       gap: "15px",
       alignItems: "center",
       textAlign: "center",
+      margin: "0 auto",
     },
   },
 });
@@ -1160,6 +1191,7 @@ export const beforeAfterTitle = style({
   letterSpacing: "0",
   margin: "0",
   color: "#272727",
+  whiteSpace: "nowrap",
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "36px",
@@ -1167,6 +1199,7 @@ export const beforeAfterTitle = style({
     [breakpoints.mobile]: {
       fontSize: mvw(18),
       lineHeight: mvw(28),
+      whiteSpace: "nowrap",
     },
   },
 });
@@ -1220,7 +1253,8 @@ export const featuresSection = style({
       padding: "120px 0px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(100)} ${mvw(20)} ${mvw(120)} ${mvw(20)}`, // 하단 여백 늘리기
+      height: mvw(1752),
+      padding: `0 ${mvw(20)} ${mvw(120)} ${mvw(20)}`, // 하단 여백 늘리기
     },
   },
 });
@@ -1241,7 +1275,8 @@ export const featuresHeader = style({
       minHeight: "160px",
     },
     [breakpoints.mobile]: {
-      minHeight: "120px",
+      minHeight: mvw(204),
+      marginBottom: mvw(60),
     },
   },
 });
@@ -1370,7 +1405,11 @@ export const featureCard = style({
       aspectRatio: "1/1",
       borderRadius: "50%",
       padding: mvw(18),
-      paddingBottom: mvw(32),
+      paddingBottom: mvw(64),
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-end",
+      alignItems: "center",
       ":hover": {
         transform: "translateY(-4px)",
         boxShadow: "0 10px 20px rgba(213, 254, 255, 0.6)",
@@ -1395,8 +1434,9 @@ export const featureIconContainer = style({
       height: "175px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      top: "40%",
+      width: mvw(210),
+      height: mvw(210),
+      top: "45%",
     },
   },
 });
