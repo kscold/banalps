@@ -345,7 +345,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer}>
                 <img
-                  src="/main/person/대표원장_신승규.png"
+                  src="/main/person/doctor-shinseunggyu.png"
                   alt="신승규 원장"
                   className={styles.doctorMainImage}
                 />
@@ -511,7 +511,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer2}>
                 <img
-                  src="/main/person/대표원장_박수호.png"
+                  src="/main/person/doctor-parksooho.png"
                   alt="박수호 원장"
                   className={styles.doctorMainImage}
                 />
@@ -667,7 +667,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer3}>
                 <img
-                  src="/main/person/대표원장_김나래.png"
+                  src="/main/person/doctor-kimnarae.png"
                   alt="김나래 원장"
                   className={styles.doctorMainImage}
                 />

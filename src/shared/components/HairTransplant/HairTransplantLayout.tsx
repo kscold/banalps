@@ -7,6 +7,7 @@ import Link from "next/link";
 import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
 import SidePreviewSlider from "@/shared/ui/SidePreviewSlider/SidePreviewSlider";
 import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton";
+import FeaturesSection from "@/shared/components/FeaturesSection/FeaturesSection";
 import * as styles from "./HairTransplantLayout.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { vw, mvw } from "@/shared/styles/responsive.utils";
@@ -29,7 +30,8 @@ interface Section {
     width: number;
     height: number;
   };
-  illustrationPosition?: { // Optional absolute positioning for desktop
+  illustrationPosition?: {
+    // Optional absolute positioning for desktop
     top?: number; // vw units from top
     right?: number; // vw units from right
     bottom?: number; // vw units from bottom
@@ -133,7 +135,7 @@ interface HairTransplantLayoutProps {
   heroIllustrationMobile?: string;
   section1: Section;
   section2: Section;
-  section3: Section;
+  section3?: Section; // Optional for scarReduction mode
   beforeAfterData: BeforeAfterData;
   beforeAfterButton?: BeforeAfterButton; // Optional button for before/after section
   featuresTitle?: React.ReactNode;
@@ -141,6 +143,8 @@ interface HairTransplantLayoutProps {
   featureCards?: FeatureCard[];
   sidePreviewData?: SidePreviewData;
   buttonCards?: ButtonCard[]; // Optional button cards section
+  scarReduction?: boolean; // Special mode for scar reduction pages
+  customMiddleSection?: React.ReactNode; // Custom section between section1 and section2
 }
 
 export default function HairTransplantLayout({
@@ -160,6 +164,8 @@ export default function HairTransplantLayout({
   featureCards,
   sidePreviewData,
   buttonCards,
+  scarReduction = false,
+  customMiddleSection,
 }: HairTransplantLayoutProps) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const section1ImagesRef = useRef(null);
@@ -216,7 +222,9 @@ export default function HairTransplantLayout({
           {isMobile ? (
             <>
               {/* 모바일: 숫자 → 제목 → 이미지 → 텍스트 순서 */}
-              <div className={styles.section1Number}>{section1.number}</div>
+              {!scarReduction && (
+                <div className={styles.section1Number}>{section1.number}</div>
+              )}
               <div className={styles.section1Left}>
                 <div className={styles.section1Text}>
                   <h2
@@ -413,7 +421,9 @@ export default function HairTransplantLayout({
             </>
           ) : (
             <>
-              <div className={styles.section1Number}>{section1.number}</div>
+              {!scarReduction && (
+                <div className={styles.section1Number}>{section1.number}</div>
+              )}
               <div className={styles.section1Left}>
                 <div className={styles.section1Text}>
                   <h2
@@ -506,6 +516,7 @@ export default function HairTransplantLayout({
                         ? {
                             width: vw(section1.imagesSize.main.width),
                             height: vw(section1.imagesSize.main.height),
+                            maxWidth: vw(section1.imagesSize.main.width),
                           }
                         : undefined
                     }
@@ -561,6 +572,7 @@ export default function HairTransplantLayout({
                         ? {
                             width: vw(section1.imagesSize.secondary.width),
                             height: vw(section1.imagesSize.secondary.height),
+                            maxWidth: vw(section1.imagesSize.secondary.width),
                           }
                         : undefined
                     }
@@ -582,13 +594,18 @@ export default function HairTransplantLayout({
         </div>
       </section>
 
+      {/* Custom Middle Section (for ProcessSection in scarReduction) */}
+      {customMiddleSection}
+
       {/* Section 2 */}
       <section className={styles.section2}>
         <div className={styles.section2Content}>
           {isMobile ? (
             <>
               {/* 모바일: 숫자 → 제목 → 이미지 → 텍스트 순서 */}
-              <div className={styles.section2NumberBg}>{section2.number}</div>
+              {!scarReduction && (
+                <div className={styles.section2NumberBg}>{section2.number}</div>
+              )}
               <div className={styles.section2Left}>
                 <div className={styles.section2Text}>
                   <h2
@@ -716,6 +733,7 @@ export default function HairTransplantLayout({
                         ? {
                             width: vw(section2.imagesSize.main.width),
                             height: vw(section2.imagesSize.main.height),
+                            maxWidth: vw(section2.imagesSize.main.width),
                           }
                         : undefined
                     }
@@ -729,7 +747,11 @@ export default function HairTransplantLayout({
                 )}
               </div>
               <div className={styles.section2Right}>
-                <div className={styles.section2NumberBg}>{section2.number}</div>
+                {!scarReduction && (
+                  <div className={styles.section2NumberBg}>
+                    {section2.number}
+                  </div>
+                )}
 
                 {/* Desktop Illustration with optional absolute positioning */}
                 {section2.illustration && section2.illustrationSize && (
@@ -738,11 +760,19 @@ export default function HairTransplantLayout({
                     style={
                       section2.illustrationPosition
                         ? {
-                            position: 'absolute' as const,
-                            top: section2.illustrationPosition.top ? vw(section2.illustrationPosition.top) : undefined,
-                            right: section2.illustrationPosition.right ? vw(section2.illustrationPosition.right) : undefined,
-                            bottom: section2.illustrationPosition.bottom ? vw(section2.illustrationPosition.bottom) : undefined,
-                            left: section2.illustrationPosition.left ? vw(section2.illustrationPosition.left) : undefined,
+                            position: "absolute" as const,
+                            top: section2.illustrationPosition.top
+                              ? vw(section2.illustrationPosition.top)
+                              : undefined,
+                            right: section2.illustrationPosition.right
+                              ? vw(section2.illustrationPosition.right)
+                              : undefined,
+                            bottom: section2.illustrationPosition.bottom
+                              ? vw(section2.illustrationPosition.bottom)
+                              : undefined,
+                            left: section2.illustrationPosition.left
+                              ? vw(section2.illustrationPosition.left)
+                              : undefined,
                             width: vw(section2.illustrationSize.width),
                             height: vw(section2.illustrationSize.height),
                           }
@@ -756,9 +786,9 @@ export default function HairTransplantLayout({
                       src={section2.illustration}
                       alt="일러스트"
                       style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
                       }}
                     />
                   </div>
@@ -828,89 +858,197 @@ export default function HairTransplantLayout({
         </div>
       </section>
 
-      {/* Section 3 */}
-      <section className={styles.section3}>
-        <div
-          className={
-            section3.illustration
-              ? styles.section3ContentWithSvg
-              : styles.section3Content
-          }
-        >
-          {isMobile ? (
-            <>
-              {/* 모바일: 제목 → 이미지 → 설명 순서 */}
-              <div className={styles.section3Number}>{section3.number}</div>
-              <div className={styles.section3Left}>
-                <div className={styles.section3Text}>
-                  <h2
-                    className={styles.section3Title}
-                    style={
-                      isMobile && section3.titleMobileSize
-                        ? {
-                            width: section3.titleMobileSize?.width
-                              ? `${
-                                  (section3.titleMobileSize.width / 375) * 100
-                                }vw`
-                              : undefined,
-                            height: section3.titleMobileSize?.height
-                              ? `${
-                                  (section3.titleMobileSize.height / 375) * 100
-                                }vw`
-                              : undefined,
-                          }
-                        : undefined
-                    }
-                  >
-                    {isMobile && section3.titleMobile
-                      ? section3.titleMobile
-                      : section3.title}
-                  </h2>
-                  {section3.images?.main && (
-                    <motion.div
-                      className={styles.section3Image}
-                      initial={{ opacity: 0, y: 80 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                    >
-                      <img
-                        src={section3.images.main}
-                        alt="이미지"
-                        className={styles.section3ImageContent}
-                      />
-                    </motion.div>
-                  )}
-
-                  {/* 모바일 일러스트레이션 */}
-                  {section3.illustrationMobile && (
-                    <div
-                      className={styles.section3MobileIllustration}
+      {/* Section 3 - Only render if not scarReduction and section3 exists */}
+      {!scarReduction && section3 && (
+        <section className={styles.section3}>
+          <div
+            className={
+              section3.illustration
+                ? styles.section3ContentWithSvg
+                : styles.section3Content
+            }
+          >
+            {isMobile ? (
+              <>
+                {/* 모바일: 제목 → 이미지 → 설명 순서 */}
+                {!scarReduction && (
+                  <div className={styles.section3Number}>{section3.number}</div>
+                )}
+                <div className={styles.section3Left}>
+                  <div className={styles.section3Text}>
+                    <h2
+                      className={styles.section3Title}
                       style={
-                        section3.illustrationMobileSize
+                        isMobile && section3.titleMobileSize
                           ? {
-                              width: section3.illustrationMobileSize.fullWidth
-                                ? "calc(100vw - var(--scrollbar-width, 0px))"
-                                : "100%",
-                              aspectRatio:
-                                section3.illustrationMobileSize.width &&
-                                section3.illustrationMobileSize.height
-                                  ? `${section3.illustrationMobileSize.width} / ${section3.illustrationMobileSize.height}`
-                                  : undefined,
-                              marginLeft: section3.illustrationMobileSize.fullWidth
-                                ? mvw(-20)
+                              width: section3.titleMobileSize?.width
+                                ? `${
+                                    (section3.titleMobileSize.width / 375) * 100
+                                  }vw`
                                 : undefined,
-                              marginRight: section3.illustrationMobileSize.fullWidth
-                                ? mvw(-20)
+                              height: section3.titleMobileSize?.height
+                                ? `${
+                                    (section3.titleMobileSize.height / 375) *
+                                    100
+                                  }vw`
                                 : undefined,
                             }
-                          : {
-                              width: "100%",
-                              aspectRatio: "375 / 336",
-                            }
+                          : undefined
                       }
                     >
+                      {isMobile && section3.titleMobile
+                        ? section3.titleMobile
+                        : section3.title}
+                    </h2>
+                    {section3.images?.main && (
+                      <motion.div
+                        className={styles.section3Image}
+                        initial={{ opacity: 0, y: 80 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                      >
+                        <img
+                          src={section3.images.main}
+                          alt="이미지"
+                          className={styles.section3ImageContent}
+                        />
+                      </motion.div>
+                    )}
+
+                    {/* 모바일 일러스트레이션 */}
+                    {section3.illustrationMobile && (
+                      <div
+                        className={styles.section3MobileIllustration}
+                        style={
+                          section3.illustrationMobileSize
+                            ? {
+                                width: section3.illustrationMobileSize.fullWidth
+                                  ? "calc(100vw - var(--scrollbar-width, 0px))"
+                                  : "100%",
+                                aspectRatio:
+                                  section3.illustrationMobileSize.width &&
+                                  section3.illustrationMobileSize.height
+                                    ? `${section3.illustrationMobileSize.width} / ${section3.illustrationMobileSize.height}`
+                                    : undefined,
+                                marginLeft: section3.illustrationMobileSize
+                                  .fullWidth
+                                  ? mvw(-20)
+                                  : undefined,
+                                marginRight: section3.illustrationMobileSize
+                                  .fullWidth
+                                  ? mvw(-20)
+                                  : undefined,
+                              }
+                            : {
+                                width: "100%",
+                                aspectRatio: "375 / 336",
+                              }
+                        }
+                      >
+                        <img
+                          src={section3.illustrationMobile}
+                          alt="일러스트"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <p className={styles.section3Description}>
+                      {isMobile && section3.descriptionMobile
+                        ? section3.descriptionMobile
+                        : section3.description}
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* illustration이 있으면 absolute이거나 일반 배치 */}
+                {section3.illustration && section3.illustrationPosition ? (
+                  // Absolute positioning일 때는 일반 레이아웃 사용 (왼쪽 텍스트/오른쪽 이미지)
+                  <>
+                    <div className={styles.section3Left}>
+                      {!scarReduction && (
+                        <div className={styles.section3Number}>
+                          {section3.number}
+                        </div>
+                      )}
+                      <div className={styles.section3Text}>
+                        <h2 className={styles.section3Title}>
+                          {isMobile && section3.titleMobile
+                            ? section3.titleMobile
+                            : section3.title}
+                        </h2>
+                        <p className={styles.section3Description}>
+                          {isMobile && section3.descriptionMobile
+                            ? section3.descriptionMobile
+                            : section3.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className={styles.section3Right}
+                      ref={section3ImagesRef}
+                    >
+                      {section3.images?.main && (
+                        <motion.div
+                          className={styles.section3Image}
+                          initial={{ opacity: 0, y: 80 }}
+                          animate={
+                            section3ImagesInView
+                              ? { opacity: 1, y: 0 }
+                              : { opacity: 0, y: 80 }
+                          }
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                          style={
+                            section3.imagesSize?.main
+                              ? {
+                                  width: vw(section3.imagesSize.main.width),
+                                  height: vw(section3.imagesSize.main.height),
+                                }
+                              : undefined
+                          }
+                        >
+                          <img
+                            src={section3.images.main}
+                            alt="이미지"
+                            className={styles.section3ImageContent}
+                          />
+                        </motion.div>
+                      )}
+                    </div>
+                    {/* Absolute positioned illustration */}
+                    <div
+                      className={styles.section3DesktopIllustration}
+                      style={{
+                        position: "absolute" as const,
+                        top: section3.illustrationPosition.top
+                          ? vw(section3.illustrationPosition.top)
+                          : undefined,
+                        right: section3.illustrationPosition.right
+                          ? vw(section3.illustrationPosition.right)
+                          : undefined,
+                        bottom: section3.illustrationPosition.bottom
+                          ? vw(section3.illustrationPosition.bottom)
+                          : undefined,
+                        left: section3.illustrationPosition.left
+                          ? vw(section3.illustrationPosition.left)
+                          : undefined,
+                        width: section3.illustrationSize
+                          ? vw(section3.illustrationSize.width)
+                          : "auto",
+                        height: section3.illustrationSize
+                          ? vw(section3.illustrationSize.height)
+                          : "auto",
+                        zIndex: 2,
+                      }}
+                    >
                       <img
-                        src={section3.illustrationMobile}
+                        src={section3.illustration}
                         alt="일러스트"
                         style={{
                           width: "100%",
@@ -919,243 +1057,243 @@ export default function HairTransplantLayout({
                         }}
                       />
                     </div>
-                  )}
-
-                  <p className={styles.section3Description}>
-                    {isMobile && section3.descriptionMobile
-                      ? section3.descriptionMobile
-                      : section3.description}
-                  </p>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* illustration이 있으면 absolute이거나 일반 배치 */}
-              {section3.illustration && section3.illustrationPosition ? (
-                // Absolute positioning일 때는 일반 레이아웃 사용 (왼쪽 텍스트/오른쪽 이미지)
-                <>
-                  <div className={styles.section3Left}>
-                    <div className={styles.section3Number}>{section3.number}</div>
-                    <div className={styles.section3Text}>
-                      <h2 className={styles.section3Title}>
-                        {isMobile && section3.titleMobile
-                          ? section3.titleMobile
-                          : section3.title}
-                      </h2>
-                      <p className={styles.section3Description}>
-                        {isMobile && section3.descriptionMobile
-                          ? section3.descriptionMobile
-                          : section3.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.section3Right} ref={section3ImagesRef}>
-                    {section3.images?.main && (
-                      <motion.div
-                        className={styles.section3Image}
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={
-                          section3ImagesInView
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 80 }
-                        }
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        style={
-                          section3.imagesSize?.main
-                            ? {
-                                width: vw(section3.imagesSize.main.width),
-                                height: vw(section3.imagesSize.main.height),
-                              }
-                            : undefined
-                        }
-                      >
-                        <img
-                          src={section3.images.main}
-                          alt="이미지"
-                          className={styles.section3ImageContent}
-                        />
-                      </motion.div>
-                    )}
-                  </div>
-                  {/* Absolute positioned illustration */}
-                  <div
-                    className={styles.section3DesktopIllustration}
-                    style={{
-                      position: 'absolute' as const,
-                      top: section3.illustrationPosition.top ? vw(section3.illustrationPosition.top) : undefined,
-                      right: section3.illustrationPosition.right ? vw(section3.illustrationPosition.right) : undefined,
-                      bottom: section3.illustrationPosition.bottom ? vw(section3.illustrationPosition.bottom) : undefined,
-                      left: section3.illustrationPosition.left ? vw(section3.illustrationPosition.left) : undefined,
-                      width: section3.illustrationSize ? vw(section3.illustrationSize.width) : 'auto',
-                      height: section3.illustrationSize ? vw(section3.illustrationSize.height) : 'auto',
-                      zIndex: 2,
-                    }}
-                  >
-                    <img
-                      src={section3.illustration}
-                      alt="일러스트"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                      }}
-                    />
-                  </div>
-                </>
-              ) : section3.illustration ? (
-                // 일반 illustration 배치 (기존 코드)
-                <>
-                  <div className={styles.section3RightWithSvg}>
-                    <div className={styles.section3Text}>
-                      <div className={styles.section3Number}>
-                        {section3.number}
-                      </div>
-                      <h2
-                        className={styles.section3Title}
-                        style={
-                          isMobile && section3.titleMobileSize
-                            ? {
-                                width: section3.titleMobileSize?.width
-                                  ? `${
-                                      (section3.titleMobileSize.width / 375) *
-                                      100
-                                    }vw`
-                                  : undefined,
-                                height: section3.titleMobileSize?.height
-                                  ? `${
-                                      (section3.titleMobileSize.height / 375) *
-                                      100
-                                    }vw`
-                                  : undefined,
-                              }
-                            : undefined
-                        }
-                      >
-                        {isMobile && section3.titleMobile
-                          ? section3.titleMobile
-                          : section3.title}
-                      </h2>
-                      <div className={styles.section3CenterIllustrationWithSvg}>
-                        <img
-                          src={section3.illustration}
-                          alt="일러스트"
-                          className={styles.section3CenterIllustrationImage}
+                  </>
+                ) : section3.illustration ? (
+                  // 일반 illustration 배치 (기존 코드)
+                  <>
+                    <div
+                      className={styles.section3RightWithSvg}
+                      ref={section3ImagesRef}
+                    >
+                      <div className={styles.section3Text}>
+                        {!scarReduction && (
+                          <div className={styles.section3Number}>
+                            {section3.number}
+                          </div>
+                        )}
+                        <h2
+                          className={styles.section3Title}
                           style={
-                            section3.illustrationSize
+                            isMobile && section3.titleMobileSize
                               ? {
-                                  width: `${
-                                    section3.illustrationSize.width / 19.2
-                                  }vw`,
-                                  height: `${
-                                    section3.illustrationSize.height / 19.2
-                                  }vw`,
+                                  width: section3.titleMobileSize?.width
+                                    ? `${
+                                        (section3.titleMobileSize.width / 375) *
+                                        100
+                                      }vw`
+                                    : undefined,
+                                  height: section3.titleMobileSize?.height
+                                    ? `${
+                                        (section3.titleMobileSize.height /
+                                          375) *
+                                        100
+                                      }vw`
+                                    : undefined,
                                 }
                               : undefined
                           }
-                        />
-                        <div>
-                          <p className={styles.section3Description}>
-                            {isMobile && section3.descriptionMobile
-                              ? section3.descriptionMobile
-                              : section3.description}
-                          </p>
+                        >
+                          {isMobile && section3.titleMobile
+                            ? section3.titleMobile
+                            : section3.title}
+                        </h2>
+                        <div
+                          className={styles.section3CenterIllustrationWithSvg}
+                        >
+                          <img
+                            src={section3.illustration}
+                            alt="일러스트"
+                            className={styles.section3CenterIllustrationImage}
+                            style={
+                              section3.illustrationSize
+                                ? {
+                                    width: `${
+                                      section3.illustrationSize.width / 19.2
+                                    }vw`,
+                                    height: `${
+                                      section3.illustrationSize.height / 19.2
+                                    }vw`,
+                                  }
+                                : undefined
+                            }
+                          />
+                          <div>
+                            <p className={styles.section3Description}>
+                              {isMobile && section3.descriptionMobile
+                                ? section3.descriptionMobile
+                                : section3.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
+                      {section3.images?.main && (
+                        <motion.div
+                          className={styles.section3Image}
+                          initial={{ opacity: 0, y: 80 }}
+                          animate={
+                            section3ImagesInView
+                              ? { opacity: 1, y: 0 }
+                              : { opacity: 0, y: 80 }
+                          }
+                          transition={{
+                            duration: 0.5,
+                            ease: "easeOut",
+                            delay: 0.2,
+                          }}
+                          style={
+                            section3.imagesSize?.main
+                              ? {
+                                  width: vw(section3.imagesSize.main.width),
+                                  height: vw(section3.imagesSize.main.height),
+                                }
+                              : undefined
+                          }
+                        >
+                          <img
+                            src={section3.images.main}
+                            alt="이미지"
+                            className={styles.section3ImageContent}
+                          />
+                        </motion.div>
+                      )}
                     </div>
-                    {section3.images?.main && (
-                      <div
-                        className={styles.section3Image}
-                        style={
-                          section3.imagesSize?.main
-                            ? {
-                                width: vw(section3.imagesSize.main.width),
-                                height: vw(section3.imagesSize.main.height),
+                  </>
+                ) : (
+                  <>
+                    {/* illustration이 없으면 기존 레이아웃 - scarReduction일 때는 순서 바꾸기 */}
+                    {scarReduction ? (
+                      <>
+                        {/* scarReduction: 왼쪽 이미지, 오른쪽 텍스트 */}
+                        <div
+                          className={styles.section3Right}
+                          ref={section3ImagesRef}
+                        >
+                          {section3.images?.main && (
+                            <motion.div
+                              className={styles.section3Image}
+                              initial={{ opacity: 0, y: 80 }}
+                              animate={
+                                section3ImagesInView
+                                  ? { opacity: 1, y: 0 }
+                                  : { opacity: 0, y: 80 }
                               }
-                            : undefined
-                        }
-                      >
-                        <img
-                          src={section3.images.main}
-                          alt="이미지"
-                          className={styles.section3ImageContent}
-                        />
-                      </div>
+                              transition={{ duration: 0.5, ease: "easeOut" }}
+                              style={
+                                section3.imagesSize?.main
+                                  ? {
+                                      width: vw(section3.imagesSize.main.width),
+                                      height: vw(
+                                        section3.imagesSize.main.height
+                                      ),
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <img
+                                src={section3.images.main}
+                                alt="이미지"
+                                className={styles.section3ImageContent}
+                              />
+                            </motion.div>
+                          )}
+                        </div>
+                        <div className={styles.section3Left}>
+                          <div className={styles.section3Text}>
+                            <h2 className={styles.section3Title}>
+                              {isMobile && section3.titleMobile
+                                ? section3.titleMobile
+                                : section3.title}
+                            </h2>
+                            <p className={styles.section3Description}>
+                              {section3.description}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {/* 기본: 왼쪽 텍스트, 오른쪽 이미지 */}
+                        <div className={styles.section3Left}>
+                          <div className={styles.section3Text}>
+                            {!scarReduction && (
+                              <div className={styles.section3Number}>
+                                {section3.number}
+                              </div>
+                            )}
+                            <h2
+                              className={styles.section3Title}
+                              style={
+                                isMobile && section3.titleMobileSize
+                                  ? {
+                                      width: section3.titleMobileSize?.width
+                                        ? `${
+                                            (section3.titleMobileSize.width /
+                                              375) *
+                                            100
+                                          }vw`
+                                        : undefined,
+                                      height: section3.titleMobileSize?.height
+                                        ? `${
+                                            (section3.titleMobileSize.height /
+                                              375) *
+                                            100
+                                          }vw`
+                                        : undefined,
+                                    }
+                                  : undefined
+                              }
+                            >
+                              {isMobile && section3.titleMobile
+                                ? section3.titleMobile
+                                : section3.title}
+                            </h2>
+                            <p className={styles.section3Description}>
+                              {section3.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className={styles.section3Right}
+                          ref={section3ImagesRef}
+                        >
+                          {section3.images?.main && (
+                            <motion.div
+                              className={styles.section3Image}
+                              initial={{ opacity: 0, y: 80 }}
+                              animate={
+                                section3ImagesInView
+                                  ? { opacity: 1, y: 0 }
+                                  : { opacity: 0, y: 80 }
+                              }
+                              transition={{ duration: 0.5, ease: "easeOut" }}
+                              style={
+                                section3.imagesSize?.main
+                                  ? {
+                                      width: vw(section3.imagesSize.main.width),
+                                      height: vw(
+                                        section3.imagesSize.main.height
+                                      ),
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <img
+                                src={section3.images.main}
+                                alt="이미지"
+                                className={styles.section3ImageContent}
+                              />
+                            </motion.div>
+                          )}
+                        </div>
+                      </>
                     )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* illustration이 없으면 기존 레이아웃 - 왼쪽 텍스트, 오른쪽 이미지 */}
-                  <div className={styles.section3Left}>
-                    <div className={styles.section3Text}>
-                      <div className={styles.section3Number}>
-                        {section3.number}
-                      </div>
-                      <h2
-                        className={styles.section3Title}
-                        style={
-                          isMobile && section3.titleMobileSize
-                            ? {
-                                width: section3.titleMobileSize?.width
-                                  ? `${
-                                      (section3.titleMobileSize.width / 375) *
-                                      100
-                                    }vw`
-                                  : undefined,
-                                height: section3.titleMobileSize?.height
-                                  ? `${
-                                      (section3.titleMobileSize.height / 375) *
-                                      100
-                                    }vw`
-                                  : undefined,
-                              }
-                            : undefined
-                        }
-                      >
-                        {isMobile && section3.titleMobile
-                          ? section3.titleMobile
-                          : section3.title}
-                      </h2>
-                      <p className={styles.section3Description}>
-                        {section3.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className={styles.section3Right} ref={section3ImagesRef}>
-                    {section3.images?.main && (
-                      <motion.div
-                        className={styles.section3Image}
-                        initial={{ opacity: 0, y: 80 }}
-                        animate={
-                          section3ImagesInView
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 80 }
-                        }
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        style={
-                          section3.imagesSize?.main
-                            ? {
-                                width: vw(section3.imagesSize.main.width),
-                                height: vw(section3.imagesSize.main.height),
-                              }
-                            : undefined
-                        }
-                      >
-                        <img
-                          src={section3.images.main}
-                          alt="이미지"
-                          className={styles.section3ImageContent}
-                        />
-                      </motion.div>
-                    )}
-                  </div>
-                </>
-              )}
-            </>
-          )}
-        </div>
-      </section>
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Before & After Section */}
       <section className={styles.beforeAfterSection}>
@@ -1188,7 +1326,7 @@ export default function HairTransplantLayout({
                     variant="primary"
                     color="blue"
                     size="medium"
-                    width={isMobile ? "100%" : (beforeAfterButton.width || 224)}
+                    width={isMobile ? "100%" : beforeAfterButton.width || 224}
                     textAlign="center"
                   >
                     {beforeAfterButton.text}
@@ -1200,7 +1338,7 @@ export default function HairTransplantLayout({
                   color="blue"
                   size="medium"
                   onClick={beforeAfterButton.onClick}
-                  width={isMobile ? "100%" : (beforeAfterButton.width || 224)}
+                  width={isMobile ? "100%" : beforeAfterButton.width || 224}
                   textAlign="center"
                 >
                   {beforeAfterButton.text}
@@ -1210,7 +1348,7 @@ export default function HairTransplantLayout({
                   variant="primary"
                   color="blue"
                   size="medium"
-                  width={isMobile ? "100%" : (beforeAfterButton.width || 224)}
+                  width={isMobile ? "100%" : beforeAfterButton.width || 224}
                   textAlign="center"
                 >
                   {beforeAfterButton.text}
@@ -1223,61 +1361,12 @@ export default function HairTransplantLayout({
 
       {/* Features Section (Optional) */}
       {featuresTitle && featureCards && (
-        <section className={styles.featuresSection}>
-          <div className={styles.featuresContent}>
-            <div className={styles.featuresHeader}>
-              <img
-                src="/hair-transplant/double-quotation-start.svg"
-                alt="따옴표 시작"
-                className={styles.quotationStart}
-              />
-              <h2 className={styles.featuresMainTitle}>
-                {isMobile && featuresTitleMobile
-                  ? featuresTitleMobile
-                  : featuresTitle}
-              </h2>
-              <img
-                src="/hair-transplant/double-quotation-end.svg"
-                alt="따옴표 끝"
-                className={styles.quotationEnd}
-              />
-            </div>
-            <motion.div
-              ref={featuresRef}
-              className={styles.featuresGrid}
-              initial={{ opacity: 0, y: 80 }}
-              animate={
-                featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
-              }
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              {featureCards.map((card, index) => (
-                <motion.div
-                  key={index}
-                  className={styles.featureCard}
-                  initial={{ opacity: 0, y: 80 }}
-                  animate={
-                    featuresInView
-                      ? { opacity: 1, y: 0 }
-                      : { opacity: 0, y: 80 }
-                  }
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                    delay: index * 0.1,
-                  }}
-                >
-                  <div className={styles.featureIconContainer}>
-                    <div className={styles.featureIcon}>
-                      <img src={card.icon} alt={`특징 ${index + 1}`} />
-                    </div>
-                  </div>
-                  <h3 className={styles.featureTitle}>{card.title}</h3>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        <FeaturesSection
+          featuresTitle={featuresTitle}
+          featuresTitleMobile={featuresTitleMobile}
+          featureCards={featureCards}
+          isMobile={isMobile}
+        />
       )}
 
       {/* Side Preview Section (Optional) */}

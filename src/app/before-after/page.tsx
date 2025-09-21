@@ -23,91 +23,226 @@ interface BeforeAfterItem {
   afterImage: string;
 }
 
-// 더미 데이터
+// 실제 데이터
 const beforeAfterData: BeforeAfterItem[] = [
   // 이마축소
   {
     id: 1,
     category: "이마축소",
     title: "이마축소(여)_1년경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    beforeImage: "/before-after/이마축소/1-1.jpg",
+    afterImage: "/before-after/이마축소/1-2.jpg",
   },
   {
     id: 2,
     category: "이마축소",
     title: "이마축소(여)_6개월경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    beforeImage: "/before-after/이마축소/10-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/10-2 이마축소(여) _ 6개월경과.jpg",
   },
   {
     id: 3,
     category: "이마축소",
-    title: "이마축소(여)_3개월경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    title: "이마축소(남)_6개월경과",
+    beforeImage: "/before-after/이마축소/11-1 이마축소(남) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/11-2 이마축소(남) _ 6개월경과.jpg",
   },
-  // 흉터&재수술
   {
     id: 4,
-    category: "흉터&재수술",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    beforeImage: "/before-after/이마축소/12-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/12-2 이마축소(여) _ 6개월경과.jpg",
   },
   {
     id: 5,
-    category: "흉터&재수술",
-    title: "흉터재수술 6개월경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    beforeImage: "/before-after/이마축소/13-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/13-2 이마축소(여) _ 6개월경과.jpg",
   },
-  // 헤어라인(여성)
   {
     id: 6,
-    category: "헤어라인(여성)",
-    title: "3400모(여)_1년경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    beforeImage: "/before-after/이마축소/14-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/14-2 이마축소(여) _ 6개월경과.jpg",
   },
-  // 헤어라인(남성)
   {
     id: 7,
-    category: "헤어라인(남성)",
-    title: "4000모(남)_1년경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    beforeImage: "/before-after/이마축소/15-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/15-2 이마축소(여) _ 6개월경과.jpg",
   },
   {
     id: 8,
-    category: "헤어라인(남성)",
-    title: "3500모(남)_8개월경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(여)_6개월경과",
+    beforeImage: "/before-after/이마축소/16-1 이마축소(여) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/16-2 이마축소(여) _ 6개월경과.jpg",
   },
   {
     id: 9,
-    category: "헤어라인(남성)",
-    title: "3000모(남)_6개월경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    category: "이마축소",
+    title: "이마축소(남)_1년경과",
+    beforeImage: "/before-after/이마축소/17-1 이마축소(남) _ 1년경과.jpg",
+    afterImage: "/before-after/이마축소/17-2 이마축소(남) _ 1년경과.jpg",
   },
-  // 정수리
   {
     id: 10,
+    category: "이마축소",
+    title: "이마축소(남)_6개월경과",
+    beforeImage: "/before-after/이마축소/18-1 이마축소(남) _ 6개월경과.jpg",
+    afterImage: "/before-after/이마축소/18-2 이마축소(남) _ 6개월경과.jpg",
+  },
+
+  // 흉터&재수술
+  {
+    id: 11,
+    category: "흉터&재수술",
+    title: "흉터재수술",
+    beforeImage: "/before-after/흉터&재수술/1-1.jpg",
+    afterImage: "/before-after/흉터&재수술/1-2.jpg",
+  },
+  {
+    id: 12,
+    category: "흉터&재수술",
+    title: "흉터재수술",
+    beforeImage: "/before-after/흉터&재수술/10-1.jpg",
+    afterImage: "/before-after/흉터&재수술/10-2.jpg",
+  },
+  {
+    id: 13,
+    category: "흉터&재수술",
+    title: "흉터재수술",
+    beforeImage: "/before-after/흉터&재수술/11-1.jpg",
+    afterImage: "/before-after/흉터&재수술/11-2.jpg",
+  },
+  {
+    id: 14,
+    category: "흉터&재수술",
+    title: "흉터재수술",
+    beforeImage: "/before-after/흉터&재수술/12-1.jpg",
+    afterImage: "/before-after/흉터&재수술/12-2.jpg",
+  },
+  {
+    id: 15,
+    category: "흉터&재수술",
+    title: "흉터재수술",
+    beforeImage: "/before-after/흉터&재수술/13-1.jpg",
+    afterImage: "/before-after/흉터&재수술/13-2.jpg",
+  },
+
+  // 헤어라인(남성)
+  {
+    id: 21,
+    category: "헤어라인(남성)",
+    title: "4000모(남)_1년경과",
+    beforeImage: "/before-after/헤어라인(남성)/1-1 4000모(남) _ 1년경과.jpg",
+    afterImage: "/before-after/헤어라인(남성)/1-2 4000모(남) _ 1년경과.jpg",
+  },
+  {
+    id: 22,
+    category: "헤어라인(남성)",
+    title: "2800모(남)_1년경과",
+    beforeImage: "/before-after/헤어라인(남성)/10-1 2800모(남) _ 1년경과.jpg",
+    afterImage: "/before-after/헤어라인(남성)/10-2 2800모(남) _ 1년경과.jpg",
+  },
+  {
+    id: 23,
+    category: "헤어라인(남성)",
+    title: "2900모(남)_1년경과",
+    beforeImage: "/before-after/헤어라인(남성)/11-1 2900모(남) _ 1년경과.jpg",
+    afterImage: "/before-after/헤어라인(남성)/11-2 2900모(남) _ 1년경과.jpg",
+  },
+  {
+    id: 24,
+    category: "헤어라인(남성)",
+    title: "2600모(남)_1년경과",
+    beforeImage: "/before-after/헤어라인(남성)/12-1 2600모(남) _ 1년경과.jpg",
+    afterImage: "/before-after/헤어라인(남성)/12-2 2600모(남) _ 1년경과.jpg",
+  },
+  {
+    id: 25,
+    category: "헤어라인(남성)",
+    title: "2900모(남)_1년경과",
+    beforeImage: "/before-after/헤어라인(남성)/13-1 2900모(남) _ 1년경과.jpg",
+    afterImage: "/before-after/헤어라인(남성)/13-2 2900모(남) _ 1년경과.jpg",
+  },
+
+  // 헤어라인(여성)
+  {
+    id: 31,
+    category: "헤어라인(여성)",
+    title: "헤어라인(여)",
+    beforeImage: "/before-after/헤어라인(여성)/1-1.jpg",
+    afterImage: "/before-after/헤어라인(여성)/1-2.jpg",
+  },
+  {
+    id: 32,
+    category: "헤어라인(여성)",
+    title: "헤어라인(여)",
+    beforeImage: "/before-after/헤어라인(여성)/10-1.jpg",
+    afterImage: "/before-after/헤어라인(여성)/10-2.jpg",
+  },
+  {
+    id: 33,
+    category: "헤어라인(여성)",
+    title: "헤어라인(여)",
+    beforeImage: "/before-after/헤어라인(여성)/11-1.jpg",
+    afterImage: "/before-after/헤어라인(여성)/11-2.jpg",
+  },
+  {
+    id: 34,
+    category: "헤어라인(여성)",
+    title: "헤어라인(여)",
+    beforeImage: "/before-after/헤어라인(여성)/12-1.jpg",
+    afterImage: "/before-after/헤어라인(여성)/12-2.jpg",
+  },
+  {
+    id: 35,
+    category: "헤어라인(여성)",
+    title: "헤어라인(여)",
+    beforeImage: "/before-after/헤어라인(여성)/13-1.jpg",
+    afterImage: "/before-after/헤어라인(여성)/13-2.jpg",
+  },
+
+  // 정수리
+  {
+    id: 41,
     category: "정수리",
-    title: "5500모(남)_8개월 경과",
-    description: "",
-    beforeImage: "/placeholder-before.jpg",
-    afterImage: "/placeholder-after.jpg",
+    title: "정수리",
+    beforeImage: "/before-after/정수리 /1-1.jpg",
+    afterImage: "/before-after/정수리 /1-2.jpg",
+  },
+  {
+    id: 42,
+    category: "정수리",
+    title: "5500모(남)_8개월경과",
+    beforeImage: "/before-after/정수리 /2-1 5500모(남) _ 8개월 경과.jpg",
+    afterImage: "/before-after/정수리 /2-2 5500모(남) _ 8개월 경과.jpg",
+  },
+  {
+    id: 43,
+    category: "정수리",
+    title: "정수리",
+    beforeImage: "/before-after/정수리 /10-1.jpg",
+    afterImage: "/before-after/정수리 /10-2.jpg",
+  },
+  {
+    id: 44,
+    category: "정수리",
+    title: "정수리",
+    beforeImage: "/before-after/정수리 /11-1.jpg",
+    afterImage: "/before-after/정수리 /11-2.jpg",
+  },
+  {
+    id: 45,
+    category: "정수리",
+    title: "정수리",
+    beforeImage: "/before-after/정수리 /12-1.jpg",
+    afterImage: "/before-after/정수리 /12-2.jpg",
   },
 ];
 
@@ -115,10 +250,13 @@ const beforeAfterData: BeforeAfterItem[] = [
 function CategoryCarousel({
   category,
   items,
+  index,
 }: {
   category: string;
   items: BeforeAfterItem[];
+  index: number;
 }) {
+  const isBlueBackground = index % 2 === 1;
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -136,8 +274,26 @@ function CategoryCarousel({
   const getNextIndex = (index: number) =>
     index === items.length - 1 ? 0 : index + 1;
 
+  // Check if mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <div className={styles.carouselSection}>
+    <div
+      style={{
+        padding: isMobile ? '40px 0 60px' : '160px 60px',
+        backgroundColor: isBlueBackground ? '#D5FEFF' : '#FFFFFF',
+        width: '100%'
+      }}
+    >
       <div className={styles.carouselHeader}>
         <span className={styles.categoryBadge}>{category}</span>
         {items[currentIndex]?.title && (
@@ -153,6 +309,7 @@ function CategoryCarousel({
             afterImage={items[getPrevIndex(currentIndex)].afterImage}
             showBefore={false} // After 쪽만 보여줌
             onClick={handlePrevious}
+            isBlueBackground={isBlueBackground}
           />
         </div>
 
@@ -162,15 +319,7 @@ function CategoryCarousel({
           onClick={handlePrevious}
           aria-label="이전"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18L9 12L15 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img src="/before-after/arrow-left.svg" alt="Previous" />
         </button>
 
         {/* Main carousel viewport */}
@@ -181,6 +330,7 @@ function CategoryCarousel({
               afterImage={items[currentIndex].afterImage}
               beforeAlt={`${items[currentIndex].title} - Before`}
               afterAlt={`${items[currentIndex].title} - After`}
+              isBlueBackground={isBlueBackground}
             />
           </div>
         </div>
@@ -191,15 +341,7 @@ function CategoryCarousel({
           onClick={handleNext}
           aria-label="다음"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 18L15 12L9 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img src="/before-after/arrow-right.svg" alt="Next" />
         </button>
 
         {/* Right side preview */}
@@ -209,6 +351,7 @@ function CategoryCarousel({
             afterImage={items[getNextIndex(currentIndex)].afterImage}
             showBefore={true} // Before 쪽만 보여줌
             onClick={handleNext}
+            isBlueBackground={isBlueBackground}
           />
         </div>
       </div>
@@ -237,51 +380,46 @@ export default function BeforeAfterPage() {
 
   return (
     <div className={styles.beforeAfterPage}>
-      <section className={styles.BeforeAfterHeroSection}>
-        <div className={styles.BeforeAfterHeroContainer}>
-          {/* Hero Title - 중앙에 배치 */}
-          <div className={styles.BeforeAfterHeroTitleWrapper}>
-            <div className={styles.BeforeAfterHeroTitleContainer}>
-              <h1 className={styles.BeforeAfterHeroTitle}>
-                <span>
-                  헤어라인
-                  <br />
-                  교정
-                  <div className={styles.BeforeAfterHeroTitleDot} />
+      <section className={styles.HairTransplantHeroSection}>
+        <div className={styles.HairTransplantHeroContainer}>
+          <div className={styles.HairTransplantHeroTitleWrapper}>
+            <div className={styles.HairTransplantHeroTitleContainer}>
+              <h1 className={styles.HairTransplantHeroTitle}>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  수술 전후
+                  <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
             </div>
           </div>
-          {/* Hero Illustration - 왼쪽에 붙도록 */}
-          <div className={styles.BeforeAfterHeroIllustration}>
+          <div className={styles.HairTransplantHeroIllustration}>
             <img
-              src="/hair-transplant/hero-illustration.svg"
-              alt="헤어라인 모발이식 일러스트"
-              className={styles.BeforeAfterHeroIllustrationImage}
+              src="/before-after/hero-illustration.svg"
+              alt="수술 전후 일러스트"
+              className={styles.heroIllustrationImage}
             />
           </div>
         </div>
         <img
-          src="/hair-transplant/mobile/hero-illustration-mobile.svg"
-          alt="헤어라인 모발이식 일러스트"
-          className={styles.BeforeAfterHeroIllustrationImageMobile}
+          src="/before-after/hero-illustration-mobile.svg"
+          alt="수술 전후 일러스트"
+          className={styles.heroIllustrationImageMobile}
         />
       </section>
       {/* 전후 사진 캐러셀 섹션들 */}
-      <section className={styles.mainSection}>
-        <div className={styles.mainContainer}>
-          {categoryOrder.map(
-            (category) =>
-              groupedData[category] && (
-                <CategoryCarousel
-                  key={category}
-                  category={category}
-                  items={groupedData[category]}
-                />
-              )
-          )}
-        </div>
-      </section>
+      <div>
+        {categoryOrder.map(
+          (category, index) =>
+            groupedData[category] && (
+              <CategoryCarousel
+                key={category}
+                category={category}
+                items={groupedData[category]}
+                index={index}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 }

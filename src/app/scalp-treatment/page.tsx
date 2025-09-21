@@ -1,90 +1,96 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import HeaderNavigation from "../../widgets/Header/HeaderNavigation"
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-import * as styles from "./ScalpTreatmentPage.css"
+import FeaturesSection from "../../shared/components/FeaturesSection/FeaturesSection";
+
+import * as styles from "./ScalpTreatmentPage.css";
 
 export default function ScalpTreatmentPage() {
-  console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링")
+  console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링");
 
   // Vimeo 로드 핸들러
   const handleVimeoLoad = () => {
-    console.log("[ScalpTreatmentPage/Vimeo로드] iframe 로드 성공")
-  }
+    console.log("[ScalpTreatmentPage/Vimeo로드] iframe 로드 성공");
+  };
 
   // Hero Section 애니메이션
   const { ref: heroRef, inView: heroInView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   // Section 1 애니메이션
   const { ref: section1Ref, inView: section1InView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   // Section 2 - 치료방법 카드 애니메이션
   const { ref: treatmentCardsRef, inView: treatmentCardsInView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   // Section 3-6 각 치료방법 상세 애니메이션
   const { ref: section3Ref, inView: section3InView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   const { ref: section4Ref, inView: section4InView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   const { ref: section5Ref, inView: section5InView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
+  });
 
   const { ref: section6Ref, inView: section6InView } = useInView({
     threshold: 0.3,
     triggerOnce: true,
-  })
-
-  // Footer 특징 카드 애니메이션
-  const { ref: featuresRef, inView: featuresInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  })
+  });
 
   return (
     <div className={styles.scalpTreatmentPage}>
       {/* Hero Section */}
       <section className={styles.HairTransplantHeroSection}>
         <div className={styles.HairTransplantHeroContainer}>
-          {/* Hero Illustration - 왼쪽에 붙도록 */}
-          <div className={styles.HairTransplantHeroIllustration}>
-            <img
-              src="/hair-transplant/hero-illustration.svg"
-              alt="정수리 모발이식 일러스트"
-              className={styles.heroIllustrationImage}
-            />
-          </div>
-
           {/* Hero Title - 중앙에 배치 */}
           <div className={styles.HairTransplantHeroTitleWrapper}>
             <div className={styles.HairTransplantHeroTitleContainer}>
               <h1 className={styles.HairTransplantHeroTitle}>
-                <span>
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                  }}
+                >
                   두피치료
                   <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
             </div>
           </div>
+          {/* Hero Illustration - 왼쪽에 붙도록 (데스크탑용) */}
+          <div className={styles.HairTransplantHeroIllustration}>
+            <img
+              src="/hair-transplant/hero-illustration.svg"
+              alt="두피치료 일러스트"
+              className={styles.heroIllustrationImage}
+            />
+          </div>
         </div>
+        {/* 모바일 일러스트 - Hero Container 밖에 위치 */}
+        <img
+          src="/hair-transplant/mobile/hero-illustration-mobile.svg"
+          alt="두피치료 일러스트"
+          className={styles.heroIllustrationImageMobile}
+        />
       </section>
 
       {/* Hero Section */}
@@ -111,7 +117,7 @@ export default function ScalpTreatmentPage() {
                 allowFullScreen
                 onLoad={handleVimeoLoad}
                 onError={() => {
-                  console.error("[VideoSection/Vimeo에러] iframe 로드 실패")
+                  console.error("[VideoSection/Vimeo에러] iframe 로드 실패");
                 }}
               />
             </div>
@@ -182,7 +188,12 @@ export default function ScalpTreatmentPage() {
           {/* 어븀글라스 프락셀 레이저 */}
           <div className={styles.treatmentCard}>
             <div className={styles.treatmentCardImage}>
-              {/* 이미지 placeholder */}
+              <span className={styles.treatmentCardNumber}>1</span>
+              <img
+                src="/scalp-treatment/scalp-treatment-2.png"
+                alt="어븀글라스 프락셀 레이저"
+                className={styles.treatmentCardImageImg}
+              />
             </div>
             <h3 className={styles.treatmentCardTitle}>
               어븀글라스
@@ -191,26 +202,65 @@ export default function ScalpTreatmentPage() {
             </h3>
           </div>
 
+          <div className={styles.treatmentArrow}>
+            <img
+              src="/scalp-treatment/arrow-right.svg"
+              alt="화살표"
+              className={styles.treatmentArrowImg}
+            />
+          </div>
+
           {/* 주사 시술 */}
           <div className={styles.treatmentCard}>
             <div className={styles.treatmentCardImage}>
-              {/* 이미지 placeholder */}
+              <span className={styles.treatmentCardNumber}>2</span>
+              <img
+                src="/scalp-treatment/scalp-treatment-2.png"
+                alt="주사 시술"
+                className={styles.treatmentCardImageImg}
+              />
             </div>
             <h3 className={styles.treatmentCardTitle}>주사 시술</h3>
+          </div>
+
+          <div className={styles.treatmentArrow}>
+            <img
+              src="/scalp-treatment/arrow-right.svg"
+              alt="화살표"
+              className={styles.treatmentArrowImg}
+            />
           </div>
 
           {/* MTS 치료 */}
           <div className={styles.treatmentCard}>
             <div className={styles.treatmentCardImage}>
-              {/* 이미지 placeholder */}
+              <span className={styles.treatmentCardNumber}>3</span>
+              <img
+                src="/scalp-treatment/scalp-treatment-3.png"
+                alt="MTS 치료"
+                className={styles.treatmentCardImageImg}
+              />
             </div>
             <h3 className={styles.treatmentCardTitle}>MTS 치료</h3>
+          </div>
+
+          <div className={styles.treatmentArrow}>
+            <img
+              src="/scalp-treatment/arrow-right.svg"
+              alt="화살표"
+              className={styles.treatmentArrowImg}
+            />
           </div>
 
           {/* 저출력 레이저 LLLT */}
           <div className={styles.treatmentCard}>
             <div className={styles.treatmentCardImage}>
-              {/* 이미지 placeholder */}
+              <span className={styles.treatmentCardNumber}>4</span>
+              <img
+                src="/scalp-treatment/scalp-treatment-4.png"
+                alt="저출력 레이저 LLLT"
+                className={styles.treatmentCardImageImg}
+              />
             </div>
             <h3 className={styles.treatmentCardTitle}>
               저출력 레이저
@@ -219,10 +269,23 @@ export default function ScalpTreatmentPage() {
             </h3>
           </div>
 
-          {/* 정맥 주사 */}
+          <div className={styles.treatmentArrow}>
+            <img
+              src="/scalp-treatment/arrow-right.svg"
+              alt="화살표"
+              className={styles.treatmentArrowImg}
+            />
+          </div>
+
+          {/* 정맥 주사 - 마지막이라 화살표 없음 */}
           <div className={styles.treatmentCard}>
             <div className={styles.treatmentCardImage}>
-              {/* 이미지 placeholder */}
+              <span className={styles.treatmentCardNumber}>5</span>
+              <img
+                src="/scalp-treatment/scalp-treatment-5.png"
+                alt="정맥 주사"
+                className={styles.treatmentCardImageImg}
+              />
             </div>
             <h3 className={styles.treatmentCardTitle}>정맥 주사</h3>
           </div>
@@ -245,7 +308,13 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
-              <span className={styles.smallVideoText}>영상</span>
+              <iframe
+                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                className={styles.vimeoIframe}
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
 
@@ -277,7 +346,7 @@ export default function ScalpTreatmentPage() {
       {/* Section 4: 약물 주사 치료 */}
       <motion.section
         ref={section4Ref}
-        className={styles.treatmentDetailSectionReverse}
+        className={styles.treatmentDetailSection}
         initial={{ opacity: 0, translateY: 80 }}
         animate={
           section4InView
@@ -290,7 +359,13 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
-              <span className={styles.smallVideoText}>영상</span>
+              <iframe
+                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                className={styles.vimeoIframe}
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
 
@@ -326,7 +401,13 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
-              <span className={styles.smallVideoText}>영상</span>
+              <iframe
+                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                className={styles.vimeoIframe}
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
 
@@ -354,7 +435,7 @@ export default function ScalpTreatmentPage() {
       {/* Section 6: 저출력 레이저 LLLT */}
       <motion.section
         ref={section6Ref}
-        className={styles.treatmentDetailSectionReverse}
+        className={styles.treatmentDetailSection}
         initial={{ opacity: 0, translateY: 80 }}
         animate={
           section6InView
@@ -367,7 +448,13 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
-              <span className={styles.smallVideoText}>영상</span>
+              <iframe
+                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                className={styles.vimeoIframe}
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
 
@@ -395,77 +482,57 @@ export default function ScalpTreatmentPage() {
       </motion.section>
 
       {/* Footer Features Section */}
-      <motion.section
-        ref={featuresRef}
-        className={styles.featuresSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          featuresInView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
+      <FeaturesSection
+        featuresTitle={
+          <>
+            독보적인 기술력과 사후 관리까지
+            <br />
+            바날은 고객에 진심을 다합니다.
+          </>
         }
-        transition={{ duration: 0.6 }}
-      >
-        <div className={styles.featuresContainer}>
-          <div className={styles.featuresTitle}>
-            <h2>
-              독보적인 기술력과 사후 관리까지
-              <br />
-              바날은 고객에 진심을 다합니다.
-            </h2>
-          </div>
-
-          <div className={styles.featuresGrid}>
-            {/* 특징 1 */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                {/* 아이콘 placeholder */}
-              </div>
-              <h3 className={styles.featureTitle}>
+        featureCards={[
+          {
+            icon: "/hair-transplant/feature-icon-1.svg",
+            title: (
+              <>
                 모발이식과 이마축소가 동시에
                 <br />
                 가능한 유일한 병원입니다.
-              </h3>
-            </div>
-
-            {/* 특징 2 */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                {/* 아이콘 placeholder */}
-              </div>
-              <h3 className={styles.featureTitle}>
+              </>
+            ),
+          },
+          {
+            icon: "/hair-transplant/feature-icon-2.svg",
+            title: (
+              <>
                 고객이 원하는 디자인을
                 <br />
                 최우선으로 생각합니다.
-              </h3>
-            </div>
-
-            {/* 특징 3 */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                {/* 아이콘 placeholder */}
-              </div>
-              <h3 className={styles.featureTitle}>
+              </>
+            ),
+          },
+          {
+            icon: "/hair-transplant/feature-icon-3.svg",
+            title: (
+              <>
                 모발이식 경력 10년 이상의
                 <br />
                 전문의들이 진료합니다.
-              </h3>
-            </div>
-
-            {/* 특징 4 */}
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                {/* 아이콘 placeholder */}
-              </div>
-              <h3 className={styles.featureTitle}>
+              </>
+            ),
+          },
+          {
+            icon: "/hair-transplant/feature-icon-4.svg",
+            title: (
+              <>
                 10년 이상 손발을 맞춰온
                 <br />
                 수술팀이 함께합니다.
-              </h3>
-            </div>
-          </div>
-        </div>
-      </motion.section>
+              </>
+            ),
+          },
+        ]}
+      />
     </div>
-  )
+  );
 }

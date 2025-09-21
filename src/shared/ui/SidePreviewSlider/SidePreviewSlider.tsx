@@ -6,11 +6,12 @@ import * as styles from "./SidePreviewSlider.css"
 interface SidePreviewSliderProps {
   beforeImage: string
   afterImage: string
-  showBefore?: boolean // true면 Before 쪽을 보여줌
+  showBefore?: boolean // true면 Before 쪽을 보여줌 (오른쪽 프리뷰용)
   beforeAlt?: string
   afterAlt?: string
   onClick?: () => void
   className?: string
+  isBlueBackground?: boolean
 }
 
 export default function SidePreviewSlider({
@@ -21,31 +22,25 @@ export default function SidePreviewSlider({
   afterAlt = "수술 후",
   onClick,
   className,
+  isBlueBackground = false,
 }: SidePreviewSliderProps) {
-  // showBefore가 true면 Before만, false면 After만 보여줌
-  const displayImage = showBefore ? beforeImage : afterImage
-  const displayAlt = showBefore ? beforeAlt : afterAlt
+  // showBefore가 true면 Before 라벨, false면 After 라벨
   const displayLabel = showBefore ? "Before" : "After"
 
   return (
-    <div className={`${styles.container} ${className || ""}`} onClick={onClick}>
+    <div className={`${isBlueBackground ? styles.containerBlue : styles.container} ${className || ""}`} onClick={onClick}>
       {/* 이미지 컨테이너 */}
       <div className={styles.imageContainer}>
-        <img
-          src={displayImage}
-          alt={displayAlt}
-          className={styles.image}
-          style={{
-            objectPosition: showBefore ? "0 0" : "100% 0",
-            width: "200%",
-            maxWidth: "200%",
-            transform: showBefore ? "translateX(0)" : "translateX(-50%)"
-          }}
-        />
+        {/* showBefore가 true면 Before 이미지 전체, false면 After 이미지 전체 표시 */}
+        {showBefore ? (
+          <img src={beforeImage} alt={beforeAlt} className={styles.fullImage} />
+        ) : (
+          <img src={afterImage} alt={afterAlt} className={styles.fullImage} />
+        )}
       </div>
 
       {/* Before/After 라벨 - 이미지 아래 */}
-      <div className={styles.labelsContainer}>
+      <div className={isBlueBackground ? styles.labelsContainerBlue : styles.labelsContainer}>
         <div className={styles.label}>{displayLabel}</div>
       </div>
     </div>

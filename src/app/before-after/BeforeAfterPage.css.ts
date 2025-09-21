@@ -16,16 +16,174 @@ export const beforeAfterPage = style({
 });
 
 // ========== 메인 섹션 ==========
-export const mainSection = style({
-  width: "100%",
+// 페이지 전체 스타일
+export const page = style({
+  minHeight: "100vh",
+  backgroundColor: "#ffffff", // 헤어라인 페이지는 흰색 배경
 });
 
-export const mainContainer = style({
+// Hero Section Styles
+export const HairTransplantHeroSection = style({
+  position: "relative",
   width: "100%",
+  minHeight: "100vh",
+  overflow: "hidden",
+  backgroundColor: "#ffffff",
+  "@media": {
+    [breakpoints.mobile]: {
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      paddingTop: mvw(90),
+    },
+  },
+});
+
+export const HairTransplantHeroContainer = style({
+  position: "relative",
+  width: "100%",
+  maxWidth: "1920px",
+  margin: "0 auto",
+  height: "100vh",
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: `0 ${mvw(20)}`,
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
+  },
+});
+
+export const HairTransplantHeroIllustration = style({
+  position: "absolute",
+  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
+  width: "1750px", // 헤더와 완전히 동일한 최대 너비
+  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  top: "50%",
+  transform: "translateY(-50%)",
+  height: vw(765), // 1920px 기준 762px 높이
+  zIndex: 1,
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
+export const HairTransplantHeroTitleWrapper = style({
+  ...responsiveContainer(1600),
+  position: "absolute",
+  top: "0",
+  right: "0",
+  left: "0",
+  bottom: "0",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  paddingRight: vw(60),
+  zIndex: 2,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingRight: "60px",
+    },
+    [breakpoints.mobile]: {
+      position: "relative",
+      display: "block",
+      padding: "0",
+      marginTop: mvw(80),
+      width: "100%",
+    },
+  },
+});
+
+export const HairTransplantHeroTitleContainer = style({
+  position: "absolute",
+  top: "50%",
+  left: "0",
+  transform: "translateY(-50%)",
+  textAlign: "left",
+  zIndex: 3,
+  right: "0",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginRight: "160px",
+      paddingLeft: "40px",
+      paddingRight: "60px",
+    },
+    [breakpoints.desktop]: {
+      marginRight: vw(160),
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      position: "static",
+      top: "0px",
+      transform: "none",
+      textAlign: "center",
+      marginRight: "0",
+      paddingLeft: "0",
+      paddingRight: "0",
+      right: "auto",
+    },
+  },
+});
+
+export const HairTransplantHeroTitle = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(60, 40),
+  letterSpacing: "0",
+  lineHeight: vw(72),
+  color: "#272727",
+  margin: "0",
+  textAlign: "left",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px",
+      lineHeight: "72px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(40),
+      lineHeight: mvw(48),
+      textAlign: "left",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+    },
+  },
+});
+
+export const HairTransplantHeroTitleDot = style({
+  width: vw(20),
+  height: vw(20),
+  backgroundColor: "#14AEFF",
+  borderRadius: "50%",
+  marginLeft: vw(20),
+  flexShrink: 0,
+  alignSelf: "flex-end", // 모바일에서는 하단 정렬
+  marginBottom: vw(10), // 약간의 하단 여백
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "20px",
+      height: "20px",
+      marginLeft: "20px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(15),
+      height: mvw(15),
+      marginLeft: mvw(15),
+      alignSelf: "flex-end", // 모바일에서는 하단 정렬
+      marginBottom: mvw(10), // 약간의 하단 여백
+    },
+  },
 });
 
 // Hairline Hero Section
-export const BeforeAfterHeroSection = style({
+export const heroSection = style({
   position: "relative",
   width: "100%",
   minHeight: "100vh",
@@ -43,7 +201,7 @@ export const BeforeAfterHeroSection = style({
   },
 });
 
-export const BeforeAfterHeroContainer = style({
+export const heroContainer = style({
   position: "relative",
   width: "100%",
   maxWidth: "1920px", // Hero는 1920px 전체 사용
@@ -61,7 +219,7 @@ export const BeforeAfterHeroContainer = style({
   },
 });
 
-export const BeforeAfterHeroIllustration = style({
+export const heroIllustration = style({
   position: "absolute",
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   width: "1750px", // 헤더와 완전히 동일한 최대 너비
@@ -77,7 +235,7 @@ export const BeforeAfterHeroIllustration = style({
   },
 });
 
-export const BeforeAfterHeroIllustrationImage = style({
+export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
   objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
@@ -89,23 +247,19 @@ export const BeforeAfterHeroIllustrationImage = style({
   },
 });
 
-export const BeforeAfterHeroIllustrationImageMobile = style({
+export const heroIllustrationImageMobile = style({
+  display: "none",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      display: "none",
-    },
-    [breakpoints.desktop]: {
-      display: "none",
-    },
     [breakpoints.mobile]: {
+      display: "block",
       width: "100%",
-      height: "100%",
+      height: "auto",
       marginTop: mvw(80),
     },
   },
 });
 
-export const BeforeAfterHeroTitleWrapper = style({
+export const heroTitleWrapper = style({
   ...responsiveContainer(1600), // 헤더와 일치하는 1600px 컨테이너
   position: "absolute",
   top: "0",
@@ -133,7 +287,7 @@ export const BeforeAfterHeroTitleWrapper = style({
   },
 });
 
-export const BeforeAfterHeroTitleContainer = style({
+export const heroTitleContainer = style({
   position: "absolute",
   top: "50%",
   left: "0",
@@ -162,7 +316,7 @@ export const BeforeAfterHeroTitleContainer = style({
 });
 
 // Hairline Hero Title - Figma 디자인에 맞게 60px
-export const BeforeAfterHeroTitle = style({
+export const heroTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500, // Figma에서 Medium weight
   ...responsiveFont(60, 40), // 1920px 기준 60px, 모바일 40px
@@ -185,7 +339,40 @@ export const BeforeAfterHeroTitle = style({
   },
 });
 
-export const BeforeAfterHeroTitleDot = style({
+export const heroContent = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100%",
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: `0 ${mvw(20)}`,
+    },
+  },
+});
+
+export const heroSubtitle = style({
+  fontFamily: fontFamily.scdream,
+  fontWeight: 300,
+  ...responsiveFont(20, 16),
+  lineHeight: vw(30),
+  color: "#ffffff",
+  marginTop: vw(20),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "30px",
+      marginTop: "20px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      marginTop: mvw(16),
+    },
+  },
+});
+
+export const heroTitleDot = style({
   display: "inline-block",
   width: vw(20),
   height: vw(20),
@@ -217,7 +404,8 @@ export const carouselSection = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      padding: `${mvw(40)} ${mvw(20)}`,
+      height: "auto",
+      padding: `${mvw(40)} 0 ${mvw(60)}`,
     },
   },
   selectors: {
@@ -275,13 +463,14 @@ export const itemTitle = style({
   fontFamily: fontFamily.scdream,
   fontSize: vw(18),
   fontWeight: 400,
-  color: "#14AEFF",
+  color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "18px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
+      fontSize: mvw(14),
+      color: "#8B92A1",
     },
   },
 });
@@ -289,7 +478,7 @@ export const itemTitle = style({
 export const carouselContainer = style({
   position: "relative",
   display: "flex",
-  alignItems: "center",
+  alignItems: "stretch",
   gap: vw(40),
   justifyContent: "space-between",
   width: "100%",
@@ -300,8 +489,10 @@ export const carouselContainer = style({
       gap: "40px",
     },
     [breakpoints.mobile]: {
-      gap: mvw(12),
+      gap: 0,
       justifyContent: "center",
+      alignItems: "center",
+      padding: `0 ${mvw(45)}`,
     },
   },
 });
@@ -320,9 +511,11 @@ export const carouselViewport = style({
       borderRadius: "12px",
     },
     [breakpoints.mobile]: {
-      maxWidth: mvw(320),
+      width: "100%",
+      maxWidth: "100%",
       height: "auto",
-      borderRadius: mvw(8),
+      borderRadius: mvw(12),
+      backgroundColor: "transparent",
     },
   },
 });
@@ -345,13 +538,18 @@ export const mainSlide = style({
 export const sidePreview = style({
   flex: "0 0 auto",
   width: vw(360),
-  height: "auto",
   position: "relative",
   transition: "opacity 0.3s ease",
+  borderRadius: vw(12),
+  overflow: "visible",
+  backgroundColor: "transparent",
+  display: "flex",
+  alignItems: "stretch",
+  alignSelf: "stretch",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "360px",
-      height: "auto",
+      borderRadius: "12px",
     },
     [breakpoints.mobile]: {
       display: "none", // Hide side previews on mobile
@@ -364,10 +562,11 @@ export const sidePreviewRight = style({});
 
 export const sidePreviewImage = style({
   position: "absolute",
-  width: "200%",
+  width: "100%",
   height: "100%",
   objectFit: "cover",
   top: 0,
+  borderRadius: "inherit",
   selectors: {
     [`${sidePreviewLeft} &`]: {
       right: 0, // Show right half for left preview
@@ -380,17 +579,22 @@ export const sidePreviewImage = style({
 
 export const sidePreviewLabel = style({
   position: "absolute",
-  bottom: vw(16),
+  bottom: vw(20),
   left: "50%",
   transform: "translateX(-50%)",
   fontFamily: fontFamily.scdream,
-  fontSize: vw(13),
+  fontSize: vw(14),
   fontWeight: 500,
-  color: "#666666",
+  color: "#8B92A1",
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  padding: `${vw(6)} ${vw(12)}`,
+  borderRadius: vw(6),
   "@media": {
     [breakpoints.desktopLarge]: {
-      bottom: "16px",
-      fontSize: "13px",
+      bottom: "20px",
+      fontSize: "14px",
+      padding: "6px 12px",
+      borderRadius: "6px",
     },
   },
 });
@@ -469,13 +673,11 @@ export const afterLabel = style({
 
 export const carouselArrow = style({
   position: "absolute",
-  top: "50%",
+  top: "calc(50% - 40px)",
   transform: "translateY(-50%)",
   width: vw(48),
   height: vw(48),
   borderRadius: vw(8),
-  backgroundColor: "#FFFFFF",
-  border: "2px solid #E8F7FF",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -484,11 +686,9 @@ export const carouselArrow = style({
   flexShrink: 0,
   color: "#73D5FA",
   zIndex: 10,
-  ":hover": {
-    backgroundColor: "#73D5FA",
-    borderColor: "#73D5FA",
-    color: "#FFFFFF",
-  },
+  background: "transparent",
+  border: "none",
+  padding: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "48px",
@@ -496,9 +696,10 @@ export const carouselArrow = style({
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
-      width: mvw(40),
-      height: mvw(40),
-      borderRadius: mvw(6),
+      width: mvw(12),
+      height: mvw(22),
+      borderRadius: 0,
+      top: "50%",
     },
   },
 });
@@ -510,7 +711,7 @@ export const carouselArrowLeft = style({
       left: "400px",
     },
     [breakpoints.mobile]: {
-      left: mvw(10),
+      left: mvw(25),
     },
   },
 });
@@ -522,7 +723,7 @@ export const carouselArrowRight = style({
       right: "400px",
     },
     [breakpoints.mobile]: {
-      right: mvw(10),
+      right: mvw(25),
     },
   },
 });

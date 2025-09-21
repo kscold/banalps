@@ -24,14 +24,16 @@ const fadeInUp = keyframes({
 // 메인 파란색 섹션
 export const blueSection = style({
   width: "100%",
+  minHeight: "100vh", // 최소 높이를 100vh로 설정
   background: "#73D5FA",
-  position: "relative",
+  position: "relative", // 일반적인 문서 플로우에 맞춤
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   opacity: 0,
   transform: "translateY(20px)",
   transition: "all 800ms cubic-bezier(0.4, 0, 0.2, 1)",
+  overflow: "auto", // 스크롤 가능하도록 설정
 });
 
 // 보이기 상태
@@ -1016,8 +1018,9 @@ export const doctorsGrid = style({
 // 신승규 원장 - 1920px 기준 (imageCard1처럼)
 export const doctorCard1 = style({
   position: "absolute",
-  width: vw(280), // 1920px 기준 280px
-  aspectRatio: "280 / 374",
+  width: vw(417), // 1920px 기준 280px
+  height: vw(566),
+  aspectRatio: "417 / 566",
   left: "0", // 1920px 기준 컨테이너 왼쪽 맞춤
   top: "0",
   borderRadius: vw(12),
@@ -1025,11 +1028,12 @@ export const doctorCard1 = style({
   zIndex: 3,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "280px", // 1920px 이상에서 고정
+      width: "417px", // 1920px 이상에서 고정
+      height: "566px",
       left: "0",
       borderRadius: "12px",
     },
-    "screen and (max-width: 1024px)": {
+    [breakpoints.mobile]: {
       position: "relative",
       top: "auto",
       left: "auto",
@@ -1041,45 +1045,34 @@ export const doctorCard1 = style({
       borderRadius: "12px",
       order: 1,
     },
-    "screen and (max-width: 767px)": {
-      height: "320px",
-      maxWidth: "280px",
-    },
+    // "screen and (max-width: 1024px)": {
+
+    // },
+    // "screen and (max-width: 767px)": {
+    //   height: "320px",
+    //   maxWidth: "280px",
+    // },
   },
 });
 
 // 박수호 원장 - 1920px 기준 (imageCard2처럼)
 export const doctorCard2 = style({
   position: "absolute",
-  width: vw(332), // 1920px 기준 332px
-  aspectRatio: "332 / 420",
-  top: vw(190), // 1920px 기준 190px
+  width: vw(423), // 1920px 기준 332px
+  height: vw(626),
+  aspectRatio: "423 / 626",
+  top: vw(350), // 1920px 기준 190px
   right: "0", // 1920px 기준 컨테이너 오른쪽 맞춤
   borderRadius: vw(12),
   overflow: "hidden",
   zIndex: 2,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "332px", // 1920px 이상에서 고정
-      top: "190px",
+      width: "423px", // 1920px 이상에서 고정
+      height: "626px",
+      top: "350px",
       right: "0",
       borderRadius: "12px",
-    },
-    "screen and (max-width: 1024px)": {
-      position: "relative",
-      top: "auto",
-      right: "auto",
-      margin: "0 auto 20px",
-      width: "100%",
-      maxWidth: "300px",
-      height: "350px",
-      aspectRatio: "auto",
-      borderRadius: "12px",
-      order: 2,
-    },
-    "screen and (max-width: 767px)": {
-      height: "320px",
-      maxWidth: "280px",
     },
   },
 });
@@ -1087,8 +1080,9 @@ export const doctorCard2 = style({
 // 김나래 원장 - 1920px 기준 (imageCard3처럼)
 export const doctorCard3 = style({
   position: "absolute",
-  width: vw(284), // 1920px 기준 284px
-  aspectRatio: "284 / 403",
+  width: vw(441), // 1920px 기준 284px
+  height: vw(564),
+  aspectRatio: "441 / 564",
   bottom: "0", // 1920px 기준 컨테이너 하단 맞춤
   left: "0", // 1920px 기준 컨테이너 왼쪽 맞춤
   borderRadius: vw(12),
@@ -1096,26 +1090,11 @@ export const doctorCard3 = style({
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "284px", // 1920px 이상에서 고정
+      width: "441px", // 1920px 이상에서 고정
+      height: "564px",
       bottom: "0",
       left: "0",
       borderRadius: "12px",
-    },
-    "screen and (max-width: 1024px)": {
-      position: "relative",
-      top: "auto",
-      left: "auto",
-      margin: "0 auto 20px",
-      width: "100%",
-      maxWidth: "300px",
-      height: "350px",
-      aspectRatio: "auto",
-      borderRadius: "12px",
-      order: 3,
-    },
-    "screen and (max-width: 767px)": {
-      height: "320px",
-      maxWidth: "280px",
     },
   },
 });
@@ -1435,9 +1414,15 @@ export const doctorImageContainer = style({
 export const doctorNameOverlay1 = style({
   position: "absolute",
   zIndex: 1,
-  ...responsiveProperty("left", 170), // 1920px 기준 300px
-  ...responsiveProperty("top", 30), // 1920px 기준 30px
+  left: vw(250),
+  top: vw(54),
+  // ...responsiveProperty("left", 170), // 1920px 기준 300px
+  // ...responsiveProperty("top", 30), // 1920px 기준 30px
   "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "250px",
+      top: "30px",
+    },
     [breakpoints.mobile]: {
       left: "40px",
       top: "40px",
@@ -1449,9 +1434,15 @@ export const doctorNameOverlay1 = style({
 export const doctorNameOverlay2 = style({
   position: "absolute",
   zIndex: 10,
-  ...responsiveProperty("left", 230), // 1920px 기준 230px
-  ...responsiveProperty("top", 380), // 1920px 기준 380px
+  left: vw(416),
+  top: vw(976),
+  width: vw(490),
+  height: vw(224),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "416px",
+      top: "750px",
+    },
     [breakpoints.mobile]: {
       left: "40px",
       bottom: "40px",
@@ -1466,8 +1457,11 @@ export const doctorNameOverlay3 = style({
   right: "0",
   textAlign: "right",
   zIndex: 10,
-  ...responsiveProperty("bottom", 120), // 1920px 기준 120px
+  bottom: vw(0),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      bottom: "0px",
+    },
     [breakpoints.mobile]: {
       right: "40px",
       top: "40px",
@@ -1510,16 +1504,18 @@ export const doctorImage3 = style({
 export const doctorEnglishName1 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: vw(80), // 1920px 기준 80px
+  fontSize: vw(140), // 1920px 기준 80px
   lineHeight: "80%",
   letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
-  width: vw(410),
-  height: vw(150),
+  width: vw(740),
+  height: vw(224),
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "80px",
+      fontSize: "140px",
+      width: "740px",
+      height: "224px",
       letterSpacing: "-2.4px",
     },
     [breakpoints.mobile]: {
@@ -1533,14 +1529,14 @@ export const doctorEnglishName1 = style({
 export const doctorEnglishName2 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: vw(80), // 1920px 기준 80px
+  fontSize: vw(140), // 1920px 기준 80px
   lineHeight: "80%",
   letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "80px",
+      fontSize: "140px",
       letterSpacing: "-2.4px",
     },
     [breakpoints.mobile]: {
@@ -1554,19 +1550,15 @@ export const doctorEnglishName2 = style({
 export const doctorEnglishName3 = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  fontSize: vw(80), // 1920px 기준 80px
+  fontSize: vw(140), // 1920px 기준 80px
   lineHeight: "80%",
-  letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
+  letterSpacing: vw(-2.8), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "80px",
-      letterSpacing: "-2.4px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "56px", // 모바일에서 70% 크기
-      letterSpacing: "-1.7px",
+      fontSize: "140px",
+      letterSpacing: "-2.8px",
     },
   },
 });
@@ -1574,11 +1566,14 @@ export const doctorEnglishName3 = style({
 // 신승규 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer1 = style({
   position: "absolute",
-  left: vw(150), // 1920px 기준 300px
-  top: vw(200), // 1920px 기준 180px
+  left: vw(271), // 1920px 기준 300px
+  top: vw(319), // 1920px 기준 180px
   zIndex: 10,
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      left: "271px",
+      top: "319px",
+    },
     [breakpoints.mobile]: {
       position: "static",
       marginTop: "20px",
@@ -1595,8 +1590,8 @@ export const doctorKoreanNameContainer2 = style({
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
-      right: "155px",
-      top: "420px",
+      right: "120px",
+      top: "800px",
     },
     [breakpoints.mobile]: {
       position: "static",
@@ -1610,17 +1605,12 @@ export const doctorKoreanNameContainer2 = style({
 export const doctorKoreanNameContainer3 = style({
   position: "absolute",
   left: vw(300), // 1920px 기준 300px
-  top: vw(620), // 1920px 기준 620px
+  top: vw(1100), // 1920px 기준 620px
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "300px",
-      top: "620px",
-    },
-    [breakpoints.mobile]: {
-      position: "static",
-      marginTop: "20px",
-      paddingLeft: "40px",
+      top: "1100px",
     },
   },
 });
@@ -1629,20 +1619,14 @@ export const doctorKoreanNameContainer3 = style({
 export const doctorKoreanName = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  fontSize: vw(18), // 1920px 기준 18px
+  fontSize: vw(24), // 1920px 기준 18px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-    },
-    "screen and (max-width: 768px)": {
-      fontSize: "16px",
-    },
-    "screen and (max-width: 480px)": {
-      fontSize: "14px",
+      fontSize: "24px",
     },
   },
 });
@@ -1651,14 +1635,14 @@ export const doctorKoreanName = style({
 export const doctorDivider1 = style({
   position: "absolute",
   left: "0",
-  top: vw(374), // 1920px 기준 374px
+  top: vw(557), // 1920px 기준 374px
   width: vw(700), // 1920px 기준 700px
   height: vw(2),
   backgroundColor: "#FFFFFF",
   zIndex: 5,
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "374px",
+      top: "565px",
       width: "700px",
       height: "2px",
     },
@@ -1669,15 +1653,15 @@ export const doctorDivider1 = style({
 export const doctorDivider2 = style({
   position: "absolute",
   right: "0",
-  top: vw(610), // 1920px 기준 610px
-  width: vw(444), // 1920px 기준 400px
+  top: vw(976), // 1920px 기준 610px
+  width: vw(718), // 1920px 기준 400px
   height: vw(2),
   backgroundColor: "#FFFFFF",
   zIndex: 5,
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "610px",
-      width: "400px",
+      top: "976px",
+      width: "718px",
       height: "2px",
     },
   },

@@ -14,7 +14,11 @@ export const imageContainer = style({
   aspectRatio: "790 / 430", // 이미지 영역만의 비율 (라벨 제외)
   overflow: "hidden",
   borderRadius: "12px",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+  "@media": {
+    [breakpoints.mobile]: {
+      borderRadius: mvw(12),
+    },
+  },
 });
 
 export const afterImageWrapper = style({
@@ -71,6 +75,7 @@ export const labelsContainerDesktop = style({
   justifyContent: "space-around",
   width: "100%",
   marginTop: "20px",
+  padding: "12px 0",
 });
 
 export const labelDesktop = style({
@@ -82,6 +87,28 @@ export const labelDesktop = style({
   margin: "0",
   textAlign: "center",
   flex: "0 0 auto",
+});
+
+export const labelsContainerDesktopBlue = style({
+  position: "relative",
+  display: "flex",
+  justifyContent: "space-around",
+  width: "100%",
+  marginTop: "0",
+  paddingTop: "32px",
+  paddingBottom: "12px",
+  backgroundColor: "#D5FEFF",
+  borderBottomLeftRadius: "12px",
+  borderBottomRightRadius: "12px",
+  "::before": {
+    content: '""',
+    position: "absolute",
+    top: "-20px",
+    left: "0",
+    right: "0",
+    height: "20px",
+    // backgroundColor: "#D5FEFF",
+  },
 });
 
 export const sliderLine = style({

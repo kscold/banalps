@@ -1,23 +1,24 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import "../shared/styles/global.css"
-import ClientLayout from "./ClientLayout"
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import "../shared/styles/global.css";
+import ClientLayout from "./ClientLayout";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-})
+});
 
 export const metadata: Metadata = {
   title: "바날 성형외과 - 모발이식 전문 클리닉",
-  description: "바날 성형외과는 모발이식, 이마축소, 두피치료 전문 클리닉입니다.",
-}
+  description:
+    "바날 성형외과는 모발이식, 이마축소, 두피치료 전문 클리닉입니다.",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -38,14 +39,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <link
-          rel="stylesheet"
-          href="/fonts/SCDream-fonts.css"
-        />
+        <link rel="stylesheet" href="/fonts/SCDream-fonts.css" />
+        <script src="https://player.vimeo.com/api/player.js"></script>
       </head>
       <body className={`${inter.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
-  )
+  );
 }

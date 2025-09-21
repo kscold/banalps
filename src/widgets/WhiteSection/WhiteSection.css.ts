@@ -336,7 +336,6 @@ export const locationSection = style({
   width: "100%",
   ...responsiveProperty("paddingTop", 120), // 1920px 기준 120px
   ...responsiveProperty("paddingBottom", 120),
-  borderTop: "1px solid #E0E0E0",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -363,6 +362,7 @@ export const locationTitle = style({
       paddingRight: "160px",
     },
     [breakpoints.mobile]: {
+      fontSize: mvw(40),
       paddingLeft: "20px",
       paddingRight: "20px",
     },

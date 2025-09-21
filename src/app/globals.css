@@ -117,3 +117,50 @@ section {
   border: none !important;
   outline: none !important;
 }
+
+/* React Fullpage Styles */
+#fullpage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.fp-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fp-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fp-overflow {
+  overflow: hidden;
+}
+
+.fp-responsive {
+  height: auto !important;
+}
+
+/* 섹션별 스타일 */
+.hero-section {
+  background: transparent;
+}
+
+.video-section {
+  background: #000000;
+}
+
+.blue-section {
+  background: #73D5FA;
+}
+
+.white-section {
+  background: #ffffff;
+}

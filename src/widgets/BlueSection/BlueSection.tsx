@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import * as styles from "./BlueSection.css";
 import { ArrowButton } from "../../shared/ui/ArrowButton";
-import { useBlueScroll } from "../../shared/hooks/useBlueScroll";
 
 interface BlueSectionProps {
   isActive?: boolean;
@@ -16,25 +15,13 @@ export default function BlueSection({
 }: BlueSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  // 블루섹션 전용 스크롤 훅 사용
-  const { canTransitionToVideo } = useBlueScroll({
-    isActive,
-    onTransitionToVideo,
-  });
-
   useEffect(() => {
     console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
-    console.log(
-      "[BlueSection/상태] isActive:",
-      isActive,
-      "canTransitionToVideo:",
-      canTransitionToVideo
-    );
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
-  }, [isActive, canTransitionToVideo]);
+  }, [isActive]);
 
   // 바날 로컬 서비스 항목들
   const localServices = [
@@ -375,7 +362,7 @@ export default function BlueSection({
             {/* 이미지들 */}
             <div className={styles.doctorCard1}>
               <img
-                src="/main/person/대표원장_신승규.png"
+                src="/main/person/doctor-shinseunggyu.png"
                 alt="신승규 원장"
                 className={styles.doctorImage1}
               />
@@ -383,7 +370,7 @@ export default function BlueSection({
 
             <div className={styles.doctorCard2}>
               <img
-                src="/main/person/대표원장_박수호.png"
+                src="/main/person/doctor-parksooho.png"
                 alt="박수호 원장"
                 className={styles.doctorImage2}
               />
@@ -391,7 +378,7 @@ export default function BlueSection({
 
             <div className={styles.doctorCard3}>
               <img
-                src="/main/person/대표원장_김나래.png"
+                src="/main/person/doctor-kimnarae.png"
                 alt="김나래 원장"
                 className={styles.doctorImage3}
               />

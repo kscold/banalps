@@ -9,6 +9,7 @@ interface BeforeAfterSliderProps {
   beforeAlt?: string
   afterAlt?: string
   className?: string
+  isBlueBackground?: boolean
 }
 
 export default function BeforeAfterSlider({
@@ -17,11 +18,13 @@ export default function BeforeAfterSlider({
   beforeAlt = "수술 전",
   afterAlt = "수술 후",
   className,
+  isBlueBackground = false,
 }: BeforeAfterSliderProps) {
-  const [sliderPosition, setSliderPosition] = useState(50) // 50% 기본 위치
+  const [sliderPosition, setSliderPosition] = useState(50) // 정확히 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -31,6 +34,14 @@ export default function BeforeAfterSlider({
     window.addEventListener("resize", checkMobile)
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
+
+  // 초기화 시 정확히 50%로 설정
+  React.useEffect(() => {
+    if (!isInitialized) {
+      setSliderPosition(50)
+      setIsInitialized(true)
+    }
+  }, [isInitialized])
 
   const updateSliderPosition = useCallback((clientX: number) => {
     if (!containerRef.current) return
@@ -167,7 +178,7 @@ export default function BeforeAfterSlider({
 
       {/* 데스크탑: 라벨을 이미지 아래 위치 */}
       {!isMobile && (
-        <div className={styles.labelsContainerDesktop}>
+        <div className={isBlueBackground ? styles.labelsContainerDesktopBlue : styles.labelsContainerDesktop}>
           <div className={styles.labelDesktop}>Before</div>
           <div className={styles.labelDesktop}>After</div>
         </div>

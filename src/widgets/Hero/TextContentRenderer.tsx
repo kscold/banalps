@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
-import * as styles from "./HeroSection.css"
+import * as styles from "./HeroSection.css";
 
 interface TextContentRendererProps {
-  currentTextIndex: number
+  currentTextIndex: number;
 }
 
 export function TextContentRenderer({
   currentTextIndex,
 }: TextContentRendererProps) {
+  console.log(`[TextContentRenderer] 현재 텍스트 인덱스: ${currentTextIndex}`);
+
   const getCurrentText = () => {
     switch (currentTextIndex) {
       case 0:
@@ -54,11 +56,12 @@ export function TextContentRenderer({
             >
               어느 밤, 침대에 기대앉아 아이들에게
               <br />
-              그림책을 읽어 주고 있었습니다. 그리고 책장 한 귀퉁이에서 마주한
-              문장.
+              그림책을 읽어 주고 있었습니다.
+              <br />
+              그리고 책장 한 귀퉁이에서 마주한 문장.
             </motion.p>
           </motion.div>
-        )
+        );
       case 1:
         return (
           <motion.div
@@ -98,10 +101,10 @@ export function TextContentRenderer({
                 delay: 0.2,
               }}
             >
-              {"나는 바람 부는 날도 좋아요."}
+              <b>"나는 바람 부는 날도 좋아요."</b>
             </motion.p>
           </motion.div>
-        )
+        );
       case 2:
         return (
           <motion.div
@@ -144,7 +147,7 @@ export function TextContentRenderer({
               참 듣기 좋은 말이었습니다.
             </motion.p>
           </motion.div>
-        )
+        );
       case 3:
         return (
           <motion.div
@@ -189,7 +192,7 @@ export function TextContentRenderer({
               위로를 건네는 말 같았습니다.
             </motion.p>
           </motion.div>
-        )
+        );
       case 4:
         return (
           <motion.div
@@ -234,11 +237,11 @@ export function TextContentRenderer({
               분들의 그 말이 떠올랐습니다.
             </motion.p>
           </motion.div>
-        )
+        );
       case 5:
         return (
           <motion.div
-            key="text-4"
+            key="text-5"
             className={styles.textBlock}
             initial={{
               opacity: 0,
@@ -274,19 +277,19 @@ export function TextContentRenderer({
                 delay: 0.2,
               }}
             >
-              {"이제 바람 부는 날도 좋아요."}
+              <b>"이제 바람 부는 날도 좋아요."</b>
               <br />이 말은 언제든 들어도 기분이 좋습니다.
             </motion.p>
           </motion.div>
-        )
+        );
 
       case 6:
         // 비디오 섹션이 활성화될 때는 아무것도 표시하지 않음
-        return null
+        return null;
       default:
-        return null
+        return null;
     }
-  }
+  };
 
-  return getCurrentText()
+  return getCurrentText();
 }
