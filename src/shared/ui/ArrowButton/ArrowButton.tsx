@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import * as styles from "./ArrowButton.css"
 
 interface ArrowButtonProps {
@@ -10,9 +11,13 @@ interface ArrowButtonProps {
   size?: "small" | "medium" | "large"
   disabled?: boolean
   className?: string
-  fontSize?: number // 폰트 크기 (px 단위)
+  fontSize?: number | string // 폰트 크기 (px 단위 또는 vw 단위 문자열)
+  fontSizeMobile?: number | string // 모바일 폰트 크기 (px 단위 또는 mvw 단위 문자열)
   paddingVertical?: number // 위아래 패딩 (px 단위)
+  paddingLeft?: number | boolean // 왼쪽 패딩 (px 단위 또는 true면 자동 계산)
+  paddingRight?: number // 오른쪽 패딩 (px 단위)
   width?: number | string // 너비 (px 단위 또는 문자열)
+  height?: number | string // 높이 (px 단위 또는 vw 단위 문자열)
   textAlign?: "left" | "center" | "right" // 텍스트 정렬
 }
 
@@ -25,10 +30,35 @@ export default function ArrowButton({
   disabled = false,
   className,
   fontSize, // 커스텀 폰트 크기
+  fontSizeMobile, // 모바일 폰트 크기
   paddingVertical, // 커스텀 위아래 패딩
+  paddingLeft, // 커스텀 왼쪽 패딩 또는 자동
+  paddingRight, // 커스텀 오른쪽 패딩
   width, // 커스텀 너비
+  height, // 커스텀 높이
   textAlign = "left", // 기본값은 left
 }: ArrowButtonProps) {
+  const [calculatedPadding, setCalculatedPadding] = useState<{left?: string, right?: string}>({})
+  const circleRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const textRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    // paddingLeft가 true일 때 동적으로 계산
+    if (paddingLeft === true && circleRef.current) {
+      const circleSize = size === 'small' ? 28 : size === 'large' ? 40 : 28 // 실제 원 크기
+      const gap = 10 // gap 값
+
+      // 원 위치가 오른쪽에 있으므로
+      const rightPadding = circleSize + gap * 2 // 오른쪽: 원 + 양쪽 gap
+      const leftPadding = gap * 2 // 왼쪽: gap만
+
+      setCalculatedPadding({
+        left: `${(leftPadding / 1920) * 100}vw`,
+        right: `${(rightPadding / 1920) * 100}vw`
+      })
+    }
+  }, [paddingLeft, size, width])
   // 화살표 컨테이너 스타일 결정
   const getArrowContainerStyle = () => {
     let containerStyle = styles.arrowContainer
@@ -90,7 +120,8 @@ export default function ArrowButton({
   const customStyle: React.CSSProperties = {}
 
   if (fontSize) {
-    customStyle.fontSize = `${fontSize}px`
+    // 숫자로 전달되면 1920px 기준 vw로 변환
+    customStyle.fontSize = typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize
   }
 
   if (paddingVertical) {
@@ -98,8 +129,27 @@ export default function ArrowButton({
     customStyle.paddingBottom = `${paddingVertical}px`
   }
 
+  // padding 처리
+  if (paddingLeft === true && calculatedPadding.left && calculatedPadding.right) {
+    customStyle.paddingLeft = calculatedPadding.left
+    customStyle.paddingRight = calculatedPadding.right
+  } else {
+    if (typeof paddingLeft === 'number') {
+      customStyle.paddingLeft = `${(paddingLeft / 1920) * 100}vw`
+    }
+    if (paddingRight) {
+      customStyle.paddingRight = `${(paddingRight / 1920) * 100}vw`
+    }
+  }
+
   if (width) {
-    customStyle.width = typeof width === 'number' ? `${width}px` : width
+    // 숫자로 전달되면 1920px 기준 vw로 변환
+    customStyle.width = typeof width === 'number' ? `${(width / 1920) * 100}vw` : width
+  }
+
+  if (height) {
+    // 숫자로 전달되면 1920px 기준 vw로 변환
+    customStyle.height = typeof height === 'number' ? `${(height / 1920) * 100}vw` : height
   }
 
   if (textAlign) {
@@ -108,6 +158,7 @@ export default function ArrowButton({
 
   return (
     <button
+      ref={buttonRef}
       className={`${styles.arrowButton} ${styles[variant]} ${styles[color]} ${styles[size]} ${
         className || ""
       }`}
@@ -115,13 +166,22 @@ export default function ArrowButton({
       onClick={onClick}
       disabled={disabled}
     >
-      <span 
+      <span
+        ref={textRef}
         className={getTextStyle()}
-        style={fontSize ? { fontSize: `${fontSize}px` } : {}}
+        style={{
+          ...(fontSize ? {
+            fontSize: typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize
+          } : {}),
+          ...(fontSizeMobile ? {
+            '--mobile-font-size': typeof fontSizeMobile === 'number' ? `${(fontSizeMobile / 375) * 100}vw` : fontSizeMobile
+          } as React.CSSProperties : {})
+        }}
       >
         {children}
       </span>
       <div
+        ref={circleRef}
         className={`${getArrowContainerStyle()} ${styles.arrowContainerHover}`}
       >
         <svg

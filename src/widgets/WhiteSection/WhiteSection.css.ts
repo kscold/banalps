@@ -21,7 +21,6 @@ export const whiteSection = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex", // 명시적으로 flex 설정
-      paddingTop: "40px", // 상단 패딩 추가
       paddingBottom: "60px",
       minHeight: "100vh", // 최소 화면 높이 설정
       backgroundColor: "#FFFFFF", // 배경색 명시적 설정
@@ -232,6 +231,8 @@ export const cardButton = style({
   position: "absolute",
   bottom: vw(20), // 1920px 기준 20px
   left: vw(20), // 1920px 기준 20px
+  textDecoration: "none",
+  display: "inline-block",
   "@media": {
     [breakpoints.desktopLarge]: {
       bottom: "20px",
@@ -242,6 +243,32 @@ export const cardButton = style({
       left: "20px",
     },
   },
+});
+
+// 넓은 카드용 버튼 (오른쪽 정렬)
+export const cardButtonWide = style({
+  position: "absolute",
+  bottom: vw(20), // 1920px 기준 20px
+  right: vw(20), // 오른쪽 정렬
+  left: "auto", // 왼쪽 초기화
+  textDecoration: "none",
+  display: "inline-block",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      bottom: "20px",
+      right: "20px",
+    },
+    [breakpoints.mobile]: {
+      bottom: "20px",
+      left: "20px",
+      right: "auto",
+    },
+  },
+});
+
+// 넓은 카드 스타일
+export const serviceCardWide = style({
+  flex: "1.5", // 더 넓은 너비
 });
 
 // Other Medical Service 박스 (1920px 기준) - 5번째 카드
@@ -643,15 +670,20 @@ export const readySectionContainer = style({
 // 일러스트 - 왼쪽 끝부터 헤더 컨테이너의 오른쪽 끝까지 (responsiveContainer와 정확히 동일한 계산)
 export const readyHeroIllustration = style({
   position: "absolute",
-  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: "1600px", // 헤더와 완전히 동일한 최대 너비
+  left: "0", // 화면 왼쪽부터 시작
+  width: vw(1750), // 헤더와 동일한 최대 너비 (패딩 제외한 1750px)
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
   top: "50%",
   transform: "translateY(-50%)",
   height: vw(800), // 1920px 기준 800px 높이로 조정 (더 적절한 비율)
   zIndex: 1,
+  objectFit: "cover",
+  objectPosition: "right center", // 이미지를 오른쪽에 정렬
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 1920px 이상에서 고정
+      height: "800px",
+    },
     [breakpoints.mobile]: {
       position: "relative",
       width: "100vw", // 뷰포트 전체 너비

@@ -897,7 +897,7 @@ export const section2Right = style({
 // Section 2 숫자 2 스타일 (피그마 스펙: Nordnet Sans Mono, 200px, #272727)
 export const section2NumberBg = style({
   position: "absolute",
-  top: vw(0), // section2Right의 paddingTop과 일치 (제목과 같은 높이)
+  top: vw(-40), // section2Right의 paddingTop과 일치 (제목과 같은 높이)
   right: vw(0), // responsiveRightContent() 내에서 오른쪽으로 살짝 나가도록
   fontFamily: "'Nordnet Sans Mono', monospace",
   fontWeight: 400,
@@ -906,7 +906,9 @@ export const section2NumberBg = style({
   color: "#272727", // 피그마 스펙: 일반 색상, opacity 없음
   zIndex: 3, // 배경 뒤가 아닌 앞으로
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      top: "-40px",
+    },
     [breakpoints.mobile]: {
       position: "absolute",
       fontSize: mvw(60),
@@ -1126,7 +1128,7 @@ export const section3 = style({
 export const section3Content = style({
   display: "flex",
   flexDirection: "row",
-  alignItems: "center",
+  alignItems: "flex-start", // center -> flex-start로 변경하여 위쪽 정렬
   gap: vw(40),
   position: "relative",
   ...responsiveContainer(1600),
@@ -1178,6 +1180,7 @@ export const section3Left = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
+  alignSelf: "flex-start", // 자신을 상단에 정렬
   flex: "0 0 auto",
   marginLeft: "auto", // 오른쪽으로 밀기
   "@media": {
@@ -1214,30 +1217,6 @@ export const section3LeftWithSvg = style({
       order: 2,
       alignItems: "center",
       textAlign: "center",
-    },
-  },
-});
-
-// Section 3 숫자 3 스타일 (피그마 스펙: Nordnet Sans Mono, 200px, #272727, 우측 정렬)
-export const section3NumberBg = style({
-  position: "absolute",
-  //   top: vw(45), // section2NumberBg와 동일한 높이
-  right: vw(0), // 텍스트 영역 왼쪽으로 살짝 나가도록 (section2와 대칭)
-  fontFamily: "'Nordnet Sans Mono', monospace", // Nordnet Sans Mono 글꼴 적용
-  fontWeight: 400,
-  ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
-  lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)
-  color: "#272727", // 피그마 스펙: 일반 색상, opacity 없음
-  textAlign: "left", // 왼쪽 정렬로 변경 (section2와 대칭)
-  zIndex: 3, // 배경 뒤가 아닌 앞으로
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      //   top: "45px",
-      //   left: "-50px",
-      lineHeight: "240px",
-    },
-    [breakpoints.mobile]: {
-      display: "none", // 모바일에서 숨김
     },
   },
 });
@@ -1325,8 +1304,6 @@ export const section3Number = style({
   zIndex: 3, // 앞에 표시
   fontFamily: "'Nordnet Sans Mono', monospace", // 피그마 스펙
   position: "absolute",
-  top: vw(-50),
-  right: vw(0), // 텍스트 영역의 오른쪽 끝
   fontWeight: 400, // 피그마 스펙: Regular
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
   lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)
@@ -1335,11 +1312,12 @@ export const section3Number = style({
   width: vw(118), // 피그마 너비
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "-50px",
-      right: "0",
+      top: "-40px",
+      left: "750px", // 피그마 x: 537 기준 위치
     },
     [breakpoints.desktop]: {
-      right: vw(0),
+      top: vw(-40), // section3Left의 paddingTop과 맞춤
+      left: vw(650), // 피그마 x: 537 기준 위치
     },
     [breakpoints.mobile]: {
       position: "absolute",
@@ -1385,7 +1363,7 @@ export const section3RightWithSvg = style({
   justifyContent: "flex-start",
   gap: vw(40),
   flex: "1",
-  paddingTop: vw(80),
+  // paddingTop: vw(80),
   "@media": {
     [breakpoints.mobile]: {
       order: 1,

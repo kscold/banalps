@@ -21,10 +21,21 @@ const fadeInUp = keyframes({
   },
 });
 
+// featuresList 항목용 순차적 페이드인 애니메이션
+const featureItemFadeIn = keyframes({
+  from: {
+    opacity: 0,
+    transform: "translateY(40px)",
+  },
+  to: {
+    opacity: 1,
+    transform: "translateY(0)",
+  },
+});
+
 // 메인 파란색 섹션
 export const blueSection = style({
   width: "100%",
-  minHeight: "100vh", // 최소 높이를 100vh로 설정
   background: "#73D5FA",
   position: "relative", // 일반적인 문서 플로우에 맞춤
   display: "flex",
@@ -33,7 +44,17 @@ export const blueSection = style({
   opacity: 0,
   transform: "translateY(20px)",
   transition: "all 800ms cubic-bezier(0.4, 0, 0.2, 1)",
-  overflow: "auto", // 스크롤 가능하도록 설정
+  overflow: "visible", // overflow 제거
+  paddingBottom: 0, // 하단 패딩 제거
+  marginBottom: 0, // 하단 마진 제거
+  "@media": {
+    [breakpoints.mobile]: {
+      backgroundImage: "url('/about/mobile/banal-graffiti-mobile.svg')",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center bottom",
+      backgroundSize: "contain",
+    },
+  },
 });
 
 // 보이기 상태
@@ -807,6 +828,13 @@ export const featureItem = style({
   gap: vw(24), // 1920px 기준 24px로 늘림
   padding: `${vw(20)} 0`, // 1920px 기준 20px로 늘림
   borderBottom: `${vw(1)} solid #14aeff`, // 1920px 기준 1px (모든 아이템에 하단 border)
+  cursor: "pointer",
+  textDecoration: "none",
+  color: "#272727",
+  transition: "background-color 0.3s ease",
+  ":hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       display: "flex",
@@ -825,6 +853,38 @@ export const featureItem = style({
   },
 });
 
+// 순차적 애니메이션을 위한 스타일
+export const featureItemAnimated = style({
+  opacity: 0,
+  transform: "translateY(40px)",
+  animation: `${featureItemFadeIn} 1200ms ease-out forwards`,
+});
+
+// 각 아이템별 지연 시간 설정
+export const featureItemDelay1 = style({
+  animationDelay: "0ms",
+});
+
+export const featureItemDelay2 = style({
+  animationDelay: "300ms",
+});
+
+export const featureItemDelay3 = style({
+  animationDelay: "600ms",
+});
+
+export const featureItemDelay4 = style({
+  animationDelay: "900ms",
+});
+
+export const featureItemDelay5 = style({
+  animationDelay: "1200ms",
+});
+
+export const featureItemDelay6 = style({
+  animationDelay: "1500ms",
+});
+
 export const featureNumber = style({
   flex: `0 0 ${vw(60)}`, // 1920px 기준 60px로 줄임
   fontFamily: "'S-Core Dream', sans-serif",
@@ -832,7 +892,7 @@ export const featureNumber = style({
   ...responsiveFont(18, 16), // 1920px 기준 18px, 모바일 16px
   lineHeight: "140%",
   letterSpacing: "0",
-  color: "#272727",
+  color: "inherit", // 링크 색상 상속
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",
@@ -882,7 +942,7 @@ export const featureTitle = style({
   ...responsiveFont(24), // 1920px 기준 24px
   lineHeight: "150%",
   letterSpacing: "0",
-  color: "#272727",
+  color: "inherit", // 링크 색상 상속
   flex: `0 0 ${vw(240)}`, // 1920px 기준 240px 고정 너비로 모든 설명 시작점 통일
   margin: 0,
   "@media": {
@@ -910,7 +970,7 @@ export const featureDescription = style({
   ...responsiveFont(18, 14), // 1920px 기준 18px, 모바일 14px
   lineHeight: "170%",
   letterSpacing: "0",
-  color: "#272727",
+  color: "inherit", // 링크 색상 상속
   margin: 0,
   whiteSpace: "pre-line",
   opacity: 0.9,
@@ -1316,6 +1376,7 @@ export const doctorsContent = style({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between", // 양쪽 끝에 붙이기
+  gap: vw(40), // 간격 추가
   // minHeight: "50vw", // 최소 높이도 비례적으로
   "@media": {
     "screen and (min-width: 1600px)": {
@@ -1383,6 +1444,8 @@ export const doctorsImageGrid = style({
   width: vw(1059), // 1024px-1920px에서 컨테이너만 비례 스케일링
   height: vw(1298), // 높이도 비례 스케일링
   aspectRatio: `${1059} / ${1298}`, // 비율 유지
+  flexShrink: 0, // 축소 방지
+  transformOrigin: "top right", // 오른쪽 상단 기준 스케일
   "@media": {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 완전 고정 (헤더와 동일한 방식)
@@ -1421,7 +1484,7 @@ export const doctorNameOverlay1 = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "250px",
-      top: "30px",
+      top: "54px",
     },
     [breakpoints.mobile]: {
       left: "40px",
@@ -1435,13 +1498,15 @@ export const doctorNameOverlay2 = style({
   position: "absolute",
   zIndex: 10,
   left: vw(416),
-  top: vw(976),
+  top: vw(750),
   width: vw(490),
   height: vw(224),
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "416px",
       top: "750px",
+      width: "490px",
+      height: "224px",
     },
     [breakpoints.mobile]: {
       left: "40px",
@@ -1585,8 +1650,8 @@ export const doctorKoreanNameContainer1 = style({
 // 박수호 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer2 = style({
   position: "absolute",
-  right: vw(155), // 1920px 기준 155px
-  top: vw(420), // 1920px 기준 420px
+  right: vw(120), // 1920px 기준 155px
+  top: vw(800), // 1920px 기준 800px로 수정
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -1600,7 +1665,6 @@ export const doctorKoreanNameContainer2 = style({
     },
   },
 });
-
 // 김나래 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer3 = style({
   position: "absolute",
@@ -1635,15 +1699,15 @@ export const doctorKoreanName = style({
 export const doctorDivider1 = style({
   position: "absolute",
   left: "0",
-  top: vw(557), // 1920px 기준 374px
-  width: vw(700), // 1920px 기준 700px
+  top: vw(565), // 1920px 기준 557px
+  width: vw(778), // 1920px 기준 700px
   height: vw(2),
   backgroundColor: "#FFFFFF",
   zIndex: 5,
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "565px",
-      width: "700px",
+      width: "778px",
       height: "2px",
     },
   },

@@ -1,6 +1,5 @@
 "use client";
 
-import HeaderNavigation from "../../widgets/Header/HeaderNavigation";
 import { VideoSection } from "../../widgets/Hero/VideoSection";
 import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";

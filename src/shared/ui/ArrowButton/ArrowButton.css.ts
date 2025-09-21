@@ -43,19 +43,18 @@ export const arrowButton = style({
   position: "relative",
   overflow: "visible", // 화살표가 버튼 밖으로 나갈 수 있도록
   color: "#272727",
+  pointerEvents: "auto", // 클릭 이벤트 활성화
   boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   lineHeight: "100%",
   // width 제거 - 텍스트 길이에 따라 자동 조정
   minWidth: "auto", // 최소 너비 자동
   width: "auto", // 자동 너비
-  gap: `${vw(8)} !important`, // 텍스트와 화살표 간격
-  // 화살표 동그라미 기준 고정 패딩 - !important로 강제 적용
-  paddingTop: vw(12),
-  paddingBottom: vw(12),
-  paddingLeft: vw(32),
-  paddingRight: vw(60), // 오른쪽에 화살표 공간 확보
-  // 높이는 동그라미(28px) + 패딩(8px*2) = 44px로 고정
-  minHeight: vw(44), // 최소 높이 고정
+  gap: `${vw(10)}`, // 텍스트와 화살표 간격 10px
+  // 기본 패딩 - 커스텀 값으로 오버라이드 가능
+  paddingTop: vw(10),
+  paddingBottom: vw(10),
+  paddingLeft: vw(20), // 기본 왼쪽 패딩 (오버라이드 가능)
+  paddingRight: vw(48), // 오른쪽에 화살표 공간 확보 (28px 원 + 20px 여백)
   borderRadius: vw(100), // 1920px 기준 100px
   fontSize: vw(20), // 1920px 기준 20px
 
@@ -107,7 +106,7 @@ export const buttonText = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: mvw(14), // 모바일 크기
+      fontSize: "var(--mobile-font-size, " + mvw(14) + ")", // CSS 변수를 통한 모바일 폰트 크기
     },
   },
 });
@@ -122,8 +121,8 @@ export const arrowContainer = style({
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   flexShrink: 0,
   boxShadow: `0 ${vw(4)} ${vw(12)} rgba(20, 174, 255, 0.25)`,
-  width: vw(42), // 데스크탑에서 42px로 증가
-  height: vw(42), // 데스크탑에서 42px로 증가
+  width: vw(28), // 데스크탑에서 42px로 증가
+  height: vw(28), // 데스크탑에서 42px로 증가
   position: "absolute", // 데스크탑에서도 absolute
   right: vw(12), // 오른쪽에서 12px 떨어진 위치
   top: "50%",
@@ -249,10 +248,9 @@ export const small = style({
 });
 
 export const medium = style({
-  fontSize: vw(24), // 1920px 기준 24px로 변경
-  minHeight: vw(66), // 데스크탑에서 높이 66px로 설정
-  height: vw(66), // 명시적 높이 설정
-  padding: `0 ${vw(66)} 0 ${vw(32)}`, // 좌측 32px, 우측 66px 패딩 (화살표 공간)
+  fontSize: vw(22), // 1920px 기준 22px
+  height: vw(44), // 명시적 높이 44px로 설정
+  padding: `0 ${vw(48)} 0 ${vw(20)}`, // 좌측 20px, 우측 48px 패딩 (화살표 공간)
   justifyContent: "flex-start", // 텍스트 왼쪽 정렬
 
   "@media": {

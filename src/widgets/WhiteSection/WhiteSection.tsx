@@ -1,14 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import * as styles from "./WhiteSection.css";
 import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton";
 import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
-import { vw } from "../../shared/styles/responsive.css";
 
 export default function WhiteSection() {
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
+  const router = useRouter();
 
   return (
     <section className={styles.whiteSection}>
@@ -48,6 +49,7 @@ export default function WhiteSection() {
               color="blue"
               size="medium"
               className={styles.mobileCardButton}
+              onClick={() => router.push('/hair-transplant/crown')}
             >
               정수리이식
             </ArrowButton>
@@ -65,6 +67,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
+              onClick={() => router.push('/forehead/hair-transplant')}
             >
               이마 축소 수술
             </ArrowButton>
@@ -82,6 +85,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
+              onClick={() => router.push('/hair-transplant/hairline')}
             >
               헤어라인 교정
             </ArrowButton>
@@ -99,6 +103,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
+              onClick={() => router.push('/hair-transplant/revision')}
             >
               바날 재수술
             </ArrowButton>
@@ -117,6 +122,7 @@ export default function WhiteSection() {
               width="100%"
               textAlign="center"
               className={styles.mobileViewMoreButton}
+              onClick={() => router.push('/before-after')}
             >
               View More
             </ArrowButton>
@@ -130,7 +136,7 @@ export default function WhiteSection() {
             {/* 상단 행 - 큰 카드(왼쪽) + 작은 카드(오른쪽) */}
             <div className={styles.topRow}>
               {/* 카드 1: 정수리 이식 (왼쪽 위 - 큰 카드) */}
-              <div className={styles.serviceCard}>
+              <div className={`${styles.serviceCard} ${styles.serviceCardWide}`}>
                 <img
                   src="/main/white-section/white_section_2.jpg"
                   alt="정수리 이식"
@@ -140,7 +146,13 @@ export default function WhiteSection() {
                   variant="primary"
                   size="medium"
                   color="blue"
-                  className={styles.cardButton}
+                  className={styles.cardButtonWide}
+                  width={160}
+                  fontSize={18}
+                  fontSizeMobile={14}
+                  height={44}
+                  paddingLeft={true}
+                  onClick={() => router.push('/hair-transplant/crown')}
                 >
                   정수리 이식
                 </ArrowButton>
@@ -158,6 +170,12 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButton}
+                  width={180}
+                  fontSize={18}
+                  fontSizeMobile={14}
+                  height={44}
+                  paddingLeft={true}
+                  onClick={() => router.push('/hair-transplant/hairline')}
                 >
                   헤어라인 교정
                 </ArrowButton>
@@ -178,13 +196,19 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButton}
+                  width={180}
+                  fontSize={18}
+                  fontSizeMobile={14}
+                  height={44}
+                  paddingLeft={true}
+                  onClick={() => router.push('/forehead/hair-transplant')}
                 >
                   이마 축소 수술
                 </ArrowButton>
               </div>
 
               {/* 카드 4: 바날 재수술 (오른쪽 아래 - 큰 카드) */}
-              <div className={styles.serviceCard}>
+              <div className={`${styles.serviceCard} ${styles.serviceCardWide}`}>
                 <img
                   src="/main/white-section/white_section_5.jpg"
                   alt="바날 재수술"
@@ -194,7 +218,13 @@ export default function WhiteSection() {
                   variant="primary"
                   size="medium"
                   color="blue"
-                  className={styles.cardButton}
+                  className={styles.cardButtonWide}
+                  width={160}
+                  fontSize={18}
+                  fontSizeMobile={14}
+                  height={44}
+                  paddingLeft={true}
+                  onClick={() => router.push('/hair-transplant/revision')}
                 >
                   바날 재수술
                 </ArrowButton>
@@ -210,7 +240,11 @@ export default function WhiteSection() {
               Service.
             </h3>
 
-            <ArrowButton size="medium" className={styles.viewMoreButton}>
+            <ArrowButton
+              size="medium"
+              className={styles.viewMoreButton}
+              onClick={() => router.push('/before-after')}
+            >
               View More
             </ArrowButton>
             <img

@@ -94,15 +94,15 @@ export const blueSectionOverlay = style({
 export const contentWrapper = style({
   position: "absolute",
   top: "50%",
-  right: "10%", // 오른쪽에서 10% 위치
+  right: vw(192), // 1920px 기준 오른쪽에서 192px (10%)
   transform: "translateY(-50%)", // 수직 중앙 정렬
   zIndex: tokens.zIndex.content,
   width: "auto",
-  maxWidth: "600px",
+  maxWidth: vw(600), // 1920px 기준 600px
   display: "flex",
   alignItems: "flex-end", // 하단 정렬
   justifyContent: "flex-end", // 오른쪽 정렬
-  padding: "0 2rem",
+  padding: `0 ${vw(32)}`, // 1920px 기준 32px
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},

@@ -98,6 +98,29 @@ export default function ReoperationPage() {
           이제 안심하셔도 됩니다.
         </>
       ),
+      svgElements: {
+        container: "/hair-transplant/reoperation/illustration-1.svg",
+        absolute: "/hair-transplant/reoperation/illustration-2.svg",
+      },
+      // 각 SVG 요소의 크기 설정
+      svgElementsSize: {
+        container: {
+          width: 418, // vw 단위로 변환됨
+          height: 188, // vw 단위로 변환됨
+        },
+        absolute: {
+          width: 232, // vw 단위로 변환됨
+          height: 259, // vw 단위로 변환됨
+        },
+      },
+      // absolute SVG의 위치 설정
+      svgElementsPosition: {
+        absolute: {
+          top: 0, // 상단에서 50vw
+          right: -50, // 오른쪽에서 100vw
+          // bottom과 left도 선택적으로 설정 가능
+        },
+      },
       mobileIllustration: "/hair-transplant/reoperation/illustration-1.svg",
       images: {
         main: "/hair-transplant/reoperation/reoperation-3.png",
@@ -137,7 +160,6 @@ export default function ReoperationPage() {
     },
     beforeAfterData: {
       category: "재수술",
-      title: "3100모(남)_10개월경과",
       beforeImage: "/hair-transplant/reoperation/slide/before.jpg",
       afterImage: "/hair-transplant/reoperation/slide/after.jpg",
       beforeAlt: "재수술 전",
@@ -145,7 +167,7 @@ export default function ReoperationPage() {
     },
     beforeAfterButton: {
       text: "수술전후 더보기",
-      href: "/hair-transplant/hairline",
+      href: "/before-after",
       width: 269, // 데스크탑에서 버튼 너비 설정 (기본값: 224)
     },
     featuresTitle: (

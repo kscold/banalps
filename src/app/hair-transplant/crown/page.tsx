@@ -69,30 +69,29 @@ export default function CrownPage() {
       number: 2,
       title: (
         <>
-          바날 정수리 모발이식의
+          심하지 않다면
           <br />
-          핵심은 뻗침성에 있습니다.
+          약물치료부터 어떨까요?
         </>
       ),
       titleMobile: (
         <>
-          바날 정수리 모발이식의
+          심하지 않다면
           <br />
-          핵심은 뻗침성에 있습니다.
+          약물치료부터 어떨까요?
         </>
       ),
       description: (
         <>
-          정수리는 '뻗침성이 좋은 모발'을 선택하는 것이
+          심하지 않은 탈모는 약물치료만으로
           <br />
-          가장 중요하며 정수리와 같은 방향으로
-          <br />
-          누워서 심는 것이 매우 어렵습니다.
+          충분한 효과를 볼 수 있습니다.
           <br />
           <br />
-          헤어라인에 비해 결과가 떨어지는 이유는
+          정수리 탈모는 계속 진행하기 때문에
           <br />
-          심기가 까다롭기 때문입니다.
+          수술을 하든 안 하든 약물치료는 반드시 필요하며
+          <br />더 건강해진 모발 상태로 수술 받을 수 있습니다.
         </>
       ),
       descriptionMobile: (
@@ -116,6 +115,25 @@ export default function CrownPage() {
       svgElements: {
         container: "/hair-transplant/crown/illustration-2.svg",
         absolute: "/hair-transplant/crown/illustration-3.svg",
+      },
+      // 각 SVG 요소의 크기 설정
+      svgElementsSize: {
+        container: {
+          width: 285, // vw 단위로 변환됨
+          height: 135, // vw 단위로 변환됨
+        },
+        absolute: {
+          width: 279, // vw 단위로 변환됨
+          height: 258, // vw 단위로 변환됨
+        },
+      },
+      // absolute SVG의 위치 설정
+      svgElementsPosition: {
+        absolute: {
+          top: 0, // 상단에서 50vw
+          right: -50, // 오른쪽에서 100vw
+          // bottom과 left도 선택적으로 설정 가능
+        },
       },
       mobileIllustration: "/hair-transplant/crown/illustration-3.svg",
       images: {

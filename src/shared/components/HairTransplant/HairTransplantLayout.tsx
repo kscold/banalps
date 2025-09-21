@@ -77,6 +77,24 @@ interface Section {
     container?: string; // SVG in container between title and description
     absolute?: string; // Absolute positioned SVG
   };
+  svgElementsSize?: {
+    container?: {
+      width: number; // vw units
+      height: number; // vw units
+    };
+    absolute?: {
+      width: number; // vw units
+      height: number; // vw units
+    };
+  };
+  svgElementsPosition?: {
+    absolute?: {
+      top?: number; // vw units
+      right?: number; // vw units
+      bottom?: number; // vw units
+      left?: number; // vw units
+    };
+  };
   mobileImages?: {
     illustration?: string; // Mobile-specific illustration
     illustrationSize?: {
@@ -819,11 +837,22 @@ export default function HairTransplantLayout({
                       : section2.title}
                   </h2>
                   {section2.svgElements?.container && (
-                    <div className={styles.section2SvgContainer}>
+                    <div
+                      className={styles.section2SvgContainer}
+                      style={
+                        section2.svgElementsSize?.container
+                          ? {
+                              width: vw(section2.svgElementsSize.container.width),
+                              height: vw(section2.svgElementsSize.container.height),
+                            }
+                          : undefined
+                      }
+                    >
                       <img
                         src={section2.svgElements.container}
                         alt="일러스트"
                         className={styles.section2SvgImage}
+                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
                       />
                     </div>
                   )}
@@ -844,10 +873,38 @@ export default function HairTransplantLayout({
                     )}
                   </p>
                   {section2.svgElements?.absolute && (
-                    <div className={styles.section2Svg2}>
+                    <div
+                      className={styles.section2Svg2}
+                      style={{
+                        ...(section2.svgElementsPosition?.absolute
+                          ? {
+                              position: "absolute" as const,
+                              top: section2.svgElementsPosition.absolute.top
+                                ? vw(section2.svgElementsPosition.absolute.top)
+                                : undefined,
+                              right: section2.svgElementsPosition.absolute.right
+                                ? vw(section2.svgElementsPosition.absolute.right)
+                                : undefined,
+                              bottom: section2.svgElementsPosition.absolute.bottom
+                                ? vw(section2.svgElementsPosition.absolute.bottom)
+                                : undefined,
+                              left: section2.svgElementsPosition.absolute.left
+                                ? vw(section2.svgElementsPosition.absolute.left)
+                                : undefined,
+                            }
+                          : {}),
+                        ...(section2.svgElementsSize?.absolute
+                          ? {
+                              width: vw(section2.svgElementsSize.absolute.width),
+                              height: vw(section2.svgElementsSize.absolute.height),
+                            }
+                          : {}),
+                      }}
+                    >
                       <img
                         src={section2.svgElements.absolute}
                         alt="일러스트 2"
+                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
                       />
                     </div>
                   )}

@@ -87,26 +87,20 @@ export const modal = style({
 });
 
 export const closeButton = style({
-  // position: "absolute",
-  // top: vw(20),
-  // right: vw(20),
-  // width: vw(32),
-  // height: vw(32),
   border: "none",
   backgroundColor: "transparent",
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  zIndex: 1,
+  width: vw(32),
+  height: vw(32),
   transition: "transform 0.2s",
   ":hover": {
     transform: "rotate(90deg)",
   },
   "@media": {
     [breakpoints.mobile]: {
-      top: mvw(16),
-      right: mvw(16),
       width: mvw(28),
       height: mvw(28),
     },
@@ -115,10 +109,37 @@ export const closeButton = style({
 
 export const modalHeader = style({
   padding: `${vw(40)} ${vw(50)} ${vw(20)}`,
-  borderBottom: "1px solid #F0F0F0",
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  position: "relative",
+  "::after": {
+    content: '""',
+    position: "absolute",
+    bottom: 0,
+    left: vw(50),
+    right: vw(50),
+    height: "2px",
+    backgroundColor: "#272727",
+  },
   "@media": {
     [breakpoints.mobile]: {
       padding: `${mvw(32)} ${mvw(24)} ${mvw(16)}`,
+      "::after": {
+        left: mvw(24),
+        right: mvw(24),
+      },
+    },
+  },
+});
+
+export const headerContent = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(8),
+  "@media": {
+    [breakpoints.mobile]: {
+      gap: mvw(6),
     },
   },
 });
@@ -141,24 +162,23 @@ export const title = style({
 export const modalBody = style({
   padding: vw(50),
   display: "flex",
-  gap: vw(60),
+  flexDirection: "column",
+  gap: vw(32),
   "@media": {
     [breakpoints.mobile]: {
       padding: mvw(24),
-      flexDirection: "column",
-      gap: mvw(40),
+      gap: mvw(24),
     },
   },
 });
 
 export const loginSection = style({
-  flex: 1,
   display: "flex",
   flexDirection: "column",
-  gap: vw(30),
+  gap: vw(24),
   "@media": {
     [breakpoints.mobile]: {
-      gap: mvw(24),
+      gap: mvw(16),
     },
   },
 });
@@ -169,9 +189,24 @@ export const loginTitle = style({
   fontSize: vw(20),
   color: "#272727",
   margin: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(18),
+    },
+  },
+});
+
+export const userIcon = style({
+  width: vw(20),
+  height: vw(20),
+  "@media": {
+    [breakpoints.mobile]: {
+      width: mvw(18),
+      height: mvw(18),
     },
   },
 });
@@ -187,14 +222,45 @@ export const socialButtons = style({
   },
 });
 
-export const socialButton = style({
+export const loginRow = style({
+  display: "flex",
+  alignItems: "center",
+  gap: vw(12),
+  marginBottom: vw(12),
+  "@media": {
+    [breakpoints.mobile]: {
+      gap: mvw(10),
+      marginBottom: mvw(8),
+    },
+  },
+});
+
+export const iconSquare = style({
+  width: vw(60),
+  height: vw(60),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: vw(12),
-  padding: `${vw(14)} ${vw(20)}`,
   borderRadius: vw(8),
-  border: "none",
+  flexShrink: 0,
+  "@media": {
+    [breakpoints.mobile]: {
+      width: mvw(50),
+      height: mvw(50),
+      borderRadius: mvw(6),
+    },
+  },
+});
+
+export const loginButton = style({
+  flex: 1,
+  height: vw(60),
+  backgroundColor: "#FFFFFF",
+  border: "1px solid #E5E5E5",
+  borderRadius: vw(8),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   cursor: "pointer",
   transition: "transform 0.2s, box-shadow 0.2s",
   fontFamily: "'Pretendard', sans-serif",
@@ -206,80 +272,55 @@ export const socialButton = style({
   },
   "@media": {
     [breakpoints.mobile]: {
-      padding: `${mvw(12)} ${mvw(16)}`,
+      height: mvw(50),
       borderRadius: mvw(6),
       fontSize: mvw(14),
-      gap: mvw(10),
     },
   },
 });
 
-export const kakaoIcon = style({
-  fontSize: vw(20),
-  "@media": {
-    [breakpoints.mobile]: {
-      fontSize: mvw(18),
-    },
-  },
-});
-
-export const naverIcon = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+export const iconImage = style({
   width: vw(24),
   height: vw(24),
-  backgroundColor: "#FFFFFF",
-  color: "#03C75A",
-  fontFamily: "'Helvetica Neue', sans-serif",
-  fontWeight: 900,
-  fontSize: vw(16),
-  borderRadius: vw(4),
   "@media": {
     [breakpoints.mobile]: {
       width: mvw(20),
       height: mvw(20),
-      fontSize: mvw(14),
-      borderRadius: mvw(3),
-    },
-  },
-});
-
-export const googleIcon = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: vw(24),
-  height: vw(24),
-  fontFamily: "'Product Sans', 'Arial', sans-serif",
-  fontWeight: 500,
-  fontSize: vw(18),
-  background: "linear-gradient(45deg, #4285F4, #EA4335, #FBBC05, #34A853)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  "@media": {
-    [breakpoints.mobile]: {
-      width: mvw(20),
-      height: mvw(20),
-      fontSize: mvw(16),
     },
   },
 });
 
 export const socialText = style({
-  color: "#272727",
-  flex: 1,
+  color: "#666666",
+  fontSize: vw(14),
+  fontWeight: 500,
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: mvw(14),
+    },
+  },
 });
 
 export const illustrationSection = style({
-  flex: 1,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  minHeight: vw(200),
   "@media": {
     [breakpoints.mobile]: {
-      minHeight: mvw(250),
+      minHeight: mvw(150),
+    },
+  },
+});
+
+export const illustrationImage = style({
+  width: "100%",
+  height: "auto",
+  maxHeight: vw(200),
+  objectFit: "contain",
+  "@media": {
+    [breakpoints.mobile]: {
+      maxHeight: mvw(150),
     },
   },
 });
@@ -317,7 +358,6 @@ export const iconButton = style({
 });
 
 export const signupSection = style({
-  flex: 1,
   display: "flex",
   flexDirection: "column",
   gap: vw(30),
@@ -377,6 +417,24 @@ export const backButton = style({
     [breakpoints.mobile]: {
       padding: `${mvw(10)} ${mvw(20)}`,
       fontSize: mvw(14),
+      borderRadius: mvw(6),
+    },
+  },
+});
+
+export const illustrationPlaceholder = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#F5F5F5",
+  borderRadius: vw(8),
+  color: "#999",
+  fontSize: vw(14),
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: mvw(12),
       borderRadius: mvw(6),
     },
   },
