@@ -96,7 +96,7 @@ export default function CrownPage() {
       ),
       descriptionMobile: (
         <>
-          정수리는 '뻗침성이 좋은 모발'을
+          정수리는 &lsquo;뻗침성이 좋은 모발&rsquo;을
           <br />
           선택하는 것이 가장 중요하며
           <br />

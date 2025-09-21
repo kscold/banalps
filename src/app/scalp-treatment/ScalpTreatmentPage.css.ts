@@ -884,12 +884,18 @@ export const treatmentTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   ...responsiveFont(32),
-  lineHeight: vw(48),
-  color: "#272727",
+  color: "#14AEFF",
   margin: 0,
+  lineHeight: "150%",
+  letterSpacing: "0",
+
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "48px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(20),
+      lineHeight: mvw(32),
     },
   },
 });
@@ -905,6 +911,10 @@ export const treatmentSubtitle = style({
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
     },
+    [breakpoints.mobile]: {
+      fontSize: mvw(20),
+      lineHeight: mvw(32),
+    },
   },
 });
 
@@ -918,6 +928,10 @@ export const treatmentDescription = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "36px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+      lineHeight: mvw(32),
     },
   },
 });
