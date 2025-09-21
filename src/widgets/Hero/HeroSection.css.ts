@@ -16,9 +16,12 @@ export const heroContainer = style({
   overflow: "hidden",
   "@media": {
     [breakpoints.mobile]: {
-      position: "relative", // 모바일에서는 일반 플로우
-      overflow: "visible", // 모바일에서 스크롤 가능
-      height: "auto", // 모바일에서 컨텐츠에 맞춰 높이 자동
+      position: "relative", // 모바일에서는 relative로 변경
+      overflow: "hidden", // 모바일에서도 overflow hidden
+      height: "100vh", // 명시적으로 100vh 설정
+      minHeight: "100vh",
+      width: "100vw",
+      backgroundColor: "#000", // 배경 검은색 추가
     },
   },
 });
@@ -33,6 +36,12 @@ export const backgroundImage = style({
   objectFit: "cover",
   objectPosition: "center",
   zIndex: tokens.zIndex.base,
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "absolute",
+      height: "100%",
+    },
+  },
 });
 
 // 비디오 컨테이너
@@ -128,16 +137,16 @@ export const contentWrapper = style({
     [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      position: "fixed",
-      top: mvw(240),
-      left: mvw(16),
+      position: "absolute", // absolute로 변경
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)", // 중앙 정렬
       right: "auto",
-      transform: "none",
-      width: "100%",
+      width: "90%",
       maxWidth: "none",
       padding: 0,
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 });
@@ -156,11 +165,11 @@ export const textContent = style({
     [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      width: mvw(439),
-      height: mvw(570),
+      width: "auto",
+      height: "auto",
       maxWidth: "none",
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 });
@@ -183,7 +192,7 @@ export const textBlock = style({
       transform: "none",
       width: "100%",
       height: "auto",
-      textAlign: "left",
+      textAlign: "center", // 중앙 정렬
       display: "flex",
       flexDirection: "column",
       gap: "20px",

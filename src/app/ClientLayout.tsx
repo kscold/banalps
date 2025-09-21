@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import HeaderNavigation from "@/widgets/Header/HeaderNavigation"
 import { Footer } from "@/shared/ui/Footer"
 import { FloatingButtonGroup } from "@/features/floating-button"
@@ -10,6 +11,7 @@ export default function ClientLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
   const handleFloatingButtonClick = (variant: string) => {
     console.log(`[Layout] ${variant} 플로팅 버튼 클릭됨`)
     switch (variant) {
@@ -39,7 +41,7 @@ export default function ClientLayout({
       >
         <HeaderNavigation />
         <main style={{ flex: "1" }}>{children}</main>
-        <Footer />
+        {pathname !== "/" && <Footer />}
       </div>
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
       <LoginModal />

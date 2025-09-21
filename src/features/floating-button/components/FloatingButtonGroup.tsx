@@ -117,10 +117,10 @@ export default function FloatingButtonGroup({
         navercalender:
           "https://map.naver.com/p/entry/place/1675437206?placePath=/home?entry=plt&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509220229&locale=ko&svcName=map_pcv5&searchType=place&lng=127.0184587&lat=37.5132272&c=15.00,0,0,0,dh",
         kakao: "http://pf.kakao.com/_dTLxnxj",
-        naverBlog: "https://blog.naver.com/banalps",
+        naverBlog: "https://blog.naver.com/banal_ps",
         youtube: "https://www.youtube.com/@banalps",
         line: "https://line.me/R/ti/p/@banalps",
-        instagram: "https://www.instagram.com/banal_ps/",
+        instagram: "https://www.instagram.com/banal_psooho",
       };
 
       if (links[variant]) {

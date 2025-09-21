@@ -18,25 +18,10 @@ export default function HeroSection({
   initialTextIndex = 0,
 }: HeroSectionProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex);
-  const [isMobile, setIsMobile] = useState(false);
   const totalTexts = 6;
-
-  // 모바일 감지
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // 텍스트 스크롤 로직 (간단화)
   useEffect(() => {
-    if (isMobile) {
-      // 모바일에서는 스크롤 이벤트 비활성화
-      return;
-    }
     let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout | null = null;
     const scrollDebounceTime = 1000;
@@ -134,24 +119,19 @@ export default function HeroSection({
 
     console.log("[HeroSection/이벤트등록] 스크롤 이벤트 리스너 등록");
 
-    if (isMobile) {
-      window.addEventListener("touchstart", handleTouchStart, { passive: true });
-      window.addEventListener("touchend", handleTouchEnd, { passive: true });
-    } else {
-      window.addEventListener("wheel", handleWheel, { passive: false });
-    }
+    // 데스크톱과 모바일 모두 이벤트 등록
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       console.log("[HeroSection/이벤트제거] 스크롤 이벤트 리스너 제거");
-      if (isMobile) {
-        window.removeEventListener("touchstart", handleTouchStart);
-        window.removeEventListener("touchend", handleTouchEnd);
-      } else {
-        window.removeEventListener("wheel", handleWheel);
-      }
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
       if (scrollTimeout) clearTimeout(scrollTimeout);
     };
-  }, [onTextComplete, isMobile, totalTexts]);
+  }, [onTextComplete, totalTexts]);
 
   console.log(`[HeroSection/텍스트인덱스] ${currentTextIndex}`);
 

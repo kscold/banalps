@@ -97,6 +97,52 @@ const FullPageMain = () => {
     let isScrolling = false;
     const scrollDebounceTime = 1000;
 
+    // 모바일 터치 이벤트 처리
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isTransitioning) return;
+
+      touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      // 콘텐츠 섹션에서의 터치 처리
+      if (currentSection === "content") {
+        if (deltaY < -50 && window.scrollY <= 10) {
+          // 아래로 스와이프 (위로 스크롤)
+          console.log("[FullPageMain/터치] 콘텐츠에서 비디오로");
+          setIsVideoReady(false);
+          setPreviousSection("content");
+          setIsTransitioning(true);
+          setCurrentSection("video");
+          setTimeout(() => {
+            setIsTransitioning(false);
+          }, 500);
+        }
+        return;
+      }
+
+      // 비디오 섹션에서의 터치 처리
+      if (Math.abs(deltaY) > 50) {
+        if (deltaY > 0 && currentSection === "video") {
+          // 위로 스와이프 (아래로 스크롤)
+          console.log("[FullPageMain/터치] 비디오에서 콘텐츠로");
+          setPreviousSection("video");
+          setCurrentSection("content");
+        } else if (deltaY < 0 && currentSection === "video") {
+          // 아래로 스와이프 (위로 스크롤)
+          console.log("[FullPageMain/터치] 비디오에서 히어로로");
+          setPreviousSection("video");
+          setCurrentSection("hero");
+        }
+      }
+    };
+
     const handleWheel = (e: WheelEvent) => {
       if (isTransitioning || isScrolling) return;
 
@@ -205,10 +251,14 @@ const FullPageMain = () => {
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [currentSection, isTransitioning]);
 
@@ -258,6 +308,7 @@ const FullPageMain = () => {
               onTransitionToVideo={handleBackToVideo}
             />
             <WhiteSection />
+            <Footer />
           </div>
         );
       default:
@@ -285,17 +336,6 @@ const FullPageMain = () => {
           {renderSection()}
         </motion.div>
       </AnimatePresence>
-
-      {/* 비디오 섹션이거나 전환 중일 때는 푸터 숨기기 */}
-      {/* <div
-        className={
-          currentSection === "video" || isTransitioning
-            ? "opacity-0 pointer-events-none"
-            : "opacity-100"
-        }
-      >
-        <Footer />
-      </div> */}
     </div>
   );
 };
