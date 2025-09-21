@@ -15,6 +15,21 @@ export default function FloatingButtonGroup({
 }: FloatingButtonGroupProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAboveFooter, setIsAboveFooter] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 클라이언트 사이드에서만 윈도우 크기 확인
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1023);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   // 스크롤 위치에 따른 실제 Footer 컴포넌트와의 충돌 감지
   useEffect(() => {
@@ -123,10 +138,10 @@ export default function FloatingButtonGroup({
       } ${className || ""}`}
       style={{
         bottom: isAboveFooter
-          ? window.innerWidth <= 768
+          ? isMobile
             ? "calc(120px + 20px)" // 모바일: 푸터 높이 120px + 여백 20px
             : "calc(200px + 40px)" // 데스크탑: 푸터 높이 200px + 여백 40px
-          : window.innerWidth <= 768
+          : isMobile
           ? "20px" // 모바일 기본 위치
           : "40px", // 데스크탑 기본 위치
         transition: "bottom 300ms ease-in-out",

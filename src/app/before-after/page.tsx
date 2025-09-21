@@ -282,16 +282,16 @@ function CategoryCarousel({
       setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
     <div
       style={{
-        padding: isMobile ? '40px 0 60px' : '160px 60px',
-        backgroundColor: isBlueBackground ? '#D5FEFF' : '#FFFFFF',
-        width: '100%'
+        padding: isMobile ? "40px 0 60px" : "160px 60px",
+        backgroundColor: isBlueBackground ? "#D5FEFF" : "#FFFFFF",
+        width: "100%",
       }}
     >
       <div className={styles.carouselHeader}>
@@ -401,7 +401,7 @@ export default function BeforeAfterPage() {
           </div>
         </div>
         <img
-          src="/before-after/hero-illustration-mobile.svg"
+          src="/before-after/mobile/hero-illustration-mobile.svg"
           alt="수술 전후 일러스트"
           className={styles.heroIllustrationImageMobile}
         />

@@ -135,41 +135,45 @@ const processSteps = [
   },
 ];
 
+// 별도의 컴포넌트로 분리하여 Hook 규칙 준수
+function ProcessStep({ step }: { step: typeof processSteps[0] }) {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.processStepOdd}
+      initial={{ opacity: 0, y: 80 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className={styles.stepNumber}>
+        <div className={styles.stepHeader}>
+          <div className={styles.stepNumberText}>{step.number}</div>
+        </div>
+        <img
+          src={step.image}
+          alt={`${step.category} 단계`}
+          className={styles.stepImage}
+        />
+      </div>
+      <div className={styles.stepContent}>
+        <div className={styles.stepCategory}>{step.category}</div>
+        <h3 className={styles.stepTitle}>{step.title}</h3>
+        <p className={styles.stepDescription}>{step.description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ProcessSection() {
   return (
     <section className={styles.scarProcessSection}>
       <div className={styles.scarProcessContent}>
-        {processSteps.map((step) => {
-          const ref = React.useRef(null);
-          const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-          return (
-            <motion.div
-              key={step.number}
-              ref={ref}
-              className={styles.processStepOdd}
-              initial={{ opacity: 0, y: 80 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className={styles.stepNumber}>
-                <div className={styles.stepHeader}>
-                  <div className={styles.stepNumberText}>{step.number}</div>
-                </div>
-                <img
-                  src={step.image}
-                  alt={`${step.category} 단계`}
-                  className={styles.stepImage}
-                />
-              </div>
-              <div className={styles.stepContent}>
-                <div className={styles.stepCategory}>{step.category}</div>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDescription}>{step.description}</p>
-              </div>
-            </motion.div>
-          );
-        })}
+        {processSteps.map((step) => (
+          <ProcessStep key={step.number} step={step} />
+        ))}
       </div>
     </section>
   );
