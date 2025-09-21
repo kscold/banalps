@@ -41,7 +41,7 @@ export const arrowButton = style({
   textDecoration: "none",
   outline: "none",
   position: "relative",
-  overflow: "hidden",
+  overflow: "visible", // 화살표가 버튼 밖으로 나갈 수 있도록
   color: "#272727",
   boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   lineHeight: "100%",
@@ -52,8 +52,8 @@ export const arrowButton = style({
   // 화살표 동그라미 기준 고정 패딩 - !important로 강제 적용
   paddingTop: vw(12),
   paddingBottom: vw(12),
-  paddingLeft: vw(16),
-  paddingRight: vw(8),
+  paddingLeft: vw(32),
+  paddingRight: vw(60), // 오른쪽에 화살표 공간 확보
   // 높이는 동그라미(28px) + 패딩(8px*2) = 44px로 고정
   minHeight: vw(44), // 최소 높이 고정
   borderRadius: vw(100), // 1920px 기준 100px
@@ -122,8 +122,12 @@ export const arrowContainer = style({
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   flexShrink: 0,
   boxShadow: `0 ${vw(4)} ${vw(12)} rgba(20, 174, 255, 0.25)`,
-  width: vw(28), // 1920px 기준 28px
-  height: vw(28), // 1920px 기준 28px
+  width: vw(42), // 데스크탑에서 42px로 증가
+  height: vw(42), // 데스크탑에서 42px로 증가
+  position: "absolute", // 데스크탑에서도 absolute
+  right: vw(12), // 오른쪽에서 12px 떨어진 위치
+  top: "50%",
+  transform: "translateY(-50%)",
 
   "@media": {
     [breakpoints.mobile]: {
@@ -144,8 +148,8 @@ export const arrowIcon = style({
   color: "#FFFFFF",
   transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   strokeWidth: "2",
-  width: vw(18), // 1920px 기준 18px
-  height: vw(18), // 1920px 기준 18px
+  width: vw(24), // 데스크탑에서 24px로 증가
+  height: vw(24), // 데스크탑에서 24px로 증가
 
   // 호버시 화살표 이동 애니메이션
   selectors: {
@@ -245,15 +249,18 @@ export const small = style({
 });
 
 export const medium = style({
-  fontSize: vw(16), // 1920px 기준 16px
-  minHeight: vw(44), // 데스크탑에서 최소 높이 44px
-  padding: `${vw(10)} ${vw(16)}`, // 데스크탑에서 적절한 패딩
+  fontSize: vw(24), // 1920px 기준 24px로 변경
+  minHeight: vw(66), // 데스크탑에서 높이 66px로 설정
+  height: vw(66), // 명시적 높이 설정
+  padding: `0 ${vw(66)} 0 ${vw(32)}`, // 좌측 32px, 우측 66px 패딩 (화살표 공간)
+  justifyContent: "flex-start", // 텍스트 왼쪽 정렬
 
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(14),
-      // minHeight: "auto", // 모바일에서는 자동 높이
-      padding: mvw(8), // 모바일 기본 패딩
+      minHeight: mvw(44), // 모바일에서는 44px
+      height: "auto",
+      padding: `${mvw(8)} ${mvw(44)} ${mvw(8)} ${mvw(16)}`, // 모바일 패딩
     },
   },
 });

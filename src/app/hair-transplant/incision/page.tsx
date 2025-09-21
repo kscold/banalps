@@ -37,10 +37,14 @@ export default function IncisionPage() {
       },
       description: (
         <>
-          절개와 비절개 어느 한쪽이 더 우수한 방법이 아닙니다.
+          절개와 비절개
           <br />
-          상황에 따라 더 효율적인 방법을 제시할 수 있어야 합니다.
+          어느 한쪽이 더 우수한 방법이 아닙니다.
           <br />
+          <br />
+          상황에 따라 더 효율적인 방법을
+          <br />
+          제시할 수 있어야 합니다.
           <br />
           훌륭한 방법 한 가지를 포기할 필요는 없습니다.
         </>
@@ -98,14 +102,16 @@ export default function IncisionPage() {
       },
       description: (
         <>
-          절개라는 이름 때문에
+          ① 두피의 탄력이 부족할 때
           <br />
-          거부감을 가지시는 경우가 있습니다.
+          ② 이미 여러 번의 절개 수술을 받았을 때
+          <br />
+          ③ 절개에 대한 두려움이 클 때
+          <br />
+          ④ 통증에 민감할 때
           <br />
           <br />
-          정확하고 세심하게 디자인된 최소절개 방법과
-          <br />
-          뒷머리만 짧게 깎는 비절개 방법을 시행하고 있습니다.
+          비절개를 권합니다.
         </>
       ),
       descriptionMobile: (
@@ -125,6 +131,16 @@ export default function IncisionPage() {
       images: {
         main: "/hair-transplant/incision/incision-3.png",
       },
+      illustration: "/hair-transplant/incision/illustration-2.svg",
+      illustrationSize: {
+        width: 566,
+        height: 326,
+      },
+      illustrationPosition: {
+        // Optional: absolute positioning for desktop
+        bottom: -370, // Position at the bottom
+        right: -190, // Position at the right
+      },
       illustrationMobile:
         "/hair-transplant/incision/mobile/illustration-2-mobile.svg",
       illustrationMobileSize: {
@@ -136,70 +152,84 @@ export default function IncisionPage() {
       number: 3,
       title: (
         <>
-          1000모든 5000모든,
+          뒷머리의 숱이 적으면
           <br />
-          숫자가 아닌 머리카락을
-          <br />
-          대하는 태도가 중요합니다.
+          절개를 권합니다.
         </>
       ),
       titleMobile: (
         <>
-          1000모든 5000모든,
+          뒷머리의 숱이 적으면
           <br />
-          숫자가 아닌 머리카락을
-          <br />
-          대하는 태도가 중요합니다.
+          절개를 권합니다.
         </>
       ),
       description: (
         <>
-          고민하는 시간도, 머리카락이
+          ① 뒷머리가 납작하거나 볼륨감이 필요할 때
           <br />
-          자라는 시간도 길기에
+          ② 이미 여러 번의 절개 수술을 받았을 때
+          <br />
+          ③ 오래 엎드려 있기 어려울 때
+          <br />
+          ④ 비용에 부담이 있을 때
           <br />
           <br />
-          상담 때부터 최종 결과가 나올 때까지
-          <br />
-          고객과 소통하는 마음가짐과
-          <br />
-          <br />
-          세심함이 다른 수술입니다.
+          절개를 더 권합니다.
         </>
       ),
       descriptionMobile: (
         <>
-          고민하는 시간도,
+          ① 뒷머리가 납작하거나 볼륨감이 필요할 때
           <br />
-          머리카락이 자라는 시간도 길기에
+          ② 이미 여러 번의 절개 수술을 받았을 때
           <br />
+          ③ 오래 엎드려 있기 어려울 때
           <br />
-          상담 때부터
-          <br />
-          최종 결과가 나올 때까지
-          <br />
-          고객과 소통하는 마음가짐과
+          ④ 비용에 부담이 있을 때
           <br />
           <br />
-          세심함이 다른 수술입니다.
+          절개를 더 권합니다.
         </>
       ),
-      illustration: "/hair-transplant/incision/illustration-2.svg",
+      illustration: "/hair-transplant/incision/illustration-3.svg",
       illustrationSize: {
-        width: 275,
-        height: 223,
+        width: 745,
+        height: 331,
+      },
+      illustrationPosition: {
+        // Absolute positioning for section 3 desktop
+        top: 500, // Position from top
+        left: -170, // Position from left
+      },
+      illustrationMobile:
+        "/hair-transplant/incision/mobile/illustration-3-mobile.svg",
+      illustrationMobileSize: {
+        width: 375,
+        height: 336,
       },
       images: {
         main: "/hair-transplant/incision/incision-4.png",
       },
+      imagesSize: {
+        main: {
+          width: 610,
+          height: 550,
+        },
+      },
     },
     beforeAfterData: {
-      category: "절개",
-      title: "3200모(남)_1년경과",
+      category: "헤어라인",
+      title: "3200모(여)_1년경과",
       beforeImage: "/hair-transplant/incision/slide/before.jpg",
       afterImage: "/hair-transplant/incision/slide/after.jpg",
-      beforeAlt: "절개 수술 전",
-      afterAlt: "절개 수술 후",
+      beforeAlt: "헤어라인 수술 전",
+      afterAlt: "헤어라인 수술 후",
+    },
+    beforeAfterButton: {
+      text: "수술전후 더보기",
+      href: "/before-after",
+      width: 269, // 데스크탑에서 버튼 너비 설정 (기본값: 224)
     },
     featuresTitle: (
       <>

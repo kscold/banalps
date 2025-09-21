@@ -1,14 +1,6 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 
-// 슬라이드 애니메이션 (미사용이지만 향후 사용 예정으로 보관)
-// const slideIn = keyframes({
-//   from: {
-//     transform: "translateX(100%)",
-//   },
-//   to: {
-//     transform: "translateX(0)",
-//   },
-// })
+import { mvw } from "@/shared/styles/responsive.css";
 
 // 배경 오버레이
 export const mobileMenuOverlay = style({
@@ -20,7 +12,7 @@ export const mobileMenuOverlay = style({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   zIndex: 9998,
   transition: "opacity 300ms ease, visibility 300ms ease",
-})
+});
 
 // 메뉴 패널 (오른쪽에서 슬라이드) - 전체 화면
 export const mobileMenuPanel = style({
@@ -33,28 +25,28 @@ export const mobileMenuPanel = style({
   backgroundColor: "#FFFFFF",
   zIndex: 9999,
   transition: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-})
+});
 
 // 메뉴 콘텐츠
 export const mobileMenuContent = style({
   display: "flex",
   flexDirection: "column",
   height: "100%",
-  padding: "36px 16px 26px 24px",
-})
+  padding: `${mvw(36)} ${mvw(16)} ${mvw(26)} ${mvw(24)}`,
+});
 
 // 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: "60px",
-})
+  marginBottom: mvw(60),
+});
 
 // LOGIN 버튼
 export const mobileLoginBtn = style({
   fontFamily: "Poppins, sans-serif",
-  fontSize: "20px",
+  fontSize: mvw(20),
   fontWeight: "600",
   fontStyle: "normal",
   lineHeight: "100%",
@@ -67,92 +59,80 @@ export const mobileLoginBtn = style({
   ":hover": {
     opacity: 0.9,
   },
-})
+});
 
 // 닫기 버튼
 export const mobileCloseBtn = style({
-  fontSize: "24px",
+  fontSize: mvw(24),
   color: "#272727",
   backgroundColor: "transparent",
   border: "none",
   padding: 0,
   cursor: "pointer",
   transition: "opacity 200ms ease",
-  width: "24px",
-  height: "24px",
+  width: mvw(24),
+  height: mvw(24),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   ":hover": {
     opacity: 0.6,
   },
-})
+});
 
 // 네비게이션
 export const mobileNav = style({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  gap: "40px",
-})
+  gap: mvw(40),
+});
 
 // 네비게이션 아이템
 export const mobileNavItem = style({
   display: "flex",
   flexDirection: "column",
-})
+});
 
 // 메인 메뉴
 export const mobileNavMain = style({
   display: "block",
   textDecoration: "none",
   cursor: "default",
-})
+});
 
 // 메인 메뉴 텍스트
 export const mobileNavMainText = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "20px",
+  fontSize: mvw(20),
   fontWeight: "500",
   color: "#14AEFF",
   lineHeight: "150%", // 30px
   letterSpacing: "0",
-})
+});
 
 // 화살표
 export const mobileNavArrow = style({
-  fontSize: "12px",
+  fontSize: mvw(12),
   color: "#1AA4F4",
   transition: "transform 200ms ease",
   display: "inline-block",
-})
+});
 
 // 서브메뉴 컨테이너
 export const mobileNavSub = style({
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: mvw(20),
   marginTop: "20px",
   paddingLeft: "0",
   // animation: "slideDown 200ms ease-out", // 애니메이션 임시 비활성화
-})
-
-// 슬라이드 다운 애니메이션 (미사용이지만 향후 사용 예정으로 보관)
-// const slideDown = keyframes({
-//   from: {
-//     opacity: 0,
-//     maxHeight: "0",
-//   },
-//   to: {
-//     opacity: 1,
-//     maxHeight: "500px",
-//   },
-// })
+});
 
 // 서브메뉴 링크
 export const mobileNavSubLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "16px",
+  fontSize: mvw(16),
   fontWeight: "200", // 4 Regular 스타일
   color: "#272727", // Colors-Text-Subtle
   textDecoration: "none",
@@ -162,20 +142,20 @@ export const mobileNavSubLink = style({
   ":hover": {
     color: "#14AEFF",
   },
-})
+});
 
 // 서브메뉴 활성 상태
 export const mobileNavSubLinkActive = style({
   color: "#14AEFF",
   fontWeight: "400",
-})
+});
 
 // 푸터
 export const mobileMenuFooter = style({
   display: "flex",
   justifyContent: "flex-start", // 왼쪽 정렬로 변경
   paddingTop: "24px",
-})
+});
 
 // 언어 선택 버튼
 export const mobileLangBtn = style({
@@ -183,7 +163,7 @@ export const mobileLangBtn = style({
   alignItems: "center",
   gap: "8px",
   fontFamily: "Poppins, sans-serif",
-  fontSize: "20px",
+  fontSize: mvw(20),
   fontWeight: "500",
   fontStyle: "normal",
   lineHeight: "100%",
@@ -198,44 +178,44 @@ export const mobileLangBtn = style({
   ":hover": {
     color: "#272727",
   },
-})
+});
 
 // 언어 화살표
 export const mobileLangArrow = style({
-  fontSize: "14px",
+  fontSize: mvw(14),
   color: "#6B7280",
   display: "inline-block",
   transition: "transform 200ms ease",
-})
+});
 
 // 언어 선택 컨테이너
 export const mobileLangContainer = style({
   position: "relative",
   display: "inline-block",
-})
+});
 
 // 언어 드롭다운
 export const mobileLangDropdown = style({
   position: "absolute",
   bottom: "100%",
   left: 0,
-  marginBottom: "12px",
+  marginBottom: mvw(12),
   backgroundColor: "#FFFFFF",
   border: "1px solid #E5E7EB",
   borderRadius: "12px",
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
   overflow: "hidden",
-  minWidth: "60px",
+  minWidth: mvw(60),
   zIndex: 10,
-})
+});
 
 // 언어 옵션
 export const mobileLangOption = style({
   display: "block",
   width: "100%",
-  padding: "12px 20px",
+  padding: `${mvw(12)} ${mvw(20)}`,
   fontFamily: "Poppins, sans-serif",
-  fontSize: "18px",
+  fontSize: mvw(18),
   fontWeight: "400",
   color: "#6B7280",
   backgroundColor: "transparent",
@@ -247,11 +227,11 @@ export const mobileLangOption = style({
     backgroundColor: "#F9FAFB",
     color: "#111827",
   },
-})
+});
 
 // 언어 옵션 활성 상태
 export const mobileLangOptionActive = style({
   backgroundColor: "transparent",
   color: "#111827",
   fontWeight: "500",
-})
+});

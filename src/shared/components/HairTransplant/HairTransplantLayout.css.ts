@@ -155,14 +155,14 @@ export const HairTransplantHeroTitle = style({
 });
 
 export const HairTransplantHeroTitleDot = style({
-  display: "inline-block",
   width: vw(20),
   height: vw(20),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
   marginLeft: vw(20),
   flexShrink: 0,
-  verticalAlign: "middle", // 텍스트와 수직 정렬
+  alignSelf: "flex-end", // 모바일에서는 하단 정렬
+  marginBottom: vw(20), // 약간의 하단 여백
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "20px",
@@ -173,7 +173,8 @@ export const HairTransplantHeroTitleDot = style({
       width: mvw(15),
       height: mvw(15),
       marginLeft: mvw(15),
-      verticalAlign: "super",
+      alignSelf: "flex-end", // 모바일에서는 하단 정렬
+      marginBottom: mvw(10), // 약간의 하단 여백
     },
   },
 });
@@ -422,7 +423,7 @@ export const section1Content = style({
       alignItems: "center",
       textAlign: "center",
       padding: `0 ${mvw(20)}`,
-      minHeight: mvw(800), // Minimum height for better spacing on tablets
+      // minHeight: mvw(800),
     },
   },
 });
@@ -740,7 +741,7 @@ export const section2Content = style({
     [breakpoints.mobile]: {
       display: "flex",
       flexDirection: "column",
-      minHeight: mvw(1050),
+      // minHeight: mvw(1050),
       gap: 0,
       padding: `0 ${mvw(20)}`,
       alignItems: "flex-start",
@@ -808,6 +809,19 @@ export const section2ImageContent = style({
   "@media": {
     [breakpoints.mobile]: {
       borderRadius: mvw(12),
+    },
+  },
+});
+
+// Section 2 데스크탑 일러스트레이션 (absolute 포지셔닝 가능)
+export const section2DesktopIllustration = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 2, // 텍스트 위에 표시
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서는 숨김
     },
   },
 });
@@ -1164,7 +1178,8 @@ export const section3Left = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
-  flex: "1",
+  flex: "0 0 auto",
+  marginLeft: "auto", // 오른쪽으로 밀기
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
@@ -1176,6 +1191,7 @@ export const section3Left = style({
       order: 2,
       alignItems: "center",
       textAlign: "center",
+      marginLeft: "0",
     },
   },
 });
@@ -1230,10 +1246,17 @@ export const section3Text = style({
   position: "relative",
   marginBottom: "40px",
   width: vw(790),
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start", // 내용을 오른쪽 정렬
   "@media": {
+    "(min-width: 1024px) and (max-width: 1300px)": {
+      width: vw(600), // 1200px 부근에서 너비를 줄임
+    },
     [breakpoints.mobile]: {
       width: "100%",
       marginBottom: 0,
+      alignItems: "left",
     },
   },
 });
@@ -1264,7 +1287,7 @@ export const section3Title = style({
     },
     [breakpoints.mobile]: {
       display: "flex",
-      alignItems: "center",
+      alignItems: "left",
       flexDirection: "column",
       justifyContent: "center",
       width: mvw(204),
@@ -1303,7 +1326,7 @@ export const section3Number = style({
   fontFamily: "'Nordnet Sans Mono', monospace", // 피그마 스펙
   position: "absolute",
   top: vw(-50),
-  right: 0,
+  right: vw(0), // 텍스트 영역의 오른쪽 끝
   fontWeight: 400, // 피그마 스펙: Regular
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
   lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)
@@ -1313,10 +1336,10 @@ export const section3Number = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "-50px",
-      right: 0,
+      right: "0",
     },
     [breakpoints.desktop]: {
-      right: 0,
+      right: vw(0),
     },
     [breakpoints.mobile]: {
       position: "absolute",
@@ -1373,6 +1396,34 @@ export const section3RightWithSvg = style({
       minHeight: "auto",
       width: "100%",
       paddingTop: 0,
+    },
+  },
+});
+
+// Section 3 데스크탑 일러스트레이션 (absolute 포지셔닝용)
+export const section3DesktopIllustration = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 3, // 텍스트나 이미지 위에 표시
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서는 숨김
+    },
+  },
+});
+
+// Section 3 모바일 일러스트레이션
+export const section3MobileIllustration = style({
+  display: "none", // 데스크탑에서는 숨김
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      marginTop: mvw(40),
+      marginBottom: mvw(40),
     },
   },
 });
@@ -1436,11 +1487,11 @@ export const section3CenterIllustrationWithSvg = style({
 });
 
 export const section3Image = style({
-  transform: "translateY(-50%)", // 수직 중앙 정렬
+  transform: "translateY(0)", // 상단 정렬 (transform 제거)
   "@media": {
     [breakpoints.desktopLarge]: {
       ...responsiveAbsoluteImage({
-        position: { right: "0", top: "50%" },
+        position: { right: "0", top: "0" }, // top을 0으로 변경하여 최상단 정렬
         width: "80%", // 컨테이너 대비 80% 크기
         aspectRatio: "610 / 550", // 피그마 비율 (Frame 15409)
         maxWidth: 610, // 최대 너비 610px
@@ -1448,7 +1499,7 @@ export const section3Image = style({
     },
     [breakpoints.desktop]: {
       ...responsiveAbsoluteImage({
-        position: { right: "0", top: "50%" },
+        position: { right: "0", top: "0" }, // top을 0으로 변경하여 최상단 정렬
         width: "80%", // 컨테이너 대비 80% 크기
         aspectRatio: "610 / 550", // 피그마 비율 (Frame 15409)
         maxWidth: 610, // 최대 너비 610px
@@ -1609,12 +1660,35 @@ export const beforeAfterActions = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  width: "100%",
+  marginTop: vw(60),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "60px",
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    [breakpoints.desktop]: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(60)}`,
+      marginTop: mvw(40),
     },
   },
+});
+
+export const beforeAfterLink = style({
+  display: "inline-flex",
+  justifyContent: "center",
+  alignItems: "center",
+  textDecoration: "none",
 });
 
 // Features Section
@@ -1887,4 +1961,98 @@ export const sidePreviewSection = style({
 
 export const sidePreviewContent = style({
   ...responsiveContainer(1600),
+});
+
+export const sidePreviewSlider = style({
+  width: "100%",
+});
+
+// Button Cards Section
+export const buttonCardsSection = style({
+  padding: `${vw(120)} 0`,
+  backgroundColor: "#ffffff",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      padding: "120px 0",
+    },
+    [breakpoints.mobile]: {
+      padding: `${mvw(80)} 0`,
+    },
+  },
+});
+
+export const buttonCardsContainer = style({
+  ...responsiveContainer(1600),
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: vw(40),
+  "@media": {
+    [breakpoints.mobile]: {
+      gridTemplateColumns: "1fr",
+      gap: mvw(20),
+      padding: `0 ${mvw(20)}`,
+    },
+  },
+});
+
+export const buttonCardLink = style({
+  textDecoration: "none",
+  color: "inherit",
+  display: "block",
+});
+
+export const buttonCardButton = style({
+  background: "none",
+  border: "none",
+  padding: 0,
+  cursor: "pointer",
+  width: "100%",
+  textAlign: "left",
+});
+
+export const buttonCard = style({
+  position: "relative",
+  borderRadius: vw(16),
+  overflow: "hidden",
+  backgroundColor: "#f8f8f8",
+  transition: "transform 0.3s ease",
+  ":hover": {
+    transform: "scale(1.05)",
+  },
+  "@media": {
+    [breakpoints.mobile]: {
+      borderRadius: mvw(12),
+    },
+  },
+});
+
+export const buttonCardImage = style({
+  width: "100%",
+  height: vw(300),
+  objectFit: "cover",
+  display: "block",
+  "@media": {
+    [breakpoints.mobile]: {
+      height: mvw(200),
+    },
+  },
+});
+
+export const buttonCardTitle = style({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  padding: `${vw(20)} ${vw(30)}`,
+  background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+  color: "#ffffff",
+  fontFamily: fontFamily.scdream,
+  fontWeight: 500,
+  fontSize: vw(24),
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: `${mvw(16)} ${mvw(20)}`,
+      fontSize: mvw(18),
+    },
+  },
 });

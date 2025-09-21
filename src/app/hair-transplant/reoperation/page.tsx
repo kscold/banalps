@@ -69,8 +69,10 @@ export default function ReoperationPage() {
         secondary: "/hair-transplant/reoperation/reoperation-1.png",
       },
       imagesMobileSize: {
-        width: 324,
-        height: 252,
+        mainMaxWidth: false, // main 이미지는 100vw
+        secondaryMaxWidth: true, // secondary 이미지도 100vw
+        mainHeight: 305,
+        secondaryHeight: 392,
       },
     },
     section2: {
@@ -140,6 +142,11 @@ export default function ReoperationPage() {
       afterImage: "/hair-transplant/reoperation/slide/after.jpg",
       beforeAlt: "재수술 전",
       afterAlt: "재수술 후",
+    },
+    beforeAfterButton: {
+      text: "수술전후 더보기",
+      href: "/hair-transplant/hairline",
+      width: 269, // 데스크탑에서 버튼 너비 설정 (기본값: 224)
     },
     featuresTitle: (
       <>
