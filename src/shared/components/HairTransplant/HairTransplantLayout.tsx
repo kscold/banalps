@@ -107,7 +107,7 @@ interface Section {
 
 interface BeforeAfterData {
   category: string;
-  title: string;
+  title?: string;
   beforeImage: string;
   afterImage: string;
   beforeAlt: string;
