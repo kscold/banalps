@@ -40,7 +40,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="stylesheet" href="/fonts/SCDream-fonts.css" />
-        <script src="https://player.vimeo.com/api/player.js"></script>
+        <script src="https://player.vimeo.com/api/player.js" async></script>
       </head>
       <body className={`${inter.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>

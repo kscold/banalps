@@ -242,9 +242,9 @@ export default function HairlinePage() {
                     <br />
                     <br />
                     <span className={styles.section2Quote}>
-                      "헤어라인 교정만 10년을 하면서
+                      &ldquo;헤어라인 교정만 10년을 하면서
                       <br />
-                      자연스럽게 만드는 최적의 접점을 찾았습니다."
+                      자연스럽게 만드는 최적의 접점을 찾았습니다.&rdquo;
                     </span>
                     <br />
                     <br />
