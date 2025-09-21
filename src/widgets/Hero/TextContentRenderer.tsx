@@ -101,7 +101,7 @@ export function TextContentRenderer({
                 delay: 0.2,
               }}
             >
-              <b>"나는 바람 부는 날도 좋아요."</b>
+              <b>&ldquo;나는 바람 부는 날도 좋아요.&rdquo;</b>
             </motion.p>
           </motion.div>
         );

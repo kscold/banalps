@@ -5,6 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 import * as styles from "./HeroSection.css";
 
+interface VimeoPlayer {
+  play: () => Promise<void>;
+  pause: () => Promise<void>;
+  setCurrentTime: (seconds: number) => Promise<number>;
+  on: (event: string, callback: () => void) => void;
+  off: (event: string, callback?: () => void) => void;
+}
+
 interface VideoSectionProps {
   showVideoSection: boolean;
   onVideoEnd?: () => void;
@@ -20,7 +28,7 @@ export function VideoSection({
   const videoEndedRef = useRef(false);
   const [isClient, setIsClient] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<VimeoPlayer | null>(null);
 
   // 클라이언트 사이드에서만 실행
   useEffect(() => {
@@ -45,7 +53,7 @@ export function VideoSection({
                 "[VideoSection/비디오리셋] 비디오를 0초로 리셋 (재사용)"
               );
             })
-            .catch((error: any) => {
+            .catch((error: unknown) => {
               console.error(
                 "[VideoSection/비디오리셋에러] 비디오 리셋 실패:",
                 error
@@ -56,9 +64,9 @@ export function VideoSection({
       }
 
       // Vimeo Player API를 사용하여 비디오 이벤트 리스너 등록
-      if (iframeRef.current && (window as any).Vimeo) {
+      if (iframeRef.current && (window as Window & { Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer } }).Vimeo) {
         const iframe = iframeRef.current;
-        const player = new (window as any).Vimeo.Player(iframe);
+        const player = new ((window as Window & { Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer } }).Vimeo!).Player(iframe);
         playerRef.current = player; // 플레이어 참조 저장
 
         player.on("ended", () => {
@@ -89,7 +97,7 @@ export function VideoSection({
               console.log("[VideoSection/비디오리셋] 비디오를 0초로 리셋");
               // 비디오 리셋만 하고 재생은 자동으로 시작되도록 함
             })
-            .catch((error: any) => {
+            .catch((error: unknown) => {
               console.error(
                 "[VideoSection/비디오리셋에러] 비디오 리셋 또는 재생 실패:",
                 error
@@ -123,7 +131,7 @@ export function VideoSection({
             console.log("[VideoSection/비디오리셋] 비디오를 0초로 리셋 완료");
             // 비디오 리셋만 하고 재생은 자동으로 시작되도록 함
           })
-          .catch((error: any) => {
+          .catch((error: unknown) => {
             console.error(
               "[VideoSection/비디오리셋에러] 비디오 리셋 또는 재생 실패:",
               error
