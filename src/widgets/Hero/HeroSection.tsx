@@ -18,13 +18,58 @@ export default function HeroSection({
   initialTextIndex = 0,
 }: HeroSectionProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex);
+  const [isMobile, setIsMobile] = useState(false);
   const totalTexts = 6;
+
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // 텍스트 스크롤 로직 (간단화)
   useEffect(() => {
+    if (isMobile) {
+      // 모바일에서는 스크롤 이벤트 비활성화
+      return;
+    }
     let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout | null = null;
     const scrollDebounceTime = 1000;
+
+    // 터치 이벤트 처리 (모바일)
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      if (Math.abs(deltaY) > 50) { // 최소 50px 스와이프
+        if (deltaY > 0) {
+          // 위로 스와이프 (다음 텍스트)
+          setCurrentTextIndex((prevIndex) => {
+            const newIndex = prevIndex + 1;
+            if (newIndex >= totalTexts && onTextComplete) {
+              onTextComplete();
+              return totalTexts - 1;
+            }
+            return Math.min(newIndex, totalTexts - 1);
+          });
+        } else {
+          // 아래로 스와이프 (이전 텍스트)
+          setCurrentTextIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+        }
+      }
+    };
 
     const handleWheel = (e: WheelEvent) => {
       // console.log(
@@ -88,14 +133,25 @@ export default function HeroSection({
     };
 
     console.log("[HeroSection/이벤트등록] 스크롤 이벤트 리스너 등록");
-    window.addEventListener("wheel", handleWheel, { passive: false });
+
+    if (isMobile) {
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    } else {
+      window.addEventListener("wheel", handleWheel, { passive: false });
+    }
 
     return () => {
       console.log("[HeroSection/이벤트제거] 스크롤 이벤트 리스너 제거");
-      window.removeEventListener("wheel", handleWheel);
+      if (isMobile) {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchend", handleTouchEnd);
+      } else {
+        window.removeEventListener("wheel", handleWheel);
+      }
       if (scrollTimeout) clearTimeout(scrollTimeout);
     };
-  }, [onTextComplete]);
+  }, [onTextComplete, isMobile, totalTexts]);
 
   console.log(`[HeroSection/텍스트인덱스] ${currentTextIndex}`);
 

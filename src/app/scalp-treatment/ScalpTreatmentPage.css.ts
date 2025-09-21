@@ -439,16 +439,16 @@ export const vimeoIframe = style({
   top: "0",
   left: "0",
   width: "100%",
-  height: vw(660),
+  height: "100%",
   border: "none",
-  borderRadius: vw(20), // 컨테이너와 일치하는 borderRadius
-  objectFit: "cover", // 비디오가 컨테이너를 완전히 채우도록
+  borderRadius: vw(16),
+  objectFit: "cover",
   "@media": {
     [breakpoints.desktopLarge]: {
-      borderRadius: "20px",
+      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      borderRadius: "16px",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -566,15 +566,13 @@ export const introImage = style({
 
 // Section 3-6용 작은 비디오 컨테이너
 export const smallVideoContainer = style({
-  width: vw(950),
-  height: vw(660),
+  width: "100%",
+  height: "100%",
   borderRadius: vw(16),
   overflow: "hidden",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "950px",
-      height: "660px",
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
@@ -819,7 +817,7 @@ export const treatmentDetailContainer = style({
   maxWidth: vw(1920),
   margin: "0 auto",
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1920px",
@@ -828,6 +826,7 @@ export const treatmentDetailContainer = style({
       flexDirection: "column",
       padding: "0 20px",
       gap: "40px",
+      alignItems: "flex-start",
     },
   },
 });
@@ -837,8 +836,9 @@ export const treatmentVideoContent = style({
   width: vw(950),
   height: vw(660),
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "flex-start",
+  marginTop: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "950px",
@@ -847,6 +847,7 @@ export const treatmentVideoContent = style({
     [breakpoints.mobile]: {
       width: "100%",
       height: "auto",
+      order: -1,
     },
   },
 });

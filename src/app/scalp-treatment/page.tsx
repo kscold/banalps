@@ -492,7 +492,7 @@ export default function ScalpTreatmentPage() {
         }
         featureCards={[
           {
-            icon: "/hair-transplant/feature-icon-1.svg",
+            icon: "/hair-transplant/feature-1.svg",
             title: (
               <>
                 모발이식과 이마축소가 동시에
@@ -502,7 +502,7 @@ export default function ScalpTreatmentPage() {
             ),
           },
           {
-            icon: "/hair-transplant/feature-icon-2.svg",
+            icon: "/hair-transplant/feature-2.svg",
             title: (
               <>
                 고객이 원하는 디자인을
@@ -512,7 +512,7 @@ export default function ScalpTreatmentPage() {
             ),
           },
           {
-            icon: "/hair-transplant/feature-icon-3.svg",
+            icon: "/hair-transplant/feature-3.svg",
             title: (
               <>
                 모발이식 경력 10년 이상의
@@ -522,7 +522,7 @@ export default function ScalpTreatmentPage() {
             ),
           },
           {
-            icon: "/hair-transplant/feature-icon-4.svg",
+            icon: "/hair-transplant/feature-4.svg",
             title: (
               <>
                 10년 이상 손발을 맞춰온

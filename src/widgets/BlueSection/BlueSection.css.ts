@@ -780,6 +780,7 @@ export const fullWidthButton = style({
       display: "flex",
       justifyContent: "center", // 텍스트 가운데 정렬
       position: "relative",
+      fontSize: `${mvw(18)} !important`, // 모바일에서 강제로 폰트 크기 설정
     },
   },
 });

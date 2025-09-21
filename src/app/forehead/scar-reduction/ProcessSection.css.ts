@@ -25,6 +25,7 @@ export const scarProcessContent = style({
   display: "flex",
   flexDirection: "column",
   gap: vw(120),
+  paddingLeft: vw(135),
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1600px",
@@ -42,11 +43,11 @@ export const scarProcessContent = style({
 export const processStepOdd = style({
   display: "flex",
   alignItems: "flex-start",
-  gap: vw(140),
+  gap: vw(380),
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "140px",
+      gap: "380px",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -76,16 +77,20 @@ export const processStepEven = style({
 export const stepNumber = style({
   flex: "0 0 auto",
   width: vw(292),
+  height: vw(418),
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
+  justifyContent: "space-between",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "292px",
+      height: "418px",
     },
     [breakpoints.mobile]: {
       width: "100%",
+      height: "auto",
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
@@ -119,10 +124,10 @@ export const stepHeader = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: vw(90),
+  // marginBottom: vw(90),
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginBottom: "90px",
+      // marginBottom: "90px",
     },
     [breakpoints.mobile]: {
       marginBottom: mvw(20),
@@ -133,19 +138,23 @@ export const stepHeader = style({
 
 // 이미지 스타일
 export const stepImage = style({
-  width: vw(292),
-  height: vw(198),
+  width: "100%",
+  height: "auto",
+  maxWidth: vw(292),
+  maxHeight: vw(248), // 418 - 80(숫자) - 90(마진)
   objectFit: "cover",
   borderRadius: vw(8),
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "292px",
-      height: "198px",
+      maxWidth: "292px",
+      maxHeight: "248px",
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100%",
+      maxWidth: "none",
       height: mvw(208),
+      maxHeight: "none",
       borderRadius: mvw(8),
     },
   },
@@ -157,6 +166,8 @@ export const stepContent = style({
   flexDirection: "column",
   justifyContent: "center", // 수직 중앙 정렬
   gap: vw(32),
+  width: vw(655),
+  height: vw(406),
   minHeight: vw(288), // 이미지 높이와 비슷하게 최소 높이 설정
   "@media": {
     [breakpoints.desktopLarge]: {

@@ -101,16 +101,16 @@ export default function ScarReductionPage() {
       ),
       description: (
         <>
-          흉터를 최소화하기 위한
+          이렇게 피부에 걸리는 장력을 없애주면
           <br />
-          체계적인 접근이 필요합니다.
+          대부분 의 흉터는 가느다란 실선으로 남습니다.
         </>
       ),
       descriptionMobile: (
         <>
-          흉터를 최소화하기 위한
+          이렇게 피부에 걸리는 장력을 없애주면
           <br />
-          체계적인 접근이 필요합니다.
+          대부분 의 흉터는 가느다란 실선으로 남습니다.
         </>
       ),
       images: {

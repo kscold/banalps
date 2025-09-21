@@ -14,6 +14,13 @@ export const heroContainer = style({
   height: tokens.viewport.height, // 100vh
   zIndex: tokens.zIndex.base,
   overflow: "hidden",
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "relative", // 모바일에서는 일반 플로우
+      overflow: "visible", // 모바일에서 스크롤 가능
+      height: "auto", // 모바일에서 컨텐츠에 맞춰 높이 자동
+    },
+  },
 });
 
 // 배경 이미지 - 고정
@@ -66,6 +73,13 @@ export const videoSection = style({
   justifyContent: "center",
   zIndex: tokens.zIndex.video,
   backgroundColor: tokens.colors.black,
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "relative",
+      overflow: "visible",
+      minHeight: "100vh",
+    },
+  },
 });
 
 // 비디오 오버레이
@@ -88,6 +102,13 @@ export const blueSectionOverlay = style({
   zIndex: tokens.zIndex.video + 10, // 비디오보다 훨씬 위에 표시
   backgroundColor: "transparent",
   overflow: "hidden", // 스크롤을 BlueSection 내부에서 처리
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "relative",
+      height: "auto",
+      overflow: "visible", // 모바일에서 스크롤 가능
+    },
+  },
 });
 
 // 콘텐츠 래퍼 - 피그마 디자인 위치에 고정 (오른쪽 아래쪽)
