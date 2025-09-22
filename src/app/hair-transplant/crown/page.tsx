@@ -1,8 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
 
-export default function CrownPage() {
+function CrownContent() {
   const layoutData = {
     heroTitle: (
       <>
@@ -268,4 +269,12 @@ export default function CrownPage() {
   };
 
   return <HairTransplantLayout {...layoutData} />;
+}
+
+export default function CrownPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CrownContent />
+    </Suspense>
+  );
 }

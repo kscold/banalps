@@ -1,12 +1,39 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useAuthStore } from "@/shared/stores/useAuthStore";
 import * as styles from "./LoginModal.css";
 
 export default function LoginModal() {
-  const { isLoginModalOpen, closeLoginModal, modalView, setModalView } =
-    useAuthStore();
+  const { data: session } = useSession();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const {
+    isLoginModalOpen,
+    closeLoginModal,
+    modalView,
+    setModalView,
+    showLoginSuccess,
+    showSignupSuccess,
+  } = useAuthStore();
+
+  const handleSocialLogin = async (provider: string) => {
+    try {
+      setIsProcessing(true);
+
+      // 로그인 시도 전에 localStorage에 플래그 설정
+      localStorage.setItem("loginInProgress", "true");
+
+      // NextAuth의 기본 동작 사용 (리다이렉트 허용)
+      await signIn(provider, {
+        callbackUrl: window.location.pathname || "/",
+      });
+    } catch (error) {
+      console.error("로그인 오류:", error);
+      setIsProcessing(false);
+      localStorage.removeItem("loginInProgress");
+    }
+  };
 
   useEffect(() => {
     if (isLoginModalOpen) {
@@ -88,7 +115,10 @@ export default function LoginModal() {
                           className={styles.iconImage}
                         />
                       </div>
-                      <button className={styles.loginButton}>
+                      <button
+                        className={styles.loginButton}
+                        onClick={() => handleSocialLogin("kakao")}
+                      >
                         <span className={styles.socialText}>
                           카카오톡 로그인
                         </span>
@@ -106,7 +136,10 @@ export default function LoginModal() {
                           className={styles.iconImage}
                         />
                       </div>
-                      <button className={styles.loginButton}>
+                      <button
+                        className={styles.loginButton}
+                        onClick={() => handleSocialLogin("naver")}
+                      >
                         <span className={styles.socialText}>네이버 로그인</span>
                       </button>
                     </div>
@@ -122,7 +155,10 @@ export default function LoginModal() {
                           className={styles.iconImage}
                         />
                       </div>
-                      <button className={styles.loginButton}>
+                      <button
+                        className={styles.loginButton}
+                        onClick={() => handleSocialLogin("google")}
+                      >
                         <span className={styles.socialText}>구글 로그인</span>
                       </button>
                     </div>
@@ -138,24 +174,16 @@ export default function LoginModal() {
                   />
                 </div>
               </>
-            ) : (
+            ) : modalView === "signup-complete" ? (
               <>
                 {/* 상단 가입 완료 섹션 */}
                 <div className={styles.signupSection}>
-                  <h3 className={styles.signupTitle}>가입 완료</h3>
+                  <h3 className={styles.signupTitle}>가입완료</h3>
                   <div className={styles.signupText}>
                     고객님 반가워요!
                     <br />
-                    이제 바람 부는 날도
-                    <br />
-                    즐겁게 거예요.
+                    이제 바람 부는 날도 즐겁게 거에요.
                   </div>
-                  <button
-                    className={styles.backButton}
-                    onClick={() => setModalView("login")}
-                  >
-                    로그인으로 돌아가기
-                  </button>
                 </div>
 
                 {/* 하단 일러스트레이션 섹션 */}
@@ -166,7 +194,27 @@ export default function LoginModal() {
                   </div>
                 </div>
               </>
-            )}
+            ) : modalView === "login-complete" ? (
+              <>
+                {/* 상단 로그인 완료 섹션 */}
+                <div className={styles.signupSection}>
+                  <h3 className={styles.signupTitle}>가입완료</h3>
+                  <div className={styles.signupText}>
+                    고객님 반가워요!
+                    <br />
+                    이제 바람 부는 날도 즐겁게 거에요.
+                  </div>
+                </div>
+
+                {/* 하단 일러스트레이션 섹션 */}
+                <div className={styles.illustrationSection}>
+                  {/* 일러스트레이션은 나중에 추가할 예정 */}
+                  <div className={styles.illustrationPlaceholder}>
+                    일러스트레이션 영역
+                  </div>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       </div>

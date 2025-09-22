@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useSession, signOut } from "next-auth/react"
 import * as styles from "../../../widgets/Header/MobileMenuStyles.css"
 import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation"
 import { useAuthStore } from "@/shared/stores/useAuthStore"
@@ -14,11 +15,17 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname()
+  const { data: session } = useSession()
   const { openLoginModal } = useAuthStore()
   const [expandedItems, setExpandedItems] = useState<string[]>([])
   const [isLangOpen, setIsLangOpen] = useState(false)
   const [selectedLang, setSelectedLang] = useState("KR")
   const [hasOpened, setHasOpened] = useState(false)
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false })
+    onClose()
+  }
 
   // 한 번이라도 열렸는지 추적
   if (isOpen && !hasOpened) {
@@ -78,17 +85,26 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         }}
       >
         <div className={styles.mobileMenuContent}>
-          {/* 상단 영역 - LOGIN과 X 버튼 */}
+          {/* 상단 영역 - LOGIN/LOGOUT과 X 버튼 */}
           <div className={styles.mobileMenuHeader}>
-            <button
-              className={styles.mobileLoginBtn}
-              onClick={() => {
-                openLoginModal()
-                onClose()
-              }}
-            >
-              LOGIN
-            </button>
+            {session ? (
+              <button
+                className={styles.mobileLoginBtn}
+                onClick={handleLogout}
+              >
+                LOGOUT
+              </button>
+            ) : (
+              <button
+                className={styles.mobileLoginBtn}
+                onClick={() => {
+                  openLoginModal()
+                  onClose()
+                }}
+              >
+                LOGIN
+              </button>
+            )}
             <button
               className={styles.mobileCloseBtn}
               onClick={onClose}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "../widgets/Hero/HeroSection";
 import { VideoSection } from "../widgets/Hero/VideoSection";
@@ -18,6 +18,7 @@ const FullPageMain = () => {
   );
   const [isVideoPreloaded, setIsVideoPreloaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const videoPreloadRef = useRef<boolean>(false);
 
   // 섹션 변경 추적
   useEffect(() => {
@@ -26,13 +27,22 @@ const FullPageMain = () => {
     );
   }, [currentSection, previousSection]);
 
-  // 비디오 프리로드
+  // 비디오 프리로드 - 컴포넌트 마운트 시 즉시 시작
   useEffect(() => {
-    if (!isVideoPreloaded) {
+    if (!videoPreloadRef.current) {
       console.log("[FullPageMain/비디오프리로드] 비디오 프리로드 시작");
+      videoPreloadRef.current = true;
+
+      // Vimeo Player API 스크립트 프리로드
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = 'https://player.vimeo.com/video/1026757305?h=e9b3fc8dd8&autoplay=1&muted=1&loop=1&controls=0&title=0&byline=0&portrait=0&background=1';
+      link.as = 'document';
+      document.head.appendChild(link);
+
       setIsVideoPreloaded(true);
     }
-  }, [isVideoPreloaded]);
+  }, []);
 
   // 텍스트가 완료되었을 때 비디오 섹션으로 이동
   const handleTextComplete = () => {
@@ -282,10 +292,11 @@ const FullPageMain = () => {
                 top: "-9999px",
                 left: "-9999px",
                 opacity: 0,
+                pointerEvents: "none",
               }}
             >
               <VideoSection
-                showVideoSection={true}
+                showVideoSection={false}
                 onVideoEnd={handleVideoEnd}
                 onVideoReady={handleVideoReady}
               />

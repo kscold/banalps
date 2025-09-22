@@ -463,7 +463,7 @@ export const reYouSubtitle = style({
   textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
 });
 
-// 그래피티 배경 이미지 (1920px 기준)
+// 그래피티 배경 이미지 (1920px 기준) - 데스크톱용
 export const graffitiBackground = style({
   position: "absolute",
   width: "100%",
@@ -478,6 +478,29 @@ export const graffitiBackground = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       marginTop: "48px", // 1920px 이상에서 고정
+    },
+    [breakpoints.mobile]: {
+      display: "none", // 모바일에서는 숨김
+    },
+  },
+});
+
+// 그래피티 배경 이미지 - 모바일용
+export const graffitiBackgroundMobile = style({
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  marginTop: mvw(24), // 모바일 기준 24px
+  top: 0,
+  left: 0,
+  objectFit: "contain",
+  objectPosition: "center",
+  pointerEvents: "none",
+  zIndex: 0,
+  display: "none", // 기본적으로 숨김
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block", // 모바일에서만 표시
     },
   },
 });

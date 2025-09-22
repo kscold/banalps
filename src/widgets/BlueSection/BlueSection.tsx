@@ -11,10 +11,7 @@ interface BlueSectionProps {
   onTransitionToVideo?: () => void;
 }
 
-export default function BlueSection({
-  isActive = false,
-  onTransitionToVideo = () => {},
-}: BlueSectionProps) {
+export default function BlueSection({ isActive = false }: BlueSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const router = useRouter();
@@ -161,11 +158,18 @@ export default function BlueSection({
         <h2 className={styles.reYouTitle}>RE.YOU</h2>
         <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
 
-        {/* 그래피티 배경 이미지 */}
+        {/* 그래피티 배경 이미지 - 데스크톱용 */}
         <img
           src="/main/banal_graffiti.svg"
           alt="Banal Graffiti"
           className={styles.graffitiBackground}
+        />
+
+        {/* 그래피티 배경 이미지 - 모바일용 */}
+        <img
+          src="/about/mobile/banal-graffiti-mobile.svg"
+          alt="Banal Graffiti Mobile"
+          className={styles.graffitiBackgroundMobile}
         />
       </div>
 
@@ -267,8 +271,7 @@ export default function BlueSection({
           <ArrowButton
             size="medium"
             variant="primary"
-            fontSize={22}
-            fontSizeMobile={22}
+            fontSizeMobile={16}
             paddingVertical={16}
             width="100%"
             textAlign="center"
@@ -366,7 +369,7 @@ export default function BlueSection({
             <ArrowButton
               size="medium"
               variant="primary"
-              fontSize={16}
+              fontSizeMobile={16}
               paddingVertical={16}
               width="100%"
               textAlign="center"

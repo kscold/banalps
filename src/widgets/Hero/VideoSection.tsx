@@ -30,10 +30,21 @@ export function VideoSection({
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const playerRef = useRef<VimeoPlayer | null>(null);
 
-  // 클라이언트 사이드에서만 실행
+  // 클라이언트 사이드에서만 실행 + 비디오 프리로드
   useEffect(() => {
     setIsClient(true);
-  }, []);
+
+    // 비디오 iframe 프리팩치
+    if (!isVideoLoaded) {
+      const preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'document';
+      preloadLink.href = 'https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0';
+      document.head.appendChild(preloadLink);
+
+      console.log("[VideoSection/프리로드] Vimeo iframe 프리로드 시작");
+    }
+  }, [isVideoLoaded]);
 
   const handleVimeoLoad = () => {
     try {
@@ -160,6 +171,7 @@ export function VideoSection({
               style={{ border: "none" }}
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
+              loading="eager"
               onLoad={handleVimeoLoad}
               onError={() => {
                 console.error("[VideoSection/Vimeo에러] iframe 로드 실패");

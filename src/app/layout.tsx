@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+export const dynamic = 'force-dynamic';
 import "../shared/styles/global.css";
 import ClientLayout from "./ClientLayout";
 
@@ -40,6 +42,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="stylesheet" href="/fonts/SCDream-fonts.css" />
+
+        {/* Vimeo 최적화 */}
+        <link rel="preconnect" href="https://player.vimeo.com" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" />
+        <link rel="dns-prefetch" href="https://player.vimeo.com" />
+        <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
         <script src="https://player.vimeo.com/api/player.js" async></script>
       </head>
       <body className={`${inter.variable} antialiased`}>
