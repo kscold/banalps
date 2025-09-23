@@ -38,7 +38,7 @@ export const mobileMenuContent = style({
 // 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
-  // alignItems: "center",
+  alignItems: "center",
   justifyContent: "space-between",
   marginBottom: mvw(60),
 });
