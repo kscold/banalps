@@ -500,7 +500,8 @@ export const introTextContent = style({
   width: vw(500),
   display: "flex",
   flexDirection: "column",
-  gap: vw(32),
+  // gap: vw(32),
+  gap: "7.5rem",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "500px",
@@ -508,7 +509,7 @@ export const introTextContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      gap: "24px",
+      gap: "40px",
       textAlign: "left",
     },
   },

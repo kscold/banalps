@@ -147,6 +147,15 @@ export default function ScalpTreatmentPage() {
               <br />
               남겼습니다.
             </h2>
+            <div className={styles.introImageContent}>
+              <div className={styles.introImageContainer}>
+                <img
+                  src="/scalp-treatment/scalp-treatment-1.png"
+                  alt="두피치료 의료진"
+                  className={styles.introImage}
+                />
+              </div>
+            </div>
             <p className={styles.introDescription}>
               모발이식과 약물치료 만으로 충분하다고 생각했습니다.
               <br />
@@ -160,15 +169,6 @@ export default function ScalpTreatmentPage() {
           </div>
 
           {/* 오른쪽 이미지 */}
-          <div className={styles.introImageContent}>
-            <div className={styles.introImageContainer}>
-              <img
-                src="/scalp-treatment/scalp-treatment-1.png"
-                alt="두피치료 의료진"
-                className={styles.introImage}
-              />
-            </div>
-          </div>
         </div>
       </motion.section>
 
