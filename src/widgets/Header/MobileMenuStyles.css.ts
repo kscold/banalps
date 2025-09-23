@@ -38,7 +38,7 @@ export const mobileMenuContent = style({
 // 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
-  alignItems: "center",
+  // alignItems: "center",
   justifyContent: "space-between",
   marginBottom: mvw(60),
 });
@@ -52,19 +52,22 @@ export const mobileLoginBtn = style({
   lineHeight: "100%",
   letterSpacing: "0",
   color: "#14AEFF",
+  backgroundColor: "transparent",
   border: "none",
   borderRadius: "8px",
+  padding: mvw(8),
   cursor: "pointer",
   transition: "opacity 200ms ease",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   ":hover": {
     opacity: 0.9,
   },
 });
 
-// 닫기 버튼
+//닫기 버튼
 export const mobileCloseBtn = style({
-  fontSize: mvw(24),
-  color: "#272727",
   backgroundColor: "transparent",
   border: "none",
   padding: 0,
@@ -73,7 +76,7 @@ export const mobileCloseBtn = style({
   width: mvw(24),
   height: mvw(24),
   display: "flex",
-  alignItems: "center",
+  // alignItems: "center",
   justifyContent: "center",
   ":hover": {
     opacity: 0.6,
@@ -133,7 +136,7 @@ export const mobileNavSub = style({
 export const mobileNavSubLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontSize: mvw(16),
-  fontWeight: "200", // 4 Regular 스타일
+  fontWeight: "400", // 4 Regular 스타일
   color: "#272727", // Colors-Text-Subtle
   textDecoration: "none",
   lineHeight: "160%", // 24px

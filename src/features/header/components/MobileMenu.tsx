@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useSession, signOut } from "next-auth/react"
-import * as styles from "../../../widgets/Header/MobileMenuStyles.css"
-import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation"
-import { useAuthStore } from "@/shared/stores/useAuthStore"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import * as styles from "../../../widgets/Header/MobileMenuStyles.css";
+import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation";
+import { useAuthStore } from "@/shared/stores/useAuthStore";
 
 interface MobileMenuProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const pathname = usePathname()
-  const { data: session } = useSession()
-  const { openLoginModal } = useAuthStore()
-  const [expandedItems, setExpandedItems] = useState<string[]>([])
-  const [isLangOpen, setIsLangOpen] = useState(false)
-  const [selectedLang, setSelectedLang] = useState("KR")
-  const [hasOpened, setHasOpened] = useState(false)
+  const pathname = usePathname();
+  const { data: session } = useSession();
+  const { openLoginModal } = useAuthStore();
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("KR");
+  const [hasOpened, setHasOpened] = useState(false);
 
   const handleLogout = async () => {
-    await signOut({ redirect: false })
-    onClose()
-  }
+    await signOut({ redirect: false });
+    onClose();
+  };
 
   // 한 번이라도 열렸는지 추적
   if (isOpen && !hasOpened) {
-    setHasOpened(true)
+    setHasOpened(true);
   }
 
   // 메뉴 아이템 토글
@@ -38,30 +38,33 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       prev.includes(title)
         ? prev.filter((item) => item !== title)
         : [...prev, title]
-    )
-  }
+    );
+  };
 
   // 메인 메뉴 클릭 핸들러
-  const handleMainMenuClick = (e: React.MouseEvent, item: typeof NAVIGATION_ITEMS[0]) => {
-    e.preventDefault()
+  const handleMainMenuClick = (
+    e: React.MouseEvent,
+    item: (typeof NAVIGATION_ITEMS)[0]
+  ) => {
+    e.preventDefault();
     if (item.submenu) {
-      toggleMenuItem(item.title)
+      toggleMenuItem(item.title);
     } else if (item.href) {
       // 서브메뉴가 없고 href가 있으면 링크로 이동
-      window.location.href = item.href
-      onClose()
+      window.location.href = item.href;
+      onClose();
     }
     // href가 없는 경우 아무것도 하지 않음
-  }
+  };
 
   // 언어 선택 핸들러
   const handleLangSelect = (lang: string) => {
-    setSelectedLang(lang)
-    setIsLangOpen(false)
-  }
+    setSelectedLang(lang);
+    setIsLangOpen(false);
+  };
 
   // 언어 옵션들
-  const languages = ["KR", "JP"]
+  const languages = ["KR", "JP"];
 
   return (
     <>
@@ -77,41 +80,45 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       />
 
       {/* 메뉴 패널 */}
-      <div 
+      <div
         className={styles.mobileMenuPanel}
         style={{
-          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
-          visibility: hasOpened ? 'visible' : 'hidden', // 초기 렌더링 시 숨김
+          transform: isOpen ? "translateX(0)" : "translateX(100%)",
+          visibility: hasOpened ? "visible" : "hidden", // 초기 렌더링 시 숨김
         }}
       >
         <div className={styles.mobileMenuContent}>
           {/* 상단 영역 - LOGIN/LOGOUT과 X 버튼 */}
           <div className={styles.mobileMenuHeader}>
             {session ? (
-              <button
-                className={styles.mobileLoginBtn}
-                onClick={handleLogout}
-              >
+              <button className={styles.mobileLoginBtn} onClick={handleLogout}>
                 LOGOUT
               </button>
             ) : (
               <button
                 className={styles.mobileLoginBtn}
                 onClick={() => {
-                  openLoginModal()
-                  onClose()
+                  openLoginModal();
+                  onClose();
                 }}
               >
                 LOGIN
               </button>
             )}
-            <button
+            <img
+              src="/main/close.svg"
+              alt="Close"
+              className={styles.mobileCloseBtn}
+              onClick={onClose}
+              aria-label="메뉴 닫기"
+            />
+            {/* <button
               className={styles.mobileCloseBtn}
               onClick={onClose}
               aria-label="메뉴 닫기"
             >
               ✕
-            </button>
+            </button> */}
           </div>
 
           {/* 네비게이션 메뉴 */}
@@ -189,5 +196,5 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
       </div>
     </>
-  )
+  );
 }
