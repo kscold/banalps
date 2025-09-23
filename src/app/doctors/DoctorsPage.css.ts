@@ -21,7 +21,6 @@ export const loadingContainer = style({
   justifyContent: "center",
   alignItems: "center",
   minHeight: "100vh",
-  backgroundColor: "#FFFFFF",
 });
 
 const spin = keyframes({
@@ -300,7 +299,7 @@ export const doctorContent = style({
     transform: "translateX(-50%)",
     width: vw(1720),
     height: "1px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     opacity: 0.5,
     zIndex: 100,
   },
@@ -329,7 +328,7 @@ export const doctorContentReversed = style({
     bottom: 0,
     width: "100%",
     height: vw(1),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     zIndex: 1,
   },
   "@media": {
@@ -905,7 +904,7 @@ export const credentialList = style({
     top: vw(0), // 원 아래부터 시작
     bottom: 0, // 수평선에서 딱 끊김 (컨테이너 bottom과 일치)
     width: vw(2), // 얇은 선
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     zIndex: 1,
   },
   // 위쪽 동그라미 - 수직선 정중앙에 맞춤
@@ -916,7 +915,7 @@ export const credentialList = style({
     top: vw(0),
     width: vw(10),
     height: vw(10),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     borderRadius: "50%",
     zIndex: 2,
   },
@@ -1263,7 +1262,7 @@ export const doctorSubImages = style({
     bottom: 0,
     width: "100%",
     height: vw(1),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     zIndex: 1,
   },
   "@media": {
@@ -1355,7 +1354,7 @@ export const doctorSubImages2 = style({
     bottom: 0,
     width: "100%",
     height: vw(1),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     zIndex: 1,
   },
   "@media": {
@@ -1449,7 +1448,7 @@ export const doctorSubImages3 = style({
     bottom: 0,
     width: "100%",
     height: vw(1),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     zIndex: 1,
   },
   "@media": {
@@ -1525,7 +1524,7 @@ export const doctorSubImageKim2 = style({
 // 연혁 섹션 - 전체 컨테이너
 export const historySection = style({
   width: "100%",
-  backgroundColor: "#FFFFFF", // 흰색 배경으로 의료진과 구분
+  backgroundColor: "#FFFDF7", // 흰색 배경으로 의료진과 구분
   padding: `${vw(120)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -2085,7 +2084,7 @@ export const year2024Text = style({
 // 학술활동 섹션 - 전체 컨테이너
 export const academicActivitiesSection = style({
   width: "100%",
-  backgroundColor: "#FFFFFF", // 흰색 배경
+  backgroundColor: "#FFFDF7", // 흰색 배경
   padding: `${vw(120)} 0`,
   position: "relative",
   zIndex: 2,
@@ -2533,9 +2532,11 @@ export const activeYear = style({
 // 오른쪽 학술활동 콘텐츠
 export const academicContent = style({
   width: "100%",
+  padding: `0 ${vw(135)}`,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "100%",
+      padding: "0 135px",
     },
     [breakpoints.desktop]: {
       width: "100%",
@@ -2562,9 +2563,9 @@ export const academicContentTitle = style({
       marginBottom: "40px",
     },
     [breakpoints.mobile]: {
-      fontSize: "18px",
-      lineHeight: "28px",
-      marginBottom: "30px",
+      fontSize: mvw(18),
+      lineHeight: mvw(28),
+      marginBottom: mvw(30),
     },
   },
 });
@@ -2641,7 +2642,7 @@ export const lastRow = style({
 export const academicTableRow = style({
   display: "flex",
   alignItems: "center",
-  gap: vw(30),
+  gap: vw(60),
   padding: `${vw(28)} 0`,
   borderBottom: "1px solid #D9D9D9",
   height: "auto",
@@ -2656,17 +2657,11 @@ export const academicTableRow = style({
   },
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "30px",
+      gap: "60px",
       padding: "28px 0",
       minHeight: "90px",
     },
-    [breakpoints.desktop]: {
-      gap: "25px",
-      padding: "28px 0",
-      flexDirection: "row",
-      alignItems: "center",
-      minHeight: "80px",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       gap: mvw(16),
       padding: `${mvw(20)} ${mvw(16)}`,
@@ -2719,19 +2714,16 @@ export const academicRowDate = style({
 });
 
 export const academicRowCategory = style({
-  width: vw(60),
+  width: vw(150),
   flexShrink: 0,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "60px",
+      width: "150px",
     },
-    [breakpoints.desktop]: {
-      width: "55px",
-      justifyContent: "center",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       width: "auto",
       justifyContent: "center",
@@ -2745,30 +2737,25 @@ export const categoryBadge = style({
   width: vw(48),
   height: vw(48),
   borderRadius: "50%",
-  border: "2px solid #00AFFF",
+  border: "1px solid #00AFFF",
   backgroundColor: "transparent",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(16),
+  ...responsiveFont(20),
   lineHeight: vw(20),
   color: "#00AFFF",
   flexShrink: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "48px",
-      height: "48px",
-      fontSize: "16px",
+      width: "70px",
+      height: "70px",
+      fontSize: "20px",
       lineHeight: "20px",
     },
-    [breakpoints.desktop]: {
-      width: "45px",
-      height: "45px",
-      fontSize: "15px",
-      lineHeight: "20px",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       border: "1px solid #00AFFF",
       width: mvw(70),
@@ -2858,7 +2845,7 @@ export const academicRowTitle = style({
 // 타임라인 그래피티 섹션
 export const timelineGraffitiSection = style({
   width: "100%",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   position: "relative",
   clear: "both",
   "@media": {
@@ -2874,7 +2861,7 @@ export const timelineGraffitiSection = style({
       display: "block",
       width: "100%",
       paddingTop: mvw(60),
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#FFFDF7",
     },
   },
 });

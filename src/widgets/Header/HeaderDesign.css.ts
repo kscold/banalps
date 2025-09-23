@@ -384,7 +384,7 @@ export const navLinkText = style({
     right: "0",
     width: "100%",
     height: "2px",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FFFDF7",
     transform: "scaleX(0)",
     transformOrigin: "center",
     transition: "transform 200ms ease",
@@ -658,7 +658,7 @@ export const mobileActions = style({
 
 export const mobileLoginButton = style({
   color: "#272727",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   border: "1px solid #DEDEDE",
   fontSize: "16px",
   fontWeight: "500",

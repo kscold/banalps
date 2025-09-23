@@ -18,6 +18,8 @@ const FullPageMain = () => {
   );
   const [isVideoPreloaded, setIsVideoPreloaded] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [heroCompleted, setHeroCompleted] = useState(false);
+  const [videoSectionTime, setVideoSectionTime] = useState(0);
   const videoPreloadRef = useRef<boolean>(false);
 
   // 섹션 변경 추적
@@ -25,6 +27,18 @@ const FullPageMain = () => {
     console.log(
       `[FullPageMain/섹션변경] 현재 섹션: ${currentSection}, 이전 섹션: ${previousSection}`
     );
+
+    // 비디오 섹션에 진입하면 타이머 시작
+    if (currentSection === "video") {
+      const timer = setInterval(() => {
+        setVideoSectionTime((prev) => prev + 100);
+      }, 100);
+
+      return () => {
+        clearInterval(timer);
+        setVideoSectionTime(0); // 비디오 섹션을 떠나면 리셋
+      };
+    }
   }, [currentSection, previousSection]);
 
   // 비디오 프리로드 - 컴포넌트 마운트 시 즉시 시작
@@ -34,10 +48,11 @@ const FullPageMain = () => {
       videoPreloadRef.current = true;
 
       // Vimeo Player API 스크립트 프리로드
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = 'https://player.vimeo.com/video/1026757305?h=e9b3fc8dd8&autoplay=1&muted=1&loop=1&controls=0&title=0&byline=0&portrait=0&background=1';
-      link.as = 'document';
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href =
+        "https://player.vimeo.com/video/1026757305?h=e9b3fc8dd8&autoplay=1&muted=1&loop=1&controls=0&title=0&byline=0&portrait=0&background=1";
+      link.as = "document";
       document.head.appendChild(link);
 
       setIsVideoPreloaded(true);
@@ -49,6 +64,7 @@ const FullPageMain = () => {
     console.log(
       `[FullPageMain/텍스트완료] 텍스트 완료 - 현재 섹션: ${currentSection} → 비디오 섹션으로 이동`
     );
+    setHeroCompleted(true); // 히어로 섹션 완료 표시
     setIsTransitioning(true);
     // 비디오 준비 상태 리셋
     setIsVideoReady(false);
@@ -93,16 +109,21 @@ const FullPageMain = () => {
 
   // 섹션별 스크롤 이벤트 처리
   useEffect(() => {
+    // Hero 섹션에서는 스크롤 이벤트 처리하지 않음 (HeroSection 컴포넌트가 자체적으로 처리)
     if (currentSection === "hero") {
-      // Hero 섹션일 때는 모든 스크롤 이벤트 제거
       console.log(
-        `[FullPageMain/스크롤비활성화] ${currentSection} 섹션에서 스크롤 이벤트 비활성화`
+        `[FullPageMain/스크롤비활성화] Hero 섹션 - 스크롤 이벤트 비활성화`
       );
       return;
     }
 
     let isScrolling = false;
-    const scrollDebounceTime = 1500; // 강한 스크롤에도 비디오 스킵 방지
+    let lastScrollTime = 0;
+    let scrollAccumulator = 0; // 스크롤 누적값
+    let scrollResetTimeout: NodeJS.Timeout | null = null;
+    const scrollCooldown = 1200; // 스크롤 간 최소 간격 증가
+    const scrollDebounceTime = 1500; // debounce 시간 증가
+    const scrollThreshold = 10; // 스크롤 누적 임계값
 
     // 모바일 터치 이벤트 처리
     let touchStartY = 0;
@@ -145,16 +166,15 @@ const FullPageMain = () => {
           // 아래로 스와이프 (위로 스크롤)
           console.log("[FullPageMain/터치] 비디오에서 히어로로");
           setPreviousSection("video");
+          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
           setCurrentSection("hero");
         }
       }
     };
 
     const handleWheel = (e: WheelEvent) => {
-      if (isTransitioning || isScrolling) return;
-
+      const now = Date.now();
       const deltaY = e.deltaY;
-      if (Math.abs(deltaY) < 30) return;
 
       // 콘텐츠 섹션에서는 페이지 최상단에서 위로 스크롤할 때만 비디오로 복귀
       if (currentSection === "content") {
@@ -164,7 +184,13 @@ const FullPageMain = () => {
 
         if (deltaY < 0 && window.scrollY <= 10) {
           e.preventDefault();
-          isScrolling = true;
+
+          // 트랜지션 중이거나 쿨다운 중이면 무시
+          if (isTransitioning || now - lastScrollTime < scrollCooldown) {
+            return;
+          }
+
+          lastScrollTime = now;
           console.log(
             `[FullPageMain/위스크롤] ${currentSection} → 비디오 섹션 (페이지 최상단)`
           );
@@ -175,25 +201,63 @@ const FullPageMain = () => {
           setCurrentSection("video");
 
           setTimeout(() => {
-            isScrolling = false;
             setIsTransitioning(false);
-          }, scrollDebounceTime + 500); // 전환 지연 시간 추가
-        } else if (deltaY < 0 && window.scrollY > 10) {
-          console.log(
-            `[FullPageMain/콘텐츠스크롤] 위로 스크롤하지만 페이지 최상단이 아님 (scrollY: ${window.scrollY})`
-          );
+          }, 800);
         }
         return;
       }
 
-      // 비디오 섹션에서는 기존 로직 유지
+      // 비디오 섹션에서는 스크롤 방지
       e.preventDefault();
+
+      // 트랜지션 중이면 무시
+      if (isTransitioning) return;
+
+      // 스크롤 누적값 업데이트
+      scrollAccumulator += Math.abs(deltaY);
+
+      // 스크롤 리셋 타이머 관리
+      if (scrollResetTimeout) {
+        clearTimeout(scrollResetTimeout);
+      }
+
+      scrollResetTimeout = setTimeout(() => {
+        scrollAccumulator = 0;
+        scrollResetTimeout = null;
+      }, 300);
+
+      // 누적값이 임계값 미만이면 무시 (빠른 스크롤 방지)
+      if (scrollAccumulator < scrollThreshold) {
+        console.log(
+          `[FullPageMain/스크롤누적] 누적값 부족: ${scrollAccumulator}/${scrollThreshold}`
+        );
+        return;
+      }
+
+      // 쿨다운 체크
+      if (now - lastScrollTime < scrollCooldown || isScrolling) {
+        console.log(`[FullPageMain/쿨다운] 스크롤 쿨다운 중`);
+        return;
+      }
+
+      // 최소 스크롤 임계값 체크
+      if (Math.abs(deltaY) < 30) return;
+
       isScrolling = true;
+      lastScrollTime = now;
+      scrollAccumulator = 0; // 스크롤 처리 후 누적값 리셋
 
       if (deltaY > 0) {
         // 아래로 스크롤
         console.log(`[FullPageMain/아래스크롤] ${currentSection} → 다음 섹션`);
         if (currentSection === "video") {
+          // 비디오 섹션에서 최소 1초는 있어야 함
+          if (videoSectionTime < 1000) {
+            console.log(
+              `[FullPageMain/비디오최소시간] 비디오 섹션 최소 시간 미달: ${videoSectionTime}ms/1000ms`
+            );
+            return;
+          }
           console.log(
             "[FullPageMain/비디오스크롤] 비디오에서 콘텐츠 섹션으로 이동 시작"
           );
@@ -207,6 +271,7 @@ const FullPageMain = () => {
         if (currentSection === "video") {
           console.log("[FullPageMain/비디오스크롤] 비디오에서 텍스트로 복귀");
           setPreviousSection("video");
+          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
           setCurrentSection("hero");
         }
       }
@@ -251,6 +316,7 @@ const FullPageMain = () => {
         console.log(`[FullPageMain/키보드위] ${currentSection} → 이전 섹션`);
         if (currentSection === "video") {
           setPreviousSection("video");
+          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
           setCurrentSection("hero");
         }
       }
@@ -266,8 +332,17 @@ const FullPageMain = () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
+      if (scrollResetTimeout) {
+        clearTimeout(scrollResetTimeout);
+      }
     };
-  }, [currentSection, isTransitioning]);
+  }, [
+    currentSection,
+    isTransitioning,
+    heroCompleted,
+    isVideoReady,
+    videoSectionTime,
+  ]);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -332,13 +407,32 @@ const FullPageMain = () => {
           : "h-screen overflow-hidden"
       }`}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={currentSection}
-          initial={currentSection === "content" && previousSection === "video" ? false : { opacity: 0, y: 50 }}
+          initial={
+            currentSection === "content" && previousSection === "video"
+              ? { opacity: 1, y: 0 }
+              : currentSection === "video" && previousSection === "content"
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: 20 }
+          }
           animate={{ opacity: 1, y: 0 }}
-          exit={currentSection === "video" && previousSection === "content" ? false : { opacity: 0, y: -50 }}
-          transition={{ duration: currentSection === "content" ? 0.3 : 0.8, ease: "easeInOut" }}
+          exit={
+            currentSection === "video" && previousSection === "content"
+              ? { opacity: 1, y: 0 }
+              : currentSection === "content" && previousSection === "video"
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: -20 }
+          }
+          transition={{
+            duration:
+              (currentSection === "content" && previousSection === "video") ||
+              (currentSection === "video" && previousSection === "content")
+                ? 0.3
+                : 0.6,
+            ease: "easeInOut",
+          }}
           className="w-full h-full"
         >
           {renderSection()}

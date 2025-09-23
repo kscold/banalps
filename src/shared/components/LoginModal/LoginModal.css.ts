@@ -68,7 +68,7 @@ export const slideIn = style({
 });
 
 export const modal = style({
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   borderRadius: 0,
   width: "100%",
   height: "100%",
@@ -96,9 +96,7 @@ export const closeButton = style({
   width: vw(32),
   height: vw(32),
   transition: "transform 0.2s",
-  ":hover": {
-    transform: "rotate(90deg)",
-  },
+
   "@media": {
     [breakpoints.mobile]: {
       width: mvw(28),
@@ -255,7 +253,7 @@ export const iconSquare = style({
 export const loginButton = style({
   flex: 1,
   height: vw(60),
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   border: "1px solid #E5E5E5",
   borderRadius: vw(8),
   display: "flex",

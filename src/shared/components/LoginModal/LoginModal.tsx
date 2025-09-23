@@ -63,14 +63,11 @@ export default function LoginModal() {
               <h2 className={styles.title}>LOGIN</h2>
             </div>
             <button className={styles.closeButton} onClick={closeLoginModal}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M18 6L6 18M6 6L18 18"
-                  stroke="#666"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <img
+                src="/login/close.svg"
+                alt="Close"
+                // className={styles.iconImage}
+              />
             </button>
           </div>
 
@@ -168,7 +165,7 @@ export default function LoginModal() {
                 {/* 하단 일러스트레이션 섹션 */}
                 <div className={styles.illustrationSection}>
                   <img
-                    src="/login/lㅁogin-illustration.svg"
+                    src="/login/login-illustration.svg"
                     alt="Login Illustration"
                     className={styles.illustrationImage}
                   />

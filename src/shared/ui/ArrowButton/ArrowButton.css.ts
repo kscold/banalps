@@ -58,11 +58,6 @@ export const arrowButton = style({
   borderRadius: vw(100), // 1920px 기준 100px
   fontSize: vw(20), // 1920px 기준 20px
 
-  ":hover": {
-    // Dim 효과 제거
-    boxShadow: `0 ${vw(8)} ${vw(24)} rgba(0, 0, 0, 0.12)`,
-  },
-
   ":active": {
     boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   },
@@ -181,17 +176,11 @@ export const arrowIcon = style({
 export const white = style({
   backgroundColor: "#FFFFFF",
   color: "#272727",
-  ":hover": {
-    backgroundColor: "#F8F9FA",
-  },
 });
 
 export const blue = style({
   backgroundColor: "#14AEFF",
   color: "#FFFFFF",
-  ":hover": {
-    backgroundColor: "#0EA5E9",
-  },
 });
 
 // Style Variant 스타일들
@@ -203,11 +192,6 @@ export const primary = style({
 export const secondary = style({
   borderColor: "#6B7280",
   color: "#6B7280",
-
-  ":hover": {
-    backgroundColor: "rgba(107, 114, 128, 0.05)",
-    borderColor: "#4B5563",
-  },
 });
 
 // Color별 텍스트 스타일

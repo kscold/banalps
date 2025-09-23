@@ -16,7 +16,7 @@ import { fontFamily } from "@/shared/styles/fonts.css";
 // 페이지 전체 스타일
 export const HairTransplantPage = style({
   minHeight: "100vh",
-  backgroundColor: "#ffffff", // 헤어라인 페이지는 흰색 배경
+  backgroundColor: "#FFFDF7" // 헤어라인 페이지는 흰색 배경
 });
 
 // Hairline Hero Section
@@ -207,7 +207,7 @@ export const HairTransplantHeroTitleDot = style({
 export const HairTransplantSection1 = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(120),
-  backgroundColor: "#ffffff", // 흰색 배경
+  backgroundColor: "#FFFDF7" // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "120px", // 1920px+ 고정 (좌우 패딩 제거)
@@ -509,7 +509,7 @@ export const section2 = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(120),
 
-  backgroundColor: "#ffffff", // 흰색 배경
+  backgroundColor: "#FFFDF7" // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0px", // 1920px+ 고정
@@ -819,7 +819,7 @@ export const section3 = style({
   paddingBottom: vw(120),
   paddingLeft: vw(20), // 1920px 기준 20px 좌우 패딩
   paddingRight: vw(20),
-  backgroundColor: "#ffffff", // 흰색 배경
+  backgroundColor: "#FFFDF7" // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 20px", // 1920px+ 고정
@@ -1093,7 +1093,7 @@ export const beforeAfterSection = style({
   paddingBottom: vw(120),
   paddingLeft: vw(20), // 1920px 기준 20px 좌우 패딩
   paddingRight: vw(20),
-  backgroundColor: "#ffffff", // 흰색 배경
+  backgroundColor: "#FFFDF7" // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 20px", // 1920px+ 고정
@@ -1225,7 +1225,7 @@ export const beforeAfterActions = style({
 export const featuresSection = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(120),
-  backgroundColor: "#ffffff", // 흰색 배경
+  backgroundColor: "#FFFDF7" // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0px", // 1920px+ 고정

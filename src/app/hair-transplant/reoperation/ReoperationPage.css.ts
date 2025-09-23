@@ -116,7 +116,7 @@ export const section2Svg2 = style({
 // 피그마 디자인 기반 Section2 스타일
 export const section2 = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7"
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",

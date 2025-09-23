@@ -11,7 +11,7 @@ import { fontFamily } from "../../shared/styles/fonts.css";
 // 페이지 전체 컨테이너
 export const beforeAfterPage = style({
   minHeight: "100vh",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   padding: 0,
 });
 
@@ -19,7 +19,7 @@ export const beforeAfterPage = style({
 // 페이지 전체 스타일
 export const page = style({
   minHeight: "100vh",
-  backgroundColor: "#ffffff", // 헤어라인 페이지는 흰색 배경
+  backgroundColor: "#FFFDF7", // 헤어라인 페이지는 흰색 배경
 });
 
 // Hero Section Styles
@@ -28,7 +28,7 @@ export const HairTransplantHeroSection = style({
   width: "100%",
   minHeight: "100vh",
   overflow: "hidden",
-  backgroundColor: "#ffffff",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.mobile]: {
       minHeight: "100vh",
@@ -410,7 +410,7 @@ export const carouselSection = style({
   },
   selectors: {
     "&:nth-child(odd)": {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#FFFDF7",
     },
     "&:nth-child(even)": {
       backgroundColor: "#D5FEFF",
@@ -502,7 +502,7 @@ export const carouselViewport = style({
   maxWidth: vw(900),
   height: "auto",
   borderRadius: vw(12),
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {

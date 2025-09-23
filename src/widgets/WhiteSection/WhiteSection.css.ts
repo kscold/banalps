@@ -12,7 +12,7 @@ import {
 // 메인 섹션 컨테이너 (1920px 기준) - BlueSection과 동일하게
 export const whiteSection = style({
   width: "100%",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   position: "relative",
   display: "flex",
   flexDirection: "column",
@@ -23,7 +23,7 @@ export const whiteSection = style({
       display: "flex", // 명시적으로 flex 설정
       paddingBottom: "60px",
       minHeight: "100vh", // 최소 화면 높이 설정
-      backgroundColor: "#FFFFFF", // 배경색 명시적 설정
+      backgroundColor: "#FFFDF7", // 배경색 명시적 설정
     },
   },
 });
@@ -101,13 +101,17 @@ export const container = style({
 export const mainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(60), // 1920px 기준 60px
+  fontSize: vw(60), // 1920px 기준 60px, vw로 스케일링
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
-  ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
+  marginBottom: vw(80), // 1920px 기준 80px
   "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px", // 1920px 이상에서 60px 고정
+      marginBottom: "80px", // 1920px 이상에서 고정
+    },
     [breakpoints.mobile]: {
       fontSize: mvw(36), // 모바일에서 더 큰 폰트 사이즈 (BlueSection과 동일)
       lineHeight: "110%",
@@ -360,38 +364,40 @@ export const serviceNumber = style({
 
 // 위치 섹션 - 1920px 기준 responsiveContainer 적용
 export const locationSection = style({
-  width: "100%",
+  ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
   ...responsiveProperty("paddingTop", 120), // 1920px 기준 120px
   ...responsiveProperty("paddingBottom", 120),
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  alignItems: "flex-start", // 왼쪽 정렬
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "100%",
+      padding: "0 16px", // 좌우 패딩 설정
+    },
+  },
 });
 
 // 위치 섹션 타이틀 - 1920px 기준
 export const locationTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(60), // 1920px 기준 60px
+  fontSize: vw(60), // 1920px 기준 60px, vw로 스케일링
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
   textAlign: "left",
   width: "100%",
-  maxWidth: "1600px",
-  marginLeft: "auto",
-  marginRight: "auto",
-  ...responsiveProperty("marginBottom", 80), // 1920px 기준 80px
+  marginBottom: vw(80), // 1920px 기준 80px
   "@media": {
-    [`screen and (max-width: 1600px)`]: {
-      paddingLeft: "160px",
-      paddingRight: "160px",
+    [breakpoints.desktopLarge]: {
+      fontSize: "60px", // 1920px 이상에서 60px 고정
+      marginBottom: "80px", // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
       fontSize: mvw(40),
-      paddingLeft: "20px",
-      paddingRight: "20px",
+      marginBottom: mvw(40),
     },
   },
 });
@@ -399,8 +405,6 @@ export const locationTitle = style({
 // Frame 320 - 메인 콘텐츠 영역 (1600x500)
 export const locationContent = style({
   width: "100%",
-  maxWidth: "1600px",
-  margin: "0 auto",
   display: "flex",
   ...responsiveProperty("gap", 78.7), // 피그마에서 Frame 311과 Frame 318 사이 간격
   height: vw(500), // 피그마 디자인 높이 500px
@@ -409,14 +413,9 @@ export const locationContent = style({
     [breakpoints.desktopLarge]: {
       height: "500px",
     },
-    [`screen and (max-width: 1600px)`]: {
-      width: "calc(100% - 320px)", // 좌우 160px 여백
-      paddingLeft: "0",
-      paddingRight: "0",
-    },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: "0 20px", // 모바일 좌우 20px 여백
+      padding: "0", // 모바일 패딩 제거 (상위 컨테이너에서 처리)
       flexDirection: "column",
       height: "auto",
       gap: "40px",
@@ -499,7 +498,8 @@ export const mapArea = style({
 // Frame 318 - 오른쪽 정보 영역 (430.71 x 500)
 export const locationInfo = style({
   width: vw(350), // vw 단위로 변경
-  height: vw(500), // 명시적 높이 설정
+  height: vw(500), // locationContent와 동일한 500px 높이
+  minHeight: vw(500), // 최소 높이 보장
   flexShrink: 0, // 크기 유지
   display: "flex",
   flexDirection: "column",
@@ -508,16 +508,19 @@ export const locationInfo = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "350px",
-      height: "500px", // 명시적 높이로 변경
+      height: "500px", // 1920px 이상에서 500px 고정
+      minHeight: "500px",
       gap: "20px",
     },
     [`screen and (max-width: 1400px)`]: {
       width: "300px", // 중간 크기 화면에서 더 작게
-      height: "450px", // 중간 사이즈에서도 명시적 높이
+      height: vw(500), // vw로 스케일링 유지
+      minHeight: vw(500),
     },
     [breakpoints.mobile]: {
       width: "100%",
       height: "auto", // 모바일에서는 자동 높이
+      minHeight: "auto",
       justifyContent: "flex-start", // 모바일에서는 위쪽 정렬
       gap: "30px", // 모바일에서 간격
     },
@@ -635,7 +638,7 @@ export const readySection = style({
   width: "100%",
   height: vw(780),
   overflow: "hidden",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   marginTop: vw(240),
   marginBottom: vw(120),
   maxWidth: "1920px", // Hero는 1920px 전체 사용
@@ -656,10 +659,10 @@ export const readySectionContainer = style({
   position: "relative",
   width: "100%",
 
-  minHeight: vw(780),
+  minHeight: vw(785),
   "@media": {
     [breakpoints.desktopLarge]: {
-      minHeight: "780px",
+      minHeight: "785px",
     },
     [breakpoints.mobile]: {
       display: "flex",
@@ -678,14 +681,14 @@ export const readyHeroIllustration = style({
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
   top: "50%",
   transform: "translateY(-50%)",
-  height: vw(765), // 1920px 기준 600px 높이로 축소 (디자인에 맞게)
+  height: vw(785), // 1920px 기준 600px 높이로 축소 (디자인에 맞게)
   zIndex: 1,
   objectFit: "cover",
   objectPosition: "right center", // 이미지를 오른쪽에 정렬
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "1760px", // 1920px 이상에서 고정
-      height: "765px", // 600px로 축소
+      height: "785px", // 600px로 축소
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -761,7 +764,7 @@ export const readyTitleContainer = style({
 export const readyMainTitle = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(60),
+  fontSize: vw(60), // 1920px 기준 60px, vw로 스케일링
   lineHeight: vw(78),
   letterSpacing: "0",
   color: "#14AEFF",
@@ -919,7 +922,7 @@ export const mobileViewMoreButton = style({
       right: mvw(20),
       width: `calc(100% - ${mvw(40)}) !important`, // 좌우 16px씩 제외한 전체 너비
       justifyContent: "center !important", // 텍스트 가운데 정렬
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#FFFDF7",
       // width와 maxWidth 제거 - ArrowButton에서 자체 처리
       fontSize: mvw(14), // 폰트 크기 명시
       fontWeight: 500, // 폰트 굵기

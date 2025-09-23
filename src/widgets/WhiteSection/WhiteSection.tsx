@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import * as styles from "./WhiteSection.css";
 import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton";
@@ -38,7 +39,13 @@ export default function WhiteSection() {
         {/* 모바일 전용 카드 리스트 */}
         <div className={styles.mobileCardList}>
           {/* 정수리 이식 카드 */}
-          <div className={styles.mobileServiceCard}>
+          <motion.div
+            className={styles.mobileServiceCard}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: 0 }}
+          >
             <img
               src="/main/white-section/white_section_2.jpg"
               alt="정수리 이식"
@@ -53,10 +60,16 @@ export default function WhiteSection() {
             >
               정수리이식
             </ArrowButton>
-          </div>
+          </motion.div>
 
           {/* 이마 축소 수술 카드 */}
-          <div className={styles.mobileServiceCard}>
+          <motion.div
+            className={styles.mobileServiceCard}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <img
               src="/main/white-section/white_section_4.jpg"
               alt="이마 축소 수술"
@@ -71,10 +84,16 @@ export default function WhiteSection() {
             >
               이마 축소 수술
             </ArrowButton>
-          </div>
+          </motion.div>
 
           {/* 헤어라인 교정 카드 */}
-          <div className={styles.mobileServiceCard}>
+          <motion.div
+            className={styles.mobileServiceCard}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
             <img
               src="/main/white-section/white_section_3.jpg"
               alt="헤어라인 교정"
@@ -89,10 +108,16 @@ export default function WhiteSection() {
             >
               헤어라인 교정
             </ArrowButton>
-          </div>
+          </motion.div>
 
           {/* 바날 재수술 카드 */}
-          <div className={styles.mobileServiceCard}>
+          <motion.div
+            className={styles.mobileServiceCard}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+          >
             <img
               src="/main/white-section/white_section_5.jpg"
               alt="바날 재수술"
@@ -107,10 +132,16 @@ export default function WhiteSection() {
             >
               바날 재수술
             </ArrowButton>
-          </div>
+          </motion.div>
 
           {/* Other Medical Service 모바일 박스 */}
-          <div className={styles.mobileOtherServiceBox}>
+          <motion.div
+            className={styles.mobileOtherServiceBox}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: 1.6 }}
+          >
             <img
               src="/main/white-section/mobile/white-section-mobile-2.png"
               alt="Other Medical Service"
@@ -126,7 +157,7 @@ export default function WhiteSection() {
             >
               View More
             </ArrowButton>
-          </div>
+          </motion.div>
         </div>
 
         {/* 메인 콘텐츠 영역 */}
@@ -246,6 +277,11 @@ export default function WhiteSection() {
 
             <ArrowButton
               size="medium"
+              variant="primary"
+              fontSize={20}
+              height={44}
+              width={166}
+              paddingLeft={true}
               className={styles.viewMoreButton}
               onClick={() => router.push("/before-after")}
             >

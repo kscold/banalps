@@ -10,7 +10,7 @@ import {
 // 페이지 전체 스타일
 export const aboutPage = style({
   minHeight: "100vh",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   width: "100%",
   maxWidth: "100vw",
   overflowX: "hidden",
@@ -32,7 +32,7 @@ const fadeInUp = keyframes({
 export const heroSection = style({
   padding: `${vw(240)} 0 ${vw(120)} 0`,
   background: "#73D5FA",
-  animation: `${fadeInUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
+  // animation: `${fadeInUp} 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`,
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "240px 0 120px 0",
@@ -189,7 +189,7 @@ export const valuesSection = style({
 export const valuesContainer = style({
   ...responsiveContainer(1600),
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "space-between",
   gap: vw(80),
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -266,13 +266,18 @@ export const valuesDescription = style({
 export const valuesCards = style({
   flex: 1,
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
+  maxWidth: vw(957),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      maxWidth: "957px",
+    },
     [breakpoints.mobile]: {
       flex: "0 0 auto",
       width: mvw(335),
-      maxWidth: "90vw",
+      maxWidth: vw(957),
+      justifyContent: "center",
       // marginTop: mvw(60),
     },
   },
@@ -281,12 +286,12 @@ export const valuesCards = style({
 // Values 카드 SVG 이미지 스타일
 export const valueCardsImage = style({
   width: "100%",
-  maxWidth: vw(957),
+  maxWidth: vw(990),
   height: "auto",
   objectFit: "contain",
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "957px",
+      maxWidth: "990px",
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -496,9 +501,6 @@ export const reYouCardImage = style({
   height: "100%",
   objectFit: "cover",
   transition: "transform 300ms ease",
-  ":hover": {
-    transform: "scale(1.05)",
-  },
 });
 
 // RE.YOU 텍스트 섹션 - absolute 포지셔닝
@@ -563,14 +565,14 @@ export const reYouSubtitle = style({
 export const strengthsSection = style({
   padding: `${vw(240)} 0`,
   marginTop: `${vw(240)}`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       width: "100%",
       padding: `${mvw(120)} ${mvw(16)}`,
       marginTop: 0,
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#FFFDF7",
     },
   },
 });
@@ -675,7 +677,7 @@ export const strengthsList = style({
     bottom: 0,
     left: 0,
     right: 0,
-    height: "2px",
+    height: "1px",
     backgroundColor: "#14AEFF",
   },
   "@media": {
@@ -694,7 +696,7 @@ export const strengthItem = style({
   alignItems: "flex-start",
   gap: vw(60),
   padding: `${vw(32)} 0`,
-  borderTop: "2px solid #14AEFF",
+  borderTop: "1px solid #14AEFF",
   backgroundColor: "transparent",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -728,7 +730,7 @@ export const strengthItemMobile = style({
 export const strengthNumber = style({
   flex: "0 0 auto",
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 700,
+  fontWeight: 500,
   fontSize: vw(24),
   lineHeight: vw(29),
   color: "#272727",
@@ -861,7 +863,7 @@ export const strengthDescriptionMobile = style({
 // Gallery Section - 바날 둘러보기 (피그마 디자인)
 export const gallerySection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
@@ -941,10 +943,7 @@ export const galleryMainImage = style({
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  // ":hover": {
-  //   transform: "translateY(-8px)",
-  //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
-  // },
+
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "calc(50% - 10px)",

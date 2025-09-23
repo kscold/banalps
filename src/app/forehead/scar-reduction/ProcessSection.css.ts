@@ -8,7 +8,7 @@ import { vw, mvw } from "@/shared/styles/responsive.utils";
 // Section 2: 흉터 줄이는 과정 섹션 (진단부터 봉합까지) - ScarReductionPage.css에서 복사
 export const scarProcessSection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",

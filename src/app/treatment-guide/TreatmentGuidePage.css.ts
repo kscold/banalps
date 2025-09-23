@@ -5,7 +5,7 @@ import { fontFamily } from "../../shared/styles/fonts.css";
 // 페이지 전체 스타일
 export const treatmentGuidePage = style({
   minHeight: "100vh",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
 });
 
 // Hero Section

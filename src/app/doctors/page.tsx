@@ -638,9 +638,11 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    가장 중요한 건 환자가 원하는 거예요.
+                    자연스러운 아름다움과 얼굴의 조화를 중요하게 생각합니다.
                     <br />
-                    의사가 원하는 대로만 하면 결국 두 번 수술을 하게 됩니다.
+                    환자 한 분 한 분에게
+                    <br />
+                    언제나 정직하고 세심한 시술을 지향합니다.
                   </p>
                   <img
                     src="/doctors/profile/double-quotation-end.svg"

@@ -97,7 +97,7 @@ const buttonBase = style({
   border: "none",
   borderRadius: vw(20),
   cursor: "pointer",
-  transition: "all 0.2s ease",
+  transition: "opacity 0.3s ease, transform 0.3s ease",
   minWidth: vw(120),
   height: vw(40),
   display: "flex",
@@ -105,6 +105,11 @@ const buttonBase = style({
   justifyContent: "center",
   letterSpacing: 0,
   lineHeight: vw(20),
+  position: "relative",
+
+  ":hover": {
+    opacity: 0.85, // dim 효과
+  },
 
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -141,16 +146,24 @@ export const kakaoButton = style([
   {
     backgroundColor: "#F3E362",
     color: "#272727",
+
     "@media": {
       [breakpoints.desktopLarge]: {
         minWidth: "120px",
       },
       [breakpoints.desktop]: {
         minWidth: vw(120),
+        ":hover": {
+          opacity: 0.8, // PC에서 hover시 dim 효과
+        },
       },
       [breakpoints.mobile]: {
         flex: 1,
         minWidth: "auto",
+        ":hover": {
+          opacity: 1, // 모바일에서는 hover 효과 제거
+          transform: "none",
+        },
       },
     },
   },
@@ -160,17 +173,25 @@ export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#272727",
+    color: "#FFFFFF",
+
     "@media": {
       [breakpoints.desktopLarge]: {
         minWidth: "120px",
       },
       [breakpoints.desktop]: {
         minWidth: vw(120),
+        ":hover": {
+          opacity: 0.8, // PC에서 hover시 dim 효과
+        },
       },
       [breakpoints.mobile]: {
         flex: 1,
         minWidth: "auto",
+        ":hover": {
+          opacity: 1, // 모바일에서는 hover 효과 제거
+          transform: "none",
+        },
       },
     },
   },

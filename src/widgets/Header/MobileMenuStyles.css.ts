@@ -22,7 +22,7 @@ export const mobileMenuPanel = style({
   bottom: 0,
   left: 0, // 전체 화면 덮기
   width: "100%",
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   zIndex: 9999,
   transition: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 });
@@ -200,7 +200,7 @@ export const mobileLangDropdown = style({
   bottom: "100%",
   left: 0,
   marginBottom: mvw(12),
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   border: "1px solid #E5E7EB",
   borderRadius: "12px",
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",

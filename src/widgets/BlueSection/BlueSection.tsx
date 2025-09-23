@@ -12,12 +12,18 @@ interface BlueSectionProps {
 }
 
 export default function BlueSection({ isActive = false }: BlueSectionProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(isActive);
+  const [hasScrolled, setHasScrolled] = useState(isActive);
   const router = useRouter();
 
   useEffect(() => {
     console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
+
+    // isActive가 true면 즉시 visible로 설정
+    if (isActive) {
+      setIsVisible(true);
+      setHasScrolled(true);
+    }
 
     // Check initial scroll position
     const checkScrollPosition = () => {
@@ -94,7 +100,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
 
   return (
     <section
-      className={`${styles.blueSection} ${isVisible ? styles.visible : ""}`}
+      className={`${styles.blueSection} ${
+        isVisible || isActive ? styles.visible : ""
+      }`}
     >
       {/* 모바일 헤더 섹션 - 피그마 디자인 기반 */}
       <div className={styles.mobileHeaderSection}>
@@ -118,10 +126,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 1 */}
         <motion.div
           className={styles.imageCard1}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         >
           <img
             src="/main/shot/shot1.png"
@@ -133,10 +141,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 2 */}
         <motion.div
           className={styles.imageCard2}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
         >
           <img
             src="/main/shot/shot2.png"
@@ -148,10 +156,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 3 */}
         <motion.div
           className={styles.imageCard3}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
         >
           <img
             src="/main/shot/shot3.png"
@@ -163,10 +171,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 4 */}
         <motion.div
           className={styles.imageCard4}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
         >
           <img
             src="/main/shot/shot4.png"

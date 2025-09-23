@@ -429,7 +429,7 @@ export const quoteText = style({
 // 경력 섹션
 export const credentialsSection = style({
   width: "100%",
-  backgroundColor: "#FFFFFF", // 흰색 배경 추가
+  backgroundColor: "#FFFDF7" // 흰색 배경 추가
   paddingTop: mvw(40),
   paddingBottom: mvw(40),
   paddingLeft: "16px",

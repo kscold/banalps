@@ -88,7 +88,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #FFFDF7;
   --foreground: #171717;
   --color-ivory: #FDFCF8;
   --color-blue: #1E3A8A;
@@ -166,5 +166,5 @@ section {
 }
 
 .white-section {
-  background: #ffffff;
+  background: #FFFDF7;
 }

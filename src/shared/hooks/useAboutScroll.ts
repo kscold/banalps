@@ -16,9 +16,19 @@ export function useAboutScroll(): UseAboutScrollReturn {
     const scrollDebounceTime = 500 // 스크롤 간격을 500ms로 설정
 
     const handleWheel = (e: WheelEvent) => {
-      // 메인 콘텐츠가 이미 표시된 상태에서는 일반 스크롤 허용
+      const deltaY = e.deltaY
+
+      // 메인 콘텐츠가 표시된 상태에서
       if (showMainContent) {
-        console.log("[useAboutScroll/휠이벤트] 메인 콘텐츠 표시 상태 - 일반 스크롤 허용")
+        // 위로 스크롤하고 페이지 최상단에 있으면 비디오로 복귀
+        if (deltaY < 0 && window.scrollY <= 10) {
+          e.preventDefault()
+          console.log("[useAboutScroll/휠업] 메인 콘텐츠 → 비디오로 복귀")
+          setShowMainContent(false)
+
+          // 스크롤 위치 초기화
+          window.scrollTo(0, 0)
+        }
         return
       }
 
@@ -40,8 +50,6 @@ export function useAboutScroll(): UseAboutScrollReturn {
         console.log("[useAboutScroll/휠이벤트] 스크롤 중 - 무시")
         return
       }
-
-      const deltaY = e.deltaY
 
       // 최소 스크롤 임계값 설정 (너무 작은 움직임 무시)
       if (Math.abs(deltaY) < 30) {
@@ -71,11 +79,29 @@ export function useAboutScroll(): UseAboutScrollReturn {
       }, 300)
     }
 
-    // 키보드 이벤트 처리 (아래 화살표)
+    // 키보드 이벤트 처리
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isScrolling || showMainContent) return
+      if (isScrolling) return
 
-      if (e.key === "ArrowDown") {
+      // 메인 콘텐츠 상태에서 위 화살표
+      if (showMainContent && e.key === "ArrowUp" && window.scrollY <= 10) {
+        e.preventDefault()
+        isScrolling = true
+
+        console.log("[useAboutScroll/키보드업] 메인 콘텐츠 → 비디오로 복귀")
+        setShowMainContent(false)
+        window.scrollTo(0, 0)
+
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout)
+        }
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false
+          scrollTimeout = null
+        }, 300)
+      }
+      // 비디오 상태에서 아래 화살표
+      else if (!showMainContent && e.key === "ArrowDown") {
         e.preventDefault()
         isScrolling = true
 
@@ -102,7 +128,7 @@ export function useAboutScroll(): UseAboutScrollReturn {
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || showMainContent) return
+      if (isScrolling) return
 
       const endY = e.changedTouches[0].clientY
       const endX = e.changedTouches[0].clientX
@@ -116,8 +142,14 @@ export function useAboutScroll(): UseAboutScrollReturn {
         isScrolling = true
         e.preventDefault()
 
-        if (deltaY > 0) {
-          // 위로 스와이프 (다음으로)
+        // 메인 콘텐츠 상태에서 아래로 스와이프 (위로 스크롤)
+        if (showMainContent && deltaY < 0 && window.scrollY <= 10) {
+          console.log("[useAboutScroll/스와이프다운] 메인 콘텐츠 → 비디오로 복귀")
+          setShowMainContent(false)
+          window.scrollTo(0, 0)
+        }
+        // 비디오 상태에서 위로 스와이프 (아래로 스크롤)
+        else if (!showMainContent && deltaY > 0) {
           console.log("[useAboutScroll/스와이프업] 비디오 → 메인 콘텐츠 전환")
           setShowMainContent(true)
         }

@@ -13,7 +13,7 @@ import { fontFamily } from "@/shared/styles/fonts.css";
 // 페이지 전체 스타일
 export const scalpTreatmentPage = style({
   minHeight: "100vh",
-  backgroundColor: "#ffffff", // 헤어라인 페이지는 흰색 배경
+  backgroundColor: "#FFFDF7", // 헤어라인 페이지는 흰색 배경
 });
 
 export const HairTransplantHeroSection = style({
@@ -21,7 +21,7 @@ export const HairTransplantHeroSection = style({
   width: "100%",
   minHeight: "100vh",
   overflow: "hidden",
-  backgroundColor: "#ffffff",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.mobile]: {
       minHeight: "100vh",
@@ -455,7 +455,7 @@ export const vimeoIframe = style({
 
 // Section 1: 소개 섹션 - scar-reduction의 디자인을 참고
 export const introSection = style({
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   position: "relative",
 
   "@media": {
@@ -641,7 +641,7 @@ export const introDescription = style({
 // Section 2: 치료방법 카드들
 export const treatmentCardsSection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
@@ -801,7 +801,7 @@ export const treatmentCardTitle = style({
 // Section 3-6: 치료방법 상세 섹션들
 export const treatmentDetailSection = style({
   padding: `${vw(100)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "100px 0",
@@ -939,7 +939,7 @@ export const treatmentDescription = style({
 // Footer Features Section
 export const featuresSection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFFFF",
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",

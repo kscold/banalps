@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { VideoSection } from "../../widgets/Hero/VideoSection";
 import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";
@@ -136,46 +137,76 @@ export default function AboutPage() {
           <section className={styles.reYouSection}>
             <div className={styles.reYouContainer}>
               {/* RE.YOU 텍스트 섹션 - 상단에 배치 */}
-              <div className={styles.reYouTextSection}>
+              <motion.div
+                className={styles.reYouTextSection}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
                 <div className={styles.reYouContent}>
                   <h2 className={styles.reYouTitle}>RE.YOU</h2>
                   <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* 이미지 카드 섹션 - 2x2 그리드 */}
               <div className={styles.reYouImageCards}>
-                <div className={styles.reYouCard1}>
+                <motion.div
+                  className={styles.reYouCard1}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                >
                   <img
                     src="/main/shot/shot1.png"
                     alt="Shin Seung gyu"
                     className={styles.reYouCardImage}
                   />
-                </div>
+                </motion.div>
 
-                <div className={styles.reYouCard2}>
+                <motion.div
+                  className={styles.reYouCard2}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                >
                   <img
                     src="/main/shot/shot3.png"
                     alt="Park Soo Ho"
                     className={styles.reYouCardImage}
                   />
-                </div>
+                </motion.div>
 
-                <div className={styles.reYouCard3}>
+                <motion.div
+                  className={styles.reYouCard3}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                >
                   <img
                     src="/main/shot/shot4.png"
                     alt="Kim Narae"
                     className={styles.reYouCardImage}
                   />
-                </div>
+                </motion.div>
 
-                <div className={styles.reYouCard4}>
+                <motion.div
+                  className={styles.reYouCard4}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                >
                   <img
                     src="/main/shot/shot2.png"
                     alt="의료진 4"
                     className={styles.reYouCardImage}
                   />
-                </div>
+                </motion.div>
               </div>
             </div>
           </section>
@@ -185,7 +216,13 @@ export default function AboutPage() {
             <div className={styles.strengthsContainer}>
               <div className={styles.strengthsContent}>
                 {/* 왼쪽 영역 - 타이틀 + SVG */}
-                <div className={styles.strengthsLeftSection}>
+                <motion.div
+                  className={styles.strengthsLeftSection}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
                   <h2 className={styles.strengthsTitle}>
                     바날이
                     <br />
@@ -196,12 +233,23 @@ export default function AboutPage() {
                     alt="바날 소개 그래피티"
                     className={styles.strengthsGraffiti}
                   />
-                </div>
+                </motion.div>
 
                 {/* 오른쪽 영역 - 리스트 형태 */}
                 <div className={styles.strengthsList}>
                   {strengths.map((strength, index) => (
-                    <div key={index} className={styles.strengthItem}>
+                    <motion.div
+                      key={index}
+                      className={styles.strengthItem}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: index * 0.1,
+                        ease: "easeOut"
+                      }}
+                    >
                       <div className={styles.strengthNumber}>
                         {strength.number}
                       </div>
@@ -213,10 +261,21 @@ export default function AboutPage() {
                           {strength.description}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                   {strengths.map((strength, index) => (
-                    <div key={index} className={styles.strengthItemMobile}>
+                    <motion.div
+                      key={index}
+                      className={styles.strengthItemMobile}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: index * 0.1,
+                        ease: "easeOut"
+                      }}
+                    >
                       <div className={styles.strengthNumberMobile}>
                         {strength.number}
                       </div>
@@ -228,7 +287,7 @@ export default function AboutPage() {
                           {strength.mobileDescription || strength.description}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -248,13 +307,19 @@ export default function AboutPage() {
                   </h2>
                 </div>
 
-                <div className={styles.galleryMainImage}>
+                <motion.div
+                  className={styles.galleryMainImage}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   <img
                     src="/about/gallery/gallery-1.png"
                     alt="바날 갤러리 메인"
                     className={styles.galleryImage}
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* 하단: 복합 그리드 레이아웃 - 피그마 정확한 구조 */}
@@ -262,88 +327,142 @@ export default function AboutPage() {
                 {/* Row 1: Frame 219 - 왼쪽 큰 이미지 + 오른쪽 2개 스택 */}
                 <div className={styles.galleryRow1}>
                   {/* 왼쪽 큰 이미지 */}
-                  <div className={styles.galleryLeftLarge}>
+                  <motion.div
+                    className={styles.galleryLeftLarge}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-200px" }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
                     <img
                       src="/about/gallery/gallery-2.png"
                       alt="바날 갤러리 2"
                       className={styles.galleryImage}
                     />
-                  </div>
+                  </motion.div>
 
                   {/* 오른쪽 위 이미지 */}
-                  <div className={styles.galleryRightTop}>
+                  <motion.div
+                    className={styles.galleryRightTop}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-150px" }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  >
                     <img
                       src="/about/gallery/gallery-3.png"
                       alt="바날 갤러리 3"
                       className={styles.galleryImage}
                     />
-                  </div>
+                  </motion.div>
 
                   {/* 오른쪽 아래 이미지 */}
-                  <div className={styles.galleryRightBottom}>
+                  <motion.div
+                    className={styles.galleryRightBottom}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                  >
                     <img
                       src="/about/gallery/gallery-4.png"
                       alt="바날 갤러리 4"
                       className={styles.galleryImage}
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Row 2: Frame 220 - 2개 나란히 */}
                 <div className={styles.galleryRow2}>
-                  <div className={styles.galleryGridItem}>
+                  <motion.div
+                    className={styles.galleryGridItem}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-200px" }}
+                    transition={{ duration: 0.5, delay: 1.0 }}
+                  >
                     <img
                       src="/about/gallery/gallery-5.png"
                       alt="바날 갤러리 5"
                       className={styles.galleryImage}
                     />
-                  </div>
+                  </motion.div>
 
-                  <div className={styles.galleryGridItem}>
+                  <motion.div
+                    className={styles.galleryGridItem}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-150px" }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                  >
                     <img
                       src="/about/gallery/gallery-6.png"
                       alt="바날 갤러리 6"
                       className={styles.galleryImage}
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Row 3: Frame 223 - 왼쪽 2개 스택 + 오른쪽 2개 스택 */}
                 <div className={styles.galleryRow3}>
                   {/* 왼쪽 컬럼 */}
                   <div className={styles.galleryLeftColumn}>
-                    <div className={styles.gallerySmallImage}>
+                    <motion.div
+                      className={styles.gallerySmallImage}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-200px" }}
+                      transition={{ duration: 0.5, delay: 1.4 }}
+                    >
                       <img
                         src="/about/gallery/gallery-7.png"
                         alt="바날 갤러리 7"
                         className={styles.galleryImage}
                       />
-                    </div>
-                    <div className={styles.galleryLargeImage}>
+                    </motion.div>
+                    <motion.div
+                      className={styles.galleryLargeImage}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      transition={{ duration: 0.5, delay: 1.6 }}
+                    >
                       <img
                         src="/about/gallery/gallery-9.png"
                         alt="바날 갤러리 추가 1"
                         className={styles.galleryImage}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* 오른쪽 컬럼 */}
                   <div className={styles.galleryRightColumn}>
-                    <div className={styles.galleryLargeImage}>
+                    <motion.div
+                      className={styles.galleryLargeImage}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-200px" }}
+                      transition={{ duration: 0.5, delay: 1.8 }}
+                    >
                       <img
                         src="/about/gallery/gallery-8.png"
                         alt="바날 갤러리 추가 2"
                         className={styles.galleryImage}
                       />
-                    </div>
-                    <div className={styles.gallerySmallImage}>
+                    </motion.div>
+                    <motion.div
+                      className={styles.gallerySmallImage}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      transition={{ duration: 0.5, delay: 2.0 }}
+                    >
                       <img
                         src="/about/gallery/gallery-10.png"
                         alt="바날 갤러리 추가 3"
                         className={styles.galleryImage}
                       />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
