@@ -14,7 +14,7 @@ import {
 // Section 1: 피그마 디자인에 맞는 레이아웃
 export const scarSection1 = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFDF7"
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
@@ -163,7 +163,7 @@ export const scarSection1Image = style({
 // Section 2: 흉터 줄이는 과정 섹션 (진단부터 봉합까지)
 export const scarProcessSection = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFDF7"
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",
@@ -398,7 +398,7 @@ export const stepDescription = style({
 // Section 3 스타일들
 export const scarSection3 = style({
   padding: `${vw(120)} 0`,
-  backgroundColor: "#FFFDF7"
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
       padding: "120px 0",

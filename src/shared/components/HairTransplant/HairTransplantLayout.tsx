@@ -148,6 +148,7 @@ interface HairTransplantLayoutProps {
   heroTitle: React.ReactNode;
   heroTitleMobile?: React.ReactNode; // Mobile-specific hero title
   heroSubtitle?: React.ReactNode;
+  heroDotAbsolute?: boolean; // Use absolute positioning for dot
   heroBackground?: string;
   heroIllustration?: string;
   heroIllustrationMobile?: string;
@@ -169,6 +170,7 @@ export default function HairTransplantLayout({
   heroTitle,
   heroTitleMobile,
   heroSubtitle,
+  heroDotAbsolute = false,
   heroBackground,
   heroIllustration = "/hair-transplant/hero-illustration.svg",
   heroIllustrationMobile = "/hair-transplant/mobile/hero-illustration-mobile.svg",
@@ -209,10 +211,13 @@ export default function HairTransplantLayout({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
+                    position: heroDotAbsolute ? "relative" : undefined,
                   }}
                 >
                   {isMobile && heroTitleMobile ? heroTitleMobile : heroTitle}
-                  <div className={styles.HairTransplantHeroTitleDot} />
+                  <div
+                    className={heroDotAbsolute ? styles.HairTransplantHeroTitleDotAbsolute : styles.HairTransplantHeroTitleDot}
+                  />
                 </span>
               </h1>
             </div>

@@ -189,7 +189,8 @@ export const valuesSection = style({
 export const valuesContainer = style({
   ...responsiveContainer(1600),
   display: "flex",
-  alignItems: "space-between",
+  justifyContent: "space-between",
+  alignItems: "center",
   gap: vw(80),
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -266,7 +267,7 @@ export const valuesDescription = style({
 export const valuesCards = style({
   flex: 1,
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "flex-end",
   alignItems: "center",
   maxWidth: vw(957),
   "@media": {

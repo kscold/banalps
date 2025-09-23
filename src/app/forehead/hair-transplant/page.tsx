@@ -18,6 +18,7 @@ export default function ForeheadHairTransplantPage() {
         모발이식
       </>
     ),
+    heroDotAbsolute: true, // Use absolute positioned dot for this page
     section1: {
       number: 1,
       title: (

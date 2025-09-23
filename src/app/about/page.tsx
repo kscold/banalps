@@ -156,8 +156,8 @@ export default function AboutPage() {
                   className={styles.reYouCard1}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot1.png"
@@ -170,8 +170,8 @@ export default function AboutPage() {
                   className={styles.reYouCard2}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot3.png"
@@ -184,8 +184,8 @@ export default function AboutPage() {
                   className={styles.reYouCard3}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot4.png"
@@ -198,8 +198,8 @@ export default function AboutPage() {
                   className={styles.reYouCard4}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot2.png"
@@ -344,10 +344,10 @@ export default function AboutPage() {
                   {/* 오른쪽 위 이미지 */}
                   <motion.div
                     className={styles.galleryRightTop}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-150px" }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-3.png"
@@ -359,10 +359,10 @@ export default function AboutPage() {
                   {/* 오른쪽 아래 이미지 */}
                   <motion.div
                     className={styles.galleryRightBottom}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-4.png"
@@ -376,10 +376,10 @@ export default function AboutPage() {
                 <div className={styles.galleryRow2}>
                   <motion.div
                     className={styles.galleryGridItem}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-200px" }}
-                    transition={{ duration: 0.5, delay: 1.0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-5.png"
@@ -390,10 +390,10 @@ export default function AboutPage() {
 
                   <motion.div
                     className={styles.galleryGridItem}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-150px" }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-6.png"
@@ -409,10 +409,10 @@ export default function AboutPage() {
                   <div className={styles.galleryLeftColumn}>
                     <motion.div
                       className={styles.gallerySmallImage}
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-200px" }}
-                      transition={{ duration: 0.5, delay: 1.4 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
                     >
                       <img
                         src="/about/gallery/gallery-7.png"
@@ -422,10 +422,10 @@ export default function AboutPage() {
                     </motion.div>
                     <motion.div
                       className={styles.galleryLargeImage}
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-150px" }}
-                      transition={{ duration: 0.5, delay: 1.6 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                     >
                       <img
                         src="/about/gallery/gallery-9.png"
@@ -439,10 +439,10 @@ export default function AboutPage() {
                   <div className={styles.galleryRightColumn}>
                     <motion.div
                       className={styles.galleryLargeImage}
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-200px" }}
-                      transition={{ duration: 0.5, delay: 1.8 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                     >
                       <img
                         src="/about/gallery/gallery-8.png"
@@ -452,10 +452,10 @@ export default function AboutPage() {
                     </motion.div>
                     <motion.div
                       className={styles.gallerySmallImage}
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-150px" }}
-                      transition={{ duration: 0.5, delay: 2.0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
                     >
                       <img
                         src="/about/gallery/gallery-10.png"

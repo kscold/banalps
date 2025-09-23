@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import * as styles from "./DoctorsPage.css";
 
 // 학술활동 데이터 타입
@@ -166,10 +167,14 @@ export default function DoctorsPage() {
               </h1>
             </div>
             <div className={styles.medicalTeamHeroSection}>
-              <img
+              <motion.img
                 src="/doctors/intro/doctors-intro-1.png"
                 alt="의료진 소개 인트로 1"
                 className={styles.doctorsIntroImage1}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
               />
               <h2 className={styles.medicalTeamHeroTitle}>
                 Banal
@@ -336,10 +341,14 @@ export default function DoctorsPage() {
                 />
               </div>
               <div className={styles.doctorSubImage2}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-2.png"
                   alt="신승규 원장 서브 이미지 2"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 />
               </div>
 
@@ -495,17 +504,25 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorSubImagePark1}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-3.png"
                   alt="박수호 원장 서브 이미지 1"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                 />
               </div>
               <div className={styles.doctorSubImagePark2}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-4.png"
                   alt="박수호 원장 서브 이미지 2"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
                 />
               </div>
 
@@ -653,17 +670,25 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorSubImageKim1}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-5.png"
                   alt="김나래 원장 서브 이미지 1"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
                 />
               </div>
               <div className={styles.doctorSubImageKim2}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-6.png"
                   alt="김나래 원장 서브 이미지 2"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 2.0, ease: "easeOut" }}
                 />
               </div>
 

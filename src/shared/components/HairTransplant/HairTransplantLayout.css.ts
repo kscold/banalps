@@ -155,19 +155,20 @@ export const HairTransplantHeroTitle = style({
 });
 
 export const HairTransplantHeroTitleDot = style({
-  width: vw(20),
-  height: vw(20),
+  width: vw(12),
+  height: vw(12),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
-  marginLeft: vw(20),
+  marginLeft: vw(4),
   flexShrink: 0,
   alignSelf: "flex-end", // 모바일에서는 하단 정렬
-  marginBottom: vw(20), // 약간의 하단 여백
+  marginBottom: vw(12), // 약간의 하단 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "20px",
-      height: "20px",
-      marginLeft: "20px",
+      width: "12px",
+      height: "12px",
+      marginLeft: "4px",
+      marginBottom: "12px",
     },
     [breakpoints.mobile]: {
       width: mvw(15),
@@ -179,6 +180,31 @@ export const HairTransplantHeroTitleDot = style({
   },
 });
 
+// Absolute positioned dot for special cases (forehead page)
+export const HairTransplantHeroTitleDotAbsolute = style({
+  position: "absolute",
+  width: vw(12),
+  height: vw(12),
+  backgroundColor: "#14AEFF",
+  borderRadius: "50%",
+  right: vw(-18), // Position to the right of text
+  bottom: vw(12), // Align with text baseline
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "12px",
+      height: "12px",
+      right: "-18px",
+      bottom: "12px",
+    },
+    [breakpoints.mobile]: {
+      width: mvw(15),
+      height: mvw(15),
+      right: mvw(-20),
+      bottom: mvw(10),
+    },
+  },
+});
+
 // Hairline Hero Section
 export const heroSection = style({
   position: "relative",
@@ -186,6 +212,7 @@ export const heroSection = style({
   minHeight: "100vh",
   overflow: "hidden",
   // Hero 섹션은 전체 1920px 사용
+
   "@media": {
     [breakpoints.mobile]: {
       // minHeight: mvw(600), // 모바일 전체 높이 축소

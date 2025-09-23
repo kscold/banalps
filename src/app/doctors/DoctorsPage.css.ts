@@ -146,7 +146,6 @@ export const doctorsIntroImage1 = style({
   height: "100%",
   borderRadius: vw(12),
   objectFit: "cover",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -161,16 +160,16 @@ export const doctorsIntroImage1 = style({
 // 이미지와 텍스트를 담는 컨테이너
 export const medicalTeamHeroSection = style({
   position: "absolute",
-  top: "50%",
-  right: vw(100),
-  transform: "translateY(-50%)",
+  top: vw(155),
+  right: vw(0),
+  // transform: "translateY(-50%)",
   width: vw(1085),
   height: vw(850),
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "50%",
-      right: "100px",
-      transform: "translateY(-50%)",
+      top: "155px",
+      right: "0px",
+      // transform: "translateY(-50%)",
       width: "1085px",
       height: "850px",
     },
@@ -301,7 +300,7 @@ export const doctorContent = style({
     height: "1px",
     backgroundColor: "#FFFDF7",
     opacity: 0.5,
-    zIndex: 100,
+    zIndex: 10,
   },
   "@media": {
     [breakpoints.desktopLarge]: {
