@@ -196,9 +196,7 @@ export default function ScalpTreatmentPage() {
               />
             </div>
             <h3 className={styles.treatmentCardTitle}>
-              어븀글라스
-              <br />
-              프락셀 레이저
+              어븀글라스 프락셀 레이저
             </h3>
           </div>
 
@@ -262,11 +260,7 @@ export default function ScalpTreatmentPage() {
                 className={styles.treatmentCardImageImg}
               />
             </div>
-            <h3 className={styles.treatmentCardTitle}>
-              저출력 레이저
-              <br />
-              LLLT
-            </h3>
+            <h3 className={styles.treatmentCardTitle}>저출력 레이저 LLLT</h3>
           </div>
 
           <div className={styles.treatmentArrow}></div>
