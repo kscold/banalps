@@ -135,7 +135,7 @@ export default function LoginModal() {
                     <div className={styles.loginRow}>
                       <div
                         className={styles.iconSquare}
-                        style={{ backgroundColor: "#F5F5F5" }}
+                        style={{ backgroundColor: "#D6D6D6" }}
                       >
                         <img
                           src="/login/google.svg"
