@@ -269,13 +269,7 @@ export default function ScalpTreatmentPage() {
             </h3>
           </div>
 
-          <div className={styles.treatmentArrow}>
-            <img
-              src="/scalp-treatment/arrow-right.svg"
-              alt="화살표"
-              className={styles.treatmentArrowImg}
-            />
-          </div>
+          <div className={styles.treatmentArrow}></div>
 
           {/* 정맥 주사 - 마지막이라 화살표 없음 */}
           <div className={styles.treatmentCard}>
