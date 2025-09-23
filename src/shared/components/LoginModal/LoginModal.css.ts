@@ -78,7 +78,7 @@ export const modal = style({
   boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(20),
+      borderRadius: "8px",
       width: "100%",
       height: "auto",
       maxHeight: "90vh",
@@ -148,13 +148,14 @@ export const title = style({
   fontWeight: 600,
   fontSize: vw(20),
   lineHeight: "100%",
-  letterSpacing: "0%",
+  letterSpacing: "0",
   color: "#272727",
 
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: mvw(20),
-      letterSpacing: mvw(1.5),
+      fontWeight: 600,
+      fontSize: "1.25rem",
+      letterSpacing: "0",
     },
   },
 });

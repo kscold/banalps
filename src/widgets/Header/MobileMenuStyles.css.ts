@@ -11,7 +11,7 @@ export const mobileMenuOverlay = style({
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   zIndex: 9998,
-  transition: "opacity 300ms ease, visibility 300ms ease",
+  transition: "opacity 300ms ease",
 });
 
 // 메뉴 패널 (오른쪽에서 슬라이드) - 전체 화면
@@ -27,6 +27,19 @@ export const mobileMenuPanel = style({
   transition: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 });
 
+// 메뉴 패널 닫힐 때 (즉시 사라짐)
+// export const mobileMenuPanelClosing = style({
+//   position: "fixed",
+//   top: 0,
+//   right: 0,
+//   bottom: 0,
+//   left: 0,
+//   width: "100%",
+//   backgroundColor: "#FFFDF7",
+//   zIndex: 9999,
+//   transition: "none",
+// });
+
 // 메뉴 콘텐츠
 export const mobileMenuContent = style({
   display: "flex",
@@ -38,7 +51,7 @@ export const mobileMenuContent = style({
 // 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
-  alignItems: "center",
+  // alignItems: "center",
   justifyContent: "space-between",
   marginBottom: mvw(60),
 });

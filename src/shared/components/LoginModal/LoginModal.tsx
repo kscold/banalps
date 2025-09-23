@@ -51,11 +51,7 @@ export default function LoginModal() {
   return (
     <>
       <div className={styles.overlay} onClick={closeLoginModal} />
-      <div
-        className={`${styles.modalContainer} ${
-          isLoginModalOpen ? styles.slideIn : ""
-        }`}
-      >
+      <div className={styles.modalContainer}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
             <div className={styles.headerContent}>

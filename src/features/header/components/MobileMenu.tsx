@@ -81,7 +81,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       {/* 메뉴 패널 */}
       <div
-        className={styles.mobileMenuPanel}
+        className={!isOpen && hasOpened ? "none" : styles.mobileMenuPanel}
         style={{
           transform: isOpen ? "translateX(0)" : "translateX(100%)",
           visibility: hasOpened ? "visible" : "hidden", // 초기 렌더링 시 숨김
