@@ -180,26 +180,26 @@ export const HairTransplantHeroTitleDot = style({
   },
 });
 
-// Absolute positioned dot for special cases (forehead page)
+// Absolute 방점
 export const HairTransplantHeroTitleDotAbsolute = style({
   position: "absolute",
   width: vw(12),
   height: vw(12),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
-  right: vw(-18), // Position to the right of text
-  bottom: vw(12), // Align with text baseline
+  left: vw(235),
+  bottom: vw(12),
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "12px",
       height: "12px",
-      right: "-18px",
+      left: "235px",
       bottom: "12px",
     },
     [breakpoints.mobile]: {
-      width: mvw(15),
-      height: mvw(15),
-      right: mvw(-20),
+      width: mvw(10),
+      height: mvw(10),
+      left: mvw(160),
       bottom: mvw(10),
     },
   },

@@ -1,6 +1,7 @@
 import { style, keyframes } from "@vanilla-extract/css";
 import { vw, mvw, breakpoints } from "@/shared/styles/responsive.css";
 import { fontFamily } from "@/shared/styles/fonts.css";
+import { Poppins } from "next/font/google";
 
 const slideInAnimation = keyframes({
   "0%": {
@@ -69,7 +70,6 @@ export const slideIn = style({
 
 export const modal = style({
   backgroundColor: "#FFFDF7",
-  borderRadius: 0,
   width: "100%",
   height: "100%",
   maxHeight: "100vh",
@@ -117,7 +117,7 @@ export const modalHeader = style({
     bottom: 0,
     left: vw(50),
     right: vw(50),
-    height: "2px",
+    height: "1px",
     backgroundColor: "#272727",
   },
   "@media": {
@@ -143,12 +143,14 @@ export const headerContent = style({
 });
 
 export const title = style({
-  fontFamily: fontFamily.poppins,
-  fontWeight: 700,
-  fontSize: vw(20),
-  letterSpacing: vw(2),
-  color: "#272727",
   margin: 0,
+  fontFamily: fontFamily.poppins,
+  fontWeight: 600,
+  fontSize: vw(20),
+  lineHeight: "100%",
+  letterSpacing: "0%",
+  color: "#272727",
+
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(20),
@@ -158,10 +160,12 @@ export const title = style({
 });
 
 export const modalBody = style({
-  padding: vw(50),
+  padding: `0 ${vw(50)} 0 ${vw(50)}`,
   display: "flex",
   flexDirection: "column",
   gap: vw(32),
+  height: "calc(100% - 92px)",
+  justifyContent: "space-between",
   "@media": {
     [breakpoints.mobile]: {
       padding: mvw(24),
@@ -173,18 +177,26 @@ export const modalBody = style({
 export const loginSection = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(24),
+  padding: `${vw(124)} ${vw(80)} 0 ${vw(80)}`,
+  gap: vw(32),
+  flex: "1",
+  height: vw(648),
+  minHeight: vw(648),
   "@media": {
     [breakpoints.mobile]: {
-      gap: mvw(16),
+      gap: mvw(20),
+      padding: `${mvw(60)} ${mvw(24)} 0 ${mvw(24)}`,
+      height: "auto",
     },
   },
 });
 
 export const loginTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  fontSize: vw(20),
+  fontSize: vw(24),
+  lineHeight: "150%",
+  letterSpacing: "0%",
   color: "#272727",
   margin: 0,
   display: "flex",
@@ -239,7 +251,6 @@ export const iconSquare = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: vw(8),
   flexShrink: 0,
   "@media": {
     [breakpoints.mobile]: {
@@ -255,19 +266,13 @@ export const loginButton = style({
   height: vw(60),
   backgroundColor: "#FFFDF7",
   border: "1px solid #E5E5E5",
-  borderRadius: vw(8),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  transition: "transform 0.2s, box-shadow 0.2s",
   fontFamily: "'Pretendard', sans-serif",
   fontSize: vw(14),
   fontWeight: 500,
-  ":hover": {
-    transform: "translateY(-2px)",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-  },
   "@media": {
     [breakpoints.mobile]: {
       height: mvw(50),
@@ -303,22 +308,27 @@ export const illustrationSection = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  minHeight: vw(200),
+  height: vw(270),
+  marginTop: "auto",
+  marginBottom: vw(60),
+  width: "100%",
   "@media": {
     [breakpoints.mobile]: {
-      minHeight: mvw(150),
+      height: mvw(120),
+      marginBottom: mvw(30),
     },
   },
 });
 
 export const illustrationImage = style({
   width: "100%",
-  height: "auto",
-  maxHeight: vw(200),
+  height: "100%",
+  maxHeight: vw(270),
   objectFit: "contain",
+  objectPosition: "center",
   "@media": {
     [breakpoints.mobile]: {
-      maxHeight: mvw(150),
+      maxHeight: mvw(120),
     },
   },
 });
@@ -359,9 +369,10 @@ export const signupSection = style({
   display: "flex",
   flexDirection: "column",
   gap: vw(30),
-  alignItems: "center",
-  justifyContent: "center",
-  padding: vw(40),
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+
+  padding: `${vw(124)} ${vw(80)} ${vw(80)} 0`,
   "@media": {
     [breakpoints.mobile]: {
       gap: mvw(24),
@@ -371,9 +382,11 @@ export const signupSection = style({
 });
 
 export const signupTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(24),
+  lineHeight: "150%",
+  letterSpacing: "0%",
   color: "#272727",
   margin: 0,
   "@media": {
@@ -384,12 +397,15 @@ export const signupTitle = style({
 });
 
 export const signupText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
-  fontSize: vw(18),
-  lineHeight: 1.6,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 200,
+  fontSize: vw(20),
+
+  lineHeight: "150%",
+  letterSpacing: "0%",
+
   color: "#14AEFF",
-  textAlign: "center",
+  textAlign: "left",
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(16),
@@ -402,7 +418,6 @@ export const backButton = style({
   backgroundColor: "#14AEFF",
   color: "#FFFFFF",
   border: "none",
-  borderRadius: vw(8),
   fontFamily: "'Pretendard', sans-serif",
   fontSize: vw(14),
   fontWeight: 500,
@@ -427,7 +442,6 @@ export const illustrationPlaceholder = style({
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: "#F5F5F5",
-  borderRadius: vw(8),
   color: "#999",
   fontSize: vw(14),
   "@media": {
