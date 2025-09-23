@@ -108,11 +108,11 @@ export default function ScalpTreatmentPage() {
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             {/* 영상 영역 */}
-            <div className={styles.videoContainer}>
+            <div className={styles.scalpTreatmentVideoContainer}>
               <iframe
                 src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
-                style={{ border: "none" }}
+                style={{ border: "none", borderRadius: "0px" }}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 onLoad={handleVimeoLoad}
