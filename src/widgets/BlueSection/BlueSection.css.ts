@@ -96,8 +96,8 @@ export const mobileMainTitle = style({
 // 모바일 서브 설명
 export const mobileSubDescription = style({
   display: "none", // 기본적으로 숨김 (데스크탑)
-  fontFamily: "'Pretendard', sans-serif",
-  fontWeight: 300,
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500, // Medium weight
   fontSize: mvw(14), // 375px 기준 14px
   lineHeight: "150%",
   letterSpacing: "0",
@@ -445,7 +445,7 @@ export const reYouTitle = style({
   margin: 0,
   position: "relative",
   zIndex: 1,
-  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  // textShadow 제거
 });
 
 // 한글 서브타이틀 (1920px 기준)
@@ -460,7 +460,7 @@ export const reYouSubtitle = style({
   opacity: 0.95,
   position: "relative",
   zIndex: 1,
-  textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
+  // textShadow 제거
 });
 
 // 그래피티 배경 이미지 (1920px 기준) - 데스크톱용
@@ -659,9 +659,8 @@ export const whatBanalDescription = style({
 });
 
 export const whatBanalSubDescription1 = style({
-  fontFamily: "'Pretendard', sans-serif",
-  fontWeight: 300,
-  fontStyle: "Light",
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
   ...responsiveFont(23), // 1920px 기준 23px
   lineHeight: vw(35), // 1920px 기준 35px
   letterSpacing: "0",
@@ -678,9 +677,8 @@ export const whatBanalSubDescription1 = style({
 });
 
 export const whatBanalSubDescription2 = style({
-  fontFamily: "'Pretendard', sans-serif",
-  fontWeight: 300,
-  fontStyle: "Light",
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
   ...responsiveFont(23), // 1920px 기준 23px
   lineHeight: vw(35), // 1920px 기준 35px
   letterSpacing: "0",
@@ -739,8 +737,8 @@ export const whatBanalSubDescription1Mobile = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'Pretendard', sans-serif",
-      fontWeight: 300,
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
       fontSize: mvw(14), // 375px 기준 14px (더 작게)
       lineHeight: "150%", // 150% line height
       letterSpacing: "0",
@@ -771,8 +769,8 @@ export const whatBanalSubDescription2Mobile = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'Pretendard', sans-serif",
-      fontWeight: 300,
+      fontFamily: "'S-Core Dream', sans-serif",
+      fontWeight: 400,
       fontSize: mvw(13), // 375px 기준 13px (더 작게)
       lineHeight: "150%", // 150% line height
       letterSpacing: "0",
@@ -852,13 +850,10 @@ export const featureItem = style({
   gap: vw(24), // 1920px 기준 24px로 늘림
   padding: `${vw(20)} 0`, // 1920px 기준 20px로 늘림
   borderBottom: `${vw(1)} solid #14aeff`, // 1920px 기준 1px (모든 아이템에 하단 border)
-  cursor: "pointer",
+  cursor: "default", // 클릭 커서 제거
   textDecoration: "none",
   color: "#272727",
-  transition: "background-color 0.3s ease",
-  ":hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-  },
+  // 호버 효과 제거
   "@media": {
     [breakpoints.desktopLarge]: {
       display: "flex",
@@ -1421,7 +1416,7 @@ export const doctorsTextSection = style({
   flexShrink: 0,
   ...responsiveProperty("flexBasis", 520), // 1920px 기준 520px 고정 너비
   "@media": {
-    "screen and (max-width: 1024px)": {
+    [breakpoints.mobile]: {
       flex: "none",
       width: "100%",
     },
@@ -1435,30 +1430,29 @@ export const doctorsMainTitle = style({
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
-  margin: "0",
-  ...responsiveProperty("marginBottom", 24), // 1920px 기준 24px
+  marginBottom: vw(80),
 });
 
 export const doctorsSubTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 500,
   ...responsiveFont(24), // 1920px 기준 24px
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
-  ...responsiveProperty("marginBottom", 16), // 1920px 기준 16px
+  marginBottom: vw(32),
 });
 
 export const doctorsDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 300,
   ...responsiveFont(18), // 1920px 기준 18px
   lineHeight: "160%",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
-  ...responsiveProperty("marginBottom", 40), // 1920px 기준 40px
+  marginBottom: vw(80),
 });
 
 export const doctorsImageGrid = style({

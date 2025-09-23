@@ -17,16 +17,30 @@ export default function DesktopNav({
 }: DesktopNavProps) {
   const pathname = usePathname();
 
+  // 현재 경로가 네비게이션 아이템에 속하는지 확인
+  const isActive = (item: typeof NAVIGATION_ITEMS[0]) => {
+    if (item.href && pathname === item.href) return true;
+    if (item.submenu) {
+      return item.submenu.some(sub => pathname === sub.href);
+    }
+    return false;
+  };
+
   return (
     <nav className={styles.desktopNav}>
       {NAVIGATION_ITEMS.map((item) => (
         <div key={item.title} className={styles.navItemWrapper}>
           {item.href ? (
-            <Link href={item.href} className={styles.navLink}>
-              {item.title}
+            <Link
+              href={item.href}
+              className={`${styles.navLink} ${isActive(item) ? styles.navLinkActive : ''}`}
+            >
+              <span className={styles.navLinkText}>{item.title}</span>
             </Link>
           ) : (
-            <span className={styles.navLink}>{item.title}</span>
+            <span className={`${styles.navLink} ${isActive(item) ? styles.navLinkActive : ''}`}>
+              <span className={styles.navLinkText}>{item.title}</span>
+            </span>
           )}
           {/* 커튼이 열려있으면 서브메뉴 항상 렌더링 */}
           {item.submenu && (

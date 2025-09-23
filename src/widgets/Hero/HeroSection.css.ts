@@ -124,25 +124,31 @@ export const blueSectionOverlay = style({
 export const contentWrapper = style({
   position: "absolute",
   top: "50%",
-  right: vw(192), // 1920px 기준 오른쪽에서 192px (10%)
   transform: "translateY(-50%)", // 수직 중앙 정렬
   zIndex: tokens.zIndex.content,
   width: "auto",
-  maxWidth: vw(600), // 1920px 기준 600px
   display: "flex",
   alignItems: "flex-end", // 하단 정렬
   justifyContent: "flex-end", // 오른쪽 정렬
-  padding: `0 ${vw(32)}`, // 1920px 기준 32px
+  right: vw(356), // vw로 비례 스케일링
+  maxWidth: vw(600), // vw로 비례 스케일링
+  padding: `0 ${vw(32)}`, // vw로 비례 스케일링
+
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    // desktopLarge: 1920px 이상 (고정 위치)
+    [breakpoints.desktopLarge]: {
+      right: "calc(50% - 960px + 192px)", // 화면 중앙 기준으로 1920px 컨테이너 내에서 192px
+      maxWidth: "600px", // 고정 픽셀값
+      padding: "0 32px", // 고정 픽셀값
+    },
+    // desktop: 1024px ~ 1919px (비례 스케일링)
     [breakpoints.desktop]: {},
+    // mobile: max-width 1023px
     [breakpoints.mobile]: {
-      position: "absolute", // absolute로 변경
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)", // 중앙 정렬
+      position: "absolute",
+      top: "30%",
+      left: mvw(16),
       right: "auto",
-      width: "90%",
       maxWidth: "none",
       padding: 0,
       alignItems: "center",
@@ -153,17 +159,29 @@ export const contentWrapper = style({
 
 // 텍스트 콘텐츠 컨테이너 - 피그마 디자인 크기
 export const textContent = style({
-  width: vw(439),
-  height: vw(570),
   display: "flex",
   flexDirection: "column",
   position: "relative",
   zIndex: tokens.zIndex.content,
   alignItems: "flex-end", // 오른쪽 정렬
   justifyContent: "center", // 중앙 정렬
+
+  // 기본값 (모바일 우선)
+  width: vw(439),
+  height: vw(570),
+
   "@media": {
-    [breakpoints.desktopLarge]: {},
-    [breakpoints.desktop]: {},
+    // desktop: 1024px ~ 1919px (비례 스케일링)
+    [breakpoints.desktop]: {
+      width: vw(439), // vw로 비례 스케일링
+      height: vw(570), // vw로 비례 스케일링
+    },
+    // desktopLarge: 1920px 이상 (고정 크기)
+    [breakpoints.desktopLarge]: {
+      width: "439px", // 고정 픽셀값
+      height: "570px", // 고정 픽셀값
+    },
+    // mobile: max-width 1023px
     [breakpoints.mobile]: {
       width: "auto",
       height: "auto",
@@ -212,7 +230,7 @@ export const storyText = style({
   zIndex: tokens.zIndex.text,
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
-  textAlign: "right", // 오른쪽 정렬
+  textAlign: "left", // 오른쪽 정렬
   display: "block",
   width: "100%",
 

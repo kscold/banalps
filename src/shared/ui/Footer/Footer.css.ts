@@ -7,7 +7,7 @@ import { style } from "@vanilla-extract/css";
 
 // Footer Section - 1920px 기준 피그마 디자인 기반
 export const footerSection = style({
-  backgroundColor: "#73d5fa",
+  backgroundColor: "#73D5FA",
   padding: vw(48),
   color: "#ffffff",
   "@media": {
@@ -16,7 +16,6 @@ export const footerSection = style({
     },
     [breakpoints.mobile]: {
       padding: `${mvw(80)} ${mvw(16)} ${mvw(100)} ${mvw(16)}`, // Figma: 상단 80px, 좌우 16px, 하단 120px
-      backgroundColor: "#73D5FA",
       minHeight: "556px", // Figma: 556px 높이
       position: "relative",
     },
@@ -84,7 +83,7 @@ export const footerCompanyInfo = style({
 
 export const footerClinicName = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400, // Regular로 변경
   ...responsiveFont(14),
   lineHeight: vw(20),
   letterSpacing: "0",
@@ -99,7 +98,7 @@ export const footerClinicName = style({
 
 export const footerRepresentative = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400, // Regular로 변경
   ...responsiveFont(14),
   lineHeight: vw(20),
   letterSpacing: "0",
@@ -138,7 +137,7 @@ export const footerRightSection = style({
 
 export const footerAddress = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400, // Regular로 변경
   ...responsiveFont(14),
   lineHeight: vw(20),
   letterSpacing: "0",

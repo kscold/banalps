@@ -49,7 +49,7 @@ export default function WhiteSection() {
               color="blue"
               size="medium"
               className={styles.mobileCardButton}
-              onClick={() => router.push('/hair-transplant/crown')}
+              onClick={() => router.push("/hair-transplant/crown")}
             >
               정수리이식
             </ArrowButton>
@@ -67,7 +67,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
-              onClick={() => router.push('/forehead/hair-transplant')}
+              onClick={() => router.push("/forehead/hair-transplant")}
             >
               이마 축소 수술
             </ArrowButton>
@@ -85,7 +85,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
-              onClick={() => router.push('/hair-transplant/hairline')}
+              onClick={() => router.push("/hair-transplant/hairline")}
             >
               헤어라인 교정
             </ArrowButton>
@@ -103,7 +103,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
-              onClick={() => router.push('/hair-transplant/revision')}
+              onClick={() => router.push("/hair-transplant/revision")}
             >
               바날 재수술
             </ArrowButton>
@@ -122,7 +122,7 @@ export default function WhiteSection() {
               width="100%"
               textAlign="center"
               className={styles.mobileViewMoreButton}
-              onClick={() => router.push('/before-after')}
+              onClick={() => router.push("/before-after")}
             >
               View More
             </ArrowButton>
@@ -136,7 +136,9 @@ export default function WhiteSection() {
             {/* 상단 행 - 큰 카드(왼쪽) + 작은 카드(오른쪽) */}
             <div className={styles.topRow}>
               {/* 카드 1: 정수리 이식 (왼쪽 위 - 큰 카드) */}
-              <div className={`${styles.serviceCard} ${styles.serviceCardWide}`}>
+              <div
+                className={`${styles.serviceCard} ${styles.serviceCardWide}`}
+              >
                 <img
                   src="/main/white-section/white_section_2.jpg"
                   alt="정수리 이식"
@@ -152,7 +154,7 @@ export default function WhiteSection() {
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
-                  onClick={() => router.push('/hair-transplant/crown')}
+                  onClick={() => router.push("/hair-transplant/crown")}
                 >
                   정수리 이식
                 </ArrowButton>
@@ -169,13 +171,13 @@ export default function WhiteSection() {
                   variant="primary"
                   size="medium"
                   color="blue"
-                  className={styles.cardButton}
+                  className={styles.cardButtonWide}
                   width={180}
                   fontSize={18}
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
-                  onClick={() => router.push('/hair-transplant/hairline')}
+                  onClick={() => router.push("/hair-transplant/hairline")}
                 >
                   헤어라인 교정
                 </ArrowButton>
@@ -201,14 +203,16 @@ export default function WhiteSection() {
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
-                  onClick={() => router.push('/forehead/hair-transplant')}
+                  onClick={() => router.push("/forehead/hair-transplant")}
                 >
                   이마 축소 수술
                 </ArrowButton>
               </div>
 
               {/* 카드 4: 바날 재수술 (오른쪽 아래 - 큰 카드) */}
-              <div className={`${styles.serviceCard} ${styles.serviceCardWide}`}>
+              <div
+                className={`${styles.serviceCard} ${styles.serviceCardWide}`}
+              >
                 <img
                   src="/main/white-section/white_section_5.jpg"
                   alt="바날 재수술"
@@ -224,7 +228,7 @@ export default function WhiteSection() {
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
-                  onClick={() => router.push('/hair-transplant/revision')}
+                  onClick={() => router.push("/hair-transplant/revision")}
                 >
                   바날 재수술
                 </ArrowButton>
@@ -243,7 +247,7 @@ export default function WhiteSection() {
             <ArrowButton
               size="medium"
               className={styles.viewMoreButton}
-              onClick={() => router.push('/before-after')}
+              onClick={() => router.push("/before-after")}
             >
               View More
             </ArrowButton>
@@ -257,39 +261,39 @@ export default function WhiteSection() {
       </div>
       {/* We're Ready When You Are 섹션 */}
       <section className={styles.readySection}>
-        <div className={styles.readySectionContainer}>
-          {/* Hero Illustration - 왼쪽에 붙도록 */}
-          <div className={styles.readyHeroIllustration}>
-            <img
-              src="/hair-transplant/hero-illustration.svg"
-              alt="메인 페이지 일러스트"
-              className={styles.readyIllustrationImage}
-            />
-          </div>
+        {/* <div className={styles.readySectionContainer}> */}
+        {/* Hero Illustration - 왼쪽에 붙도록 */}
+        <div className={styles.readyHeroIllustration}>
+          <img
+            src="/hair-transplant/hero-illustration.svg"
+            alt="메인 페이지 일러스트"
+            className={styles.readyIllustrationImage}
+          />
+        </div>
 
-          {/* Ready Title - 중앙에 배치 */}
-          <div className={styles.readyTitleWrapper}>
-            <div className={styles.readyTitleContainer}>
-              <h2 className={styles.readyMainTitle}>
-                We&apos;re Ready
+        {/* Ready Title - 중앙에 배치 */}
+        <div className={styles.readyTitleWrapper}>
+          <div className={styles.readyTitleContainer}>
+            <h2 className={styles.readyMainTitle}>
+              We&apos;re Ready
+              <br />
+              When You Are.
+            </h2>
+            <div className={styles.readyDescription}>
+              <p className={styles.readyDescriptionText}>
+                신뢰할 수 있는 전문성과 정직한 마음으로
                 <br />
-                When You Are.
-              </h2>
-              <div className={styles.readyDescription}>
-                <p className={styles.readyDescriptionText}>
-                  신뢰할 수 있는 전문성과 정직한 마음으로
-                  <br />
-                  모든 준비를 마친 이곳에서 당신을 기다립니다.
-                </p>
-                <p className={styles.readyDescriptionText}>
-                  이제, 바람부는날에도
-                  <br />
-                  기분 좋은 일상을 맞이하시길 바랍니다.
-                </p>
-              </div>
+                모든 준비를 마친 이곳에서 당신을 기다립니다.
+              </p>
+              <p className={styles.readyDescriptionText}>
+                이제, 바람부는날에도
+                <br />
+                기분 좋은 일상을 맞이하시길 바랍니다.
+              </p>
             </div>
           </div>
         </div>
+        {/* </div> */}
       </section>
 
       {/* 오시는 길 섹션 */}

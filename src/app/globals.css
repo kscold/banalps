@@ -90,6 +90,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-ivory: #FDFCF8;
+  --color-blue: #1E3A8A;
 }
 
 @theme inline {
@@ -108,9 +110,11 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--color-ivory);
   color: var(--foreground);
   font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 section {

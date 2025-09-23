@@ -40,7 +40,11 @@ export default function HeaderNavigation() {
             {/* 로고 영역 */}
             <div className={styles.logoWrapper}>
               <Link href="/" className={styles.logoLink}>
-                <span className={styles.logoText}>바람부는날에도</span>
+                <img
+                  src="/main/logo/logo.svg"
+                  alt="바람부는날에도"
+                  className={styles.logoImage}
+                />
               </Link>
             </div>
 
@@ -53,17 +57,23 @@ export default function HeaderNavigation() {
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
               {status === "loading" ? (
-                <button className={styles.loginButton} disabled>...</button>
+                <button className={styles.loginButton} disabled>
+                  ...
+                </button>
               ) : session ? (
-                <button className={styles.loginButton} onClick={handleLogout}>LOGOUT</button>
+                <button className={styles.loginButton} onClick={handleLogout}>
+                  LOGOUT
+                </button>
               ) : (
-                <button className={styles.loginButton} onClick={openLoginModal}>LOGIN</button>
+                <button className={styles.loginButton} onClick={openLoginModal}>
+                  LOGIN
+                </button>
               )}
 
               {/* 언어 선택 버튼 */}
               <button className={styles.consultButton}>
                 <span>KR</span>
-                <span className={styles.dropdownArrow}>▾</span>
+                <span className={styles.dropdownArrow}>▼</span>
               </button>
             </div>
 

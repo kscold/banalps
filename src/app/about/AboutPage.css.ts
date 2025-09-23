@@ -71,10 +71,10 @@ export const heroContent = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  maxWidth: vw(618), // 피그마 기준 텍스트 영역 너비
+  maxWidth: vw(715), // 피그마 기준 텍스트 영역 너비
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "618px",
+      maxWidth: "715px",
     },
   },
 });
@@ -135,16 +135,16 @@ export const heroIllustration = style({
 
 export const heroIllustrationMobile = style({
   width: "100%",
-  maxWidth: vw(1571), // 피그마 기준 일러스트 너비
+  maxWidth: "100%",
   display: "flex",
   justifyContent: "center",
+  padding: `0 ${mvw(20)}`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "1571px",
+      display: "none",
     },
-    [breakpoints.mobile]: {
-      maxWidth: "100%",
-      padding: `0 ${mvw(20)}`,
+    [breakpoints.desktop]: {
+      display: "none",
     },
   },
 });
@@ -229,10 +229,10 @@ export const valuesMainTitle = style({
   lineHeight: "120%",
   letterSpacing: "-1.8px",
   color: "#000000",
-  margin: `0 0 ${vw(32)} 0`,
+  margin: `0 0 ${vw(80)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      margin: "0 0 32px 0",
+      margin: "0 0 80px 0",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(36),
@@ -247,7 +247,7 @@ export const valuesMainTitle = style({
 
 export const valuesDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
+  fontWeight: 200,
   ...responsiveFont(24),
   lineHeight: "150%",
   color: "#000000",

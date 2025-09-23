@@ -1,14 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import * as styles from "./GoogleMapEmbed.css";
-
-const BANAL_LOCATION = {
-  lat: 37.5147,
-  lng: 127.0229,
-  address: "서울특별시 서초구 신반포로47길 66 (잠원동)",
-  name: "바날 성형외과",
-};
 
 interface GoogleMapEmbedProps {
   showButtons?: boolean;
@@ -17,13 +9,6 @@ interface GoogleMapEmbedProps {
 export default function GoogleMapEmbed({
   showButtons = false,
 }: GoogleMapEmbedProps) {
-  const [mapLoaded, setMapLoaded] = useState(false);
-
-  // Place API를 사용한 임베드 URL (마커 표시, 정보창 숨김)
-  const placeEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(
-    BANAL_LOCATION.name
-  )}&center=${BANAL_LOCATION.lat},${BANAL_LOCATION.lng}&zoom=16`;
-
   const openKakaoMap = () => {
     window.open(
       `https://map.kakao.com/?urlX=504082.0000000018&urlY=1114925.9999999998&urlLevel=3&itemId=181074248&q=%EB%B0%94%EB%9E%8C%EB%B6%80%EB%8A%94%EB%82%A0%EC%97%90%EB%8F%84%EC%84%B1%ED%98%95%EC%99%B8%EA%B3%BC%EC%9D%98%EC%9B%90&srcid=181074248&map_type=TYPE_MAP`,
@@ -38,22 +23,11 @@ export default function GoogleMapEmbed({
   return (
     <>
       <div className={styles.mapWrapper}>
-        {!mapLoaded && (
-          <div className={styles.loadingOverlay}>
-            <div className={styles.loadingText}>지도를 불러오는 중...</div>
-          </div>
-        )}
-        <iframe
-          src={placeEmbedUrl}
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          onLoad={() => setMapLoaded(true)}
+        <img
+          src="/treatment-guide/map.png"
+          alt="바날 성형외과 위치"
           className={styles.mapIframe}
-          title="바날 성형외과 위치"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </div>
 

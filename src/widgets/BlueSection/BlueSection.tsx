@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import * as styles from "./BlueSection.css";
 import { ArrowButton } from "../../shared/ui/ArrowButton";
 
@@ -116,40 +116,64 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
       {/* 이미지 카드 섹션 - Figma 정확 반영 */}
       <div className={styles.imageCardsSection}>
         {/* 이미지 카드 1 */}
-        <div className={styles.imageCard1}>
+        <motion.div
+          className={styles.imageCard1}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0 }}
+        >
           <img
             src="/main/shot/shot1.png"
             alt="Shin Seung gyu"
             className={styles.cardImage}
           />
-        </div>
+        </motion.div>
 
         {/* 이미지 카드 2 */}
-        <div className={styles.imageCard2}>
+        <motion.div
+          className={styles.imageCard2}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <img
             src="/main/shot/shot2.png"
             alt="Park Soo Ho"
             className={styles.cardImage}
           />
-        </div>
+        </motion.div>
 
         {/* 이미지 카드 3 */}
-        <div className={styles.imageCard3}>
+        <motion.div
+          className={styles.imageCard3}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <img
             src="/main/shot/shot3.png"
             alt="Kim Narae"
             className={styles.cardImage}
           />
-        </div>
+        </motion.div>
 
         {/* 이미지 카드 4 */}
-        <div className={styles.imageCard4}>
+        <motion.div
+          className={styles.imageCard4}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <img
             src="/main/shot/shot4.png"
             alt="의료진 4"
             className={styles.cardImage}
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* RE.YOU 텍스트 섹션 */}
@@ -216,8 +240,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               바람부는날에도 성형외과의원
             </p>
             <p className={styles.whatBanalSubDescription2}>
-              바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머,
-              당신의 내일을 설계합니다.
+              바날은 모발 수술에 대한 섬세한 기술과 감각으로
+              <br />
+              시술 그 너머, 당신의 내일을 설계합니다.
             </p>
             <div className={styles.whatBanalButtonDesktop}>
               <ArrowButton
@@ -248,19 +273,25 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               ][index];
 
               return (
-                <Link
+                <motion.div
                   key={index}
-                  href={service.href}
-                  className={`${styles.featureItem} ${styles.featureItemAnimated} ${delayClass}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className={styles.featureNumber}>{service.number}</div>
-                  <div className={styles.featureContent}>
-                    <h3 className={styles.featureTitle}>{service.title}</h3>
-                    <p className={styles.featureDescription}>
-                      {service.description}
-                    </p>
+                  <div
+                    className={`${styles.featureItem} ${styles.featureItemAnimated} ${delayClass}`}
+                  >
+                    <div className={styles.featureNumber}>{service.number}</div>
+                    <div className={styles.featureContent}>
+                      <h3 className={styles.featureTitle}>{service.title}</h3>
+                      <p className={styles.featureDescription}>
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                </Link>
+                </motion.div>
               );
             })}
           </div>

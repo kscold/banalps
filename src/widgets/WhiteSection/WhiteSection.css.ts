@@ -31,7 +31,7 @@ export const whiteSection = style({
 // 상단 히어로 이미지 컨테이너 (1920px 기준)
 export const heroImageContainer = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
-  aspectRatio: "1600 / 400", // 적당한 비율 설정
+  aspectRatio: "1600 / 540", // 적당한 비율 설정
   overflow: "hidden",
   borderRadius: vw(12),
   marginTop: vw(240), // 1920px 기준 80px
@@ -429,17 +429,17 @@ export const leftContentArea = style({
   flex: "1", // flex로 유연하게 크기 조정 (남은 공간 대부분 차지)
   display: "flex",
   ...responsiveProperty("gap", 20.29), // Frame 416과 Mask group 사이 간격
-  minHeight: vw(500),
+  height: vw(500), // 명시적 높이 설정
   minWidth: 0, // flex shrink를 위해 필요
   "@media": {
     [breakpoints.desktopLarge]: {
-      minHeight: "500px",
+      height: "500px", // 명시적 높이로 변경
       gap: "20.29px",
     },
     [breakpoints.mobile]: {
       flex: "1",
       flexDirection: "column",
-      minHeight: "auto",
+      height: "auto", // 모바일에서는 자동 높이
       gap: "20px",
     },
   },
@@ -447,8 +447,8 @@ export const leftContentArea = style({
 
 // Frame 416 - 왼쪽 이미지 영역 (385 x 500)
 export const locationImageArea = style({
-  width: "34.3%", // 385 / 1121.29 ≈ 34.3% (비례적 크기)
-  aspectRatio: "385 / 500", // 비율 유지
+  width: vw(385), // 385 / 1121.29 ≈ 34.3% (비례적 크기)
+  height: vw(500), // 500px 높이
   borderRadius: vw(8),
   overflow: "hidden",
   backgroundColor: "#F5F5F5",
@@ -456,10 +456,13 @@ export const locationImageArea = style({
   flexShrink: 0, // 크기 유지
   "@media": {
     [breakpoints.desktopLarge]: {
+      width: "385px", // 고정값
+      height: "500px", // 고정값
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100%",
+      height: "auto",
       aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
     },
   },
@@ -476,16 +479,18 @@ export const locationImage = style({
 // Mask group - 지도 영역 (724.29 x 500)
 export const mapArea = style({
   flex: "1", // 남은 공간 모두 사용 (724.29 / 1121.29 ≈ 64.6%)
-  aspectRatio: "724.29 / 500", // 비율 유지
+  height: vw(500), // 명시적 높이 설정
   borderRadius: vw(8),
   overflow: "hidden",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
+      height: "500px", // 고정 높이
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100%",
+      height: "auto",
       aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
     },
   },
@@ -494,7 +499,7 @@ export const mapArea = style({
 // Frame 318 - 오른쪽 정보 영역 (430.71 x 500)
 export const locationInfo = style({
   width: vw(350), // vw 단위로 변경
-  minHeight: vw(500),
+  height: vw(500), // 명시적 높이 설정
   flexShrink: 0, // 크기 유지
   display: "flex",
   flexDirection: "column",
@@ -503,15 +508,16 @@ export const locationInfo = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "350px",
-      minHeight: "500px",
+      height: "500px", // 명시적 높이로 변경
       gap: "20px",
     },
     [`screen and (max-width: 1400px)`]: {
       width: "300px", // 중간 크기 화면에서 더 작게
+      height: "450px", // 중간 사이즈에서도 명시적 높이
     },
     [breakpoints.mobile]: {
       width: "100%",
-      minHeight: "auto",
+      height: "auto", // 모바일에서는 자동 높이
       justifyContent: "flex-start", // 모바일에서는 위쪽 정렬
       gap: "30px", // 모바일에서 간격
     },
@@ -623,27 +629,25 @@ export const subwayInfo = style({
   },
 });
 
-// ==================== WE'RE READY WHEN YOU ARE SECTION ====================
-
 // Ready Section - 헤어라인 페이지와 유사한 구조
 export const readySection = style({
   position: "relative",
   width: "100%",
-  // minHeight: "100vh",
+  height: vw(780),
   overflow: "hidden",
   backgroundColor: "#FFFFFF",
-  paddingTop: vw(120),
-  paddingBottom: vw(120),
+  marginTop: vw(240),
   marginBottom: vw(120),
+  maxWidth: "1920px", // Hero는 1920px 전체 사용
   "@media": {
-    [breakpoints.desktopLarge]: {
-      paddingTop: "120px",
-      paddingBottom: "120px",
-      marginBottom: "120px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       paddingTop: "80px",
       paddingBottom: "80px",
+      display: "flex",
+      flexDirection: "column",
+      padding: 0, // 패딩 제거
+      minHeight: mvw(724),
     },
   },
 });
@@ -651,12 +655,11 @@ export const readySection = style({
 export const readySectionContainer = style({
   position: "relative",
   width: "100%",
-  maxWidth: "1920px", // Hero는 1920px 전체 사용
-  margin: "0 auto",
-  minHeight: vw(600),
+
+  minHeight: vw(780),
   "@media": {
     [breakpoints.desktopLarge]: {
-      minHeight: "600px",
+      minHeight: "780px",
     },
     [breakpoints.mobile]: {
       display: "flex",
@@ -671,18 +674,18 @@ export const readySectionContainer = style({
 export const readyHeroIllustration = style({
   position: "absolute",
   left: "0", // 화면 왼쪽부터 시작
-  width: vw(1750), // 헤더와 동일한 최대 너비 (패딩 제외한 1750px)
+  width: vw(1760), // 헤더와 동일한 최대 너비 (패딩 제외한 1750px)
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
   top: "50%",
   transform: "translateY(-50%)",
-  height: vw(800), // 1920px 기준 800px 높이로 조정 (더 적절한 비율)
+  height: vw(765), // 1920px 기준 600px 높이로 축소 (디자인에 맞게)
   zIndex: 1,
   objectFit: "cover",
   objectPosition: "right center", // 이미지를 오른쪽에 정렬
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1750px", // 1920px 이상에서 고정
-      height: "800px",
+      width: "1760px", // 1920px 이상에서 고정
+      height: "765px", // 600px로 축소
     },
     [breakpoints.mobile]: {
       position: "relative",

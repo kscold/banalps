@@ -72,13 +72,10 @@ const FullPageMain = () => {
     console.log(
       `[FullPageMain/비디오종료] 비디오 재생 완료 - 현재 섹션: ${currentSection} → 콘텐츠 섹션으로 이동`
     );
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setPreviousSection("video");
-      setCurrentSection("content");
-      setIsTransitioning(false);
-      console.log("[FullPageMain/비디오종료] 콘텐츠 섹션으로 전환 완료");
-    }, 300);
+    // 즉시 콘텐츠 섹션으로 전환 (전환 효과 없이)
+    setPreviousSection("video");
+    setCurrentSection("content");
+    console.log("[FullPageMain/비디오종료] 콘텐츠 섹션으로 전환 완료");
   };
 
   // 블루섹션에서 비디오로 복귀
@@ -105,7 +102,7 @@ const FullPageMain = () => {
     }
 
     let isScrolling = false;
-    const scrollDebounceTime = 1000;
+    const scrollDebounceTime = 1500; // 강한 스크롤에도 비디오 스킵 방지
 
     // 모바일 터치 이벤트 처리
     let touchStartY = 0;
@@ -338,10 +335,10 @@ const FullPageMain = () => {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSection}
-          initial={{ opacity: 0, y: 50 }}
+          initial={currentSection === "content" && previousSection === "video" ? false : { opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          exit={currentSection === "video" && previousSection === "content" ? false : { opacity: 0, y: -50 }}
+          transition={{ duration: currentSection === "content" ? 0.3 : 0.8, ease: "easeInOut" }}
           className="w-full h-full"
         >
           {renderSection()}

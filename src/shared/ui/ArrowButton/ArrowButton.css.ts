@@ -35,7 +35,7 @@ export const arrowButton = style({
   backgroundColor: "#FFFFFF",
   cursor: "pointer",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   letterSpacing: "0",
   textDecoration: "none",
@@ -59,7 +59,7 @@ export const arrowButton = style({
   fontSize: vw(20), // 1920px 기준 20px
 
   ":hover": {
-    backgroundColor: "#F8F9FA",
+    // Dim 효과 제거
     boxShadow: `0 ${vw(8)} ${vw(24)} rgba(0, 0, 0, 0.12)`,
   },
 
@@ -74,6 +74,14 @@ export const arrowButton = style({
   },
 
   "@media": {
+    // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
+    "(min-width: 1920px)": {
+      fontSize: "var(--desktop-font-size, 20px)",
+      height: "var(--desktop-height)",
+      width: "var(--desktop-width)",
+      paddingLeft: "var(--desktop-padding-left)",
+      paddingRight: "var(--desktop-padding-right)",
+    },
     [breakpoints.mobile]: {
       // 모바일에서 자동 너비 (position: absolute일 때는 width: auto로)
       width: "auto", // 기본값은 auto
@@ -96,7 +104,7 @@ export const arrowButton = style({
 export const buttonText = style({
   color: "#272727",
   transition: "color 0.3s ease",
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   letterSpacing: "0",
   whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
@@ -105,6 +113,10 @@ export const buttonText = style({
   fontSize: vw(20), // 1920px 기준 20px
 
   "@media": {
+    // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
+    "(min-width: 1920px)": {
+      fontSize: "var(--desktop-font-size, 20px)",
+    },
     [breakpoints.mobile]: {
       fontSize: "var(--mobile-font-size, " + mvw(14) + ")", // CSS 변수를 통한 모바일 폰트 크기
     },

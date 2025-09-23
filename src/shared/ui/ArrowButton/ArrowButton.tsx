@@ -117,11 +117,17 @@ export default function ArrowButton({
   }
 
   // 커스텀 스타일 생성
-  const customStyle: React.CSSProperties = {}
+  const customStyle: React.CSSProperties & Record<string, any> = {}
 
   if (fontSize) {
     // 숫자로 전달되면 1920px 기준 vw로 변환
-    customStyle.fontSize = typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize
+    if (typeof fontSize === 'number') {
+      customStyle.fontSize = `${(fontSize / 1920) * 100}vw`
+      // CSS 변수로 1920px+ 고정값 전달
+      customStyle['--desktop-font-size'] = `${fontSize}px`
+    } else {
+      customStyle.fontSize = fontSize
+    }
   }
 
   if (paddingVertical) {
@@ -133,23 +139,38 @@ export default function ArrowButton({
   if (paddingLeft === true && calculatedPadding.left && calculatedPadding.right) {
     customStyle.paddingLeft = calculatedPadding.left
     customStyle.paddingRight = calculatedPadding.right
+    // 1920px+ 고정값
+    customStyle['--desktop-padding-left'] = `${(parseFloat(calculatedPadding.left) * 19.2)}px`
+    customStyle['--desktop-padding-right'] = `${(parseFloat(calculatedPadding.right) * 19.2)}px`
   } else {
     if (typeof paddingLeft === 'number') {
       customStyle.paddingLeft = `${(paddingLeft / 1920) * 100}vw`
+      customStyle['--desktop-padding-left'] = `${paddingLeft}px`
     }
     if (paddingRight) {
       customStyle.paddingRight = `${(paddingRight / 1920) * 100}vw`
+      customStyle['--desktop-padding-right'] = `${paddingRight}px`
     }
   }
 
   if (width) {
     // 숫자로 전달되면 1920px 기준 vw로 변환
-    customStyle.width = typeof width === 'number' ? `${(width / 1920) * 100}vw` : width
+    if (typeof width === 'number') {
+      customStyle.width = `${(width / 1920) * 100}vw`
+      customStyle['--desktop-width'] = `${width}px`
+    } else {
+      customStyle.width = width
+    }
   }
 
   if (height) {
     // 숫자로 전달되면 1920px 기준 vw로 변환
-    customStyle.height = typeof height === 'number' ? `${(height / 1920) * 100}vw` : height
+    if (typeof height === 'number') {
+      customStyle.height = `${(height / 1920) * 100}vw`
+      customStyle['--desktop-height'] = `${height}px`
+    } else {
+      customStyle.height = height
+    }
   }
 
   if (textAlign) {
@@ -171,12 +192,13 @@ export default function ArrowButton({
         className={getTextStyle()}
         style={{
           ...(fontSize ? {
-            fontSize: typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize
+            fontSize: typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize,
+            '--desktop-font-size': typeof fontSize === 'number' ? `${fontSize}px` : undefined
           } : {}),
           ...(fontSizeMobile ? {
             '--mobile-font-size': typeof fontSizeMobile === 'number' ? `${(fontSizeMobile / 375) * 100}vw` : fontSizeMobile
           } as React.CSSProperties : {})
-        }}
+        } as React.CSSProperties}
       >
         {children}
       </span>
