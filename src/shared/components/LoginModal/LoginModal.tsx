@@ -6,7 +6,6 @@ import { useAuthStore } from "@/shared/stores/useAuthStore";
 import * as styles from "./LoginModal.css";
 
 export default function LoginModal() {
-  const { data: session } = useSession();
   const [isProcessing, setIsProcessing] = useState(false);
   const {
     isLoginModalOpen,
@@ -63,11 +62,7 @@ export default function LoginModal() {
               <h2 className={styles.title}>LOGIN</h2>
             </div>
             <button className={styles.closeButton} onClick={closeLoginModal}>
-              <img
-                src="/login/close.svg"
-                alt="Close"
-                // className={styles.iconImage}
-              />
+              <img src="/login/close.svg" alt="Close" />
             </button>
           </div>
 
@@ -202,13 +197,13 @@ export default function LoginModal() {
                     이제 바람 부는 날도 즐겁게 거에요.
                   </div>
                 </div>
-
                 {/* 하단 일러스트레이션 섹션 */}
                 <div className={styles.illustrationSection}>
-                  {/* 일러스트레이션은 나중에 추가할 예정 */}
-                  <div className={styles.illustrationPlaceholder}>
-                    일러스트레이션 영역
-                  </div>
+                  <img
+                    src="/login/login-illustration.svg"
+                    alt="Login Illustration"
+                    className={styles.illustrationImage}
+                  />
                 </div>
               </>
             ) : null}
