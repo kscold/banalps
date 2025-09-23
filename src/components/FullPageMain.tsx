@@ -123,7 +123,7 @@ const FullPageMain = () => {
     let scrollResetTimeout: NodeJS.Timeout | null = null;
     const scrollCooldown = 1200; // 스크롤 간 최소 간격 증가
     const scrollDebounceTime = 1500; // debounce 시간 증가
-    const scrollThreshold = 10; // 스크롤 누적 임계값
+    const scrollThreshold = 4; // 스크롤 누적 임계값
 
     // 모바일 터치 이벤트 처리
     let touchStartY = 0;
@@ -139,36 +139,58 @@ const FullPageMain = () => {
       touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
 
-      // 콘텐츠 섹션에서의 터치 처리
-      if (currentSection === "content") {
-        if (deltaY < -50 && window.scrollY <= 10) {
-          // 아래로 스와이프 (위로 스크롤)
-          console.log("[FullPageMain/터치] 콘텐츠에서 비디오로");
-          setIsVideoReady(false);
-          setPreviousSection("content");
-          setIsTransitioning(true);
-          setCurrentSection("video");
-          setTimeout(() => {
-            setIsTransitioning(false);
-          }, 500);
-        }
-        return;
-      }
+      // 최소 스와이프 거리 체크
+      if (Math.abs(deltaY) < 50) return;
 
-      // 비디오 섹션에서의 터치 처리
-      if (Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection === "video") {
-          // 위로 스와이프 (아래로 스크롤)
-          console.log("[FullPageMain/터치] 비디오에서 콘텐츠로");
-          setPreviousSection("video");
-          setCurrentSection("content");
-        } else if (deltaY < 0 && currentSection === "video") {
-          // 아래로 스와이프 (위로 스크롤)
-          console.log("[FullPageMain/터치] 비디오에서 히어로로");
-          setPreviousSection("video");
-          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
-          setCurrentSection("hero");
-        }
+      switch (currentSection as SectionType) {
+        case "content":
+          if (deltaY < -50 && window.scrollY === 0) {
+            // 아래로 스와이프 (위로 스크롤) - 정확히 최상단일 때만
+            console.log("[FullPageMain/터치] 콘텐츠에서 비디오로 (scrollY: " + window.scrollY + ")");
+            setIsVideoReady(false);
+            setPreviousSection("content");
+            setIsTransitioning(true);
+            setCurrentSection("video");
+            setTimeout(() => {
+              setIsTransitioning(false);
+            }, 500);
+          }
+          break;
+
+        case "hero":
+          if (deltaY > 0 && heroCompleted) {
+            // 위로 스와이프 (아래로 스크롤 - 비디오로)
+            console.log("[FullPageMain/터치] 히어로에서 비디오로");
+            setPreviousSection("hero");
+            setCurrentSection("video");
+          }
+          break;
+
+        case "video":
+          if (deltaY > 0) {
+            // 위로 스와이프 (아래로 스크롤 - 블루섹션으로)
+            // 비디오 섹션에서 최소 1초는 있어야 함
+            if (videoSectionTime < 1000) {
+              console.log(
+                `[FullPageMain/터치] 비디오 섹션 최소 시간 미달: ${videoSectionTime}ms/1000ms`
+              );
+              return;
+            }
+            console.log("[FullPageMain/터치] 비디오에서 콘텐츠(블루섹션)로");
+            setPreviousSection("video");
+            setCurrentSection("content");
+          } else if (deltaY < 0) {
+            // 아래로 스와이프 (위로 스크롤 - 히어로로)
+            console.log("[FullPageMain/터치] 비디오에서 히어로로");
+            setPreviousSection("video");
+            setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
+            setCurrentSection("hero");
+          }
+          break;
+
+        default:
+          // TypeScript exhaustive check - 모든 케이스를 처리했음을 보장
+          break;
       }
     };
 
@@ -182,7 +204,7 @@ const FullPageMain = () => {
           `[FullPageMain/콘텐츠스크롤] 콘텐츠 섹션에서 스크롤 감지 - deltaY: ${deltaY}, scrollY: ${window.scrollY}, isVideoReady: ${isVideoReady}`
         );
 
-        if (deltaY < 0 && window.scrollY <= 10) {
+        if (deltaY < 0 && window.scrollY === 0) {
           e.preventDefault();
 
           // 트랜지션 중이거나 쿨다운 중이면 무시
@@ -192,7 +214,7 @@ const FullPageMain = () => {
 
           lastScrollTime = now;
           console.log(
-            `[FullPageMain/위스크롤] ${currentSection} → 비디오 섹션 (페이지 최상단)`
+            `[FullPageMain/위스크롤] ${currentSection} → 비디오 섹션 (scrollY: ${window.scrollY})`
           );
           // 비디오 준비 상태 리셋
           setIsVideoReady(false);
@@ -286,10 +308,10 @@ const FullPageMain = () => {
 
       // 콘텐츠 섹션에서는 키보드로 위로 스크롤할 때만 비디오로 복귀
       if (currentSection === "content") {
-        if (e.key === "ArrowUp" && window.scrollY <= 10) {
+        if (e.key === "ArrowUp" && window.scrollY === 0) {
           e.preventDefault();
           console.log(
-            `[FullPageMain/키보드위] ${currentSection} → 비디오 섹션 (페이지 최상단)`
+            `[FullPageMain/키보드위] ${currentSection} → 비디오 섹션 (scrollY: ${window.scrollY})`
           );
           // 비디오 준비 상태 리셋
           setIsVideoReady(false);
