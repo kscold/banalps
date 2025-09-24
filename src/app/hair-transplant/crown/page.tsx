@@ -97,20 +97,15 @@ function CrownContent() {
       ),
       descriptionMobile: (
         <>
-          정수리는 &lsquo;뻗침성이 좋은 모발&rsquo;을
+          심하지 않은 탈모는 약물치료만으로
           <br />
-          선택하는 것이 가장 중요하며
-          <br />
-          정수리와 같은 방향으로
-          <br />
-          누워서 심는 것이 매우 어렵습니다.
+          충분한 효과를 볼 수 있습니다.
           <br />
           <br />
-          헤어라인에 비해
+          정수리 탈모는 계속 진행하기 때문에
           <br />
-          결과가 떨어지는 이유는
-          <br />
-          심기가 까다롭기 때문입니다.
+          수술을 하든 안 하든 약물치료는 반드시
+          <br /> 필요하며 더 건강해진 모발 상태로 수술 받을 수 있습니다.
         </>
       ),
       svgElements: {
@@ -136,7 +131,16 @@ function CrownContent() {
           // bottom과 left도 선택적으로 설정 가능
         },
       },
-      mobileIllustration: "/hair-transplant/crown/illustration-3.svg",
+      mobileImages: {
+        illustration: [
+          "/hair-transplant/crown/illustration-2.svg",
+          "/hair-transplant/crown/illustration-3.svg",
+        ],
+        illustrationSize: {
+          width: 375,
+          height: 336,
+        },
+      },
       images: {
         main: "/hair-transplant/crown/crown-3.png",
       },
@@ -162,6 +166,7 @@ function CrownContent() {
         width: 275,
         height: 223,
       },
+      illustrationMobile: "/hair-transplant/crown/illustration-4.svg",
       description: (
         <>
           정수리 탈모가 있으면 뒷머리의 숱도 줄고
@@ -204,6 +209,11 @@ function CrownContent() {
       afterImage: "/hair-transplant/crown/slide/after.jpg",
       beforeAlt: "정수리 수술 전",
       afterAlt: "정수리 수술 후",
+    },
+    beforeAfterButton: {
+      text: "수술전후 더보기",
+      href: "/before-after",
+      width: 269,
     },
     featuresTitle: (
       <>

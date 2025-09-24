@@ -98,6 +98,24 @@ export default function ReoperationPage() {
           이제 안심하셔도 됩니다.
         </>
       ),
+      descriptionMobile: (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            흉터에는 혈관이 부족해서 생착률이
+            <br />
+            떨어지기 때문에 밀도를 많이 낮춰서 심는게
+            <br />
+            좋습니다.
+          </div>
+          <div>
+            오랜 경험과 시간으로 밀도있는 모발을
+            <br />
+            만들어드릴 수 있게 되었으니
+            <br />
+            이제 안심하셔도 됩니다.
+          </div>
+        </div>
+      ),
       svgElements: {
         container: "/hair-transplant/reoperation/illustration-1.svg",
         absolute: "/hair-transplant/reoperation/illustration-2.svg",
@@ -121,9 +139,11 @@ export default function ReoperationPage() {
           // bottom과 left도 선택적으로 설정 가능
         },
       },
-      mobileIllustration: "/hair-transplant/reoperation/illustration-1.svg",
+      mobileImages: {
+        illustration: ["/hair-transplant/reoperation/mobile-3.svg"],
+      },
       images: {
-        main: "/hair-transplant/reoperation/reoperation-3.png",
+        main: "/hair-transplant/reoperation/mobile-2.png",
       },
     },
     section3: {
@@ -153,6 +173,36 @@ export default function ReoperationPage() {
           <br />
           <br />더 활짝 웃으시는모습을 위해 자만하지 않고 항상 노력하겠습니다.
         </>
+      ),
+      descriptionMobile: (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            재수술과 흉터 이식은 매일 할 수 있는
+            <br />
+            수술이 아닙니다
+            <br />
+            그만큼 경험이 쌓이는 데 오래 걸리죠.
+          </div>
+          <div style={{ marginBottom: "2rem" }}>
+            지금의 모습보다 반드시 나아질 수 있다는
+            <br />
+            자신감으로 재수술과 흉터 수술을
+            <br />
+            해왔습니다.
+          </div>
+          <div style={{ marginBottom: "2rem" }}>
+            가리고 싶은 모습 때문에 오랜 시간
+            <br />
+            힘들어했던 분들이 좋아해 주시는 모습을
+            <br />
+            보면 밥을 안 먹어도 배부릅니다.
+          </div>
+          <div>
+            더 활짝 웃으시는 모습을 위해 자만하지 않고
+            <br />
+            항상 노력하겠습니다.
+          </div>
+        </div>
       ),
       images: {
         main: "/hair-transplant/reoperation/reoperation-4.png",

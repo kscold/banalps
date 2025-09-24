@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import React, { useState, useRef, useCallback } from "react"
-import * as styles from "./BeforeAfterSlider.css"
+import React, { useState, useRef, useCallback } from "react";
+import * as styles from "./BeforeAfterSlider.css";
 
 interface BeforeAfterSliderProps {
-  beforeImage: string
-  afterImage: string
-  beforeAlt?: string
-  afterAlt?: string
-  className?: string
-  isBlueBackground?: boolean
+  beforeImage: string;
+  afterImage: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  className?: string;
+  isBlueBackground?: boolean;
 }
 
 export default function BeforeAfterSlider({
@@ -20,94 +20,94 @@ export default function BeforeAfterSlider({
   className,
   isBlueBackground = false,
 }: BeforeAfterSliderProps) {
-  const [sliderPosition, setSliderPosition] = useState(50) // 정확히 50% 기본 위치
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isDragging = useRef(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [sliderPosition, setSliderPosition] = useState(50); // 정확히 50% 기본 위치
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1023)
-    }
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+      setIsMobile(window.innerWidth <= 1023);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // 초기화 시 정확히 50%로 설정
   React.useEffect(() => {
     if (!isInitialized) {
-      setSliderPosition(50)
-      setIsInitialized(true)
+      setSliderPosition(50);
+      setIsInitialized(true);
     }
-  }, [isInitialized])
+  }, [isInitialized]);
 
   const updateSliderPosition = useCallback((clientX: number) => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
 
-    const rect = containerRef.current.getBoundingClientRect()
-    const position = ((clientX - rect.left) / rect.width) * 100
-    const clampedPosition = Math.max(0, Math.min(100, position))
-    setSliderPosition(clampedPosition)
-  }, [])
+    const rect = containerRef.current.getBoundingClientRect();
+    const position = ((clientX - rect.left) / rect.width) * 100;
+    const clampedPosition = Math.max(0, Math.min(100, position));
+    setSliderPosition(clampedPosition);
+  }, []);
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      isDragging.current = true
-      updateSliderPosition(e.clientX)
+      isDragging.current = true;
+      updateSliderPosition(e.clientX);
     },
     [updateSliderPosition]
-  )
+  );
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!isDragging.current) return
-      updateSliderPosition(e.clientX)
+      if (!isDragging.current) return;
+      updateSliderPosition(e.clientX);
     },
     [updateSliderPosition]
-  )
+  );
 
   const handleMouseUp = useCallback(() => {
-    isDragging.current = false
-  }, [])
+    isDragging.current = false;
+  }, []);
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
-      isDragging.current = true
-      const touch = e.touches[0]
-      updateSliderPosition(touch.clientX)
+      isDragging.current = true;
+      const touch = e.touches[0];
+      updateSliderPosition(touch.clientX);
     },
     [updateSliderPosition]
-  )
+  );
 
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
-      if (!isDragging.current) return
-      const touch = e.touches[0]
-      updateSliderPosition(touch.clientX)
+      if (!isDragging.current) return;
+      const touch = e.touches[0];
+      updateSliderPosition(touch.clientX);
     },
     [updateSliderPosition]
-  )
+  );
 
   const handleTouchEnd = useCallback(() => {
-    isDragging.current = false
-  }, [])
+    isDragging.current = false;
+  }, []);
 
   // 글로벌 마우스 이벤트 리스너
   React.useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove)
-    document.addEventListener("mouseup", handleMouseUp)
-    document.addEventListener("touchmove", handleTouchMove)
-    document.addEventListener("touchend", handleTouchEnd)
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchend", handleTouchEnd);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-      document.removeEventListener("touchmove", handleTouchMove)
-      document.removeEventListener("touchend", handleTouchEnd)
-    }
-  }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd])
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
     <div className={`${styles.container} ${className || ""}`}>
@@ -132,7 +132,10 @@ export default function BeforeAfterSlider({
         </div>
 
         {/* 슬라이더 라인 */}
-        <div className={styles.sliderLine} style={{ left: `${sliderPosition}%` }}>
+        <div
+          className={styles.sliderLine}
+          style={{ left: `${sliderPosition}%` }}
+        >
           <div className={styles.sliderHandle}>
             <svg
               width={isMobile ? "20" : "38"}
@@ -142,25 +145,13 @@ export default function BeforeAfterSlider({
             >
               {isMobile ? (
                 <>
-                  <polygon
-                    points="5,1 1,5 5,9"
-                    fill="#FFFFFF"
-                  />
-                  <polygon
-                    points="15,9 19,5 15,1"
-                    fill="#FFFFFF"
-                  />
+                  <polygon points="5,1 1,5 5,9" fill="#FFFFFF" />
+                  <polygon points="15,9 19,5 15,1" fill="#FFFFFF" />
                 </>
               ) : (
                 <>
-                  <polygon
-                    points="8,2 2,8 8,14"
-                    fill="#FFFFFF"
-                  />
-                  <polygon
-                    points="30,14 36,8 30,2"
-                    fill="#FFFFFF"
-                  />
+                  <polygon points="8,2 2,8 8,14" fill="#FFFFFF" />
+                  <polygon points="30,14 36,8 30,2" fill="#FFFFFF" />
                 </>
               )}
             </svg>
@@ -178,11 +169,17 @@ export default function BeforeAfterSlider({
 
       {/* 데스크탑: 라벨을 이미지 아래 위치 */}
       {!isMobile && (
-        <div className={isBlueBackground ? styles.labelsContainerDesktopBlue : styles.labelsContainerDesktop}>
+        <div
+          className={
+            isBlueBackground
+              ? styles.labelsContainerDesktopBlue
+              : styles.labelsContainerDesktop
+          }
+        >
           <div className={styles.labelDesktop}>Before</div>
           <div className={styles.labelDesktop}>After</div>
         </div>
       )}
     </div>
-  )
+  );
 }

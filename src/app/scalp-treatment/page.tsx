@@ -108,11 +108,11 @@ export default function ScalpTreatmentPage() {
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             {/* 영상 영역 */}
-            <div className={styles.videoContainer}>
+            <div className={styles.scalpTreatmentVideoContainer}>
               <iframe
                 src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
-                style={{ border: "none" }}
+                style={{ border: "none", borderRadius: "0px" }}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 onLoad={handleVimeoLoad}
@@ -147,6 +147,15 @@ export default function ScalpTreatmentPage() {
               <br />
               남겼습니다.
             </h2>
+            <div className={styles.introImageContent}>
+              <div className={styles.introImageContainer}>
+                <img
+                  src="/scalp-treatment/scalp-treatment-1.png"
+                  alt="두피치료 의료진"
+                  className={styles.introImage}
+                />
+              </div>
+            </div>
             <p className={styles.introDescription}>
               모발이식과 약물치료 만으로 충분하다고 생각했습니다.
               <br />
@@ -160,15 +169,6 @@ export default function ScalpTreatmentPage() {
           </div>
 
           {/* 오른쪽 이미지 */}
-          <div className={styles.introImageContent}>
-            <div className={styles.introImageContainer}>
-              <img
-                src="/scalp-treatment/scalp-treatment-1.png"
-                alt="두피치료 의료진"
-                className={styles.introImage}
-              />
-            </div>
-          </div>
         </div>
       </motion.section>
 
@@ -196,9 +196,7 @@ export default function ScalpTreatmentPage() {
               />
             </div>
             <h3 className={styles.treatmentCardTitle}>
-              어븀글라스
-              <br />
-              프락셀 레이저
+              어븀글라스 프락셀 레이저
             </h3>
           </div>
 
@@ -262,20 +260,10 @@ export default function ScalpTreatmentPage() {
                 className={styles.treatmentCardImageImg}
               />
             </div>
-            <h3 className={styles.treatmentCardTitle}>
-              저출력 레이저
-              <br />
-              LLLT
-            </h3>
+            <h3 className={styles.treatmentCardTitle}>저출력 레이저 LLLT</h3>
           </div>
 
-          <div className={styles.treatmentArrow}>
-            <img
-              src="/scalp-treatment/arrow-right.svg"
-              alt="화살표"
-              className={styles.treatmentArrowImg}
-            />
-          </div>
+          <div className={styles.treatmentArrow}></div>
 
           {/* 정맥 주사 - 마지막이라 화살표 없음 */}
           <div className={styles.treatmentCard}>

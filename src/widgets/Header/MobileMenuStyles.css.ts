@@ -11,7 +11,7 @@ export const mobileMenuOverlay = style({
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   zIndex: 9998,
-  transition: "opacity 300ms ease, visibility 300ms ease",
+  transition: "opacity 300ms ease",
 });
 
 // 메뉴 패널 (오른쪽에서 슬라이드) - 전체 화면
@@ -27,6 +27,19 @@ export const mobileMenuPanel = style({
   transition: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 });
 
+// 메뉴 패널 닫힐 때 (즉시 사라짐)
+// export const mobileMenuPanelClosing = style({
+//   position: "fixed",
+//   top: 0,
+//   right: 0,
+//   bottom: 0,
+//   left: 0,
+//   width: "100%",
+//   backgroundColor: "#FFFDF7",
+//   zIndex: 9999,
+//   transition: "none",
+// });
+
 // 메뉴 콘텐츠
 export const mobileMenuContent = style({
   display: "flex",
@@ -38,7 +51,7 @@ export const mobileMenuContent = style({
 // 메뉴 헤더
 export const mobileMenuHeader = style({
   display: "flex",
-  alignItems: "center",
+  // alignItems: "center",
   justifyContent: "space-between",
   marginBottom: mvw(60),
 });
@@ -52,19 +65,22 @@ export const mobileLoginBtn = style({
   lineHeight: "100%",
   letterSpacing: "0",
   color: "#14AEFF",
+  backgroundColor: "transparent",
   border: "none",
   borderRadius: "8px",
+  padding: mvw(8),
   cursor: "pointer",
   transition: "opacity 200ms ease",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   ":hover": {
     opacity: 0.9,
   },
 });
 
-// 닫기 버튼
+//닫기 버튼
 export const mobileCloseBtn = style({
-  fontSize: mvw(24),
-  color: "#272727",
   backgroundColor: "transparent",
   border: "none",
   padding: 0,
@@ -73,7 +89,7 @@ export const mobileCloseBtn = style({
   width: mvw(24),
   height: mvw(24),
   display: "flex",
-  alignItems: "center",
+  // alignItems: "center",
   justifyContent: "center",
   ":hover": {
     opacity: 0.6,
@@ -133,7 +149,7 @@ export const mobileNavSub = style({
 export const mobileNavSubLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontSize: mvw(16),
-  fontWeight: "200", // 4 Regular 스타일
+  fontWeight: "400", // 4 Regular 스타일
   color: "#272727", // Colors-Text-Subtle
   textDecoration: "none",
   lineHeight: "160%", // 24px

@@ -174,9 +174,9 @@ export default function ForeheadHairTransplantPage() {
       ),
       titleMobile: (
         <>
-          이마축소술을
+          이마축소술을 권하지
           <br />
-          권하지 않을 때도 많습니다.
+          않을 때도 많습니다.
         </>
       ),
       description: (

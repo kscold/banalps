@@ -73,12 +73,12 @@ export const modal = style({
   width: "100%",
   height: "100%",
   maxHeight: "100vh",
-  overflow: "auto",
+  // overflow: "auto",
   position: "relative",
   boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(20),
+      borderRadius: "8px",
       width: "100%",
       height: "auto",
       maxHeight: "90vh",
@@ -106,17 +106,18 @@ export const closeButton = style({
 });
 
 export const modalHeader = style({
-  padding: `${vw(40)} ${vw(50)} ${vw(20)}`,
+  // padding: `${vw(40)} ${vw(50)} ${vw(20)}`,
+  padding: "3.75rem 3rem 0.75rem",
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "center",
   justifyContent: "space-between",
   position: "relative",
   "::after": {
     content: '""',
     position: "absolute",
     bottom: 0,
-    left: vw(50),
-    right: vw(50),
+    left: "3rem",
+    right: "3rem",
     height: "1px",
     backgroundColor: "#272727",
   },
@@ -146,21 +147,25 @@ export const title = style({
   margin: 0,
   fontFamily: fontFamily.poppins,
   fontWeight: 600,
-  fontSize: vw(20),
-  lineHeight: "100%",
-  letterSpacing: "0%",
+  lineHeight: "normal",
+  fontSize: "1.25rem",
+  // fontSize: vw(20),
+  // lineHeight: "100%",
+  letterSpacing: "0",
   color: "#272727",
 
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: mvw(20),
-      letterSpacing: mvw(1.5),
+      fontWeight: 600,
+      fontSize: "1.25rem",
+      letterSpacing: "0",
     },
   },
 });
 
 export const modalBody = style({
-  padding: `0 ${vw(50)} 0 ${vw(50)}`,
+  // padding: `0 ${vw(50)} 0 ${vw(50)}`,
+  padding: "0 3rem",
   display: "flex",
   flexDirection: "column",
   gap: vw(32),
@@ -168,7 +173,8 @@ export const modalBody = style({
   justifyContent: "space-between",
   "@media": {
     [breakpoints.mobile]: {
-      padding: mvw(24),
+      // padding: mvw(24),
+      padding: "2.5rem 2rem 1.75rem 2rem",
       gap: mvw(24),
     },
   },
@@ -177,15 +183,17 @@ export const modalBody = style({
 export const loginSection = style({
   display: "flex",
   flexDirection: "column",
-  padding: `${vw(124)} ${vw(80)} 0 ${vw(80)}`,
-  gap: vw(32),
+  // gap: vw(32),
+  gap: "1.5rem",
+  padding: "7.5rem 5rem",
   flex: "1",
   height: vw(648),
   minHeight: vw(648),
   "@media": {
     [breakpoints.mobile]: {
-      gap: mvw(20),
-      padding: `${mvw(60)} ${mvw(24)} 0 ${mvw(24)}`,
+      // gap: mvw(20),
+      gap: "1.38rem",
+      padding: 0,
       height: "auto",
     },
   },
@@ -241,6 +249,7 @@ export const loginRow = style({
     [breakpoints.mobile]: {
       gap: mvw(10),
       marginBottom: mvw(8),
+      // marginBottom: 0,
     },
   },
 });
@@ -310,12 +319,13 @@ export const illustrationSection = style({
   justifyContent: "center",
   height: vw(270),
   marginTop: "auto",
-  marginBottom: vw(60),
+  marginBottom: "3.75rem",
   width: "100%",
   "@media": {
     [breakpoints.mobile]: {
       height: mvw(120),
-      marginBottom: mvw(30),
+      // marginBottom: mvw(30),
+      marginBottom: 0,
     },
   },
 });

@@ -51,11 +51,7 @@ export default function LoginModal() {
   return (
     <>
       <div className={styles.overlay} onClick={closeLoginModal} />
-      <div
-        className={`${styles.modalContainer} ${
-          isLoginModalOpen ? styles.slideIn : ""
-        }`}
-      >
+      <div className={styles.modalContainer}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
             <div className={styles.headerContent}>
@@ -139,7 +135,7 @@ export default function LoginModal() {
                     <div className={styles.loginRow}>
                       <div
                         className={styles.iconSquare}
-                        style={{ backgroundColor: "#F5F5F5" }}
+                        style={{ backgroundColor: "#D6D6D6" }}
                       >
                         <img
                           src="/login/google.svg"

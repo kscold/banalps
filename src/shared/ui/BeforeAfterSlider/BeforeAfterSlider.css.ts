@@ -59,7 +59,7 @@ export const labelsContainerMobile = style({
 
 export const labelMobile = style({
   fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
-  fontWeight: 600,
+  fontWeight: 400,
   fontSize: "18px",
   lineHeight: "20px",
   color: "#FFFFFF",
@@ -80,7 +80,7 @@ export const labelsContainerDesktop = style({
 
 export const labelDesktop = style({
   fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
-  fontWeight: 500,
+  fontWeight: 400,
   fontSize: "20px",
   lineHeight: "20px",
   color: "#272727",
@@ -115,7 +115,7 @@ export const sliderLine = style({
   position: "absolute",
   top: 0,
   bottom: 0,
-  width: "2px", // 흰색 세로선 복원
+  width: "2px",
   backgroundColor: "#FFFFFF",
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   transform: "translateX(-50%)",

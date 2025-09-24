@@ -416,6 +416,31 @@ export const videoContainer = style({
   },
 });
 
+// 두피치료 섹션 전용 대형 비디오 컨테이너 - 전체 화면 크기
+export const scalpTreatmentVideoContainer = style({
+  position: "relative",
+  width: "100%", // 전체 너비
+  maxWidth: "1600px", // 최대 1600px
+  height: vw(900), // 1920px 기준 900px 높이
+  margin: "0 auto", // 중앙 정렬
+  backgroundColor: "#000000",
+  overflow: "hidden",
+  boxShadow: `0 ${vw(20)} ${vw(60)} rgba(0, 0, 0, 0.15)`,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1600px", // 1920px+ 고정 1600px
+      height: "900px",
+      boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+    },
+    [breakpoints.mobile]: {
+      width: "100vw", // 모바일 좌우 여백
+      height: "500px",
+      margin: "0",
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+    },
+  },
+});
+
 export const videoText = style({
   fontFamily: "'Pretendard', sans-serif",
   fontWeight: 600,
@@ -500,7 +525,8 @@ export const introTextContent = style({
   width: vw(500),
   display: "flex",
   flexDirection: "column",
-  gap: vw(32),
+  // gap: vw(32),
+  gap: "7.5rem",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "500px",
@@ -508,7 +534,7 @@ export const introTextContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      gap: "24px",
+      gap: "40px",
       textAlign: "left",
     },
   },

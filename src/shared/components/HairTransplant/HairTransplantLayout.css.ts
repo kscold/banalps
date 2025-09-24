@@ -686,11 +686,17 @@ export const section1Image1 = style({
     },
     [breakpoints.mobile]: {
       position: "static",
+      // width: "100%",
+      // height: "auto",
+      // aspectRatio: "600 / 660", // Keep aspect ratio
+
+      //피그마대로
       width: "100%",
-      height: "auto",
-      aspectRatio: "600 / 660", // Keep aspect ratio
+      height: "19.75rem",
+      aspectRatio: "546/425",
       maxWidth: "100%",
       top: "auto",
+      alignItems: "center",
       right: "auto",
       borderRadius: mvw(12),
       overflow: "hidden",
@@ -805,6 +811,7 @@ export const section2Left = style({
 
 export const section2Image = style({
   position: "absolute",
+  borderRadius: mvw(12),
   left: "0",
   top: 0, // 상단부터 시작
   width: vw(830), // 1920px 기준 830px 너비
@@ -815,27 +822,32 @@ export const section2Image = style({
       height: "600px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
-      position: "static",
+      position: "relative",
       width: "100vw",
       height: mvw(305),
       marginLeft: mvw(-20),
+      //모서리
+      borderRadius: mvw(15),
+
       marginRight: mvw(-20),
-      borderRadius: mvw(12),
-      overflow: "hidden",
       marginBottom: mvw(20),
       display: "block",
+      overflow: "hidden",
     },
   },
 });
 
 export const section2ImageContent = style({
-  width: "100%",
   height: "100%",
   borderRadius: "8px",
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(12),
+      borderRadius: mvw(15),
+      objectFit: "contain",
+      width: "100%",
+      overflow: "hidden",
+      // 강제로 borderRadius 적용
     },
   },
 });
@@ -857,6 +869,7 @@ export const section2DesktopIllustration = style({
 export const section2Illustration = style({
   width: "100%",
   height: "auto",
+  position: "absolute",
   "@media": {
     [breakpoints.desktopLarge]: {
       display: "none",
@@ -871,6 +884,7 @@ export const section2Illustration = style({
       width: "100%",
       height: mvw(320),
       marginTop: mvw(60),
+      borderRadius: mvw(15),
       marginBottom: mvw(-100),
     },
   },
@@ -880,6 +894,7 @@ export const section2IllustrationContent = style({
   width: "100%",
   height: "100%",
   objectFit: "contain",
+  borderRadius: mvw(15),
 });
 
 export const section2MobileIllustration = style({
@@ -887,11 +902,9 @@ export const section2MobileIllustration = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
-      justifyContent: "center",
       alignItems: "center",
-      width: "100%", // Full width of container
-      marginTop: mvw(40),
-      marginBottom: mvw(20),
+
+      borderRadius: mvw(12),
     },
   },
 });
@@ -1433,6 +1446,29 @@ export const section3MobileIllustration = style({
   },
 });
 
+// Section 2 모바일 이미지들 컨테이너
+export const section2MobileImages = style({
+  display: "none", // 데스크탑에서는 숨김
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "2.5rem",
+      width: "100%",
+      marginTop: mvw(40),
+      marginBottom: mvw(40),
+    },
+  },
+});
+
+// Section 2 모바일 개별 이미지
+export const section2MobileImage = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+});
+
 // Section 3 중앙 일러스트 스타일 (피그마 위치: x:425, y:400 기준으로 배치)
 export const section3CenterIllustration = style({
   position: "absolute",
@@ -1559,6 +1595,9 @@ export const beforeAfterSection = style({
 export const beforeAfterContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
   textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: "3rem",
 });
 
 export const beforeAfterHeader = style({
@@ -1577,7 +1616,7 @@ export const beforeAfterHeader = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       marginBottom: mvw(48),
-      gap: "15px",
+      gap: "1.5rem",
       alignItems: "center",
       textAlign: "center",
       margin: "0 auto",
@@ -1684,7 +1723,6 @@ export const beforeAfterActions = style({
     [breakpoints.mobile]: {
       width: "100%",
       padding: `0 ${mvw(60)}`,
-      marginTop: mvw(40),
     },
   },
 });

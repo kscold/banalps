@@ -972,11 +972,10 @@ export const section3Number = style({
     [breakpoints.mobile]: {
       position: "absolute",
       fontSize: mvw(60),
-      width: mvw(36),
-      height: mvw(72),
+      width: "auto",
+      height: "auto",
       top: mvw(0),
-
-      right: mvw(20),
+      right: mvw(-160),
       lineHeight: mvw(72),
       textAlign: "center",
       zIndex: 1,
@@ -1107,6 +1106,9 @@ export const beforeAfterSection = style({
 export const beforeAfterContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
   textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: "3rem",
 });
 
 export const beforeAfterHeader = style({
@@ -1125,7 +1127,7 @@ export const beforeAfterHeader = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       marginBottom: mvw(48),
-      gap: "15px",
+      gap: "1.5rem",
       alignItems: "center",
       textAlign: "center",
       margin: "0 auto",
