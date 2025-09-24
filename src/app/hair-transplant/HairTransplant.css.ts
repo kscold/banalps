@@ -972,11 +972,10 @@ export const section3Number = style({
     [breakpoints.mobile]: {
       position: "absolute",
       fontSize: mvw(60),
-      width: mvw(36),
-      height: mvw(72),
+      width: "auto",
+      height: "auto",
       top: mvw(0),
-
-      right: mvw(20),
+      right: mvw(-160),
       lineHeight: mvw(72),
       textAlign: "center",
       zIndex: 1,
