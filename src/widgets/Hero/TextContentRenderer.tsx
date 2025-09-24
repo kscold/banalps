@@ -22,7 +22,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -32,7 +32,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -46,7 +46,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
@@ -69,7 +69,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -79,7 +79,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -93,7 +93,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
@@ -112,7 +112,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -122,7 +122,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -136,7 +136,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
@@ -155,7 +155,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -165,7 +165,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -179,7 +179,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
@@ -200,7 +200,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -210,7 +210,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -224,7 +224,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
@@ -245,7 +245,7 @@ export function TextContentRenderer({
             className={styles.textBlock}
             initial={{
               opacity: 0,
-              x: 100, // 오른쪽에서 시작
+              x: 0, // 오른쪽에서 시작
               y: 0,
             }}
             animate={{
@@ -255,7 +255,7 @@ export function TextContentRenderer({
             }}
             exit={{
               opacity: 0,
-              x: -100, // 왼쪽으로 사라짐
+              x: 0, // 왼쪽으로 사라짐
               y: 0,
             }}
             transition={{
@@ -269,7 +269,7 @@ export function TextContentRenderer({
           >
             <motion.p
               className={styles.storyText}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,

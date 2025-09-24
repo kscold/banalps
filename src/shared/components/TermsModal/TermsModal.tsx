@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import * as styles from "./TermsModal.css";
+import Image from "next/image";
 
 interface TermsModalProps {
   isOpen: boolean;
@@ -49,14 +50,7 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
           <div className={styles.modalHeaderContent}>
             <h2 className={styles.title}>{title}</h2>
             <button className={styles.closeButton} onClick={onClose}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M18 6L6 18M6 6L18 18"
-                  stroke="#666"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <Image src="/main/close.svg" alt="close" width={32} height={32} />
             </button>
           </div>
         </div>

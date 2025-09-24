@@ -162,16 +162,14 @@ export const medicalTeamHeroSection = style({
   position: "absolute",
   top: vw(155),
   right: vw(0),
-  // transform: "translateY(-50%)",
   width: vw(1085),
-  height: vw(850),
+  height: vw(650),
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "155px",
       right: "0px",
-      // transform: "translateY(-50%)",
       width: "1085px",
-      height: "850px",
+      height: "650px",
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -1524,10 +1522,10 @@ export const doctorSubImageKim2 = style({
 export const historySection = style({
   width: "100%",
   backgroundColor: "#FFFDF7", // 흰색 배경으로 의료진과 구분
-  padding: `${vw(120)} 0`,
+  padding: `${vw(240)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0",
+      padding: "240px 0",
     },
     [breakpoints.mobile]: {
       padding: `${mvw(60)} ${mvw(16)}`,
@@ -2850,11 +2848,11 @@ export const timelineGraffitiSection = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "120px",
-      paddingBottom: "45px",
+      paddingBottom: "240px",
     },
     [breakpoints.desktop]: {
-      paddingTop: mvw(120),
-      paddingBottom: mvw(45),
+      paddingTop: vw(120),
+      paddingBottom: vw(240),
     },
     [breakpoints.mobile]: {
       display: "block",

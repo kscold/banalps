@@ -75,8 +75,8 @@ export const HairTransplantHeroIllustration = style({
 export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
-  objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
+  objectFit: "contain", // contain으로 변경하여 이미지 전체가 보이도록
+  objectPosition: "center center", // 중앙 정렬로 변경
   "@media": {
     [breakpoints.mobile]: {
       display: "none",

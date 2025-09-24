@@ -32,17 +32,17 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <AuthChecker />
-      <div
+      {/* <div
         style={{
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
         }}
-      >
-        <HeaderNavigation />
-        <main style={{ flex: "1" }}>{children}</main>
-        {pathname !== "/" && <Footer />}
-      </div>
+      > */}
+      <HeaderNavigation />
+      <main style={{ flex: "1" }}>{children}</main>
+      {pathname !== "/" && <Footer />}
+      {/* </div> */}
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
       <LoginModal />
     </>

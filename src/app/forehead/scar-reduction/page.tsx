@@ -28,6 +28,7 @@ export default function ScarReductionPage() {
           장력을 줄여야 합니다.
         </>
       ),
+      titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
       titleMobile: (
         <>
           흉터를 줄이려면

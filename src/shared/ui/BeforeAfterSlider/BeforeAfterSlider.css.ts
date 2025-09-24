@@ -1,3 +1,4 @@
+import { fontFamily } from "@/shared/styles/fonts.css";
 import { breakpoints, mvw, vw } from "@/shared/styles/responsive.css";
 import { style } from "@vanilla-extract/css";
 
@@ -58,7 +59,7 @@ export const labelsContainerMobile = style({
 });
 
 export const labelMobile = style({
-  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 400,
   fontSize: "18px",
   lineHeight: "20px",
@@ -79,9 +80,9 @@ export const labelsContainerDesktop = style({
 });
 
 export const labelDesktop = style({
-  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
-  fontWeight: 400,
-  fontSize: "20px",
+  fontFamily: fontFamily.poppins,
+  fontWeight: 500,
+  fontSize: vw(20),
   lineHeight: "20px",
   color: "#272727",
   margin: "0",

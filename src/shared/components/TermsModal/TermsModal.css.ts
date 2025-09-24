@@ -60,7 +60,7 @@ export const modalHeader = style({
 
 export const modalHeaderContent = style({
   display: "flex",
-  alignItems: "center",
+  //   alignItems: "center",
   justifyContent: "space-between",
   position: "relative",
   width: "100%",
@@ -99,14 +99,11 @@ export const closeButton = style({
   backgroundColor: "transparent",
   cursor: "pointer",
   display: "flex",
-  alignItems: "start",
-  justifyContent: "center",
-  width: vw(36),
-  height: vw(36),
-  ":hover": {
-    backgroundColor: "#F5F5F5",
-    transform: "scale(1.05)",
-  },
+  alignItems: "center",
+  justifyContent: "flex-start",
+  paddingTop: vw(8),
+  width: vw(32),
+  height: vw(32),
   "@media": {
     [breakpoints.mobile]: {
       width: mvw(32),

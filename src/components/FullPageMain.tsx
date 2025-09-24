@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+
 import HeroSection from "../widgets/Hero/HeroSection";
 import { VideoSection } from "../widgets/Hero/VideoSection";
 import BlueSection from "../widgets/BlueSection";
@@ -15,8 +16,6 @@ const FullPageMain = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
-
-  const totalTexts = 6; // 텍스트 총 개수
 
   // 초기 스크롤 위치를 0으로 설정
   useEffect(() => {
@@ -66,16 +65,28 @@ const FullPageMain = () => {
         targetIndex = 4;
       } else if (value >= 0.25 && value < 0.3) {
         targetIndex = 5;
+      } else if (value >= 0.3) {
+        targetIndex = 6; // 비디오 섹션 인덱스
       } else {
-        targetIndex = -1; // 비디오 및 콘텐츠 섹션에서는 텍스트 없음
+        targetIndex = -1;
       }
 
       setCurrentTextIndex(targetIndex);
 
-      // heroCompleted 상태 관리
-      if (value >= 0.3 && !heroCompleted) {
+      // heroCompleted 상태 관리 - 마지막 텍스트 이후 자동 전환
+      if (value >= 0.28 && !heroCompleted) {
         setHeroCompleted(true);
-      } else if (value < 0.3 && heroCompleted) {
+        // 비디오 섹션으로 자동 스크롤
+        if (value < 0.3) {
+          setTimeout(() => {
+            const targetScroll = 0.3 * (containerRef.current?.scrollHeight || 0);
+            window.scrollTo({
+              top: targetScroll,
+              behavior: "smooth",
+            });
+          }, 500);
+        }
+      } else if (value < 0.28 && heroCompleted) {
         setHeroCompleted(false);
       }
 
@@ -153,12 +164,12 @@ const FullPageMain = () => {
   }, [smoothProgress, heroCompleted]);
 
   // 히어로 섹션 - 텍스트 애니메이션 구간 (0~30% 텍스트)
-  const heroOpacity = useTransform(smoothProgress, [0, 0.28, 0.3], [1, 1, 0]);
+  const heroOpacity = useTransform(smoothProgress, [0, 0.27, 0.3], [1, 1, 0]);
 
   // 비디오 섹션 - 히어로 텍스트 완료 후 시작 (30~40%)
   const videoOpacity = useTransform(
     smoothProgress,
-    [0.28, 0.3, 0.38, 0.4],
+    [0.27, 0.3, 0.38, 0.4],
     [0, 1, 1, 0]
   );
 
@@ -186,12 +197,12 @@ const FullPageMain = () => {
     console.log("[FullPageMain] 비디오 준비 완료");
   };
 
-  // 비디오 로딩 상태 체크
+  // 비디오 로딩 상태 체크 - 미리 로드
   useEffect(() => {
     const unsubscribe = smoothProgress.on("change", (value) => {
-      if (value > 0.3 && !showVideo) {
-        setShowVideo(true);
-      } else if (value <= 0.3 && showVideo) {
+      if (value > 0.25 && !showVideo) {
+        setShowVideo(true); // 마지막 텍스트에서 미리 비디오 로드
+      } else if (value <= 0.25 && showVideo) {
         setShowVideo(false);
       }
     });
@@ -271,7 +282,7 @@ const FullPageMain = () => {
         >
           <HeroSection
             onTextComplete={handleTextComplete}
-            initialTextIndex={currentTextIndex}
+            initialTextIndex={currentTextIndex === 6 ? 5 : currentTextIndex}
           />
         </motion.div>
 
