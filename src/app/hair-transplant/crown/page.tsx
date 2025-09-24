@@ -205,6 +205,11 @@ function CrownContent() {
       beforeAlt: "정수리 수술 전",
       afterAlt: "정수리 수술 후",
     },
+    beforeAfterButton: {
+      text: "수술전후 더보기",
+      href: "/before-after",
+      width: 269,
+    },
     featuresTitle: (
       <>
         독보적인 기술력과 사후 관리까지
