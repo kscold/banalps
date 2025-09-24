@@ -48,10 +48,34 @@ export const processStepOdd = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "380px",
+      flexDirection: "column",
+      alignItems: "stretch",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: mvw(24),
+    },
+  },
+});
+
+// 모바일에서 stepNumber 컨테이너 스타일
+export const stepNumberMobile = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: mvw(16),
+      marginBottom: mvw(20),
+    },
+  },
+});
+
+// 모바일에서 stepCategory 숨기기
+export const stepCategoryMobile = style({
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
     },
   },
 });
@@ -119,19 +143,31 @@ export const stepNumberText = style({
   },
 });
 
-// 모바일에서 숫자와 카테고리를 감싸는 컨테이너
+// 데스크탑용 헤더 스타일
 export const stepHeader = style({
   display: "flex",
   alignItems: "center",
+  width: "100%",
   justifyContent: "space-between",
-  // marginBottom: vw(90),
+  flexDirection: "row",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      // marginBottom: "90px",
-    },
     [breakpoints.mobile]: {
-      marginBottom: mvw(20),
+      display: "none",
+    },
+  },
+});
+
+// 모바일용 헤더 스타일
+export const stepHeaderMobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      alignItems: "center",
       width: "100%",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      marginBottom: mvw(20),
     },
   },
 });
@@ -197,10 +233,12 @@ export const stepCategory = style({
       marginBottom: "16px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(24),
+      fontSize: mvw(20),
       marginBottom: 0,
-      lineHeight: mvw(48),
+      lineHeight: "normal",
       fontWeight: "500",
+      flex: 1,
+      textAlign: "right",
     },
   },
 });
