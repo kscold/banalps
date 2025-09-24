@@ -236,7 +236,7 @@ export default function HairlinePage() {
                   </div>
 
                   <p className={styles.section2Description}>
-                    <div>자연스러움 을 만드는 일은 어렵습니다.</div>
+                    <div>자연스러움을 만드는 일은 어렵습니다.</div>
                     <div>
                       어색하지 않아야 하며 <br />
                       결과는 1년을 기다려야 합니다.
