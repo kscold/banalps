@@ -7,12 +7,12 @@ import { mvw } from "@/shared/styles/responsive.utils";
 
 // 메인 컨테이너 - 100vh 고정
 export const heroContainer = style({
-  position: "fixed",
+  position: "absolute",
   top: 0,
   left: 0,
   width: "100%",
-  height: tokens.viewport.height, // 100vh
-  zIndex: tokens.zIndex.base,
+  height: "100vh",
+  zIndex: 1,
   overflow: "hidden",
   "@media": {
     [breakpoints.mobile]: {

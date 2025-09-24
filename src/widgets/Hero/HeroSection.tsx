@@ -11,22 +11,70 @@ import * as styles from "./HeroSection.css";
 interface HeroSectionProps {
   onTextComplete?: () => void;
   initialTextIndex?: number;
+  isActive?: boolean;
 }
 
 export default function HeroSection({
-  onTextComplete,
   initialTextIndex = 0,
+  onTextComplete,
+  isActive = true,
 }: HeroSectionProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex);
   const totalTexts = 6;
 
-  // 텍스트 스크롤 로직 (간단화)
+  // 텍스트 스크롤 로직 - HeroSection이 활성화된 경우에만
   useEffect(() => {
+    if (!isActive) return;
+
     let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout | null = null;
-    const scrollDebounceTime = 1000;
 
-    // 터치 이벤트 처리 (모바일)
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) return;
+
+      e.preventDefault();
+      isScrolling = true;
+
+      const deltaY = e.deltaY;
+
+      if (Math.abs(deltaY) < 30) {
+        isScrolling = false;
+        return;
+      }
+
+      if (deltaY > 0) {
+        // 아래로 스크롤
+        setCurrentTextIndex((prevIndex) => {
+          if (prevIndex < totalTexts - 1) {
+            return prevIndex + 1;
+          } else if (prevIndex === totalTexts - 1) {
+            // 마지막 텍스트에서 다음 섹션으로
+            if (onTextComplete) {
+              setTimeout(() => {
+                onTextComplete();
+              }, 300);
+            }
+            return prevIndex;
+          }
+          return prevIndex;
+        });
+      } else {
+        // 위로 스크롤
+        setCurrentTextIndex((prevIndex) => {
+          if (prevIndex > 0) {
+            return prevIndex - 1;
+          }
+          return prevIndex;
+        });
+      }
+
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+      }, 400); // 빠른 반응을 위해 400ms
+    };
+
+    // 터치 이벤트 처리
     let touchStartY = 0;
     let touchEndY = 0;
 
@@ -38,16 +86,17 @@ export default function HeroSection({
       touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
 
-      if (Math.abs(deltaY) > 50) { // 최소 50px 스와이프
+      if (Math.abs(deltaY) > 50) {
         if (deltaY > 0) {
           // 위로 스와이프 (다음 텍스트)
           setCurrentTextIndex((prevIndex) => {
-            const newIndex = prevIndex + 1;
-            if (newIndex >= totalTexts && onTextComplete) {
+            if (prevIndex < totalTexts - 1) {
+              return prevIndex + 1;
+            } else if (prevIndex === totalTexts - 1 && onTextComplete) {
               onTextComplete();
-              return totalTexts - 1;
+              return prevIndex;
             }
-            return Math.min(newIndex, totalTexts - 1);
+            return prevIndex;
           });
         } else {
           // 아래로 스와이프 (이전 텍스트)
@@ -56,82 +105,22 @@ export default function HeroSection({
       }
     };
 
-    const handleWheel = (e: WheelEvent) => {
-      // console.log(
-      //   `[HeroSection/스크롤감지] deltaY: ${e.deltaY}, isScrolling: ${isScrolling}`
-      // );
-
-      if (isScrolling) return;
-
-      e.preventDefault();
-      isScrolling = true;
-
-      const deltaY = e.deltaY;
-      if (Math.abs(deltaY) < 30) {
-        console.log("[HeroSection/스크롤무시] 스크롤량이 너무 작음");
-        isScrolling = false;
-        return;
-      }
-
-      if (deltaY > 0) {
-        // 아래로 스크롤
-        console.log("[HeroSection/아래스크롤] 아래로 스크롤 감지");
-        setCurrentTextIndex((prevIndex) => {
-          console.log(
-            `[HeroSection/텍스트변경] ${prevIndex} → ${prevIndex + 1}`
-          );
-          if (prevIndex < totalTexts - 1) {
-            return prevIndex + 1;
-          } else if (prevIndex === totalTexts - 1) {
-            // 마지막 텍스트(5번째)에서 추가 스크롤 시 비디오로 전환
-            console.log(
-              "[HeroSection/텍스트완료] 마지막 텍스트 완료 - 비디오로 전환"
-            );
-            // 상태 업데이트 후 콜백 호출을 지연시킴
-            setTimeout(() => {
-              if (onTextComplete) {
-                onTextComplete();
-              }
-            }, 0);
-            return prevIndex;
-          }
-          return prevIndex;
-        });
-      } else if (deltaY < 0) {
-        // 위로 스크롤
-        console.log("[HeroSection/위스크롤] 위로 스크롤 감지");
-        setCurrentTextIndex((prevIndex) => {
-          console.log(
-            `[HeroSection/텍스트변경] ${prevIndex} → ${prevIndex - 1}`
-          );
-          if (prevIndex > 0) {
-            return prevIndex - 1;
-          }
-          return prevIndex;
-        });
-      }
-
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-      }, scrollDebounceTime);
-    };
-
-    console.log("[HeroSection/이벤트등록] 스크롤 이벤트 리스너 등록");
-
-    // 데스크톱과 모바일 모두 이벤트 등록
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
-      console.log("[HeroSection/이벤트제거] 스크롤 이벤트 리스너 제거");
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
       if (scrollTimeout) clearTimeout(scrollTimeout);
     };
-  }, [onTextComplete, totalTexts]);
+  }, [isActive, onTextComplete, totalTexts]);
+
+  // initialTextIndex가 변경되면 currentTextIndex 업데이트
+  useEffect(() => {
+    setCurrentTextIndex(initialTextIndex);
+  }, [initialTextIndex]);
 
   console.log(`[HeroSection/텍스트인덱스] ${currentTextIndex}`);
 

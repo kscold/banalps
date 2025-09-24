@@ -12,45 +12,12 @@ interface BlueSectionProps {
 }
 
 export default function BlueSection({ isActive = false }: BlueSectionProps) {
-  const [isVisible, setIsVisible] = useState(isActive);
-  const [hasScrolled, setHasScrolled] = useState(isActive);
+  const [isVisible] = useState(isActive);
   const router = useRouter();
 
   useEffect(() => {
     console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
-
-    // isActive가 true면 즉시 visible로 설정
-    if (isActive) {
-      setIsVisible(true);
-      setHasScrolled(true);
-    }
-
-    // Check initial scroll position
-    const checkScrollPosition = () => {
-      if (window.scrollY > 50) {
-        setHasScrolled(true);
-        setIsVisible(true);
-      }
-    };
-
-    // Listen for scroll events
-    const handleScroll = () => {
-      if (!hasScrolled && window.scrollY > 50) {
-        setHasScrolled(true);
-        setIsVisible(true);
-      }
-    };
-
-    // Check initial position
-    checkScrollPosition();
-
-    // Add scroll listener
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isActive, hasScrolled]);
+  }, []);
 
   // 바날 로컬 서비스 항목들
   const localServices = [

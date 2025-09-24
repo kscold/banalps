@@ -282,12 +282,6 @@ export function TextContentRenderer({
             </motion.p>
           </motion.div>
         );
-
-      case 6:
-        // 비디오 섹션이 활성화될 때는 아무것도 표시하지 않음
-        return null;
-      default:
-        return null;
     }
   };
 

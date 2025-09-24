@@ -393,11 +393,11 @@ export default function HairTransplantLayout({
                     </motion.div>
                   )}
 
-                  <p className={styles.section1Description}>
+                  <div className={styles.section1Description}>
                     {isMobile && section1.descriptionMobile
                       ? section1.descriptionMobile
                       : section1.description}
-                  </p>
+                  </div>
 
                   {/* 모바일 일러스트 - description 아래에 배치 */}
                   {section1.illustrationMobile && (
@@ -617,11 +617,11 @@ export default function HairTransplantLayout({
                       />
                     </div>
                   )}
-                  <p className={styles.section1Description}>
+                  <div className={styles.section1Description}>
                     {isMobile && section1.descriptionMobile
                       ? section1.descriptionMobile
                       : section1.description}
-                  </p>
+                  </div>
                 </div>
               </div>
               <div className={styles.section1Right} ref={section1ImagesRef}>
@@ -808,7 +808,7 @@ export default function HairTransplantLayout({
                     </div>
                   )}
 
-                  <p className={styles.section2Description}>
+                  <div className={styles.section2Description}>
                     {isMobile && section2.descriptionMobile
                       ? section2.descriptionMobile
                       : section2.description}
@@ -823,7 +823,7 @@ export default function HairTransplantLayout({
                         </span>
                       </>
                     )}
-                  </p>
+                  </div>
 
                   {/* 모바일 일러스트 - description 아래에 배치 */}
                   {section2.illustrationMobile && (
@@ -1093,7 +1093,7 @@ export default function HairTransplantLayout({
                       />
                     </div>
                   )}
-                  <p className={styles.section2Description}>
+                  <div className={styles.section2Description}>
                     {isMobile && section2.descriptionMobile
                       ? section2.descriptionMobile
                       : section2.description}
@@ -1108,7 +1108,7 @@ export default function HairTransplantLayout({
                         </span>
                       </>
                     )}
-                  </p>
+                  </div>
                   {section2.svgElements?.absolute && (
                     <div
                       className={styles.section2Svg2}
@@ -1273,11 +1273,11 @@ export default function HairTransplantLayout({
                       </motion.div>
                     )}
 
-                    <p className={styles.section3Description}>
+                    <div className={styles.section3Description}>
                       {isMobile && section3.descriptionMobile
                         ? section3.descriptionMobile
                         : section3.description}
-                    </p>
+                    </div>
 
                     {/* 모바일 일러스트레이션 - description 아래로 이동 */}
                     {section3.illustrationMobile && (
@@ -1366,11 +1366,11 @@ export default function HairTransplantLayout({
                             ? section3.titleMobile
                             : section3.title}
                         </h2>
-                        <p className={styles.section3Description}>
+                        <div className={styles.section3Description}>
                           {isMobile && section3.descriptionMobile
                             ? section3.descriptionMobile
                             : section3.description}
-                        </p>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -1538,11 +1538,11 @@ export default function HairTransplantLayout({
                             }
                           />
                           <div>
-                            <p className={styles.section3Description}>
+                            <div className={styles.section3Description}>
                               {isMobile && section3.descriptionMobile
                                 ? section3.descriptionMobile
                                 : section3.description}
-                            </p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1624,9 +1624,9 @@ export default function HairTransplantLayout({
                                 ? section3.titleMobile
                                 : section3.title}
                             </h2>
-                            <p className={styles.section3Description}>
+                            <div className={styles.section3Description}>
                               {section3.description}
-                            </p>
+                            </div>
                           </div>
                         </div>
                       </>
@@ -1667,9 +1667,9 @@ export default function HairTransplantLayout({
                                 ? section3.titleMobile
                                 : section3.title}
                             </h2>
-                            <p className={styles.section3Description}>
+                            <div className={styles.section3Description}>
                               {section3.description}
-                            </p>
+                            </div>
                           </div>
                         </div>
                         <div

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useMemo, useCallback } from "react";
 import FloatingButton from "./FloatingButton";
 import * as styles from "./FloatingButtonGroup.css";
 
@@ -9,7 +9,7 @@ export interface FloatingButtonGroupProps {
   onButtonClick?: (variant: string) => void;
 }
 
-export default function FloatingButtonGroup({
+function FloatingButtonGroupComponent({
   className,
   onButtonClick,
 }: FloatingButtonGroupProps) {
@@ -31,29 +31,21 @@ export default function FloatingButtonGroup({
     };
   }, []);
 
+  // 메인 페이지 여부 캐싱
+  const isMainPage = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.location.pathname === "/";
+  }, []);
+
   // 스크롤 위치에 따른 실제 Footer 컴포넌트와의 충돌 감지
   useEffect(() => {
+    // 메인 페이지에서는 푸터 감지 비활성화
+    if (isMainPage) {
+      setIsAboveFooter(false);
+      return;
+    }
+
     const handleScroll = () => {
-      // 메인 페이지에서 Hero 섹션 상태 확인 (텍스트/비디오 영역에서는 푸터 감지 무시)
-      const isMainPage = window.location.pathname === "/";
-      if (isMainPage) {
-        // BlueSection이 보이지 않으면 (텍스트/비디오 영역) 푸터 감지 무시
-        const blueSectionOverlay = document.querySelector(
-          '[class*="blueSectionOverlay"]'
-        );
-        const isBlueSectionVisible =
-          blueSectionOverlay &&
-          window.getComputedStyle(blueSectionOverlay).display !== "none";
-
-        if (!isBlueSectionVisible) {
-          console.log(
-            "[FloatingButtonGroup/푸터감지] 메인페이지 텍스트/비디오 영역 - 푸터 감지 무시"
-          );
-          setIsAboveFooter(false);
-          return;
-        }
-      }
-
       // Footer 컴포넌트를 더 정확하게 찾기 (실제 Footer.tsx 컴포넌트)
       const footer = document.querySelector('footer[data-footer="true"]');
 
@@ -69,15 +61,6 @@ export default function FloatingButtonGroup({
       // 푸터가 실제로 화면에 보이기 시작할 때만 플로팅 버튼 이동
       const shouldMoveAboveFooter =
         footerRect.top > 0 && footerRect.top < windowHeight - 100;
-
-      console.log(
-        "[FloatingButtonGroup/푸터감지] isMainPage:",
-        isMainPage,
-        "footerTop:",
-        footerRect.top,
-        "shouldMove:",
-        shouldMoveAboveFooter
-      );
 
       setIsAboveFooter(shouldMoveAboveFooter);
     };
@@ -102,34 +85,31 @@ export default function FloatingButtonGroup({
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, []);
+  }, [isMainPage]);
 
-  const handleButtonClick = (variant: string) => {
-    console.log(`[FloatingButtonGroup] ${variant} 버튼 클릭됨`);
+  // 링크 데이터 메모이제이션
+  const socialLinks = useMemo(() => ({
+    navercalender:
+      "https://map.naver.com/p/entry/place/1675437206?placePath=/home?entry=plt&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509220229&locale=ko&svcName=map_pcv5&searchType=place&lng=127.0184587&lat=37.5132272&c=15.00,0,0,0,dh",
+    kakao: "http://pf.kakao.com/_dTLxnxj",
+    naverBlog: "https://blog.naver.com/banal_ps",
+    youtube: "https://www.youtube.com/@banalps",
+    line: "https://line.me/R/ti/p/@banalps",
+    instagram: "https://www.instagram.com/banal_psooho",
+  }), []);
 
+  // 버튼 클릭 핸들러 메모이제이션
+  const handleButtonClick = useCallback((variant: string) => {
     if (variant === "close") {
       setIsExpanded(false);
     } else if (variant === "brand") {
-      setIsExpanded(!isExpanded);
-    } else {
-      // 소셜 미디어 링크 처리
-      const links: Record<string, string> = {
-        navercalender:
-          "https://map.naver.com/p/entry/place/1675437206?placePath=/home?entry=plt&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509220229&locale=ko&svcName=map_pcv5&searchType=place&lng=127.0184587&lat=37.5132272&c=15.00,0,0,0,dh",
-        kakao: "http://pf.kakao.com/_dTLxnxj",
-        naverBlog: "https://blog.naver.com/banal_ps",
-        youtube: "https://www.youtube.com/@banalps",
-        line: "https://line.me/R/ti/p/@banalps",
-        instagram: "https://www.instagram.com/banal_psooho",
-      };
-
-      if (links[variant]) {
-        window.open(links[variant], "_blank");
-      }
+      setIsExpanded(prev => !prev);
+    } else if (socialLinks[variant as keyof typeof socialLinks]) {
+      window.open(socialLinks[variant as keyof typeof socialLinks], "_blank");
     }
 
     onButtonClick?.(variant);
-  };
+  }, [onButtonClick, socialLinks]);
 
   return (
     <div
@@ -190,3 +170,6 @@ export default function FloatingButtonGroup({
     </div>
   );
 }
+
+// React.memo로 컴포넌트 메모이제이션
+export default memo(FloatingButtonGroupComponent);
