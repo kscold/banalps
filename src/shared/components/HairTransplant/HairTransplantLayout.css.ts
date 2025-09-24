@@ -1595,6 +1595,9 @@ export const beforeAfterSection = style({
 export const beforeAfterContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
   textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: "3rem",
 });
 
 export const beforeAfterHeader = style({
@@ -1720,7 +1723,6 @@ export const beforeAfterActions = style({
     [breakpoints.mobile]: {
       width: "100%",
       padding: `0 ${mvw(60)}`,
-      marginTop: mvw(40),
     },
   },
 });
