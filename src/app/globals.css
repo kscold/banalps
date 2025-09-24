@@ -1,6 +1,37 @@
 @import "tailwindcss";
 @import "../styles/breakpoints.css";
 
+/* 스크롤바 완전히 숨기기 - 스크롤 기능은 유지 */
+html {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 모든 요소의 가로 스크롤바 숨기기 */
+*::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 /* S-Core Dream Font Face */
 @font-face {
   font-family: 'S-Core Dream';

@@ -1,465 +1,373 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import HeroSection from "../widgets/Hero/HeroSection";
 import { VideoSection } from "../widgets/Hero/VideoSection";
 import BlueSection from "../widgets/BlueSection";
 import WhiteSection from "../widgets/WhiteSection/WhiteSection";
 import Footer from "../shared/ui/Footer/Footer";
 
-type SectionType = "hero" | "video" | "content";
-
 const FullPageMain = () => {
-  const [currentSection, setCurrentSection] = useState<SectionType>("hero");
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [previousSection, setPreviousSection] = useState<SectionType | null>(
-    null
-  );
-  const [isVideoPreloaded, setIsVideoPreloaded] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const [heroCompleted, setHeroCompleted] = useState(false);
-  const [videoSectionTime, setVideoSectionTime] = useState(0);
-  const videoPreloadRef = useRef<boolean>(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
 
-  // 섹션 변경 추적
+  const totalTexts = 6; // 텍스트 총 개수
+
+  // 초기 스크롤 위치를 0으로 설정
   useEffect(() => {
-    console.log(
-      `[FullPageMain/섹션변경] 현재 섹션: ${currentSection}, 이전 섹션: ${previousSection}`
-    );
-
-    // 비디오 섹션에 진입하면 타이머 시작
-    if (currentSection === "video") {
-      const timer = setInterval(() => {
-        setVideoSectionTime((prev) => prev + 100);
-      }, 100);
-
-      return () => {
-        clearInterval(timer);
-        setVideoSectionTime(0); // 비디오 섹션을 떠나면 리셋
-      };
-    }
-  }, [currentSection, previousSection]);
-
-  // 비디오 프리로드 - 컴포넌트 마운트 시 즉시 시작
-  useEffect(() => {
-    if (!videoPreloadRef.current) {
-      console.log("[FullPageMain/비디오프리로드] 비디오 프리로드 시작");
-      videoPreloadRef.current = true;
-
-      // Vimeo Player API 스크립트 프리로드
-      const link = document.createElement("link");
-      link.rel = "prefetch";
-      link.href =
-        "https://player.vimeo.com/video/1026757305?h=e9b3fc8dd8&autoplay=1&muted=1&loop=1&controls=0&title=0&byline=0&portrait=0&background=1";
-      link.as = "document";
-      document.head.appendChild(link);
-
-      setIsVideoPreloaded(true);
-    }
+    window.scrollTo(0, 0);
   }, []);
 
-  // 텍스트가 완료되었을 때 비디오 섹션으로 이동
-  const handleTextComplete = () => {
-    console.log(
-      `[FullPageMain/텍스트완료] 텍스트 완료 - 현재 섹션: ${currentSection} → 비디오 섹션으로 이동`
-    );
-    setHeroCompleted(true); // 히어로 섹션 완료 표시
-    setIsTransitioning(true);
-    // 비디오 준비 상태 리셋
-    setIsVideoReady(false);
-    setTimeout(() => {
-      console.log("[FullPageMain/텍스트완료] 비디오 섹션으로 전환 시작");
-      setCurrentSection("video");
-      setIsTransitioning(false);
-    }, 300);
-  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
-  // 비디오가 준비되었을 때 호출
-  const handleVideoReady = () => {
-    console.log(
-      "[FullPageMain/비디오준비] 비디오가 렌더링 완료되어 스크롤 가능"
-    );
-    setIsVideoReady(true);
-  };
+  // Spring으로 부드러운 스크롤 효과
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
-  // 비디오가 끝났을 때 다음 섹션으로 이동
-  const handleVideoEnd = () => {
-    console.log(
-      `[FullPageMain/비디오종료] 비디오 재생 완료 - 현재 섹션: ${currentSection} → 콘텐츠 섹션으로 이동`
-    );
-    // 즉시 콘텐츠 섹션으로 전환 (전환 효과 없이)
-    setPreviousSection("video");
-    setCurrentSection("content");
-    console.log("[FullPageMain/비디오종료] 콘텐츠 섹션으로 전환 완료");
-  };
-
-  // 블루섹션에서 비디오로 복귀
-  const handleBackToVideo = () => {
-    console.log(
-      `[FullPageMain/비디오복귀] 블루섹션에서 비디오로 복귀 - 현재 섹션: ${currentSection}`
-    );
-    setIsTransitioning(true);
-    setTimeout(() => {
-      console.log("[FullPageMain/비디오복귀] 비디오 섹션으로 전환 시작");
-      setCurrentSection("video");
-      setIsTransitioning(false);
-    }, 300);
-  };
-
-  // 섹션별 스크롤 이벤트 처리
+  // 텍스트 인덱스 계산 - 스크롤 위치에 따라 텍스트 변경 (정확한 매칭)
   useEffect(() => {
-    // Hero 섹션에서는 스크롤 이벤트 처리하지 않음 (HeroSection 컴포넌트가 자체적으로 처리)
-    if (currentSection === "hero") {
-      console.log(
-        `[FullPageMain/스크롤비활성화] Hero 섹션 - 스크롤 이벤트 비활성화`
-      );
-      return;
-    }
+    let scrollTimeout: NodeJS.Timeout;
 
-    let isScrolling = false;
-    let lastScrollTime = 0;
-    let scrollAccumulator = 0; // 스크롤 누적값
-    let scrollResetTimeout: NodeJS.Timeout | null = null;
-    const scrollCooldown = 1200; // 스크롤 간 최소 간격 증가
-    const scrollDebounceTime = 1500; // debounce 시간 증가
-    const scrollThreshold = 4; // 스크롤 누적 임계값
+    const unsubscribe = smoothProgress.on("change", (value) => {
+      // 텍스트 인덱스 결정 - 정확한 경계선 기준
+      let targetIndex = 0;
 
-    // 모바일 터치 이벤트 처리
-    let touchStartY = 0;
-    let touchEndY = 0;
+      // 스크롤 위치와 텍스트 인덱스 정확한 매핑
+      // 각 텍스트가 차지하는 정확한 구간:
+      // 텍스트 0: 0.00 ~ 0.05 (5%)
+      // 텍스트 1: 0.05 ~ 0.10 (5%)
+      // 텍스트 2: 0.10 ~ 0.15 (5%)
+      // 텍스트 3: 0.15 ~ 0.20 (5%)
+      // 텍스트 4: 0.20 ~ 0.25 (5%)
+      // 텍스트 5: 0.25 ~ 0.30 (5%)
+      // 비디오: 0.30 ~ 0.40 (10%)
+      // 콘텐츠: 0.40 ~ 1.00 (60%)
 
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
+      if (value >= 0 && value < 0.05) {
+        targetIndex = 0;
+      } else if (value >= 0.05 && value < 0.1) {
+        targetIndex = 1;
+      } else if (value >= 0.1 && value < 0.15) {
+        targetIndex = 2;
+      } else if (value >= 0.15 && value < 0.2) {
+        targetIndex = 3;
+      } else if (value >= 0.2 && value < 0.25) {
+        targetIndex = 4;
+      } else if (value >= 0.25 && value < 0.3) {
+        targetIndex = 5;
+      } else {
+        targetIndex = -1; // 비디오 및 콘텐츠 섹션에서는 텍스트 없음
+      }
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isTransitioning) return;
+      setCurrentTextIndex(targetIndex);
 
-      touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
+      // heroCompleted 상태 관리
+      if (value >= 0.3 && !heroCompleted) {
+        setHeroCompleted(true);
+      } else if (value < 0.3 && heroCompleted) {
+        setHeroCompleted(false);
+      }
 
-      // 최소 스와이프 거리 체크
-      if (Math.abs(deltaY) < 50) return;
+      // 스크롤 정지 감지 및 정확한 위치로 스냅
+      clearTimeout(scrollTimeout);
 
-      switch (currentSection as SectionType) {
-        case "content":
-          if (deltaY < -50 && window.scrollY === 0) {
-            // 아래로 스와이프 (위로 스크롤) - 정확히 최상단일 때만
-            console.log("[FullPageMain/터치] 콘텐츠에서 비디오로 (scrollY: " + window.scrollY + ")");
-            setIsVideoReady(false);
-            setPreviousSection("content");
-            setIsTransitioning(true);
-            setCurrentSection("video");
-            setTimeout(() => {
-              setIsTransitioning(false);
-            }, 500);
+      scrollTimeout = setTimeout(() => {
+        // 각 텍스트의 시작 위치로 스냅
+        const textStartPositions = [
+          0, // 텍스트 0 시작
+          0.05, // 텍스트 1 시작
+          0.1, // 텍스트 2 시작
+          0.15, // 텍스트 3 시작
+          0.2, // 텍스트 4 시작
+          0.25, // 텍스트 5 시작
+        ];
+
+        // 현재 텍스트 인덱스에 해당하는 정확한 위치 찾기
+        let targetPosition =
+          targetIndex >= 0 ? textStartPositions[targetIndex] : null;
+
+        // 비디오 섹션인 경우 (30-40%)
+        if (value >= 0.3 && value < 0.4) {
+          // 비디오 섹션 내에서 더 세밀한 스냅 포인트
+          if (value < 0.33) {
+            targetPosition = 0.3; // 비디오 시작
+          } else if (value < 0.37) {
+            targetPosition = 0.35; // 비디오 중간
+          } else {
+            targetPosition = 0.4; // 비디오 끝 / 블루섹션 시작 준비 (수정됨: 0.1 -> 0.4)
           }
-          break;
-
-        case "hero":
-          if (deltaY > 0 && heroCompleted) {
-            // 위로 스와이프 (아래로 스크롤 - 비디오로)
-            console.log("[FullPageMain/터치] 히어로에서 비디오로");
-            setPreviousSection("hero");
-            setCurrentSection("video");
-          }
-          break;
-
-        case "video":
-          if (deltaY > 0) {
-            // 위로 스와이프 (아래로 스크롤 - 블루섹션으로)
-            // 비디오 섹션에서 최소 1초는 있어야 함
-            if (videoSectionTime < 1000) {
-              console.log(
-                `[FullPageMain/터치] 비디오 섹션 최소 시간 미달: ${videoSectionTime}ms/1000ms`
-              );
-              return;
-            }
-            console.log("[FullPageMain/터치] 비디오에서 콘텐츠(블루섹션)로");
-            setPreviousSection("video");
-            setCurrentSection("content");
-          } else if (deltaY < 0) {
-            // 아래로 스와이프 (위로 스크롤 - 히어로로)
-            console.log("[FullPageMain/터치] 비디오에서 히어로로");
-            setPreviousSection("video");
-            setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
-            setCurrentSection("hero");
-          }
-          break;
-
-        default:
-          // TypeScript exhaustive check - 모든 케이스를 처리했음을 보장
-          break;
-      }
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      const now = Date.now();
-      const deltaY = e.deltaY;
-
-      // 콘텐츠 섹션에서는 페이지 최상단에서 위로 스크롤할 때만 비디오로 복귀
-      if (currentSection === "content") {
-        console.log(
-          `[FullPageMain/콘텐츠스크롤] 콘텐츠 섹션에서 스크롤 감지 - deltaY: ${deltaY}, scrollY: ${window.scrollY}, isVideoReady: ${isVideoReady}`
-        );
-
-        if (deltaY < 0 && window.scrollY === 0) {
-          e.preventDefault();
-
-          // 트랜지션 중이거나 쿨다운 중이면 무시
-          if (isTransitioning || now - lastScrollTime < scrollCooldown) {
-            return;
-          }
-
-          lastScrollTime = now;
-          console.log(
-            `[FullPageMain/위스크롤] ${currentSection} → 비디오 섹션 (scrollY: ${window.scrollY})`
-          );
-          // 비디오 준비 상태 리셋
-          setIsVideoReady(false);
-          setPreviousSection("content");
-          setIsTransitioning(true);
-          setCurrentSection("video");
-
-          setTimeout(() => {
-            setIsTransitioning(false);
-          }, 800);
         }
-        return;
-      }
-
-      // 비디오 섹션에서는 스크롤 방지
-      e.preventDefault();
-
-      // 트랜지션 중이면 무시
-      if (isTransitioning) return;
-
-      // 스크롤 누적값 업데이트
-      scrollAccumulator += Math.abs(deltaY);
-
-      // 스크롤 리셋 타이머 관리
-      if (scrollResetTimeout) {
-        clearTimeout(scrollResetTimeout);
-      }
-
-      scrollResetTimeout = setTimeout(() => {
-        scrollAccumulator = 0;
-        scrollResetTimeout = null;
-      }, 300);
-
-      // 누적값이 임계값 미만이면 무시 (빠른 스크롤 방지)
-      if (scrollAccumulator < scrollThreshold) {
-        console.log(
-          `[FullPageMain/스크롤누적] 누적값 부족: ${scrollAccumulator}/${scrollThreshold}`
-        );
-        return;
-      }
-
-      // 쿨다운 체크
-      if (now - lastScrollTime < scrollCooldown || isScrolling) {
-        console.log(`[FullPageMain/쿨다운] 스크롤 쿨다운 중`);
-        return;
-      }
-
-      // 최소 스크롤 임계값 체크
-      if (Math.abs(deltaY) < 30) return;
-
-      isScrolling = true;
-      lastScrollTime = now;
-      scrollAccumulator = 0; // 스크롤 처리 후 누적값 리셋
-
-      if (deltaY > 0) {
-        // 아래로 스크롤
-        console.log(`[FullPageMain/아래스크롤] ${currentSection} → 다음 섹션`);
-        if (currentSection === "video") {
-          // 비디오 섹션에서 최소 1초는 있어야 함
-          if (videoSectionTime < 1000) {
-            console.log(
-              `[FullPageMain/비디오최소시간] 비디오 섹션 최소 시간 미달: ${videoSectionTime}ms/1000ms`
-            );
-            return;
-          }
-          console.log(
-            "[FullPageMain/비디오스크롤] 비디오에서 콘텐츠 섹션으로 이동 시작"
-          );
-          setPreviousSection("video");
-          setCurrentSection("content");
-          console.log("[FullPageMain/비디오스크롤] 콘텐츠 섹션으로 전환 완료");
+        // 콘텐츠 섹션 시작 (40%) - 블루섹션으로 정확히 이동
+        else if (value >= 0.4 && value < 0.42) {
+          targetPosition = 0.4; // 블루섹션 시작 위치로 강제 스냅
+        } else if (value >= 0.42) {
+          // 나머지 콘텐츠는 스냅하지 않음
+          return;
         }
-      } else if (deltaY < 0) {
-        // 위로 스크롤
-        console.log(`[FullPageMain/위스크롤] ${currentSection} → 이전 섹션`);
-        if (currentSection === "video") {
-          console.log("[FullPageMain/비디오스크롤] 비디오에서 텍스트로 복귀");
-          setPreviousSection("video");
-          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
-          setCurrentSection("hero");
+
+        if (targetPosition === null) return;
+
+        // 현재 위치와 목표 위치의 차이가 작은 경우만 스냅
+        const distance = Math.abs(value - targetPosition);
+
+        // 블루섹션으로 전환할 때는 더 엄격한 조건 적용
+        const isBlueSectionTransition = targetPosition === 0.4;
+        const isVideoSection = value >= 0.3 && value < 0.4;
+        const minDistance = isBlueSectionTransition
+          ? 0.001
+          : isVideoSection
+          ? 0.002
+          : 0.003;
+        const maxDistance = isBlueSectionTransition
+          ? 0.01
+          : isVideoSection
+          ? 0.015
+          : 0.02;
+
+        if (distance > minDistance && distance < maxDistance) {
+          const targetScroll =
+            targetPosition * (containerRef.current?.scrollHeight || 0);
+          window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth",
+          });
         }
-      }
-
-      setTimeout(() => {
-        isScrolling = false;
-      }, scrollDebounceTime);
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isTransitioning) return;
-
-      // 콘텐츠 섹션에서는 키보드로 위로 스크롤할 때만 비디오로 복귀
-      if (currentSection === "content") {
-        if (e.key === "ArrowUp" && window.scrollY === 0) {
-          e.preventDefault();
-          console.log(
-            `[FullPageMain/키보드위] ${currentSection} → 비디오 섹션 (scrollY: ${window.scrollY})`
-          );
-          // 비디오 준비 상태 리셋
-          setIsVideoReady(false);
-          setPreviousSection("content");
-          setIsTransitioning(true);
-          setCurrentSection("video");
-
-          setTimeout(() => {
-            setIsTransitioning(false);
-          }, 500); // 전환 지연 시간 추가
-        }
-        return;
-      }
-
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        console.log(`[FullPageMain/키보드아래] ${currentSection} → 다음 섹션`);
-        if (currentSection === "video") {
-          setPreviousSection("video");
-          setCurrentSection("content");
-        }
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        console.log(`[FullPageMain/키보드위] ${currentSection} → 이전 섹션`);
-        if (currentSection === "video") {
-          setPreviousSection("video");
-          setHeroCompleted(false); // 히어로로 돌아갈 때 리셋
-          setCurrentSection("hero");
-        }
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+      }, 150); // 비디오 섹션을 위한 더 긴 대기 시간
+    });
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
-      if (scrollResetTimeout) {
-        clearTimeout(scrollResetTimeout);
+      unsubscribe();
+      clearTimeout(scrollTimeout);
+    };
+  }, [smoothProgress, heroCompleted]);
+
+  // 히어로 섹션 - 텍스트 애니메이션 구간 (0~30% 텍스트)
+  const heroOpacity = useTransform(smoothProgress, [0, 0.28, 0.3], [1, 1, 0]);
+
+  // 비디오 섹션 - 히어로 텍스트 완료 후 시작 (30~40%)
+  const videoOpacity = useTransform(
+    smoothProgress,
+    [0.28, 0.3, 0.38, 0.4],
+    [0, 1, 1, 0]
+  );
+
+  // 콘텐츠 섹션 - 비디오 후 시작 (40~100%)
+  // 블루섹션이 맨 위부터 시작되도록 타이밍 조정
+  const contentOpacity = useTransform(
+    smoothProgress,
+    [0.38, 0.4, 0.41],
+    [0, 1, 1]
+  );
+
+  // 텍스트 애니메이션 완료 핸들러
+  const handleTextComplete = () => {
+    console.log("[FullPageMain] 텍스트 애니메이션 완료");
+    setHeroCompleted(true);
+  };
+
+  // 비디오 종료 핸들러
+  const handleVideoEnd = () => {
+    console.log("[FullPageMain] 비디오 종료");
+  };
+
+  // 비디오 준비 핸들러
+  const handleVideoReady = () => {
+    console.log("[FullPageMain] 비디오 준비 완료");
+  };
+
+  // 비디오 로딩 상태 체크
+  useEffect(() => {
+    const unsubscribe = smoothProgress.on("change", (value) => {
+      if (value > 0.3 && !showVideo) {
+        setShowVideo(true);
+      } else if (value <= 0.3 && showVideo) {
+        setShowVideo(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [smoothProgress, showVideo]);
+
+  // 스크롤 방지/허용 제어 - 제거 (자유 스크롤 허용)
+  useEffect(() => {
+    // 항상 스크롤 허용
+    document.body.style.overflow = "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  // 블루섹션으로 전환 시 정확한 스크롤 위치 보장
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollProgress =
+        window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight);
+
+      // 블루섹션 시작 지점(40%) 근처에서 정확한 위치로 스냅
+      if (scrollProgress >= 0.38 && scrollProgress <= 0.42) {
+        const targetScroll =
+          0.4 * (document.documentElement.scrollHeight - window.innerHeight);
+        const currentScroll = window.scrollY;
+        const distance = Math.abs(currentScroll - targetScroll);
+
+        // 더 엄격한 조건으로 정확한 위치로 스냅
+        if (distance > 10 && distance < 100) {
+          window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth",
+          });
+        }
       }
     };
-  }, [
-    currentSection,
-    isTransitioning,
-    heroCompleted,
-    isVideoReady,
-    videoSectionTime,
-  ]);
 
-  const renderSection = () => {
-    switch (currentSection) {
-      case "hero":
-        return (
-          <div>
-            <HeroSection
-              onTextComplete={handleTextComplete}
-              initialTextIndex={
-                previousSection === "video" || previousSection === "content"
-                  ? 5
-                  : 0
-              }
-            />
-            {/* 비디오 프리로드 - 숨겨진 상태로 항상 렌더링 */}
-            <div
-              style={{
-                position: "absolute",
-                top: "-9999px",
-                left: "-9999px",
-                opacity: 0,
-                pointerEvents: "none",
-              }}
-            >
-              <VideoSection
-                showVideoSection={false}
-                onVideoEnd={handleVideoEnd}
-                onVideoReady={handleVideoReady}
-              />
-            </div>
-          </div>
-        );
-      case "video":
-        return (
-          <VideoSection
-            showVideoSection={true}
-            onVideoEnd={handleVideoEnd}
-            onVideoReady={handleVideoReady}
-          />
-        );
-      case "content":
-        return (
-          <div>
-            <BlueSection
-              isActive={true}
-              onTransitionToVideo={handleBackToVideo}
-            />
-            <WhiteSection />
-            <Footer />
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+    let scrollTimeout: NodeJS.Timeout;
+    const throttledScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 50);
+    };
+
+    window.addEventListener("scroll", throttledScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", throttledScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   return (
     <div
-      className={`relative w-full ${
-        currentSection === "content"
-          ? "min-h-screen"
-          : "h-screen overflow-hidden"
-      }`}
+      ref={containerRef}
+      className="relative"
+      style={{
+        scrollSnapType: "y mandatory",
+        scrollBehavior: "smooth",
+      }}
     >
-      <AnimatePresence mode="sync">
+      {/* 고정 레이어 - 히어로와 비디오 */}
+      <div className="fixed top-0 left-0 w-full h-screen" style={{ zIndex: 1 }}>
+        {/* 백그라운드 레이어 제거 - 배경 이미지가 보이도록 */}
+
+        {/* 히어로 섹션 */}
         <motion.div
-          key={currentSection}
-          initial={
-            currentSection === "content" && previousSection === "video"
-              ? { opacity: 1, y: 0 }
-              : currentSection === "video" && previousSection === "content"
-              ? { opacity: 1, y: 0 }
-              : { opacity: 0, y: 20 }
-          }
-          animate={{ opacity: 1, y: 0 }}
-          exit={
-            currentSection === "video" && previousSection === "content"
-              ? { opacity: 1, y: 0 }
-              : currentSection === "content" && previousSection === "video"
-              ? { opacity: 1, y: 0 }
-              : { opacity: 0, y: -20 }
-          }
-          transition={{
-            duration:
-              (currentSection === "content" && previousSection === "video") ||
-              (currentSection === "video" && previousSection === "content")
-                ? 0.3
-                : 0.6,
-            ease: "easeInOut",
+          ref={heroRef}
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            opacity: heroOpacity,
+            zIndex: 2,
+            willChange: "opacity",
           }}
-          className="w-full h-full"
         >
-          {renderSection()}
+          <HeroSection
+            onTextComplete={handleTextComplete}
+            initialTextIndex={currentTextIndex}
+          />
         </motion.div>
-      </AnimatePresence>
+
+        {/* 비디오 섹션 */}
+        <motion.div
+          ref={videoRef}
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            opacity: videoOpacity,
+            zIndex: 3,
+            willChange: "opacity",
+          }}
+        >
+          {showVideo && (
+            <VideoSection
+              showVideoSection={true}
+              onVideoEnd={handleVideoEnd}
+              onVideoReady={handleVideoReady}
+            />
+          )}
+        </motion.div>
+      </div>
+
+      {/* 스페이서 - 텍스트(30%) + 비디오(10%) = 40% = 120vh */}
+      {/* 콘텐츠 섹션은 스크롤 40% 지점에서 시작 */}
+      <div style={{ height: "120vh" }}>
+        {/* 정확한 텍스트 위치별 스냅 포인트 */}
+        {/* 텍스트 0-5: 각 5% (0-30%) = 90vh */}
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="0"
+        />
+        <div style={{ height: "15vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="1"
+        />
+        <div style={{ height: "15vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="2"
+        />
+        <div style={{ height: "15vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="3"
+        />
+        <div style={{ height: "15vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="4"
+        />
+        <div style={{ height: "15vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-text="5"
+        />
+        <div style={{ height: "15vh" }} />
+        {/* 비디오: 10% (30-40%) = 30vh */}
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-video="start"
+        />
+        <div style={{ height: "10vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-video="middle1"
+        />
+        <div style={{ height: "10vh" }} />
+        <div
+          style={{ height: "0vh", scrollSnapAlign: "start" }}
+          data-video="middle2"
+        />
+        <div style={{ height: "10vh" }} />
+      </div>
+
+      {/* 콘텐츠 섹션 - 스크롤 40%에서 시작 */}
+      <div
+        style={{ height: "300vh", scrollSnapAlign: "start" }}
+        data-content="start"
+      />
+      <motion.div
+        className="relative"
+        style={{
+          opacity: contentOpacity,
+          zIndex: 10,
+          backgroundColor: "white",
+          willChange: "opacity",
+          pointerEvents: contentOpacity.get() > 0.3 ? "auto" : "none",
+          marginTop: 0, // 블루섹션이 처음부터 시작
+        }}
+      >
+        <BlueSection isActive={true} />
+        <WhiteSection />
+        <Footer />
+      </motion.div>
     </div>
   );
 };

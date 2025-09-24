@@ -421,8 +421,10 @@ export default function HairlinePage() {
               variant="primary"
               color="blue"
               size="medium"
+              height={66}
               width={isMobile ? "100%" : 224}
               textAlign="center"
+              paddingLeft={true}
             >
               수술전후 더보기
             </ArrowButton>
@@ -465,7 +467,7 @@ export default function HairlinePage() {
               animate={
                 featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
               }
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
             >
               <div className={styles.featureIconContainer}>
                 <div className={styles.featureIcon}>
@@ -487,7 +489,7 @@ export default function HairlinePage() {
               animate={
                 featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
               }
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
               <div className={styles.featureIconContainer}>
                 <div className={styles.featureIcon}>
@@ -509,7 +511,7 @@ export default function HairlinePage() {
               animate={
                 featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
               }
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
             >
               <div className={styles.featureIconContainer}>
                 <div className={styles.featureIcon}>
@@ -531,7 +533,7 @@ export default function HairlinePage() {
               animate={
                 featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
               }
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
             >
               <div className={styles.featureIconContainer}>
                 <div className={styles.featureIcon}>

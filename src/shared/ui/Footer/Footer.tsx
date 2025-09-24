@@ -1,9 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import * as styles from "./Footer.css";
+import TermsModal from "@/shared/components/TermsModal/TermsModal";
 
 export default function Footer() {
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+
+  const handleTermsClick = () => {
+    setIsTermsModalOpen(true);
+  };
+
+  const handlePrivacyClick = () => {
+    setIsPrivacyModalOpen(true);
+  };
+
+  const closeTermsModal = () => {
+    setIsTermsModalOpen(false);
+  };
+
+  const closePrivacyModal = () => {
+    setIsPrivacyModalOpen(false);
+  };
   return (
     <footer className={styles.footerSection} data-footer="true">
       <div className={styles.footerContent}>
@@ -32,12 +51,18 @@ export default function Footer() {
                 서울시 서초구 신반포로 47길 66 바날하우스
               </p>
               <div className={styles.footerLinksContainer}>
-                <a href="/terms" className={styles.footerLink}>
+                <button
+                  className={styles.footerLink}
+                  onClick={handleTermsClick}
+                >
                   이용약관
-                </a>
-                <a href="/privacy" className={styles.footerLink}>
+                </button>
+                <button
+                  className={styles.footerLink}
+                  onClick={handlePrivacyClick}
+                >
                   개인정보처리방침
-                </a>
+                </button>
               </div>
             </div>
 
@@ -86,18 +111,36 @@ export default function Footer() {
 
           {/* 링크 */}
           <div className={styles.mobileLinks}>
-            <a href="/terms" className={styles.mobileLinkItem}>
+            <button
+              className={styles.mobileLinkItem}
+              onClick={handleTermsClick}
+            >
               이용약관
-            </a>
-            <a href="/privacy" className={styles.mobileLinkItem}>
+            </button>
+            <button
+              className={styles.mobileLinkItem}
+              onClick={handlePrivacyClick}
+            >
               개인정보처리방침
-            </a>
+            </button>
           </div>
 
           {/* 카피라이트 */}
           <p className={styles.mobileCopyright}>©2025 BANAL PLASTIC SURGERY</p>
         </div>
       </div>
+
+      {/* Terms Modal */}
+      <TermsModal
+        isOpen={isTermsModalOpen}
+        onClose={closeTermsModal}
+        type="terms"
+      />
+      <TermsModal
+        isOpen={isPrivacyModalOpen}
+        onClose={closePrivacyModal}
+        type="privacy"
+      />
     </footer>
   );
 }

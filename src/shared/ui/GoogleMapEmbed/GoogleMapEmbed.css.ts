@@ -173,7 +173,7 @@ export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#FFFFFF",
+    color: "#000000",
 
     "@media": {
       [breakpoints.desktopLarge]: {
