@@ -903,8 +903,7 @@ export const section2MobileIllustration = style({
     [breakpoints.mobile]: {
       display: "flex",
       alignItems: "center",
-      marginTop: mvw(40),
-      marginBottom: mvw(20),
+
       borderRadius: mvw(12),
     },
   },
@@ -1445,6 +1444,29 @@ export const section3MobileIllustration = style({
       marginBottom: mvw(40),
     },
   },
+});
+
+// Section 2 모바일 이미지들 컨테이너
+export const section2MobileImages = style({
+  display: "none", // 데스크탑에서는 숨김
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "2.5rem",
+      width: "100%",
+      marginTop: "2.5rem",
+      marginBottom: mvw(40),
+    },
+  },
+});
+
+// Section 2 모바일 개별 이미지
+export const section2MobileImage = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
 });
 
 // Section 3 중앙 일러스트 스타일 (피그마 위치: x:425, y:400 기준으로 배치)

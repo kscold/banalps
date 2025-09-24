@@ -96,7 +96,7 @@ interface Section {
     };
   };
   mobileImages?: {
-    illustration?: string; // Mobile-specific illustration
+    illustration?: string | string[]; // Mobile-specific illustration(s)
     illustrationSize?: {
       // Optional custom size for mobile illustration
       width: number; // mvw units
@@ -392,7 +392,7 @@ export default function HairTransplantLayout({
                     }
                   >
                     <img
-                      src={section1.mobileImages.illustration}
+                      src={section1.mobileImages.illustration as string}
                       alt="일러스트"
                       className={styles.section1Illustration}
                     />
@@ -739,6 +739,48 @@ export default function HairTransplantLayout({
                     alt="일러스트"
                     className={styles.section2IllustrationContent}
                   />
+                </div>
+              )}
+
+              {/* 모바일 이미지들 */}
+              {section2.mobileImages?.illustration && (
+                <div className={styles.section2MobileImages}>
+                  {section2.mobileImages.illustration.map((img, index) => (
+                    <div
+                      key={index}
+                      className={styles.section2MobileImage}
+                      style={{
+                        ...(section2.mobileImages?.illustrationSize
+                          ? {
+                              width: `${
+                                (section2.mobileImages.illustrationSize.width /
+                                  375) *
+                                100
+                              }vw`,
+                              height: "100%",
+                              maxWidth: "100%",
+                            }
+                          : {}),
+                        ...(index === 0
+                          ? {
+                              marginLeft: mvw(-20),
+                              marginRight: mvw(-20),
+                              width: "100vw",
+                            }
+                          : {}),
+                      }}
+                    >
+                      <img
+                        src={img}
+                        alt="일러스트"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </div>
+                  ))}
                 </div>
               )}
             </>
