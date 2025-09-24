@@ -1035,8 +1035,6 @@ export default function HairTransplantLayout({
                           src={section3.illustrationMobile}
                           alt="일러스트"
                           style={{
-                            width: "100%",
-                            height: "100%",
                             objectFit: "contain",
                           }}
                         />

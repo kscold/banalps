@@ -162,6 +162,7 @@ function CrownContent() {
         width: 275,
         height: 223,
       },
+      illustrationMobile: "/hair-transplant/crown/illustration-4.svg",
       description: (
         <>
           정수리 탈모가 있으면 뒷머리의 숱도 줄고
