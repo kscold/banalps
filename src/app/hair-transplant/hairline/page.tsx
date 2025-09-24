@@ -99,7 +99,7 @@ export default function HairlinePage() {
                     transition={{ duration: 0.5, ease: "easeOut", delay: 0 }}
                   >
                     <img
-                      src="/hair-transplant/hairline/hairline-2.png"
+                      src="/hair-transplant/hairline/mobile/hairline-2.png"
                       alt="헤어라인 페이지 이미지 1"
                       className={styles.section1ImageContent}
                     />
