@@ -644,6 +644,7 @@ export const strengthsTitle = style({
     [breakpoints.mobile]: {
       fontSize: mvw(36),
       lineHeight: "120%",
+      fontWeight: 500,
       textAlign: "left",
       alignSelf: "flex-start",
     },
@@ -810,6 +811,7 @@ export const strengthItemTitle = style({
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
       lineHeight: "28px",
+
       minWidth: "200px",
     },
   },
