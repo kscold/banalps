@@ -757,12 +757,15 @@ export const section2Description = style({
       fontSize: mvw(16),
       lineHeight: mvw(28),
       textAlign: "left",
+      display: "flex",
+      flexDirection: "column",
+      gap: "2rem", // 모바일에서만 gap 적용
     },
   },
 });
 
 export const section2Quote = style({
-  fontFamily: "'Pretendard', sans-serif", // 피그마 스펙: Pretendard (동일)
+  fontFamily: "'S-Core Dream', sans-serif", // S-Core Dream으로 변경
   fontWeight: 400, // 피그마 스펙: Regular = 400 (동일)
   ...responsiveFont(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙, 동일)

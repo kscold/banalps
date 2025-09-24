@@ -236,21 +236,23 @@ export default function HairlinePage() {
                   </div>
 
                   <p className={styles.section2Description}>
-                    자연스러움 을 만드는 일은 어렵습니다.
-                    <br />
-                    어색하지 않아야 하며 결과는 1년을 기다려야 합니다.
-                    <br />
-                    <br />
-                    <span className={styles.section2Quote}>
-                      &ldquo;헤어라인 교정만 10년을 하면서
+                    <div>자연스러움 을 만드는 일은 어렵습니다.</div>
+                    <div>
+                      어색하지 않아야 하며 <br />
+                      결과는 1년을 기다려야 합니다.
+                    </div>
+                    <div>
+                      <span className={styles.section2Quote}>
+                        &ldquo;헤어라인 교정만 10년을 하면서
+                        <br />
+                        자연스럽게 만드는 최적의 접점을 찾았습니다.&rdquo;
+                      </span>
+                    </div>
+                    <div>
+                      이제 빼곡하면서 자연스러운 헤어라인도
                       <br />
-                      자연스럽게 만드는 최적의 접점을 찾았습니다.&rdquo;
-                    </span>
-                    <br />
-                    <br />
-                    이제 빼곡하면서 자연스러운 헤어라인도
-                    <br />
-                    불가능하지 않습니다.
+                      불가능하지 않습니다.
+                    </div>
                   </p>
                 </div>
               </div>
