@@ -838,14 +838,14 @@ export const section2Image = style({
 });
 
 export const section2ImageContent = style({
-  width: "100%",
   height: "100%",
   borderRadius: "8px",
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
       borderRadius: mvw(15),
-      objectFit: "cover",
+      objectFit: "contain",
+      width: "100%",
       overflow: "hidden",
       // 강제로 borderRadius 적용
     },
@@ -1455,7 +1455,7 @@ export const section2MobileImages = style({
       flexDirection: "column",
       gap: "2.5rem",
       width: "100%",
-      marginTop: "2.5rem",
+      marginTop: mvw(40),
       marginBottom: mvw(40),
     },
   },

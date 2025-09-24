@@ -98,6 +98,24 @@ export default function ReoperationPage() {
           이제 안심하셔도 됩니다.
         </>
       ),
+      descriptionMobile: (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ marginBottom: "2rem" }}>
+            흉터에는 혈관이 부족해서 생착률이
+            <br />
+            떨어지기 때문에 밀도를 많이 낮춰서 심는게
+            <br />
+            좋습니다.
+          </div>
+          <div>
+            오랜 경험과 시간으로 밀도있는 모발을
+            <br />
+            만들어드릴 수 있게 되었으니
+            <br />
+            이제 안심하셔도 됩니다.
+          </div>
+        </div>
+      ),
       svgElements: {
         container: "/hair-transplant/reoperation/illustration-1.svg",
         absolute: "/hair-transplant/reoperation/illustration-2.svg",
@@ -121,9 +139,11 @@ export default function ReoperationPage() {
           // bottom과 left도 선택적으로 설정 가능
         },
       },
-      mobileIllustration: "/hair-transplant/reoperation/illustration-1.svg",
+      mobileImages: {
+        illustration: ["/hair-transplant/reoperation/mobile-3.svg"],
+      },
       images: {
-        main: "/hair-transplant/reoperation/reoperation-3.png",
+        main: "/hair-transplant/reoperation/mobile-2.png",
       },
     },
     section3: {
