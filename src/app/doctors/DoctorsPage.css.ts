@@ -3117,7 +3117,7 @@ export const doctorMobileCredentialItem = style({
   fontFamily: "'S-Core Dream', sans-serif",
   letterSpacing: "0%",
   textAlign: "left",
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: mvw(16),
   lineHeight: "150%",
   color: "#000000",

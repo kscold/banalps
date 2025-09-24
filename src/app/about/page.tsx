@@ -167,6 +167,19 @@ export default function AboutPage() {
                 </motion.div>
 
                 <motion.div
+                  className={styles.reYouCard4}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                >
+                  <img
+                    src="/main/shot/shot2.png"
+                    alt="의료진 4"
+                    className={styles.reYouCardImage}
+                  />
+                </motion.div>
+                <motion.div
                   className={styles.reYouCard2}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -190,20 +203,6 @@ export default function AboutPage() {
                   <img
                     src="/main/shot/shot4.png"
                     alt="Kim Narae"
-                    className={styles.reYouCardImage}
-                  />
-                </motion.div>
-
-                <motion.div
-                  className={styles.reYouCard4}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
-                >
-                  <img
-                    src="/main/shot/shot2.png"
-                    alt="의료진 4"
                     className={styles.reYouCardImage}
                   />
                 </motion.div>
@@ -247,7 +246,7 @@ export default function AboutPage() {
                       transition={{
                         duration: 0.5,
                         delay: index * 0.1,
-                        ease: "easeOut"
+                        ease: "easeOut",
                       }}
                     >
                       <div className={styles.strengthNumber}>
@@ -273,7 +272,7 @@ export default function AboutPage() {
                       transition={{
                         duration: 0.5,
                         delay: index * 0.1,
-                        ease: "easeOut"
+                        ease: "easeOut",
                       }}
                     >
                       <div className={styles.strengthNumberMobile}>
@@ -425,7 +424,11 @@ export default function AboutPage() {
                       initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.4,
+                        ease: "easeOut",
+                      }}
                     >
                       <img
                         src="/about/gallery/gallery-9.png"
@@ -442,7 +445,11 @@ export default function AboutPage() {
                       initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.8,
+                        ease: "easeOut",
+                      }}
                     >
                       <img
                         src="/about/gallery/gallery-8.png"
@@ -455,7 +462,11 @@ export default function AboutPage() {
                       initial={{ opacity: 0, y: 80 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 1.2,
+                        ease: "easeOut",
+                      }}
                     >
                       <img
                         src="/about/gallery/gallery-10.png"
