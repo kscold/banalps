@@ -216,7 +216,11 @@ export default function HairTransplantLayout({
                 >
                   {isMobile && heroTitleMobile ? heroTitleMobile : heroTitle}
                   <div
-                    className={heroDotAbsolute ? styles.HairTransplantHeroTitleDotAbsolute : styles.HairTransplantHeroTitleDot}
+                    className={
+                      heroDotAbsolute
+                        ? styles.HairTransplantHeroTitleDotAbsolute
+                        : styles.HairTransplantHeroTitleDot
+                    }
                   />
                 </span>
               </h1>
@@ -708,7 +712,7 @@ export default function HairTransplantLayout({
                                 : undefined,
                             }
                           : {
-                              width: "100%",
+                              width: "100vw",
                               aspectRatio: "375 / 336",
                             }
                       }
@@ -847,8 +851,12 @@ export default function HairTransplantLayout({
                       style={
                         section2.svgElementsSize?.container
                           ? {
-                              width: vw(section2.svgElementsSize.container.width),
-                              height: vw(section2.svgElementsSize.container.height),
+                              width: vw(
+                                section2.svgElementsSize.container.width
+                              ),
+                              height: vw(
+                                section2.svgElementsSize.container.height
+                              ),
                             }
                           : undefined
                       }
@@ -857,7 +865,11 @@ export default function HairTransplantLayout({
                         src={section2.svgElements.container}
                         alt="일러스트"
                         className={styles.section2SvgImage}
-                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
                       />
                     </div>
                   )}
@@ -888,10 +900,15 @@ export default function HairTransplantLayout({
                                 ? vw(section2.svgElementsPosition.absolute.top)
                                 : undefined,
                               right: section2.svgElementsPosition.absolute.right
-                                ? vw(section2.svgElementsPosition.absolute.right)
+                                ? vw(
+                                    section2.svgElementsPosition.absolute.right
+                                  )
                                 : undefined,
-                              bottom: section2.svgElementsPosition.absolute.bottom
-                                ? vw(section2.svgElementsPosition.absolute.bottom)
+                              bottom: section2.svgElementsPosition.absolute
+                                .bottom
+                                ? vw(
+                                    section2.svgElementsPosition.absolute.bottom
+                                  )
                                 : undefined,
                               left: section2.svgElementsPosition.absolute.left
                                 ? vw(section2.svgElementsPosition.absolute.left)
@@ -900,8 +917,20 @@ export default function HairTransplantLayout({
                           : {}),
                         ...(section2.svgElementsSize?.absolute
                           ? {
-                              width: vw(section2.svgElementsSize.absolute.width),
-                              height: vw(section2.svgElementsSize.absolute.height),
+                              width: isMobile
+                                ? "100vw"
+                                : vw(section2.svgElementsSize.absolute.width),
+                              height: isMobile
+                                ? "auto"
+                                : vw(section2.svgElementsSize.absolute.height),
+                            }
+                          : isMobile
+                          ? { width: "100vw", height: "auto" }
+                          : {}),
+                        ...(isMobile
+                          ? {
+                              marginLeft: mvw(-20), // 부모의 패딩 상쇄
+                              marginRight: mvw(-20), // 부모의 패딩 상쇄
                             }
                           : {}),
                       }}
@@ -909,7 +938,11 @@ export default function HairTransplantLayout({
                       <img
                         src={section2.svgElements.absolute}
                         alt="일러스트 2"
-                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
                       />
                     </div>
                   )}
@@ -977,35 +1010,26 @@ export default function HairTransplantLayout({
                       </motion.div>
                     )}
 
-                    {/* 모바일 일러스트레이션 */}
+                    <p className={styles.section3Description}>
+                      {isMobile && section3.descriptionMobile
+                        ? section3.descriptionMobile
+                        : section3.description}
+                    </p>
+
+                    {/* 모바일 일러스트레이션 - description 아래로 이동 */}
                     {section3.illustrationMobile && (
                       <div
                         className={styles.section3MobileIllustration}
-                        style={
-                          section3.illustrationMobileSize
-                            ? {
-                                width: section3.illustrationMobileSize.fullWidth
-                                  ? "calc(100vw - var(--scrollbar-width, 0px))"
-                                  : "100%",
-                                aspectRatio:
-                                  section3.illustrationMobileSize.width &&
-                                  section3.illustrationMobileSize.height
-                                    ? `${section3.illustrationMobileSize.width} / ${section3.illustrationMobileSize.height}`
-                                    : undefined,
-                                marginLeft: section3.illustrationMobileSize
-                                  .fullWidth
-                                  ? mvw(-20)
-                                  : undefined,
-                                marginRight: section3.illustrationMobileSize
-                                  .fullWidth
-                                  ? mvw(-20)
-                                  : undefined,
-                              }
-                            : {
-                                width: "100%",
-                                aspectRatio: "375 / 336",
-                              }
-                        }
+                        style={{
+                          width: "100vw",
+                          marginLeft: mvw(-20), // 부모의 패딩 상쇄
+                          marginRight: mvw(-20), // 부모의 패딩 상쇄
+                          aspectRatio:
+                            section3.illustrationMobileSize?.width &&
+                            section3.illustrationMobileSize?.height
+                              ? `${section3.illustrationMobileSize.width} / ${section3.illustrationMobileSize.height}`
+                              : "375 / 336",
+                        }}
                       >
                         <img
                           src={section3.illustrationMobile}
@@ -1018,12 +1042,6 @@ export default function HairTransplantLayout({
                         />
                       </div>
                     )}
-
-                    <p className={styles.section3Description}>
-                      {isMobile && section3.descriptionMobile
-                        ? section3.descriptionMobile
-                        : section3.description}
-                    </p>
                   </div>
                 </div>
               </>

@@ -686,11 +686,17 @@ export const section1Image1 = style({
     },
     [breakpoints.mobile]: {
       position: "static",
+      // width: "100%",
+      // height: "auto",
+      // aspectRatio: "600 / 660", // Keep aspect ratio
+
+      //피그마대로
       width: "100%",
-      height: "auto",
-      aspectRatio: "600 / 660", // Keep aspect ratio
+      height: "19.75rem",
+      aspectRatio: "546/425",
       maxWidth: "100%",
       top: "auto",
+      alignItems: "center",
       right: "auto",
       borderRadius: mvw(12),
       overflow: "hidden",
@@ -805,6 +811,7 @@ export const section2Left = style({
 
 export const section2Image = style({
   position: "absolute",
+  borderRadius: mvw(12),
   left: "0",
   top: 0, // 상단부터 시작
   width: vw(830), // 1920px 기준 830px 너비
@@ -815,15 +822,17 @@ export const section2Image = style({
       height: "600px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
-      position: "static",
+      position: "relative",
       width: "100vw",
       height: mvw(305),
       marginLeft: mvw(-20),
+      //모서리
+      borderRadius: mvw(15),
+
       marginRight: mvw(-20),
-      borderRadius: mvw(12),
-      overflow: "hidden",
       marginBottom: mvw(20),
       display: "block",
+      overflow: "hidden",
     },
   },
 });
@@ -835,7 +844,10 @@ export const section2ImageContent = style({
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(12),
+      borderRadius: mvw(15),
+      objectFit: "cover",
+      overflow: "hidden",
+      // 강제로 borderRadius 적용
     },
   },
 });
@@ -857,6 +869,7 @@ export const section2DesktopIllustration = style({
 export const section2Illustration = style({
   width: "100%",
   height: "auto",
+  position: "absolute",
   "@media": {
     [breakpoints.desktopLarge]: {
       display: "none",
@@ -871,6 +884,7 @@ export const section2Illustration = style({
       width: "100%",
       height: mvw(320),
       marginTop: mvw(60),
+      borderRadius: mvw(15),
       marginBottom: mvw(-100),
     },
   },
@@ -880,6 +894,7 @@ export const section2IllustrationContent = style({
   width: "100%",
   height: "100%",
   objectFit: "contain",
+  borderRadius: mvw(15),
 });
 
 export const section2MobileIllustration = style({
@@ -887,11 +902,10 @@ export const section2MobileIllustration = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
-      justifyContent: "center",
       alignItems: "center",
-      width: "100%", // Full width of container
       marginTop: mvw(40),
       marginBottom: mvw(20),
+      borderRadius: mvw(12),
     },
   },
 });
