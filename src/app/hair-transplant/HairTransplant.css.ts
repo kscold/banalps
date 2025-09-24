@@ -16,7 +16,7 @@ import { fontFamily } from "@/shared/styles/fonts.css";
 // 페이지 전체 스타일
 export const HairTransplantPage = style({
   minHeight: "100vh",
-  backgroundColor: "#FFFDF7" // 헤어라인 페이지는 흰색 배경
+  backgroundColor: "#FFFDF7", // 헤어라인 페이지는 흰색 배경
 });
 
 // Hairline Hero Section
@@ -1107,6 +1107,9 @@ export const beforeAfterSection = style({
 export const beforeAfterContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
   textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: "3rem",
 });
 
 export const beforeAfterHeader = style({
@@ -1125,7 +1128,7 @@ export const beforeAfterHeader = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       marginBottom: mvw(48),
-      gap: "15px",
+      gap: "1.5rem",
       alignItems: "center",
       textAlign: "center",
       margin: "0 auto",

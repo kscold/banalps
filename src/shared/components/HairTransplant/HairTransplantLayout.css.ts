@@ -1616,7 +1616,7 @@ export const beforeAfterHeader = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       marginBottom: mvw(48),
-      gap: "15px",
+      gap: "1.5rem",
       alignItems: "center",
       textAlign: "center",
       margin: "0 auto",
