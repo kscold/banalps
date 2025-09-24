@@ -194,7 +194,10 @@ function ProcessStep({ step }: { step: (typeof processSteps)[0] }) {
         />
       </div>
       <div className={styles.stepContent}>
-        <div className={styles.stepCategory}>{step.category}</div>
+        <div className={styles.stepContentDesktop}>
+          <div className={styles.stepCategory}>{step.category}</div>
+        </div>
+
         <h3 className={styles.stepTitle}>{step.title}</h3>
         <p className={styles.stepDescription}>{step.description}</p>
       </div>

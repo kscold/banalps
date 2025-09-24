@@ -24,7 +24,7 @@ export const scarProcessContent = style({
   margin: "0 auto",
   display: "flex",
   flexDirection: "column",
-  gap: vw(120),
+  gap: vw(240),
   paddingLeft: vw(135),
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -34,7 +34,7 @@ export const scarProcessContent = style({
     [breakpoints.mobile]: {
       width: "100%",
       padding: `0 ${mvw(20)}`,
-      gap: mvw(80),
+      gap: mvw(120),
     },
   },
 });
@@ -136,9 +136,13 @@ export const stepNumberText = style({
       marginBottom: "90px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(48),
+      // fontSize: mvw(48),
       marginBottom: 0,
-      fontWeight: "600",
+      fontSize: "4.375rem",
+      fontStyle: "normal",
+      fontWeight: "400",
+      lineHeight: "normal",
+      // fontWeight: "600",
     },
   },
 });
@@ -168,6 +172,19 @@ export const stepHeaderMobile = style({
       justifyContent: "space-between",
       flexDirection: "row",
       marginBottom: mvw(20),
+    },
+  },
+});
+export const stepContentDesktop = style({
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  justifyContent: "space-between",
+  flexDirection: "row",
+  marginBottom: vw(20),
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
     },
   },
 });
@@ -233,9 +250,9 @@ export const stepCategory = style({
       marginBottom: "16px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(20),
+      fontSize: "3rem",
       marginBottom: 0,
-      lineHeight: "normal",
+      lineHeight: "120%",
       fontWeight: "500",
       flex: 1,
       textAlign: "right",
