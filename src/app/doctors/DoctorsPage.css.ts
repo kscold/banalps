@@ -1530,7 +1530,7 @@ export const historySection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(60)} ${mvw(16)}`,
+      padding: `${mvw(120)} ${mvw(16)}`,
     },
   },
 });
@@ -2907,6 +2907,7 @@ export const doctorMobileInfoSection = style({
   width: "100%",
   height: "auto",
   position: "relative",
+  marginTop: "2rem",
 });
 
 export const doctorMobileInfoImage = style({
@@ -3099,7 +3100,7 @@ export const doctorMobileCredentials = style({
   width: "100%",
   padding: `${mvw(40)} ${mvw(16)}`,
   backgroundColor: "#73D5FA",
-  marginTop: mvw(20),
+  marginBottom: "3rem",
 });
 
 // 모바일 자격사항 리스트
