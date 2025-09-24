@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import * as styles from "./TreatmentGuidePage.css"
+import * as styles from "./TreatmentGuidePage.css";
 import GoogleMapEmbed, {
   MapButtons,
-} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed"
+} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 
 export default function TreatmentGuidePage() {
-  console.log("[TreatmentGuidePage] 진료 안내 페이지 렌더링")
+  console.log("[TreatmentGuidePage] 진료 안내 페이지 렌더링");
 
   return (
     <div className={styles.treatmentGuidePage}>
@@ -65,7 +65,7 @@ export default function TreatmentGuidePage() {
           {/* 오른쪽 연락처 정보 */}
           <div className={styles.contactInfo}>
             {/* 전화번호 */}
-            <div className={styles.contactItem}>
+            <div className={styles.contactItemPhone}>
               <h3 className={styles.contactLabel}>전화번호</h3>
               <p className={styles.contactValue}>02.540.0700</p>
             </div>
@@ -101,5 +101,5 @@ export default function TreatmentGuidePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
