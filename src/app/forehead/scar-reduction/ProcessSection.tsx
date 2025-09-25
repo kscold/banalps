@@ -155,28 +155,10 @@ function ProcessStep({ step }: { step: (typeof processSteps)[0] }) {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={styles.processStepOdd}
-      initial={{ opacity: 0, y: 80 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-      transition={{ duration: 0.5 }}
     >
-      {/* <div className={styles.stepNumber}>
-        <div className={styles.stepHeader}>
-          <div className={styles.stepNumberText}>{step.number}</div>
-        </div>
-        <img
-          src={step.image}
-          alt={`${step.category} 단계`}
-          className={styles.stepImage}
-        />
-      </div>
-      <div className={styles.stepContent}>
-        <div className={styles.stepCategory}>{step.category}</div>
-        <h3 className={styles.stepTitle}>{step.title}</h3>
-        <p className={styles.stepDescription}>{step.description}</p>
-      </div> */}
       <div className={styles.stepNumber}>
         {/* 데스크탑용 헤더 */}
         <div className={styles.stepHeader}>
@@ -187,10 +169,13 @@ function ProcessStep({ step }: { step: (typeof processSteps)[0] }) {
           <div className={styles.stepNumberText}>{step.number}</div>
           <div className={styles.stepCategory}>{step.category}</div>
         </div>
-        <img
+        <motion.img
           src={step.image}
           alt={`${step.category} 단계`}
           className={styles.stepImage}
+          initial={{ opacity: 0, y: 80 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         />
       </div>
       <div className={styles.stepContent}>
@@ -201,7 +186,7 @@ function ProcessStep({ step }: { step: (typeof processSteps)[0] }) {
         <h3 className={styles.stepTitle}>{step.title}</h3>
         <p className={styles.stepDescription}>{step.description}</p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

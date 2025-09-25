@@ -36,10 +36,11 @@ export function VideoSection({
 
     // 비디오 iframe 프리팩치
     if (!isVideoLoaded) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'document';
-      preloadLink.href = 'https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0';
+      const preloadLink = document.createElement("link");
+      preloadLink.rel = "preload";
+      preloadLink.as = "document";
+      preloadLink.href =
+        "https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0";
       document.head.appendChild(preloadLink);
 
       console.log("[VideoSection/프리로드] Vimeo iframe 프리로드 시작");
@@ -75,9 +76,20 @@ export function VideoSection({
       }
 
       // Vimeo Player API를 사용하여 비디오 이벤트 리스너 등록
-      if (iframeRef.current && (window as Window & { Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer } }).Vimeo) {
+      if (
+        iframeRef.current &&
+        (
+          window as Window & {
+            Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
+          }
+        ).Vimeo
+      ) {
         const iframe = iframeRef.current;
-        const player = new ((window as Window & { Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer } }).Vimeo!).Player(iframe);
+        const player = new (
+          window as Window & {
+            Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
+          }
+        ).Vimeo!.Player(iframe);
         playerRef.current = player; // 플레이어 참조 저장
 
         player.on("ended", () => {
@@ -176,7 +188,7 @@ export function VideoSection({
               onError={() => {
                 console.error("[VideoSection/Vimeo에러] iframe 로드 실패");
               }}
-              {...(isClient && { "data-ready": "true" })}
+              // {...(isClient && { "data-ready": "true" })}
             />
           </div>
           <div

@@ -19,10 +19,16 @@ export default function HeroSection({
 }: HeroSectionProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex);
   const [virtualScrollY, setVirtualScrollY] = useState(0);
+  const [isClient, setIsClient] = useState(false);
   const totalTexts = 5; // 텍스트 개수 5개로 변경
 
   // 모바일 감지
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  // 클라이언트 사이드 렌더링 확인
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // 텍스트 스크롤 로직 - KB사이트처럼 깊이 기반 전환
   useEffect(() => {
@@ -185,23 +191,25 @@ export default function HeroSection({
         /> */}
 
         <div className={styles.backgroundVideo}>
-          <iframe
-            title="vimeo-player"
-            src="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: "100%",
-              height: "100%",
-              transform: "translate(-50%, -50%) scale(1.2)",
-              minWidth: "100%",
-              minHeight: "100%",
-              objectFit: "cover",
-              border: "none",
-            }}
-          />
+          {isClient && (
+            <iframe
+              title="vimeo-player"
+              src="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                width: "100%",
+                height: "100%",
+                transform: "translate(-50%, -50%) scale(1.2)",
+                minWidth: "100%",
+                minHeight: "100%",
+                objectFit: "cover",
+                border: "none",
+              }}
+            />
+          )}
         </div>
 
         {/* 콘텐츠 */}

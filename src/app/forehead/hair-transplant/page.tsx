@@ -18,6 +18,25 @@ export default function ForeheadHairTransplantPage() {
         모발이식
       </>
     ),
+
+    heroDotPosition: {
+      absolute: true,
+      // 데스크탑 위치
+      left: 235,
+      bottom: 12,
+      // 모바일 위치 (다른 값 설정 가능)
+      mobileLeft: 157,
+      mobileBottom: 8,
+    },
+    heroIllustration: "/forehead/hero-illustration.svg",
+    heroIllustrationSize: {
+      width: 1760,
+      height: 660,
+    },
+    heroIllustrationPosition: {
+      left: 0, // Stick to the far left
+    },
+
     heroDotAbsolute: true, // Use absolute positioned dot for this page
     section1: {
       number: 1,
@@ -61,6 +80,7 @@ export default function ForeheadHairTransplantPage() {
           상황에 따라 필요한 방법이 다를 뿐입니다.
         </>
       ),
+      descriptionWidth: 530, // section1Description 너비 600 vw 단위
       descriptionMobile: (
         <>
           이마축소술과 모발이식, 어느 한쪽을
@@ -87,6 +107,29 @@ export default function ForeheadHairTransplantPage() {
       images: {
         main: "/forehead/hair-transplant/hair-transplant-2.png",
         secondary: "/forehead/hair-transplant/hair-transplant-1.png",
+      },
+      imagesSize: {
+        main: {
+          width: 600,
+          height: 660,
+        },
+        secondary: {
+          width: 350,
+          height: 315,
+        },
+      },
+      imagesPosition: {
+        main: {
+          top: 50,
+        },
+        secondary: {
+          bottom: 0,
+          left: 0,
+        },
+      },
+      section1RightSize: {
+        width: 1085, // section1Right 컨테이너 너비 800 vw 단위
+        height: 800, // section1Right 컨테이너 높이 700 vw 단위
       },
     },
     section2: {

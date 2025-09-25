@@ -27,6 +27,9 @@ export default function FeaturesSection({
     triggerOnce: true,
   });
 
+  // Check if desktop (not mobile)
+  const isDesktop = !isMobile;
+
   return (
     <section className={styles.featuresSection}>
       <div className={styles.featuresContent}>
@@ -67,7 +70,7 @@ export default function FeaturesSection({
               transition={{
                 duration: 0.5,
                 ease: "easeOut",
-                delay: index * 0.1,
+                delay: isDesktop ? 0 : index * 0.1, // Desktop: no delay, Mobile: staggered
               }}
             >
               <div className={styles.featureIconContainer}>

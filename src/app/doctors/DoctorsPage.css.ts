@@ -224,6 +224,7 @@ export const doctorSection = style({
   borderRadius: vw(24),
   padding: 0,
   transition: "transform 0.3s ease",
+
   selectors: {
     // 첫번째 섹션 (신승규 원장) - medicalTeamContainer 다음이므로 2번째
     "&:nth-child(2)": {
@@ -241,6 +242,8 @@ export const doctorSection = style({
   },
   "@media": {
     [breakpoints.desktopLarge]: {
+      display: "flex",
+      justifyContent: "center",
       width: "1920px",
       borderRadius: "24px",
       selectors: {
@@ -1075,17 +1078,16 @@ export const doctorQuoteTextParagraph = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(20),
-  lineHeight: vw(30),
   letterSpacing: "0",
   color: "#FFFFFF",
   margin: 0,
+  lineHeight: "150%",
   textAlign: "center",
   position: "relative",
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
-      lineHeight: "30px",
     },
     [breakpoints.desktop]: {
       fontSize: "calc(20px * (100vw / 1920))",
@@ -2727,80 +2729,5 @@ export const doctorMobileCredentialItem = style({
     position: "absolute",
     left: 0,
     color: "#000000",
-  },
-});
-
-// 연도 선택 UI
-export const yearSelector = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(24),
-  marginBottom: vw(40),
-  "@media": {
-    [breakpoints.mobile]: {
-      gap: mvw(16),
-      marginBottom: mvw(24),
-    },
-  },
-});
-
-export const yearSelectorTitle = style({
-  fontFamily: fontFamily.scdream,
-  fontWeight: 500,
-  fontSize: vw(24),
-  lineHeight: "140%",
-  color: "#000000",
-  margin: 0,
-  "@media": {
-    [breakpoints.mobile]: {
-      fontSize: mvw(20),
-    },
-  },
-});
-
-export const yearButtons = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: vw(12),
-  "@media": {
-    [breakpoints.mobile]: {
-      gap: mvw(8),
-    },
-  },
-});
-
-export const yearButton = style({
-  fontFamily: fontFamily.scdream,
-  fontWeight: 400,
-  fontSize: vw(16),
-  lineHeight: "140%",
-  color: "#666666",
-  backgroundColor: "transparent",
-  border: `1px solid #E0E0E0`,
-  borderRadius: vw(8),
-  padding: `${vw(8)} ${vw(16)}`,
-  cursor: "pointer",
-  transition: "all 0.2s ease",
-  "&:hover": {
-    borderColor: "#000000",
-    color: "#000000",
-  },
-  "@media": {
-    [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      padding: `${mvw(6)} ${mvw(12)}`,
-      borderRadius: mvw(6),
-    },
-  },
-});
-
-export const yearButtonActive = style({
-  backgroundColor: "#000000",
-  color: "#FFFFFF",
-  borderColor: "#000000",
-  "&:hover": {
-    backgroundColor: "#333333",
-    borderColor: "#333333",
-    color: "#FFFFFF",
   },
 });

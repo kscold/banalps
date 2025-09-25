@@ -256,7 +256,7 @@ function CategoryCarousel({
   items: BeforeAfterItem[];
   index: number;
 }) {
-  const isBlueBackground = index % 2 === 1;
+  const isBlueBackground = index % 2 === 0;
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -289,7 +289,7 @@ function CategoryCarousel({
   return (
     <div
       style={{
-        padding: isMobile ? "40px 0 60px" : "160px 60px",
+        padding: isMobile ? "40px 0 60px" : "160px 0px",
         backgroundColor: isBlueBackground ? "#D5FEFF" : "#FFFDF7",
         width: "100%",
       }}
@@ -303,7 +303,13 @@ function CategoryCarousel({
 
       <div className={styles.carouselContainer}>
         {/* Left side preview */}
-        <div className={`${styles.sidePreview} ${styles.sidePreviewLeft}`}>
+        <div
+          className={`${styles.sidePreview} ${
+            isBlueBackground
+              ? styles.sidePreviewLeftBlue
+              : styles.sidePreviewLeft
+          }`}
+        >
           <SidePreviewSlider
             beforeImage={items[getPrevIndex(currentIndex)].beforeImage}
             afterImage={items[getPrevIndex(currentIndex)].afterImage}
@@ -345,7 +351,13 @@ function CategoryCarousel({
         </button>
 
         {/* Right side preview */}
-        <div className={`${styles.sidePreview} ${styles.sidePreviewRight}`}>
+        <div
+          className={`${styles.sidePreview} ${
+            isBlueBackground
+              ? styles.sidePreviewRightBlue
+              : styles.sidePreviewRight
+          }`}
+        >
           <SidePreviewSlider
             beforeImage={items[getNextIndex(currentIndex)].beforeImage}
             afterImage={items[getNextIndex(currentIndex)].afterImage}

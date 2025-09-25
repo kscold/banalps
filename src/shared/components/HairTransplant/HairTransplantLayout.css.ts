@@ -24,7 +24,7 @@ export const HairTransplantHeroSection = style({
   position: "relative",
   width: "100%",
   minHeight: "100vh",
-  overflow: "hidden",
+  overflow: "visible",
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.mobile]: {
@@ -59,13 +59,17 @@ export const HairTransplantHeroContainer = style({
 export const HairTransplantHeroIllustration = style({
   position: "absolute",
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: "1750px", // 헤더와 완전히 동일한 최대 너비
-  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  width: vw(1750), // 기본 width 설정
   top: "50%",
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 헤더와 완전히 동일한 최대 너비
+      height: "765px", // 고정 높이
+      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
+    },
     [breakpoints.mobile]: {
       display: "none",
     },
@@ -87,6 +91,10 @@ export const HairTransplantHeroTitleWrapper = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingRight: "60px",
+      width: "1600px", // 고정 너비
+      left: "50%", // 중앙 정렬
+      transform: "translateX(-50%)", // 중앙 정렬
+      right: "auto", // right 제거
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -106,15 +114,17 @@ export const HairTransplantHeroTitleContainer = style({
   textAlign: "left",
   zIndex: 3,
   right: "0",
+  marginRight: vw(160),
   "@media": {
     [breakpoints.desktopLarge]: {
+      right: "auto", // right: 0 제거하여 고정
+      width: "calc(100% - 200px)", // 고정 너비
+      maxWidth: "1400px", // 최대 너비 제한
       marginRight: "160px",
       paddingLeft: "40px",
       paddingRight: "60px",
     },
-    [breakpoints.desktop]: {
-      marginRight: vw(160),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       width: "100%",
       position: "static",
@@ -130,6 +140,7 @@ export const HairTransplantHeroTitleContainer = style({
 });
 
 export const HairTransplantHeroTitle = style({
+  position: "relative", // 점의 부모가 되도록 relative 추가
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   ...responsiveFont(60, 40),
@@ -193,7 +204,7 @@ export const HairTransplantHeroTitleDotAbsolute = style({
     [breakpoints.desktopLarge]: {
       width: "12px",
       height: "12px",
-      left: "235px",
+      left: "235px", // 부모 컨테이너 기준 고정 위치
       bottom: "12px",
     },
     [breakpoints.mobile]: {
@@ -253,6 +264,12 @@ export const heroIllustration = style({
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 고정 너비
+      height: "765px", // 고정 높이
+      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
+      maxWidth: "none", // maxWidth 제거
+    },
     [breakpoints.mobile]: {
       display: "none",
     },
@@ -262,7 +279,7 @@ export const heroIllustration = style({
 export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  // objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
   "@media": {
     [breakpoints.mobile]: {
@@ -321,6 +338,9 @@ export const heroTitleContainer = style({
   right: "0", // 오른쪽에서 시작
   "@media": {
     [breakpoints.desktopLarge]: {
+      right: "auto", // right: 0 제거하여 고정
+      width: "calc(100% - 200px)", // 고정 너비
+      maxWidth: "1400px", // 최대 너비 제한
       marginRight: "160px", // 1920px+ 고정 마진
       paddingLeft: "40px",
       paddingRight: "60px", // 헤더와 동일한 고정 패딩
@@ -656,7 +676,7 @@ export const section1Right = style({
   maxWidth: "100%", // 1920px+ 에서도 스케일링 방지
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "960px",
+      maxWidth: "none", // maxWidth 제한 제거 - inline style로 제어
     },
     [breakpoints.mobile]: {
       order: 1,
@@ -948,6 +968,9 @@ export const section2NumberBg = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "-40px",
+      right: "0px", // 고정값
+      fontSize: "200px", // 고정 폰트 크기
+      lineHeight: "240px", // 고정 라인 높이
     },
     [breakpoints.mobile]: {
       position: "absolute",
@@ -1092,8 +1115,8 @@ export const section2Svg2 = style({
 });
 
 export const section2Quote = style({
-  fontFamily: "'Pretendard', sans-serif", // 피그마 스펙: Pretendard (동일)
-  fontWeight: 400, // 피그마 스펙: Regular = 400 (동일)
+  fontFamily: fontFamily.pretendard,
+  fontWeight: 700, // 피그마 스펙: Regular = 400 (동일)
   ...responsiveFont(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙, 동일)
   letterSpacing: "0", // 피그마 스펙: 0 (동일)
@@ -1103,7 +1126,6 @@ export const section2Quote = style({
 
   // 피그마 디자인에 맞는 더 큰 따옴표
   "::before": {
-    content: '"\u201d"', // 시작 따옴표 (유니코드 사용)
     color: "#272727",
     fontSize: vw(28), // 더 큰 따옴표 크기
     fontWeight: 500, // 약간 더 굵게
@@ -1111,7 +1133,6 @@ export const section2Quote = style({
   },
 
   "::after": {
-    content: '"\u201d"', // 끝 따옴표 (유니코드 사용)
     color: "#272727",
     fontSize: vw(28), // 더 큰 따옴표 크기
     fontWeight: 500, // 약간 더 굵게
@@ -1354,6 +1375,9 @@ export const section3Number = style({
     [breakpoints.desktopLarge]: {
       top: "-40px",
       left: "750px", // 피그마 x: 537 기준 위치
+      fontSize: "200px", // 고정 폰트 크기
+      lineHeight: "240px", // 고정 라인 높이
+      width: "118px", // 고정 너비
     },
     [breakpoints.desktop]: {
       top: vw(-40), // section3Left의 paddingTop과 맞춤

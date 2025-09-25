@@ -8,12 +8,12 @@ import {
 
 // Features Section
 export const featuresSection = style({
-  paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
+  paddingTop: vw(280), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(240),
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "120px",
+      paddingTop: "280px",
       paddingBottom: "240px",
     },
     [breakpoints.mobile]: {

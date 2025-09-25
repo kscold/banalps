@@ -151,19 +151,20 @@ export const HairTransplantHeroTitle = style({
 });
 
 export const HairTransplantHeroTitleDot = style({
-  width: vw(20),
-  height: vw(20),
+  width: vw(12),
+  height: vw(12),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
-  marginLeft: vw(20),
+  marginLeft: vw(4),
   flexShrink: 0,
   alignSelf: "flex-end", // 모바일에서는 하단 정렬
-  marginBottom: vw(20), // 약간의 하단 여백
+  marginBottom: vw(12), // 약간의 하단 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "20px",
-      height: "20px",
-      marginLeft: "20px",
+      width: "12px",
+      height: "12px",
+      marginLeft: "4px",
+      marginBottom: "12px",
     },
     [breakpoints.mobile]: {
       width: mvw(15),
@@ -231,7 +232,7 @@ export const heroIllustration = style({
 export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  // objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
   "@media": {
     [breakpoints.mobile]: {
@@ -662,11 +663,11 @@ export const introDescription = style({
 
 // Section 2: 치료방법 카드들
 export const treatmentCardsSection = style({
-  padding: `${vw(240)} 0`,
+  padding: `${vw(240)} 0 ${vw(120)} 0`,
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "240px 0",
+      padding: "240px 0 120px 0",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -829,14 +830,31 @@ export const treatmentCardTitle = style({
 
 // Section 3-6: 치료방법 상세 섹션들
 export const treatmentDetailSection = style({
-  padding: `${vw(100)} 0`,
+  padding: `${vw(120)} 0`,
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "100px 0",
+      padding: "120px 0",
     },
     [breakpoints.mobile]: {
       padding: "80px 0",
+    },
+  },
+});
+
+// treatmentDetailSection with customizable padding-bottom using CSS variables
+export const treatmentDetailSectionCustomPadding = style({
+  paddingTop: vw(100),
+  paddingBottom: "var(--padding-bottom)",
+  backgroundColor: "#FFFDF7",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingTop: "100px",
+      paddingBottom: "var(--padding-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      paddingTop: "80px",
+      paddingBottom: "var(--padding-bottom-mobile)",
     },
   },
 });
@@ -969,6 +987,28 @@ export const treatmentSubtitleWithMargin = style({
   },
 });
 
+// treatmentSubtitle with customizable margin bottom using CSS variables
+export const treatmentSubtitleCustomMargin = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(40),
+  lineHeight: vw(56),
+  color: "#272727",
+  margin: 0,
+  marginBottom: "var(--margin-bottom)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "56px",
+      marginBottom: "var(--margin-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(20),
+      lineHeight: mvw(32),
+      marginBottom: "var(--margin-bottom-mobile)",
+    },
+  },
+});
+
 export const treatmentDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
@@ -983,6 +1023,69 @@ export const treatmentDescription = style({
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(32),
+    },
+  },
+});
+
+// treatmentDescription with customizable margin bottom using CSS variables
+export const treatmentDescriptionCustomMargin = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  ...responsiveFont(24),
+  lineHeight: vw(36),
+  color: "#272727",
+  margin: 0,
+  marginBottom: "var(--margin-bottom)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "36px",
+      marginBottom: "var(--margin-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+      lineHeight: mvw(32),
+      marginBottom: "var(--margin-bottom-mobile)",
+    },
+  },
+});
+
+// Treatment image container for two images side by side
+export const treatmentImageContainer = style({
+  display: "flex",
+  gap: vw(21), // 655 - (317*2) = 21px gap
+  width: vw(655),
+  height: vw(200),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "655px",
+      height: "200px",
+      gap: "21px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+      flexDirection: "column",
+      gap: mvw(16),
+    },
+  },
+});
+
+// Individual treatment image style
+export const treatmentImage = style({
+  width: vw(317),
+  height: vw(200),
+  borderRadius: vw(8),
+  objectFit: "cover",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "317px",
+      height: "200px",
+      borderRadius: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: mvw(200),
+      borderRadius: mvw(8),
     },
   },
 });

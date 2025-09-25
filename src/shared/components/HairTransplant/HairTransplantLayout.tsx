@@ -12,6 +12,47 @@ import * as styles from "./HairTransplantLayout.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { vw, mvw } from "@/shared/styles/responsive.utils";
 
+// Helper function to process description and apply quote style to <b> tags
+const processDescription = (description: React.ReactNode, quoteClassName: string): React.ReactNode => {
+  if (!description) return null;
+
+  // If description is a string, return as is
+  if (typeof description === 'string') return description;
+
+  // If it's a React element, check for <b> tags
+  if (React.isValidElement(description)) {
+    const descElement = description as React.ReactElement<any>;
+    const children = React.Children.toArray(descElement.props.children);
+
+    const result: React.ReactNode[] = [];
+    let hasQuote = false;
+
+    children.forEach((child, index) => {
+      if (React.isValidElement(child) && child.type === 'b') {
+        const bElement = child as React.ReactElement<any>;
+        // Add line breaks before quote if not the first element and not already has quote
+        if (result.length > 0 && !hasQuote) {
+          result.push(<br key={`br1-${index}`} />);
+          result.push(<br key={`br2-${index}`} />);
+        }
+        // Replace <b> tag with span with quote class
+        result.push(
+          <span key={index} className={quoteClassName}>
+            {bElement.props.children}
+          </span>
+        );
+        hasQuote = true;
+      } else {
+        result.push(child);
+      }
+    });
+
+    return <>{result}</>;
+  }
+
+  return description;
+};
+
 interface Section {
   number: number;
   title: React.ReactNode;
@@ -32,6 +73,7 @@ interface Section {
   };
   description?: React.ReactNode;
   descriptionMobile?: React.ReactNode;
+  descriptionWidth?: number; // Optional width for description (vw units)
   quote?: React.ReactNode;
   quoteMobile?: React.ReactNode;
   illustration?: string;
@@ -74,6 +116,26 @@ interface Section {
       width: number; // vw units
       height: number; // vw units
     };
+  };
+  imagesPosition?: {
+    // Optional absolute positioning for images
+    main?: {
+      top?: number; // vw units
+      right?: number; // vw units
+      bottom?: number; // vw units
+      left?: number; // vw units
+    };
+    secondary?: {
+      top?: number; // vw units
+      right?: number; // vw units
+      bottom?: number; // vw units
+      left?: number; // vw units
+    };
+  };
+  section1RightSize?: {
+    // Optional size for section1Right container
+    width?: number; // vw units
+    height?: number; // vw units
   };
   imagesMobile?: {
     // Mobile-specific images
@@ -179,6 +241,14 @@ interface HairTransplantLayoutProps {
   heroBackground?: string;
   heroIllustration?: string;
   heroIllustrationMobile?: string;
+  heroIllustrationSize?: {
+    width: number; // px units for desktop
+    height: number; // px units for desktop
+  };
+  heroIllustrationPosition?: {
+    left?: number; // px units from left for desktop
+    right?: number; // px units from right for desktop
+  };
   section1: Section;
   section2: Section;
   section3?: Section; // Optional for scarReduction mode
@@ -201,6 +271,8 @@ export default function HairTransplantLayout({
   heroBackground,
   heroIllustration = "/hair-transplant/hero-illustration.svg",
   heroIllustrationMobile = "/hair-transplant/mobile/hero-illustration-mobile.svg",
+  heroIllustrationSize,
+  heroIllustrationPosition,
   section1,
   section2,
   section3,
@@ -215,6 +287,7 @@ export default function HairTransplantLayout({
   customMiddleSection,
 }: HairTransplantLayoutProps) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isDesktopLarge = useMediaQuery("(min-width: 1920px)");
 
   const section1ImagesRef = useRef(null);
   const section1ImagesInView = useInView(section1ImagesRef, { once: true });
@@ -252,26 +325,46 @@ export default function HairTransplantLayout({
                     style={
                       heroDotPosition?.absolute
                         ? {
-                            // Use mobile values if mobile, otherwise desktop values
-                            ...(isMobile && heroDotPosition.mobileTop !== undefined
+                            // Use mobile values if mobile, fixed px for 1920px+, vw for medium screens
+                            ...(isMobile &&
+                            heroDotPosition.mobileTop !== undefined
                               ? { top: mvw(heroDotPosition.mobileTop) }
                               : heroDotPosition.top !== undefined
-                              ? { top: vw(heroDotPosition.top) }
+                              ? {
+                                  top: isDesktopLarge
+                                    ? `${heroDotPosition.top}px`
+                                    : vw(heroDotPosition.top),
+                                }
                               : {}),
-                            ...(isMobile && heroDotPosition.mobileRight !== undefined
+                            ...(isMobile &&
+                            heroDotPosition.mobileRight !== undefined
                               ? { right: mvw(heroDotPosition.mobileRight) }
                               : heroDotPosition.right !== undefined
-                              ? { right: vw(heroDotPosition.right) }
+                              ? {
+                                  right: isDesktopLarge
+                                    ? `${heroDotPosition.right}px`
+                                    : vw(heroDotPosition.right),
+                                }
                               : {}),
-                            ...(isMobile && heroDotPosition.mobileBottom !== undefined
+                            ...(isMobile &&
+                            heroDotPosition.mobileBottom !== undefined
                               ? { bottom: mvw(heroDotPosition.mobileBottom) }
                               : heroDotPosition.bottom !== undefined
-                              ? { bottom: vw(heroDotPosition.bottom) }
+                              ? {
+                                  bottom: isDesktopLarge
+                                    ? `${heroDotPosition.bottom}px`
+                                    : vw(heroDotPosition.bottom),
+                                }
                               : {}),
-                            ...(isMobile && heroDotPosition.mobileLeft !== undefined
+                            ...(isMobile &&
+                            heroDotPosition.mobileLeft !== undefined
                               ? { left: mvw(heroDotPosition.mobileLeft) }
                               : heroDotPosition.left !== undefined
-                              ? { left: vw(heroDotPosition.left) }
+                              ? {
+                                  left: isDesktopLarge
+                                    ? `${heroDotPosition.left}px`
+                                    : vw(heroDotPosition.left),
+                                }
                               : {}),
                           }
                         : undefined
@@ -282,7 +375,47 @@ export default function HairTransplantLayout({
             </div>
           </div>
           {/* Hero Illustration - 왼쪽에 붙도록 (데스크탑용) */}
-          <div className={styles.HairTransplantHeroIllustration}>
+          <div
+            className={styles.HairTransplantHeroIllustration}
+            style={
+              heroIllustrationSize || heroIllustrationPosition
+                ? {
+                    ...(heroIllustrationSize
+                      ? {
+                          width: isDesktopLarge
+                            ? `${heroIllustrationSize.width}px`
+                            : `${(heroIllustrationSize.width / 1920) * 100}vw`,
+                          height: isDesktopLarge
+                            ? `${heroIllustrationSize.height}px`
+                            : `${(heroIllustrationSize.height / 1920) * 100}vw`,
+                        }
+                      : {}),
+                    ...(heroIllustrationPosition
+                      ? {
+                          ...(heroIllustrationPosition.left !== undefined
+                            ? {
+                                left: isDesktopLarge
+                                  ? `${heroIllustrationPosition.left}px`
+                                  : `${
+                                      (heroIllustrationPosition.left / 1920) * 100
+                                    }vw`,
+                              }
+                            : {}),
+                          ...(heroIllustrationPosition.right !== undefined
+                            ? {
+                                right: isDesktopLarge
+                                  ? `${heroIllustrationPosition.right}px`
+                                  : `${
+                                      (heroIllustrationPosition.right / 1920) * 100
+                                    }vw`,
+                              }
+                            : {}),
+                        }
+                      : {}),
+                  }
+                : undefined
+            }
+          >
             <img
               src={heroIllustration}
               alt="모발이식 일러스트"
@@ -393,7 +526,17 @@ export default function HairTransplantLayout({
                     </motion.div>
                   )}
 
-                  <div className={styles.section1Description}>
+                  <div
+                    className={styles.section1Description}
+                    style={
+                      section1.descriptionWidth !== undefined && !isMobile
+                        ? {
+                            width: vw(section1.descriptionWidth),
+                            maxWidth: vw(section1.descriptionWidth), // maxWidth도 함께 설정
+                          }
+                        : undefined
+                    }
+                  >
                     {isMobile && section1.descriptionMobile
                       ? section1.descriptionMobile
                       : section1.description}
@@ -617,14 +760,45 @@ export default function HairTransplantLayout({
                       />
                     </div>
                   )}
-                  <div className={styles.section1Description}>
+                  <div
+                    className={styles.section1Description}
+                    style={
+                      section1.descriptionWidth !== undefined && !isMobile
+                        ? {
+                            width: vw(section1.descriptionWidth),
+                            maxWidth: vw(section1.descriptionWidth), // maxWidth도 함께 설정
+                          }
+                        : undefined
+                    }
+                  >
                     {isMobile && section1.descriptionMobile
                       ? section1.descriptionMobile
                       : section1.description}
                   </div>
                 </div>
               </div>
-              <div className={styles.section1Right} ref={section1ImagesRef}>
+              <div
+                className={styles.section1Right}
+                ref={section1ImagesRef}
+                style={
+                  section1.section1RightSize
+                    ? {
+                        ...(section1.section1RightSize.width !== undefined
+                          ? {
+                              width: vw(section1.section1RightSize.width),
+                              maxWidth: vw(section1.section1RightSize.width), // maxWidth도 함께 설정
+                            }
+                          : {}),
+                        ...(section1.section1RightSize.height !== undefined
+                          ? {
+                              height: vw(section1.section1RightSize.height),
+                              minHeight: vw(section1.section1RightSize.height), // minHeight도 함께 설정
+                            }
+                          : {}),
+                      }
+                    : undefined
+                }
+              >
                 {/* Use mobile images if available on mobile, otherwise use regular images */}
                 {(isMobile && section1.imagesMobile?.main
                   ? section1.imagesMobile.main
@@ -659,13 +833,32 @@ export default function HairTransplantLayout({
                               ? mvw(-20)
                               : undefined,
                           }
-                        : section1.imagesSize?.main
-                        ? {
-                            width: vw(section1.imagesSize.main.width),
-                            height: vw(section1.imagesSize.main.height),
-                            maxWidth: vw(section1.imagesSize.main.width),
+                        : {
+                            ...(section1.imagesSize?.main
+                              ? {
+                                  width: vw(section1.imagesSize.main.width),
+                                  height: vw(section1.imagesSize.main.height),
+                                  maxWidth: vw(section1.imagesSize.main.width),
+                                }
+                              : {}),
+                            ...(section1.imagesPosition?.main
+                              ? {
+                                  position: "absolute" as const,
+                                  ...(section1.imagesPosition.main.top !== undefined
+                                    ? { top: vw(section1.imagesPosition.main.top) }
+                                    : {}),
+                                  ...(section1.imagesPosition.main.right !== undefined
+                                    ? { right: vw(section1.imagesPosition.main.right) }
+                                    : {}),
+                                  ...(section1.imagesPosition.main.bottom !== undefined
+                                    ? { bottom: vw(section1.imagesPosition.main.bottom) }
+                                    : {}),
+                                  ...(section1.imagesPosition.main.left !== undefined
+                                    ? { left: vw(section1.imagesPosition.main.left) }
+                                    : {}),
+                                }
+                              : {}),
                           }
-                        : undefined
                     }
                   >
                     <img
@@ -715,13 +908,32 @@ export default function HairTransplantLayout({
                               ? mvw(-20)
                               : undefined,
                           }
-                        : section1.imagesSize?.secondary
-                        ? {
-                            width: vw(section1.imagesSize.secondary.width),
-                            height: vw(section1.imagesSize.secondary.height),
-                            maxWidth: vw(section1.imagesSize.secondary.width),
+                        : {
+                            ...(section1.imagesSize?.secondary
+                              ? {
+                                  width: vw(section1.imagesSize.secondary.width),
+                                  height: vw(section1.imagesSize.secondary.height),
+                                  maxWidth: vw(section1.imagesSize.secondary.width),
+                                }
+                              : {}),
+                            ...(section1.imagesPosition?.secondary
+                              ? {
+                                  position: "absolute" as const,
+                                  ...(section1.imagesPosition.secondary.top !== undefined
+                                    ? { top: vw(section1.imagesPosition.secondary.top) }
+                                    : {}),
+                                  ...(section1.imagesPosition.secondary.right !== undefined
+                                    ? { right: vw(section1.imagesPosition.secondary.right) }
+                                    : {}),
+                                  ...(section1.imagesPosition.secondary.bottom !== undefined
+                                    ? { bottom: vw(section1.imagesPosition.secondary.bottom) }
+                                    : {}),
+                                  ...(section1.imagesPosition.secondary.left !== undefined
+                                    ? { left: vw(section1.imagesPosition.secondary.left) }
+                                    : {}),
+                                }
+                              : {}),
                           }
-                        : undefined
                     }
                   >
                     <img
@@ -809,9 +1021,12 @@ export default function HairTransplantLayout({
                   )}
 
                   <div className={styles.section2Description}>
-                    {isMobile && section2.descriptionMobile
-                      ? section2.descriptionMobile
-                      : section2.description}
+                    {processDescription(
+                      isMobile && section2.descriptionMobile
+                        ? section2.descriptionMobile
+                        : section2.description,
+                      styles.section2Quote
+                    )}
                     {section2.quote && (
                       <>
                         <br />
@@ -1094,9 +1309,12 @@ export default function HairTransplantLayout({
                     </div>
                   )}
                   <div className={styles.section2Description}>
-                    {isMobile && section2.descriptionMobile
-                      ? section2.descriptionMobile
-                      : section2.description}
+                    {processDescription(
+                      isMobile && section2.descriptionMobile
+                        ? section2.descriptionMobile
+                        : section2.description,
+                      styles.section2Quote
+                    )}
                     {section2.quote && (
                       <>
                         <br />

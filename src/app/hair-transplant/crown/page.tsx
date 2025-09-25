@@ -126,8 +126,8 @@ function CrownContent() {
       // absolute SVG의 위치 설정
       svgElementsPosition: {
         absolute: {
-          top: 0, // 상단에서 50vw
-          right: -50, // 오른쪽에서 100vw
+          bottom: 90, // 상단에서 50vw
+          right: 0, // 오른쪽에서 100vw
           // bottom과 left도 선택적으로 설정 가능
         },
       },

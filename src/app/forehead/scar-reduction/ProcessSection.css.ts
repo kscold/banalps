@@ -196,7 +196,7 @@ export const stepImage = style({
   maxWidth: vw(292),
   maxHeight: vw(248), // 418 - 80(숫자) - 90(마진)
   objectFit: "cover",
-  borderRadius: vw(8),
+  borderRadius: "8px",
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "292px",

@@ -478,9 +478,9 @@ export const itemTitle = style({
 export const carouselContainer = style({
   position: "relative",
   display: "flex",
-  alignItems: "stretch",
-  gap: vw(40),
-  justifyContent: "space-between",
+  alignItems: "center",
+  gap: vw(15), // 간격 15px (전체 290px - 275px 너비)
+  justifyContent: "center",
   width: "100%",
   maxWidth: "1920px",
   margin: "0 auto",
@@ -498,16 +498,16 @@ export const carouselContainer = style({
 });
 
 export const carouselViewport = style({
-  flex: "1",
-  maxWidth: vw(900),
-  height: "auto",
+  flex: "0 0 auto",
+  width: vw(790),
+  height: vw(474),
   borderRadius: vw(12),
   backgroundColor: "#FFFDF7",
   margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "900px",
-      height: "auto",
+      width: "790px",
+      height: "474px",
       borderRadius: "12px",
     },
     [breakpoints.mobile]: {
@@ -537,18 +537,20 @@ export const mainSlide = style({
 
 export const sidePreview = style({
   flex: "0 0 auto",
-  width: vw(360),
+  width: vw(275),
+  height: vw(474),
   position: "relative",
   transition: "opacity 0.3s ease",
   borderRadius: vw(12),
-  overflow: "visible",
+  overflow: "hidden",
   backgroundColor: "transparent",
   display: "flex",
   alignItems: "stretch",
   alignSelf: "stretch",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "360px",
+      width: "275px",
+      height: "474px",
       borderRadius: "12px",
     },
     [breakpoints.mobile]: {
@@ -557,8 +559,65 @@ export const sidePreview = style({
   },
 });
 
-export const sidePreviewLeft = style({});
-export const sidePreviewRight = style({});
+export const sidePreviewLeft = style({
+  "::after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "#FFFDF7",
+    opacity: 0.4,
+    pointerEvents: "none",
+    zIndex: 1,
+  },
+});
+
+export const sidePreviewLeftBlue = style({
+  "::after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "#D5FEFF",
+    opacity: 0.4,
+    pointerEvents: "none",
+    zIndex: 1,
+  },
+});
+
+export const sidePreviewRight = style({
+  "::after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: "100%",
+    height: "100%",
+    background: "#FFFDF7",
+    opacity: 0.4,
+    pointerEvents: "none",
+    zIndex: 1,
+  },
+});
+
+export const sidePreviewRightBlue = style({
+  "::after": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: "100%",
+    height: "100%",
+    background: "#D5FEFF",
+    opacity: 0.4,
+    pointerEvents: "none",
+    zIndex: 1,
+  },
+});
 
 export const sidePreviewImage = style({
   position: "absolute",

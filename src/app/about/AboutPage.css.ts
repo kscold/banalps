@@ -6,6 +6,7 @@ import {
   responsiveContainer,
   mvw,
 } from "../../shared/styles/responsive.css";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 페이지 전체 스타일
 export const aboutPage = style({
@@ -80,10 +81,11 @@ export const heroContent = style({
 });
 
 export const heroQuote = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   ...responsiveFont(36),
   lineHeight: "140%",
+  letterSpacing: "0%",
   color: "#000000",
   margin: `0 0 ${vw(30)} 0`,
   "@media": {
@@ -547,8 +549,8 @@ export const reYouTitle = style({
 });
 
 export const reYouSubtitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   ...responsiveFont(20),
   lineHeight: "140%",
   color: "#FFFFFF", // 흰색으로 변경

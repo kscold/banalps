@@ -109,6 +109,15 @@ export default function ArrowButton({
     return iconStyle
   }
 
+  // 영문 텍스트인지 확인하는 함수
+  const isEnglishText = (text: React.ReactNode): boolean => {
+    if (typeof text === 'string') {
+      // 한글이 포함되어 있지 않으면 영문으로 간주
+      return !/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text);
+    }
+    return false;
+  }
+
   // 텍스트 스타일 결정
   const getTextStyle = () => {
     let textStyle = styles.buttonText
@@ -117,6 +126,11 @@ export default function ArrowButton({
       textStyle += ` ${styles.whiteText}`
     } else if (color === "blue") {
       textStyle += ` ${styles.blueText}`
+    }
+
+    // 영문 텍스트일 경우 Poppins 폰트 적용
+    if (isEnglishText(children)) {
+      textStyle += ` ${styles.englishText}`
     }
 
     return textStyle
