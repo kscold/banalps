@@ -272,7 +272,13 @@ const FullPageMain = () => {
   return (
     <div ref={containerRef} className="relative">
       {/* 고정 레이어 - 히어로와 비디오 */}
-      <div className="fixed top-0 left-0 w-full h-screen" style={{ zIndex: 1 }}>
+      <div
+        className="fixed top-0 left-0 w-full h-screen"
+        style={{
+          zIndex: 1,
+          pointerEvents: contentActive ? "none" : "auto" // 컨텐츠가 보이면 터치 비활성화
+        }}
+      >
         {/* 백그라운드 레이어 제거 - 배경 이미지가 보이도록 */}
 
         {/* 히어로 섹션 */}
