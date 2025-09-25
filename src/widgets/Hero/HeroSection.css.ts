@@ -14,6 +14,9 @@ export const heroContainer = style({
   height: "100vh",
   zIndex: 1,
   overflow: "hidden",
+  // 모바일 터치 스크롤 최적화
+  WebkitOverflowScrolling: "touch",
+  touchAction: "none", // 터치 제스처 제어
   "@media": {
     [breakpoints.mobile]: {
       position: "relative", // 모바일에서는 relative로 변경
@@ -22,6 +25,7 @@ export const heroContainer = style({
       minHeight: "100vh",
       width: "100vw",
       backgroundColor: "#000", // 배경 검은색 추가
+      touchAction: "none", // 모바일 터치 제스처 제어
     },
   },
 });
@@ -204,16 +208,19 @@ export const textBlock = style({
   textAlign: "right", // 오른쪽 정렬
   "@media": {
     [breakpoints.mobile]: {
-      position: "relative",
-      top: 0,
-      right: 0,
-      transform: "none",
-      width: "100%",
+      position: "absolute", // absolute 유지
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      transform: "translate(-50%, -50%)", // 중앙 정렬
+      width: "90vw", // 뷰포트 너비의 90%로 고정
+      maxWidth: "800px", // 최대 너비를 더 크게 설정 (태블릿 대응)
       height: "auto",
       textAlign: "center", // 중앙 정렬
       display: "flex",
       flexDirection: "column",
       gap: "20px",
+      padding: "0 20px", // 좌우 패딩 추가
     },
   },
 });
@@ -236,9 +243,11 @@ export const storyText = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      textAlign: "left", // 모바일에서 왼쪽 정렬
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
+      textAlign: "left", // 모바일에서 중앙 정렬
+      fontSize: "clamp(14px, 4vw, 20px)", // 반응형 폰트 크기
+      lineHeight: "1.5",
+      whiteSpace: "pre-wrap", // br 태그를 사용한 줄바꿈은 허용하되 자동 줄바꿈은 방지
+      wordBreak: "keep-all", // 한글 단어 단위로 줄바꿈
     },
   },
 });

@@ -22,11 +22,15 @@ export default function HeroSection({
   const [virtualScrollY, setVirtualScrollY] = useState(0);
   const totalTexts = 5; // 텍스트 개수 5개로 변경
 
+  // 모바일 감지
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
   // 텍스트 스크롤 로직 - KB사이트처럼 깊이 기반 전환
   useEffect(() => {
     if (!isActive) return;
 
-    const textScrollDepth = 2000; // 각 텍스트당 스크롤 깊이 증가 (2000px - KB사이트 수준)
+    // 모바일에서는 스크롤 깊이를 적절히 조정
+    const textScrollDepth = 2000; // 모바일: 800px로 증가, 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts; // 전체 스크롤 높이
     let scrollY = virtualScrollY;
 
@@ -63,16 +67,29 @@ export default function HeroSection({
     // 터치 이벤트 처리 - 스크롤 위치 기반
     let touchStartY = 0;
     let touchStartScrollY = 0;
+    let isTouching = false;
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
       touchStartScrollY = scrollY;
+      isTouching = true;
+
+      // 모바일에서 스크롤 방지
+      e.preventDefault();
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (!isTouching) return;
+
+      e.preventDefault(); // 기본 스크롤 동작 방지
+
       const currentY = e.touches[0].clientY;
       const deltaY = touchStartY - currentY;
-      const newScrollY = touchStartScrollY + deltaY * 1.2; // 터치 감도 적절히 조정
+
+      // 모바일에서 더 부드러운 스크롤을 위해 감도 조정
+      // 모바일은 감도를 적절히 조정 (너무 높으면 텍스트가 빨리 넘어감)
+      const sensitivity = isMobile ? 1.5 : 2.5; // 모바일 감도를 더 낮춤
+      const newScrollY = touchStartScrollY + deltaY * sensitivity;
 
       // 스크롤 범위 제한
       scrollY = Math.max(0, Math.min(newScrollY, totalScrollHeight));
@@ -85,12 +102,20 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex);
 
+      // 디버깅 로그
+      console.log(
+        `[모바일 터치] scrollY: ${scrollY}/${totalScrollHeight}, textIndex: ${clampedIndex}/${
+          totalTexts - 1
+        }, depth: ${textScrollDepth}`
+      );
+
       // 마지막 텍스트에 도달했을 때 다음 섹션으로
       if (
         clampedIndex === totalTexts - 1 &&
         scrollY >= totalScrollHeight - textScrollDepth / 2
       ) {
         if (onTextComplete) {
+          console.log("[모바일] 마지막 텍스트 도달 - 비디오로 전환");
           setTimeout(() => {
             onTextComplete();
           }, 300);
@@ -98,26 +123,34 @@ export default function HeroSection({
       }
     };
 
+    const handleTouchEnd = () => {
+      isTouching = false;
+    };
+
     window.addEventListener("wheel", handleWheel, {
       passive: false,
       capture: false,
     });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: false });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel, { capture: false });
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isActive, onTextComplete, totalTexts, virtualScrollY]);
+  }, [isActive, onTextComplete, totalTexts, virtualScrollY, isMobile]);
 
   // initialTextIndex가 변경되면 currentTextIndex 업데이트
   useEffect(() => {
     setCurrentTextIndex(initialTextIndex);
   }, [initialTextIndex]);
 
-  console.log(`[HeroSection/텍스트인덱스] ${currentTextIndex}, 스크롤: ${virtualScrollY}`);
+  console.log(
+    `[HeroSection/텍스트인덱스] ${currentTextIndex}, 스크롤: ${virtualScrollY}`
+  );
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
   const scrollProgress = (virtualScrollY / (2000 * totalTexts)) * 100;
@@ -129,9 +162,9 @@ export default function HeroSection({
         <div
           style={{
             height: `${totalTexts * 100}vh`, // 각 텍스트당 100vh씩
-            position: 'absolute',
-            width: '1px',
-            pointerEvents: 'none',
+            position: "absolute",
+            width: "1px",
+            pointerEvents: "none",
             opacity: 0,
           }}
         />

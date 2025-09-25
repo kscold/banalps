@@ -38,6 +38,21 @@ const FullPageMain = () => {
     };
   }, [heroActive]);
 
+  // 콘텐츠 섹션 활성화 시 스크롤 위치 초기화
+  useEffect(() => {
+    if (contentActive) {
+      // 콘텐츠가 활성화되면 스크롤을 맨 위로 설정
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, -90);
+
+      // 추가로 requestAnimationFrame으로 다음 프레임에서도 리셋
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+    }
+  }, [contentActive]);
+
   // Hero에서 비디오로 전환 핸들러
   const handleHeroComplete = () => {
     console.log("[FullPageMain] Hero 완료 - 비디오로 전환");
@@ -60,31 +75,49 @@ const FullPageMain = () => {
   const handleVideoComplete = () => {
     console.log("[FullPageMain] 비디오 종료 - 콘텐츠로 전환");
 
+    // 즉시 스크롤 리셋 (전환 전에 먼저)
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+
     // 먼저 섹션 변경 (scale 애니메이션 시작)
     setCurrentSection(2);
 
     // 부드러운 전환 효과
     setTimeout(() => {
+      // 콘텐츠 활성화 직전에 한 번 더 리셋
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
       setContentActive(true);
     }, 100);
 
     setTimeout(() => {
       setVideoActive(false);
+      // 비디오가 사라진 후에도 한 번 더 리셋
+      window.scrollTo(0, 0);
     }, 400);
-
-    // 블루섹션이 정확히 화면 상단에서 시작되도록 스크롤
-    const totalScrollHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const targetScroll = totalScrollHeight * 0.4;
-
-    window.scrollTo({
-      top: targetScroll,
-      behavior: "smooth",
-    });
   };
 
   // 비디오 섹션 최소 시간 설정
   const [videoMinTimeElapsed, setVideoMinTimeElapsed] = useState(false);
+
+  // 비디오 섹션에서 body overflow 제어
+  useEffect(() => {
+    if (videoActive) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [videoActive]);
 
   // 비디오 섹션 활성화 시 타이머 시작
   useEffect(() => {
@@ -221,7 +254,8 @@ const FullPageMain = () => {
   const heroScale = heroActive ? 1 : 0.95;
   const heroOpacity = heroActive ? 1 : 0;
   // 비디오 섹션은 들어올 때 1.05→1, 나갈 때 1→0.95로 scale 변경
-  const videoScale = currentSection === 1 ? 1 : (currentSection === 0 ? 1.05 : 0.95);
+  const videoScale =
+    currentSection === 1 ? 1 : currentSection === 0 ? 1.05 : 0.95;
   const videoOpacity = videoActive ? 1 : 0;
 
   // 비디오 종료 핸들러
@@ -307,10 +341,13 @@ const FullPageMain = () => {
             delay: 0.2,
           }}
           style={{
+            position: "relative",
             zIndex: 10,
             backgroundColor: "white",
-            // minHeight: "100vh",
+            minHeight: "100vh",
             paddingTop: 0, // 상단 여백 제거
+            marginTop: 0, // 상단 마진 제거
+            top: 0, // 최상단에 위치
           }}
         >
           <BlueSection isActive={true} />
