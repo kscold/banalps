@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style, globalStyle, keyframes } from "@vanilla-extract/css";
 
 // 기본 플로팅 버튼 스타일 - Figma 디자인과 100% 일치
 export const floatingButton = style({
@@ -31,18 +31,12 @@ export const floatingButton = style({
   // 전환 효과
   transition: "all 200ms ease",
 
-  // 호버 효과
-  ":hover": {
-    transform: "translateY(-2px)",
-    boxShadow: "0px 5px 12px rgba(0, 0, 0, 0.15)",
-  },
-
   // 활성 상태
   ":active": {
     transform: "translateY(0px)",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
   },
-})
+});
 
 // 활성 상태 플로팅 버튼 - Figma 디자인과 100% 일치
 export const floatingButtonActive = style({
@@ -58,7 +52,7 @@ export const floatingButtonActive = style({
     boxShadow: "0px 5px 12px rgba(0, 0, 0, 0.15)",
     background: "#0EA5E9", // 더 진한 파란색
   },
-})
+});
 
 // 아이콘 컨테이너
 export const iconContainer = style({
@@ -73,7 +67,7 @@ export const iconContainer = style({
 
   // Figma 디자인: 10px 간격
   gap: "10px",
-})
+});
 
 // 플로팅 버튼 그룹 컨테이너
 export const floatingButtonGroup = style({
@@ -99,7 +93,7 @@ export const floatingButtonGroup = style({
   // Figma 디자인: 높이 자동 조정
   height: "auto",
   minHeight: "520px",
-})
+});
 
 // 반응형 스타일
 export const floatingButtonResponsive = style({
@@ -119,7 +113,7 @@ export const floatingButtonResponsive = style({
       borderRadius: "22.5px",
     },
   },
-})
+});
 
 // 플로팅 버튼 애니메이션
 export const floatingButtonAnimated = style({
@@ -135,7 +129,7 @@ export const floatingButtonAnimated = style({
   ":active": {
     transform: "scale(0.95) translateY(0px)",
   },
-})
+});
 
 // 플로팅 버튼 상태별 색상
 export const floatingButtonVariants = {
@@ -198,8 +192,102 @@ export const floatingButtonVariants = {
   close: style({
     // 닫기 버튼 색상
     background: "#FFFFFF",
+    position: "relative",
     ":hover": {
       background: "#F8F9FA",
     },
   }),
-}
+};
+
+// spin-close 버튼 베이스 스타일
+export const spinCloseButton = style({
+  position: "relative",
+});
+
+// 회전 애니메이션 정의
+const rotateIn = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(180deg)",
+  },
+});
+
+const rotateOut = keyframes({
+  "0%": {
+    transform: "rotate(180deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+});
+
+// 닫기 버튼 회전 애니메이션
+export const closeIconRotate = style({
+  animation: `${rotateIn} 0.3s cubic-bezier(0.4, 0, 0.2, 1)`,
+});
+
+// 브랜드 아이콘 회전 애니메이션
+export const brandIconRotate = style({
+  animation: `${rotateOut} 0.3s cubic-bezier(0.4, 0, 0.2, 1)`,
+});
+
+// 아이콘 트랜지션 스타일 (기본 아이콘용)
+export const spinCloseIcon = style({
+  opacity: 1,
+  transition: "transform 0.3s, opacity 0.3s",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+// 아이콘 숨김 상태
+export const spinCloseIconHidden = style({
+  opacity: 0,
+  transform: "rotate(180deg)",
+});
+
+// X 라인 베이스 스타일 (before, after 대신 두 개의 span 사용)
+export const closeButtonLine = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "26px", // 1.64rem ≈ 26px
+  height: "2px",
+  backgroundColor: "#333",
+  marginTop: "-1px",
+  marginLeft: "-13px", // width의 절반
+  transition: "transform 0.3s, opacity 0.3s",
+  transformOrigin: "center",
+  opacity: 0,
+  transform: "rotate(0deg)",
+});
+
+// 첫 번째 라인 (45도 회전)
+export const closeButtonLineFirst = style([
+  closeButtonLine,
+  {
+    // 초기 상태: 투명하고 회전 없음
+  },
+]);
+
+// 두 번째 라인 (135도 회전)
+export const closeButtonLineSecond = style([
+  closeButtonLine,
+  {
+    // 초기 상태: 투명하고 회전 없음
+  },
+]);
+
+// 활성 상태의 첫 번째 라인 (45도 * 3 = 135도)
+export const closeButtonLineFirstActive = style({
+  opacity: 1,
+  transform: "rotate(135deg)", // (1*2+1)*45deg = 135deg
+});
+
+// 활성 상태의 두 번째 라인 (135도 * 3 = 405도 = 45도)
+export const closeButtonLineSecondActive = style({
+  opacity: 1,
+  transform: "rotate(405deg)", // (1*2+1)*135deg = 405deg = 45deg
+});

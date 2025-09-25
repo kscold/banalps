@@ -32,6 +32,34 @@ body::-webkit-scrollbar {
   scrollbar-width: none; /* Firefox */
 }
 
+/* 히어로 섹션에서 스크롤바 보이기 */
+.show-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: scrollbar; /* IE and Edge */
+  overflow-y: auto !important; /* 스크롤 강제 활성화 */
+}
+
+.show-scrollbar::-webkit-scrollbar {
+  display: block !important; /* Chrome, Safari, Opera */
+  width: 10px !important;
+}
+
+.show-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  margin: 20px 0;
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 5px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
 /* S-Core Dream Font Face */
 @font-face {
   font-family: 'S-Core Dream';

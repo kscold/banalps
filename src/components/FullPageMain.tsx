@@ -14,6 +14,7 @@ const FullPageMain = () => {
   const [heroActive, setHeroActive] = useState(true);
   const [videoActive, setVideoActive] = useState(false);
   const [contentActive, setContentActive] = useState(false);
+  const [heroTextIndex, setHeroTextIndex] = useState(0); // 히어로 섹션의 현재 텍스트 인덱스
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
@@ -23,26 +24,55 @@ const FullPageMain = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // 히어로 섹션 활성화 시 스크롤바 보이기
+  useEffect(() => {
+    if (heroActive) {
+      document.body.classList.add("show-scrollbar");
+    } else {
+      document.body.classList.remove("show-scrollbar");
+    }
+
+    // 컴포넌트 언마운트 시 클래스 제거
+    return () => {
+      document.body.classList.remove("show-scrollbar");
+    };
+  }, [heroActive]);
+
   // Hero에서 비디오로 전환 핸들러
   const handleHeroComplete = () => {
     console.log("[FullPageMain] Hero 완료 - 비디오로 전환");
-    setHeroActive(false);
-    setVideoActive(true);
-    setCurrentSection(1);
 
-    // 스크롤 위치는 그대로 유지 (비디오가 현재 위치에서 표시)
+    // 부드러운 전환을 위해 약간의 오버랩 시간 제공
+    setTimeout(() => {
+      setVideoActive(true);
+    }, 100);
+
+    setTimeout(() => {
+      setHeroActive(false);
+      setCurrentSection(1);
+      setHeroTextIndex(4); // 마지막 텍스트 인덱스로 설정 (5개 텍스트이므로 인덱스는 0~4)
+    }, 300);
+
     console.log("[FullPageMain] 비디오 섹션 활성화됨");
   };
 
   // 비디오에서 콘텐츠로 전환 핸들러
   const handleVideoComplete = () => {
     console.log("[FullPageMain] 비디오 종료 - 콘텐츠로 전환");
-    setVideoActive(false);
-    setContentActive(true);
+
+    // 먼저 섹션 변경 (scale 애니메이션 시작)
     setCurrentSection(2);
 
+    // 부드러운 전환 효과
+    setTimeout(() => {
+      setContentActive(true);
+    }, 100);
+
+    setTimeout(() => {
+      setVideoActive(false);
+    }, 400);
+
     // 블루섹션이 정확히 화면 상단에서 시작되도록 스크롤
-    // 전체 스크롤 높이의 40% 지점으로 이동 (블루섹션 시작점)
     const totalScrollHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const targetScroll = totalScrollHeight * 0.4;
@@ -58,34 +88,83 @@ const FullPageMain = () => {
 
   // 비디오 섹션 활성화 시 타이머 시작
   useEffect(() => {
-    if (currentSection === 1) {
+    if (currentSection === 1 && videoActive) {
+      // 비디오 섹션이 활성화될 때마다 타이머 리셋
+      setVideoMinTimeElapsed(false);
+
       const timer = setTimeout(() => {
         setVideoMinTimeElapsed(true);
-      }, 3000); // 최소 3초 동안 비디오 섹션 유지
+      }, 2000); // 최소 2초로 단축 (기존 3초)
 
       return () => clearTimeout(timer);
-    } else {
+    } else if (currentSection !== 1) {
       setVideoMinTimeElapsed(false);
     }
-  }, [currentSection]);
+  }, [currentSection, videoActive]);
 
   // 섹션 간 전환 처리
   useEffect(() => {
     let isTransitioning = false;
 
     const handleSectionScroll = (e: WheelEvent) => {
+      console.log(
+        `[FullPageMain/스크롤] currentSection: ${currentSection}, deltaY: ${e.deltaY}, isTransitioning: ${isTransitioning}`
+      );
+
       if (isTransitioning) return;
 
-      // 콘텐츠 섹션에서는 자유 스크롤
+      // 콘텐츠 섹션에서 위로 스크롤 시 비디오로 돌아가기
       if (currentSection === 2) {
+        // 현재 스크롤 위치 확인
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        // 블루섹션 최상단 근처(50px 이내)에서만 위로 스크롤 시 비디오로 전환
+        if (e.deltaY < 0 && scrollTop < 50) {
+          // 위로 스크롤 - 비디오로 돌아가기
+          e.preventDefault();
+          e.stopPropagation(); // 이벤트 전파 중지
+          isTransitioning = true;
+
+          console.log("[FullPageMain] 콘텐츠 최상단 → 비디오");
+
+          // 동일한 전환 모션 적용
+          setCurrentSection(1); // 먼저 섹션 변경
+
+          setTimeout(() => {
+            setVideoActive(true);
+          }, 100);
+
+          setTimeout(() => {
+            setContentActive(false);
+          }, 400);
+
+          // 스크롤 위치를 비디오 섹션으로 이동
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+
+          setTimeout(() => {
+            isTransitioning = false;
+          }, 800);
+        }
+        // 그 외의 경우는 자유 스크롤 허용
         return;
       }
 
       // 비디오 섹션에서 스크롤 처리
       if (currentSection === 1) {
         e.preventDefault();
+        e.stopPropagation(); // 이벤트 전파 중지
 
-        // 최소 시간이 지나지 않았으면 스크롤 무시
+        // 스크롤 감도 조정 - 작은 스크롤에도 반응
+        const scrollThreshold = Math.abs(e.deltaY) > 30; // 30px 이상 스크롤 시 전환
+
+        if (!scrollThreshold) {
+          return;
+        }
+
+        // 최소 시간이 지나지 않았으면 스크롤 무시 (아래로 스크롤할 때만)
         if (!videoMinTimeElapsed && e.deltaY > 0) {
           console.log("[FullPageMain] 비디오 최소 시간 미경과");
           return;
@@ -95,30 +174,54 @@ const FullPageMain = () => {
 
         if (e.deltaY > 0 && videoMinTimeElapsed) {
           // 아래로 스크롤 - 콘텐츠로
+          console.log("[FullPageMain] 비디오 → 콘텐츠 전환");
           handleVideoComplete();
         } else if (e.deltaY < 0) {
-          // 위로 스크롤 - Hero로
-          setVideoActive(false);
-          setHeroActive(true);
-          setCurrentSection(0);
-          console.log("[FullPageMain] 비디오 → Hero");
+          // 위로 스크롤 - Hero로 (마지막 텍스트에서 시작) - 동일한 모션 적용
+          setCurrentSection(0); // 먼저 섹션 변경 (scale 애니메이션 시작)
+
+          setTimeout(() => {
+            setHeroActive(true);
+          }, 100);
+
+          setTimeout(() => {
+            setVideoActive(false);
+            setHeroTextIndex(4); // 마지막 텍스트 인덱스로 설정 (5개 텍스트이므로 인덱스는 0~4)
+          }, 400);
+
+          console.log("[FullPageMain] 비디오 → Hero (마지막 텍스트)");
         }
 
         setTimeout(() => {
           isTransitioning = false;
-        }, 800);
+        }, 600); // 전환 대기 시간도 단축
+      }
+
+      // 히어로 섹션에서 스크롤 처리 - 텍스트 내부 스크롤만 허용
+      if (currentSection === 0) {
+        // 히어로 섹션에서는 텍스트 내부 스크롤만 허용하고 섹션 전환은 차단
+        // HeroSection의 내부 스크롤 로직이 작동하도록 함
+        return;
       }
     };
 
-    window.addEventListener("wheel", handleSectionScroll, { passive: false });
+    window.addEventListener("wheel", handleSectionScroll, {
+      passive: false,
+      capture: true,
+    });
 
     return () => {
-      window.removeEventListener("wheel", handleSectionScroll);
+      window.removeEventListener("wheel", handleSectionScroll, {
+        capture: true,
+      });
     };
   }, [currentSection, videoMinTimeElapsed]);
 
-  // 섹션 별 opacity 처리
+  // 섹션 전환 애니메이션 상태
+  const heroScale = heroActive ? 1 : 0.95;
   const heroOpacity = heroActive ? 1 : 0;
+  // 비디오 섹션은 들어올 때 1.05→1, 나갈 때 1→0.95로 scale 변경
+  const videoScale = currentSection === 1 ? 1 : (currentSection === 0 ? 1.05 : 0.95);
   const videoOpacity = videoActive ? 1 : 0;
 
   // 비디오 종료 핸들러
@@ -142,15 +245,24 @@ const FullPageMain = () => {
         <motion.div
           ref={heroRef}
           className="absolute top-0 left-0 w-full h-full"
-          style={{
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{
             opacity: heroOpacity,
-            zIndex: 2,
-            willChange: "opacity",
+            scale: heroScale,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.43, 0.13, 0.23, 0.96], // cubic-bezier
+          }}
+          style={{
+            zIndex: heroActive ? 3 : 2,
+            transformOrigin: "center center",
           }}
         >
           <HeroSection
             onTextComplete={handleHeroComplete}
             isActive={heroActive}
+            initialTextIndex={heroTextIndex}
           />
         </motion.div>
 
@@ -158,12 +270,19 @@ const FullPageMain = () => {
         <motion.div
           ref={videoRef}
           className="absolute top-0 left-0 w-full h-full"
-          style={{
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{
             opacity: videoOpacity,
-            zIndex: 3,
-            willChange: "opacity",
-            backgroundColor: "#000", // 비디오 배경색 추가
-            transition: "opacity 0.5s ease-in-out",
+            scale: videoScale,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.43, 0.13, 0.23, 0.96],
+          }}
+          style={{
+            zIndex: videoActive ? 4 : 3,
+            backgroundColor: "#000",
+            transformOrigin: "center center",
           }}
         >
           {videoActive && (
@@ -180,9 +299,13 @@ const FullPageMain = () => {
       {contentActive && (
         <motion.div
           className="relative"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 100, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1,
+            ease: [0.43, 0.13, 0.23, 0.96],
+            delay: 0.2,
+          }}
           style={{
             zIndex: 10,
             backgroundColor: "white",

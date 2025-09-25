@@ -14,6 +14,7 @@ function FloatingButtonGroupComponent({
   onButtonClick,
 }: FloatingButtonGroupProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isAboveFooter, setIsAboveFooter] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -100,10 +101,12 @@ function FloatingButtonGroupComponent({
 
   // 버튼 클릭 핸들러 메모이제이션
   const handleButtonClick = useCallback((variant: string) => {
-    if (variant === "close") {
-      setIsExpanded(false);
-    } else if (variant === "brand") {
-      setIsExpanded(prev => !prev);
+    if (variant === "close" || variant === "brand") {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsExpanded(prev => !prev);
+        setIsAnimating(false);
+      }, 150);
     } else if (socialLinks[variant as keyof typeof socialLinks]) {
       window.open(socialLinks[variant as keyof typeof socialLinks], "_blank");
     }
@@ -133,38 +136,87 @@ function FloatingButtonGroupComponent({
           isExpanded ? styles.visibleButtons : styles.hiddenButtons
         }`}
       >
-        {/* 소셜 미디어 버튼들 */}
-        <FloatingButton
-          variant="navercalender"
-          onClick={() => handleButtonClick("navercalender")}
-        />
-        <FloatingButton
-          variant="kakao"
-          onClick={() => handleButtonClick("kakao")}
-        />
-        <FloatingButton
-          variant="naverBlog"
-          onClick={() => handleButtonClick("naverBlog")}
-        />
-        <FloatingButton
-          variant="youtube"
-          onClick={() => handleButtonClick("youtube")}
-        />
-        <FloatingButton
-          variant="line"
-          onClick={() => handleButtonClick("line")}
-        />
-        <FloatingButton
-          variant="instagram"
-          isActive={true}
-          onClick={() => handleButtonClick("instagram")}
-        />
+        {/* 소셜 미디어 버튼들 - 포포퐁 애니메이션 적용 */}
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger1 : styles.buttonStaggerClose1
+          }`}
+        >
+          <FloatingButton
+            variant="navercalender"
+            onClick={() => handleButtonClick("navercalender")}
+          />
+        </div>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger2 : styles.buttonStaggerClose2
+          }`}
+        >
+          <FloatingButton
+            variant="kakao"
+            onClick={() => handleButtonClick("kakao")}
+          />
+        </div>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger3 : styles.buttonStaggerClose3
+          }`}
+        >
+          <FloatingButton
+            variant="naverBlog"
+            onClick={() => handleButtonClick("naverBlog")}
+          />
+        </div>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger4 : styles.buttonStaggerClose4
+          }`}
+        >
+          <FloatingButton
+            variant="youtube"
+            onClick={() => handleButtonClick("youtube")}
+          />
+        </div>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger5 : styles.buttonStaggerClose5
+          }`}
+        >
+          <FloatingButton
+            variant="line"
+            onClick={() => handleButtonClick("line")}
+          />
+        </div>
+        <div
+          className={`${styles.buttonWrapper} ${
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
+          } ${
+            isExpanded ? styles.buttonStagger6 : styles.buttonStaggerClose6
+          }`}
+        >
+          <FloatingButton
+            variant="instagram"
+            isActive={true}
+            onClick={() => handleButtonClick("instagram")}
+          />
+        </div>
       </div>
 
       {/* 메인 토글 버튼 (Brand 또는 Close) - 항상 흰색 배경 */}
       <FloatingButton
         variant={isExpanded ? "close" : "brand"}
         isActive={false} // 항상 false로 설정하여 흰색 배경 유지
+        isAnimating={isAnimating}
         onClick={() => handleButtonClick(isExpanded ? "close" : "brand")}
       />
     </div>
