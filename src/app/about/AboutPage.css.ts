@@ -863,11 +863,11 @@ export const strengthDescriptionMobile = style({
 
 // Gallery Section - 바날 둘러보기 (피그마 디자인)
 export const gallerySection = style({
-  padding: `${vw(120)} 0`,
+  padding: `${vw(240)} 0`,
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0",
+      padding: "240px 0",
     },
     [breakpoints.mobile]: {
       padding: 0,

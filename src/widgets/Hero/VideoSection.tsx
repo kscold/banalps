@@ -39,7 +39,7 @@ export function VideoSection({
       const preloadLink = document.createElement('link');
       preloadLink.rel = 'preload';
       preloadLink.as = 'document';
-      preloadLink.href = 'https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0';
+      preloadLink.href = 'https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0';
       document.head.appendChild(preloadLink);
 
       console.log("[VideoSection/프리로드] Vimeo iframe 프리로드 시작");
@@ -166,7 +166,7 @@ export function VideoSection({
           <div className={styles.vimeoContainer}>
             <iframe
               ref={iframeRef}
-              src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
+              src="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
               className={styles.vimeoIframe}
               style={{ border: "none" }}
               allow="autoplay; fullscreen; picture-in-picture"

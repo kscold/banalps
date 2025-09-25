@@ -48,6 +48,23 @@ export const backgroundImage = style({
   },
 });
 
+// 배경 비디오 - Vimeo
+export const backgroundVideo = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  zIndex: tokens.zIndex.base,
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "absolute",
+      height: "100%",
+    },
+  },
+});
+
 // 비디오 컨테이너
 export const vimeoContainer = style({
   position: "absolute",

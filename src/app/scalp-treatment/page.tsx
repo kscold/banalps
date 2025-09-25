@@ -110,10 +110,12 @@ export default function ScalpTreatmentPage() {
             {/* 영상 영역 */}
             <div className={styles.scalpTreatmentVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423104?h=9505a82a8f&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
-                style={{ border: "none", borderRadius: "0px" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 onLoad={handleVimeoLoad}
                 onError={() => {
@@ -297,10 +299,12 @@ export default function ScalpTreatmentPage() {
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423121?h=383908a6bd&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -311,10 +315,13 @@ export default function ScalpTreatmentPage() {
             <h2 className={styles.treatmentTitle}>
               1550nm 어븀글라스 프락셀 레이저
             </h2>
-            <h3 className={styles.treatmentSubtitle}>
+            <h3
+              className={styles.treatmentSubtitleWithMargin}
+            >
               두피의 혈류와
               <br />
               세포 환경을 되살려
+              <br />
               <br />
               모발이 자라기
               <br />
@@ -348,10 +355,12 @@ export default function ScalpTreatmentPage() {
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423131?h=0371d1d722&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -390,10 +399,12 @@ export default function ScalpTreatmentPage() {
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423150?h=ae4e69a9a3&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -437,10 +448,12 @@ export default function ScalpTreatmentPage() {
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423165?h=eb13c32221&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>

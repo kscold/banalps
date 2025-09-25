@@ -9,11 +9,12 @@ import {
 // Features Section
 export const featuresSection = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
-  paddingBottom: vw(120),
-  backgroundColor: "#FFFDF7", // 흰색 배경
+  paddingBottom: vw(240),
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0px", // 1920px+ 고정
+      paddingTop: "120px",
+      paddingBottom: "240px",
     },
     [breakpoints.mobile]: {
       height: mvw(1752),

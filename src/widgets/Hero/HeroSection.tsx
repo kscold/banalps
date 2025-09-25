@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 
 import { TextContentRenderer } from "./TextContentRenderer";
@@ -171,7 +170,7 @@ export default function HeroSection({
       )}
 
       <section className={styles.heroContainer}>
-        <Image
+        {/* <Image
           src="/main/background/bg_sky.jpg"
           alt="바날 성형외과 배경"
           fill
@@ -183,7 +182,27 @@ export default function HeroSection({
           onError={() => {
             console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패");
           }}
-        />
+        /> */}
+
+        <div className={styles.backgroundVideo}>
+          <iframe
+            title="vimeo-player"
+            src="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: "100%",
+              height: "100%",
+              transform: "translate(-50%, -50%) scale(1.2)",
+              minWidth: "100%",
+              minHeight: "100%",
+              objectFit: "cover",
+              border: "none",
+            }}
+          />
+        </div>
 
         {/* 콘텐츠 */}
         <div className={styles.contentWrapper}>

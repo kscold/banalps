@@ -290,7 +290,7 @@ function CategoryCarousel({
     <div
       style={{
         padding: isMobile ? "40px 0 60px" : "160px 60px",
-        backgroundColor: isBlueBackground ? "#D5FEFF" : "#FFFFFF",
+        backgroundColor: isBlueBackground ? "#D5FEFF" : "#FFFDF7",
         width: "100%",
       }}
     >
