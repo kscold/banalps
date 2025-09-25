@@ -29,6 +29,12 @@ export default function GoogleMapEmbed({
           className={styles.mapIframe}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
+        {/* <img
+          src="/treatment-guide/map-mobile.png"
+          alt="바날 성형외과 위치"
+          className={styles.mapIframe}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        /> */}
       </div>
 
       {/* 외부 링크 버튼 - 별도 컴포넌트로 분리 */}

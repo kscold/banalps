@@ -141,20 +141,13 @@ export default function ScalpTreatmentPage() {
               남겼습니다.
             </h2>
             <div className={styles.introImageContent}>
-              <motion.div
-                className={styles.introImageContainer}
-                initial={{ opacity: 0, y: 80 }}
-                animate={
-                  section1InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
-                }
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              >
+              <div className={styles.introImageContainer}>
                 <img
                   src="/scalp-treatment/scalp-treatment-1.png"
                   alt="두피치료 의료진"
                   className={styles.introImage}
                 />
-              </motion.div>
+              </div>
             </div>
             <p className={styles.introDescription}>
               모발이식과 약물치료 만으로 충분하다고 생각했습니다.
@@ -284,17 +277,7 @@ export default function ScalpTreatmentPage() {
       </motion.section>
 
       {/* Section 3: 1550nm 어븀글라스 프락셀 레이저 */}
-      <motion.section
-        ref={section3Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section3InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section3Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
@@ -343,20 +326,10 @@ export default function ScalpTreatmentPage() {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 4: 약물 주사 치료 */}
-      <motion.section
-        ref={section4Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section4InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section4Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
@@ -407,20 +380,10 @@ export default function ScalpTreatmentPage() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 5: 줄기세포 유래 성장인자 */}
-      <motion.section
-        ref={section5Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section5InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section5Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
@@ -476,10 +439,10 @@ export default function ScalpTreatmentPage() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 6: 저출력 레이저 LLLT */}
-      <motion.section
+      <section
         ref={section6Ref}
         className={styles.treatmentDetailSectionCustomPadding}
         style={
@@ -489,13 +452,6 @@ export default function ScalpTreatmentPage() {
             "--padding-bottom-mobile": "0",
           } as React.CSSProperties
         }
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section6InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
       >
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
@@ -542,7 +498,7 @@ export default function ScalpTreatmentPage() {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Footer Features Section */}
       <FeaturesSection

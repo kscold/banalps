@@ -421,7 +421,7 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-shinseunggyu-mobile-talk.png"
+                    src="/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg"
                     alt="신승규 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -597,7 +597,7 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-parksoohyo-mobile-talk.png"
+                    src="/doctors/mobile/doctor-parksoohyo-talk-mobile.svg"
                     alt="박수호 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -765,7 +765,7 @@ export default function DoctorsPage() {
                 </div>
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-kimnarae-mobile-talk.png"
+                    src="/doctors/mobile/doctor-kimnarae-talk-mobile.svg"
                     alt="김나래 원장 quote"
                     className={styles.doctorMobileQuoteImage}
                   />

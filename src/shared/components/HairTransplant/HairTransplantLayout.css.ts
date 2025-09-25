@@ -456,6 +456,7 @@ export const section1 = style({
 });
 
 export const section1Content = style({
+  position: "relative", // absolute 포지셔닝을 위해 추가
   "@media": {
     [breakpoints.desktopLarge]: {
       ...responsiveSplitContainer(), // 1920px 기준 좌우 분할 레이아웃 (전체 너비 사용)
@@ -557,13 +558,12 @@ export const section1Title = style({
 
 export const section1Image = style({
   // 피그마 디자인에 맞게 텍스트 아래에 자연스럽게 배치
-  width: vw(400), // 너비를 줄여서 적절한 크기로 조정
+  width: "auto", // 너비를 auto로 설정하여 이미지 크기에 따라 조정
   height: "auto", // 비율 유지
   marginTop: vw(40), // 제목과의 간격
   marginBottom: vw(40), // 설명과의 간격
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "400px", // 1920px+ 고정
       marginTop: "40px",
       marginBottom: "40px",
     },
@@ -641,22 +641,27 @@ export const section1Number = style({
   letterSpacing: "0%",
   color: "#272727",
   zIndex: 3,
+  fontSize: vw(200),
+  lineHeight: vw(240),
 
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "80px",
-      left: "700px",
+      top: "40px",
+      left: "400px",
+      transform: "translateX(calc(-50% + 350px))", // 고정값
       fontSize: "200px",
       lineHeight: "240px",
     },
     [breakpoints.desktop]: {
-      top: vw(80),
+      top: vw(40),
       left: vw(700),
       fontSize: vw(200),
       lineHeight: vw(240),
     },
     [breakpoints.mobile]: {
       position: "absolute",
+      // left: "auto",
+      // transform: "none",
       fontSize: mvw(60),
       width: "auto",
       height: "auto",

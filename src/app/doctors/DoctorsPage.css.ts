@@ -219,6 +219,8 @@ export const medicalTeamHeroTitle = style({
 // 의사 섹션들 - 파란 배경 (Frame 299: 1920x1221)
 export const doctorSection = style({
   width: vw(1920),
+  maxWidth: "1920px",
+  margin: "0 auto",
   position: "relative",
   backgroundColor: "#73D5FA",
   borderRadius: vw(24),

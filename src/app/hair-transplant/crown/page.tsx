@@ -65,6 +65,29 @@ function CrownContent() {
         main: "/hair-transplant/crown/crown-2.png",
         secondary: "/hair-transplant/crown/crown-1.png",
       },
+      imagesSize: {
+        main: {
+          width: 600,
+          height: 660,
+        },
+        secondary: {
+          width: 350,
+          height: 315,
+        },
+      },
+      imagesPosition: {
+        main: {
+          top: 60,
+        },
+        secondary: {
+          bottom: 0,
+          left: 0,
+        },
+      },
+      section1RightSize: {
+        width: 1085, // section1Right 컨테이너 너비 800 vw 단위
+        height: 800, // section1Right 컨테이너 높이 700 vw 단위
+      },
     },
     section2: {
       number: 2,

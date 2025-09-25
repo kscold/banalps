@@ -228,9 +228,10 @@ export const featureIconImg = style({
 
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200, // 피그마 스펙: 4 Regular = 200
+  fontWeight: 400, // 피그마 스펙: 4 Regular = 200
   ...responsiveFont(20, 12), // 피그마 정확한 크기, 모바일 12px
-  lineHeight: vw(30), // 피그마 정확한 라인 높이
+  lineHeight: "150%",
+
   letterSpacing: "0", // 피그마 스펙
   color: "#272727", // 피그마 정확한 색상
   textAlign: "center", // 피그마 스펙: CENTER
@@ -238,7 +239,7 @@ export const featureTitle = style({
 
   "@media": {
     [breakpoints.desktopLarge]: {
-      lineHeight: "30px",
+      fontSize: "20px",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
