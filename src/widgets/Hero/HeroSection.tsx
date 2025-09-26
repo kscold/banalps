@@ -41,6 +41,9 @@ export default function HeroSection({
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
+      e.stopPropagation(); // 이벤트 버블링 방지
+      
+      console.log("[HeroSection] 스크롤 이벤트 감지 - 전체 화면에서 작동");
 
       const deltaY = e.deltaY;
       scrollY += deltaY * 0.8; // 스크롤 감도 조정 (더 천천히)
@@ -134,14 +137,14 @@ export default function HeroSection({
 
     window.addEventListener("wheel", handleWheel, {
       passive: false,
-      capture: false,
+      capture: true, // capture를 true로 변경하여 이벤트를 먼저 받음
     });
     window.addEventListener("touchstart", handleTouchStart, { passive: false });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
-      window.removeEventListener("wheel", handleWheel, { capture: false });
+      window.removeEventListener("wheel", handleWheel, { capture: true });
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
@@ -176,6 +179,20 @@ export default function HeroSection({
       )}
 
       <section className={styles.heroContainer}>
+        {/* 스크롤 이벤트를 캡처하는 투명 오버레이 */}
+        <div 
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 999,
+            pointerEvents: "auto",
+            background: "transparent",
+          }}
+        />
+        
         {/* <Image
           src="/main/background/bg_sky.jpg"
           alt="바날 성형외과 배경"
@@ -200,13 +217,11 @@ export default function HeroSection({
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                width: "100%",
-                height: "100%",
-                transform: "translate(-50%, -50%) scale(1.2)",
-                minWidth: "100%",
-                minHeight: "100%",
-                objectFit: "cover",
+                width: "max(177.77vh, 100vw)", // 16:9 비율 유지하며 화면 꽉 채우기
+                height: "max(56.25vw, 100vh)", // 16:9 비율 유지하며 화면 꽉 채우기
+                transform: "translate(-50%, -50%)",
                 border: "none",
+                pointerEvents: "none", // iframe이 스크롤 이벤트를 차단하지 않도록
               }}
             />
           )}
