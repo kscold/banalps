@@ -1,16 +1,23 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
 import HeaderNavigation from "@/widgets/Header/HeaderNavigation";
 import { Footer } from "@/shared/ui/Footer";
 import { FloatingButtonGroup } from "@/features/floating-button";
 import LoginModal from "@/shared/components/LoginModal/LoginModal";
 import AuthChecker from "@/components/AuthChecker";
+import { registerServiceWorker } from "@/utils/registerServiceWorker";
 
 // 내부 레이아웃 컴포넌트
 function InnerLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  
+  // Service Worker 등록
+  useEffect(() => {
+    registerServiceWorker();
+  }, []);
   const handleFloatingButtonClick = (variant: string) => {
     console.log(`[Layout] ${variant} 플로팅 버튼 클릭됨`);
     switch (variant) {

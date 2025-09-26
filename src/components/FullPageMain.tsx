@@ -8,6 +8,8 @@ import { VideoSection } from "../widgets/Hero/VideoSection";
 import BlueSection from "../widgets/BlueSection";
 import WhiteSection from "../widgets/WhiteSection/WhiteSection";
 import Footer from "../shared/ui/Footer/Footer";
+import { videoPreloader } from "../utils/videoPreloader";
+import { verifyCaching } from "../utils/verifyCaching";
 
 const FullPageMain = () => {
   const [currentSection, setCurrentSection] = useState<0 | 1 | 2>(0); // 0: hero, 1: video, 2: content
@@ -17,9 +19,30 @@ const FullPageMain = () => {
   const [hasSeenHero, setHasSeenHero] = useState(false); // Hero를 한번 봤는지 추적
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 초기 스크롤 위치를 0으로 설정
+  // 초기 스크롤 위치를 0으로 설정 및 비디오 프리로딩
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // 비디오 프리로딩 시작
+    console.log("[FullPageMain] 비디오 캐싱 시작...");
+    videoPreloader.addPrefetchTags();
+    videoPreloader.preloadAllVideos().then(() => {
+      console.log("[FullPageMain] ✅ 모든 비디오 프리로딩 완료");
+      
+      // Service Worker 상태 확인
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then((registration) => {
+          console.log("[FullPageMain] ✅ Service Worker 활성화:", registration.active?.state);
+        });
+      }
+      
+      // 3초 후 캐싱 검증 실행
+      setTimeout(() => {
+        verifyCaching();
+      }, 3000);
+    }).catch((error) => {
+      console.error("[FullPageMain] ❌ 비디오 프리로딩 실패:", error);
+    });
   }, []);
 
   // 섹션별 스크롤바 제어
