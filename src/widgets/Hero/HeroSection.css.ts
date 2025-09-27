@@ -14,10 +14,8 @@ export const heroContainer = style({
   height: "100vh",
   zIndex: 1,
   overflow: "hidden",
-  pointerEvents: "auto", // 전체 영역에서 포인터 이벤트 받기
   // 모바일 터치 스크롤 최적화
   WebkitOverflowScrolling: "touch",
-  touchAction: "none", // 터치 제스처 제어
   "@media": {
     [breakpoints.mobile]: {
       position: "relative", // 모바일에서는 relative로 변경
@@ -25,8 +23,7 @@ export const heroContainer = style({
       height: "100vh", // 명시적으로 100vh 설정
       minHeight: "100vh",
       width: "100vw",
-      backgroundColor: "#000", // 배경 검은색 추가
-      touchAction: "none", // 모바일 터치 제스처 제어
+      backgroundColor: "#000" // 배경 검은색 추가
     },
   },
 })

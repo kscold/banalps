@@ -4,32 +4,58 @@
 /* 스크롤바 완전히 숨기기 - 스크롤 기능은 유지 */
 html {
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  /* 모바일에서는 스크롤바 설정을 건드리지 않음 */
 }
 
 body {
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  /* 모바일에서는 스크롤바 설정을 건드리지 않음 */
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* 데스크톱에서만 스크롤바 숨기기 */
+@media (min-width: 1024px) {
+  html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
 
-/* 모든 요소의 가로 스크롤바 숨기기 */
-*::-webkit-scrollbar:horizontal {
-  display: none;
+/* 데스크톱에서만 가로 스크롤바 숨기기 */
+@media (min-width: 1024px) {
+  *::-webkit-scrollbar:horizontal {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
-* {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+/* 모바일 터치 스크롤 최적화 */
+@media (max-width: 1023px) {
+  html, body {
+    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+    overflow-scrolling: touch;
+  }
+
+  /* 모바일에서 스크롤 가능 영역 명시 */
+  * {
+    -webkit-tap-highlight-color: transparent; /* 탭 하이라이트 제거 */
+  }
 }
 
 /* 히어로 섹션에서 스크롤바 보이기 */
@@ -110,37 +136,7 @@ section {
   outline: none !important;
 }
 
-/* React Fullpage Styles */
-#fullpage {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.fp-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fp-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.fp-overflow {
-  overflow: hidden;
-}
-
-.fp-responsive {
-  height: auto !important;
-}
-
-/* 섹션별 스타일 */
+/* 섹션별 배경색 (필요한 경우만 유지) */
 .hero-section {
   background: transparent;
 }

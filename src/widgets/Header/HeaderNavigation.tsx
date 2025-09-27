@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import * as styles from "./HeaderDesign.css";
 import { useHeaderState } from "../../features/header/hooks/useHeaderState";
 import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 import DesktopNav from "../../features/header/components/DesktopNav";
 import MobileMenu from "../../features/header/components/MobileMenu";
 import MenuToggleButton from "../../features/header/components/MenuToggleButton";
@@ -22,10 +24,42 @@ export default function HeaderNavigation() {
   } = useHeaderState();
 
   const { openLoginModal } = useAuthStore();
+  const { language, setLanguage } = useLanguageStore();
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
   };
+
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
+
+  const selectLanguage = (lang: "KR" | "JP") => {
+    setLanguage(lang);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  // 외부 클릭 감지하여 드롭다운 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        languageDropdownRef.current &&
+        !languageDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    if (isLanguageDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLanguageDropdownOpen]);
 
   return (
     <>
@@ -71,10 +105,70 @@ export default function HeaderNavigation() {
               )}
 
               {/* 언어 선택 버튼 */}
-              <button className={styles.consultButton}>
-                <span>KR</span>
-                <span className={styles.dropdownArrow}>▼</span>
-              </button>
+              <div
+                className={styles.languageButtonWrapper}
+                ref={languageDropdownRef}
+              >
+                <button
+                  className={styles.consultButton}
+                  onClick={toggleLanguageDropdown}
+                >
+                  <span>{language === "KR" ? "KR" : "JP"}</span>
+                  <span className={`${styles.dropdownArrow} ${
+                    isLanguageDropdownOpen ? styles.dropdownArrowRotated : ""
+                  }`}>▼</span>
+                </button>
+
+                {/* 언어 드롭다운 */}
+                <div
+                  className={`${styles.languageDropdownContainer} ${
+                    isLanguageDropdownOpen ? styles.languageDropdownActive : ""
+                  }`}
+                >
+                  <button
+                    className={`${styles.languageOption} ${
+                      language === "KR" ? styles.languageOptionActive : ""
+                    }`}
+                    onClick={() => selectLanguage("KR")}
+                  >
+                    <span>KR</span>
+                    {language === "KR" && (
+                      <svg
+                        className={styles.languageCheckIcon}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    className={`${styles.languageOption} ${
+                      language === "JP" ? styles.languageOptionActive : ""
+                    }`}
+                    onClick={() => selectLanguage("JP")}
+                  >
+                    <span>JP</span>
+                    {language === "JP" && (
+                      <svg
+                        className={styles.languageCheckIcon}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* 모바일 메뉴 버튼 */}

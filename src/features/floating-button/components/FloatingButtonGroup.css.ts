@@ -52,12 +52,17 @@ export const expandableList = style({
 export const hiddenButtons = style({
   opacity: 0,
   pointerEvents: "none",
+  visibility: "hidden", // 추가: 완전히 숨김
+  height: 0, // 추가: 높이도 0으로
+  overflow: "hidden", // 추가: 오버플로우 숨김
 });
 
 // Visible state for buttons with stagger animation
 export const visibleButtons = style({
   opacity: 1,
   pointerEvents: "auto",
+  visibility: "visible", // 추가: visible로 복원
+  height: "auto", // 추가: height 복원
 });
 
 // 버튼 포포퐁 애니메이션

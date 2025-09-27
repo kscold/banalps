@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { TextContentRenderer } from "./TextContentRenderer";
 
 import * as styles from "./HeroSection.css";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 interface HeroSectionProps {
   onTextComplete?: () => void;
@@ -23,7 +24,7 @@ export default function HeroSection({
   const totalTexts = 5; // 텍스트 개수 5개로 변경
 
   // 모바일 감지
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const isMobile = useMediaQuery("screen and (max-width: 1023px)");
 
   // 클라이언트 사이드 렌더링 확인
   useEffect(() => {
@@ -34,19 +35,60 @@ export default function HeroSection({
   useEffect(() => {
     if (!isActive) return;
 
-    // 모바일에서는 스크롤 깊이를 적절히 조정
-    const textScrollDepth = 2000; // 모바일: 800px로 증가, 데스크톱: 2000px
+    // 모바일에서는 스크롤 깊이를 적절히 조정 (너무 짧으면 텍스트가 다 안 나타남)
+    const textScrollDepth = isMobile ? 400 : 2000; // 모바일: 400px (빠르지만 모든 텍스트 표시), 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts; // 전체 스크롤 높이
     let scrollY = virtualScrollY;
 
+    // 이벤트를 통과시킬지 확인하는 함수
+    const shouldPassThrough = (target: HTMLElement): boolean => {
+      // z-index가 50 이상인 요소들 (헤더, 플로팅 버튼, 모달 등)은 모두 통과
+      let element: HTMLElement | null = target;
+      while (element && element !== document.body) {
+        const zIndex = window.getComputedStyle(element).zIndex;
+        if (zIndex !== 'auto' && parseInt(zIndex) >= 50) {
+          return true; // 높은 z-index를 가진 요소는 통과
+        }
+
+        // 또한 특정 클래스를 가진 요소들도 통과
+        if (element.closest('header') ||
+            element.closest('[class*="header"]') ||
+            element.closest('[class*="Header"]') ||
+            element.closest('[class*="floating"]') ||
+            element.closest('[class*="Float"]') ||
+            element.closest('[class*="modal"]') ||
+            element.closest('[class*="Modal"]') ||
+            element.closest('[class*="dropdown"]') ||
+            element.closest('[class*="Dropdown"]') ||
+            element.closest('[class*="menu"]') ||
+            element.closest('[class*="Menu"]') ||
+            element.closest('[class*="nav"]') ||
+            element.closest('[class*="Nav"]')) {
+          return true;
+        }
+        element = element.parentElement as HTMLElement;
+      }
+      return false;
+    };
+
     const handleWheel = (e: WheelEvent) => {
+      // HeroSection이 활성화되어 있고, 실제로 스크롤 영역 내에 있을 때만 preventDefault
+      if (!isActive) return;
+
+      // 터치 대상이 헤더나 플로팅 버튼이 아닌 경우에만 처리
+      const target = e.target as HTMLElement;
+      if (shouldPassThrough(target)) {
+        return; // 헤더나 플로팅 버튼, 메뉴는 통과
+      }
+
       e.preventDefault();
       e.stopPropagation(); // 이벤트 버블링 방지
-      
+
       console.log("[HeroSection] 스크롤 이벤트 감지 - 전체 화면에서 작동");
 
       const deltaY = e.deltaY;
-      scrollY += deltaY * 0.8; // 스크롤 감도 조정 (더 천천히)
+      const scrollSpeed = isMobile ? 3.0 : 0.8; // 모바일에서는 훨씬 더 빠르게 반응
+      scrollY += deltaY * scrollSpeed;
 
       // 스크롤 범위 제한
       scrollY = Math.max(0, Math.min(scrollY, totalScrollHeight));
@@ -78,6 +120,12 @@ export default function HeroSection({
     let isTouching = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      // 터치 대상이 헤더나 플로팅 버튼이면 통과
+      const target = e.target as HTMLElement;
+      if (shouldPassThrough(target)) {
+        return;
+      }
+
       touchStartY = e.touches[0].clientY;
       touchStartScrollY = scrollY;
       isTouching = true;
@@ -89,14 +137,21 @@ export default function HeroSection({
     const handleTouchMove = (e: TouchEvent) => {
       if (!isTouching) return;
 
+      // 터치 대상이 헤더나 플로팅 버튼이면 통과
+      const target = e.target as HTMLElement;
+      if (shouldPassThrough(target)) {
+        isTouching = false;
+        return;
+      }
+
       e.preventDefault(); // 기본 스크롤 동작 방지
 
       const currentY = e.touches[0].clientY;
       const deltaY = touchStartY - currentY;
 
-      // 모바일에서 더 부드러운 스크롤을 위해 감도 조정
-      // 모바일은 감도를 적절히 조정 (너무 높으면 텍스트가 빨리 넘어감)
-      const sensitivity = isMobile ? 1.5 : 2.5; // 모바일 감도를 더 낮춤
+      // 모바일에서 드래그처럼 즉각적인 반응
+      // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환
+      const sensitivity = isMobile ? 6.0 : 2.5; // 모바일 감도를 매우 높임 (빠른 전환)
       const newScrollY = touchStartScrollY + deltaY * sensitivity;
 
       // 스크롤 범위 제한
@@ -161,7 +216,9 @@ export default function HeroSection({
   );
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
-  const scrollProgress = (virtualScrollY / (2000 * totalTexts)) * 100;
+  // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
+  const textScrollDepth = isMobile ? 400 : 2000;
+  const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100;
 
   return (
     <>
@@ -179,20 +236,6 @@ export default function HeroSection({
       )}
 
       <section className={styles.heroContainer}>
-        {/* 스크롤 이벤트를 캡처하는 투명 오버레이 */}
-        <div 
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 999,
-            pointerEvents: "auto",
-            background: "transparent",
-          }}
-        />
-        
         {/* <Image
           src="/main/background/bg_sky.jpg"
           alt="바날 성형외과 배경"
@@ -232,6 +275,7 @@ export default function HeroSection({
           <TextContentRenderer
             currentTextIndex={currentTextIndex}
             scrollProgress={scrollProgress / 100}
+            isMobile={isMobile}
           />
         </div>
       </section>

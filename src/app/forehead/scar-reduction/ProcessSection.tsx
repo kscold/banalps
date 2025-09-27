@@ -281,7 +281,7 @@ const processSteps = [
 function ProcessStep({ step }: { step: (typeof processSteps)[0] }) {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
     <div ref={ref} className={styles.processStepOdd}>

@@ -145,7 +145,7 @@ export default function LoginModal() {
                   <div className={styles.signupText}>
                     고객님 반가워요!
                     <br />
-                    이제 바람 부는 날도 즐겁게 거에요.
+                    이제 바람 부는 날도 즐겁울 거에요.
                   </div>
                 </div>
 
@@ -165,7 +165,7 @@ export default function LoginModal() {
                   <div className={styles.signupText}>
                     고객님 반가워요!
                     <br />
-                    이제 바람 부는 날도 즐겁게 거에요.
+                    이제 바람 부는 날도 즐겁울 거에요.
                   </div>
                 </div>
                 {/* 하단 일러스트레이션 섹션 */}

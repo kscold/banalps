@@ -53,8 +53,9 @@ export const modalContainer = style({
       right: "auto",
       bottom: "auto",
       transform: "translate(-50%, -50%)",
-      width: mvw(350),
-      maxWidth: "90%",
+      width: mvw(343),
+      maxWidth: mvw(343),
+      height: mvw(520),
     },
   },
 });
@@ -80,8 +81,7 @@ export const modal = style({
     [breakpoints.mobile]: {
       borderRadius: "8px",
       width: "100%",
-      height: "auto",
-      maxHeight: "90vh",
+      height: "100%",
     },
   },
 });
@@ -116,18 +116,15 @@ export const modalHeader = style({
     content: '""',
     position: "absolute",
     bottom: 0,
-    left: "3rem",
-    right: "3rem",
+    left: mvw(32),
+    right: mvw(32),
     height: "1px",
     backgroundColor: "#272727",
   },
   "@media": {
     [breakpoints.mobile]: {
-      padding: `${mvw(32)} ${mvw(24)} ${mvw(16)}`,
-      "::after": {
-        left: mvw(24),
-        right: mvw(24),
-      },
+      width: "100%",
+      padding: `${mvw(28)} ${mvw(32)} ${mvw(8)} ${mvw(32)}`,
     },
   },
 });
@@ -174,6 +171,7 @@ export const modalBody = style({
   "@media": {
     [breakpoints.mobile]: {
       // padding: mvw(24),
+      height: `calc(100% - ${mvw(66)})`,
       padding: "2.5rem 2rem 1.75rem 2rem",
       gap: mvw(24),
     },
@@ -338,7 +336,7 @@ export const illustrationImage = style({
   objectPosition: "center",
   "@media": {
     [breakpoints.mobile]: {
-      maxHeight: mvw(120),
+      maxHeight: mvw(162),
     },
   },
 });
@@ -386,7 +384,7 @@ export const signupSection = style({
   "@media": {
     [breakpoints.mobile]: {
       gap: mvw(24),
-      padding: mvw(24),
+      // padding: mvw(24),
     },
   },
 });
@@ -408,17 +406,15 @@ export const signupTitle = style({
 
 export const signupText = style({
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 500,
   fontSize: vw(20),
-
   lineHeight: "150%",
   letterSpacing: "0%",
-
   color: "#14AEFF",
   textAlign: "left",
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
+      fontSize: mvw(20),
     },
   },
 });

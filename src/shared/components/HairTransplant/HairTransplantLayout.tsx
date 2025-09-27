@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
-import SidePreviewSlider from "@/shared/ui/SidePreviewSlider/SidePreviewSlider";
 import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton";
 import FeaturesSection from "@/shared/components/FeaturesSection/FeaturesSection";
 import * as styles from "./HairTransplantLayout.css";
@@ -1180,7 +1179,8 @@ export default function HairTransplantLayout({
                   <div
                     className={styles.section2Description}
                     style={{
-                      ...(isMobile && section2.descriptionMarginBottom !== undefined
+                      ...(isMobile &&
+                      section2.descriptionMarginBottom !== undefined
                         ? { marginBottom: section2.descriptionMarginBottom }
                         : {}),
                     }}
@@ -1499,7 +1499,8 @@ export default function HairTransplantLayout({
                   <div
                     className={styles.section2Description}
                     style={{
-                      ...(isMobile && section2.descriptionMarginBottom !== undefined
+                      ...(isMobile &&
+                      section2.descriptionMarginBottom !== undefined
                         ? { marginBottom: section2.descriptionMarginBottom }
                         : {}),
                     }}
@@ -2240,21 +2241,6 @@ export default function HairTransplantLayout({
           featureCards={featureCards}
           isMobile={isMobile}
         />
-      )}
-
-      {/* Side Preview Section (Optional) */}
-      {sidePreviewData && (
-        <section className={styles.sidePreviewSection}>
-          <div className={styles.sidePreviewContent}>
-            <SidePreviewSlider
-              beforeImage={sidePreviewData.beforeImage}
-              afterImage={sidePreviewData.afterImage}
-              beforeAlt={sidePreviewData.beforeAlt}
-              afterAlt={sidePreviewData.afterAlt}
-              className={styles.sidePreviewSlider}
-            />
-          </div>
-        </section>
       )}
     </>
   );

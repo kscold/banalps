@@ -81,7 +81,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           className={styles.imageCard1}
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
           transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         >
           {isMobile ? (
@@ -104,7 +104,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           className={styles.imageCard2}
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
           transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
         >
           {isMobile ? (
@@ -127,7 +127,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           className={styles.imageCard3}
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
           transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
         >
           {isMobile ? (
@@ -150,7 +150,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           className={styles.imageCard4}
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
           transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
         >
           {isMobile ? (

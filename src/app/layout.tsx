@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 import "../shared/styles/global.css";
 import ClientLayout from "./ClientLayout";
 
@@ -50,15 +50,15 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://player.vimeo.com" />
         <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
         <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
-        
+
         {/* 비디오 프리로드 */}
-        <link 
-          rel="prefetch" 
+        <link
+          rel="prefetch"
           href="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
           as="document"
         />
-        <link 
-          rel="prefetch" 
+        <link
+          rel="prefetch"
           href="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
           as="document"
         />

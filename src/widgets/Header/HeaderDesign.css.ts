@@ -513,6 +513,11 @@ export const dropdownArrow = style({
   },
 });
 
+// 드롭다운 화살표 회전 상태
+export const dropdownArrowRotated = style({
+  transform: "rotate(180deg)",
+});
+
 export const mobileMenuButton = style({
   display: "flex",
   alignItems: "center",
@@ -957,4 +962,86 @@ export const mobileLanguageSelector = style({
 export const languageDropdownIcon = style({
   fontSize: "10px",
   color: "inherit",
+});
+
+// 데스크탑 언어 버튼 래퍼
+export const languageButtonWrapper = style({
+  position: "relative",
+});
+
+// 데스크탑 언어 드롭다운 컨테이너
+export const languageDropdownContainer = style({
+  position: "absolute",
+  top: "calc(100% + 10px)",
+  right: 0,
+  backgroundColor: "#FFFFFF",
+  borderRadius: "8px",
+  boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+  overflow: "hidden",
+  zIndex: 1000,
+  minWidth: "120px",
+  opacity: 0,
+  visibility: "hidden",
+  transform: "translateY(-10px)",
+  transition: "all 0.2s ease",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      minWidth: "120px",
+    },
+  },
+});
+
+// 언어 드롭다운 활성 상태
+export const languageDropdownActive = style({
+  opacity: 1,
+  visibility: "visible",
+  transform: "translateY(0)",
+});
+
+// 언어 옵션 아이템
+export const languageOption = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: `${vw(12)} ${vw(16)}`,
+  cursor: "pointer",
+  fontSize: vw(16),
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
+  color: "#272727",
+  backgroundColor: "transparent",
+  border: "none",
+  width: "100%",
+  textAlign: "left",
+  transition: "background-color 0.2s ease",
+  ":hover": {
+    backgroundColor: "#F3F4F6",
+  },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      padding: "12px 16px",
+      fontSize: "16px",
+    },
+  },
+});
+
+// 언어 옵션 활성 상태
+export const languageOptionActive = style({
+  fontWeight: 500,
+});
+
+// 체크 아이콘
+export const languageCheckIcon = style({
+  display: "inline-block",
+  width: vw(16),
+  height: vw(16),
+  marginLeft: vw(8),
+  color: "#14AEFF",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "16px",
+      height: "16px",
+      marginLeft: "8px",
+    },
+  },
 });

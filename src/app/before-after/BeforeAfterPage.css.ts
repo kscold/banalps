@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
@@ -398,22 +398,14 @@ export const heroTitleDot = style({
 // ========== 캐러셀 섹션 ==========
 export const carouselSection = style({
   width: "100%",
-  height: vw(990),
-  paddingTop: vw(160),
-  paddingBottom: vw(160),
+  height: "auto",
+  paddingBottom: vw(120),
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      paddingBottom: "120px",
+    },
     [breakpoints.mobile]: {
-      height: "auto",
-      padding: `${mvw(40)} 0 ${mvw(60)}`,
-    },
-  },
-  selectors: {
-    "&:nth-child(odd)": {
-      backgroundColor: "#FFFDF7",
-    },
-    "&:nth-child(even)": {
-      backgroundColor: "#D5FEFF",
+      paddingBottom: mvw(120),
     },
   },
 });
@@ -466,13 +458,28 @@ export const itemTitle = style({
   fontWeight: 500,
   color: "#14AEFF",
   lineHeight: "150%",
+  minHeight: vw(27), // 타이틀이 없어도 높이 유지
 
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "18px",
+      minHeight: "27px",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(18),
+      minHeight: mvw(27),
+    },
+  },
+});
+
+// Custom height for BeforeAfterSlider in this page
+export const customSliderHeight = style({});
+
+// Apply custom height to imageContainer within customSliderHeight
+globalStyle(`${customSliderHeight} div[class*="imageContainer"]`, {
+  "@media": {
+    [breakpoints.mobile]: {
+      height: `${mvw(180)} !important`,
     },
   },
 });
@@ -747,7 +754,7 @@ export const carouselArrow = style({
   transition: "all 0.3s ease",
   flexShrink: 0,
   color: "#73D5FA",
-  zIndex: 10,
+  zIndex: 20, // z-index 증가
   background: "transparent",
   border: "none",
   padding: 0,

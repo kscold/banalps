@@ -5,11 +5,13 @@ import * as styles from "./HeroSection.css";
 interface TextContentRendererProps {
   currentTextIndex: number;
   scrollProgress?: number;
+  isMobile?: boolean;
 }
 
 export function TextContentRenderer({
   currentTextIndex,
   scrollProgress = 0,
+  isMobile = false,
 }: TextContentRendererProps) {
   console.log(
     `[TextContentRenderer] 현재 텍스트 인덱스: ${currentTextIndex}, 스크롤 진행율: ${scrollProgress}`
@@ -20,21 +22,24 @@ export function TextContentRenderer({
     // 스크롤 진행에 따라 0~5 범위로 변환 (5개 텍스트)
     const scrollPosition = scrollProgress * 5;
 
+    // 모바일에서는 더 빠른 전환을 위해 페이드 구간을 짧게
+    const fadeRange = isMobile ? 0.15 : 0.3;  // 모바일: 0.15, 데스크톱: 0.3
+
     // 각 텍스트가 보이는 구간 설정
-    const startFadeIn = textIndex - 0.3;
+    const startFadeIn = textIndex - fadeRange;
     const fullVisible = textIndex;
-    const startFadeOut = textIndex + 0.3;
-    const fullyHidden = textIndex + 0.6;
+    const startFadeOut = textIndex + fadeRange;
+    const fullyHidden = textIndex + fadeRange * 2;
 
     if (scrollPosition < startFadeIn) return 0;
     if (scrollPosition >= startFadeIn && scrollPosition < fullVisible) {
-      return (scrollPosition - startFadeIn) / 0.3;
+      return (scrollPosition - startFadeIn) / fadeRange;
     }
     if (scrollPosition >= fullVisible && scrollPosition <= startFadeOut) {
       return 1;
     }
     if (scrollPosition > startFadeOut && scrollPosition < fullyHidden) {
-      return 1 - (scrollPosition - startFadeOut) / 0.3;
+      return 1 - (scrollPosition - startFadeOut) / fadeRange;
     }
     return 0;
   };
@@ -116,7 +121,9 @@ export function TextContentRenderer({
               position: "absolute",
               opacity: opacity,
               transform: `translateY(${translateY}px)`,
-              transition: "opacity 0.4s ease-out, transform 0.4s ease-out",
+              transition: isMobile
+                ? "opacity 0.15s ease-out, transform 0.15s ease-out"  // 모바일: 0.15초 (매우 빠름)
+                : "opacity 0.4s ease-out, transform 0.4s ease-out",   // 데스크톱: 0.4초
               pointerEvents: opacity > 0 ? "auto" : "none",
             }}
           >

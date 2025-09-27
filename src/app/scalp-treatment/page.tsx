@@ -66,7 +66,7 @@ const TreatmentCard = ({
 export default function ScalpTreatmentPage() {
   console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링");
 
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   // 텍스트 컨텐츠 설정 - 데스크탑/모바일 별 띄어쓰기 구분
   const textContent = {
@@ -420,6 +420,7 @@ export default function ScalpTreatmentPage() {
                 onError={() => {
                   console.error("[VideoSection/Vimeo에러] iframe 로드 실패");
                 }}
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -553,6 +554,7 @@ export default function ScalpTreatmentPage() {
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -598,6 +600,7 @@ export default function ScalpTreatmentPage() {
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -655,6 +658,7 @@ export default function ScalpTreatmentPage() {
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -722,6 +726,7 @@ export default function ScalpTreatmentPage() {
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
+                suppressHydrationWarning
               />
             </div>
           </div>

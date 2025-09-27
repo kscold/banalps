@@ -12,7 +12,7 @@ export const container = style({
 export const imageContainer = style({
   position: "relative",
   width: "100%",
-  aspectRatio: "790 / 430", // 이미지 영역만의 비율 (라벨 제외)
+  aspectRatio: "790 / 410", // 이미지 영역만의 비율 (라벨 제외)
   overflow: "hidden",
   borderRadius: "8px",
   "@media": {

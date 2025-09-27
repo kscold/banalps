@@ -212,7 +212,6 @@ const beforeAfterData: BeforeAfterItem[] = [
   {
     id: 41,
     category: "정수리",
-    title: "정수리",
     beforeImage: "/before-after/정수리 /1-1.jpg",
     afterImage: "/before-after/정수리 /1-2.jpg",
   },
@@ -226,21 +225,18 @@ const beforeAfterData: BeforeAfterItem[] = [
   {
     id: 43,
     category: "정수리",
-    title: "정수리",
     beforeImage: "/before-after/정수리 /10-1.jpg",
     afterImage: "/before-after/정수리 /10-2.jpg",
   },
   {
     id: 44,
     category: "정수리",
-    title: "정수리",
     beforeImage: "/before-after/정수리 /11-1.jpg",
     afterImage: "/before-after/정수리 /11-2.jpg",
   },
   {
     id: 45,
     category: "정수리",
-    title: "정수리",
     beforeImage: "/before-after/정수리 /12-1.jpg",
     afterImage: "/before-after/정수리 /12-2.jpg",
   },
@@ -296,9 +292,9 @@ function CategoryCarousel({
     >
       <div className={styles.carouselHeader}>
         <span className={styles.categoryBadge}>{category}</span>
-        {items[currentIndex]?.title && (
-          <span className={styles.itemTitle}>{items[currentIndex].title}</span>
-        )}
+        <span className={styles.itemTitle}>
+          {items[currentIndex]?.title || ""}
+        </span>
       </div>
 
       <div className={styles.carouselContainer}>
@@ -334,9 +330,10 @@ function CategoryCarousel({
             <BeforeAfterSlider
               beforeImage={items[currentIndex].beforeImage}
               afterImage={items[currentIndex].afterImage}
-              beforeAlt={`${items[currentIndex].title} - Before`}
-              afterAlt={`${items[currentIndex].title} - After`}
+              beforeAlt={`${items[currentIndex].title || category} - Before`}
+              afterAlt={`${items[currentIndex].title || category} - After`}
               isBlueBackground={isBlueBackground}
+              className={styles.customSliderHeight}
             />
           </div>
         </div>
@@ -419,7 +416,7 @@ export default function BeforeAfterPage() {
         />
       </section>
       {/* 전후 사진 캐러셀 섹션들 */}
-      <div>
+      <div className={styles.carouselSection}>
         {categoryOrder.map(
           (category, index) =>
             groupedData[category] && (
