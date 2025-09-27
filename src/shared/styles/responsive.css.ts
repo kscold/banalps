@@ -371,7 +371,7 @@ export const responsiveThreeColumnContainer = (maxWidth: number = 1920) => ({
 export const breakpoints = {
   mobile: "screen and (max-width: 1023px)", // 375px ~ 1023px (tablet 통합)
   mobileSmall: "screen and (max-width: 767px)", // 375px ~ 767px (phone only)
-
+  tablet: "screen and (min-width: 768px) and (max-width: 1023px)", // 768px ~ 1023px (tablet only)
   desktop: "screen and (min-width: 1024px) and (max-width: 1919px)", // 1024px ~ 1919px (1920px 기준 비례 스케일링)
   desktopLarge: "screen and (min-width: 1920px)", // 1920px 이상 (고정 크기)
 } as const;
