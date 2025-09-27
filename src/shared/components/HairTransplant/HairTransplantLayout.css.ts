@@ -470,7 +470,7 @@ export const section1Content = style({
       flexDirection: "column",
       alignItems: "center",
       textAlign: "center",
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(16)}`,
       // minHeight: mvw(800),
     },
   },
@@ -593,15 +593,14 @@ export const section1Illustration = style({
 });
 
 export const section1MobileIllustration = style({
-  display: "none", // Hidden on desktop
+  display: "none",
   "@media": {
     [breakpoints.mobile]: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: "100%", // Full width of container
-      marginTop: mvw(40),
-      marginBottom: mvw(20),
+      width: "100%",
+      marginBottom: mvw(40),
     },
   },
 });
@@ -636,6 +635,7 @@ export const section1Description = style({
       maxWidth: "100%",
       width: "100%",
       fontWeight: 400,
+      marginBottom: mvw(40),
     },
   },
 });
@@ -753,16 +753,16 @@ export const section1Image2 = style({
     },
     [breakpoints.mobile]: {
       position: "static",
-      width: "100vw",
+      // width: "100%",
       height: "auto",
       aspectRatio: "350 / 315", // Keep aspect ratio
-      maxWidth: "100vw",
-      marginLeft: mvw(-20),
-      marginRight: mvw(-20),
+      // maxWidth: "100%",
+      marginLeft: 0,
+      marginRight: 0,
       left: "auto",
       bottom: "auto",
-      borderRadius: mvw(12),
-      overflow: "hidden",
+      // borderRadius: mvw(12),
+      // overflow: "hidden",
       marginTop: mvw(40),
       display: "block",
     },
@@ -776,7 +776,8 @@ export const section1ImageContent = style({
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(12),
+      objectFit: "cover",
+      borderRadius: 0,
     },
   },
 });
@@ -795,6 +796,8 @@ export const section2 = style({
     [breakpoints.mobile]: {
       paddingTop: mvw(60),
       paddingBottom: mvw(60),
+      minHeight: "auto",
+      overflow: "visible",
     },
   },
 });
@@ -806,13 +809,13 @@ export const section2Content = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
+      position: "relative",
       display: "flex",
       flexDirection: "column",
-      // minHeight: mvw(1050),
-      gap: 0,
-      padding: `0 ${mvw(20)}`,
-      alignItems: "flex-start",
-      position: "relative",
+      alignItems: "center",
+      textAlign: "center",
+      padding: `0 ${mvw(16)}`,
+      minHeight: "auto",
     },
   },
 });
@@ -841,6 +844,7 @@ export const section2Left = style({
       padding: 0,
       marginLeft: 0,
       maxWidth: "100%",
+      maxHeight: "100%",
     },
   },
 });
@@ -861,11 +865,7 @@ export const section2Image = style({
       position: "relative",
       width: "100vw",
       height: mvw(305),
-      marginLeft: mvw(-20),
-      //모서리
-      borderRadius: mvw(15),
-
-      marginRight: mvw(-20),
+      borderRadius: "8px",
       marginBottom: mvw(20),
       display: "block",
       overflow: "hidden",
@@ -880,7 +880,7 @@ export const section2ImageContent = style({
   "@media": {
     [breakpoints.mobile]: {
       borderRadius: mvw(15),
-      objectFit: "contain",
+      objectFit: "cover",
       width: "100%",
       overflow: "hidden",
       // 강제로 borderRadius 적용
@@ -1256,7 +1256,7 @@ export const section3ContentWithSvg = style({
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(16)}`,
       gap: mvw(20),
       width: "100%",
     },
@@ -1429,7 +1429,7 @@ export const section3Number = style({
       width: mvw(36),
       height: mvw(72),
       top: mvw(0),
-      right: mvw(20),
+      right: mvw(16),
       lineHeight: mvw(72),
       textAlign: "center",
       zIndex: 1,
@@ -1654,7 +1654,7 @@ export const beforeAfterSection = style({
       paddingBottom: "120px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(100)} ${mvw(20)}`,
+      padding: `${mvw(100)} ${mvw(16)}`,
     },
   },
 });
@@ -1665,6 +1665,13 @@ export const beforeAfterContent = style({
   display: "flex",
   flexDirection: "column",
   gap: "3rem",
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: 0,
+      margin: 0,
+      width: "100%",
+    },
+  },
 });
 
 export const beforeAfterHeader = style({
@@ -1789,7 +1796,10 @@ export const beforeAfterActions = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: `0 ${mvw(60)}`,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 0,
     },
   },
 });
@@ -1799,6 +1809,12 @@ export const beforeAfterLink = style({
   justifyContent: "center",
   alignItems: "center",
   textDecoration: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "100%",
+      display: "flex",
+    },
+  },
 });
 
 export const sidePreviewSection = style({

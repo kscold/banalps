@@ -22,7 +22,7 @@ export const whiteSection = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "flex", // 명시적으로 flex 설정
-      paddingBottom: "60px",
+      paddingBottom: mvw(120),
       minHeight: "100vh", // 최소 화면 높이 설정
       backgroundColor: "#FFFDF7", // 배경색 명시적 설정
     },
@@ -54,7 +54,7 @@ export const heroImageContainer = style({
       marginRight: "calc(-50vw + 50%)", // 전체 화면 너비로 확장
       borderRadius: 0, // 보더 라디우스 제거
       aspectRatio: "375 / 600", // 모바일 비율
-      height: "600px", // 명시적 높이 설정
+      height: mvw(686), // 명시적 높이 설정
     },
   },
 });
@@ -374,7 +374,7 @@ export const locationSection = style({
   "@media": {
     [breakpoints.mobile]: {
       width: "100%",
-      padding: "0 16px", // 좌우 패딩 설정
+      padding: `0 ${mvw(20)} 0 ${mvw(20)}`, // 상단 40px, 좌우 20px, 하단 120px
     },
   },
 });
@@ -398,7 +398,7 @@ export const locationTitle = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(40),
-      marginBottom: mvw(40),
+      marginBottom: mvw(80),
     },
   },
 });
@@ -420,7 +420,7 @@ export const locationContent = style({
       padding: "0", // 모바일 패딩 제거 (상위 컨테이너에서 처리)
       flexDirection: "column",
       height: "auto",
-      gap: "40px",
+      gap: mvw(40),
     },
   },
 });
@@ -438,10 +438,10 @@ export const leftContentArea = style({
       gap: "20.29px",
     },
     [breakpoints.mobile]: {
-      flex: "1",
+      width: "100%",
       flexDirection: "column",
       height: "auto", // 모바일에서는 자동 높이
-      gap: "20px",
+      gap: mvw(40),
     },
   },
 });
@@ -452,7 +452,6 @@ export const locationImageArea = style({
   height: vw(500), // 500px 높이
   borderRadius: vw(8),
   overflow: "hidden",
-  backgroundColor: "#F5F5F5",
   position: "relative",
   flexShrink: 0, // 크기 유지
   "@media": {
@@ -463,8 +462,8 @@ export const locationImageArea = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      height: "auto",
-      aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
+      height: mvw(478),
+      // borderRadius: mvw(8),
     },
   },
 });
@@ -473,7 +472,7 @@ export const locationImageArea = style({
 export const locationImage = style({
   width: "100%",
   height: "100%",
-  objectFit: "cover",
+  // objectFit: "cover",
   display: "block",
 });
 
@@ -490,9 +489,11 @@ export const mapArea = style({
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      height: "auto",
-      aspectRatio: "16 / 10", // 모바일에서 더 넓은 비율
+      width: "100vw", // 화면 전체 너비
+      height: mvw(404), // TreatmentGuidePage와 동일한 높이
+      marginLeft: mvw(-20), // 부모 패딩 상쇄
+      marginRight: mvw(-20), // 부모 패딩 상쇄
+      borderRadius: 0, // 모바일에서는 radius 제거
     },
   },
 });
@@ -524,7 +525,8 @@ export const locationInfo = style({
       height: "auto", // 모바일에서는 자동 높이
       minHeight: "auto",
       justifyContent: "flex-start", // 모바일에서는 위쪽 정렬
-      gap: "30px", // 모바일에서 간격
+      gap: mvw(40), // 모바일에서 간격
+      paddingTop: mvw(20), // 상단 패딩 추가
     },
   },
 });
@@ -544,15 +546,17 @@ export const mapPlaceholder = style({
 export const infoBox = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(58),
+  gap: vw(0), // TreatmentGuidePage처럼 gap 대신 각 항목의 marginBottom 사용
   width: vw(430),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "58px",
+      gap: 0,
+      width: "430px",
     },
     [breakpoints.mobile]: {
-      marginBottom: "0", // 모바일에서는 마진 제거
-      gap: "32px",
+      width: "100%",
+      marginBottom: 0, // 모바일에서는 마진 제거
+      gap: 0, // gap 0으로 설정
     },
   },
 });
@@ -560,12 +564,17 @@ export const infoBox = style({
 export const infoItem = style({
   display: "flex",
   gap: vw(20),
+  marginBottom: vw(58),
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
+      marginBottom: "58px",
     },
     [breakpoints.mobile]: {
-      gap: "16px",
+      flexDirection: "row",
+      gap: mvw(20),
+      marginBottom: mvw(40),
+      alignItems: "flex-start",
     },
   },
 });
@@ -576,17 +585,20 @@ export const infoLabel = style({
   fontWeight: 500,
   color: "#272727",
   flexShrink: 0,
-  lineHeight: "140%",
+  lineHeight: vw(28),
   letterSpacing: 0,
   fontFamily: fontFamily.scdream,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "115px",
       fontSize: "20px",
+      lineHeight: "28px",
     },
     [breakpoints.mobile]: {
-      width: "80px",
-      fontSize: "14px",
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      width: mvw(70),
+      flexShrink: 0,
     },
   },
 });
@@ -597,15 +609,17 @@ export const infoNumber = style({
   color: "#272727",
   fontFamily: fontFamily.poppins,
   fontWeight: 500,
-  lineHeight: "100%",
+  lineHeight: vw(32),
   letterSpacing: 0,
 
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "32px",
+      lineHeight: "32px",
     },
     [breakpoints.mobile]: {
-      fontSize: "14px",
+      fontSize: mvw(24),
+      lineHeight: mvw(32),
     },
   },
 });
@@ -616,44 +630,61 @@ export const infoValue = style({
   color: "#272727",
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
-  lineHeight: "150%",
+  lineHeight: vw(30),
   letterSpacing: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: vw(12),
 
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
+      lineHeight: "30px",
+      gap: "12px",
     },
     [breakpoints.mobile]: {
-      fontSize: "14px",
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      gap: 0,
     },
   },
 });
 
 export const infoValueParagraph = style({
   margin: 0,
-  marginBottom: vw(8),
+  marginBottom: 0,
+  lineHeight: "inherit",
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginBottom: "8px",
+      marginBottom: 0,
     },
     [breakpoints.mobile]: {
-      marginBottom: "6px",
+      marginBottom: 0,
+      lineHeight: mvw(24),
     },
   },
 });
 
 export const subwayInfo = style({
   marginTop: vw(20),
-  fontSize: vw(16),
-  color: "#666666",
+  fontSize: vw(20),
+  color: "#272727",
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
+  lineHeight: vw(30),
   "@media": {
     [breakpoints.desktopLarge]: {
       marginTop: "20px",
-      fontSize: "16px",
+      fontSize: "20px",
+      lineHeight: "30px",
     },
     [breakpoints.mobile]: {
-      marginTop: "12px",
-      fontSize: "12px",
+      marginTop: mvw(20),
+      fontSize: mvw(16),
+      lineHeight: mvw(24),
+      display: "flex",
+      flexDirection: "column",
+      gap: 0,
     },
   },
 });
@@ -671,8 +702,8 @@ export const readySection = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      paddingTop: "80px",
-      paddingBottom: "80px",
+      marginTop: mvw(120),
+      marginBottom: mvw(120),
       display: "flex",
       flexDirection: "column",
       padding: 0, // 패딩 제거
@@ -726,12 +757,14 @@ export const readyHeroIllustration = style({
       right: "auto",
       top: "auto",
       transform: "none",
-      height: mvw(300),
+      height: mvw(360), // 이미지 비율에 맞춰 높이 증가 (375x360 비율)
       display: "flex",
       justifyContent: "center",
+      alignItems: "center", // 세로 중앙 정렬 추가
       order: 2, // 모바일에서 두 번째로 표시
-      marginTop: mvw(40),
+      marginTop: mvw(80),
       marginBottom: 0,
+      overflow: "visible", // 이미지가 잘리지 않도록
     },
   },
 });
@@ -739,8 +772,16 @@ export const readyHeroIllustration = style({
 export const readyIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  // objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  objectFit: "contain", // contain으로 변경하여 이미지 전체가 보이도록
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
+  "@media": {
+    [breakpoints.mobile]: {
+      objectFit: "contain", // 모바일에서도 contain 사용
+      objectPosition: "center center", // 중앙 정렬
+      width: "100%", // 100vw 대신 100% 사용
+      height: "100%",
+    },
+  },
 });
 
 // 타이틀 래퍼 - 1600px 컨테이너 내부에서 헤더 왼쪽 시작점에 정렬

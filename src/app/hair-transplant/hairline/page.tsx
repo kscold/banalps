@@ -63,18 +63,25 @@ export default function HairlinePage() {
         width: 537,
         height: 366,
       },
-      mobileImages: {
-        illustration:
-          "/hair-transplant/hairline/mobile/illustration-1-mobile.svg",
-        illustrationSize: {
-          width: 324,
-          height: 252,
-        },
+      illustrationMobile:
+        "/hair-transplant/hairline/mobile/illustration-1-mobile.svg",
+      illustrationMobileSize: {
+        height: 290,
+      },
+      imagesMobile: {
+        main: "/hair-transplant/hairline/mobile/hairline-2.jpg",
+        secondary: "/hair-transplant/hairline/mobile/hairline-1.jpg",
+      },
+      imagesMobileSize: {
+        mainHeight: 305,
+        mainMaxWidth: false,
+        secondaryMaxWidth: true,
       },
       images: {
         main: "/hair-transplant/hairline/hairline-2.png",
         secondary: "/hair-transplant/hairline/hairline-1.png",
       },
+
       imagesSize: {
         main: {
           width: 600,
@@ -140,6 +147,8 @@ export default function HairlinePage() {
             <br />
             자연스럽게 만드는 최적의 접점을 찾았습니다."
           </b>
+          <br />
+          <br />
           이제 빼곡하면서 자연스러운 헤어라인도
           <br />
           불가능하지 않습니다.
@@ -147,6 +156,12 @@ export default function HairlinePage() {
       ),
       images: {
         main: "/hair-transplant/hairline/hairline-3.png",
+      },
+      imagesMobile: {
+        main: "/hair-transplant/hairline/mobile/hairline-3.jpg",
+      },
+      imagesMobileSize: {
+        mainHeight: 305,
       },
       illustrationMobile:
         "/hair-transplant/hairline/mobile/illustration-2-mobile.svg",
@@ -243,18 +258,21 @@ export default function HairlinePage() {
     },
     featuresTitle: (
       <>
-        풍부한 경험과 최신 기술로
+        독보적인 기술력과 사후 관리까지
         <br />
-        바날은 최상의 결과를 약속드립니다.
+        바날은 고객에 진심을 다합니다.
       </>
     ),
     featuresTitleMobile: (
       <>
-        풍부한 경험과 최신 기술로
+        독보적인 기술력과
         <br />
-        바날은 최상의 결과를
+        사후 관리까지
         <br />
-        약속드립니다.
+        <br />
+        바날은 고객에
+        <br />
+        진심을 다합니다.
       </>
     ),
     featureCards: [

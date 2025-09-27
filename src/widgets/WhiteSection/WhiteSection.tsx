@@ -7,10 +7,12 @@ import ArrowButton from "../../shared/ui/ArrowButton/ArrowButton";
 import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 export default function WhiteSection() {
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
   const router = useRouter();
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
     <section className={styles.whiteSection}>
@@ -22,7 +24,7 @@ export default function WhiteSection() {
           className={styles.heroImage}
         />
         <img
-          src="/main/white-section/mobile/white-section-mobile-1.png"
+          src="/main/white-section/mobile/white-section-mobile-1.svg"
           alt="바날 성형외과 모바일 메인 이미지"
           className={styles.heroImageMobile}
         />
@@ -300,11 +302,19 @@ export default function WhiteSection() {
         {/* <div className={styles.readySectionContainer}> */}
         {/* Hero Illustration - 왼쪽에 붙도록 */}
         <div className={styles.readyHeroIllustration}>
-          <img
-            src="/hair-transplant/hero-illustration.svg"
-            alt="메인 페이지 일러스트"
-            className={styles.readyIllustrationImage}
-          />
+          {isMobile ? (
+            <img
+              src="/main/white-section/mobile/banal_graffiti-mobile.svg"
+              alt="메인 페이지 일러스트"
+              className={styles.readyIllustrationImage}
+            />
+          ) : (
+            <img
+              src="/hair-transplant/hero-illustration.svg"
+              alt="메인 페이지 일러스트"
+              className={styles.readyIllustrationImage}
+            />
+          )}
         </div>
 
         {/* Ready Title - 중앙에 배치 */}
@@ -341,61 +351,123 @@ export default function WhiteSection() {
         </h2>
 
         <div className={styles.locationContent}>
-          {/* Frame 311 - 왼쪽 이미지+지도 영역 */}
-          <div className={styles.leftContentArea}>
-            {/* Frame 416 - 왼쪽 이미지 영역 */}
-            <div className={styles.locationImageArea}>
-              <img
-                src="/main/map/banal-house.svg"
-                alt="바날 성형외과 건물 이미지"
-                className={styles.locationImage}
-              />
-            </div>
-
-            {/* Mask group - 지도 영역 */}
-            <div className={styles.mapArea}>
-              <GoogleMapEmbed />
-            </div>
-          </div>
-
-          {/* Frame 318 - 오른쪽 정보 영역 */}
-          <div className={styles.locationInfo}>
-            <div className={styles.infoBox}>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>전화번호</span>
-                <span className={styles.infoNumber}>02.540.0700</span>
+          {/* 모바일과 데스크탑 레이아웃 분기 */}
+          {isMobile ? (
+            <>
+              <div className={styles.locationImageArea}>
+                <img
+                  src="/treatment-guide/hero-image-mobile.svg"
+                  alt="바날 성형외과 건물 이미지"
+                  className={styles.locationImage}
+                />
+              </div>
+              {/* 모바일: 지도만 표시 (TreatmentGuidePage처럼) */}
+              <div className={styles.mapArea}>
+                <GoogleMapEmbed showButtons={false} />
               </div>
 
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>진료시간</span>
-                <div className={styles.infoValue}>
-                  <p className={styles.infoValueParagraph}>
-                    평일 Am 09:00 ~ Pm 07:00
-                  </p>
-                  <p className={styles.infoValueParagraph}>
-                    토요일 Am 09:00 ~ Pm 05:00
-                  </p>
+              {/* 모바일: 정보 영역 */}
+              <div className={styles.locationInfo}>
+                <div className={styles.infoBox}>
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>전화번호</span>
+                    <span className={styles.infoNumber}>02.540.0700</span>
+                  </div>
+
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>진료시간</span>
+                    <div className={styles.infoValue}>
+                      <p className={styles.infoValueParagraph}>
+                        평일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am 09:00 ~ Pm 07:00
+                      </p>
+                      <p className={styles.infoValueParagraph}>
+                        토요일&nbsp;&nbsp;Am 09:00 ~ Pm 05:00
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>오시는길</span>
+                    <div className={styles.infoValue}>
+                      <p className={styles.infoValueParagraph}>
+                        서울특별시 서초구 신반포로 47길 66
+                      </p>
+                      <p className={styles.infoValueParagraph}>
+                        (잠원동 29-18)
+                      </p>
+                      <div className={styles.subwayInfo}>
+                        <p>: 신사역 4번출구에서 331M</p>
+                        <p>: 논현역 8번출구에서 330M</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 카카오맵/네이버맵 버튼 */}
+                <MapButtons />
+              </div>
+            </>
+          ) : (
+            <>
+              {/* 데스크탑: 기존 레이아웃 유지 */}
+              <div className={styles.leftContentArea}>
+                {/* Frame 416 - 왼쪽 이미지 영역 */}
+                <div className={styles.locationImageArea}>
+                  <img
+                    src="/main/map/banal-house.svg"
+                    alt="바날 성형외과 건물 이미지"
+                    className={styles.locationImage}
+                  />
+                </div>
+
+                {/* Mask group - 지도 영역 */}
+                <div className={styles.mapArea}>
+                  <GoogleMapEmbed />
                 </div>
               </div>
 
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>오시는길</span>
-                <div className={styles.infoValue}>
-                  <p className={styles.infoValueParagraph}>
-                    서울특별시 서초구 신반포로 47길 66
-                  </p>
-                  <p className={styles.infoValueParagraph}>(잠원동 29-18)</p>
-                  <p className={styles.subwayInfo}>
-                    : 신사역 4번출구에서 331M
-                    <br />: 논현역 8번출구에서 330M
-                  </p>
-                </div>
-              </div>
-            </div>
+              {/* Frame 318 - 오른쪽 정보 영역 */}
+              <div className={styles.locationInfo}>
+                <div className={styles.infoBox}>
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>전화번호</span>
+                    <span className={styles.infoNumber}>02.540.0700</span>
+                  </div>
 
-            {/* 카카오맵/네이버맵 버튼을 정보 섹션 하단에 추가 */}
-            <MapButtons />
-          </div>
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>진료시간</span>
+                    <div className={styles.infoValue}>
+                      <p className={styles.infoValueParagraph}>
+                        평일 Am 09:00 ~ Pm 07:00
+                      </p>
+                      <p className={styles.infoValueParagraph}>
+                        토요일 Am 09:00 ~ Pm 05:00
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className={styles.infoItem}>
+                    <span className={styles.infoLabel}>오시는길</span>
+                    <div className={styles.infoValue}>
+                      <p className={styles.infoValueParagraph}>
+                        서울특별시 서초구 신반포로 47길 66
+                      </p>
+                      <p className={styles.infoValueParagraph}>
+                        (잠원동 29-18)
+                      </p>
+                      <p className={styles.subwayInfo}>
+                        : 신사역 4번출구에서 331M
+                        <br />: 논현역 8번출구에서 330M
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 카카오맵/네이버맵 버튼을 정보 섹션 하단에 추가 */}
+                <MapButtons />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

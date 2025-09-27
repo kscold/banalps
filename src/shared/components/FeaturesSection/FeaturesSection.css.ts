@@ -140,7 +140,8 @@ export const featureCard = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "flex-end",
+  justifyContent: "center",
+  gap: vw(24), // Gap between icon and title
   textAlign: "center",
   width: vw(400), // 피그마 정확한 크기
   height: vw(400), // 피그마 정확한 크기
@@ -148,7 +149,6 @@ export const featureCard = style({
   borderRadius: "50%", // 완전한 원형
   position: "relative",
   padding: vw(40), // 내부 패딩
-  paddingBottom: vw(80), // 하단 텍스트용 패딩 증가
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
 
   ":hover": {
@@ -161,7 +161,7 @@ export const featureCard = style({
       width: "400px",
       height: "400px",
       padding: "40px",
-      paddingBottom: "80px",
+      gap: "24px",
     },
     [breakpoints.mobile]: {
       width: mvw(343),
@@ -169,10 +169,10 @@ export const featureCard = style({
       aspectRatio: "1/1",
       borderRadius: "50%",
       padding: mvw(18),
-      paddingBottom: mvw(64),
+      gap: mvw(24),
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-end",
+      justifyContent: "center",
       alignItems: "center",
       ":hover": {
         transform: "translateY(-4px)",
@@ -183,48 +183,103 @@ export const featureCard = style({
 });
 
 export const featureIconContainer = style({
-  position: "absolute",
-  top: "35%", // 원의 중앙 상단 부분에 위치 (피그마 디자인 기준)
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: vw(220), // SVG 아이콘 컨테이너 크기 증대
-  height: vw(175),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  width: "auto",
+  height: "auto",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "220px",
-      height: "175px",
-    },
     [breakpoints.mobile]: {
-      width: mvw(210),
-      height: mvw(210),
-      top: "45%",
+      width: "auto",
+      height: "auto",
     },
   },
 });
 
 export const featureIcon = style({
-  width: "100%",
-  height: "100%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   color: "#14AEFF", // SVG 아이콘 색상
-  "@media": {
-    [breakpoints.mobile]: {
-      width: mvw(210),
-      height: mvw(210),
-    },
-  },
 });
 
+// Individual icon styles with specific heights
 export const featureIconImg = style({
-  width: "100%",
-  height: "100%",
+  width: "auto",
   objectFit: "contain",
 });
+
+export const featureIconFirst = style([
+  featureIconImg,
+  {
+    width: vw(217),
+    height: vw(174),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        width: "217px",
+        height: "141px",
+      },
+      [breakpoints.mobile]: {
+        width: mvw(176),
+        height: mvw(141),
+      },
+    },
+  },
+]);
+
+export const featureIconSecond = style([
+  featureIconImg,
+  {
+    width: vw(262),
+    height: vw(153),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        width: "262px",
+        height: "153px",
+      },
+      [breakpoints.mobile]: {
+        width: mvw(212),
+        height: mvw(124),
+      },
+    },
+  },
+]);
+
+export const featureIconThird = style([
+  featureIconImg,
+  {
+    width: vw(272),
+    height: vw(183),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        width: "272px",
+        height: "183px",
+      },
+      [breakpoints.mobile]: {
+        width: mvw(220),
+        height: mvw(148),
+      },
+    },
+  },
+]);
+
+export const featureIconFourth = style([
+  featureIconImg,
+  {
+    width: vw(214),
+    height: vw(181),
+    "@media": {
+      [breakpoints.desktopLarge]: {
+        width: "214px",
+        height: "181px",
+      },
+      [breakpoints.mobile]: {
+        width: mvw(189),
+        height: mvw(160),
+      },
+    },
+  },
+]);
 
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",

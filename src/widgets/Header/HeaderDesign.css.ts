@@ -14,9 +14,8 @@ export const header = style({
   zIndex: 50,
   width: "calc(100% - 320px)", // 1024px+ 에서 양쪽 160px 마진 (BlueSection과 동일)
   maxWidth: "1600px", // 1920px 기준 최대 너비
-  background: "#1AA4F4D9",
-  boxShadow: "0 4px 20px rgba(26, 164, 244, 0.3)",
-  backdropFilter: "blur(10px)",
+  background: "#14AEFF",
+  // backdropFilter: "blur(10px)",
   transition: "all 300ms ease",
   ...responsiveProperty("top", 50), // 1920px 기준 50px
   ...responsiveProperty("height", 85), // 1920px 기준 85px

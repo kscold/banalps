@@ -78,7 +78,12 @@ export default function FeaturesSection({
                   <img
                     src={card.icon}
                     alt={`특징 ${index + 1}`}
-                    className={styles.featureIconImg}
+                    className={
+                      index === 0 ? styles.featureIconFirst :
+                      index === 1 ? styles.featureIconSecond :
+                      index === 2 ? styles.featureIconThird :
+                      styles.featureIconFourth
+                    }
                   />
                 </div>
               </div>

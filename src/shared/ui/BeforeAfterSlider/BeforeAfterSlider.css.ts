@@ -14,10 +14,11 @@ export const imageContainer = style({
   width: "100%",
   aspectRatio: "790 / 430", // 이미지 영역만의 비율 (라벨 제외)
   overflow: "hidden",
-  borderRadius: "12px",
+  borderRadius: "8px",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: mvw(12),
+      borderRadius: "8px",
+      height: mvw(200),
     },
   },
 });
@@ -147,13 +148,13 @@ export const sliderLineContainer = style({
 export const sliderLineTop = style({
   position: "absolute",
   top: 0,
-  bottom: "calc(50% + 32px)", // 원 반지름(32px) 만큼 아래에서 멈춤
+  bottom: `calc(50% + ${vw(32)})`, // 원 반지름(32px) 만큼 아래에서 멈춤
   width: "2px",
   backgroundColor: "#FFFFFF",
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   "@media": {
     [breakpoints.mobile]: {
-      bottom: "calc(50% + 20px)", // 모바일 원 크기에 맞춤
+      bottom: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤
     },
   },
 });
@@ -161,14 +162,14 @@ export const sliderLineTop = style({
 // 원 아래쪽 선
 export const sliderLineBottom = style({
   position: "absolute",
-  top: "calc(50% + 32px)", // 원 반지름(32px) 만큼 위에서 시작
+  top: `calc(50% + ${vw(32)})`, // 원 반지름(32px) 만큼 위에서 시작
   bottom: 0,
   width: "2px",
   backgroundColor: "#FFFFFF",
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   "@media": {
     [breakpoints.mobile]: {
-      top: "calc(50% + 20px)", // 모바일 원 크기에 맞춤
+      top: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤
     },
   },
 });

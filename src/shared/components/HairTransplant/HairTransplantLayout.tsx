@@ -493,34 +493,43 @@ export default function HairTransplantLayout({
                   {/* 모바일: 타이틀 아래 메인 이미지 */}
                   {(section1.imagesMobile?.main || section1.images?.main) && (
                     <motion.div
-                      className={styles.section1Image1}
+                      className={
+                        section1.imagesMobileSize?.mainMaxWidth
+                          ? undefined // Don't apply the CSS class if we want 100vw
+                          : styles.section1Image1
+                      }
                       initial={{ opacity: 0, y: 80 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
-                      style={
-                        section1.imagesMobileSize
+                      style={{
+                        ...(section1.imagesMobileSize?.mainMaxWidth
                           ? {
-                              width: section1.imagesMobileSize.mainMaxWidth
-                                ? "100vw"
-                                : "100%",
-                              maxWidth: section1.imagesMobileSize.mainMaxWidth
-                                ? "100vw"
-                                : "100%",
+                              position: "relative",
+                              width: "100vw",
+                              maxWidth: "none",
                               height: section1.imagesMobileSize.mainHeight
                                 ? mvw(section1.imagesMobileSize.mainHeight)
                                 : section1.imagesMobileSize.height
                                 ? mvw(section1.imagesMobileSize.height)
                                 : "auto",
-                              marginLeft: section1.imagesMobileSize.mainMaxWidth
-                                ? mvw(-20)
-                                : undefined,
-                              marginRight: section1.imagesMobileSize
-                                .mainMaxWidth
-                                ? mvw(-20)
-                                : undefined,
+                              left: "50%",
+                              right: "50%",
+                              marginLeft: "-50vw",
+                              marginRight: "-50vw",
+                              borderRadius: mvw(12),
+                              overflow: "hidden",
+                              display: "block",
                             }
-                          : undefined
-                      }
+                          : {
+                              width: "100%",
+                              maxWidth: "100%",
+                              height: section1.imagesMobileSize?.mainHeight
+                                ? mvw(section1.imagesMobileSize.mainHeight)
+                                : section1.imagesMobileSize?.height
+                                ? mvw(section1.imagesMobileSize.height)
+                                : "auto",
+                            }),
+                      }}
                     >
                       <img
                         src={
@@ -561,7 +570,12 @@ export default function HairTransplantLayout({
                           ? {
                               width: section1.illustrationMobileSize.fullWidth
                                 ? "calc(100vw - var(--scrollbar-width, 0px))"
+                                : section1.illustrationMobileSize.width
+                                ? mvw(section1.illustrationMobileSize.width)
                                 : "100%",
+                              height: section1.illustrationMobileSize.height
+                                ? mvw(section1.illustrationMobileSize.height)
+                                : undefined,
                               aspectRatio:
                                 section1.illustrationMobileSize.width &&
                                 section1.illustrationMobileSize.height
@@ -667,36 +681,36 @@ export default function HairTransplantLayout({
                 {(section1.imagesMobile?.secondary ||
                   section1.images?.secondary) && (
                   <motion.div
-                    className={styles.section1Image2}
+                    className={
+                      section1.imagesMobileSize?.secondaryMaxWidth
+                        ? undefined // Don't apply the CSS class if we want 100vw
+                        : styles.section1Image2
+                    }
                     initial={{ opacity: 0, y: 80 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-                    style={
-                      section1.imagesMobileSize
+                    style={{
+                      ...(section1.imagesMobileSize?.secondaryMaxWidth
                         ? {
-                            width: section1.imagesMobileSize.secondaryMaxWidth
-                              ? "100vw"
-                              : "100%",
-                            maxWidth: section1.imagesMobileSize
-                              .secondaryMaxWidth
-                              ? "100vw"
-                              : "100%",
+                            // position: "relative",
+                            width: "100vw",
+                            maxWidth: "100vw",
                             height: section1.imagesMobileSize.secondaryHeight
                               ? mvw(section1.imagesMobileSize.secondaryHeight)
                               : section1.imagesMobileSize.height
                               ? mvw(section1.imagesMobileSize.height)
                               : "auto",
-                            marginLeft: section1.imagesMobileSize
-                              .secondaryMaxWidth
-                              ? mvw(-20)
-                              : undefined,
-                            marginRight: section1.imagesMobileSize
-                              .secondaryMaxWidth
-                              ? mvw(-20)
-                              : undefined,
                           }
-                        : undefined
-                    }
+                        : {
+                            width: "100%",
+                            maxWidth: "100%",
+                            height: section1.imagesMobileSize?.secondaryHeight
+                              ? mvw(section1.imagesMobileSize.secondaryHeight)
+                              : section1.imagesMobileSize?.height
+                              ? mvw(section1.imagesMobileSize.height)
+                              : "auto",
+                          }),
+                    }}
                   >
                     <img
                       src={
@@ -1109,10 +1123,35 @@ export default function HairTransplantLayout({
                   </h2>
 
                   {/* 모바일: 메인 이미지 */}
-                  {section2.images?.main && (
-                    <div className={styles.section2Image}>
+                  {(section2.imagesMobile?.main || section2.images?.main) && (
+                    <div
+                      className={styles.section2Image}
+                      style={
+                        section2.imagesMobileSize
+                          ? {
+                              height: section2.imagesMobileSize.mainHeight
+                                ? mvw(section2.imagesMobileSize.mainHeight)
+                                : section2.imagesMobileSize.height
+                                ? mvw(section2.imagesMobileSize.height)
+                                : undefined,
+                              width: section2.imagesMobileSize.mainMaxWidth
+                                ? "100vw"
+                                : "100%",
+                              marginLeft: section2.imagesMobileSize.mainMaxWidth
+                                ? `calc(-1 * ${mvw(16)})`
+                                : undefined,
+                              marginRight: section2.imagesMobileSize
+                                .mainMaxWidth
+                                ? `calc(-1 * ${mvw(16)})`
+                                : undefined,
+                            }
+                          : undefined
+                      }
+                    >
                       <img
-                        src={section2.images.main}
+                        src={
+                          section2.imagesMobile?.main || section2.images?.main
+                        }
                         alt="이미지"
                         className={styles.section2ImageContent}
                       />
@@ -1552,31 +1591,8 @@ export default function HairTransplantLayout({
             {isMobile ? (
               <>
                 {/* 모바일: 제목 → 이미지 → 설명 순서 */}
-                {!scarReduction && (
-                  <div
-                    className={styles.section3Number}
-                    style={
-                      section3.numberPosition && isMobile
-                        ? {
-                            position: "absolute",
-                            ...(section3.numberPosition.top !== undefined
-                              ? { top: mvw(section3.numberPosition.top) }
-                              : {}),
-                            ...(section3.numberPosition.right !== undefined
-                              ? { right: mvw(section3.numberPosition.right) }
-                              : {}),
-                            ...(section3.numberPosition.bottom !== undefined
-                              ? { bottom: mvw(section3.numberPosition.bottom) }
-                              : {}),
-                            ...(section3.numberPosition.left !== undefined
-                              ? { left: mvw(section3.numberPosition.left) }
-                              : {}),
-                          }
-                        : undefined
-                    }
-                  >
-                    {section3.number}
-                  </div>
+                {!scarReduction && section3.number && (
+                  <div className={styles.section3Number}>{section3.number}</div>
                 )}
                 <div className={styles.section3Left}>
                   <div className={styles.section3Text}>
@@ -2137,63 +2153,42 @@ export default function HairTransplantLayout({
           </div>
           {beforeAfterButton && (
             <div className={styles.beforeAfterActions}>
-              {beforeAfterButton.href ? (
-                <Link
-                  href={beforeAfterButton.href}
-                  className={styles.beforeAfterLink}
-                >
-                  {isMobile ? (
+              <Link
+                href={beforeAfterButton.href || "/before-after"}
+                className={styles.beforeAfterLink}
+              >
+                {isMobile ? (
+                  <div style={{ fontSize: mvw(16) }}>
                     <ArrowButton
                       variant="primary"
                       color="blue"
                       size="medium"
-                      width="100%"
                       textAlign="center"
-                      fontSizeMobile={16}
+                      width={mvw(224)}
+                      height={mvw(44)}
                     >
                       {beforeAfterButton.text}
                     </ArrowButton>
-                  ) : (
-                    <ArrowButton
-                      variant="primary"
-                      color="blue"
-                      size="medium"
-                      height={66}
-                      paddingTop={12}
-                      paddingBottom={10}
-                      paddingRight={10}
-                      paddingLeft={28}
-                      fontSize={24}
-                      iconSize={44}
-                      width={beforeAfterButton.width || 224}
-                      textAlign="left"
-                    >
-                      {beforeAfterButton.text}
-                    </ArrowButton>
-                  )}
-                </Link>
-              ) : beforeAfterButton.onClick ? (
-                <ArrowButton
-                  variant="primary"
-                  color="blue"
-                  size="medium"
-                  onClick={beforeAfterButton.onClick}
-                  width={isMobile ? "100%" : beforeAfterButton.width || 224}
-                  textAlign="center"
-                >
-                  {beforeAfterButton.text}
-                </ArrowButton>
-              ) : (
-                <ArrowButton
-                  variant="primary"
-                  color="blue"
-                  size="medium"
-                  width={isMobile ? "100%" : beforeAfterButton.width || 224}
-                  textAlign="center"
-                >
-                  {beforeAfterButton.text}
-                </ArrowButton>
-              )}
+                  </div>
+                ) : (
+                  <ArrowButton
+                    variant="primary"
+                    color="blue"
+                    size="medium"
+                    height={66}
+                    paddingTop={12}
+                    paddingBottom={10}
+                    paddingRight={10}
+                    paddingLeft={28}
+                    fontSize={24}
+                    iconSize={44}
+                    width={beforeAfterButton.width || 224}
+                    textAlign="left"
+                  >
+                    {beforeAfterButton.text}
+                  </ArrowButton>
+                )}
+              </Link>
             </div>
           )}
         </div>

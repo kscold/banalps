@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+
 import * as styles from "./BlueSection.css";
 import { ArrowButton } from "../../shared/ui/ArrowButton";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 interface BlueSectionProps {
   isActive?: boolean;
@@ -14,6 +16,7 @@ interface BlueSectionProps {
 export default function BlueSection({ isActive = false }: BlueSectionProps) {
   const [isVisible] = useState(isActive);
   const router = useRouter();
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   useEffect(() => {
     console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
@@ -71,23 +74,6 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         isVisible || isActive ? styles.visible : ""
       }`}
     >
-      {/* 모바일 헤더 섹션 - 피그마 디자인 기반 */}
-      <div className={styles.mobileHeaderSection}>
-        <h1 className={styles.mobileMainTitle}>
-          바람부는날에도
-          <br />
-          잘하는 일.
-        </h1>
-        <p className={styles.mobileSubDescription}>
-          평범한 일상을 새로운 일상으로 이어주는 곳, 모발 성형외과 전문의로서
-          15년
-        </p>
-        <p className={styles.mobileDescription}>
-          바날은 모발 수술에 대한 섬세한 기술과 감각으로 시술 그 너머, 당신의
-          내일을 설계합니다.
-        </p>
-      </div>
-
       {/* 이미지 카드 섹션 - Figma 정확 반영 */}
       <div className={styles.imageCardsSection}>
         {/* 이미지 카드 1 */}
@@ -98,11 +84,19 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
         >
-          <img
-            src="/main/shot/shot1.png"
-            alt="Shin Seung gyu"
-            className={styles.cardImage}
-          />
+          {isMobile ? (
+            <img
+              src="/main/shot/mobile/shot1.jpg"
+              alt="Shin Seung gyu"
+              className={styles.cardImage}
+            />
+          ) : (
+            <img
+              src="/main/shot/shot1.png"
+              alt="Shin Seung gyu"
+              className={styles.cardImage}
+            />
+          )}
         </motion.div>
 
         {/* 이미지 카드 2 */}
@@ -113,11 +107,19 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
         >
-          <img
-            src="/main/shot/shot2.png"
-            alt="Park Soo Ho"
-            className={styles.cardImage}
-          />
+          {isMobile ? (
+            <img
+              src="/main/shot/mobile/shot2.jpg"
+              alt="Park Soo Ho"
+              className={styles.cardImage}
+            />
+          ) : (
+            <img
+              src="/main/shot/shot2.png"
+              alt="Park Soo Ho"
+              className={styles.cardImage}
+            />
+          )}
         </motion.div>
 
         {/* 이미지 카드 3 */}
@@ -128,11 +130,19 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
         >
-          <img
-            src="/main/shot/shot3.png"
-            alt="Kim Narae"
-            className={styles.cardImage}
-          />
+          {isMobile ? (
+            <img
+              src="/main/shot/mobile/shot3.jpg"
+              alt="Kim Narae"
+              className={styles.cardImage}
+            />
+          ) : (
+            <img
+              src="/main/shot/shot3.png"
+              alt="Kim Narae"
+              className={styles.cardImage}
+            />
+          )}
         </motion.div>
 
         {/* 이미지 카드 4 */}
@@ -143,11 +153,19 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
         >
-          <img
-            src="/main/shot/shot4.png"
-            alt="의료진 4"
-            className={styles.cardImage}
-          />
+          {isMobile ? (
+            <img
+              src="/main/shot/mobile/shot4.jpg"
+              alt="의료진 4"
+              className={styles.cardImage}
+            />
+          ) : (
+            <img
+              src="/main/shot/shot4.png"
+              alt="의료진 4"
+              className={styles.cardImage}
+            />
+          )}
         </motion.div>
       </div>
 
@@ -310,7 +328,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullName}>
+              <h3 className={styles.doctorMobileFullNameFirst}>
                 Shin
                 <br />
                 Seung
@@ -329,7 +347,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullName}>
+              <h3 className={styles.doctorMobileFullNameSecond}>
                 Park
                 <br />
                 Soo Ho
@@ -346,7 +364,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullName}>
+              <h3 className={styles.doctorMobileFullNameThird}>
                 Kim
                 <br />
                 Narae

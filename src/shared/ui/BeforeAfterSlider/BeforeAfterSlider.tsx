@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useCallback } from "react";
 import * as styles from "./BeforeAfterSlider.css";
+import { vw, mvw } from "@/shared/styles/responsive.utils";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -146,8 +147,10 @@ export default function BeforeAfterSlider({
           <div className={styles.sliderLineBottom} />
           <div className={styles.sliderHandle}>
             <svg
-              width={isMobile ? "20" : "38"}
-              height={isMobile ? "10" : "16"}
+              style={{
+                width: isMobile ? mvw(15) : vw(38),
+                height: isMobile ? mvw(10) : vw(16),
+              }}
               viewBox={isMobile ? "0 0 20 10" : "0 0 38 16"}
               fill="none"
             >
