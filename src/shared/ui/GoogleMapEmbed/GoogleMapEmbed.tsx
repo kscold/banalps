@@ -26,15 +26,14 @@ export default function GoogleMapEmbed({
         <img
           src="/treatment-guide/map.png"
           alt="바날 성형외과 위치"
-          className={styles.mapIframe}
+          className={styles.mapDesktop}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
-        {/* <img
+        <img
           src="/treatment-guide/map-mobile.png"
           alt="바날 성형외과 위치"
-          className={styles.mapIframe}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        /> */}
+          className={styles.mapMobile}
+        />
       </div>
 
       {/* 외부 링크 버튼 - 별도 컴포넌트로 분리 */}

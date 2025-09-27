@@ -1,13 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion"
-import * as styles from "./TreatmentGuidePage.css"
+import { motion } from "framer-motion";
+import * as styles from "./TreatmentGuidePage.css";
 
 import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 export default function TreatmentGuidePage() {
+  const isMobile = useMediaQuery("(max-width: 1023px)");
   console.log("[TreatmentGuidePage] 진료 안내 페이지 렌더링");
 
   return (
@@ -27,24 +29,34 @@ export default function TreatmentGuidePage() {
           {/* 오른쪽 이미지 및 콘텐츠 */}
           <div className={styles.heroRight}>
             <div className={styles.heroImageWrapper}>
-              <img
-                src="/treatment-guide/clinic-building.png"
-                alt="바날 성형외과 전경"
-                className={styles.heroImage}
-              />
-              {/* Power Your Organization's Potential With Banal House 텍스트 */}
-              <div className={styles.heroOverlayMain}>
-                <p className={styles.heroOverlayMainText}>
-                  Power Your Organization&apos;s Potential
-                  <br />
-                  With Banal House
-                </p>
-              </div>
+              {isMobile ? (
+                <img
+                  src="/treatment-guide/hero-image-mobile.svg"
+                  alt="바날 성형외과 전경"
+                  className={styles.heroImage}
+                />
+              ) : (
+                <>
+                  <img
+                    src="/treatment-guide/clinic-building.png"
+                    alt="바날 성형외과 전경"
+                    className={styles.heroImage}
+                  />
+                  {/* Power Your Organization's Potential With Banal House 텍스트 */}
+                  <div className={styles.heroOverlayMain}>
+                    <p className={styles.heroOverlayMainText}>
+                      Power Your Organization&apos;s Potential
+                      <br />
+                      With Banal House
+                    </p>
+                  </div>
 
-              {/* Banalhouse 텍스트 */}
-              <div className={styles.heroOverlayBrand}>
-                <p className={styles.heroOverlayBrandText}>Banalhouse</p>
-              </div>
+                  {/* Banalhouse 텍스트 */}
+                  <div className={styles.heroOverlayBrand}>
+                    <p className={styles.heroOverlayBrandText}>Banalhouse</p>
+                  </div>
+                </>
+              )}
             </div>
 
             <motion.h2
@@ -88,7 +100,7 @@ export default function TreatmentGuidePage() {
             </div>
 
             {/* 오시는길 */}
-            <div className={`${styles.contactItem} ${styles.contactItemLast}`}>
+            <div className={styles.contactItem}>
               <h3 className={styles.contactLabel}>오시는길</h3>
               <div className={styles.contactAddress}>
                 <p className={styles.addressMain}>

@@ -2,25 +2,6 @@ import { style } from "@vanilla-extract/css";
 import { breakpoints, vw, mvw } from "../../../shared/styles/responsive.css";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
-export const mapContainer = style({
-  width: "100%",
-  display: "flex",
-  gap: vw(20),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "20px",
-    },
-    [breakpoints.desktop]: {
-      flexDirection: "column",
-      gap: "16px",
-    },
-    [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "12px",
-    },
-  },
-});
-
 export const mapWrapper = style({
   position: "relative",
   width: "100%",
@@ -39,8 +20,33 @@ export const mapWrapper = style({
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      minHeight: "300px",
-      borderRadius: "12px",
+      height: mvw(404),
+      width: "100%",
+      borderRadius: 0,
+      minHeight: "auto",
+    },
+  },
+});
+
+export const mapDesktop = style({
+  width: "100%",
+  height: "100%",
+  display: "block",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
+export const mapMobile = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+      width: "100%",
+      height: mvw(404),
+      objectFit: "cover",
     },
   },
 });

@@ -15,6 +15,7 @@ export const heroSection = style({
   paddingTop: vw(255),
   minHeight: vw(1511),
   overflow: "visible",
+  height: "100vh",
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "255px",
@@ -181,7 +182,6 @@ export const heroOverlayMainText = style({
   lineHeight: vw(20),
   color: "#FFFFFF",
   textAlign: "left",
-  textShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
   margin: 0,
   letterSpacing: "0%",
   "@media": {
@@ -213,6 +213,7 @@ export const heroOverlayBrand = style({
       left: "50%",
       transform: "translateX(-50%)",
       right: "auto",
+      width: "100%",
       top: "auto",
     },
   },
@@ -225,7 +226,6 @@ export const heroOverlayBrandText = style({
   lineHeight: vw(40),
   color: "#FFFFFF",
   textAlign: "right",
-  textShadow: "0px 2px 8px rgba(0, 0, 0, 0.3)",
   margin: 0,
   letterSpacing: "0%",
   "@media": {
@@ -293,7 +293,7 @@ export const contactContainer = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: mvw(60),
+      gap: mvw(40),
       padding: `0 ${mvw(20)}`,
       paddingTop: "0",
       paddingBottom: mvw(120),
@@ -320,10 +320,11 @@ export const mapContainer = style({
       borderRadius: vw(20),
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      height: mvw(300),
-      borderRadius: mvw(12),
-      marginBottom: mvw(40),
+      width: "100vw",
+      height: mvw(404),
+      borderRadius: 0,
+      marginLeft: mvw(-20), // 부모 컨테이너 패딩 상쇄
+      marginRight: mvw(-20), // 부모 컨테이너 패딩 상쇄
     },
   },
 });
@@ -352,6 +353,12 @@ export const contactItem = style({
   gap: vw(20),
   marginBottom: vw(58),
 
+  selectors: {
+    "&:nth-child(3)": {
+      marginBottom: vw(100),
+    },
+  },
+
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
@@ -363,6 +370,11 @@ export const contactItem = style({
       gap: mvw(20),
       marginBottom: mvw(40),
       alignItems: "flex-start",
+      selectors: {
+        "&:nth-child(3)": {
+          marginBottom: mvw(40),
+        },
+      },
     },
   },
 });
