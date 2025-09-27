@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { breakpoints, vw, mvw } from "../../../shared/styles/responsive.css";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 export const mapContainer = style({
   width: "100%",
@@ -90,9 +91,10 @@ export const mapButtons = style({
 });
 
 const buttonBase = style({
+  position: "relative",
   padding: `${vw(10)} ${vw(20)}`,
   fontSize: vw(14),
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 600,
   border: "none",
   borderRadius: vw(20),
@@ -104,8 +106,7 @@ const buttonBase = style({
   alignItems: "center",
   justifyContent: "center",
   letterSpacing: 0,
-  lineHeight: vw(20),
-  position: "relative",
+  lineHeight: "100%",
 
   ":hover": {
     opacity: 0.85, // dim 효과
@@ -158,6 +159,7 @@ export const kakaoButton = style([
         },
       },
       [breakpoints.mobile]: {
+        fontSize: mvw(16),
         flex: 1,
         minWidth: "auto",
         ":hover": {
@@ -173,7 +175,7 @@ export const naverButton = style([
   buttonBase,
   {
     backgroundColor: "#58A54B",
-    color: "#000000",
+    color: "#272727",
 
     "@media": {
       [breakpoints.desktopLarge]: {

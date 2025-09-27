@@ -389,6 +389,11 @@ export const navLinkText = style({
     transformOrigin: "center",
     transition: "transform 200ms ease",
   },
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+    },
+  },
 });
 
 // 활성 상태 네비게이션 링크

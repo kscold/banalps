@@ -88,7 +88,7 @@ export default function TreatmentGuidePage() {
             </div>
 
             {/* 오시는길 */}
-            <div className={styles.contactItem}>
+            <div className={`${styles.contactItem} ${styles.contactItemLast}`}>
               <h3 className={styles.contactLabel}>오시는길</h3>
               <div className={styles.contactAddress}>
                 <p className={styles.addressMain}>

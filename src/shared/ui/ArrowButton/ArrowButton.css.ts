@@ -70,12 +70,17 @@ export const arrowButton = style({
 
   "@media": {
     // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
-    "(min-width: 1920px)": {
+    [breakpoints.desktopLarge]: {
       fontSize: "var(--desktop-font-size, 20px)",
-      height: "var(--desktop-height)",
-      width: "var(--desktop-width)",
-      paddingLeft: "var(--desktop-padding-left)",
-      paddingRight: "var(--desktop-padding-right)",
+      height: "var(--desktop-height, auto)",
+      width: "var(--desktop-width, auto)",
+      paddingLeft: "var(--desktop-padding-left, 20px)",
+      paddingRight: "var(--desktop-padding-right, 48px)",
+      paddingTop: "var(--desktop-padding-top, 10px)",
+      paddingBottom: "var(--desktop-padding-bottom, 10px)",
+      gap: "12px", // gap도 고정값으로
+      borderRadius: "100px", // borderRadius도 고정값으로
+      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)", // boxShadow도 고정값으로
     },
     [breakpoints.mobile]: {
       // 모바일에서 자동 너비 (position: absolute일 때는 width: auto로)
@@ -109,8 +114,9 @@ export const buttonText = style({
 
   "@media": {
     // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
-    "(min-width: 1920px)": {
+    [breakpoints.desktopLarge]: {
       fontSize: "var(--desktop-font-size, 20px)",
+      lineHeight: "100%",
     },
     [breakpoints.mobile]: {
       fontSize: "var(--mobile-font-size, " + mvw(14) + ")", // CSS 변수를 통한 모바일 폰트 크기
@@ -142,6 +148,13 @@ export const arrowContainer = style({
   transform: "translateY(-50%)",
 
   "@media": {
+    // 1920px 이상에서 고정값 사용
+    [breakpoints.desktopLarge]: {
+      width: "var(--desktop-icon-size, 28px)",
+      height: "var(--desktop-icon-size, 28px)",
+      right: "12px",
+      boxShadow: "0 4px 12px rgba(20, 174, 255, 0.25)",
+    },
     [breakpoints.mobile]: {
       width: mvw(28),
       height: mvw(28),
@@ -241,6 +254,12 @@ export const small = style({
   gap: vw(8),
 
   "@media": {
+    // 1920px 이상에서 고정값 사용
+    [breakpoints.desktopLarge]: {
+      padding: "12px 20px",
+      fontSize: "14px",
+      gap: "8px",
+    },
     [breakpoints.mobile]: {
       padding: `${mvw(10)} ${mvw(16)}`,
       fontSize: mvw(12),
@@ -256,6 +275,12 @@ export const medium = style({
   justifyContent: "flex-start", // 텍스트 왼쪽 정렬
 
   "@media": {
+    // 1920px 이상에서 고정값 사용
+    [breakpoints.desktopLarge]: {
+      fontSize: "22px",
+      height: "44px",
+      padding: "0 48px 0 20px",
+    },
     [breakpoints.mobile]: {
       fontSize: mvw(14),
       minHeight: mvw(44), // 모바일에서는 44px
@@ -271,6 +296,12 @@ export const large = style({
   gap: vw(16),
 
   "@media": {
+    // 1920px 이상에서 고정값 사용
+    [breakpoints.desktopLarge]: {
+      padding: "20px 32px",
+      fontSize: "18px",
+      gap: "16px",
+    },
     [breakpoints.mobile]: {
       padding: `${mvw(18)} ${mvw(60)} ${mvw(18)} ${mvw(28)}`, // 오른쪽에 원 공간 확보
       fontSize: mvw(16),
@@ -286,6 +317,10 @@ export const smallArrowContainer = style({
   width: vw(22),
   height: vw(22),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "22px",
+      height: "22px",
+    },
     [breakpoints.mobile]: {
       width: mvw(22),
       height: mvw(22),
@@ -297,6 +332,10 @@ export const smallArrowIcon = style({
   width: vw(11),
   height: vw(11),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "11px",
+      height: "11px",
+    },
     [breakpoints.mobile]: {
       width: mvw(11),
       height: mvw(11),
@@ -308,6 +347,10 @@ export const largeArrowContainer = style({
   width: vw(40),
   height: vw(40),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "40px",
+      height: "40px",
+    },
     [breakpoints.mobile]: {
       width: mvw(32),
       height: mvw(32),
@@ -324,6 +367,10 @@ export const largeArrowIcon = style({
   width: vw(18),
   height: vw(18),
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "18px",
+      height: "18px",
+    },
     [breakpoints.mobile]: {
       width: mvw(18),
       height: mvw(18),

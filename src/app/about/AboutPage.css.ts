@@ -40,8 +40,8 @@ export const heroSection = style({
     },
     [breakpoints.mobile]: {
       display: "flex", // 명시적으로 flex 설정
-      paddingTop: "40px", // 상단 패딩 추가
-      paddingBottom: "60px",
+
+      padding: `${mvw(120)} 0 ${mvw(120)} 0`,
       minHeight: "100vh", // 최소 화면 높이 설정
     },
   },
@@ -59,7 +59,6 @@ export const heroContainer = style({
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      marginTop: mvw(120),
       gap: mvw(60),
       width: "100vw",
       padding: 0,
@@ -80,6 +79,14 @@ export const heroContent = style({
   },
 });
 
+export const heroQuoteMobile = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+  margin: `0 0 ${mvw(48)} 0`,
+});
+
 export const heroQuote = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
@@ -92,13 +99,13 @@ export const heroQuote = style({
     [breakpoints.desktopLarge]: {
       margin: "0 0 30px 0",
     },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      minWidth: mvw(204),
-      fontSize: mvw(18),
+      minWidth: mvw(203),
+      fontSize: mvw(16),
       lineHeight: "140%",
-      margin: `0 0 ${mvw(48)} 0`,
-      color: "#000000",
-      fontWeight: 200,
+      color: "#272727",
+      margin: 0,
     },
   },
 });
@@ -181,8 +188,7 @@ export const valuesSection = style({
     [breakpoints.mobile]: {
       padding: 0,
       background: "#73D5FA",
-      width: "100vw",
-      minHeight: "100vh",
+      width: "100%",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -204,7 +210,7 @@ export const valuesContainer = style({
       width: "100%",
       flexDirection: "column",
       gap: mvw(80),
-      padding: `${mvw(100)} ${mvw(20)} ${mvw(80)} ${mvw(20)}`,
+      padding: `0 ${mvw(20)} ${mvw(120)} ${mvw(20)}`,
       alignItems: "left",
       justifyContent: "left",
       maxWidth: "100%",
@@ -251,15 +257,15 @@ export const valuesMainTitle = style({
 });
 
 export const valuesDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: "150%",
   color: "#000000",
   margin: 0,
   "@media": {
     [breakpoints.mobile]: {
-      fontSize: mvw(18),
+      fontSize: mvw(16),
       lineHeight: "150%",
       textAlign: "left",
       color: "#000000",
@@ -280,9 +286,10 @@ export const valuesCards = style({
     },
     [breakpoints.mobile]: {
       flex: "0 0 auto",
-      width: mvw(335),
-      maxWidth: vw(957),
+      height: mvw(318),
+      width: mvw(342),
       justifyContent: "center",
+      maxWidth: mvw(342),
       // marginTop: mvw(60),
     },
   },
@@ -305,17 +312,14 @@ export const valueCardsImage = style({
 });
 
 export const valueCardsImageMobile = style({
-  width: "100%",
-  maxWidth: vw(957),
-  height: "auto",
-  objectFit: "contain",
   display: "none",
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       display: "block",
-      width: "100%",
-      height: "auto",
+      width: mvw(342),
+      height: mvw(318),
+      objectFit: "contain",
       maxWidth: "100%",
     },
   },
@@ -568,11 +572,13 @@ export const reYouSubtitle = style({
 
 // 바날이 잘하는 일 섹션 - 피그마 디자인 정확히 매칭
 export const strengthsSection = style({
-  padding: `${vw(240)} 0`,
-  marginTop: `${vw(240)}`,
+  paddingTop: vw(240),
+
   backgroundColor: "#FFFDF7",
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      paddingTop: "240px",
+    },
     [breakpoints.mobile]: {
       width: "100%",
       padding: `${mvw(120)} ${mvw(16)}`,
@@ -787,17 +793,8 @@ export const strengthItemContentMobile = style({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  gap: vw(16),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "16px",
-    },
-    [breakpoints.mobile]: {
-      width: mvw(225),
-      gap: mvw(12),
-      flex: 1,
-    },
-  },
+  width: mvw(225),
+  gap: mvw(24),
 });
 
 export const strengthItemTitle = style({
@@ -820,19 +817,15 @@ export const strengthItemTitle = style({
 });
 
 export const strengthItemTitleMobile = style({
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "block",
-      fontFamily: "'S-Core Dream', sans-serif",
-      fontWeight: 500,
-      fontSize: mvw(20),
-      lineHeight: "140%",
-      color: "#000000",
-      whiteSpace: "pre-line",
-      wordBreak: "keep-all",
-      margin: 0,
-    },
-  },
+  display: "block",
+  fontFamily: fontFamily.scdream,
+  fontWeight: 500,
+  fontSize: mvw(20),
+  lineHeight: "140%",
+  color: "#000000",
+  whiteSpace: "pre-line",
+  wordBreak: "keep-all",
+  margin: 0,
 });
 
 export const strengthDescription = style({
@@ -857,9 +850,9 @@ export const strengthDescriptionMobile = style({
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(16),
-      fontWeight: 200,
-      lineHeight: "160%",
-      color: "#000000",
+      fontWeight: 400,
+      lineHeight: "150%",
+      color: "#272727",
       whiteSpace: "pre-line",
       wordBreak: "keep-all",
       overflowWrap: "break-word",

@@ -2137,14 +2137,11 @@ export const academicContent = style({
   padding: `0 ${vw(135)}`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "100%",
       padding: "0 135px",
     },
-    [breakpoints.desktop]: {
-      width: "100%",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      width: "100%",
+      padding: 0,
     },
   },
 });
@@ -2225,9 +2222,16 @@ export const academicTableContainer = style({
 // 첫 번째 행 스타일
 export const firstRow = style({
   "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingTop: "33px", // 연혁 타이틀과 높이 맞춤
+    },
+    [breakpoints.desktop]: {
+      paddingTop: vw(33),
+    },
     [breakpoints.mobile]: {
       borderTop: "none",
       height: mvw(192),
+      paddingTop: mvw(10), // 모바일에서도 타이틀과 맞춤
     },
   },
 });
@@ -2265,15 +2269,16 @@ export const academicTableRow = style({
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      gap: mvw(16),
-      padding: `${mvw(20)} ${mvw(16)}`,
+      paddingTop: mvw(20),
+      paddingBottom: mvw(20),
       flexDirection: "row",
       alignItems: "flex-start",
-      minHeight: "auto",
+      minHeight: mvw(160),
       display: "grid",
-      gridTemplateColumns: `auto minmax(0, 1fr)`,
-      gridTemplateRows: "auto auto",
-      columnGap: mvw(16),
+      gridTemplateColumns: `${mvw(105)} ${mvw(217)}`,
+      gridTemplateRows: `${mvw(70)} ${mvw(70)}`,
+      columnGap: mvw(20),
+      rowGap: mvw(20),
       borderBottom: "1px solid #707070",
       borderTop: "none",
       margin: 0,
@@ -2302,14 +2307,19 @@ export const academicRowDate = style({
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      width: mvw(77),
+      width: mvw(105),
       fontSize: mvw(14),
       lineHeight: mvw(20),
       gridColumn: "1",
       gridRow: "2",
-      textAlign: "left",
-      color: "#000000",
+      textAlign: "center",
+      color: "#272727",
       alignSelf: "end",
+      height: mvw(18),
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "start",
+      whiteSpace: "nowrap",
     },
   },
 });
@@ -2328,10 +2338,13 @@ export const academicRowCategory = style({
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      width: "auto",
+      width: mvw(70),
+      height: mvw(70),
       justifyContent: "center",
       gridColumn: "1",
       gridRow: "1",
+      alignSelf: "center",
+      justifySelf: "start",
     },
   },
 });
@@ -2402,7 +2415,12 @@ export const academicRowEvent = style({
       whiteSpace: "normal",
       overflow: "visible",
       textOverflow: "unset",
-      width: "100%",
+      width: mvw(217),
+      paddingRight: 0,
+      alignSelf: "center",
+      height: mvw(70),
+      display: "flex",
+      alignItems: "center",
     },
   },
 });
@@ -2439,6 +2457,12 @@ export const academicRowTitle = style({
       color: "#272727",
       gridColumn: "2",
       gridRow: "2",
+      width: mvw(217),
+      height: mvw(48),
+      paddingRight: 0,
+      alignSelf: "end",
+      display: "flex",
+      alignItems: "center",
     },
   },
 });
@@ -2462,6 +2486,7 @@ export const timelineGraffitiSection = style({
       display: "block",
       width: "100%",
       paddingTop: mvw(60),
+      paddingBottom: mvw(120),
       backgroundColor: "#FFFDF7",
     },
   },
@@ -2513,9 +2538,20 @@ export const doctorMobileInfoSection = style({
 });
 
 export const doctorMobileInfoImage = style({
-  width: mvw(210),
   height: mvw(300),
   display: "block",
+
+  selectors: {
+    "&:child(nth-child(0))": {
+      width: mvw(210),
+    },
+    "&:child(nth-child(1))": {
+      width: mvw(200),
+    },
+    "&:child(nth-child(2))": {
+      width: mvw(230),
+    },
+  },
 });
 
 // 모바일 메인 섹션 - 초기 100vh 영역 (단일 이미지) - 더 이상 사용하지 않음
@@ -2649,11 +2685,11 @@ export const doctorMobileName2 = style({
 });
 
 export const doctorMobilePosition = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: mvw(14),
   lineHeight: "130%",
-  color: "#000000",
+  color: "#272727",
   textAlign: "right",
   letterSpacing: "0%",
   marginBottom: mvw(4),
@@ -2702,7 +2738,7 @@ export const doctorMobileCredentials = style({
   width: "100%",
   padding: `${mvw(40)} ${mvw(16)}`,
   backgroundColor: "#73D5FA",
-  marginBottom: "3rem",
+  marginBottom: mvw(80),
 });
 
 // 모바일 자격사항 리스트

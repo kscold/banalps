@@ -136,17 +136,15 @@ export const heroImageWrapper = style({
   height: vw(925),
   marginBottom: vw(180),
   overflow: "hidden",
-  borderRadius: vw(20),
+
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "925px",
       marginBottom: "180px",
-      borderRadius: "20px",
     },
     [breakpoints.desktop]: {
       height: vw(925),
       marginBottom: vw(180),
-      borderRadius: vw(20),
     },
     [breakpoints.mobile]: {
       height: mvw(478),
@@ -353,15 +351,13 @@ export const contactItem = style({
   display: "flex",
   gap: vw(20),
   marginBottom: vw(58),
+
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
       marginBottom: "58px",
     },
-    [breakpoints.desktop]: {
-      gap: vw(20),
-      marginBottom: vw(58),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flexDirection: "row",
       gap: mvw(20),
@@ -421,20 +417,17 @@ export const contactLabel = style({
 });
 
 export const contactValue = style({
-  fontFamily: "Poppins, sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: vw(32),
   lineHeight: vw(32),
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(32),
-      lineHeight: vw(32),
+      fontSize: "32px",
+      lineHeight: "32px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(32),
-      lineHeight: vw(32),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(24),
       lineHeight: mvw(32),
@@ -443,20 +436,17 @@ export const contactValue = style({
 });
 
 export const contactSchedule = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(20),
   lineHeight: vw(30),
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(20),
-      lineHeight: vw(30),
+      fontSize: "20px",
+      lineHeight: "30px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(20),
-      lineHeight: vw(30),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(24),
@@ -483,21 +473,18 @@ export const contactAddress = style({
 });
 
 export const addressMain = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(20),
   lineHeight: vw(30),
   color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(20),
-      lineHeight: vw(30),
+      fontSize: "20px",
+      lineHeight: "30px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(20),
-      lineHeight: vw(30),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(24),
@@ -507,20 +494,17 @@ export const addressMain = style({
 });
 
 export const subwayInfo = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: vw(26),
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: vw(16),
-      lineHeight: vw(26),
+      fontSize: "16px",
+      lineHeight: "26px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(16),
-      lineHeight: vw(26),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(14),
       lineHeight: mvw(20),

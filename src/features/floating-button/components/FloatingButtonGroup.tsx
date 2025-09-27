@@ -40,12 +40,6 @@ function FloatingButtonGroupComponent({
 
   // 스크롤 위치에 따른 실제 Footer 컴포넌트와의 충돌 감지
   useEffect(() => {
-    // 메인 페이지에서는 푸터 감지 비활성화
-    if (isMainPage) {
-      setIsAboveFooter(false);
-      return;
-    }
-
     const handleScroll = () => {
       // Footer 컴포넌트를 더 정확하게 찾기 (실제 Footer.tsx 컴포넌트)
       const footer = document.querySelector('footer[data-footer="true"]');
@@ -59,9 +53,12 @@ function FloatingButtonGroupComponent({
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
+      // 데스크탑에서는 더 민감하게 반응하도록 설정 (200px 전부터 올라가기 시작)
+      const threshold = isMobile ? 100 : 200;
+
       // 푸터가 실제로 화면에 보이기 시작할 때만 플로팅 버튼 이동
       const shouldMoveAboveFooter =
-        footerRect.top > 0 && footerRect.top < windowHeight - 100;
+        footerRect.top > 0 && footerRect.top < windowHeight - threshold;
 
       setIsAboveFooter(shouldMoveAboveFooter);
     };
@@ -86,7 +83,7 @@ function FloatingButtonGroupComponent({
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, [isMainPage]);
+  }, [isMobile]);
 
   // 링크 데이터 메모이제이션
   const socialLinks = useMemo(() => ({
@@ -123,11 +120,11 @@ function FloatingButtonGroupComponent({
         bottom: isAboveFooter
           ? isMobile
             ? "calc(120px + 20px)" // 모바일: 푸터 높이 120px + 여백 20px
-            : "calc(200px + 40px)" // 데스크탑: 푸터 높이 200px + 여백 40px
+            : "calc(300px + 40px)" // 데스크탑: 푸터 높이 300px + 여백 40px (더 높게 설정)
           : isMobile
           ? "20px" // 모바일 기본 위치
           : "40px", // 데스크탑 기본 위치
-        transition: "bottom 300ms ease-in-out",
+        transition: "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1)", // 더 부드러운 애니메이션
       }}
     >
       {/* 확장 가능한 버튼 리스트 */}

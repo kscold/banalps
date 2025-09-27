@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { VideoSection } from "../../widgets/Hero/VideoSection";
 import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 export default function AboutPage() {
-  const { showMainContent, videoActive, contentActive, currentSection } =
-    useAboutScroll();
+  const { videoActive, contentActive, currentSection } = useAboutScroll();
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   // 피그마 디자인에 따른 강점 데이터
   const strengths = [
@@ -70,7 +71,6 @@ export default function AboutPage() {
   // 섹션 전환 애니메이션 상태
   const videoScale = currentSection === 0 ? 1 : 0.95;
   const videoOpacity = videoActive ? 1 : 0;
-  const contentScale = currentSection === 1 ? 1 : 1.05;
 
   return (
     <div className={styles.aboutPage}>
@@ -116,9 +116,18 @@ export default function AboutPage() {
           <section className={styles.heroSection}>
             <div className={styles.heroContainer}>
               <div className={styles.heroContent}>
-                <h1 className={styles.heroQuote}>
-                  &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
-                </h1>
+                {isMobile ? (
+                  <div className={styles.heroQuoteMobile}>
+                    <h1 className={styles.heroQuote}>&apos;평범한 일상을</h1>
+                    <h1 className={styles.heroQuote}>
+                      새로운 일상으로 이어주는 곳&apos;
+                    </h1>
+                  </div>
+                ) : (
+                  <h1 className={styles.heroQuote}>
+                    &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
+                  </h1>
+                )}
                 <h2 className={styles.heroTitle}>
                   바람부는날에도 성형외과의원
                 </h2>

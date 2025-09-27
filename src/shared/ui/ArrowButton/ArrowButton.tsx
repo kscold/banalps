@@ -50,21 +50,120 @@ export default function ArrowButton({
   const textRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    // paddingLeft가 true일 때 동적으로 계산
-    if (paddingLeft === true && circleRef.current) {
-      const circleSize = size === 'small' ? 28 : size === 'large' ? 40 : 28 // 실제 원 크기
-      const gap = 10 // gap 값
+    const applyStyles = () => {
+      // paddingLeft가 true일 때 동적으로 계산
+      if (paddingLeft === true && circleRef.current) {
+        const circleSize = size === 'small' ? 28 : size === 'large' ? 40 : 28 // 실제 원 크기
+        const gap = 10 // gap 값
 
-      // 원 위치가 오른쪽에 있으므로
-      const rightPadding = circleSize + gap * 2 // 오른쪽: 원 + 양쪽 gap
-      const leftPadding = gap * 2 // 왼쪽: gap만
+        // 원 위치가 오른쪽에 있으므로
+        const rightPadding = circleSize + gap * 2 // 오른쪽: 원 + 양쪽 gap
+        const leftPadding = gap * 2 // 왼쪽: gap만
 
-      setCalculatedPadding({
-        left: `${(leftPadding / 1920) * 100}vw`,
-        right: `${(rightPadding / 1920) * 100}vw`
-      })
+        setCalculatedPadding({
+          left: `${(leftPadding / 1920) * 100}vw`,
+          right: `${(rightPadding / 1920) * 100}vw`
+        })
+      }
+
+      // CSS 변수를 DOM 요소에 직접 설정 - 1920px 이상에서만
+      if (buttonRef.current) {
+        const button = buttonRef.current;
+
+        // 1920px 이상일 때 CSS 변수 설정
+        if (window.innerWidth >= 1920) {
+          if (height && typeof height === 'number') {
+            button.style.setProperty('--desktop-height', `${height}px`);
+            button.style.height = `${height}px`; // 직접 스타일도 적용
+          }
+          if (width && typeof width === 'number') {
+            button.style.setProperty('--desktop-width', `${width}px`);
+            button.style.width = `${width}px`; // 직접 스타일도 적용
+          }
+          if (fontSize && typeof fontSize === 'number') {
+            button.style.setProperty('--desktop-font-size', `${fontSize}px`);
+            // 텍스트 요소에도 직접 적용
+            if (textRef.current) {
+              textRef.current.style.fontSize = `${fontSize}px`;
+            }
+          }
+          if (paddingTop !== undefined) {
+            button.style.setProperty('--desktop-padding-top', `${paddingTop}px`);
+            button.style.paddingTop = `${paddingTop}px`; // 직접 스타일도 적용
+          } else if (!paddingVertical && size !== 'small' && size !== 'medium' && size !== 'large') {
+            // 커스텀 패딩이 없고 특정 size가 아니면 기본값 10px 고정
+            button.style.paddingTop = '10px';
+          }
+          if (paddingBottom !== undefined) {
+            button.style.setProperty('--desktop-padding-bottom', `${paddingBottom}px`);
+            button.style.paddingBottom = `${paddingBottom}px`; // 직접 스타일도 적용
+          } else if (!paddingVertical && size !== 'small' && size !== 'medium' && size !== 'large') {
+            // 커스텀 패딩이 없고 특정 size가 아니면 기본값 10px 고정
+            button.style.paddingBottom = '10px';
+          }
+          if (paddingLeft && typeof paddingLeft === 'number') {
+            button.style.setProperty('--desktop-padding-left', `${paddingLeft}px`);
+            button.style.paddingLeft = `${paddingLeft}px`; // 직접 스타일도 적용
+          } else if (paddingLeft !== true && size !== 'small' && size !== 'medium' && size !== 'large') {
+            // 커스텀 패딩이 없고 특정 size가 아니면 기본값 20px 고정
+            button.style.paddingLeft = '20px';
+          }
+          if (paddingRight) {
+            button.style.setProperty('--desktop-padding-right', `${paddingRight}px`);
+            button.style.paddingRight = `${paddingRight}px`; // 직접 스타일도 적용
+          } else if (size !== 'small' && size !== 'medium' && size !== 'large') {
+            // 커스텀 패딩이 없고 특정 size가 아니면 기본값 48px 고정
+            button.style.paddingRight = '48px';
+          }
+        } else {
+          // 1920px 미만에서는 vw 단위 사용
+          if (height && typeof height === 'number') {
+            button.style.height = `${(height / 1920) * 100}vw`;
+          }
+          if (width && typeof width === 'number') {
+            button.style.width = `${(width / 1920) * 100}vw`;
+          }
+          if (fontSize && typeof fontSize === 'number' && textRef.current) {
+            textRef.current.style.fontSize = `${(fontSize / 1920) * 100}vw`;
+          }
+          if (paddingTop !== undefined) {
+            button.style.paddingTop = `${(paddingTop / 1920) * 100}vw`;
+          }
+          if (paddingBottom !== undefined) {
+            button.style.paddingBottom = `${(paddingBottom / 1920) * 100}vw`;
+          }
+          if (paddingLeft && typeof paddingLeft === 'number') {
+            button.style.paddingLeft = `${(paddingLeft / 1920) * 100}vw`;
+          }
+          if (paddingRight) {
+            button.style.paddingRight = `${(paddingRight / 1920) * 100}vw`;
+          }
+        }
+      }
+
+      // 아이콘 크기 CSS 변수 설정
+      if (circleRef.current && iconSize) {
+        if (window.innerWidth >= 1920) {
+          circleRef.current.style.setProperty('--desktop-icon-size', `${iconSize}px`);
+          circleRef.current.style.width = `${iconSize}px`;
+          circleRef.current.style.height = `${iconSize}px`;
+        } else {
+          circleRef.current.style.width = `${(iconSize / 1920) * 100}vw`;
+          circleRef.current.style.height = `${(iconSize / 1920) * 100}vw`;
+        }
+      }
     }
-  }, [paddingLeft, size, width])
+
+    // 초기 적용
+    applyStyles();
+
+    // 리사이즈 시 재적용
+    window.addEventListener('resize', applyStyles);
+
+    return () => {
+      window.removeEventListener('resize', applyStyles);
+    }
+  }, [paddingLeft, size, width, height, fontSize, paddingTop, paddingBottom, paddingRight, iconSize])
   // 화살표 컨테이너 스타일 결정
   const getArrowContainerStyle = () => {
     let containerStyle = styles.arrowContainer
@@ -152,15 +251,19 @@ export default function ArrowButton({
 
   // 패딩 처리 - 개별 값이 우선순위가 높음
   if (paddingTop !== undefined) {
-    customStyle.paddingTop = `${paddingTop}px`
+    customStyle.paddingTop = `${(paddingTop / 1920) * 100}vw`
+    customStyle['--desktop-padding-top'] = `${paddingTop}px`
   } else if (paddingVertical) {
-    customStyle.paddingTop = `${paddingVertical}px`
+    customStyle.paddingTop = `${(paddingVertical / 1920) * 100}vw`
+    customStyle['--desktop-padding-top'] = `${paddingVertical}px`
   }
 
   if (paddingBottom !== undefined) {
-    customStyle.paddingBottom = `${paddingBottom}px`
+    customStyle.paddingBottom = `${(paddingBottom / 1920) * 100}vw`
+    customStyle['--desktop-padding-bottom'] = `${paddingBottom}px`
   } else if (paddingVertical) {
-    customStyle.paddingBottom = `${paddingVertical}px`
+    customStyle.paddingBottom = `${(paddingVertical / 1920) * 100}vw`
+    customStyle['--desktop-padding-bottom'] = `${paddingVertical}px`
   }
 
   // padding 처리
@@ -214,7 +317,7 @@ export default function ArrowButton({
       className={`${styles.arrowButton} ${styles[variant]} ${styles[color]} ${styles[size]} ${
         className || ""
       }`}
-      style={customStyle}
+      style={customStyle as React.CSSProperties & { [key: string]: any }}
       onClick={onClick}
       disabled={disabled}
     >
@@ -222,10 +325,6 @@ export default function ArrowButton({
         ref={textRef}
         className={getTextStyle()}
         style={{
-          ...(fontSize ? {
-            fontSize: typeof fontSize === 'number' ? `${(fontSize / 1920) * 100}vw` : fontSize,
-            '--desktop-font-size': typeof fontSize === 'number' ? `${fontSize}px` : undefined
-          } : {}),
           ...(fontSizeMobile ? {
             '--mobile-font-size': typeof fontSizeMobile === 'number' ? `${(fontSizeMobile / 375) * 100}vw` : fontSizeMobile
           } as React.CSSProperties : {})
