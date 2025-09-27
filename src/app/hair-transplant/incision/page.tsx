@@ -64,7 +64,6 @@ export default function IncisionPage() {
         </>
       ),
       illustration: "/hair-transplant/incision/illustration-1.svg",
-
       illustrationSize: {
         width: 459,
         height: 190,
@@ -97,6 +96,16 @@ export default function IncisionPage() {
           bottom: 0,
           left: 0,
         },
+      },
+      imagesMobile: {
+        main: "/hair-transplant/incision/mobile/incision-1.jpg",
+        secondary: "/hair-transplant/incision/mobile/incision-2.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        secondaryMaxWidth: true,
+        mainHeight: 305,
+        secondaryHeight: 382,
       },
       section1RightSize: {
         width: 1085, // section1Right 컨테이너 너비 800 vw 단위
@@ -169,6 +178,14 @@ export default function IncisionPage() {
       illustrationMobileSize: {
         width: 375,
         height: 336,
+        fullWidth: true,
+      },
+      imagesMobile: {
+        main: "/hair-transplant/incision/mobile/incision-3.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
       },
     },
     section3: {
@@ -239,6 +256,13 @@ export default function IncisionPage() {
           width: 610,
           height: 550,
         },
+      },
+      imagesMobile: {
+        main: "/hair-transplant/incision/mobile/incision-4.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
       },
     },
     beforeAfterData: {

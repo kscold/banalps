@@ -126,7 +126,7 @@ export const HairTransplantHeroTitleContainer = style({
 });
 
 export const HairTransplantHeroTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   ...responsiveFont(60, 40),
   letterSpacing: "0",
@@ -167,20 +167,19 @@ export const HairTransplantHeroTitleDot = style({
       marginBottom: "12px",
     },
     [breakpoints.mobile]: {
-      width: mvw(15),
-      height: mvw(15),
-      marginLeft: mvw(15),
+      width: mvw(10),
+      height: mvw(10),
+      marginLeft: mvw(10),
       alignSelf: "flex-end", // 모바일에서는 하단 정렬
       marginBottom: mvw(10), // 약간의 하단 여백
     },
   },
 });
 
-// Hairline Hero Section
 export const heroSection = style({
   position: "relative",
   width: "100%",
-  minHeight: "100vh",
+  // minHeight: "100vh",
   overflow: "hidden",
   // Hero 섹션은 전체 1920px 사용
   "@media": {
@@ -190,7 +189,7 @@ export const heroSection = style({
       flexDirection: "column",
       justifyContent: "flex-start",
       alignItems: "center",
-      paddingTop: mvw(90), // 상단 여백
+      paddingTop: mvw(60), // 상단 여백
     },
   },
 });
@@ -203,8 +202,7 @@ export const heroContainer = style({
   height: "100vh",
   "@media": {
     [breakpoints.mobile]: {
-      padding: `0 ${mvw(20)}`, // 모바일 좌우 패딩
-      height: "100%",
+      height: mvw(537),
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
@@ -341,7 +339,7 @@ export const heroContent = style({
   height: "100%",
   "@media": {
     [breakpoints.mobile]: {
-      padding: `0 ${mvw(20)}`,
+      // padding: `0 ${mvw(20)}`,
     },
   },
 });
@@ -422,7 +420,7 @@ export const scalpTreatmentVideoContainer = style({
   position: "relative",
   ...responsiveContainer(1600),
   height: vw(790), // 1920px 기준 900px 높이
-  borderRadius: vw(8),
+  borderRadius: "8px",
   overflow: "hidden",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -432,9 +430,9 @@ export const scalpTreatmentVideoContainer = style({
     },
     [breakpoints.mobile]: {
       width: "100vw", // 모바일 좌우 여백
-      height: "500px",
+      height: mvw(537),
       margin: "0",
-      borderRadius: mvw(8),
+      borderRadius: 0,
     },
   },
 });
@@ -492,7 +490,9 @@ export const introSection = style({
       height: vw(660),
     },
     [breakpoints.mobile]: {
-      padding: "80px 0",
+      margin: `${mvw(120)} 0`,
+      width: "100%",
+      height: mvw(723),
     },
   },
 });
@@ -510,8 +510,9 @@ export const introContainer = style({
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flexDirection: "column",
-      padding: "0 20px",
+      padding: `0 ${mvw(16)}`,
       gap: "40px",
+      margin: 0,
     },
   },
 });
@@ -532,7 +533,7 @@ export const introTextContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      gap: "40px",
+      gap: mvw(40),
       textAlign: "left",
     },
   },
@@ -557,7 +558,8 @@ export const introImageContent = style({
       top: "auto",
       transform: "none",
       width: "100%",
-      height: "auto",
+      height: mvw(305),
+      minHeight: mvw(305),
     },
   },
 });
@@ -574,8 +576,8 @@ export const introImageContainer = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      height: mvw(240),
-      borderRadius: mvw(8),
+      height: "100%",
+      borderRadius: "8px",
     },
   },
 });
@@ -599,9 +601,11 @@ export const smallVideoContainer = style({
       borderRadius: "8px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
-      height: mvw(240),
-      borderRadius: mvw(8),
+      width: "100vw",
+      height: mvw(537),
+      borderRadius: 0,
+      marginLeft: mvw(-16), // Offset parent padding
+      marginRight: mvw(-16), // Offset parent padding
     },
   },
 });
@@ -646,8 +650,9 @@ export const introDescription = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(20),
-  lineHeight: vw(32),
-  color: "#5A5A5A",
+  lineHeight: "150%",
+  letterSpacing: 0,
+  color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -655,8 +660,11 @@ export const introDescription = style({
       lineHeight: "32px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
+      fontSize: mvw(16),
       lineHeight: mvw(24),
+      height: mvw(232),
+      display: "block",
+      // Natural text flow with br tags to fill the height
     },
   },
 });
@@ -671,7 +679,7 @@ export const treatmentCardsSection = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: "60px 0",
+      padding: `0 0 ${mvw(60)} 0`,
     },
   },
 });
@@ -692,9 +700,9 @@ export const treatmentCardsContainer = style({
       flexDirection: "column",
       alignItems: "center",
       maxWidth: "100%",
-      gap: mvw(40),
+      gap: mvw(31),
       margin: 0,
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(16)}`,
     },
   },
 });
@@ -837,7 +845,7 @@ export const treatmentDetailSection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: "80px 0",
+      padding: `${mvw(60)} 0`,
     },
   },
 });
@@ -871,8 +879,8 @@ export const treatmentDetailContainer = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      padding: "0 20px",
-      gap: "40px",
+      padding: `0 ${mvw(16)}`,
+      gap: 0,
       alignItems: "flex-start",
     },
   },
@@ -893,7 +901,7 @@ export const treatmentVideoContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      height: "auto",
+      height: mvw(537),
       order: -1,
     },
   },
@@ -1062,10 +1070,13 @@ export const treatmentImageContainer = style({
       gap: "21px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
+      width: "100vw",
+      marginLeft: mvw(-16),
+      marginRight: mvw(-16),
       height: "auto",
       flexDirection: "column",
-      gap: mvw(16),
+      gap: mvw(8),
+      padding: `0 ${mvw(16)}`,
     },
   },
 });
@@ -1084,7 +1095,7 @@ export const treatmentImage = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      height: mvw(200),
+      height: mvw(210),
       borderRadius: mvw(8),
     },
   },

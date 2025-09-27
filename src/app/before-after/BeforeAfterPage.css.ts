@@ -430,7 +430,8 @@ export const carouselHeader = style({
       marginBottom: "24px",
     },
     [breakpoints.mobile]: {
-      marginBottom: mvw(20),
+      marginBottom: mvw(48),
+      gap: mvw(24),
     },
   },
 });
@@ -462,15 +463,16 @@ export const categoryBadge = style({
 export const itemTitle = style({
   fontFamily: fontFamily.scdream,
   fontSize: vw(18),
-  fontWeight: 400,
-  color: "#272727",
+  fontWeight: 500,
+  color: "#14AEFF",
+  lineHeight: "150%",
+
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "18px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      color: "#8B92A1",
+      fontSize: mvw(18),
     },
   },
 });
@@ -493,6 +495,7 @@ export const carouselContainer = style({
       justifyContent: "center",
       alignItems: "center",
       padding: `0 ${mvw(45)}`,
+      height: mvw(180),
     },
   },
 });

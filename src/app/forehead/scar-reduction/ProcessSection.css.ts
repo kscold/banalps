@@ -4,6 +4,7 @@ import {
   responsiveContainer,
 } from "@/shared/styles/responsive.css";
 import { vw, mvw } from "@/shared/styles/responsive.utils";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 // Section 2: 흉터 줄이는 과정 섹션 (진단부터 봉합까지) - ScarReductionPage.css에서 복사
 export const scarProcessSection = style({
@@ -14,7 +15,7 @@ export const scarProcessSection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(80)} 0`,
+      padding: `${mvw(60)} 0`,
     },
   },
 });
@@ -34,7 +35,7 @@ export const scarProcessContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(16)}`,
       gap: mvw(120),
     },
   },
@@ -53,7 +54,7 @@ export const processStepOdd = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      gap: mvw(24),
+      gap: mvw(40),
     },
   },
 });
@@ -124,10 +125,10 @@ export const stepNumber = style({
 
 // 숫자 텍스트를 이미지 박스 위에 배치
 export const stepNumberText = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: "400",
+  fontFamily: fontFamily.nordnet,
+  fontWeight: 400,
   fontSize: vw(80),
-  lineHeight: 1,
+  lineHeight: "100%",
   color: "#272727",
   marginBottom: vw(90), // 100px 간격으로 변경
   "@media": {
@@ -136,13 +137,12 @@ export const stepNumberText = style({
       marginBottom: "90px",
     },
     [breakpoints.mobile]: {
-      // fontSize: mvw(48),
       marginBottom: 0,
-      fontSize: "4.375rem",
+      fontSize: mvw(70),
       fontStyle: "normal",
-      fontWeight: "400",
+      fontWeight: 400,
       lineHeight: "normal",
-      // fontWeight: "600",
+      letterSpacing: 0,
     },
   },
 });
@@ -171,7 +171,7 @@ export const stepHeaderMobile = style({
       width: "100%",
       justifyContent: "space-between",
       flexDirection: "row",
-      marginBottom: mvw(20),
+      marginBottom: mvw(40),
     },
   },
 });
@@ -228,7 +228,7 @@ export const stepContent = style({
       minHeight: "288px",
     },
     [breakpoints.mobile]: {
-      gap: mvw(16),
+      gap: 0,
       minHeight: "auto",
       width: "100%",
       position: "relative",
@@ -261,9 +261,11 @@ export const stepCategory = style({
 });
 
 export const stepTitle = style({
-  fontWeight: "500",
+  fontFamily: fontFamily.scdream,
+  lineHeight: "150%",
+  letterSpacing: 0,
+  fontWeight: 500,
   fontSize: vw(40),
-  lineHeight: vw(52),
   color: "#272727",
   margin: 0,
   "@media": {
@@ -272,26 +274,26 @@ export const stepTitle = style({
       lineHeight: "52px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(24),
-      lineHeight: mvw(32),
+      fontSize: mvw(20),
+      marginBottom: mvw(32),
     },
   },
 });
 
 export const stepDescription = style({
-  fontWeight: "400",
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(20),
-  lineHeight: vw(32),
-  color: "#5A5A5A",
+  lineHeight: "150%",
+  letterSpacing: 0,
+  color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
-      lineHeight: "32px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      lineHeight: mvw(24),
+      fontSize: mvw(16),
     },
   },
 });

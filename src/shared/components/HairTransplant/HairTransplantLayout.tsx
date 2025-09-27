@@ -77,6 +77,8 @@ interface Section {
   description?: React.ReactNode;
   descriptionMobile?: React.ReactNode;
   descriptionWidth?: number; // Optional width for description (vw units)
+  descriptionMarginBottom?: number; // Optional margin-bottom for description (0 to remove margin on mobile)
+  sectionPaddingBottom?: number; // Optional padding-bottom for section (0 to remove padding on mobile)
   quote?: React.ReactNode;
   quoteMobile?: React.ReactNode;
   illustration?: string;
@@ -477,7 +479,7 @@ export default function HairTransplantLayout({
                       ...(section1.titleMarginBottom !== undefined
                         ? {
                             marginBottom: isMobile
-                              ? `${(section1.titleMarginBottom / 375) * 100}vw`
+                              ? mvw(40) // Always use mvw(40) for mobile
                               : `${
                                   (section1.titleMarginBottom / 1920) * 100
                                 }vw`,
@@ -568,27 +570,39 @@ export default function HairTransplantLayout({
                       style={{
                         ...(section1.illustrationMobileSize
                           ? {
-                              width: section1.illustrationMobileSize.fullWidth
-                                ? "calc(100vw - var(--scrollbar-width, 0px))"
-                                : section1.illustrationMobileSize.width
-                                ? mvw(section1.illustrationMobileSize.width)
-                                : "100%",
-                              height: section1.illustrationMobileSize.height
-                                ? mvw(section1.illustrationMobileSize.height)
-                                : undefined,
-                              aspectRatio:
-                                section1.illustrationMobileSize.width &&
-                                section1.illustrationMobileSize.height
-                                  ? `${section1.illustrationMobileSize.width} / ${section1.illustrationMobileSize.height}`
-                                  : undefined,
-                              marginLeft: section1.illustrationMobileSize
-                                .fullWidth
-                                ? mvw(-20)
-                                : undefined,
-                              marginRight: section1.illustrationMobileSize
-                                .fullWidth
-                                ? mvw(-20)
-                                : undefined,
+                              // When fullWidth is true, width and margins are handled by CSS
+                              ...(section1.illustrationMobileSize.fullWidth
+                                ? {
+                                    height: section1.illustrationMobileSize
+                                      .height
+                                      ? mvw(
+                                          section1.illustrationMobileSize.height
+                                        )
+                                      : undefined,
+                                    aspectRatio:
+                                      section1.illustrationMobileSize.width &&
+                                      section1.illustrationMobileSize.height
+                                        ? `${section1.illustrationMobileSize.width} / ${section1.illustrationMobileSize.height}`
+                                        : undefined,
+                                  }
+                                : {
+                                    width: section1.illustrationMobileSize.width
+                                      ? mvw(
+                                          section1.illustrationMobileSize.width
+                                        )
+                                      : "100%",
+                                    height: section1.illustrationMobileSize
+                                      .height
+                                      ? mvw(
+                                          section1.illustrationMobileSize.height
+                                        )
+                                      : undefined,
+                                    aspectRatio:
+                                      section1.illustrationMobileSize.width &&
+                                      section1.illustrationMobileSize.height
+                                        ? `${section1.illustrationMobileSize.width} / ${section1.illustrationMobileSize.height}`
+                                        : undefined,
+                                  }),
                             }
                           : {
                               width: "100%",
@@ -751,7 +765,7 @@ export default function HairTransplantLayout({
                       ...(section1.titleMarginBottom !== undefined
                         ? {
                             marginBottom: isMobile
-                              ? `${(section1.titleMarginBottom / 375) * 100}vw`
+                              ? mvw(40) // Always use mvw(40) for mobile
                               : `${
                                   (section1.titleMarginBottom / 1920) * 100
                                 }vw`,
@@ -1073,9 +1087,14 @@ export default function HairTransplantLayout({
       <section
         className={styles.section2}
         style={
-          isMobile && section2.mobileHeight
+          isMobile
             ? {
-                minHeight: mvw(section2.mobileHeight),
+                ...(section2.mobileHeight
+                  ? { minHeight: mvw(section2.mobileHeight) }
+                  : {}),
+                ...(section2.sectionPaddingBottom !== undefined
+                  ? { paddingBottom: section2.sectionPaddingBottom }
+                  : {}),
               }
             : undefined
         }
@@ -1109,7 +1128,7 @@ export default function HairTransplantLayout({
                       ...(section2.titleMarginBottom !== undefined
                         ? {
                             marginBottom: isMobile
-                              ? `${(section2.titleMarginBottom / 375) * 100}vw`
+                              ? mvw(40) // Always use mvw(40) for mobile
                               : `${
                                   (section2.titleMarginBottom / 1920) * 100
                                 }vw`,
@@ -1158,7 +1177,14 @@ export default function HairTransplantLayout({
                     </div>
                   )}
 
-                  <div className={styles.section2Description}>
+                  <div
+                    className={styles.section2Description}
+                    style={{
+                      ...(isMobile && section2.descriptionMarginBottom !== undefined
+                        ? { marginBottom: section2.descriptionMarginBottom }
+                        : {}),
+                    }}
+                  >
                     {processDescription(
                       isMobile && section2.descriptionMobile
                         ? section2.descriptionMobile
@@ -1185,25 +1211,25 @@ export default function HairTransplantLayout({
                       style={{
                         ...(section2.illustrationMobileSize
                           ? {
-                              width: section2.illustrationMobileSize.fullWidth
-                                ? "calc(100vw - var(--scrollbar-width, 0px))"
-                                : "100%",
                               aspectRatio:
                                 section2.illustrationMobileSize.width &&
                                 section2.illustrationMobileSize.height
                                   ? `${section2.illustrationMobileSize.width} / ${section2.illustrationMobileSize.height}`
                                   : undefined,
-                              marginLeft: section2.illustrationMobileSize
-                                .fullWidth
-                                ? mvw(-20)
-                                : undefined,
-                              marginRight: section2.illustrationMobileSize
-                                .fullWidth
-                                ? mvw(-20)
-                                : undefined,
+                              ...(section2.illustrationMobileSize.fullWidth
+                                ? {
+                                    width: "100vw",
+                                    marginLeft: mvw(-16),
+                                    marginRight: mvw(-16),
+                                  }
+                                : {
+                                    width: "100%",
+                                  }),
                             }
                           : {
                               width: "100vw",
+                              marginLeft: mvw(-16),
+                              marginRight: mvw(-16),
                               aspectRatio: "375 / 336",
                             }),
                         ...(section2.illustrationMobileMargin
@@ -1252,7 +1278,9 @@ export default function HairTransplantLayout({
                         style={{
                           width: "100%",
                           height: "100%",
-                          objectFit: "contain",
+                          objectFit: section2.illustrationMobileSize?.fullWidth
+                            ? "cover"
+                            : "contain",
                         }}
                       />
                     </div>
@@ -1428,7 +1456,7 @@ export default function HairTransplantLayout({
                       ...(section2.titleMarginBottom !== undefined
                         ? {
                             marginBottom: isMobile
-                              ? `${(section2.titleMarginBottom / 375) * 100}vw`
+                              ? mvw(40) // Always use mvw(40) for mobile
                               : `${
                                   (section2.titleMarginBottom / 1920) * 100
                                 }vw`,
@@ -1468,7 +1496,14 @@ export default function HairTransplantLayout({
                       />
                     </div>
                   )}
-                  <div className={styles.section2Description}>
+                  <div
+                    className={styles.section2Description}
+                    style={{
+                      ...(isMobile && section2.descriptionMarginBottom !== undefined
+                        ? { marginBottom: section2.descriptionMarginBottom }
+                        : {}),
+                    }}
+                  >
                     {processDescription(
                       isMobile && section2.descriptionMobile
                         ? section2.descriptionMobile
@@ -1617,9 +1652,7 @@ export default function HairTransplantLayout({
                         ...(section3.titleMarginBottom !== undefined
                           ? {
                               marginBottom: isMobile
-                                ? `${
-                                    (section3.titleMarginBottom / 375) * 100
-                                  }vw`
+                                ? mvw(40) // Always use mvw(40) for mobile
                                 : `${
                                     (section3.titleMarginBottom / 1920) * 100
                                   }vw`,
@@ -1631,7 +1664,7 @@ export default function HairTransplantLayout({
                         ? section3.titleMobile
                         : section3.title}
                     </h2>
-                    {section3.images?.main && (
+                    {(section3.imagesMobile?.main || section3.images?.main) && (
                       <motion.div
                         className={styles.section3Image}
                         initial={{ opacity: 0, y: 80 }}
@@ -1639,7 +1672,9 @@ export default function HairTransplantLayout({
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
                         <img
-                          src={section3.images.main}
+                          src={
+                            section3.imagesMobile?.main || section3.images?.main
+                          }
                           alt="이미지"
                           className={styles.section3ImageContent}
                         />
@@ -1658,8 +1693,8 @@ export default function HairTransplantLayout({
                         className={styles.section3MobileIllustration}
                         style={{
                           width: "100vw",
-                          marginLeft: mvw(-20), // 부모의 패딩 상쇄
-                          marginRight: mvw(-20), // 부모의 패딩 상쇄
+                          marginLeft: mvw(-16), // 부모의 패딩 상쇄
+                          marginRight: mvw(-16), // 부모의 패딩 상쇄
                           aspectRatio:
                             section3.illustrationMobileSize?.width &&
                             section3.illustrationMobileSize?.height
@@ -1736,9 +1771,12 @@ export default function HairTransplantLayout({
                           style={
                             section3.titleMarginBottom !== undefined
                               ? {
-                                  marginBottom: `${
-                                    (section3.titleMarginBottom / 1920) * 100
-                                  }vw`,
+                                  marginBottom: isMobile
+                                    ? mvw(40) // Always use mvw(40) for mobile
+                                    : `${
+                                        (section3.titleMarginBottom / 1920) *
+                                        100
+                                      }vw`,
                                 }
                               : undefined
                           }

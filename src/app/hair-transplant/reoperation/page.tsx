@@ -66,14 +66,14 @@ export default function ReoperationPage() {
         secondary: "/hair-transplant/reoperation/reoperation-1.png",
       },
       imagesMobile: {
-        main: "/hair-transplant/reoperation/reoperation-2.png",
-        secondary: "/hair-transplant/reoperation/reoperation-1.png",
+        main: "/hair-transplant/reoperation/mobile/reoperation-2.jpg",
+        secondary: "/hair-transplant/reoperation/mobile/reoperation-1.jpg",
       },
       imagesMobileSize: {
         mainMaxWidth: false, // main 이미지는 100vw
         secondaryMaxWidth: true, // secondary 이미지도 100vw
         mainHeight: 305,
-        secondaryHeight: 392,
+        secondaryHeight: 382,
       },
       imagesSize: {
         main: {
@@ -169,6 +169,9 @@ export default function ReoperationPage() {
       images: {
         main: "/hair-transplant/reoperation/mobile-2.png",
       },
+      imagesMobile: {
+        main: "/hair-transplant/reoperation/mobile/reoperation-3.jpg",
+      },
     },
     section3: {
       number: 3,
@@ -249,6 +252,18 @@ export default function ReoperationPage() {
         독보적인 기술력과 사후 관리까지
         <br />
         바날은 고객에 진심을 다합니다.
+      </>
+    ),
+    featuresTitleMobile: (
+      <>
+        독보적인 기술력과
+        <br />
+        사후 관리까지
+        <br />
+        <br />
+        바날은 고객에
+        <br />
+        진심을 다합니다.
       </>
     ),
     featureCards: [

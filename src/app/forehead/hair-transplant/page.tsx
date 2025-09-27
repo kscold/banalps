@@ -29,6 +29,7 @@ export default function ForeheadHairTransplantPage() {
       mobileBottom: 8,
     },
     heroIllustration: "/forehead/hero-illustration.svg",
+    heroIllustrationMobile: "/forehead/mobile/hero-illustration.svg",
     heroIllustrationSize: {
       width: 1760,
       height: 660,
@@ -127,6 +128,16 @@ export default function ForeheadHairTransplantPage() {
           left: 0,
         },
       },
+      imagesMobile: {
+        main: "/forehead/hair-transplant/mobile/hair-transplant-1.jpg",
+        secondary: "/forehead/hair-transplant/mobile/hair-transplant-2.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        secondaryMaxWidth: true,
+        mainHeight: 305,
+        secondaryHeight: 382,
+      },
       section1RightSize: {
         width: 1085, // section1Right 컨테이너 너비 800 vw 단위
         height: 800, // section1Right 컨테이너 높이 700 vw 단위
@@ -207,6 +218,13 @@ export default function ForeheadHairTransplantPage() {
       images: {
         main: "/forehead/hair-transplant/hair-transplant-3.png",
       },
+      imagesMobile: {
+        main: "/forehead/hair-transplant/mobile/hair-transplant-3.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
+      },
     },
     section3: {
       number: 3,
@@ -258,6 +276,13 @@ export default function ForeheadHairTransplantPage() {
       ),
       images: {
         main: "/forehead/hair-transplant/hair-transplant-4.png",
+      },
+      imagesMobile: {
+        main: "/forehead/hair-transplant/mobile/hair-transplant-4.jpg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
       },
     },
     beforeAfterData: {

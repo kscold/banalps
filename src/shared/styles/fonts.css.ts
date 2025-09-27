@@ -1,13 +1,5 @@
-/**
- * S-Core Dream & Pretendard Font Family - Vanilla Extract Configuration
- * Copyright (c) 2018 by S-Core Co., Ltd. All rights reserved.
- * Licensed for free use (Personal & Commercial)
- * Pretendard: https://github.com/orioncactus/pretendard
- */
-
 import { fontFace } from "@vanilla-extract/css";
 
-// S-Core Dream Font Family Definition
 export const sCoreDream = fontFace([
   {
     src: `url('/fonts/SCDream1.woff') format('woff'), url('/fonts/SCDream1.otf') format('opentype')`,
@@ -65,72 +57,101 @@ export const sCoreDream = fontFace([
   },
 ]);
 
-// Pretendard Font Family Definition
-export const pretendard = fontFace([
+// Nordnet Font Family Definition
+export const nordnet = fontFace([
   {
-    src: `url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Light.woff2') format('woff2')`,
+    src: `url('/fonts/Nordnet Sans Light.otf') format('opentype')`,
     fontWeight: 300,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Regular.woff2') format('woff2')`,
+    src: `url('/fonts/Nordnet Sans.otf') format('opentype')`,
     fontWeight: 400,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Medium.woff2') format('woff2')`,
+    src: `url('/fonts/Nordnet Sans Bold.otf') format('opentype')`,
+    fontWeight: 700,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('/fonts/Nordnet Sans Extrabold.otf') format('opentype')`,
+    fontWeight: 800,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+]);
+
+// Pretendard Font Family Definition
+export const pretendard = fontFace([
+  {
+    src: `url('/fonts/Pretendard-Light.woff2') format('woff2')`,
+    fontWeight: 300,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('/fonts/Pretendard-Regular.woff2') format('woff2')`,
+    fontWeight: 400,
+    fontStyle: "normal",
+    fontDisplay: "swap",
+  },
+  {
+    src: `url('/fonts/Pretendard-Medium.woff2') format('woff2')`,
     fontWeight: 500,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-SemiBold.woff2') format('woff2')`,
+    src: `url('/fonts/Pretendard-SemiBold.woff2') format('woff2')`,
     fontWeight: 600,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-Bold.woff2') format('woff2')`,
+    src: `url('/fonts/Pretendard-Bold.woff2') format('woff2')`,
     fontWeight: 700,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
 ]);
 
-// Poppins Font Family Definition (from Google Fonts)
+// Poppins Font Family Definition
 export const poppins = fontFace([
   {
-    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    src: `url('/fonts/Poppins-Regular.woff2') format('woff2')`,
     fontWeight: 400,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    src: `url('/fonts/Poppins-Medium.woff2') format('woff2')`,
     fontWeight: 500,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    src: `url('/fonts/Poppins-SemiBold.woff2') format('woff2')`,
     fontWeight: 600,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
   {
-    src: `url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap')`,
+    src: `url('/fonts/Poppins-Bold.woff2') format('woff2')`,
     fontWeight: 700,
     fontStyle: "normal",
     fontDisplay: "swap",
   },
 ]);
 
-// Font Stack with S-Core Dream & Pretendard
+// Font Stack with S-Core Dream, Pretendard & Nordnet
 export const fontFamily = {
-  scdream: `${sCoreDream}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
-  pretendard: `${pretendard}, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
+  scdream: `'S-Core Dream', sans-serif`,
+  pretendard: `'Pretendard', sans-serif`,
+  nordnet: `'Nordnet Sans Mono', sans-serif`,
   poppins: `'Poppins', sans-serif`,
 };
 

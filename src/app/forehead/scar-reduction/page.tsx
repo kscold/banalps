@@ -19,6 +19,8 @@ export default function ScarReductionPage() {
         흉터 줄이는 법
       </>
     ),
+    heroIllustration: "/forehead/hero-illustration.svg",
+    heroIllustrationMobile: "/forehead/mobile/hero-illustration.svg",
     section1: {
       number: 1,
       title: (
@@ -62,7 +64,9 @@ export default function ScarReductionPage() {
           장력이 크기 때문입니다.
           <br />
           <br />
-          즉, 두피가 다시 뒤로 돌아가려는 힘이 클수록
+          즉,
+          <br />
+          두피가 다시 뒤로 돌아가려는 힘이 클수록
           <br />
           흉터가 넓어질 가능성이 커집니다.
           <br />
@@ -109,11 +113,14 @@ export default function ScarReductionPage() {
       ),
       descriptionMobile: (
         <>
-          이렇게 피부에 걸리는 장력을 없애주면
+          이렇게 피부에 걸리는
+          <br /> 장력을 없애주면 대부분 의 흉터는
           <br />
-          대부분 의 흉터는 가느다란 실선으로 남습니다.
+          가느다란 실선으로 남습니다.
         </>
       ),
+      descriptionMarginBottom: 0, // Remove margin bottom on mobile
+      sectionPaddingBottom: 0, // Remove padding bottom on mobile
       images: {
         main: "/forehead/scar-reduction/scar-reduction-8.png",
       },

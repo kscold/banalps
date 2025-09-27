@@ -2,14 +2,311 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 import FeaturesSection from "../../shared/components/FeaturesSection/FeaturesSection";
 
 import * as styles from "./ScalpTreatmentPage.css";
-import { vw } from "../../shared/styles/responsive.utils";
+import { vw, mvw } from "../../shared/styles/responsive.utils";
+
+// Treatment Card Component with individual scroll trigger
+const TreatmentCard = ({
+  number,
+  image,
+  alt,
+  title,
+  isMobile,
+}: {
+  number: string;
+  image: string;
+  alt: string;
+  title: string;
+  isMobile: boolean;
+}) => {
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  if (isMobile) {
+    return (
+      <motion.div
+        ref={ref}
+        className={styles.treatmentCard}
+        initial={{ opacity: 0, translateY: 80 }}
+        animate={
+          inView
+            ? { opacity: 1, translateY: 0 }
+            : { opacity: 0, translateY: 80 }
+        }
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <div className={styles.treatmentCardImage}>
+          <span className={styles.treatmentCardNumber}>{number}</span>
+          <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
+        </div>
+        <h3 className={styles.treatmentCardTitle}>{title}</h3>
+      </motion.div>
+    );
+  }
+
+  // Desktop version without individual animation
+  return (
+    <div className={styles.treatmentCard}>
+      <div className={styles.treatmentCardImage}>
+        <span className={styles.treatmentCardNumber}>{number}</span>
+        <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
+      </div>
+      <h3 className={styles.treatmentCardTitle}>{title}</h3>
+    </div>
+  );
+};
 
 export default function ScalpTreatmentPage() {
   console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링");
+
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+
+  // 텍스트 컨텐츠 설정 - 데스크탑/모바일 별 띄어쓰기 구분
+  const textContent = {
+    section1: {
+      title: {
+        desktop: (
+          <>
+            두피치료,
+            <br />
+            가장 효과적인 방법만
+            <br />
+            남겼습니다.
+          </>
+        ),
+        mobile: (
+          <>
+            두피치료,
+            <br />
+            가장 효과적인 방법만
+            <br />
+            남겼습니다.
+          </>
+        ),
+      },
+      description: {
+        desktop: (
+          <>
+            모발이식과 약물치료 만으로 충분하다고 생각했습니다.
+            <br />
+            하지만, 그 두가지 치료 사이의
+            <br />
+            부족함을 채울 방법이 분명히 필요했지요.
+            <br />
+            <br />
+            수많은 논문과 사례를 통해
+            <br />
+            가장 효과적인 치료만 남겼습니다.
+          </>
+        ),
+        mobile: (
+          <>
+            모발이식과 약물치료 만으로 충분하다고
+            <br />
+            생각했습니다.
+            <br />
+            <br />
+            하지만,
+            <br />
+            그 두가지 치료 사이의 부족함을 채울 방법이
+            <br />
+            분명히 필요했지요.
+            <br />
+            <br />
+            수많은 논문과 사례를 통해
+            <br />
+            가장 효과적인 치료만 남겼습니다.
+          </>
+        ),
+      },
+    },
+    section3: {
+      title: "1550nm 어븀글라스 프락셀 레이저",
+      subtitle: {
+        desktop: (
+          <>
+            이미 머리를 하신
+            <br />
+            고객이 가장 선호하는 시술
+          </>
+        ),
+        mobile: (
+          <>
+            이미 모발이식을 하신 고객이
+            <br />
+            가장 선호하는 시술
+          </>
+        ),
+      },
+      description: {
+        desktop: (
+          <>
+            1550nm 어븀글라스는 피부의 깊은 곳까지
+            <br />
+            열을 전달해서 진피층의 콜라겐을 활성화하고,
+            <br />
+            모낭을 자극하여 모발 성장을 촉진합니다.
+          </>
+        ),
+        mobile: (
+          <>
+            1550nm 어븀글라스는 피부의 깊은 곳까지
+            <br />
+            열을 전달해서 진피층의 콜라겐을 활성화하고,
+            <br />
+            모낭을 자극하여 모발 성장을 촉진합니다.
+          </>
+        ),
+      },
+    },
+    section4: {
+      title: "약물 주사 치료",
+      subtitle: {
+        desktop: (
+          <>
+            모든 두피가 같지 않듯,
+            <br />
+            치료도 달라야 합니다.
+          </>
+        ),
+        mobile: (
+          <>
+            모든 두피가 같지 않듯,
+            <br />
+            치료도 달라야 합니다.
+          </>
+        ),
+      },
+      description: {
+        desktop: (
+          <>
+            작은 바람과 배려의 마음으로 주사 시술 시<br />
+            영하 30도의 찬 바람으로 통증을 최소화 합니다.
+          </>
+        ),
+        mobile: (
+          <>
+            작은 바람과 배려의 마음으로
+            <br />
+            주사 시술 시 영하 30도의 찬 바람으로
+            <br />
+            통증을 최소화 합니다.
+          </>
+        ),
+      },
+    },
+    section5: {
+      title: "줄기세포 유래 성장인자",
+      subtitle: {
+        desktop: (
+          <>
+            줄기세포 유래 성장인자만을
+            <br />
+            선별한 고농축 치료법
+          </>
+        ),
+        mobile: (
+          <>
+            줄기세포 유래 성장인자만을
+            <br />
+            선별한 고농축 치료법
+          </>
+        ),
+      },
+      description: {
+        desktop: (
+          <>
+            혈액 속에서 선별한 고농축 줄기세포 유래 성장인자로
+            <br />
+            모낭 줄기세포를 자극하고 모발 성장 주기를 되살리는
+            <br />
+            재생 치료입니다. 두피 주사로 탈모를 치료하고 정맥 주사로
+            <br />
+            노화의 속도를 늦춰줍니다.
+          </>
+        ),
+        mobile: (
+          <>
+            혈액 속에서 선별한 고농축
+            <br />
+            줄기세포 유래 성장인자로 모낭 줄기세포를
+            <br />
+            자극하고 모발 성장 주기를 되살리는
+            <br />
+            재생 치료입니다.
+            <br />
+            <br />
+            두피 주사로 탈모를 치료하고
+            <br />
+            정맥 주사로 노화의 속도를 늦춰줍니다.
+          </>
+        ),
+      },
+    },
+    section6: {
+      title: {
+        desktop: (
+          <>
+            저출력 레이저 LLLT
+            <br />
+            (Low-Level Laser Therapy)
+          </>
+        ),
+        mobile: (
+          <>
+            저출력 레이저 LLLT
+            <br />
+            (Low-Level Laser Therapy)
+          </>
+        ),
+      },
+      subtitle: {
+        desktop: (
+          <>
+            저출력 레이저(LLLT)로
+            <br />
+            모낭의 회복력을 높이고
+            <br />
+            세포 대사를 활성화 시킵니다.
+          </>
+        ),
+        mobile: (
+          <>
+            저출력 레이저(LLLT)로 모낭의
+            <br />
+            회복력을 높이고 세포 대사를
+            <br />
+            활성화 시킵니다.
+          </>
+        ),
+      },
+      description: {
+        desktop: (
+          <>
+            빛의 자극으로 세포 대사를 활성화시키고,
+            <br />
+            염증 반응을 억제하는 탈모 치료의 부드러운 마무리입니다.
+          </>
+        ),
+        mobile: (
+          <>
+            빛의 자극으로 세포 대사를
+            <br />
+            활성화시키고, 염증 반응을 억제하는
+            <br />
+            탈모 치료의 부드러운 마무리입니다.
+          </>
+        ),
+      },
+    },
+  };
 
   // Vimeo 로드 핸들러
   const handleVimeoLoad = () => {
@@ -30,8 +327,9 @@ export default function ScalpTreatmentPage() {
 
   // Section 2 - 치료방법 카드 애니메이션
   const { ref: treatmentCardsRef, inView: treatmentCardsInView } = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: "0px 0px -100px 0px",
   });
 
   // Section 3-6 각 치료방법 상세 애니메이션
@@ -88,7 +386,7 @@ export default function ScalpTreatmentPage() {
         </div>
         {/* 모바일 일러스트 - Hero Container 밖에 위치 */}
         <img
-          src="/hair-transplant/mobile/hero-illustration-mobile.svg"
+          src="/forehead/mobile/hero-illustration.svg"
           alt="두피치료 일러스트"
           className={styles.heroIllustrationImageMobile}
         />
@@ -134,11 +432,9 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 텍스트 */}
           <div className={styles.introTextContent}>
             <h2 className={styles.introTitle}>
-              두피치료,
-              <br />
-              가장 효과적인 방법만
-              <br />
-              남겼습니다.
+              {isMobile
+                ? textContent.section1.title.mobile
+                : textContent.section1.title.desktop}
             </h2>
             <div className={styles.introImageContent}>
               <div className={styles.introImageContainer}>
@@ -150,21 +446,11 @@ export default function ScalpTreatmentPage() {
               </div>
             </div>
             <p className={styles.introDescription}>
-              모발이식과 약물치료 만으로 충분하다고 생각했습니다.
-              <br />
-              <br />
-              하지만, 그 두가지 치료 사이의
-              <br />
-              부족함을 채울 방법이 분명히 필요했지요.
-              <br />
-              <br />
-              수많은 논문과 사례를 통해
-              <br />
-              가장 효과적인 치료만 남겼습니다.
+              {isMobile
+                ? textContent.section1.description.mobile
+                : textContent.section1.description.desktop}
             </p>
           </div>
-
-          {/* 오른쪽 이미지 */}
         </div>
       </section>
 
@@ -172,29 +458,24 @@ export default function ScalpTreatmentPage() {
       <motion.section
         ref={treatmentCardsRef}
         className={styles.treatmentCardsSection}
-        initial={{ opacity: 0, translateY: 80 }}
+        initial={!isMobile ? { opacity: 0, translateY: 80 } : {}}
         animate={
-          treatmentCardsInView
+          !isMobile && treatmentCardsInView
             ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
+            : !isMobile
+            ? { opacity: 0, translateY: 80 }
+            : {}
         }
         transition={{ duration: 0.6 }}
       >
         <div className={styles.treatmentCardsContainer}>
-          {/* 어븀글라스 프락셀 레이저 */}
-          <div className={styles.treatmentCard}>
-            <div className={styles.treatmentCardImage}>
-              <span className={styles.treatmentCardNumber}>1</span>
-              <img
-                src="/scalp-treatment/scalp-treatment-2.png"
-                alt="어븀글라스 프락셀 레이저"
-                className={styles.treatmentCardImageImg}
-              />
-            </div>
-            <h3 className={styles.treatmentCardTitle}>
-              어븀글라스 프락셀 레이저
-            </h3>
-          </div>
+          <TreatmentCard
+            number="1"
+            image="/scalp-treatment/scalp-treatment-2.png"
+            alt="어븀글라스 프락셀 레이저"
+            title="어븀글라스 프락셀 레이저"
+            isMobile={isMobile}
+          />
 
           <div className={styles.treatmentArrow}>
             <img
@@ -204,18 +485,13 @@ export default function ScalpTreatmentPage() {
             />
           </div>
 
-          {/* 주사 시술 */}
-          <div className={styles.treatmentCard}>
-            <div className={styles.treatmentCardImage}>
-              <span className={styles.treatmentCardNumber}>2</span>
-              <img
-                src="/scalp-treatment/scalp-treatment-3.png"
-                alt="주사 시술"
-                className={styles.treatmentCardImageImg}
-              />
-            </div>
-            <h3 className={styles.treatmentCardTitle}>주사 시술</h3>
-          </div>
+          <TreatmentCard
+            number="2"
+            image="/scalp-treatment/scalp-treatment-3.png"
+            alt="주사 시술"
+            title="주사 시술"
+            isMobile={isMobile}
+          />
 
           <div className={styles.treatmentArrow}>
             <img
@@ -225,18 +501,13 @@ export default function ScalpTreatmentPage() {
             />
           </div>
 
-          {/* MTS 치료 */}
-          <div className={styles.treatmentCard}>
-            <div className={styles.treatmentCardImage}>
-              <span className={styles.treatmentCardNumber}>3</span>
-              <img
-                src="/scalp-treatment/scalp-treatment-4.png"
-                alt="MTS 치료"
-                className={styles.treatmentCardImageImg}
-              />
-            </div>
-            <h3 className={styles.treatmentCardTitle}>MTS 치료</h3>
-          </div>
+          <TreatmentCard
+            number="3"
+            image="/scalp-treatment/scalp-treatment-4.png"
+            alt="MTS 치료"
+            title="MTS 치료"
+            isMobile={isMobile}
+          />
 
           <div className={styles.treatmentArrow}>
             <img
@@ -246,32 +517,24 @@ export default function ScalpTreatmentPage() {
             />
           </div>
 
-          {/* 저출력 레이저 LLLT */}
-          <div className={styles.treatmentCard}>
-            <div className={styles.treatmentCardImage}>
-              <span className={styles.treatmentCardNumber}>4</span>
-              <img
-                src="/scalp-treatment/scalp-treatment-5.png"
-                alt="저출력 레이저 LLLT"
-                className={styles.treatmentCardImageImg}
-              />
-            </div>
-            <h3 className={styles.treatmentCardTitle}>저출력 레이저 LLLT</h3>
-          </div>
+          <TreatmentCard
+            number="4"
+            image="/scalp-treatment/scalp-treatment-5.png"
+            alt="저출력 레이저 LLLT"
+            title="저출력 레이저 LLLT"
+            isMobile={isMobile}
+          />
 
-          <div className={styles.treatmentArrow}></div>
+          {!isMobile && <div className={styles.treatmentArrow}></div>}
 
-          {/* 정맥 주사 - 마지막이라 화살표 없음 */}
-          <div className={styles.treatmentCard}>
-            <div className={styles.treatmentCardImage}>
-              <span className={styles.treatmentCardNumber}>5</span>
-              <img
-                src="/scalp-treatment/scalp-treatment-6.png"
-                alt="정맥 주사"
-                className={styles.treatmentCardImageImg}
-              />
-            </div>
-            <h3 className={styles.treatmentCardTitle}>정맥 주사</h3>
+          <div style={isMobile ? { marginTop: mvw(31) } : {}}>
+            <TreatmentCard
+              number="5"
+              image="/scalp-treatment/scalp-treatment-6.png"
+              alt="정맥 주사"
+              title="정맥 주사"
+              isMobile={isMobile}
+            />
           </div>
         </div>
       </motion.section>
@@ -297,7 +560,7 @@ export default function ScalpTreatmentPage() {
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
             <h2 className={styles.treatmentTitle}>
-              1550nm 어븀글라스 프락셀 레이저
+              {textContent.section3.title}
             </h2>
             <h3
               className={styles.treatmentSubtitleCustomMargin}
@@ -308,21 +571,14 @@ export default function ScalpTreatmentPage() {
                 } as React.CSSProperties
               }
             >
-              두피의 혈류와
-              <br />
-              세포 환경을 되살려
-              <br />
-              <br />
-              모발이 자라기
-              <br />
-              좋은 조건을 만들어줍니다.
+              {isMobile
+                ? textContent.section3.subtitle.mobile
+                : textContent.section3.subtitle.desktop}
             </h3>
             <p className={styles.treatmentDescription}>
-              미세 열 채널(microthermal zone, MTZ)이 형성되어
-              <br />
-              이후 도포되는 약물을 모낭이 있는 깊은 층까지 전달해줍니다
-              <br />
-              CO2 프락셀 레이저와 달리 통증도 거의 없습니다.
+              {isMobile
+                ? textContent.section3.description.mobile
+                : textContent.section3.description.desktop}
             </p>
           </div>
         </div>
@@ -348,11 +604,13 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>약물 주사 치료</h2>
+            <h2 className={styles.treatmentTitle}>
+              {textContent.section4.title}
+            </h2>
             <h3 className={styles.treatmentSubtitle}>
-              모든 두피가 같지 않듯,
-              <br />
-              치료도 달라야 합니다.
+              {isMobile
+                ? textContent.section4.subtitle.mobile
+                : textContent.section4.subtitle.desktop}
             </h3>
             <p
               className={styles.treatmentDescriptionCustomMargin}
@@ -363,8 +621,9 @@ export default function ScalpTreatmentPage() {
                 } as React.CSSProperties
               }
             >
-              작은 바람과 배려의 마음으로 주사 시술 시<br />
-              영하 30도의 찬 바람으로 통증을 최소화 합니다.
+              {isMobile
+                ? textContent.section4.description.mobile
+                : textContent.section4.description.desktop}
             </p>
             <div className={styles.treatmentImageContainer}>
               <img
@@ -402,11 +661,13 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>줄기세포 유래 성장인자</h2>
+            <h2 className={styles.treatmentTitle}>
+              {textContent.section5.title}
+            </h2>
             <h3 className={styles.treatmentSubtitle}>
-              줄기세포 유래 성장인자만을
-              <br />
-              선별한 고농축 치료법
+              {isMobile
+                ? textContent.section5.subtitle.mobile
+                : textContent.section5.subtitle.desktop}
             </h3>
             <p
               className={styles.treatmentDescriptionCustomMargin}
@@ -417,13 +678,9 @@ export default function ScalpTreatmentPage() {
                 } as React.CSSProperties
               }
             >
-              혈액 속에서 선별한 고농축 줄기세포 유래 성장인자로
-              <br />
-              모낭 줄기세포를 자극하고 모발 성장 주기를 되살리는
-              <br />
-              재생 치료입니다. 두피 주사로 탈모를 치료하고 정맥 주사로
-              <br />
-              노화의 속도를 늦춰줍니다.
+              {isMobile
+                ? textContent.section5.description.mobile
+                : textContent.section5.description.desktop}
             </p>
             <div className={styles.treatmentImageContainer}>
               <img
@@ -472,9 +729,9 @@ export default function ScalpTreatmentPage() {
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
             <h2 className={styles.treatmentTitle}>
-              저출력 레이저 LLLT
-              <br />
-              (Low-Level Laser Therapy)
+              {isMobile
+                ? textContent.section6.title.mobile
+                : textContent.section6.title.desktop}
             </h2>
             <h3
               className={styles.treatmentSubtitleCustomMargin}
@@ -485,16 +742,14 @@ export default function ScalpTreatmentPage() {
                 } as React.CSSProperties
               }
             >
-              저출력 레이저(LLLT)로
-              <br />
-              모낭의 회복력을 높이고
-              <br />
-              세포 대사를 활성화 시킵니다.
+              {isMobile
+                ? textContent.section6.subtitle.mobile
+                : textContent.section6.subtitle.desktop}
             </h3>
             <p className={styles.treatmentDescription}>
-              빛의 자극으로 세포 대사를 활성화시키고,
-              <br />
-              염증 반응을 억제하는 탈모 치료의 부드러운 마무리입니다.
+              {isMobile
+                ? textContent.section6.description.mobile
+                : textContent.section6.description.desktop}
             </p>
           </div>
         </div>

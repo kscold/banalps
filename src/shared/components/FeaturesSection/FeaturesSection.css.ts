@@ -17,30 +17,38 @@ export const featuresSection = style({
       paddingBottom: "240px",
     },
     [breakpoints.mobile]: {
-      height: mvw(1752),
-      padding: `0 ${mvw(20)} ${mvw(120)} ${mvw(20)}`, // 하단 여백 늘리기
+      // height: mvw(1752),
+      padding: `0 ${mvw(16)} ${mvw(120)} ${mvw(16)}`, // 하단 여백 늘리기
     },
   },
 });
 
 export const featuresContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
+
+  "@media": {
+    [breakpoints.mobile]: {
+      padding: 0,
+      margin: 0,
+      width: "100%",
+    },
+  },
 });
 
 export const featuresHeader = style({
-  position: "relative",
   display: "flex",
-  justifyContent: "center",
+  flexDirection: "column",
   alignItems: "center",
   marginBottom: vw(100), // 피그마 정확한 간격
-  minHeight: vw(160), // 따옴표 간격을 위해 높이 증가
+  gap: vw(20), // Space between quotation marks and title
   "@media": {
     [breakpoints.desktopLarge]: {
-      minHeight: "160px",
+      marginBottom: "100px",
+      gap: "20px",
     },
     [breakpoints.mobile]: {
-      minHeight: mvw(204),
-      marginBottom: mvw(60),
+      marginBottom: mvw(80),
+      gap: mvw(24),
     },
   },
 });
@@ -57,8 +65,6 @@ export const featuresMainTitle = style({
   color: "#272727",
   margin: "0",
   textAlign: "center",
-  position: "relative",
-  zIndex: 2, // 따옴표 위에 표시
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "48px",
@@ -70,48 +76,34 @@ export const featuresMainTitle = style({
   },
 });
 
-// SVG 따옴표 스타일 - 세로 배치 (상단 중앙)
+// SVG 따옴표 스타일 - 상단
 export const quotationStart = style({
-  position: "absolute",
-  top: vw(-35), // 제목에서 더 멀리 띄워서 배치
-  left: "50%", // 수평 중앙 정렬
-  transform: "translateX(-50%)", // 완전한 중앙 정렬
   width: vw(40), // 피그마 디자인에 맞는 크기
   height: vw(40),
-  zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "40px",
       height: "40px",
-      top: "-35px",
     },
     [breakpoints.mobile]: {
-      width: "28px",
-      height: "28px",
-      top: "-24px",
+      width: mvw(28),
+      height: mvw(28),
     },
   },
 });
 
-// SVG 따옴표 스타일 - 세로 배치 (하단 중앙)
+// SVG 따옴표 스타일 - 하단
 export const quotationEnd = style({
-  position: "absolute",
-  bottom: vw(-35), // 제목에서 더 멀리 띄워서 배치
-  left: "50%", // 수평 중앙 정렬
-  transform: "translateX(-50%)", // 완전한 중앙 정렬
   width: vw(40), // 피그마 디자인에 맞는 크기
   height: vw(40),
-  zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "40px",
       height: "40px",
-      bottom: "-35px",
     },
     [breakpoints.mobile]: {
-      width: "28px",
-      height: "28px",
-      bottom: "-24px",
+      width: mvw(28),
+      height: mvw(28),
     },
   },
 });
