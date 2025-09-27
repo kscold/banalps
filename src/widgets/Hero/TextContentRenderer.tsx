@@ -13,33 +13,39 @@ export function TextContentRenderer({
   scrollProgress = 0,
   isMobile = false,
 }: TextContentRendererProps) {
-  console.log(
-    `[TextContentRenderer] 현재 텍스트 인덱스: ${currentTextIndex}, 스크롤 진행율: ${scrollProgress}`
-  );
+  // 디버그용 - 각 텍스트의 전환 포인트 확인
+  if (isMobile) {
+    const scrollPosition = scrollProgress * 5;
+    console.log(
+      `[TextContentRenderer] 스크롤 위치: ${scrollPosition.toFixed(2)}, 현재 인덱스: ${currentTextIndex}, 진행율: ${(scrollProgress * 100).toFixed(1)}%`
+    );
+  }
 
   // 각 텍스트의 페이드 효과를 위한 opacity 계산 (KB 스타일)
   const getTextOpacity = (textIndex: number) => {
     // 스크롤 진행에 따라 0~5 범위로 변환 (5개 텍스트)
     const scrollPosition = scrollProgress * 5;
 
-    // 모바일에서는 더 빠른 전환을 위해 페이드 구간을 짧게
-    const fadeRange = isMobile ? 0.15 : 0.3;  // 모바일: 0.15, 데스크톱: 0.3
+    // 모바일에서는 균등한 간격으로 텍스트 전환
+    const fadeInRange = isMobile ? 0.1 : 0.3;   // 페이드인: 모바일 0.1, 데스크톱 0.3
+    const fadeOutRange = isMobile ? 0.1 : 0.3;  // 페이드아웃: 모바일 0.1, 데스크톱 0.3
+    const visibleRange = isMobile ? 0.3 : 0.3;   // 완전히 보이는 구간: 모바일 0.3 (균등), 데스크톱 0.3
 
-    // 각 텍스트가 보이는 구간 설정
-    const startFadeIn = textIndex - fadeRange;
+    // 각 텍스트가 보이는 구간 설정 (균등한 간격)
+    const startFadeIn = textIndex - fadeInRange;
     const fullVisible = textIndex;
-    const startFadeOut = textIndex + fadeRange;
-    const fullyHidden = textIndex + fadeRange * 2;
+    const startFadeOut = textIndex + visibleRange;
+    const fullyHidden = startFadeOut + fadeOutRange;
 
     if (scrollPosition < startFadeIn) return 0;
     if (scrollPosition >= startFadeIn && scrollPosition < fullVisible) {
-      return (scrollPosition - startFadeIn) / fadeRange;
+      return (scrollPosition - startFadeIn) / fadeInRange;
     }
     if (scrollPosition >= fullVisible && scrollPosition <= startFadeOut) {
       return 1;
     }
     if (scrollPosition > startFadeOut && scrollPosition < fullyHidden) {
-      return 1 - (scrollPosition - startFadeOut) / fadeRange;
+      return 1 - (scrollPosition - startFadeOut) / fadeOutRange;
     }
     return 0;
   };
@@ -122,7 +128,7 @@ export function TextContentRenderer({
               opacity: opacity,
               transform: `translateY(${translateY}px)`,
               transition: isMobile
-                ? "opacity 0.15s ease-out, transform 0.15s ease-out"  // 모바일: 0.15초 (매우 빠름)
+                ? "opacity 0.1s ease-out, transform 0.1s ease-out"  // 모바일: 0.1초 (즉시 전환)
                 : "opacity 0.4s ease-out, transform 0.4s ease-out",   // 데스크톱: 0.4초
               pointerEvents: opacity > 0 ? "auto" : "none",
             }}

@@ -35,8 +35,8 @@ export default function HeroSection({
   useEffect(() => {
     if (!isActive) return;
 
-    // 모바일에서는 스크롤 깊이를 적절히 조정 (너무 짧으면 텍스트가 다 안 나타남)
-    const textScrollDepth = isMobile ? 400 : 2000; // 모바일: 400px (빠르지만 모든 텍스트 표시), 데스크톱: 2000px
+    // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환
+    const textScrollDepth = isMobile ? 300 : 2000; // 모바일: 300px (더 빠른 전환), 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts; // 전체 스크롤 높이
     let scrollY = virtualScrollY;
 
@@ -87,7 +87,7 @@ export default function HeroSection({
       console.log("[HeroSection] 스크롤 이벤트 감지 - 전체 화면에서 작동");
 
       const deltaY = e.deltaY;
-      const scrollSpeed = isMobile ? 3.0 : 0.8; // 모바일에서는 훨씬 더 빠르게 반응
+      const scrollSpeed = isMobile ? 3.5 : 0.8; // 모바일에서는 빠르지만 균등하게
       scrollY += deltaY * scrollSpeed;
 
       // 스크롤 범위 제한
@@ -151,7 +151,7 @@ export default function HeroSection({
 
       // 모바일에서 드래그처럼 즉각적인 반응
       // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환
-      const sensitivity = isMobile ? 6.0 : 2.5; // 모바일 감도를 매우 높임 (빠른 전환)
+      const sensitivity = isMobile ? 5.0 : 2.5; // 모바일 감도 균등하게 조정
       const newScrollY = touchStartScrollY + deltaY * sensitivity;
 
       // 스크롤 범위 제한
@@ -217,7 +217,7 @@ export default function HeroSection({
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
   // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
-  const textScrollDepth = isMobile ? 400 : 2000;
+  const textScrollDepth = isMobile ? 300 : 2000;
   const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100;
 
   return (

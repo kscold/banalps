@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import HeroSection from "../widgets/Hero/HeroSection";
@@ -118,7 +118,7 @@ const FullPageMain = () => {
   }, [currentSection, isMobile]);
 
   // Hero에서 비디오로 전환 핸들러
-  const handleHeroComplete = () => {
+  const handleHeroComplete = useCallback(() => {
     if (isTransitioning) return;
     console.log("[FullPageMain] Hero 완료 - 비디오로 전환");
 
@@ -130,10 +130,10 @@ const FullPageMain = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 800);
-  };
+  }, [isTransitioning]);
 
   // 비디오에서 콘텐츠로 전환 핸들러
-  const handleVideoComplete = () => {
+  const handleVideoComplete = useCallback(() => {
     if (isTransitioning) return;
     console.log("[FullPageMain] 비디오 종료 - 콘텐츠로 전환");
 
@@ -144,18 +144,18 @@ const FullPageMain = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 800);
-  };
+  }, [isTransitioning]);
 
   // 비디오 종료 핸들러
-  const handleVideoEnd = () => {
+  const handleVideoEnd = useCallback(() => {
     console.log("[FullPageMain] 비디오 종료");
     handleVideoComplete();
-  };
+  }, [handleVideoComplete]);
 
   // 비디오 준비 핸들러
-  const handleVideoReady = () => {
+  const handleVideoReady = useCallback(() => {
     console.log("[FullPageMain] 비디오 준비 완료");
-  };
+  }, []);
 
   // 비디오 섹션 활성화 시 타이머 시작
   useEffect(() => {
