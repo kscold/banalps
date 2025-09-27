@@ -47,7 +47,6 @@ export const footerContent = style({
 
 export const footerLeft = style({
   display: "flex",
-  gap: vw(135),
   "@media": {
     [breakpoints.desktopLarge]: {
       // gap: "250px",
@@ -62,10 +61,15 @@ export const footerLeft = style({
 export const footerLeftFirst = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(20),
+  gap: vw(40),
+  marginRight: vw(155), // 첫 번째와 두 번째 사이 간격
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "20px",
+      gap: "40px",
+      marginRight: "155px",
+    },
+    [breakpoints.mobile]: {
+      marginRight: 0, // 모바일에서는 마진 제거
     },
   },
 });
@@ -115,13 +119,15 @@ export const footerCopyright = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 400,
   ...responsiveFont(14),
-  lineHeight: vw(20),
-  letterSpacing: "0",
   margin: "0",
   color: "#ffffff",
+  fontStyle: "Regular",
+  lineHeight: "140%",
+  letterSpacing: "0%",
+
   "@media": {
     [breakpoints.desktopLarge]: {
-      lineHeight: "20px",
+      fontSize: "14px",
     },
   },
 });
@@ -130,8 +136,14 @@ export const footerRightSection = style({
   display: "flex",
   flexDirection: "column",
   gap: vw(4),
+  marginRight: vw(135), // 두 번째와 세 번째 사이 간격
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      marginRight: "135px",
+    },
+    [breakpoints.mobile]: {
+      marginRight: 0, // 모바일에서는 마진 제거
+    },
   },
 });
 
@@ -143,6 +155,7 @@ export const footerAddress = style({
   letterSpacing: "0",
   margin: "0",
   color: "#ffffff",
+
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "20px",
@@ -162,26 +175,27 @@ export const footerLinksContainer = style({
 
 export const footerLink = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400,
   ...responsiveFont(14),
   lineHeight: vw(20),
   letterSpacing: "0",
+  margin: "0",
   color: "#ffffff",
-  textDecoration: "none",
   cursor: "pointer",
+  textDecoration: "none",
+  background: "none",
+  border: "none",
+  padding: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "20px",
     },
   },
-  ":hover": {
-    textDecoration: "underline",
-  },
 });
 
 export const footerPhone = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400,
   ...responsiveFont(14),
   lineHeight: vw(20),
   letterSpacing: "0",
@@ -355,11 +369,14 @@ export const mobileLinkItem = style({
     [breakpoints.mobile]: {
       fontFamily: "'S-Core Dream', sans-serif",
       fontWeight: 500,
-      fontSize: mvw(12), // Figma: 12px
-      lineHeight: "14px", // Figma: 14px
+      fontSize: mvw(12),
+      lineHeight: "14px",
       color: "#FFFFFF",
       textDecoration: "none",
       cursor: "pointer",
+      background: "none",
+      border: "none",
+      padding: 0,
       ":hover": {
         opacity: 0.8,
       },

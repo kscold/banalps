@@ -1,6 +1,8 @@
 "use client";
 
-import * as styles from "./TreatmentGuidePage.css";
+import { motion } from "framer-motion"
+import * as styles from "./TreatmentGuidePage.css"
+
 import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
@@ -45,11 +47,17 @@ export default function TreatmentGuidePage() {
               </div>
             </div>
 
-            <h2 className={styles.heroSubtitle}>
+            <motion.h2
+              className={styles.heroSubtitle}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            >
               We&apos;re Ready
               <br />
               When You Are.
-            </h2>
+            </motion.h2>
           </div>
         </div>
       </section>

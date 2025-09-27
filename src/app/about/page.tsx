@@ -6,7 +6,8 @@ import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";
 
 export default function AboutPage() {
-  const { showMainContent } = useAboutScroll();
+  const { showMainContent, videoActive, contentActive, currentSection } =
+    useAboutScroll();
 
   // 피그마 디자인에 따른 강점 데이터
   const strengths = [
@@ -66,14 +67,51 @@ export default function AboutPage() {
     },
   ];
 
+  // 섹션 전환 애니메이션 상태
+  const videoScale = currentSection === 0 ? 1 : 0.95;
+  const videoOpacity = videoActive ? 1 : 0;
+  const contentScale = currentSection === 1 ? 1 : 1.05;
+
   return (
     <div className={styles.aboutPage}>
-      {/* Video Section - 스크롤하면 숨겨짐 */}
-      {!showMainContent && <VideoSection showVideoSection={true} />}
+      {/* Video Section - 모션 애니메이션 적용 */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-screen"
+        initial={{ opacity: 1, scale: 1 }}
+        animate={{
+          opacity: videoOpacity,
+          scale: videoScale,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.43, 0.13, 0.23, 0.96], // cubic-bezier
+        }}
+        style={{
+          zIndex: videoActive ? 2 : 1,
+          backgroundColor: "#000",
+          transformOrigin: "center center",
+        }}
+      >
+        {videoActive && <VideoSection showVideoSection={true} />}
+      </motion.div>
 
-      {/* Main Content - 스크롤하면 비디오를 대체해서 나타남 */}
-      {showMainContent && (
-        <>
+      {/* Main Content - 모션 애니메이션 적용 */}
+      {contentActive && (
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 100, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1,
+            ease: [0.43, 0.13, 0.23, 0.96],
+            delay: 0.2,
+          }}
+          style={{
+            zIndex: 10,
+            backgroundColor: "white",
+            paddingTop: 0,
+          }}
+        >
           {/* Hero Section */}
           <section className={styles.heroSection}>
             <div className={styles.heroContainer}>
@@ -187,7 +225,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 >
                   <img
-                    src="/main/shot/shot3.png"
+                    src="/main/shot/shot3.svg"
                     alt="Park Soo Ho"
                     className={styles.reYouCardImage}
                   />
@@ -479,7 +517,7 @@ export default function AboutPage() {
               </div>
             </div>
           </section>
-        </>
+        </motion.div>
       )}
     </div>
   );

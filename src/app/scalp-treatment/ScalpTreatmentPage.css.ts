@@ -151,19 +151,20 @@ export const HairTransplantHeroTitle = style({
 });
 
 export const HairTransplantHeroTitleDot = style({
-  width: vw(20),
-  height: vw(20),
+  width: vw(12),
+  height: vw(12),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
-  marginLeft: vw(20),
+  marginLeft: vw(4),
   flexShrink: 0,
   alignSelf: "flex-end", // 모바일에서는 하단 정렬
-  marginBottom: vw(20), // 약간의 하단 여백
+  marginBottom: vw(12), // 약간의 하단 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "20px",
-      height: "20px",
-      marginLeft: "20px",
+      width: "12px",
+      height: "12px",
+      marginLeft: "4px",
+      marginBottom: "12px",
     },
     [breakpoints.mobile]: {
       width: mvw(15),
@@ -231,7 +232,7 @@ export const heroIllustration = style({
 export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  // objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
   "@media": {
     [breakpoints.mobile]: {
@@ -419,24 +420,21 @@ export const videoContainer = style({
 // 두피치료 섹션 전용 대형 비디오 컨테이너 - 전체 화면 크기
 export const scalpTreatmentVideoContainer = style({
   position: "relative",
-  width: "100%", // 전체 너비
-  maxWidth: "1600px", // 최대 1600px
-  height: vw(900), // 1920px 기준 900px 높이
-  margin: "0 auto", // 중앙 정렬
-  backgroundColor: "#000000",
+  ...responsiveContainer(1600),
+  height: vw(790), // 1920px 기준 900px 높이
+  borderRadius: vw(8),
   overflow: "hidden",
-  boxShadow: `0 ${vw(20)} ${vw(60)} rgba(0, 0, 0, 0.15)`,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "1600px", // 1920px+ 고정 1600px
-      height: "900px",
-      boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+      height: "790px",
+      borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100vw", // 모바일 좌우 여백
       height: "500px",
       margin: "0",
-      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+      borderRadius: mvw(8),
     },
   },
 });
@@ -461,16 +459,19 @@ export const videoText = style({
 // Vimeo iframe 스타일 - 컨테이너 완전히 채우기
 export const vimeoIframe = style({
   position: "absolute",
-  top: "0",
-  left: "0",
-  width: "100%",
-  height: "100%",
+  top: "50%",
+  left: "50%",
+  width: "177.77vh",
+  height: "100vh",
+  minWidth: "100%",
+  minHeight: "100%",
+  transform: "translate(-50%, -50%)",
   border: "none",
-  borderRadius: vw(16),
+  borderRadius: "8px",
   objectFit: "cover",
   "@media": {
     [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
+      borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       borderRadius: mvw(8),
@@ -497,21 +498,16 @@ export const introSection = style({
 });
 
 export const introContainer = style({
-  maxWidth: vw(1920),
-  margin: "0 auto",
-  padding: `0 ${vw(160)}`,
+  ...responsiveLeftContent(),
+  paddingLeft: 0,
   display: "flex",
-  gap: vw(140),
   position: "relative",
+  height: vw(660),
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "1920px",
-      gap: "140px",
-      height: vw(660),
+      height: "660px",
     },
-    [breakpoints.desktop]: {
-      height: vw(660),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flexDirection: "column",
       padding: "0 20px",
@@ -523,6 +519,7 @@ export const introContainer = style({
 export const introTextContent = style({
   flex: "0 0 auto",
   width: vw(500),
+  height: vw(498),
   display: "flex",
   flexDirection: "column",
   // gap: vw(32),
@@ -530,7 +527,8 @@ export const introTextContent = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "500px",
-      gap: "32px",
+      height: "498px",
+      // gap: "32px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -568,12 +566,11 @@ export const introImageContent = style({
 export const introImageContainer = style({
   width: "100%",
   height: "100%",
-  borderRadius: vw(16),
   overflow: "hidden",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
+      // borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -594,12 +591,12 @@ export const introImage = style({
 export const smallVideoContainer = style({
   width: "100%",
   height: "100%",
-  borderRadius: vw(16),
+  borderRadius: vw(8),
   overflow: "hidden",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
+      borderRadius: "8px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -627,7 +624,7 @@ export const smallVideoText = style({
 });
 
 export const introTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(40),
   lineHeight: vw(52),
@@ -646,7 +643,7 @@ export const introTitle = style({
 });
 
 export const introDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(20),
   lineHeight: vw(32),
@@ -666,11 +663,11 @@ export const introDescription = style({
 
 // Section 2: 치료방법 카드들
 export const treatmentCardsSection = style({
-  padding: `${vw(120)} 0`,
+  padding: `${vw(240)} 0 ${vw(120)} 0`,
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0",
+      padding: "240px 0 120px 0",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -684,7 +681,7 @@ export const treatmentCardsContainer = style({
   margin: "0 auto",
   padding: `0 ${vw(60)}`,
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "space-between",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -693,6 +690,7 @@ export const treatmentCardsContainer = style({
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
+      alignItems: "center",
       maxWidth: "100%",
       gap: mvw(40),
       margin: 0,
@@ -705,7 +703,9 @@ export const treatmentCard = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
   gap: vw(20),
+  height: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
@@ -745,21 +745,25 @@ export const treatmentCardImageImg = style({
 });
 
 export const treatmentArrow = style({
-  width: vw(40),
-  height: vw(40),
+  width: vw(20),
+  height: vw(20),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  alignSelf: "center",
+  alignSelf: "flex-start",
+  marginTop: `calc(${vw(100)} - ${vw(10)})`, // 이미지 높이의 절반 - 화살표 높이의 절반
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "40px",
-      height: "40px",
+      width: "20px",
+      height: "30px",
+      marginTop: "calc(100px - 10px)", // 80px
     },
     [breakpoints.mobile]: {
       transform: "rotate(90deg)",
       width: mvw(30),
       height: mvw(30),
+      marginTop: 0,
+      alignSelf: "center",
     },
   },
 });
@@ -826,14 +830,31 @@ export const treatmentCardTitle = style({
 
 // Section 3-6: 치료방법 상세 섹션들
 export const treatmentDetailSection = style({
-  padding: `${vw(100)} 0`,
+  padding: `${vw(120)} 0`,
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "100px 0",
+      padding: "120px 0",
     },
     [breakpoints.mobile]: {
       padding: "80px 0",
+    },
+  },
+});
+
+// treatmentDetailSection with customizable padding-bottom using CSS variables
+export const treatmentDetailSectionCustomPadding = style({
+  paddingTop: vw(100),
+  paddingBottom: "var(--padding-bottom)",
+  backgroundColor: "#FFFDF7",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingTop: "100px",
+      paddingBottom: "var(--padding-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      paddingTop: "80px",
+      paddingBottom: "var(--padding-bottom-mobile)",
     },
   },
 });
@@ -944,6 +965,50 @@ export const treatmentSubtitle = style({
   },
 });
 
+// treatmentSubtitle with extra margin bottom for specific sections
+export const treatmentSubtitleWithMargin = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(40),
+  lineHeight: vw(56),
+  color: "#272727",
+  margin: 0,
+  marginBottom: vw(144),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "56px",
+      marginBottom: "144px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(20),
+      lineHeight: mvw(32),
+      marginBottom: mvw(60),
+    },
+  },
+});
+
+// treatmentSubtitle with customizable margin bottom using CSS variables
+export const treatmentSubtitleCustomMargin = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 500,
+  ...responsiveFont(40),
+  lineHeight: vw(56),
+  color: "#272727",
+  margin: 0,
+  marginBottom: "var(--margin-bottom)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "56px",
+      marginBottom: "var(--margin-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(20),
+      lineHeight: mvw(32),
+      marginBottom: "var(--margin-bottom-mobile)",
+    },
+  },
+});
+
 export const treatmentDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
@@ -958,6 +1023,69 @@ export const treatmentDescription = style({
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(32),
+    },
+  },
+});
+
+// treatmentDescription with customizable margin bottom using CSS variables
+export const treatmentDescriptionCustomMargin = style({
+  fontFamily: "'S-Core Dream', sans-serif",
+  fontWeight: 400,
+  ...responsiveFont(24),
+  lineHeight: vw(36),
+  color: "#272727",
+  margin: 0,
+  marginBottom: "var(--margin-bottom)",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      lineHeight: "36px",
+      marginBottom: "var(--margin-bottom-desktop)",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+      lineHeight: mvw(32),
+      marginBottom: "var(--margin-bottom-mobile)",
+    },
+  },
+});
+
+// Treatment image container for two images side by side
+export const treatmentImageContainer = style({
+  display: "flex",
+  gap: vw(21), // 655 - (317*2) = 21px gap
+  width: vw(655),
+  height: vw(200),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "655px",
+      height: "200px",
+      gap: "21px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: "auto",
+      flexDirection: "column",
+      gap: mvw(16),
+    },
+  },
+});
+
+// Individual treatment image style
+export const treatmentImage = style({
+  width: vw(317),
+  height: vw(200),
+  borderRadius: vw(8),
+  objectFit: "cover",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "317px",
+      height: "200px",
+      borderRadius: "8px",
+    },
+    [breakpoints.mobile]: {
+      width: "100%",
+      height: mvw(200),
+      borderRadius: mvw(8),
     },
   },
 });

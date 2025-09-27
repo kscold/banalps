@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import FeaturesSection from "../../shared/components/FeaturesSection/FeaturesSection";
 
 import * as styles from "./ScalpTreatmentPage.css";
+import { vw } from "../../shared/styles/responsive.utils";
 
 export default function ScalpTreatmentPage() {
   console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링");
@@ -79,7 +80,7 @@ export default function ScalpTreatmentPage() {
           {/* Hero Illustration - 왼쪽에 붙도록 (데스크탑용) */}
           <div className={styles.HairTransplantHeroIllustration}>
             <img
-              src="/hair-transplant/hero-illustration.svg"
+              src="/forehead/hero-illustration.svg"
               alt="두피치료 일러스트"
               className={styles.heroIllustrationImage}
             />
@@ -110,10 +111,12 @@ export default function ScalpTreatmentPage() {
             {/* 영상 영역 */}
             <div className={styles.scalpTreatmentVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423104?h=9505a82a8f&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
-                style={{ border: "none", borderRadius: "0px" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                style={{ border: "none" }}
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 onLoad={handleVimeoLoad}
                 onError={() => {
@@ -126,17 +129,7 @@ export default function ScalpTreatmentPage() {
       </motion.section>
 
       {/* Section 1: 두피치료 소개 */}
-      <motion.section
-        ref={section1Ref}
-        className={styles.introSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section1InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section1Ref} className={styles.introSection}>
         <div className={styles.introContainer}>
           {/* 왼쪽 텍스트 */}
           <div className={styles.introTextContent}>
@@ -160,17 +153,20 @@ export default function ScalpTreatmentPage() {
               모발이식과 약물치료 만으로 충분하다고 생각했습니다.
               <br />
               <br />
-              하지만, 그 두가지 치료 사이의 부족함을 채울 방법이 분명히
-              필요했지요.
+              하지만, 그 두가지 치료 사이의
+              <br />
+              부족함을 채울 방법이 분명히 필요했지요.
               <br />
               <br />
-              수많은 논문과 사례를 통해 가장 효과적인 치료만 남겼습니다.
+              수많은 논문과 사례를 통해
+              <br />
+              가장 효과적인 치료만 남겼습니다.
             </p>
           </div>
 
           {/* 오른쪽 이미지 */}
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 2: 치료방법 카드들 */}
       <motion.section
@@ -213,7 +209,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.treatmentCardImage}>
               <span className={styles.treatmentCardNumber}>2</span>
               <img
-                src="/scalp-treatment/scalp-treatment-2.png"
+                src="/scalp-treatment/scalp-treatment-3.png"
                 alt="주사 시술"
                 className={styles.treatmentCardImageImg}
               />
@@ -234,7 +230,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.treatmentCardImage}>
               <span className={styles.treatmentCardNumber}>3</span>
               <img
-                src="/scalp-treatment/scalp-treatment-3.png"
+                src="/scalp-treatment/scalp-treatment-4.png"
                 alt="MTS 치료"
                 className={styles.treatmentCardImageImg}
               />
@@ -255,7 +251,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.treatmentCardImage}>
               <span className={styles.treatmentCardNumber}>4</span>
               <img
-                src="/scalp-treatment/scalp-treatment-4.png"
+                src="/scalp-treatment/scalp-treatment-5.png"
                 alt="저출력 레이저 LLLT"
                 className={styles.treatmentCardImageImg}
               />
@@ -270,7 +266,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.treatmentCardImage}>
               <span className={styles.treatmentCardNumber}>5</span>
               <img
-                src="/scalp-treatment/scalp-treatment-5.png"
+                src="/scalp-treatment/scalp-treatment-6.png"
                 alt="정맥 주사"
                 className={styles.treatmentCardImageImg}
               />
@@ -281,26 +277,18 @@ export default function ScalpTreatmentPage() {
       </motion.section>
 
       {/* Section 3: 1550nm 어븀글라스 프락셀 레이저 */}
-      <motion.section
-        ref={section3Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section3InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section3Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423121?h=383908a6bd&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -311,10 +299,19 @@ export default function ScalpTreatmentPage() {
             <h2 className={styles.treatmentTitle}>
               1550nm 어븀글라스 프락셀 레이저
             </h2>
-            <h3 className={styles.treatmentSubtitle}>
+            <h3
+              className={styles.treatmentSubtitleCustomMargin}
+              style={
+                {
+                  "--margin-bottom": vw(144),
+                  "--margin-bottom-desktop": "144px",
+                } as React.CSSProperties
+              }
+            >
               두피의 혈류와
               <br />
               세포 환경을 되살려
+              <br />
               <br />
               모발이 자라기
               <br />
@@ -329,29 +326,21 @@ export default function ScalpTreatmentPage() {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 4: 약물 주사 치료 */}
-      <motion.section
-        ref={section4Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section4InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section4Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423131?h=0371d1d722&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -365,35 +354,47 @@ export default function ScalpTreatmentPage() {
               <br />
               치료도 달라야 합니다.
             </h3>
-            <p className={styles.treatmentDescription}>
+            <p
+              className={styles.treatmentDescriptionCustomMargin}
+              style={
+                {
+                  "--margin-bottom": vw(108),
+                  "--margin-bottom-desktop": "108px",
+                } as React.CSSProperties
+              }
+            >
               작은 바람과 배려의 마음으로 주사 시술 시<br />
               영하 30도의 찬 바람으로 통증을 최소화 합니다.
             </p>
+            <div className={styles.treatmentImageContainer}>
+              <img
+                src="/scalp-treatment/scalp-treatment-7.jpg"
+                alt="약물 주사 치료"
+                className={styles.treatmentImage}
+              />
+              <img
+                src="/scalp-treatment/scalp-treatment-8.jpg"
+                alt="약물 주사 치료"
+                className={styles.treatmentImage}
+              />
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 5: 줄기세포 유래 성장인자 */}
-      <motion.section
-        ref={section5Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section5InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={section5Ref} className={styles.treatmentDetailSection}>
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423150?h=ae4e69a9a3&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -407,7 +408,15 @@ export default function ScalpTreatmentPage() {
               <br />
               선별한 고농축 치료법
             </h3>
-            <p className={styles.treatmentDescription}>
+            <p
+              className={styles.treatmentDescriptionCustomMargin}
+              style={
+                {
+                  "--margin-bottom": vw(36),
+                  "--margin-bottom-desktop": "36px",
+                } as React.CSSProperties
+              }
+            >
               혈액 속에서 선별한 고농축 줄기세포 유래 성장인자로
               <br />
               모낭 줄기세포를 자극하고 모발 성장 주기를 되살리는
@@ -416,31 +425,45 @@ export default function ScalpTreatmentPage() {
               <br />
               노화의 속도를 늦춰줍니다.
             </p>
+            <div className={styles.treatmentImageContainer}>
+              <img
+                src="/scalp-treatment/scalp-treatment-9.jpg"
+                alt="약물 주사 치료"
+                className={styles.treatmentImage}
+              />
+              <img
+                src="/scalp-treatment/scalp-treatment-10.jpg"
+                alt="약물 주사 치료"
+                className={styles.treatmentImage}
+              />
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 6: 저출력 레이저 LLLT */}
-      <motion.section
+      <section
         ref={section6Ref}
-        className={styles.treatmentDetailSection}
-        initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          section6InView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
+        className={styles.treatmentDetailSectionCustomPadding}
+        style={
+          {
+            "--padding-bottom": "0",
+            "--padding-bottom-desktop": "0",
+            "--padding-bottom-mobile": "0",
+          } as React.CSSProperties
         }
-        transition={{ duration: 0.6 }}
       >
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
             <div className={styles.smallVideoContainer}>
               <iframe
-                src="https://player.vimeo.com/video/1101740070?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1121423165?h=eb13c32221&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
                 className={styles.vimeoIframe}
                 style={{ border: "none" }}
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
@@ -453,7 +476,15 @@ export default function ScalpTreatmentPage() {
               <br />
               (Low-Level Laser Therapy)
             </h2>
-            <h3 className={styles.treatmentSubtitle}>
+            <h3
+              className={styles.treatmentSubtitleCustomMargin}
+              style={
+                {
+                  "--margin-bottom": vw(244),
+                  "--margin-bottom-desktop": "244px",
+                } as React.CSSProperties
+              }
+            >
               저출력 레이저(LLLT)로
               <br />
               모낭의 회복력을 높이고
@@ -467,7 +498,7 @@ export default function ScalpTreatmentPage() {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Footer Features Section */}
       <FeaturesSection

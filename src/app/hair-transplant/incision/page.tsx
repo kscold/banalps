@@ -66,8 +66,8 @@ export default function IncisionPage() {
       illustration: "/hair-transplant/incision/illustration-1.svg",
 
       illustrationSize: {
-        width: 340,
-        height: 260,
+        width: 459,
+        height: 190,
       },
       illustrationMobile:
         "/hair-transplant/incision/mobile/illustration-1-mobile.svg",
@@ -78,6 +78,29 @@ export default function IncisionPage() {
       images: {
         main: "/hair-transplant/incision/incision-1.png",
         secondary: "/hair-transplant/incision/incision-2.png",
+      },
+      imagesSize: {
+        main: {
+          width: 600,
+          height: 660,
+        },
+        secondary: {
+          width: 350,
+          height: 315,
+        },
+      },
+      imagesPosition: {
+        main: {
+          top: 60,
+        },
+        secondary: {
+          bottom: 0,
+          left: 0,
+        },
+      },
+      section1RightSize: {
+        width: 1085, // section1Right 컨테이너 너비 800 vw 단위
+        height: 800, // section1Right 컨테이너 높이 700 vw 단위
       },
     },
     section2: {

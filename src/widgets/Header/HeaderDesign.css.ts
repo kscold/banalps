@@ -88,13 +88,14 @@ export const headerCurtain = style({
 
 // 서브메뉴 컨테이너 (responsiveProperty로 정확한 1920px 기준 구현)
 export const submenuContainer = style({
+  background: "#FFFDF7",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-start",
   gap: "0",
   width: "100%",
   ...responsiveProperty("height", 410), // 1920px 기준 450px
-  ...responsiveProperty("paddingTop", 140), // 1920px 기준 140px (헤더top 50px + 헤더높이 85px + 간격 5px)
+  ...responsiveProperty("paddingTop", 135), // 1920px 기준 140px (헤더top 50px + 헤더높이 85px + 간격 5px)
   ...responsiveProperty("paddingBottom", 40), // 1920px 기준 40px
   ...responsiveProperty("paddingLeft", 160), // 1920px 기준 160px
   ...responsiveProperty("paddingRight", 160), // 1920px 기준 160px
@@ -117,7 +118,7 @@ export const dropdownItem = style({
   color: "#272727",
   textDecoration: "none",
   display: "block",
-  padding: `${vw(4)} 0`, // 1920px 기준 4px - 간격 축소
+  height: vw(26),
   textAlign: "center",
   transition: "color 200ms ease",
   whiteSpace: "nowrap",
@@ -128,7 +129,7 @@ export const dropdownItem = style({
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 고정
       fontSize: "16px",
-      padding: "8px 0",
+      height: "26px",
     },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
@@ -307,7 +308,7 @@ export const navItemWrapper = style({
 // 드롭다운 콘텐츠 (1920px 기준 비례 스케일링)
 export const dropdownContent = style({
   position: "absolute",
-  top: vw(65), // 헤더 바로 아래 붙이기
+  top: vw(75), // 헤더 바로 아래 붙이기
   left: "50%",
   transform: "translateX(-50%)",
   display: "flex",
@@ -324,7 +325,6 @@ export const dropdownContent = style({
   ...responsiveProperty("paddingRight", 20), // 1920px 기준 20px
   // ...responsiveProperty("paddingBottom", 30), // 1920px 기준 30px
   ...responsiveProperty("minWidth", 160), // 1920px 기준 160px
-  "@media": {},
 });
 
 export const navLink = style({

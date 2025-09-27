@@ -25,10 +25,11 @@ export const scarProcessContent = style({
   display: "flex",
   flexDirection: "column",
   gap: vw(240),
-  paddingLeft: vw(135),
+  padding: `0 ${vw(135)}`,
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1600px",
+      padding: "0 135px",
       gap: "120px",
     },
     [breakpoints.mobile]: {
@@ -45,11 +46,10 @@ export const processStepOdd = style({
   alignItems: "flex-start",
   gap: vw(380),
   position: "relative",
+  width: "100%",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "380px",
-      flexDirection: "column",
-      alignItems: "stretch",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
@@ -196,7 +196,7 @@ export const stepImage = style({
   maxWidth: vw(292),
   maxHeight: vw(248), // 418 - 80(숫자) - 90(마진)
   objectFit: "cover",
-  borderRadius: vw(8),
+  borderRadius: "8px",
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "292px",

@@ -1,6 +1,65 @@
 @import "tailwindcss";
 @import "../styles/breakpoints.css";
 
+/* 스크롤바 완전히 숨기기 - 스크롤 기능은 유지 */
+html {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* 모든 요소의 가로 스크롤바 숨기기 */
+*::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 히어로 섹션에서 스크롤바 보이기 */
+.show-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: scrollbar; /* IE and Edge */
+  overflow-y: auto !important; /* 스크롤 강제 활성화 */
+}
+
+.show-scrollbar::-webkit-scrollbar {
+  display: block !important; /* Chrome, Safari, Opera */
+  width: 10px !important;
+}
+
+.show-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 5px !important;
+  margin: 20px 0;
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 5px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
 /* S-Core Dream Font Face */
 @font-face {
   font-family: 'S-Core Dream';

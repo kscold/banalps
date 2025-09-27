@@ -22,6 +22,7 @@ export default function ReoperationPage() {
           받지 않습니다.
         </>
       ),
+      titleMarginBottom: 120,
       description: (
         <>
           재수술과 흉터이식은 힘든 수술입니다.
@@ -73,6 +74,29 @@ export default function ReoperationPage() {
         secondaryMaxWidth: true, // secondary 이미지도 100vw
         mainHeight: 305,
         secondaryHeight: 392,
+      },
+      imagesSize: {
+        main: {
+          width: 600,
+          height: 660,
+        },
+        secondary: {
+          width: 350,
+          height: 315,
+        },
+      },
+      imagesPosition: {
+        main: {
+          top: 60,
+        },
+        secondary: {
+          bottom: 0,
+          left: 0,
+        },
+      },
+      section1RightSize: {
+        width: 1085, // section1Right 컨테이너 너비 800 vw 단위
+        height: 800, // section1Right 컨테이너 높이 700 vw 단위
       },
     },
     section2: {

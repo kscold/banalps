@@ -121,6 +121,8 @@ export default function BeforeAfterSlider({
         {/* After 이미지 (전체) */}
         <div className={styles.afterImageWrapper}>
           <img src={afterImage} alt={afterAlt} className={styles.image} />
+          {/* 오른쪽 페이드 아웃 효과 */}
+          <div className={styles.rightFadeOverlay} />
         </div>
 
         {/* Before 이미지 (클립 마스크) */}
@@ -129,13 +131,19 @@ export default function BeforeAfterSlider({
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <img src={beforeImage} alt={beforeAlt} className={styles.image} />
+          {/* 왼쪽 페이드 아웃 효과 */}
+          <div className={styles.leftFadeOverlay} />
         </div>
 
-        {/* 슬라이더 라인 */}
+        {/* 슬라이더 라인 - 상하 두 부분으로 나눔 */}
         <div
-          className={styles.sliderLine}
+          className={styles.sliderLineContainer}
           style={{ left: `${sliderPosition}%` }}
         >
+          {/* 위쪽 선 (원 위) */}
+          <div className={styles.sliderLineTop} />
+          {/* 아래쪽 선 (원 아래) */}
+          <div className={styles.sliderLineBottom} />
           <div className={styles.sliderHandle}>
             <svg
               width={isMobile ? "20" : "38"}

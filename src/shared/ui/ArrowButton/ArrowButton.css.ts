@@ -118,6 +118,12 @@ export const buttonText = style({
   },
 });
 
+// 영문 텍스트용 스타일 (Poppins 폰트 적용)
+export const englishText = style({
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: 500,
+});
+
 // 화살표 컨테이너 (1920px 기준 반응형)
 export const arrowContainer = style({
   display: "flex",

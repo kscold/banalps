@@ -13,12 +13,15 @@ interface ArrowButtonProps {
   className?: string
   fontSize?: number | string // 폰트 크기 (px 단위 또는 vw 단위 문자열)
   fontSizeMobile?: number | string // 모바일 폰트 크기 (px 단위 또는 mvw 단위 문자열)
+  paddingTop?: number // 위쪽 패딩 (px 단위)
+  paddingBottom?: number // 아래쪽 패딩 (px 단위)
   paddingVertical?: number // 위아래 패딩 (px 단위)
   paddingLeft?: number | boolean // 왼쪽 패딩 (px 단위 또는 true면 자동 계산)
   paddingRight?: number // 오른쪽 패딩 (px 단위)
   width?: number | string // 너비 (px 단위 또는 문자열)
   height?: number | string // 높이 (px 단위 또는 vw 단위 문자열)
   textAlign?: "left" | "center" | "right" // 텍스트 정렬
+  iconSize?: number // 아이콘 원 크기 (px 단위)
 }
 
 export default function ArrowButton({
@@ -31,12 +34,15 @@ export default function ArrowButton({
   className,
   fontSize, // 커스텀 폰트 크기
   fontSizeMobile, // 모바일 폰트 크기
+  paddingTop, // 커스텀 위쪽 패딩
+  paddingBottom, // 커스텀 아래쪽 패딩
   paddingVertical, // 커스텀 위아래 패딩
   paddingLeft, // 커스텀 왼쪽 패딩 또는 자동
   paddingRight, // 커스텀 오른쪽 패딩
   width, // 커스텀 너비
   height, // 커스텀 높이
   textAlign = "left", // 기본값은 left
+  iconSize, // 커스텀 아이콘 크기
 }: ArrowButtonProps) {
   const [calculatedPadding, setCalculatedPadding] = useState<{left?: string, right?: string}>({})
   const circleRef = useRef<HTMLDivElement>(null)
@@ -103,6 +109,15 @@ export default function ArrowButton({
     return iconStyle
   }
 
+  // 영문 텍스트인지 확인하는 함수
+  const isEnglishText = (text: React.ReactNode): boolean => {
+    if (typeof text === 'string') {
+      // 한글이 포함되어 있지 않으면 영문으로 간주
+      return !/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text);
+    }
+    return false;
+  }
+
   // 텍스트 스타일 결정
   const getTextStyle = () => {
     let textStyle = styles.buttonText
@@ -111,6 +126,11 @@ export default function ArrowButton({
       textStyle += ` ${styles.whiteText}`
     } else if (color === "blue") {
       textStyle += ` ${styles.blueText}`
+    }
+
+    // 영문 텍스트일 경우 Poppins 폰트 적용
+    if (isEnglishText(children)) {
+      textStyle += ` ${styles.englishText}`
     }
 
     return textStyle
@@ -130,23 +150,34 @@ export default function ArrowButton({
     }
   }
 
-  if (paddingVertical) {
+  // 패딩 처리 - 개별 값이 우선순위가 높음
+  if (paddingTop !== undefined) {
+    customStyle.paddingTop = `${paddingTop}px`
+  } else if (paddingVertical) {
     customStyle.paddingTop = `${paddingVertical}px`
+  }
+
+  if (paddingBottom !== undefined) {
+    customStyle.paddingBottom = `${paddingBottom}px`
+  } else if (paddingVertical) {
     customStyle.paddingBottom = `${paddingVertical}px`
   }
 
   // padding 처리
   if (paddingLeft === true && calculatedPadding.left && calculatedPadding.right) {
+    // true일 때는 자동 계산된 패딩 사용
     customStyle.paddingLeft = calculatedPadding.left
     customStyle.paddingRight = calculatedPadding.right
     // 1920px+ 고정값
     customStyle['--desktop-padding-left'] = `${(parseFloat(calculatedPadding.left) * 19.2)}px`
     customStyle['--desktop-padding-right'] = `${(parseFloat(calculatedPadding.right) * 19.2)}px`
   } else {
+    // paddingLeft가 숫자일 때 vw로 변환
     if (typeof paddingLeft === 'number') {
       customStyle.paddingLeft = `${(paddingLeft / 1920) * 100}vw`
       customStyle['--desktop-padding-left'] = `${paddingLeft}px`
     }
+    // paddingRight 처리
     if (paddingRight) {
       customStyle.paddingRight = `${(paddingRight / 1920) * 100}vw`
       customStyle['--desktop-padding-right'] = `${paddingRight}px`
@@ -205,6 +236,11 @@ export default function ArrowButton({
       <div
         ref={circleRef}
         className={`${getArrowContainerStyle()} ${styles.arrowContainerHover}`}
+        style={iconSize ? {
+          width: `${(iconSize / 1920) * 100}vw`,
+          height: `${(iconSize / 1920) * 100}vw`,
+          '--desktop-icon-size': `${iconSize}px`
+        } as React.CSSProperties : {}}
       >
         <svg
           className={getArrowIconStyle()}

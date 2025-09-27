@@ -2,10 +2,16 @@ import { useState, useEffect } from "react"
 
 export interface UseAboutScrollReturn {
   showMainContent: boolean
+  videoActive: boolean
+  contentActive: boolean
+  currentSection: number
 }
 
 export function useAboutScroll(): UseAboutScrollReturn {
   const [showMainContent, setShowMainContent] = useState(false)
+  const [currentSection, setCurrentSection] = useState(0) // 0: video, 1: content
+  const [videoActive, setVideoActive] = useState(true)
+  const [contentActive, setContentActive] = useState(false)
 
   useEffect(() => {
     console.log("[useAboutScroll/초기화] About 스크롤 훅 초기화 완료")
@@ -24,7 +30,18 @@ export function useAboutScroll(): UseAboutScrollReturn {
         if (deltaY < 0 && window.scrollY <= 10) {
           e.preventDefault()
           console.log("[useAboutScroll/휠업] 메인 콘텐츠 → 비디오로 복귀")
-          setShowMainContent(false)
+
+          // 동일한 전환 모션 적용
+          setCurrentSection(0) // 먼저 섹션 변경
+
+          setTimeout(() => {
+            setVideoActive(true)
+          }, 100)
+
+          setTimeout(() => {
+            setContentActive(false)
+            setShowMainContent(false)
+          }, 400)
 
           // 스크롤 위치 초기화
           window.scrollTo(0, 0)
@@ -64,7 +81,19 @@ export function useAboutScroll(): UseAboutScrollReturn {
       // 아래로 스크롤할 때만 메인 콘텐츠 표시
       if (deltaY > 0) {
         console.log("[useAboutScroll/휠다운] 비디오 → 메인 콘텐츠 전환")
-        setShowMainContent(true)
+
+        // 먼저 섹션 변경 (scale 애니메이션 시작)
+        setCurrentSection(1)
+
+        // 부드러운 전환 효과
+        setTimeout(() => {
+          setContentActive(true)
+        }, 100)
+
+        setTimeout(() => {
+          setVideoActive(false)
+          setShowMainContent(true)
+        }, 400)
       }
 
       // 이전 타이머가 있으면 취소
@@ -89,7 +118,19 @@ export function useAboutScroll(): UseAboutScrollReturn {
         isScrolling = true
 
         console.log("[useAboutScroll/키보드업] 메인 콘텐츠 → 비디오로 복귀")
-        setShowMainContent(false)
+
+        // 동일한 전환 모션 적용
+        setCurrentSection(0)
+
+        setTimeout(() => {
+          setVideoActive(true)
+        }, 100)
+
+        setTimeout(() => {
+          setContentActive(false)
+          setShowMainContent(false)
+        }, 400)
+
         window.scrollTo(0, 0)
 
         if (scrollTimeout) {
@@ -106,7 +147,18 @@ export function useAboutScroll(): UseAboutScrollReturn {
         isScrolling = true
 
         console.log("[useAboutScroll/키보드다운] 비디오 → 메인 콘텐츠 전환")
-        setShowMainContent(true)
+
+        // 먼저 섹션 변경
+        setCurrentSection(1)
+
+        setTimeout(() => {
+          setContentActive(true)
+        }, 100)
+
+        setTimeout(() => {
+          setVideoActive(false)
+          setShowMainContent(true)
+        }, 400)
 
         if (scrollTimeout) {
           clearTimeout(scrollTimeout)
@@ -145,13 +197,34 @@ export function useAboutScroll(): UseAboutScrollReturn {
         // 메인 콘텐츠 상태에서 아래로 스와이프 (위로 스크롤)
         if (showMainContent && deltaY < 0 && window.scrollY <= 10) {
           console.log("[useAboutScroll/스와이프다운] 메인 콘텐츠 → 비디오로 복귀")
-          setShowMainContent(false)
+
+          setCurrentSection(0)
+
+          setTimeout(() => {
+            setVideoActive(true)
+          }, 100)
+
+          setTimeout(() => {
+            setContentActive(false)
+            setShowMainContent(false)
+          }, 400)
+
           window.scrollTo(0, 0)
         }
         // 비디오 상태에서 위로 스와이프 (아래로 스크롤)
         else if (!showMainContent && deltaY > 0) {
           console.log("[useAboutScroll/스와이프업] 비디오 → 메인 콘텐츠 전환")
-          setShowMainContent(true)
+
+          setCurrentSection(1)
+
+          setTimeout(() => {
+            setContentActive(true)
+          }, 100)
+
+          setTimeout(() => {
+            setVideoActive(false)
+            setShowMainContent(true)
+          }, 400)
         }
 
         if (scrollTimeout) {
@@ -183,5 +256,8 @@ export function useAboutScroll(): UseAboutScrollReturn {
 
   return {
     showMainContent,
+    videoActive,
+    contentActive,
+    currentSection,
   }
 }

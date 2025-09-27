@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+
 import * as styles from "./DoctorsPage.css";
 
 // 학술활동 데이터 타입
@@ -14,28 +15,203 @@ interface AcademicActivity {
 
 // 연도별 학술활동 데이터
 const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
-  2025: [],
-  2024: [],
-  2023: [],
+  2025: [
+    {
+      date: "2025.05.11",
+      type: "발표",
+      event: "International Congress of the KSHRS 2025",
+      title: "Hair transplantation after reduction foreheadplasty",
+    },
+
+    {
+      date: "2025.05.10",
+      type: "발표",
+      event: "International Congress of the KSHRS 2025",
+      title: "Implantation",
+    },
+
+    {
+      date: "2025.04.06",
+      type: "발표",
+      event: "대한모발이식학회 한올 심포지엄",
+      title: "헤어라인 디자인",
+    },
+  ],
+  2024: [
+    {
+      date: "2024.11.24",
+      type: "발표",
+      event: "대한모발이식학회",
+      title: "Difficult cases and Situation",
+    },
+
+    {
+      date: "2024.11.18",
+      type: "발표",
+      event: "PRS Korea 2024",
+      title: "Forehead reduction and Hairline correction",
+    },
+
+    {
+      date: "2024.11.18",
+      type: "발표",
+      event: "ISHRS Denver",
+      title: "Secondary reduction foreheadplasty",
+    },
+
+    {
+      date: "2024.11.17",
+      type: "발표",
+      event: "ISHRS Denver",
+      title: "Secondary reduction foreheadplasty",
+    },
+
+    {
+      date: "2024.10.20",
+      type: "발표",
+      event: "2024 대한성형외과의사회",
+      title: "전공의 연수강좌 ",
+    },
+
+    {
+      date: "2024.10.06",
+      type: "발표",
+      event: "대한성형외과의사회 연수강좌 ",
+      title: "이마축소술의 적응증과 실전 팁",
+    },
+
+    {
+      date: "2024.07.29",
+      type: "발표",
+      event: "제 22차 대한모발이식학회 집담회",
+      title: "옅은 눈썹에 미녹시딜",
+    },
+
+    {
+      date: "2024.06.26",
+      type: "발표",
+      event: "Kenvue Inc 임직원 사내강의",
+      title: "여성탈모, 모발이식 그리고 미녹시딜",
+    },
+    {
+      date: "2024.06.02",
+      type: "발표",
+      event: "제14차 대한모발이식학회 학술대회",
+      title: "Consideration of Scar from Reductive Foreheadplasty",
+    },
+
+    {
+      date: "2024.06.01",
+      type: "발표",
+      event: "제14차 대한모발이식학회 학술대회",
+      title: "Video session; Female hairline correction with FUSS",
+    },
+  ],
+  2023: [
+    {
+      date: "2023.11.19",
+      type: "발표",
+      event: "제13차 대한모발이식학회 학술대회",
+      title: "저온 플라즈마 소독기, 수술방에서 MZ 되기",
+    },
+
+    {
+      date: "2023.11.12",
+      type: "발표",
+      event: "PRS Korea 2023",
+      title: "Does Hair Transplant Surgery Really Need Trichophytic Sutures?",
+    },
+
+    {
+      date: "2023.10.29",
+      type: "발표",
+      event: "영성회 심포지엄",
+      title: "Female hairline correction",
+    },
+
+    {
+      date: "2023.05.14",
+      type: "발표",
+      event: "제12차 대한모발이식학회 학술대회",
+      title: "Female hairline correction",
+    },
+
+    {
+      date: "2023.11.12",
+      type: "발표",
+      event: "제12차 대한모발이식학회 학술대회",
+      title:
+        "Video (Panel Discussion) – Clinical pearls to achieve best results and happy patients:",
+    },
+    {
+      date: "2023.05.14",
+      type: "발표",
+      event: "PRS Korea 2023",
+      title: "Does Hair Transplant Surgery Really Need Trichophytic Sutures?",
+    },
+
+    {
+      date: "2023.05.14",
+      type: "발표",
+      event: "영성회 심포지엄",
+      title: "Female hairline correction",
+    },
+
+    {
+      date: "2023.05.14",
+      type: "발표",
+      event: "영성회 심포지엄",
+      title: "Female hairline correction",
+    },
+  ],
   2022: [
     {
-      date: "2022. 11. 15",
+      date: "2022.11.13",
       type: "발표",
-      event: "2022 Asia Pacific Anti-Aging Conference",
-      title: "Advanced Techniques in Hair Transplantation for Natural Results",
-    },
-    {
-      date: "2022. 10. 20",
-      type: "논문",
-      event: "International Journal of Hair Research",
+      event: "PRS Korea 2022",
       title:
-        "Long-term Outcomes of FUE Hair Transplantation: A 5-Year Follow-up Study",
+        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
     },
     {
-      date: "2022. 9. 8",
-      type: "수상",
-      event: "제15차 대한모발이식학회 학술대회",
-      title: "우수연구상 - 여성형 탈모의 새로운 치료 접근법",
+      date: "2022.08.11",
+      type: "발표",
+      event: "PRS Korea 2022",
+      title:
+        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
+    },
+    {
+      date: "2022.08.11",
+      type: "발표",
+      event: "PRS Korea 2022",
+      title:
+        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
+    },
+    {
+      date: "2022.08.11",
+      type: "발표",
+      event: "PRS Korea 2022",
+      title:
+        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
+    },
+
+    {
+      date: "2022.08.11",
+      type: "발표",
+      event: "PRS Korea 2022",
+      title:
+        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
+    },
+    {
+      date: "2022.08.11",
+      type: "발표",
+      event: "PRS Korea 2022",
+      title: "Surgical Assistant Program, 동영상강의 - 이마축소",
+    },
+    {
+      date: "2022.02.20",
+      type: "발표",
+      event: "대한성형외과학회 최소침습연구회(MIPS)",
+      title: "International Aesthetic Joint Conference",
     },
   ],
   2021: [
@@ -107,7 +283,15 @@ const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
   2014: [],
   2013: [],
   2012: [],
-  2011: [],
+  2011: [
+    {
+      date: "2011.11",
+      type: "발표",
+      event: "제69차 대한성형외과학회 학술대회",
+      title:
+        "모발이식을 시행한 후 발생한 부자연스러운 헤어라인을 제모레이저를 이용하여 교정하는 방법",
+    },
+  ],
 };
 
 export default function DoctorsPage() {
@@ -140,17 +324,23 @@ export default function DoctorsPage() {
     setSelectedYear(year);
   };
 
-  // 선택된 연도의 학술활동 가져오기 (최대 6개)
-  const getSelectedYearActivities = (): AcademicActivity[] => {
-    const activities = academicActivitiesByYear[selectedYear] || [];
-    return activities.slice(0, 6); // 최대 6개 항목만 표시
-  };
+  // 모든 연도의 학술활동 가져오기 (최신 연도부터 정렬)
+  const getAllActivities = (): AcademicActivity[] => {
+    const allActivities: AcademicActivity[] = [];
 
-  // 연도 목록과 선택된 연도의 인덱스 계산
-  const yearsList = [
-    2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014,
-    2013, 2012, 2011,
-  ];
+    // 연도를 최신부터 정렬
+    const sortedYears = Object.keys(academicActivitiesByYear)
+      .map(Number)
+      .sort((a, b) => b - a);
+
+    // 각 연도의 활동을 추가
+    sortedYears.forEach((year) => {
+      const yearActivities = academicActivitiesByYear[year] || [];
+      allActivities.push(...yearActivities);
+    });
+
+    return allActivities;
+  };
 
   return (
     <div className={styles.doctorsPage}>
@@ -176,11 +366,17 @@ export default function DoctorsPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
               />
-              <h2 className={styles.medicalTeamHeroTitle}>
+              <motion.h2
+                className={styles.medicalTeamHeroTitle}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              >
                 Banal
                 <br />
                 Medical Team
-              </h2>
+              </motion.h2>
             </div>
           </div>
         </div>
@@ -225,7 +421,7 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-shinseunggyu-mobile-talk.png"
+                    src="/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg"
                     alt="신승규 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -334,10 +530,14 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorSubImage}>
-                <img
+                <motion.img
                   src="/doctors/profile/doctors-profile-1.png"
                   alt="의료진 소개 인트로 2"
                   className={styles.doctorSubImg}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                 />
               </div>
               <div className={styles.doctorSubImage2}>
@@ -354,7 +554,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer}>
                 <img
-                  src="/main/person/doctor-shinseunggyu.png"
+                  src="/doctors/person/doctor-shinseunggyu.png"
                   alt="신승규 원장"
                   className={styles.doctorMainImage}
                 />
@@ -397,7 +597,7 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-parksoohyo-mobile-talk.png"
+                    src="/doctors/mobile/doctor-parksoohyo-talk-mobile.svg"
                     alt="박수호 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -528,7 +728,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer2}>
                 <img
-                  src="/main/person/doctor-parksooho.png"
+                  src="/doctors/person/doctor-parksooho.png"
                   alt="박수호 원장"
                   className={styles.doctorMainImage}
                 />
@@ -565,7 +765,7 @@ export default function DoctorsPage() {
                 </div>
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-kimnarae-mobile-talk.png"
+                    src="/doctors/mobile/doctor-kimnarae-talk-mobile.svg"
                     alt="김나래 원장 quote"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -694,7 +894,7 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorImageContainer3}>
                 <img
-                  src="/main/person/doctor-kimnarae.png"
+                  src="/doctors/person/doctor-kimnarae.png"
                   alt="김나래 원장"
                   className={styles.doctorMainImage}
                 />
@@ -821,11 +1021,10 @@ export default function DoctorsPage() {
                   ref={tableContainerRef}
                   className={styles.academicTableContainer}
                 >
-                  {getSelectedYearActivities().length > 0 ? (
-                    getSelectedYearActivities().map((activity, index) => {
+                  {getAllActivities().length > 0 ? (
+                    getAllActivities().map((activity, index) => {
                       const isFirst = index === 0;
-                      const isLast =
-                        index === getSelectedYearActivities().length - 1;
+                      const isLast = index === getAllActivities().length - 1;
 
                       return (
                         <div

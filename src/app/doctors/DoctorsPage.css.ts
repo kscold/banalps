@@ -8,6 +8,7 @@ import {
   responsiveLeftContent,
   responsiveImageContainer,
 } from "../../shared/styles/responsive.css";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 페이지 전체 스타일
 export const doctorsPage = style({
@@ -162,16 +163,14 @@ export const medicalTeamHeroSection = style({
   position: "absolute",
   top: vw(155),
   right: vw(0),
-  // transform: "translateY(-50%)",
   width: vw(1085),
-  height: vw(850),
+  height: vw(650),
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "155px",
       right: "0px",
-      // transform: "translateY(-50%)",
       width: "1085px",
-      height: "850px",
+      height: "650px",
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -220,11 +219,14 @@ export const medicalTeamHeroTitle = style({
 // 의사 섹션들 - 파란 배경 (Frame 299: 1920x1221)
 export const doctorSection = style({
   width: vw(1920),
+  maxWidth: "1920px",
+  margin: "0 auto",
   position: "relative",
   backgroundColor: "#73D5FA",
   borderRadius: vw(24),
   padding: 0,
   transition: "transform 0.3s ease",
+
   selectors: {
     // 첫번째 섹션 (신승규 원장) - medicalTeamContainer 다음이므로 2번째
     "&:nth-child(2)": {
@@ -242,6 +244,8 @@ export const doctorSection = style({
   },
   "@media": {
     [breakpoints.desktopLarge]: {
+      display: "flex",
+      justifyContent: "center",
       width: "1920px",
       borderRadius: "24px",
       selectors: {
@@ -612,24 +616,19 @@ export const doctorName = style({
 // 박수호 원장용 이름 - absolute 위치
 export const doctorName2 = style({
   position: "absolute",
-  right: vw(317),
-  top: vw(410),
+  right: vw(328),
+  top: vw(400),
   width: vw(558),
   height: vw(320),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
-      right: "317px",
-      top: "410px",
+      right: "328px",
+      top: "400px",
       width: "558px",
       height: "320px",
     },
-    [breakpoints.desktop]: {
-      right: "calc(317px * (100vw / 1920))",
-      top: "calc(410px * (100vw / 1920))",
-      width: "calc(558px * (100vw / 1920))",
-      height: "calc(320px * (100vw / 1920))",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       position: "relative",
       right: "auto",
@@ -645,22 +644,17 @@ export const doctorName3 = style({
   position: "absolute",
   left: vw(410),
   top: vw(90),
-  width: vw(490),
+  width: vw(493),
   height: vw(320),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "410px",
       top: "90px",
-      width: "490px",
+      width: "493px",
       height: "320px",
     },
-    [breakpoints.desktop]: {
-      left: "calc(410px * (100vw / 1920))",
-      top: "calc(90px * (100vw / 1920))",
-      width: "calc(490px * (100vw / 1920))",
-      height: "calc(320px * (100vw / 1920))",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
@@ -817,8 +811,8 @@ export const doctorTitle3 = style({
 });
 
 export const doctorSpecialty = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   ...responsiveFont(14),
   lineHeight: "140%",
   letterSpacing: "0%",
@@ -910,10 +904,10 @@ export const credentialList = style({
   "::after": {
     content: '""',
     position: "absolute",
-    left: vw(-5.5), // 선 정중앙에 맞춤 (-1 - 10/2 = -6)
+    left: vw(-3.25), // 선 정중앙에 맞춤 (-1 - 10/2 = -6)
     top: vw(0),
-    width: vw(10),
-    height: vw(10),
+    width: vw(6),
+    height: vw(6),
     backgroundColor: "#FFFDF7",
     borderRadius: "50%",
     zIndex: 2,
@@ -928,10 +922,10 @@ export const credentialList = style({
         width: "2px", // 고정 두께
       },
       "::after": {
-        left: "-5.5px", // 원 정중앙 맞춤 고정
+        left: "-3.25px", // 원 정중앙 맞춤 고정
         top: "0px",
-        width: "10px", // 고정 크기
-        height: "10px",
+        width: "6px", // 고정 크기
+        height: "6px",
       },
     },
     [breakpoints.mobile]: {
@@ -954,8 +948,8 @@ export const credentialList = style({
 
 // li 요소를 위한 별도 스타일
 export const credentialItem = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: "160%",
   letterSpacing: "0%",
@@ -1083,20 +1077,19 @@ export const doctorQuoteText3 = style({
 });
 
 export const doctorQuoteTextParagraph = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
   fontSize: vw(20),
-  lineHeight: vw(30),
   letterSpacing: "0",
   color: "#FFFFFF",
   margin: 0,
+  lineHeight: "150%",
   textAlign: "center",
   position: "relative",
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
-      lineHeight: "30px",
     },
     [breakpoints.desktop]: {
       fontSize: "calc(20px * (100vw / 1920))",
@@ -1373,22 +1366,22 @@ export const doctorSubImagePark1 = style({
   position: "absolute",
   right: vw(805),
   top: vw(100),
-  width: vw(360),
-  height: vw(260),
+  width: vw(350),
+  height: vw(220),
   overflow: "visible",
   transition: "transform 0.3s ease",
   "@media": {
     [breakpoints.desktopLarge]: {
       right: "805px",
       top: "100px",
-      width: "360px",
-      height: "260px",
+      width: "350px",
+      height: "220px",
     },
     [breakpoints.desktop]: {
       right: "calc(309px * (100vw / 1920))",
       top: "100px",
-      width: "calc(360px * (100vw / 1920))",
-      height: "calc(260px * (100vw / 1920))",
+      width: "calc(350px * (100vw / 1920))",
+      height: "calc(220px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -1405,8 +1398,8 @@ export const doctorSubImagePark2 = style({
   position: "absolute",
   left: vw(0),
   top: vw(612),
-  width: vw(310),
-  height: vw(190),
+  width: vw(370),
+  height: vw(270),
   borderRadius: 0,
   overflow: "visible",
   transition: "transform 0.3s ease",
@@ -1414,8 +1407,8 @@ export const doctorSubImagePark2 = style({
     [breakpoints.desktopLarge]: {
       right: "235px",
       bottom: "96px",
-      width: "310px",
-      height: "190px",
+      width: "370px",
+      height: "270px",
       borderRadius: 0,
     },
     [breakpoints.desktop]: {
@@ -1494,8 +1487,8 @@ export const doctorSubImageKim2 = style({
   position: "absolute",
   right: vw(0),
   bottom: vw(170),
-  width: vw(310),
-  height: vw(190),
+  width: vw(400),
+  height: vw(280),
   borderRadius: 0,
   overflow: "visible",
   transition: "transform 0.3s ease",
@@ -1503,8 +1496,8 @@ export const doctorSubImageKim2 = style({
     [breakpoints.desktopLarge]: {
       right: "0px",
       bottom: "170px",
-      width: "310px",
-      height: "190px",
+      width: "400px",
+      height: "280px",
       borderRadius: 0,
     },
     [breakpoints.mobile]: {
@@ -1524,10 +1517,10 @@ export const doctorSubImageKim2 = style({
 export const historySection = style({
   width: "100%",
   backgroundColor: "#FFFDF7", // 흰색 배경으로 의료진과 구분
-  padding: `${vw(120)} 0`,
+  padding: `${vw(240)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0",
+      padding: "240px 0",
     },
     [breakpoints.mobile]: {
       padding: `${mvw(120)} ${mvw(16)}`,
@@ -2117,336 +2110,6 @@ export const academicActivitiesContainer = style({
   },
 });
 
-// 학술활동 헤더
-export const academicActivitiesHeader = style({
-  textAlign: "left",
-  marginBottom: vw(60),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      marginBottom: "60px",
-    },
-    [breakpoints.mobile]: {
-      marginBottom: "40px",
-    },
-  },
-});
-
-export const academicActivitiesTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(60),
-  lineHeight: vw(72),
-  letterSpacing: "0",
-  color: "#272727",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "60px",
-      lineHeight: "72px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "40px",
-      lineHeight: "48px",
-    },
-  },
-});
-
-// 콘텐츠 영역 - 왼쪽 필터 + 오른쪽 목록
-export const academicActivitiesContent = style({
-  display: "flex",
-  gap: vw(80),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "80px",
-    },
-    [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: "40px",
-    },
-  },
-});
-
-// 왼쪽 필터 사이드바
-export const academicFilterSidebar = style({
-  width: vw(240),
-  flexShrink: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "240px",
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-    },
-  },
-});
-
-export const filterTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(24),
-  lineHeight: vw(32),
-  color: "#272727",
-  margin: `0 0 ${vw(32)} 0`,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "24px",
-      lineHeight: "32px",
-      margin: "0 0 32px 0",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "20px",
-      lineHeight: "28px",
-      margin: "0 0 24px 0",
-    },
-  },
-});
-
-export const filterOptions = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(16),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "16px",
-    },
-    [breakpoints.mobile]: {
-      flexDirection: "row",
-      gap: "12px",
-      overflowX: "auto",
-    },
-  },
-});
-
-export const filterButton = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
-  fontSize: vw(18),
-  lineHeight: vw(24),
-  color: "#666666",
-  backgroundColor: "transparent",
-  border: "none",
-  padding: `${vw(12)} ${vw(16)}`,
-  textAlign: "left",
-  cursor: "pointer",
-  borderRadius: vw(8),
-  transition: "all 0.2s ease",
-  ":hover": {
-    backgroundColor: "#F5F5F5",
-    color: "#272727",
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "18px",
-      lineHeight: "24px",
-      padding: "12px 16px",
-      borderRadius: "8px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "16px",
-      lineHeight: "22px",
-      padding: "10px 14px",
-      borderRadius: "6px",
-      textAlign: "center",
-      whiteSpace: "nowrap",
-    },
-  },
-});
-
-export const active = style({
-  backgroundColor: "#14AEFF",
-  color: "#FFFFFF",
-  fontWeight: 500,
-  ":hover": {
-    backgroundColor: "#0EA5E9",
-    color: "#FFFFFF",
-  },
-});
-
-// 오른쪽 학술활동 목록
-export const academicActivitiesList = style({
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(60),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "60px",
-    },
-    [breakpoints.mobile]: {
-      gap: "40px",
-    },
-  },
-});
-
-export const academicYearGroup = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(32),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "32px",
-    },
-    [breakpoints.mobile]: {
-      gap: "24px",
-    },
-  },
-});
-
-export const academicYear = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 700,
-  ...responsiveFont(32),
-  lineHeight: vw(40),
-  color: "#14AEFF",
-  margin: 0,
-  paddingBottom: vw(16),
-  borderBottom: `${vw(2)} solid #E5E5E5`,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "32px",
-      lineHeight: "40px",
-      paddingBottom: "16px",
-      borderBottom: "2px solid #E5E5E5",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "28px",
-      lineHeight: "36px",
-      paddingBottom: "12px",
-      borderBottom: "2px solid #E5E5E5",
-    },
-  },
-});
-
-export const academicItems = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(40),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "40px",
-    },
-    [breakpoints.mobile]: {
-      gap: "32px",
-    },
-  },
-});
-
-export const academicItem = style({
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(12),
-  padding: vw(32),
-  backgroundColor: "#FAFAFA",
-  borderRadius: vw(16),
-  border: `${vw(1)} solid #E5E5E5`,
-  transition: "all 0.2s ease",
-  ":hover": {
-    backgroundColor: "#F0F8FF",
-    borderColor: "#14AEFF",
-    transform: "translateY(-2px)",
-    boxShadow: "0 4px 20px rgba(20, 174, 255, 0.1)",
-  },
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "12px",
-      padding: "32px",
-      borderRadius: "16px",
-      border: "1px solid #E5E5E5",
-    },
-    [breakpoints.mobile]: {
-      gap: "10px",
-      padding: "24px",
-      borderRadius: "12px",
-      border: "1px solid #E5E5E5",
-    },
-  },
-});
-
-export const academicDate = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
-  ...responsiveFont(16),
-  lineHeight: vw(22),
-  color: "#14AEFF",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "22px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "14px",
-      lineHeight: "20px",
-    },
-  },
-});
-
-export const academicType = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(14),
-  lineHeight: vw(18),
-  color: "#FFFFFF",
-  backgroundColor: "#14AEFF",
-  padding: `${vw(6)} ${vw(12)}`,
-  borderRadius: vw(20),
-  display: "inline-block",
-  width: "fit-content",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "14px",
-      lineHeight: "18px",
-      padding: "6px 12px",
-      borderRadius: "20px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "12px",
-      lineHeight: "16px",
-      padding: "4px 10px",
-      borderRadius: "16px",
-    },
-  },
-});
-
-export const academicTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(20),
-  lineHeight: vw(28),
-  color: "#272727",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "20px",
-      lineHeight: "28px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "18px",
-      lineHeight: "26px",
-    },
-  },
-});
-
-export const academicDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
-  ...responsiveFont(16),
-  lineHeight: vw(24),
-  color: "#666666",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "16px",
-      lineHeight: "24px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "14px",
-      lineHeight: "22px",
-    },
-  },
-});
-
 // Academic Activities Section - 새로운 피그마 디자인
 export const academicActivitiesLayout = style({
   display: "flex",
@@ -2464,66 +2127,6 @@ export const academicActivitiesLayout = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: "30px",
-    },
-  },
-});
-
-export const yearText = style({
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(32),
-  color: "#707070",
-  margin: 0,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "32px",
-    },
-    [breakpoints.desktop]: {
-      fontSize: "24px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: "20px",
-    },
-  },
-});
-
-export const activeText = style({
-  color: "#14AEFF !important",
-  position: "absolute",
-  left: vw(70),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      left: "70px",
-    },
-    [breakpoints.desktop]: {
-      left: "50px",
-    },
-    [breakpoints.mobile]: {
-      left: "40px",
-    },
-  },
-});
-
-export const hiddenText = style({
-  visibility: "hidden",
-});
-
-export const activeYear = style({
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  gap: vw(42),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "42px",
-    },
-    [breakpoints.desktop]: {
-      gap: "8px",
-    },
-    [breakpoints.mobile]: {
-      gap: "6px",
     },
   },
 });
@@ -2596,8 +2199,8 @@ export const academicTableContainer = style({
   overflowY: "auto",
   overflowX: "hidden",
   scrollbarWidth: "thin",
-  borderTop: "2px solid #1A1A1A",
-  borderBottom: "2px solid #1A1A1A",
+  borderTop: "2px solid #707070",
+  borderBottom: "2px solid #707070",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "100%",
@@ -2671,7 +2274,7 @@ export const academicTableRow = style({
       gridTemplateColumns: `auto minmax(0, 1fr)`,
       gridTemplateRows: "auto auto",
       columnGap: mvw(16),
-      borderBottom: "1px solid #E5E5E5",
+      borderBottom: "1px solid #707070",
       borderTop: "none",
       margin: 0,
     },
@@ -2679,26 +2282,25 @@ export const academicTableRow = style({
 });
 
 export const academicRowDate = style({
-  width: vw(120),
+  width: vw(135),
+  height: vw(30),
   flexShrink: 0,
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
-  fontSize: vw(16),
-  lineHeight: vw(24),
+  fontSize: vw(20),
   color: "#333333",
   textAlign: "left",
   whiteSpace: "nowrap",
+  lineHeight: "150%",
+  letterSpacing: "0%",
+
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "120px",
-      fontSize: "16px",
-      lineHeight: "24px",
+      width: "135px",
+      fontSize: "20px",
+      height: "30px",
     },
-    [breakpoints.desktop]: {
-      width: vw(120),
-      fontSize: vw(16),
-      lineHeight: vw(24),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       width: mvw(77),
       fontSize: mvw(14),
@@ -2714,6 +2316,7 @@ export const academicRowDate = style({
 
 export const academicRowCategory = style({
   width: vw(150),
+  height: vw(70),
   flexShrink: 0,
   display: "flex",
   justifyContent: "center",
@@ -2721,6 +2324,7 @@ export const academicRowCategory = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "150px",
+      height: "70px",
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
@@ -2733,15 +2337,15 @@ export const academicRowCategory = style({
 });
 
 export const categoryBadge = style({
-  width: vw(48),
-  height: vw(48),
+  width: vw(70),
+  height: vw(70),
   borderRadius: "50%",
   border: "1px solid #00AFFF",
   backgroundColor: "transparent",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   ...responsiveFont(20),
   lineHeight: vw(20),
@@ -2770,28 +2374,24 @@ export const categoryBadge = style({
 
 export const academicRowEvent = style({
   flex: "0 1 auto",
-  width: vw(380),
+  width: vw(320),
   minWidth: 0,
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  fontSize: vw(16),
-  lineHeight: vw(24),
-  color: "#333333",
+  fontSize: vw(20),
+  lineHeight: "140%",
+  letterSpacing: "0%",
+  paddingRight: vw(30),
+  color: "#272727",
   textAlign: "left",
   overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
+  whiteSpace: "wrap",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "380px",
-      fontSize: "16px",
-      lineHeight: "24px",
+      width: "320px",
+      fontSize: "20px",
     },
-    [breakpoints.desktop]: {
-      width: vw(380),
-      fontSize: vw(16),
-      lineHeight: vw(24),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(24),
@@ -2808,33 +2408,35 @@ export const academicRowEvent = style({
 });
 
 export const academicRowTitle = style({
-  flex: "1 1 auto",
+  // flex: "1 1 auto",
+  width: vw(545),
+  height: vw(52),
   minWidth: 0,
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
-  fontSize: vw(14),
-  lineHeight: vw(21),
-  color: "#666666",
+  fontSize: vw(16),
+  lineHeight: "150%",
+  letterSpacing: "0%",
+  color: "#272727",
   textAlign: "left",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
+  whiteSpace: "wrap",
+  paddingRight: vw(100),
+
   textOverflow: "ellipsis",
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "14px",
-      lineHeight: "21px",
+      width: "545px",
+      fontSize: "16px",
+      height: "52px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(14),
-      lineHeight: vw(21),
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(14),
       lineHeight: mvw(20),
       whiteSpace: "normal",
       overflow: "visible",
       textOverflow: "unset",
-      color: "#666666",
+      color: "#272727",
       gridColumn: "2",
       gridRow: "2",
     },
@@ -2850,11 +2452,11 @@ export const timelineGraffitiSection = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "120px",
-      paddingBottom: "45px",
+      paddingBottom: "240px",
     },
     [breakpoints.desktop]: {
-      paddingTop: mvw(120),
-      paddingBottom: mvw(45),
+      paddingTop: vw(120),
+      paddingBottom: vw(240),
     },
     [breakpoints.mobile]: {
       display: "block",
@@ -2957,7 +2559,7 @@ export const doctorMobileHeader = style({
 
 // 모바일 타이틀
 export const doctorMobileTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: mvw(36),
   lineHeight: "120%",
@@ -3059,7 +2661,7 @@ export const doctorMobilePosition = style({
 
 // 모바일 의사 이름
 export const doctorMobileNameBold = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: mvw(18),
   lineHeight: "150%",
@@ -3085,7 +2687,7 @@ export const doctorMobileQuote = style({
 
 // 모바일 Quote 텍스트
 export const doctorMobileQuoteText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 300,
   fontSize: mvw(16),
   lineHeight: mvw(24),
@@ -3115,7 +2717,7 @@ export const doctorMobileCredentialList = style({
 
 // 모바일 자격사항 아이템
 export const doctorMobileCredentialItem = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   letterSpacing: "0%",
   textAlign: "left",
   fontWeight: 400,

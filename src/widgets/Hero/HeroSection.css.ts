@@ -1,19 +1,23 @@
-import { style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css"
 
-import { fontFamily } from "../../shared/styles/fonts.css";
-import { tokens } from "../../shared/styles/tokens.css";
-import { breakpoints, vw } from "../../shared/styles/responsive.css";
-import { mvw } from "@/shared/styles/responsive.utils";
+import { fontFamily } from "../../shared/styles/fonts.css"
+import { tokens } from "../../shared/styles/tokens.css"
+import { breakpoints, vw } from "../../shared/styles/responsive.css"
+import { mvw } from "@/shared/styles/responsive.utils"
 
 // 메인 컨테이너 - 100vh 고정
 export const heroContainer = style({
-  position: "fixed",
+  position: "absolute",
   top: 0,
   left: 0,
   width: "100%",
-  height: tokens.viewport.height, // 100vh
-  zIndex: tokens.zIndex.base,
+  height: "100vh",
+  zIndex: 1,
   overflow: "hidden",
+  pointerEvents: "auto", // 전체 영역에서 포인터 이벤트 받기
+  // 모바일 터치 스크롤 최적화
+  WebkitOverflowScrolling: "touch",
+  touchAction: "none", // 터치 제스처 제어
   "@media": {
     [breakpoints.mobile]: {
       position: "relative", // 모바일에서는 relative로 변경
@@ -22,9 +26,10 @@ export const heroContainer = style({
       minHeight: "100vh",
       width: "100vw",
       backgroundColor: "#000", // 배경 검은색 추가
+      touchAction: "none", // 모바일 터치 제스처 제어
     },
   },
-});
+})
 
 // 배경 이미지 - 고정
 export const backgroundImage = style({
@@ -42,7 +47,26 @@ export const backgroundImage = style({
       height: "100%",
     },
   },
-});
+})
+
+// 배경 비디오 - Vimeo
+export const backgroundVideo = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  zIndex: 0,
+  pointerEvents: "none", // 비디오 컨테이너도 이벤트 차단하지 않도록
+  "@media": {
+    [breakpoints.mobile]: {
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+    },
+  },
+})
 
 // 비디오 컨테이너
 export const vimeoContainer = style({
@@ -53,21 +77,28 @@ export const vimeoContainer = style({
   height: "100%",
   zIndex: tokens.zIndex.base,
   overflow: "hidden",
-});
+})
 
 // 비디오 iframe
 export const vimeoIframe = style({
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "100%",
-  height: "56.25vw",
+  width: "177.77vh", // 16:9 비율 (100vh * 16/9)
+  height: "100vh",
+  minWidth: "100vw",
   minHeight: "100vh",
-  minWidth: "177.77vh",
   transform: "translate(-50%, -50%)",
   pointerEvents: "none",
   zIndex: tokens.zIndex.video,
-});
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "100vw",
+      height: "56.25vw", // 모바일에서는 가로 기준
+      minHeight: "100vh",
+    },
+  },
+})
 
 // 비디오 섹션 - 전체 화면 차지
 export const videoSection = style({
@@ -89,7 +120,7 @@ export const videoSection = style({
       minHeight: "100vh",
     },
   },
-});
+})
 
 // 비디오 오버레이
 export const videoOverlay = style({
@@ -99,7 +130,7 @@ export const videoOverlay = style({
   width: "100%",
   height: "100%",
   zIndex: tokens.zIndex.video,
-});
+})
 
 // 파란색 섹션 오버레이 - 비디오 이후 스크롤 시 표시
 export const blueSectionOverlay = style({
@@ -118,7 +149,7 @@ export const blueSectionOverlay = style({
       overflow: "visible", // 모바일에서 스크롤 가능
     },
   },
-});
+})
 
 // 콘텐츠 래퍼 - 피그마 디자인 위치에 고정 (오른쪽 아래쪽)
 export const contentWrapper = style({
@@ -128,6 +159,7 @@ export const contentWrapper = style({
   zIndex: tokens.zIndex.content,
   width: "auto",
   display: "flex",
+  pointerEvents: "none", // 텍스트 영역이 스크롤 이벤트를 차단하지 않도록
   alignItems: "flex-end", // 하단 정렬
   justifyContent: "flex-end", // 오른쪽 정렬
   right: vw(356), // vw로 비례 스케일링
@@ -155,7 +187,7 @@ export const contentWrapper = style({
       justifyContent: "center",
     },
   },
-});
+})
 
 // 텍스트 콘텐츠 컨테이너 - 피그마 디자인 크기
 export const textContent = style({
@@ -165,6 +197,7 @@ export const textContent = style({
   zIndex: tokens.zIndex.content,
   alignItems: "flex-end", // 오른쪽 정렬
   justifyContent: "center", // 중앙 정렬
+  pointerEvents: "auto", // 텍스트는 선택 가능하도록
 
   // 기본값 (모바일 우선)
   width: vw(439),
@@ -190,7 +223,7 @@ export const textContent = style({
       justifyContent: "center",
     },
   },
-});
+})
 
 // 텍스트 블록 - 기본 상태 (애니메이션 없음)
 export const textBlock = style({
@@ -204,19 +237,22 @@ export const textBlock = style({
   textAlign: "right", // 오른쪽 정렬
   "@media": {
     [breakpoints.mobile]: {
-      position: "relative",
-      top: 0,
-      right: 0,
-      transform: "none",
-      width: "100%",
+      position: "absolute", // absolute 유지
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      transform: "translate(-50%, -50%)", // 중앙 정렬
+      width: "90vw", // 뷰포트 너비의 90%로 고정
+      maxWidth: "800px", // 최대 너비를 더 크게 설정 (태블릿 대응)
       height: "auto",
       textAlign: "center", // 중앙 정렬
       display: "flex",
       flexDirection: "column",
       gap: "20px",
+      padding: "0 20px", // 좌우 패딩 추가
     },
   },
-});
+})
 
 // 스토리 텍스트 - S-Core Dream, Regular (200)
 export const storyText = style({
@@ -236,9 +272,11 @@ export const storyText = style({
 
   "@media": {
     [breakpoints.mobile]: {
-      textAlign: "left", // 모바일에서 왼쪽 정렬
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
+      textAlign: "left", // 모바일에서 중앙 정렬
+      fontSize: "clamp(14px, 4vw, 20px)", // 반응형 폰트 크기
+      lineHeight: "1.5",
+      whiteSpace: "pre-wrap", // br 태그를 사용한 줄바꿈은 허용하되 자동 줄바꿈은 방지
+      wordBreak: "keep-all", // 한글 단어 단위로 줄바꿈
     },
   },
-});
+})

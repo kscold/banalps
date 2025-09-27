@@ -27,6 +27,9 @@ export default function FeaturesSection({
     triggerOnce: true,
   });
 
+  // Check if desktop (not mobile)
+  const isDesktop = !isMobile;
+
   return (
     <section className={styles.featuresSection}>
       <div className={styles.featuresContent}>
@@ -50,9 +53,9 @@ export default function FeaturesSection({
         <motion.div
           ref={featuresRef}
           className={styles.featuresGrid}
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={
-            featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
+            featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
           }
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
@@ -60,14 +63,14 @@ export default function FeaturesSection({
             <motion.div
               key={index}
               className={styles.featureCard}
-              initial={{ opacity: 0, y: 80 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={
-                featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }
+                featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
               }
               transition={{
                 duration: 0.5,
                 ease: "easeOut",
-                delay: index * 0.1,
+                delay: isDesktop ? 0 : index * 0.1, // Desktop: no delay, Mobile: staggered
               }}
             >
               <div className={styles.featureIconContainer}>

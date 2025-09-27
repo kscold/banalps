@@ -1,3 +1,4 @@
+import { fontFamily } from "@/shared/styles/fonts.css";
 import { breakpoints, mvw, vw } from "@/shared/styles/responsive.css";
 import { style } from "@vanilla-extract/css";
 
@@ -58,7 +59,7 @@ export const labelsContainerMobile = style({
 });
 
 export const labelMobile = style({
-  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 400,
   fontSize: "18px",
   lineHeight: "20px",
@@ -79,9 +80,9 @@ export const labelsContainerDesktop = style({
 });
 
 export const labelDesktop = style({
-  fontFamily: "'S-Core Dream', 'Poppins', sans-serif",
-  fontWeight: 400,
-  fontSize: "20px",
+  fontFamily: fontFamily.poppins,
+  fontWeight: 500,
+  fontSize: vw(20),
   lineHeight: "20px",
   color: "#272727",
   margin: "0",
@@ -111,15 +112,70 @@ export const labelsContainerDesktopBlue = style({
   },
 });
 
-export const sliderLine = style({
+// 좌우 페이드 오버레이
+export const leftFadeOverlay = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "15%",
+  height: "100%",
+  // background: "linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent)",
+  pointerEvents: "none",
+});
+
+export const rightFadeOverlay = style({
+  position: "absolute",
+  top: 0,
+  right: 0,
+  width: "15%",
+  height: "100%",
+  // background: "linear-gradient(to left, rgba(255, 255, 255, 0.4), transparent)",
+  pointerEvents: "none",
+});
+
+// 슬라이더 라인 컨테이너
+export const sliderLineContainer = style({
   position: "absolute",
   top: 0,
   bottom: 0,
   width: "2px",
-  backgroundColor: "#FFFFFF",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
   transform: "translateX(-50%)",
   pointerEvents: "none",
+});
+
+// 원 위쪽 선
+export const sliderLineTop = style({
+  position: "absolute",
+  top: 0,
+  bottom: "calc(50% + 32px)", // 원 반지름(32px) 만큼 아래에서 멈춤
+  width: "2px",
+  backgroundColor: "#FFFFFF",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+  "@media": {
+    [breakpoints.mobile]: {
+      bottom: "calc(50% + 20px)", // 모바일 원 크기에 맞춤
+    },
+  },
+});
+
+// 원 아래쪽 선
+export const sliderLineBottom = style({
+  position: "absolute",
+  top: "calc(50% + 32px)", // 원 반지름(32px) 만큼 위에서 시작
+  bottom: 0,
+  width: "2px",
+  backgroundColor: "#FFFFFF",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+  "@media": {
+    [breakpoints.mobile]: {
+      top: "calc(50% + 20px)", // 모바일 원 크기에 맞춤
+    },
+  },
+});
+
+// 기존 sliderLine 제거 (사용 안함)
+export const sliderLine = style({
+  display: "none",
 });
 
 export const sliderHandle = style({

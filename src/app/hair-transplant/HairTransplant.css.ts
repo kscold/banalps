@@ -75,8 +75,8 @@ export const HairTransplantHeroIllustration = style({
 export const heroIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
-  objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
+  objectFit: "contain", // contain으로 변경하여 이미지 전체가 보이도록
+  objectPosition: "center center", // 중앙 정렬로 변경
   "@media": {
     [breakpoints.mobile]: {
       display: "none",
@@ -291,12 +291,12 @@ export const section1Title = style({
   ...responsiveFont(40, 28), // 1920px 기준 40px, 모바일 28px
   lineHeight: vw(56), // 1920px 기준 56px
   letterSpacing: "0",
-  margin: `0 0 ${vw(40)} 0`, // 1920px 기준 40px 마진
+  margin: `0 0 ${vw(120)} 0`, // 1920px 기준 120px 마진 (타이틀-본문 간격)
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
-      margin: "0 0 40px 0",
+      margin: "0 0 120px 0", // 타이틀-본문 간격 120px
     },
     [breakpoints.mobile]: {
       display: "flex",
@@ -318,13 +318,13 @@ export const section1Image = style({
   // 피그마 디자인에 맞게 텍스트 아래에 자연스럽게 배치
   width: vw(400), // 너비를 줄여서 적절한 크기로 조정
   height: "auto", // 비율 유지
-  marginTop: vw(40), // 제목과의 간격
-  marginBottom: vw(40), // 설명과의 간격
+  marginTop: vw(80), // 제목과의 간격 (일러스트 중간 배치 시 80px)
+  marginBottom: vw(80), // 설명과의 간격 (일러스트 중간 배치 시 80px)
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "400px", // 1920px+ 고정
-      marginTop: "40px",
-      marginBottom: "40px",
+      marginTop: "80px", // 일러스트 중간 배치 시 80px
+      marginBottom: "80px", // 일러스트 중간 배치 시 80px
     },
     [breakpoints.mobile]: {
       width: mvw(375),
@@ -712,12 +712,12 @@ export const section2Title = style({
   ...responsiveFont(40, 28),
   lineHeight: vw(56),
   letterSpacing: "0",
-  margin: `0 0 ${vw(40)} 0`,
+  margin: `0 0 ${vw(120)} 0`, // 타이틀-본문 간격 120px
   color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
-      margin: "0 0 40px 0",
+      margin: "0 0 120px 0", // 타이틀-본문 간격 120px
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
@@ -936,7 +936,7 @@ export const section3Title = style({
 
 export const section3Description = style({
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙: S-Core Dream
-  fontWeight: 400, // 400으로 변경
+
   ...responsiveFont(20, 16), // 1920px 기준 20px, 모바일 16px
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙)
   letterSpacing: "0", // 피그마 스펙: 0
@@ -1442,7 +1442,7 @@ export const featureIcon = style({
 
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200, // 피그마 스펙: 4 Regular = 200
+  fontWeight: 400, // Extra Light(200)에서 Regular(400)로 수정
   ...responsiveFont(20, 12), // 피그마 정확한 크기, 모바일 12px
   lineHeight: vw(30), // 피그마 정확한 라인 높이
   letterSpacing: "0", // 피그마 스펙
@@ -1463,7 +1463,7 @@ export const featureTitle = style({
 
 export const featureText = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200,
+  fontWeight: 400, // Extra Light(200)에서 Regular(400)로 수정
   ...responsiveFont(20), // 1920px 기준 20px 반응형
   lineHeight: vw(30), // 1920px 기준 30px
   letterSpacing: "0",

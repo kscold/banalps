@@ -346,7 +346,7 @@ export default function WhiteSection() {
             {/* Frame 416 - 왼쪽 이미지 영역 */}
             <div className={styles.locationImageArea}>
               <img
-                src="/main/map/banal_house.jpg"
+                src="/main/map/banal-house.svg"
                 alt="바날 성형외과 건물 이미지"
                 className={styles.locationImage}
               />
@@ -363,7 +363,7 @@ export default function WhiteSection() {
             <div className={styles.infoBox}>
               <div className={styles.infoItem}>
                 <span className={styles.infoLabel}>전화번호</span>
-                <span className={styles.infoValue}>02.540.0700</span>
+                <span className={styles.infoNumber}>02.540.0700</span>
               </div>
 
               <div className={styles.infoItem}>

@@ -8,12 +8,13 @@ import {
 
 // Features Section
 export const featuresSection = style({
-  paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
-  paddingBottom: vw(120),
-  backgroundColor: "#FFFDF7", // 흰색 배경
+  paddingTop: vw(280), // 1920px 기준 120px 상단 패딩
+  paddingBottom: vw(240),
+  backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0px", // 1920px+ 고정
+      paddingTop: "280px",
+      paddingBottom: "240px",
     },
     [breakpoints.mobile]: {
       height: mvw(1752),
@@ -227,9 +228,10 @@ export const featureIconImg = style({
 
 export const featureTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 200, // 피그마 스펙: 4 Regular = 200
+  fontWeight: 400, // 피그마 스펙: 4 Regular = 200
   ...responsiveFont(20, 12), // 피그마 정확한 크기, 모바일 12px
-  lineHeight: vw(30), // 피그마 정확한 라인 높이
+  lineHeight: "150%",
+
   letterSpacing: "0", // 피그마 스펙
   color: "#272727", // 피그마 정확한 색상
   textAlign: "center", // 피그마 스펙: CENTER
@@ -237,7 +239,7 @@ export const featureTitle = style({
 
   "@media": {
     [breakpoints.desktopLarge]: {
-      lineHeight: "30px",
+      fontSize: "20px",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),

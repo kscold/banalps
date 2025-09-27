@@ -43,11 +43,25 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href="/fonts/SCDream-fonts.css" />
 
-        {/* Vimeo 최적화 */}
+        {/* Vimeo 최적화 - 캐싱 및 프리로딩 */}
         <link rel="preconnect" href="https://player.vimeo.com" />
         <link rel="preconnect" href="https://f.vimeocdn.com" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" />
         <link rel="dns-prefetch" href="https://player.vimeo.com" />
         <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
+        <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
+        
+        {/* 비디오 프리로드 */}
+        <link 
+          rel="prefetch" 
+          href="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+          as="document"
+        />
+        <link 
+          rel="prefetch" 
+          href="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
+          as="document"
+        />
         <script src="https://player.vimeo.com/api/player.js" async></script>
       </head>
       <body className={`${inter.variable} antialiased`}>

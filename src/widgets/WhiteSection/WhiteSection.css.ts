@@ -8,6 +8,7 @@ import {
   responsiveProperty,
   breakpoints,
 } from "../../shared/styles/responsive.css";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 메인 섹션 컨테이너 (1920px 기준) - BlueSection과 동일하게
 export const whiteSection = style({
@@ -406,12 +407,13 @@ export const locationTitle = style({
 export const locationContent = style({
   width: "100%",
   display: "flex",
-  ...responsiveProperty("gap", 78.7), // 피그마에서 Frame 311과 Frame 318 사이 간격
+  gap: vw(40),
   height: vw(500), // 피그마 디자인 높이 500px
   boxSizing: "border-box", // 패딩 포함한 너비 계산
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "500px",
+      gap: "40px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -425,7 +427,7 @@ export const locationContent = style({
 
 // Frame 311 - 왼쪽 이미지+지도 영역 (1121.29 x 500)
 export const leftContentArea = style({
-  flex: "1", // flex로 유연하게 크기 조정 (남은 공간 대부분 차지)
+  width: vw(1121.29),
   display: "flex",
   ...responsiveProperty("gap", 20.29), // Frame 416과 Mask group 사이 간격
   height: vw(500), // 명시적 높이 설정
@@ -477,7 +479,7 @@ export const locationImage = style({
 
 // Mask group - 지도 영역 (724.29 x 500)
 export const mapArea = style({
-  flex: "1", // 남은 공간 모두 사용 (724.29 / 1121.29 ≈ 64.6%)
+  width: vw(724.29),
   height: vw(500), // 명시적 높이 설정
   borderRadius: vw(8),
   overflow: "hidden",
@@ -542,11 +544,11 @@ export const mapPlaceholder = style({
 export const infoBox = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(40),
-  flex: "1", // 위쪽 공간 모두 차지
+  gap: vw(58),
+  width: vw(430),
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "40px",
+      gap: "58px",
     },
     [breakpoints.mobile]: {
       marginBottom: "0", // 모바일에서는 마진 제거
@@ -571,10 +573,12 @@ export const infoItem = style({
 export const infoLabel = style({
   width: vw(115),
   fontSize: vw(20),
-  fontWeight: "500",
-  color: "#000000",
+  fontWeight: 500,
+  color: "#272727",
   flexShrink: 0,
-  fontFamily: "'S-Core Dream', sans-serif",
+  lineHeight: "140%",
+  letterSpacing: 0,
+  fontFamily: fontFamily.scdream,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "115px",
@@ -587,12 +591,34 @@ export const infoLabel = style({
   },
 });
 
+export const infoNumber = style({
+  flex: "1",
+  fontSize: vw(32),
+  color: "#272727",
+  fontFamily: fontFamily.poppins,
+  fontWeight: 500,
+  lineHeight: "100%",
+  letterSpacing: 0,
+
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "32px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: "14px",
+    },
+  },
+});
+
 export const infoValue = style({
   flex: "1",
   fontSize: vw(20),
-  lineHeight: "1.5",
-  color: "#333333",
-  fontFamily: "'S-Core Dream', sans-serif",
+  color: "#272727",
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
+  lineHeight: "150%",
+  letterSpacing: 0,
+
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
@@ -713,7 +739,7 @@ export const readyHeroIllustration = style({
 export const readyIllustrationImage = style({
   width: "100%",
   height: "100%", // 컨테이너 높이에 맞춤
-  objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
+  // objectFit: "cover", // contain에서 cover로 변경하여 전체 영역을 채움
   objectPosition: "center right", // 이미지를 오른쪽으로 정렬하여 헤더와 맞춤
 });
 
@@ -747,10 +773,12 @@ export const readyTitleContainer = style({
   flexDirection: "column",
   alignItems: "flex-start", // 왼쪽 정렬
   textAlign: "left", // 왼쪽 텍스트 정렬
-  gap: vw(40),
+  gap: vw(80),
   width: "100%",
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      gap: "80px",
+    },
     [breakpoints.mobile]: {
       gap: mvw(24),
       alignItems: "left", // 모바일에서만 중앙 정렬
@@ -765,7 +793,7 @@ export const readyMainTitle = style({
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
   fontSize: vw(60), // 1920px 기준 60px, vw로 스케일링
-  lineHeight: vw(78),
+  lineHeight: "130%",
   letterSpacing: "0",
   color: "#14AEFF",
   margin: 0,
@@ -773,7 +801,6 @@ export const readyMainTitle = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",
-      lineHeight: "78px",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(40),
@@ -800,10 +827,11 @@ export const readyDescription = style({
 
 // 설명 텍스트 - Figma: S-Core Dream Regular 24px, #14AEFF
 export const readyDescriptionText = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
+
   fontWeight: 400,
   ...responsiveFont(24),
-  lineHeight: vw(36),
+  lineHeight: "150%",
   letterSpacing: "0",
   color: "#14AEFF",
   margin: 0,

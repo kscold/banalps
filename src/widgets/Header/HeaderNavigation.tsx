@@ -58,7 +58,7 @@ export default function HeaderNavigation() {
             <div className={styles.actionButtons}>
               {status === "loading" ? (
                 <button className={styles.loginButton} disabled>
-                  ...
+                  LOGIN
                 </button>
               ) : session ? (
                 <button className={styles.loginButton} onClick={handleLogout}>
