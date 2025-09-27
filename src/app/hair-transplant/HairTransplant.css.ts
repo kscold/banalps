@@ -354,7 +354,7 @@ export const section3CenterIllustrationImage = style({
 export const section1Description = style({
   // 피그마 디자인에 맞게 일러스트 아래에 자연스럽게 배치
   fontFamily: fontFamily.scdream,
-  fontWeight: 400, // Extra Light(200)에서 Regular(400)로 수정
+  fontWeight: 400,
   ...responsiveFont(20, 16), // 1920px 기준 20px, 모바일 16px
   lineHeight: vw(30), // 1920px 기준 30px
   letterSpacing: "0",
@@ -746,7 +746,7 @@ export const section2AccentDescription = style({
 
 export const section2Description = style({
   fontFamily: fontFamily.scdream,
-  fontWeight: 400, // Extra Light(200)에서 Regular(400)로 수정
+  fontWeight: 400,
   ...responsiveFont(20, 16),
   lineHeight: vw(30),
   letterSpacing: "0",
@@ -757,12 +757,15 @@ export const section2Description = style({
       fontSize: mvw(16),
       lineHeight: mvw(28),
       textAlign: "left",
+      display: "flex",
+      flexDirection: "column",
+      gap: "2rem", // 모바일에서만 gap 적용
     },
   },
 });
 
 export const section2Quote = style({
-  fontFamily: "'Pretendard', sans-serif", // 피그마 스펙: Pretendard (동일)
+  fontFamily: "'S-Core Dream', sans-serif", // S-Core Dream으로 변경
   fontWeight: 400, // 피그마 스펙: Regular = 400 (동일)
   ...responsiveFont(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙, 동일)
@@ -802,6 +805,7 @@ export const section2Quote = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(18),
+      fontWeight: 500,
       ":before": {
         display: "none",
       },
@@ -932,7 +936,7 @@ export const section3Title = style({
 
 export const section3Description = style({
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙: S-Core Dream
-  fontWeight: 400, // Extra Light(200)에서 Regular(400)로 수정
+
   ...responsiveFont(20, 16), // 1920px 기준 20px, 모바일 16px
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙)
   letterSpacing: "0", // 피그마 스펙: 0

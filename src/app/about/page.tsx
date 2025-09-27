@@ -205,6 +205,19 @@ export default function AboutPage() {
                 </motion.div>
 
                 <motion.div
+                  className={styles.reYouCard4}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                >
+                  <img
+                    src="/main/shot/shot2.png"
+                    alt="의료진 4"
+                    className={styles.reYouCardImage}
+                  />
+                </motion.div>
+                <motion.div
                   className={styles.reYouCard2}
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -228,20 +241,6 @@ export default function AboutPage() {
                   <img
                     src="/main/shot/shot4.png"
                     alt="Kim Narae"
-                    className={styles.reYouCardImage}
-                  />
-                </motion.div>
-
-                <motion.div
-                  className={styles.reYouCard4}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
-                >
-                  <img
-                    src="/main/shot/shot2.png"
-                    alt="의료진 4"
                     className={styles.reYouCardImage}
                   />
                 </motion.div>

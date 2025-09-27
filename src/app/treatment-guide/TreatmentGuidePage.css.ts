@@ -371,6 +371,27 @@ export const contactItem = style({
   },
 });
 
+export const contactItemPhone = style({
+  display: "flex",
+  gap: vw(20),
+  marginBottom: vw(58),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+      marginBottom: "58px",
+    },
+    [breakpoints.desktop]: {
+      gap: vw(20),
+      marginBottom: vw(58),
+    },
+    [breakpoints.mobile]: {
+      gap: mvw(20),
+      marginBottom: mvw(40),
+      alignItems: "center",
+    },
+  },
+});
+
 export const contactLabel = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
@@ -439,6 +460,7 @@ export const contactSchedule = style({
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       lineHeight: mvw(24),
+      fontWeight: 400,
     },
   },
 });
@@ -502,6 +524,7 @@ export const subwayInfo = style({
     [breakpoints.mobile]: {
       fontSize: mvw(14),
       lineHeight: mvw(20),
+      fontWeight: 400,
     },
   },
 });

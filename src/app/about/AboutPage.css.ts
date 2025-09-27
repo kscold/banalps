@@ -98,6 +98,7 @@ export const heroQuote = style({
       lineHeight: "140%",
       margin: `0 0 ${mvw(48)} 0`,
       color: "#000000",
+      fontWeight: 200,
     },
   },
 });
@@ -115,6 +116,7 @@ export const heroTitle = style({
       fontSize: mvw(20),
       lineHeight: "140%",
       color: "#000000",
+      fontWeight: 500,
     },
   },
 });
@@ -644,6 +646,7 @@ export const strengthsTitle = style({
     [breakpoints.mobile]: {
       fontSize: mvw(36),
       lineHeight: "120%",
+      fontWeight: 500,
       textAlign: "left",
       alignSelf: "flex-start",
     },
@@ -810,6 +813,7 @@ export const strengthItemTitle = style({
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
       lineHeight: "28px",
+
       minWidth: "200px",
     },
   },

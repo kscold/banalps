@@ -828,6 +828,7 @@ export const readyDescription = style({
 // 설명 텍스트 - Figma: S-Core Dream Regular 24px, #14AEFF
 export const readyDescriptionText = style({
   fontFamily: fontFamily.scdream,
+
   fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: "150%",

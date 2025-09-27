@@ -629,6 +629,7 @@ export const section1Description = style({
       textAlign: "left",
       maxWidth: "100%",
       width: "100%",
+      fontWeight: 400,
     },
   },
 });
@@ -1067,6 +1068,7 @@ export const section2Description = style({
       fontSize: mvw(16),
       lineHeight: mvw(28),
       textAlign: "left",
+      fontWeight: 400,
     },
   },
 });
@@ -1348,7 +1350,7 @@ export const section3Title = style({
 
 export const section3Description = style({
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙: S-Core Dream
-  fontWeight: 400, // 피그마 스펙: 4 Regular = 200
+  fontWeight: 400, // 400으로 변경
   ...responsiveFont(20, 16), // 1920px 기준 20px, 모바일 16px
   lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙)
   letterSpacing: "0", // 피그마 스펙: 0
@@ -1362,6 +1364,7 @@ export const section3Description = style({
       fontSize: mvw(16),
       lineHeight: mvw(28),
       textAlign: "left",
+      fontWeight: 400,
     },
   },
 });
