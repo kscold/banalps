@@ -80,6 +80,7 @@ interface Section {
   sectionPaddingBottom?: number; // Optional padding-bottom for section (0 to remove padding on mobile)
   quote?: React.ReactNode;
   quoteMobile?: React.ReactNode;
+  conclusion?: React.ReactNode;
   illustration?: string;
   illustrationSize?: {
     width: number;
@@ -1198,9 +1199,56 @@ export default function HairTransplantLayout({
                         <br />
                         <br />
                         <span className={styles.section2Quote}>
-                          {isMobile && section2.quoteMobile
-                            ? section2.quoteMobile
-                            : section2.quote}
+                          {(() => {
+                            const quoteText =
+                              isMobile && section2.quoteMobile
+                                ? section2.quoteMobile
+                                : section2.quote;
+
+                            if (typeof quoteText === "string") {
+                              return quoteText
+                                .split("\n")
+                                .map((line: string, index: number) => (
+                                  <span key={index}>
+                                    {line}
+                                    {index <
+                                      quoteText.split("\n").length - 1 && (
+                                      <br />
+                                    )}
+                                  </span>
+                                ));
+                            }
+
+                            return quoteText;
+                          })()}
+                        </span>
+                      </>
+                    )}
+                    {section2.conclusion && (
+                      <>
+                        <br />
+                        <br />
+                        <span className={styles.section2Conclusion}>
+                          {(() => {
+                            if (
+                              section2.conclusion &&
+                              typeof section2.conclusion === "string"
+                            ) {
+                              const conclusionText = section2.conclusion;
+                              const lines = conclusionText.split("\n");
+
+                              return lines.map(
+                                (line: string, index: number) => (
+                                  <span key={index}>
+                                    {line}
+                                    {index < lines.length - 1 && <br />}
+                                  </span>
+                                )
+                              );
+                            }
+
+                            return section2.conclusion;
+                          })()}
                         </span>
                       </>
                     )}
@@ -1518,9 +1566,56 @@ export default function HairTransplantLayout({
                         <br />
                         <br />
                         <span className={styles.section2Quote}>
-                          {isMobile && section2.quoteMobile
-                            ? section2.quoteMobile
-                            : section2.quote}
+                          {(() => {
+                            const quoteText =
+                              isMobile && section2.quoteMobile
+                                ? section2.quoteMobile
+                                : section2.quote;
+
+                            if (typeof quoteText === "string") {
+                              return quoteText
+                                .split("\n")
+                                .map((line: string, index: number) => (
+                                  <span key={index}>
+                                    {line}
+                                    {index <
+                                      quoteText.split("\n").length - 1 && (
+                                      <br />
+                                    )}
+                                  </span>
+                                ));
+                            }
+
+                            return quoteText;
+                          })()}
+                        </span>
+                      </>
+                    )}
+                    {section2.conclusion && (
+                      <>
+                        <br />
+                        <br />
+                        <span className={styles.section2Conclusion}>
+                          {(() => {
+                            if (
+                              section2.conclusion &&
+                              typeof section2.conclusion === "string"
+                            ) {
+                              const conclusionText = section2.conclusion;
+                              const lines = conclusionText.split("\n");
+
+                              return lines.map(
+                                (line: string, index: number) => (
+                                  <span key={index}>
+                                    {line}
+                                    {index < lines.length - 1 && <br />}
+                                  </span>
+                                )
+                              );
+                            }
+
+                            return section2.conclusion;
+                          })()}
                         </span>
                       </>
                     )}

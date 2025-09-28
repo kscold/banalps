@@ -234,12 +234,12 @@ export const valuesContent = style({
 });
 
 export const valuesMainTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   ...responsiveFont(60),
   lineHeight: "120%",
-  letterSpacing: "-1.8px",
-  color: "#000000",
+  letterSpacing: "0",
+  color: "#272727",
   margin: `0 0 ${vw(80)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -251,7 +251,7 @@ export const valuesMainTitle = style({
       margin: `0 0 ${mvw(80)} 0`,
       textAlign: "left",
       letterSpacing: "0em",
-      color: "#000000",
+      color: "#272727",
     },
   },
 });
@@ -261,7 +261,8 @@ export const valuesDescription = style({
   fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: "150%",
-  color: "#000000",
+  letterSpacing: "0",
+  color: "#272727",
   margin: 0,
   "@media": {
     [breakpoints.mobile]: {
@@ -578,9 +579,11 @@ export const strengthsContainer = style({
 export const strengthsContent = style({
   display: "flex",
   alignItems: "flex-start",
-  gap: vw(156),
+  gap: vw(156), // 1920px 기준 156px 간격
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      gap: "156px", // 1920px 이상에서 156px 고정 간격
+    },
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: mvw(40),
@@ -597,18 +600,24 @@ export const strengthsLeftSection = style({
   alignItems: "flex-start",
   justifyContent: "space-between",
   position: "relative",
-  maxWidth: vw(400),
-  height: "100%",
+  width: vw(520), // 1920px 기준 520px 고정 너비
+  // height: "100%",
+  height: vw(624),
   minHeight: vw(600),
   "@media": {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      width: "520px", // 1920px 이상에서 520px 고정
+      height: "624px", // 1920px 이상에서 624px 고정
+    },
     [breakpoints.mobile]: {
       minHeight: "auto",
-      maxWidth: "100%",
+      width: "100%", // 모바일에서는 전체 너비
+      height: "auto", // 모바일에서는 자동 높이
       alignItems: "flex-start",
       textAlign: "left",
       gap: mvw(32),
       justifyContent: "flex-start",
+      flexDirection: "column", // 모바일에서 세로 배치 확실히
     },
   },
 });
@@ -636,15 +645,19 @@ export const strengthsTitle = style({
 });
 
 export const strengthsGraffiti = style({
-  width: vw(320),
-  height: "auto",
   display: "block",
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "320px",
+      width: "480px", // 1920px 이상에서 480px 고정
+      height: "350px", // 1920px 이상에서 350px 고정
+    },
+    [breakpoints.desktop]: {
+      width: vw(480), // 1920px 기준 480px 너비
+      height: vw(350), // 1920px 기준 350px 높이
     },
     [breakpoints.mobile]: {
       width: mvw(343),
+      height: "auto", // 모바일에서는 자동 높이
       marginBottom: mvw(48),
       alignSelf: "center",
     },
@@ -653,12 +666,13 @@ export const strengthsGraffiti = style({
 
 // 오른쪽 영역 - 깔끔한 리스트 (피그마 디자인 정확히 매칭)
 export const strengthsList = style({
-  flex: 1,
+  flex: "0 0 auto", // flex: 1에서 변경하여 고정 너비 보장
   display: "flex",
   flexDirection: "column",
   gap: 0,
   backgroundColor: "transparent",
   position: "relative",
+  width: vw(924), // 1920px 기준 924px 고정 너비
   "::after": {
     content: '""',
     position: "absolute",
@@ -669,8 +683,12 @@ export const strengthsList = style({
     backgroundColor: "#14AEFF",
   },
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "924px", // 1920px 이상에서 924px 고정
+    },
     [breakpoints.mobile]: {
       width: "100%",
+      flex: "none", // 모바일에서는 자동 너비
       "::after": {
         display: "none",
       },

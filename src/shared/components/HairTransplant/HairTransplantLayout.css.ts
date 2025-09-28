@@ -1169,8 +1169,8 @@ export const section2Svg2 = style({
 export const section2Quote = style({
   fontFamily: fontFamily.pretendard,
   fontWeight: 700, // 피그마 스펙: Regular = 400 (동일)
-  ...responsiveFont(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
-  lineHeight: vw(30), // 1920px 기준 30px (피그마 스펙, 동일)
+  fontSize: vw(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
+  lineHeight: "150%", // 1920px 기준 30px (피그마 스펙, 동일)
   letterSpacing: "0", // 피그마 스펙: 0 (동일)
   color: "#272727", // 피그마 스펙: #272727 (동일)
   position: "relative",
@@ -1213,6 +1213,29 @@ export const section2Quote = style({
         display: "none",
       },
       lineHeight: "28px",
+    },
+  },
+});
+
+export const section2Conclusion = style({
+  fontFamily: fontFamily.scdream,
+  fontWeight: 400,
+  ...responsiveFont(20, 16),
+  lineHeight: vw(30),
+  letterSpacing: "0",
+  margin: "0",
+  color: "#272727",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "20px", // 1920px+ 고정
+      lineHeight: "30px", // 1920px+ 고정
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+      lineHeight: mvw(28),
+      textAlign: "left",
+      fontWeight: 400,
+      marginBottom: mvw(40),
     },
   },
 });

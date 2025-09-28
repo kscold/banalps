@@ -240,13 +240,7 @@ export default function AboutPage() {
             <div className={styles.strengthsContainer}>
               <div className={styles.strengthsContent}>
                 {/* 왼쪽 영역 - 타이틀 + SVG */}
-                <motion.div
-                  className={styles.strengthsLeftSection}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
+                <div className={styles.strengthsLeftSection}>
                   <h2 className={styles.strengthsTitle}>
                     {t.whatBanal.title.split("\n").map((line, index) => (
                       <span key={index}>
@@ -262,7 +256,7 @@ export default function AboutPage() {
                     alt="바날 소개 그래피티"
                     className={styles.strengthsGraffiti}
                   />
-                </motion.div>
+                </div>
 
                 {/* 오른쪽 영역 - 리스트 형태 */}
                 <div className={styles.strengthsList}>

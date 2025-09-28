@@ -116,8 +116,8 @@ export const modalHeader = style({
     content: '""',
     position: "absolute",
     bottom: 0,
-    left: vw(65),
-    right: vw(65),
+    left: "3rem", // 패딩과 동일하게 설정하여 LOGIN 텍스트 시작점에 맞춤
+    right: "3rem", // 패딩과 동일하게 설정하여 X 버튼 끝점에 맞춤
     height: "1px",
     backgroundColor: "#272727",
   },
@@ -129,8 +129,8 @@ export const modalHeader = style({
         content: '""',
         position: "absolute",
         bottom: 0,
-        left: mvw(32),
-        right: mvw(32),
+        left: mvw(32), // 모바일 패딩과 동일하게 설정
+        right: mvw(32), // 모바일 패딩과 동일하게 설정
         height: "1px",
         backgroundColor: "#272727",
       },

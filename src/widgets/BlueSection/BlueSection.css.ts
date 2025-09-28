@@ -489,10 +489,9 @@ export const whatBanalSection = style({
     [breakpoints.mobile]: {
       width: "100%", // 모바일에서 전체 너비
       maxWidth: "none",
-      padding: "0 16px", // 양쪽 16px 패딩으로 오버라이드
+      padding: `0 ${mvw(16)}`, // 양쪽 16px 패딩으로 오버라이드
       margin: "0", // 마진 제거
-      marginBottom: "80px",
-      paddingTop: mvw(60), // 375px 기준 60px 상단 패딩 추가
+      marginBottom: mvw(80),
     },
   },
 });
@@ -513,13 +512,13 @@ export const whatBanalWrapper = style({
 export const whatBanalContent = style({
   display: "flex",
   flexDirection: "row", // 데스크탑에서 가로 배치
-  gap: vw(120), // 1920px 기준 120px
+  gap: vw(156), // 1920px 기준 120px
   alignItems: "flex-start",
   "@media": {
     [breakpoints.desktopLarge]: {
       display: "flex",
       flexDirection: "row", // 1920px 이상에서도 확실히 가로 배치
-      gap: "120px", // 1920px 이상에서 고정
+      gap: "156px", // 1920px 이상에서 고정
     },
     "screen and (min-width: 1024px)": {
       display: "flex",
@@ -559,7 +558,7 @@ export const whatBanalTitleMobile = style({
   lineHeight: "120%",
   letterSpacing: "0",
   color: "#272727",
-  marginBottom: mvw(20), // 375px 기준 20px - 설명 텍스트와 간격 줄임
+  marginBottom: mvw(80), // 375px 기준 20px - 설명 텍스트와 간격 줄임
   marginTop: 0,
   "@media": {
     [breakpoints.mobile]: {
@@ -618,16 +617,17 @@ export const whatBanalTitle = style({
 });
 
 export const whatBanalDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  fontStyle: "5 Medium",
-  ...responsiveFont(24), // 1920px 기준 24px
+  // ...responsiveFont(24), // 1920px 기준 24px
+  fontSize: vw(24),
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   marginBottom: vw(40), // 1920px 기준 40px
   "@media": {
     [breakpoints.desktopLarge]: {
+      fontSize: "24px",
       marginBottom: "40px", // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
@@ -636,23 +636,17 @@ export const whatBanalDescription = style({
   },
 });
 
-const subDesc1FontStyles = responsiveFont(23);
 export const whatBanalSubDescription1 = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
-  fontSize: subDesc1FontStyles.fontSize,
-  lineHeight: vw(35), // 1920px 기준 35px
+  fontSize: vw(24),
+  lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   // marginBottom: vw(80), // 1920px 기준 80px
   "@media": {
-    ...subDesc1FontStyles["@media"],
-    [breakpoints.desktopLarge]: {
-      ...subDesc1FontStyles["@media"]?.[breakpoints.desktopLarge],
-      lineHeight: "35px", // 1920px 이상에서 고정
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      ...subDesc1FontStyles["@media"]?.[breakpoints.mobile],
       display: "none", // 모바일에서 숨김 (모바일 전용 버전 사용)
     },
   },
@@ -702,30 +696,19 @@ export const whatBanalMobileTop = style({
   },
 });
 
-// 모바일에서만 보이는 하단 섹션 (설명 텍스트 + 버튼) - 사용하지 않음
-export const whatBanalMobileBottom = style({
-  display: "none", // 기본적으로 숨김 (데스크탑)
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "block", // 모바일에서만 표시
-      marginTop: mvw(40), // 375px 기준 40px
-    },
-  },
-});
-
 // 모바일 전용 설명 텍스트들
 export const whatBanalSubDescription1Mobile = style({
   display: "none",
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'S-Core Dream', sans-serif",
+      fontFamily: fontFamily.scdream,
       fontWeight: 400,
-      fontSize: mvw(14), // 375px 기준 14px (더 작게)
+      fontSize: mvw(16), // 375px 기준 14px (더 작게)
       lineHeight: "150%", // 150% line height
       letterSpacing: "0",
       color: "#272727",
-      marginBottom: mvw(12),
+      marginBottom: mvw(24),
     },
   },
 });
@@ -735,13 +718,13 @@ export const whatBanalDescriptionMobile = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'S-Core Dream', sans-serif",
+      fontFamily: fontFamily.scdream,
       fontWeight: 500,
       fontSize: mvw(18), // 375px 기준 18px (약간 작게)
       lineHeight: "150%", // 150% line height
       letterSpacing: "0",
       color: "#272727",
-      marginBottom: mvw(12),
+      marginBottom: mvw(24),
     },
   },
 });
@@ -751,9 +734,9 @@ export const whatBanalSubDescription2Mobile = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'S-Core Dream', sans-serif",
+      fontFamily: fontFamily.scdream,
       fontWeight: 400,
-      fontSize: mvw(13), // 375px 기준 13px (더 작게)
+      fontSize: mvw(16), // 375px 기준 13px (더 작게)
       lineHeight: "150%", // 150% line height
       letterSpacing: "0",
       color: "#272727",
@@ -770,7 +753,7 @@ export const whatBanalButtonMobile = style({
       display: "block", // 모바일에서만 표시
       width: "100%", // 양쪽 16px씩 뺀 너비
       marginTop: mvw(40), // 375px 기준 40px
-      marginBottom: mvw(60), // 375px 기준 60px 하단 마진
+      marginBottom: mvw(40), // 375px 기준 60px 하단 마진
     },
   },
 });
@@ -885,19 +868,21 @@ export const featureItemDelay6 = style({
 });
 
 export const featureNumber = style({
-  flex: `0 0 ${vw(60)}`, // 1920px 기준 60px로 줄임
   fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  ...responsiveFont(18, 16), // 1920px 기준 18px, 모바일 16px
+  ...responsiveFont(20, 18), // 1920px 기준 18px, 모바일 16px
   lineHeight: "140%",
   letterSpacing: "0",
   color: "inherit", // 링크 색상 상속
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "flex-start",
+  flex: `0 0 ${vw(114)}`, // 1920px 기준 114px 고정 너비
+  width: vw(114),
   "@media": {
     [breakpoints.desktopLarge]: {
-      flex: "0 0 60px", // 1920px 이상에서 고정 (줄임)
+      flex: "0 0 114px", // 1920px 이상에서 114px 고정
+      width: "114px",
     },
     [breakpoints.mobile]: {
       flex: "none",
@@ -914,11 +899,11 @@ export const featureContent = style({
   display: "flex",
   flexDirection: "row", // 데스크탑에서는 제목과 설명을 가로로 배치
   alignItems: "flex-start",
-  gap: vw(24), // 1920px 기준 24px (제목과 설명 사이 간격)
+  gap: vw(20), // 1920px 기준 20px (제목과 설명 사이 간격)
   "@media": {
     [breakpoints.desktopLarge]: {
       flexDirection: "row", // 1920px 이상에서도 가로 배치
-      gap: "24px", // 1920px 이상에서 고정
+      gap: "20px", // 1920px 이상에서 20px 고정
     },
     [breakpoints.mobile]: {
       width: mvw(225),
@@ -930,24 +915,23 @@ export const featureContent = style({
 });
 
 export const featureTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(24), // 1920px 기준 24px, vw로 스케일링
   lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727", // 검은색
-  flex: `0 0 ${vw(240)}`, // 1920px 기준 240px 고정 너비로 모든 설명 시작점 통일
+  flex: `0 0 ${vw(250)}`, // 1920px 기준 250px 고정 너비
   margin: 0,
-  whiteSpace: "nowrap", // 타이틀은 줄바꿈 없음
+  // whiteSpace: "nowrap", // 타이틀은 줄바꿈 없음
+  width: vw(250),
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "24px", // 1920px 이상에서 24px 고정
-      flex: "0 0 240px", // 1920px 이상에서 고정
+      flex: "0 0 250px", // 1920px 이상에서 250px 고정
+      width: "250px",
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(24), // 1024-1919px에서도 vw 스케일링
-      whiteSpace: "nowrap", // 데스크탑에서도 줄바꿈 방지
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flex: "none", // 모바일에서는 자동 너비
       fontSize: mvw(20), // 375px 기준 16px로 더 크게
@@ -955,15 +939,16 @@ export const featureTitle = style({
       fontWeight: 500,
       marginBottom: mvw(24), // 모바일에서 8px 아래 마진
       lineHeight: "140%",
+      width: "100%",
     },
   },
 });
 
 export const featureDescription = style({
   fontFamily: fontFamily.scdream,
-  fontWeight: 300,
-  fontSize: vw(18), // 1920px 기준 18px, vw로 스케일링
-  lineHeight: "170%",
+  fontWeight: 400,
+  fontSize: vw(16), // 1920px 기준 18px, vw로 스케일링
+  lineHeight: "160%",
   letterSpacing: "0",
   color: "#272727", // 검은색
   margin: 0,
@@ -971,13 +956,9 @@ export const featureDescription = style({
   opacity: 0.9,
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "18px", // 1920px 이상에서 18px 고정
-      whiteSpace: "pre-line", // 1920px 기준 줄바꿈 유지
+      fontSize: "16px", // 1920px 이상에서 18px 고정
     },
-    [breakpoints.desktop]: {
-      fontSize: vw(18), // 1024-1919px에서도 vw 스케일링
-      whiteSpace: "pre-line", // 데스크탑에서도 1920px 기준 줄바꿈 유지
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       fontSize: mvw(16), // 375px 기준 14px
       lineHeight: "150%",
@@ -1368,6 +1349,7 @@ export const doctorsSection = style({
       padding: "0", // 패딩 제거
       margin: "0",
       marginBottom: "0", // 하단 마진도 제거
+      height: "auto",
     },
   },
 });
@@ -1419,7 +1401,7 @@ export const doctorsMainTitle = style({
 });
 
 export const doctorsSubTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(24), // 1920px 기준 24px, vw로 스케일링
   lineHeight: "150%",
@@ -1439,17 +1421,17 @@ export const doctorsSubTitle = style({
 });
 
 export const doctorsDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
-  fontSize: vw(18), // 1920px 기준 18px, vw로 스케일링
-  lineHeight: "160%",
+  fontFamily: fontFamily.pretendard,
+  fontWeight: 400,
+  fontSize: vw(24), // 1920px 기준 18px, vw로 스케일링
+  lineHeight: "35px",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
   marginBottom: vw(80),
   "@media": {
     [breakpoints.desktopLarge]: {
-      fontSize: "18px", // 1920px 이상에서 18px 고정
+      fontSize: "24px", // 1920px 이상에서 18px 고정
       marginBottom: "80px", // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
@@ -1883,6 +1865,7 @@ export const doctorsMobileBottom = style({
       display: "block",
       padding: `0 ${mvw(16)} ${mvw(40)} ${mvw(16)}`,
       backgroundColor: "#73D5FA",
+      height: mvw(350),
     },
   },
 });
@@ -1908,13 +1891,13 @@ export const doctorsMobileSubDescription = style({
   "@media": {
     [breakpoints.mobile]: {
       display: "block",
-      fontFamily: "'Pretendard', sans-serif",
-      fontWeight: 300,
-      fontSize: mvw(14),
-      lineHeight: "160%",
+      fontFamily: fontFamily.scdream,
+      fontWeight: 400,
+      fontSize: mvw(16),
+      lineHeight: "150%",
       letterSpacing: "0",
-      color: "#666666",
-      marginBottom: mvw(32),
+      color: "#272727",
+      marginBottom: mvw(80),
     },
   },
 });
@@ -2005,6 +1988,7 @@ export const doctorMobileOverlay = style({
       position: "absolute",
       right: mvw(20),
       height: mvw(290),
+      width: mvw(165),
       top: "50%",
       transform: "translateY(-50%)",
       zIndex: 10, // 텍스트가 가장 앞에

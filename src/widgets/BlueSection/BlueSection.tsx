@@ -326,7 +326,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={`${styles.doctorMobileFullNameFirst} english-name`}>
+              <h3
+                className={`${styles.doctorMobileFullNameFirst} english-name`}
+              >
                 Shin
                 <br />
                 Seung
@@ -347,7 +349,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={`${styles.doctorMobileFullNameSecond} english-name`}>
+              <h3
+                className={`${styles.doctorMobileFullNameSecond} english-name`}
+              >
                 Park
                 <br />
                 Soo Ho
@@ -366,7 +370,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={`${styles.doctorMobileFullNameThird} english-name`}>
+              <h3
+                className={`${styles.doctorMobileFullNameThird} english-name`}
+              >
                 Kim
                 <br />
                 Narae
@@ -381,7 +387,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 모바일 하단 설명 텍스트 */}
         <div className={styles.doctorsMobileBottom}>
           <p className={styles.doctorsMobileDescription}>
-            {blue.doctors.subTitle}
+            {blue.doctors.subTitleMobile}
           </p>
           <p className={styles.doctorsMobileSubDescription}>
             {blue.doctors.mobileDescription.split("\n").map((line, index) => (

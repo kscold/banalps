@@ -65,6 +65,10 @@ function CrownContent() {
         language === "JP"
           ? "/hair-transplant/crown/illustration-1-jp.svg"
           : "/hair-transplant/crown/illustration-1.svg",
+      illustrationSize: {
+        width: 459,
+        height: 114,
+      },
       images: {
         main: "/hair-transplant/crown/crown-2.png",
         secondary: "/hair-transplant/crown/crown-1.png",

@@ -142,6 +142,7 @@ function IncisionContent() {
         width: 204,
         height: 76,
       },
+      titleMarginBottom: 120,
       description: (
         <>
           {t.section2.description.split("\n").map((line, index) => (

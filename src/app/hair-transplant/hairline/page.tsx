@@ -139,6 +139,10 @@ function HairlineContent() {
           ))}
         </>
       ),
+      titleMarginBottom: 120,
+      quote: t.section2.quote,
+      quoteMobile: t.section2.quote,
+      conclusion: t.section2.conclusion,
       description: (
         <>
           {t.section2.description.split("\n").map((line, index) => (
