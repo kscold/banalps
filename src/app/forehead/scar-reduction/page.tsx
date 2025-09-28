@@ -9,22 +9,16 @@ export default function ScarReductionPage() {
   const layoutData = {
     heroTitle: (
       <>
-        {t.hero.title.split('\n').map((line, index) => (
-          <span key={index}>
-            {line}
-            {index < t.hero.title.split('\n').length - 1 && <br />}
-          </span>
-        ))}
+        {t.hero.titleLine1}
+        <br />
+        {t.hero.titleLine2}
       </>
     ),
     heroTitleMobile: (
       <>
-        {t.hero.title.split('\n').map((line, index) => (
-          <span key={index}>
-            {line}
-            {index < t.hero.title.split('\n').length - 1 && <br />}
-          </span>
-        ))}
+        {t.hero.titleLine1}
+        <br />
+        {t.hero.titleLine2}
       </>
     ),
     heroIllustration: "/forehead/hero-illustration.svg",
@@ -33,10 +27,10 @@ export default function ScarReductionPage() {
       number: 1,
       title: (
         <>
-          {t.section1.title.split('\n').map((line, index) => (
+          {t.section1.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split('\n').length - 1 && <br />}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
@@ -44,30 +38,32 @@ export default function ScarReductionPage() {
       titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
       titleMobile: (
         <>
-          {t.section1.title.split('\n').map((line, index) => (
+          {t.section1.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split('\n').length - 1 && <br />}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section1.description.split('\n').map((line, index) => (
+          {t.section1.description.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split('\n').length - 1 && <br />}
+              {index < t.section1.description.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split('\n').map((line, index) => (
+          {t.section1.descriptionMobile.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
+              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
             </span>
           ))}
         </>
@@ -86,40 +82,42 @@ export default function ScarReductionPage() {
       number: 2,
       title: (
         <>
-          {t.section2.title.split('\n').map((line, index) => (
+          {t.section2.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split('\n').length - 1 && <br />}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section2.title.split('\n').map((line, index) => (
+          {t.section2.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split('\n').length - 1 && <br />}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section2.description.split('\n').map((line, index) => (
+          {t.section2.description.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split('\n').length - 1 && <br />}
+              {index < t.section2.description.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split('\n').map((line, index) => (
+          {t.section2.descriptionMobile.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
+              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
             </span>
           ))}
         </>
@@ -152,20 +150,20 @@ export default function ScarReductionPage() {
     },
     featuresTitle: (
       <>
-        {t.features.title.split('\n').map((line, index) => (
+        {t.features.title.split("\n").map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split('\n').length - 1 && <br />}
+            {index < t.features.title.split("\n").length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split('\n').map((line, index) => (
+        {t.features.titleMobile.split("\n").map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
+            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
           </span>
         ))}
       </>
@@ -174,10 +172,10 @@ export default function ScarReductionPage() {
       icon: `/hair-transplant/feature-${index + 1}.svg`,
       title: (
         <>
-          {card.title.split('\n').map((line, cardIndex) => (
+          {card.title.split("\n").map((line, cardIndex) => (
             <span key={cardIndex}>
               {line}
-              {cardIndex < card.title.split('\n').length - 1 && <br />}
+              {cardIndex < card.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>

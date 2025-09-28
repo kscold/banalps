@@ -105,34 +105,9 @@ export default function ScalpTreatmentPage() {
     },
     section3: {
       title: t.details.section3.title,
-      subtitle: {
-        desktop: (
-          <>
-            {t.details.section3.subtitle.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section3.subtitle.split("\n").length - 1 && (
-                  <br />
-                )}
-              </span>
-            ))}
-          </>
-        ),
-        mobile: (
-          <>
-            {t.details.section3.subtitleMobile
-              .split("\n")
-              .map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index <
-                    t.details.section3.subtitleMobile.split("\n").length -
-                      1 && <br />}
-                </span>
-              ))}
-          </>
-        ),
-      },
+
+      subtitle: t.details.section3.subtitle,
+      subtitleMobile: t.details.section3.subtitleMobile,
       description: {
         desktop: (
           <>
@@ -164,6 +139,7 @@ export default function ScalpTreatmentPage() {
     },
     section4: {
       title: t.details.section4.title,
+
       subtitle: {
         desktop: (
           <>
@@ -222,6 +198,7 @@ export default function ScalpTreatmentPage() {
     },
     section5: {
       title: t.details.section5.title,
+
       subtitle: {
         desktop: (
           <>
@@ -279,32 +256,8 @@ export default function ScalpTreatmentPage() {
       },
     },
     section6: {
-      title: {
-        desktop: (
-          <>
-            {t.details.section6.title.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section6.title.split("\n").length - 1 && (
-                  <br />
-                )}
-              </span>
-            ))}
-          </>
-        ),
-        mobile: (
-          <>
-            {t.details.section6.title.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section6.title.split("\n").length - 1 && (
-                  <br />
-                )}
-              </span>
-            ))}
-          </>
-        ),
-      },
+      title: t.details.section6.title,
+
       subtitle: {
         desktop: (
           <>
@@ -607,7 +560,9 @@ export default function ScalpTreatmentPage() {
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
             <h2 className={styles.treatmentTitle}>
-              {textContent.section3.title}
+              {isMobile
+                ? textContent.section3.title
+                : textContent.section3.title}
             </h2>
             <h3
               className={styles.treatmentSubtitleCustomMargin}
@@ -619,8 +574,27 @@ export default function ScalpTreatmentPage() {
               }
             >
               {isMobile
-                ? textContent.section3.subtitle.mobile
-                : textContent.section3.subtitle.desktop}
+                ? textContent.section3.subtitleMobile
+                    .split("\n")
+                    .map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index <
+                          textContent.section3.subtitleMobile.split("\n")
+                            .length -
+                            1 && <br />}
+                      </span>
+                    ))
+                : textContent.section3.subtitle
+                    .split("\n")
+                    .map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index <
+                          textContent.section3.subtitle.split("\n").length -
+                            1 && <br />}
+                      </span>
+                    ))}
             </h3>
             <p className={styles.treatmentDescription}>
               {isMobile
@@ -780,8 +754,8 @@ export default function ScalpTreatmentPage() {
           <div className={styles.treatmentTextContent}>
             <h2 className={styles.treatmentTitle}>
               {isMobile
-                ? textContent.section6.title.mobile
-                : textContent.section6.title.desktop}
+                ? textContent.section6.title
+                : textContent.section6.title}
             </h2>
             <h3
               className={styles.treatmentSubtitleCustomMargin}

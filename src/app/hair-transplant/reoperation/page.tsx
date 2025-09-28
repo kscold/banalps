@@ -28,6 +28,16 @@ function ReoperationContent() {
           ))}
         </>
       ),
+      titleMobile: (
+        <>
+          {t.section1.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
       titleMarginBottom: 120,
       description: (
         <>
@@ -101,6 +111,16 @@ function ReoperationContent() {
           ))}
         </>
       ),
+      titleMobile: (
+        <>
+          {t.section2.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
       description: (
         <>
           {t.section2.description.split("\n").map((line, index) => (
@@ -159,6 +179,16 @@ function ReoperationContent() {
     section3: {
       number: 3,
       title: (
+        <>
+          {t.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+      titleMobile: (
         <>
           {t.section3.title.split("\n").map((line, index) => (
             <span key={index}>

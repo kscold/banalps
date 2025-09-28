@@ -1109,7 +1109,13 @@ export default function HairTransplantLayout({
                 <div className={styles.section2NumberBg}>{section2.number}</div>
               )}
               <div className={styles.section2Left}>
-                <div className={styles.section2Text}>
+                <div
+                  className={
+                    scarReduction
+                      ? styles.section2TextScarReduction
+                      : styles.section2Text
+                  }
+                >
                   <h2
                     className={styles.section2Title}
                     style={{
@@ -1138,8 +1144,18 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {isMobile && section2.titleMobile
-                      ? section2.titleMobile
+                    {typeof section2.title === "string"
+                      ? (() => {
+                          const titleText = section2.title;
+                          return titleText.split("\n").map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < titleText.split("\n").length - 1 && (
+                                <br />
+                              )}
+                            </span>
+                          ));
+                        })()
                       : section2.title}
                   </h2>
 
@@ -1485,7 +1501,13 @@ export default function HairTransplantLayout({
                   </div>
                 )}
 
-                <div className={styles.section2Text}>
+                <div
+                  className={
+                    scarReduction
+                      ? styles.section2TextScarReduction
+                      : styles.section2Text
+                  }
+                >
                   <h2
                     className={styles.section2Title}
                     style={{
@@ -1514,8 +1536,18 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {isMobile && section2.titleMobile
-                      ? section2.titleMobile
+                    {typeof section2.title === "string"
+                      ? (() => {
+                          const titleText = section2.title;
+                          return titleText.split("\n").map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < titleText.split("\n").length - 1 && (
+                                <br />
+                              )}
+                            </span>
+                          ));
+                        })()
                       : section2.title}
                   </h2>
                   {section2.svgElements?.container && (

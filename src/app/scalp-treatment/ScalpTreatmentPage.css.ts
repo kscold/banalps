@@ -962,6 +962,7 @@ export const treatmentSubtitle = style({
   lineHeight: vw(56),
   color: "#272727",
   margin: 0,
+  whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
@@ -1004,6 +1005,7 @@ export const treatmentSubtitleCustomMargin = style({
   color: "#272727",
   margin: 0,
   marginBottom: "var(--margin-bottom)",
+  whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
@@ -1075,7 +1077,7 @@ export const treatmentImageContainer = style({
       marginRight: mvw(-16),
       height: "auto",
       flexDirection: "column",
-      gap: mvw(8),
+      gap: mvw(20),
       padding: `0 ${mvw(16)}`,
     },
   },

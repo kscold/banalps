@@ -10,28 +10,22 @@ export default function ForeheadHairTransplantPage() {
   const layoutData = {
     heroTitle: (
       <>
-        {(() => {
-          const titleLines = t.hero.title.split("\n");
-          return titleLines.map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < titleLines.length - 1 && <br />}
-            </span>
-          ));
-        })()}
+        {t.hero.title.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.hero.title.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
     heroTitleMobile: (
       <>
-        {(() => {
-          const titleLines = t.hero.title.split("\n");
-          return titleLines.map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < titleLines.length - 1 && <br />}
-            </span>
-          ));
-        })()}
+        {t.hero.title.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.hero.title.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
 
@@ -141,27 +135,8 @@ export default function ForeheadHairTransplantPage() {
     },
     section2: {
       number: 2,
-      title: (
-        <>
-          {t.section2.title.split("\n").map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
-            </span>
-          ))}
-        </>
-      ),
+      title: t.section2.title,
       titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
-      titleMobile: (
-        <>
-          {t.section2.title.split("\n").map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
-            </span>
-          ))}
-        </>
-      ),
       description: (
         <>
           {t.section2.description.split("\n").map((line, index) => (

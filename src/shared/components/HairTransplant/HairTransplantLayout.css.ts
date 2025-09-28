@@ -1037,6 +1037,29 @@ export const section2Text = style({
   },
 });
 
+export const section2TextScarReduction = style({
+  position: "relative", // For absolute positioned SVGs
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  left: vw(290),
+  margin: 0,
+  padding: 0,
+  gap: 0,
+  alignItems: "stretch",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "290px", // 데스크탑에서 왼쪽으로 이동 (scar reduction 페이지만
+    },
+    [breakpoints.mobile]: {
+      height: "auto",
+      justifyContent: "flex-start",
+      width: "100%",
+      alignItems: "flex-start",
+    },
+  },
+});
+
 export const section2Title = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
@@ -1060,6 +1083,7 @@ export const section2Title = style({
       margin: `0 0 ${mvw(40)} 0`,
       textAlign: "left", // Center text alignment
       width: "100%", // Full width instead of fixed
+      whiteSpace: "pre-line", // Allow line breaks from \n
     },
   },
 });
