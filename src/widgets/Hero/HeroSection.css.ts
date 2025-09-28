@@ -1,9 +1,9 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 
-import { fontFamily } from "../../shared/styles/fonts.css"
-import { tokens } from "../../shared/styles/tokens.css"
-import { breakpoints, vw } from "../../shared/styles/responsive.css"
-import { mvw } from "@/shared/styles/responsive.utils"
+import { fontFamily } from "../../shared/styles/fonts.css";
+import { tokens } from "../../shared/styles/tokens.css";
+import { breakpoints, vw } from "../../shared/styles/responsive.css";
+import { mvw } from "@/shared/styles/responsive.utils";
 
 // 메인 컨테이너 - 100vh 고정
 export const heroContainer = style({
@@ -23,10 +23,10 @@ export const heroContainer = style({
       height: "100vh", // 명시적으로 100vh 설정
       minHeight: "100vh",
       width: "100vw",
-      backgroundColor: "#000" // 배경 검은색 추가
+      backgroundColor: "#000", // 배경 검은색 추가
     },
   },
-})
+});
 
 // 배경 이미지 - 고정
 export const backgroundImage = style({
@@ -44,7 +44,7 @@ export const backgroundImage = style({
       height: "100%",
     },
   },
-})
+});
 
 // 배경 비디오 - Vimeo
 export const backgroundVideo = style({
@@ -63,7 +63,7 @@ export const backgroundVideo = style({
       height: "100%",
     },
   },
-})
+});
 
 // 비디오 컨테이너
 export const vimeoContainer = style({
@@ -74,7 +74,7 @@ export const vimeoContainer = style({
   height: "100%",
   zIndex: tokens.zIndex.base,
   overflow: "hidden",
-})
+});
 
 // 비디오 iframe
 export const vimeoIframe = style({
@@ -95,7 +95,7 @@ export const vimeoIframe = style({
       minHeight: "100vh",
     },
   },
-})
+});
 
 // 비디오 섹션 - 전체 화면 차지
 export const videoSection = style({
@@ -117,7 +117,7 @@ export const videoSection = style({
       minHeight: "100vh",
     },
   },
-})
+});
 
 // 비디오 오버레이
 export const videoOverlay = style({
@@ -127,7 +127,7 @@ export const videoOverlay = style({
   width: "100%",
   height: "100%",
   zIndex: tokens.zIndex.video,
-})
+});
 
 // 파란색 섹션 오버레이 - 비디오 이후 스크롤 시 표시
 export const blueSectionOverlay = style({
@@ -146,7 +146,7 @@ export const blueSectionOverlay = style({
       overflow: "visible", // 모바일에서 스크롤 가능
     },
   },
-})
+});
 
 // 콘텐츠 래퍼 - 피그마 디자인 위치에 고정 (오른쪽 아래쪽)
 export const contentWrapper = style({
@@ -184,7 +184,7 @@ export const contentWrapper = style({
       justifyContent: "center",
     },
   },
-})
+});
 
 // 텍스트 콘텐츠 컨테이너 - 피그마 디자인 크기
 export const textContent = style({
@@ -220,7 +220,7 @@ export const textContent = style({
       justifyContent: "center",
     },
   },
-})
+});
 
 // 텍스트 블록 - 기본 상태 (애니메이션 없음)
 export const textBlock = style({
@@ -249,7 +249,7 @@ export const textBlock = style({
       padding: "0 20px", // 좌우 패딩 추가
     },
   },
-})
+});
 
 // 스토리 텍스트 - S-Core Dream, Regular (200)
 export const storyText = style({
@@ -276,4 +276,28 @@ export const storyText = style({
       wordBreak: "keep-all", // 한글 단어 단위로 줄바꿈
     },
   },
-})
+});
+
+// 특별한 인용구 텍스트 - Pretendard Light
+export const specialQuoteText = style({
+  fontFamily: fontFamily.scdream,
+  fontWeight: 500,
+  fontStyle: "normal",
+  fontSize: vw(20),
+  lineHeight: "140%",
+  letterSpacing: "0%",
+  color: tokens.colors.white,
+  margin: 0,
+  position: "relative",
+  zIndex: tokens.zIndex.text,
+  WebkitFontSmoothing: "antialiased",
+  MozOsxFontSmoothing: "grayscale",
+  display: "inline",
+
+  "@media": {
+    [breakpoints.mobile]: {
+      fontSize: "clamp(16px, 4vw, 20px)", // 모바일에서는 조금 더 작게
+      lineHeight: "1.5",
+    },
+  },
+});

@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { useSession } from "next-auth/react";
 import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
 import SidePreviewSlider from "@/shared/ui/SidePreviewSlider/SidePreviewSlider";
 import * as styles from "./BeforeAfterPage.css";
+import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useBeforeAfterTranslations } from "@/hooks/useAllPagesTranslations";
 
 // 카테고리 타입 정의
 type Category =
@@ -247,10 +250,18 @@ function CategoryCarousel({
   category,
   items,
   index,
+  isLoggedIn,
+  onLoginClick,
+  translations,
+  translateTitle,
 }: {
   category: string;
   items: BeforeAfterItem[];
   index: number;
+  isLoggedIn: boolean;
+  onLoginClick: () => void;
+  translations: any;
+  translateTitle: (title: string | undefined, category: Category) => string;
 }) {
   const isBlueBackground = index % 2 === 0;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -293,7 +304,10 @@ function CategoryCarousel({
       <div className={styles.carouselHeader}>
         <span className={styles.categoryBadge}>{category}</span>
         <span className={styles.itemTitle}>
-          {items[currentIndex]?.title || ""}
+          {translateTitle(
+            items[currentIndex]?.title,
+            items[currentIndex]?.category
+          )}
         </span>
       </div>
 
@@ -319,7 +333,7 @@ function CategoryCarousel({
         <button
           className={`${styles.carouselArrow} ${styles.carouselArrowLeft}`}
           onClick={handlePrevious}
-          aria-label="이전"
+          aria-label={translations.navigation.prev}
         >
           <img src="/before-after/arrow-left.svg" alt="Previous" />
         </button>
@@ -330,10 +344,23 @@ function CategoryCarousel({
             <BeforeAfterSlider
               beforeImage={items[currentIndex].beforeImage}
               afterImage={items[currentIndex].afterImage}
-              beforeAlt={`${items[currentIndex].title || category} - Before`}
-              afterAlt={`${items[currentIndex].title || category} - After`}
+              beforeAlt={`${
+                translateTitle(
+                  items[currentIndex].title,
+                  items[currentIndex].category
+                ) || category
+              } - Before`}
+              afterAlt={`${
+                translateTitle(
+                  items[currentIndex].title,
+                  items[currentIndex].category
+                ) || category
+              } - After`}
               isBlueBackground={isBlueBackground}
               className={styles.customSliderHeight}
+              isLoggedIn={isLoggedIn}
+              onLoginClick={onLoginClick}
+              loginOverlayText={translations.loginOverlay.text}
             />
           </div>
         </div>
@@ -342,7 +369,7 @@ function CategoryCarousel({
         <button
           className={`${styles.carouselArrow} ${styles.carouselArrowRight}`}
           onClick={handleNext}
-          aria-label="다음"
+          aria-label={translations.navigation.next}
         >
           <img src="/before-after/arrow-right.svg" alt="Next" />
         </button>
@@ -369,6 +396,16 @@ function CategoryCarousel({
 }
 
 export default function BeforeAfterPage() {
+  // 번역 훅 사용
+  const t = useBeforeAfterTranslations();
+
+  // 세션 및 인증 상태 확인
+  const { data: session, status } = useSession();
+  const { openLoginModal } = useAuthStore();
+
+  // 로그인 상태 확인
+  const isLoggedIn = status === "authenticated" && !!session;
+
   // 카테고리별로 그룹화
   const groupedData = beforeAfterData.reduce((acc, item) => {
     if (!acc[item.category]) {
@@ -378,7 +415,7 @@ export default function BeforeAfterPage() {
     return acc;
   }, {} as Record<Category, BeforeAfterItem[]>);
 
-  // 카테고리 순서 정의
+  // 카테고리 순서 정의 (번역 키로 매핑)
   const categoryOrder: Category[] = [
     "이마축소",
     "흉터&재수술",
@@ -386,6 +423,62 @@ export default function BeforeAfterPage() {
     "헤어라인(여성)",
     "정수리",
   ];
+
+  // 카테고리 번역 매핑
+  const getCategoryName = (category: Category): string => {
+    switch (category) {
+      case "이마축소":
+        return t.categories.foreheadReduction;
+      case "흉터&재수술":
+        return t.categories.scarRevision;
+      case "헤어라인(남성)":
+        return t.categories.hairlineMale;
+      case "헤어라인(여성)":
+        return t.categories.hairlineFemale;
+      case "정수리":
+        return t.categories.crown;
+      default:
+        return category;
+    }
+  };
+
+  // 타이틀 번역 함수 (필요시 특정 케이스 번역)
+  const translateTitle = (
+    title: string | undefined,
+    _category: Category
+  ): string => {
+    if (!title) return "";
+
+    // 특정 번역이 필요한 케이스들
+    if (title.includes("이마축소(여)_1년경과")) {
+      return t.cases.foreheadWoman1Year;
+    }
+    if (title.includes("흉터재수술")) {
+      return t.cases.scarRevisionCase;
+    }
+    if (title.includes("헤어라인(여)")) {
+      return t.cases.hairlineWoman;
+    }
+    if (title.includes("헤어라인(남)")) {
+      return t.cases.hairlineMan;
+    }
+    if (title.includes("정수리")) {
+      return t.cases.crownCase;
+    }
+
+    // 년/개월 변환
+    let translatedTitle = title;
+    translatedTitle = translatedTitle.replace(
+      /(\d+)년/g,
+      `$1${t.cases.yearsAgo}`
+    );
+    translatedTitle = translatedTitle.replace(
+      /(\d+)개월/g,
+      `$1${t.cases.monthsAgo}`
+    );
+
+    return translatedTitle;
+  };
 
   return (
     <div className={styles.beforeAfterPage}>
@@ -395,7 +488,7 @@ export default function BeforeAfterPage() {
             <div className={styles.HairTransplantHeroTitleContainer}>
               <h1 className={styles.HairTransplantHeroTitle}>
                 <span style={{ display: "flex", alignItems: "center" }}>
-                  수술 전후
+                  {t.hero.title}
                   <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
@@ -404,14 +497,14 @@ export default function BeforeAfterPage() {
           <div className={styles.HairTransplantHeroIllustration}>
             <img
               src="/before-after/hero-illustration.svg"
-              alt="수술 전후 일러스트"
+              alt={t.hero.title}
               className={styles.heroIllustrationImage}
             />
           </div>
         </div>
         <img
           src="/before-after/mobile/hero-illustration-mobile.svg"
-          alt="수술 전후 일러스트"
+          alt={t.hero.title}
           className={styles.heroIllustrationImageMobile}
         />
       </section>
@@ -422,9 +515,13 @@ export default function BeforeAfterPage() {
             groupedData[category] && (
               <CategoryCarousel
                 key={category}
-                category={category}
+                category={getCategoryName(category)}
                 items={groupedData[category]}
                 index={index}
+                isLoggedIn={isLoggedIn}
+                onLoginClick={openLoginModal}
+                translations={t}
+                translateTitle={translateTitle}
               />
             )
         )}

@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useLoginTranslations } from "@/hooks/useAllPagesTranslations";
 import * as styles from "./LoginModal.css";
 
 export default function LoginModal() {
   const { isLoginModalOpen, closeLoginModal, modalView } = useAuthStore();
+  const t = useLoginTranslations();
 
   const handleSocialLogin = async (provider: string) => {
     try {
@@ -58,7 +60,7 @@ export default function LoginModal() {
                 {/* 상단 로그인 섹션 */}
                 <div className={styles.loginSection}>
                   <h3 className={styles.loginTitle}>
-                    <span>로그인 하기</span>
+                    <span>{t.title}</span>
                     <img
                       src="/login/user.svg"
                       alt="User"
@@ -83,7 +85,7 @@ export default function LoginModal() {
                         onClick={() => handleSocialLogin("kakao")}
                       >
                         <span className={styles.socialText}>
-                          카카오톡 로그인
+                          {t.kakao}
                         </span>
                       </button>
                     </div>
@@ -103,7 +105,7 @@ export default function LoginModal() {
                         className={styles.loginButton}
                         onClick={() => handleSocialLogin("naver")}
                       >
-                        <span className={styles.socialText}>네이버 로그인</span>
+                        <span className={styles.socialText}>{t.naver}</span>
                       </button>
                     </div>
 
@@ -122,7 +124,7 @@ export default function LoginModal() {
                         className={styles.loginButton}
                         onClick={() => handleSocialLogin("google")}
                       >
-                        <span className={styles.socialText}>구글 로그인</span>
+                        <span className={styles.socialText}>{t.google}</span>
                       </button>
                     </div>
                   </div>
@@ -141,11 +143,11 @@ export default function LoginModal() {
               <>
                 {/* 상단 가입 완료 섹션 */}
                 <div className={styles.signupSection}>
-                  <h3 className={styles.signupTitle}>가입완료</h3>
+                  <h3 className={styles.signupTitle}>{t.signupComplete}</h3>
                   <div className={styles.signupText}>
-                    고객님 반가워요!
+                    {t.welcome}
                     <br />
-                    이제 바람 부는 날도 즐겁울 거에요.
+                    {t.enjoyWindyDays}
                   </div>
                 </div>
 
@@ -161,11 +163,11 @@ export default function LoginModal() {
               <>
                 {/* 상단 로그인 완료 섹션 */}
                 <div className={styles.signupSection}>
-                  <h3 className={styles.signupTitle}>가입완료</h3>
+                  <h3 className={styles.signupTitle}>{t.signupComplete}</h3>
                   <div className={styles.signupText}>
-                    고객님 반가워요!
+                    {t.welcome}
                     <br />
-                    이제 바람 부는 날도 즐겁울 거에요.
+                    {t.enjoyWindyDays}
                   </div>
                 </div>
                 {/* 하단 일러스트레이션 섹션 */}

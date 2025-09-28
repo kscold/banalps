@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useScalpTreatmentTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 import FeaturesSection from "../../shared/components/FeaturesSection/FeaturesSection";
 
@@ -67,185 +69,182 @@ export default function ScalpTreatmentPage() {
   console.log("[ScalpTreatmentPage] 두피치료 페이지 렌더링");
 
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const t = useScalpTreatmentTranslations();
+  const { language } = useLanguageStore();
 
-  // 텍스트 컨텐츠 설정 - 데스크탑/모바일 별 띄어쓰기 구분
+  // 텍스트 컨텐츠 설정 - 번역 시스템 사용
   const textContent = {
     section1: {
-      title: {
-        desktop: (
-          <>
-            두피치료,
-            <br />
-            가장 효과적인 방법만
-            <br />
-            남겼습니다.
-          </>
-        ),
-        mobile: (
-          <>
-            두피치료,
-            <br />
-            가장 효과적인 방법만
-            <br />
-            남겼습니다.
-          </>
-        ),
-      },
+      title: (
+        <>
+          {t.section1.title.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
       description: {
         desktop: (
           <>
-            모발이식과 약물치료 만으로 충분하다고 생각했습니다.
-            <br />
-            하지만, 그 두가지 치료 사이의
-            <br />
-            부족함을 채울 방법이 분명히 필요했지요.
-            <br />
-            <br />
-            수많은 논문과 사례를 통해
-            <br />
-            가장 효과적인 치료만 남겼습니다.
+            {t.section1.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.section1.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            모발이식과 약물치료 만으로 충분하다고
-            <br />
-            생각했습니다.
-            <br />
-            <br />
-            하지만,
-            <br />
-            그 두가지 치료 사이의 부족함을 채울 방법이
-            <br />
-            분명히 필요했지요.
-            <br />
-            <br />
-            수많은 논문과 사례를 통해
-            <br />
-            가장 효과적인 치료만 남겼습니다.
+            {t.section1.descriptionMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
     },
     section3: {
-      title: "1550nm 어븀글라스 프락셀 레이저",
+      title: t.details.section3.title,
       subtitle: {
         desktop: (
           <>
-            이미 머리를 하신
-            <br />
-            고객이 가장 선호하는 시술
+            {t.details.section3.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section3.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            이미 모발이식을 하신 고객이
-            <br />
-            가장 선호하는 시술
+            {t.details.section3.subtitleMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section3.subtitleMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            1550nm 어븀글라스는 피부의 깊은 곳까지
-            <br />
-            열을 전달해서 진피층의 콜라겐을 활성화하고,
-            <br />
-            모낭을 자극하여 모발 성장을 촉진합니다.
+            {t.details.section3.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section3.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            1550nm 어븀글라스는 피부의 깊은 곳까지
-            <br />
-            열을 전달해서 진피층의 콜라겐을 활성화하고,
-            <br />
-            모낭을 자극하여 모발 성장을 촉진합니다.
+            {t.details.section3.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section3.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
     },
     section4: {
-      title: "약물 주사 치료",
+      title: t.details.section4.title,
       subtitle: {
         desktop: (
           <>
-            모든 두피가 같지 않듯,
-            <br />
-            치료도 달라야 합니다.
+            {t.details.section4.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section4.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            모든 두피가 같지 않듯,
-            <br />
-            치료도 달라야 합니다.
+            {t.details.section4.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section4.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            작은 바람과 배려의 마음으로 주사 시술 시<br />
-            영하 30도의 찬 바람으로 통증을 최소화 합니다.
+            {t.details.section4.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section4.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            작은 바람과 배려의 마음으로
-            <br />
-            주사 시술 시 영하 30도의 찬 바람으로
-            <br />
-            통증을 최소화 합니다.
+            {t.details.section4.descriptionMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section4.descriptionMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
     },
     section5: {
-      title: "줄기세포 유래 성장인자",
+      title: t.details.section5.title,
       subtitle: {
         desktop: (
           <>
-            줄기세포 유래 성장인자만을
-            <br />
-            선별한 고농축 치료법
+            {t.details.section5.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section5.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            줄기세포 유래 성장인자만을
-            <br />
-            선별한 고농축 치료법
+            {t.details.section5.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section5.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            혈액 속에서 선별한 고농축 줄기세포 유래 성장인자로
-            <br />
-            모낭 줄기세포를 자극하고 모발 성장 주기를 되살리는
-            <br />
-            재생 치료입니다. 두피 주사로 탈모를 치료하고 정맥 주사로
-            <br />
-            노화의 속도를 늦춰줍니다.
+            {t.details.section5.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section5.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            혈액 속에서 선별한 고농축
-            <br />
-            줄기세포 유래 성장인자로 모낭 줄기세포를
-            <br />
-            자극하고 모발 성장 주기를 되살리는
-            <br />
-            재생 치료입니다.
-            <br />
-            <br />
-            두피 주사로 탈모를 치료하고
-            <br />
-            정맥 주사로 노화의 속도를 늦춰줍니다.
+            {t.details.section5.descriptionMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section5.descriptionMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
@@ -254,54 +253,66 @@ export default function ScalpTreatmentPage() {
       title: {
         desktop: (
           <>
-            저출력 레이저 LLLT
-            <br />
-            (Low-Level Laser Therapy)
+            {t.details.section6.title.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.title.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            저출력 레이저 LLLT
-            <br />
-            (Low-Level Laser Therapy)
+            {t.details.section6.title.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.title.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
       subtitle: {
         desktop: (
           <>
-            저출력 레이저(LLLT)로
-            <br />
-            모낭의 회복력을 높이고
-            <br />
-            세포 대사를 활성화 시킵니다.
+            {t.details.section6.subtitle.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.subtitle.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            저출력 레이저(LLLT)로 모낭의
-            <br />
-            회복력을 높이고 세포 대사를
-            <br />
-            활성화 시킵니다.
+            {t.details.section6.subtitleMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.subtitleMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            빛의 자극으로 세포 대사를 활성화시키고,
-            <br />
-            염증 반응을 억제하는 탈모 치료의 부드러운 마무리입니다.
+            {t.details.section6.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
         mobile: (
           <>
-            빛의 자극으로 세포 대사를
-            <br />
-            활성화시키고, 염증 반응을 억제하는
-            <br />
-            탈모 치료의 부드러운 마무리입니다.
+            {t.details.section6.descriptionMobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.descriptionMobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         ),
       },
@@ -369,7 +380,7 @@ export default function ScalpTreatmentPage() {
                     justifyContent: "flex-start",
                   }}
                 >
-                  두피치료
+{t.hero.title}
                   <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
@@ -433,9 +444,7 @@ export default function ScalpTreatmentPage() {
           {/* 왼쪽 텍스트 */}
           <div className={styles.introTextContent}>
             <h2 className={styles.introTitle}>
-              {isMobile
-                ? textContent.section1.title.mobile
-                : textContent.section1.title.desktop}
+              {textContent.section1.title}
             </h2>
             <div className={styles.introImageContent}>
               <div className={styles.introImageContainer}>
@@ -473,8 +482,8 @@ export default function ScalpTreatmentPage() {
           <TreatmentCard
             number="1"
             image="/scalp-treatment/scalp-treatment-2.png"
-            alt="어븀글라스 프락셀 레이저"
-            title="어븀글라스 프락셀 레이저"
+            alt={t.treatments.laser}
+            title={t.treatments.laser}
             isMobile={isMobile}
           />
 
@@ -489,8 +498,8 @@ export default function ScalpTreatmentPage() {
           <TreatmentCard
             number="2"
             image="/scalp-treatment/scalp-treatment-3.png"
-            alt="주사 시술"
-            title="주사 시술"
+            alt={t.treatments.injection}
+            title={t.treatments.injection}
             isMobile={isMobile}
           />
 
@@ -505,8 +514,8 @@ export default function ScalpTreatmentPage() {
           <TreatmentCard
             number="3"
             image="/scalp-treatment/scalp-treatment-4.png"
-            alt="MTS 치료"
-            title="MTS 치료"
+            alt={t.treatments.mts}
+            title={t.treatments.mts}
             isMobile={isMobile}
           />
 
@@ -521,8 +530,8 @@ export default function ScalpTreatmentPage() {
           <TreatmentCard
             number="4"
             image="/scalp-treatment/scalp-treatment-5.png"
-            alt="저출력 레이저 LLLT"
-            title="저출력 레이저 LLLT"
+            alt={t.treatments.lllt}
+            title={t.treatments.lllt}
             isMobile={isMobile}
           />
 
@@ -532,8 +541,8 @@ export default function ScalpTreatmentPage() {
             <TreatmentCard
               number="5"
               image="/scalp-treatment/scalp-treatment-6.png"
-              alt="정맥 주사"
-              title="정맥 주사"
+              alt={t.treatments.iv}
+              title={t.treatments.iv}
               isMobile={isMobile}
             />
           </div>
@@ -764,53 +773,27 @@ export default function ScalpTreatmentPage() {
       <FeaturesSection
         featuresTitle={
           <>
-            독보적인 기술력과 사후 관리까지
-            <br />
-            바날은 고객에 진심을 다합니다.
+            {(isMobile ? t.features.titleMobile : t.features.title).split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < (isMobile ? t.features.titleMobile : t.features.title).split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </>
         }
-        featureCards={[
-          {
-            icon: "/hair-transplant/feature-1.svg",
-            title: (
-              <>
-                모발이식과 이마축소가 동시에
-                <br />
-                가능한 유일한 병원입니다.
-              </>
-            ),
-          },
-          {
-            icon: "/hair-transplant/feature-2.svg",
-            title: (
-              <>
-                고객이 원하는 디자인을
-                <br />
-                최우선으로 생각합니다.
-              </>
-            ),
-          },
-          {
-            icon: "/hair-transplant/feature-3.svg",
-            title: (
-              <>
-                모발이식 경력 10년 이상의
-                <br />
-                전문의들이 진료합니다.
-              </>
-            ),
-          },
-          {
-            icon: "/hair-transplant/feature-4.svg",
-            title: (
-              <>
-                10년 이상 손발을 맞춰온
-                <br />
-                수술팀이 함께합니다.
-              </>
-            ),
-          },
-        ]}
+        featureCards={t.features.cards.map((card, index) => ({
+          icon: `/hair-transplant/feature-${index + 1}.svg`,
+          title: (
+            <>
+              {card.title.split('\n').map((line, cardIndex) => (
+                <span key={cardIndex}>
+                  {line}
+                  {cardIndex < card.title.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </>
+          ),
+        }))}
       />
     </div>
   );

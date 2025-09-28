@@ -1,6 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useAllPagesTranslations } from "@/hooks/useAllPagesTranslations";
 import * as styles from "./GoogleMapEmbed.css";
 
 interface GoogleMapEmbedProps {
@@ -11,6 +12,7 @@ export default function GoogleMapEmbed({
   showButtons = false,
 }: GoogleMapEmbedProps) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const t = useAllPagesTranslations();
 
   const openKakaoMap = () => {
     window.open(
@@ -29,13 +31,13 @@ export default function GoogleMapEmbed({
         {isMobile ? (
           <img
             src="/treatment-guide/map-mobile.png"
-            alt="바날 성형외과 위치"
+            alt={t.imageAlt.banalClinicLocation}
             className={styles.mapMobile}
           />
         ) : (
           <img
             src="/treatment-guide/map.png"
-            alt="바날 성형외과 위치"
+            alt={t.imageAlt.banalClinicLocation}
             className={styles.mapDesktop}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
@@ -48,14 +50,14 @@ export default function GoogleMapEmbed({
           <button
             onClick={openKakaoMap}
             className={styles.kakaoButton}
-            aria-label="카카오맵으로 보기"
+            aria-label={t.accessibility.kakaoMap}
           >
             KAKAO MAP
           </button>
           <button
             onClick={openNaverMap}
             className={styles.naverButton}
-            aria-label="네이버맵으로 보기"
+            aria-label={t.accessibility.naverMap}
           >
             NAVER MAP
           </button>
@@ -67,6 +69,8 @@ export default function GoogleMapEmbed({
 
 // 버튼만 별도로 사용할 수 있는 컴포넌트
 export function MapButtons() {
+  const t = useAllPagesTranslations();
+
   const openKakaoMap = () => {
     window.open(
       "https://map.kakao.com/?urlX=504082.0000000018&urlY=1114925.9999999998&urlLevel=3&itemId=181074248&q=%EB%B0%94%EB%9E%8C%EB%B6%80%EB%8A%94%EB%82%A0%EC%97%90%EB%8F%84%EC%84%B1%ED%98%95%EC%99%B8%EA%B3%BC%EC%9D%98%EC%9B%90&srcid=181074248&map_type=TYPE_MAP",
@@ -83,14 +87,14 @@ export function MapButtons() {
       <button
         onClick={openKakaoMap}
         className={styles.kakaoButton}
-        aria-label="카카오맵으로 보기"
+        aria-label={t.accessibility.kakaoMap}
       >
         KAKAO MAP
       </button>
       <button
         onClick={openNaverMap}
         className={styles.naverButton}
-        aria-label="네이버맵으로 보기"
+        aria-label={t.accessibility.naverMap}
       >
         NAVER MAP
       </button>

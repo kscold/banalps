@@ -10,6 +10,7 @@ import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 import DesktopNav from "../../features/header/components/DesktopNav";
 import MobileMenu from "../../features/header/components/MobileMenu";
 import MenuToggleButton from "../../features/header/components/MenuToggleButton";
+import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations";
 
 export default function HeaderNavigation() {
   const { data: session, status } = useSession();
@@ -26,7 +27,14 @@ export default function HeaderNavigation() {
   const { openLoginModal } = useAuthStore();
   const { language, setLanguage } = useLanguageStore();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const languageDropdownRef = useRef<HTMLDivElement>(null);
+  const t = useHeaderTranslations();
+
+  // 클라이언트 사이드 렌더링 확인
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
@@ -75,7 +83,11 @@ export default function HeaderNavigation() {
             <div className={styles.logoWrapper}>
               <Link href="/" className={styles.logoLink}>
                 <img
-                  src="/main/logo/logo.svg"
+                  src={
+                    language === "JP"
+                      ? "/main/logo/Logo-jp.svg"
+                      : "/main/logo/Logo.svg"
+                  }
                   alt="바람부는날에도"
                   className={styles.logoImage}
                 />
@@ -90,17 +102,21 @@ export default function HeaderNavigation() {
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
-              {status === "loading" ? (
+              {!isClient ? (
                 <button className={styles.loginButton} disabled>
-                  LOGIN
+                  {t.login}
+                </button>
+              ) : status === "loading" ? (
+                <button className={styles.loginButton} disabled>
+                  {t.login}
                 </button>
               ) : session ? (
                 <button className={styles.loginButton} onClick={handleLogout}>
-                  LOGOUT
+                  {t.logout}
                 </button>
               ) : (
                 <button className={styles.loginButton} onClick={openLoginModal}>
-                  LOGIN
+                  {t.login}
                 </button>
               )}
 
@@ -113,10 +129,16 @@ export default function HeaderNavigation() {
                   className={styles.consultButton}
                   onClick={toggleLanguageDropdown}
                 >
-                  <span>{language === "KR" ? "KR" : "JP"}</span>
-                  <span className={`${styles.dropdownArrow} ${
-                    isLanguageDropdownOpen ? styles.dropdownArrowRotated : ""
-                  }`}>▼</span>
+                  <span>
+                    {!isClient ? "KR" : language === "KR" ? "KR" : "JP"}
+                  </span>
+                  <span
+                    className={`${styles.dropdownArrow} ${
+                      isLanguageDropdownOpen ? styles.dropdownArrowRotated : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
                 </button>
 
                 {/* 언어 드롭다운 */}
@@ -127,12 +149,16 @@ export default function HeaderNavigation() {
                 >
                   <button
                     className={`${styles.languageOption} ${
-                      language === "KR" ? styles.languageOptionActive : ""
+                      !isClient
+                        ? styles.languageOptionActive
+                        : language === "KR"
+                        ? styles.languageOptionActive
+                        : ""
                     }`}
                     onClick={() => selectLanguage("KR")}
                   >
                     <span>KR</span>
-                    {language === "KR" && (
+                    {(!isClient || language === "KR") && (
                       <svg
                         className={styles.languageCheckIcon}
                         fill="currentColor"
@@ -148,12 +174,16 @@ export default function HeaderNavigation() {
                   </button>
                   <button
                     className={`${styles.languageOption} ${
-                      language === "JP" ? styles.languageOptionActive : ""
+                      !isClient
+                        ? ""
+                        : language === "JP"
+                        ? styles.languageOptionActive
+                        : ""
                     }`}
                     onClick={() => selectLanguage("JP")}
                   >
                     <span>JP</span>
-                    {language === "JP" && (
+                    {isClient && language === "JP" && (
                       <svg
                         className={styles.languageCheckIcon}
                         fill="currentColor"

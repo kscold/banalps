@@ -8,11 +8,13 @@ import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useWhiteTranslations } from "@/hooks/useAllPagesTranslations";
 
 export default function WhiteSection() {
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const white = useWhiteTranslations();
 
   return (
     <section className={styles.whiteSection}>
@@ -33,9 +35,12 @@ export default function WhiteSection() {
       <div className={styles.container}>
         {/* 메인 타이틀 */}
         <h2 className={styles.mainTitle}>
-          모발 의학의
-          <br />
-          정점.
+          {white.mainTitle.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < white.mainTitle.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
         {/* 모바일 전용 카드 리스트 */}
@@ -60,7 +65,7 @@ export default function WhiteSection() {
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/crown")}
             >
-              정수리이식
+              {white.services.crownTransplant}
             </ArrowButton>
           </motion.div>
 
@@ -84,7 +89,7 @@ export default function WhiteSection() {
               className={styles.mobileCardButton}
               onClick={() => router.push("/forehead/hair-transplant")}
             >
-              이마 축소 수술
+              {white.services.foreheadReduction}
             </ArrowButton>
           </motion.div>
 
@@ -108,7 +113,7 @@ export default function WhiteSection() {
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/hairline")}
             >
-              헤어라인 교정
+              {white.services.hairlineCorrection}
             </ArrowButton>
           </motion.div>
 
@@ -132,7 +137,7 @@ export default function WhiteSection() {
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/revision")}
             >
-              바날 재수술
+              {white.services.banalRevision}
             </ArrowButton>
           </motion.div>
 
@@ -157,7 +162,7 @@ export default function WhiteSection() {
               className={styles.mobileViewMoreButton}
               onClick={() => router.push("/before-after")}
             >
-              View More
+              {white.viewMore}
             </ArrowButton>
           </motion.div>
         </div>
@@ -189,7 +194,7 @@ export default function WhiteSection() {
                   paddingLeft={true}
                   onClick={() => router.push("/hair-transplant/crown")}
                 >
-                  정수리 이식
+                  {white.services.crownTransplant}
                 </ArrowButton>
               </div>
 
@@ -212,7 +217,7 @@ export default function WhiteSection() {
                   paddingLeft={true}
                   onClick={() => router.push("/hair-transplant/hairline")}
                 >
-                  헤어라인 교정
+                  {white.services.hairlineCorrection}
                 </ArrowButton>
               </div>
             </div>
@@ -238,7 +243,7 @@ export default function WhiteSection() {
                   paddingLeft={true}
                   onClick={() => router.push("/forehead/hair-transplant")}
                 >
-                  이마 축소 수술
+                  {white.services.foreheadReduction}
                 </ArrowButton>
               </div>
 
@@ -263,7 +268,7 @@ export default function WhiteSection() {
                   paddingLeft={true}
                   onClick={() => router.push("/hair-transplant/revision")}
                 >
-                  바날 재수술
+                  {white.services.banalRevision}
                 </ArrowButton>
               </div>
             </div>
@@ -272,9 +277,12 @@ export default function WhiteSection() {
           {/* 오른쪽 Other Medical Service 박스 */}
           <div className={styles.otherServiceBox}>
             <h3 className={styles.otherServiceTitle}>
-              Other Medical
-              <br />
-              Service.
+              {white.services.otherMedicalService.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < white.services.otherMedicalService.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </h3>
 
             <ArrowButton
@@ -287,7 +295,7 @@ export default function WhiteSection() {
               className={styles.viewMoreButton}
               onClick={() => router.push("/before-after")}
             >
-              View More
+              {white.viewMore}
             </ArrowButton>
             <img
               src="/main/white-section/white_section_6.jpg"
@@ -321,20 +329,29 @@ export default function WhiteSection() {
         <div className={styles.readyTitleWrapper}>
           <div className={styles.readyTitleContainer}>
             <h2 className={styles.readyMainTitle}>
-              We&apos;re Ready
-              <br />
-              When You Are.
+              {white.ready.title.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < white.ready.title.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </h2>
             <div className={styles.readyDescription}>
               <p className={styles.readyDescriptionText}>
-                신뢰할 수 있는 전문성과 정직한 마음으로
-                <br />
-                모든 준비를 마친 이곳에서 당신을 기다립니다.
+                {white.ready.description1.split('\n').map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < white.ready.description1.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </p>
               <p className={styles.readyDescriptionText}>
-                이제, 바람부는날에도
-                <br />
-                기분 좋은 일상을 맞이하시길 바랍니다.
+                {white.ready.description2.split('\n').map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < white.ready.description2.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </p>
             </div>
           </div>
@@ -345,9 +362,12 @@ export default function WhiteSection() {
       {/* 오시는 길 섹션 */}
       <div className={styles.locationSection}>
         <h2 className={styles.locationTitle}>
-          바날
-          <br />
-          오시는 길.
+          {white.location.title.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < white.location.title.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
         <div className={styles.locationContent}>
@@ -370,34 +390,34 @@ export default function WhiteSection() {
               <div className={styles.locationInfo}>
                 <div className={styles.infoBox}>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>전화번호</span>
-                    <span className={styles.infoNumber}>02.540.0700</span>
+                    <span className={styles.infoLabel}>{white.location.phone}</span>
+                    <span className={styles.infoNumber}>{white.location.phoneNumber}</span>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>진료시간</span>
+                    <span className={styles.infoLabel}>{white.location.hours}</span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
-                        평일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am 09:00 ~ Pm 07:00
+                        {white.location.weekday}
                       </p>
                       <p className={styles.infoValueParagraph}>
-                        토요일&nbsp;&nbsp;Am 09:00 ~ Pm 05:00
+                        {white.location.saturday}
                       </p>
                     </div>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>오시는길</span>
+                    <span className={styles.infoLabel}>{white.location.directions}</span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
-                        서울특별시 서초구 신반포로 47길 66
+                        {white.location.address1}
                       </p>
                       <p className={styles.infoValueParagraph}>
-                        (잠원동 29-18)
+                        {white.location.address2}
                       </p>
                       <div className={styles.subwayInfo}>
-                        <p>: 신사역 4번출구에서 331M</p>
-                        <p>: 논현역 8번출구에서 330M</p>
+                        <p>{white.location.subway1}</p>
+                        <p>{white.location.subway2}</p>
                       </div>
                     </div>
                   </div>
@@ -430,34 +450,34 @@ export default function WhiteSection() {
               <div className={styles.locationInfo}>
                 <div className={styles.infoBox}>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>전화번호</span>
-                    <span className={styles.infoNumber}>02.540.0700</span>
+                    <span className={styles.infoLabel}>{white.location.phone}</span>
+                    <span className={styles.infoNumber}>{white.location.phoneNumber}</span>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>진료시간</span>
+                    <span className={styles.infoLabel}>{white.location.hours}</span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
-                        평일 Am 09:00 ~ Pm 07:00
+                        {white.location.weekday}
                       </p>
                       <p className={styles.infoValueParagraph}>
-                        토요일 Am 09:00 ~ Pm 05:00
+                        {white.location.saturday}
                       </p>
                     </div>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>오시는길</span>
+                    <span className={styles.infoLabel}>{white.location.directions}</span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
-                        서울특별시 서초구 신반포로 47길 66
+                        {white.location.address1}
                       </p>
                       <p className={styles.infoValueParagraph}>
-                        (잠원동 29-18)
+                        {white.location.address2}
                       </p>
                       <p className={styles.subwayInfo}>
-                        : 신사역 4번출구에서 331M
-                        <br />: 논현역 8번출구에서 330M
+                        {white.location.subway1}
+                        <br />{white.location.subway2}
                       </p>
                     </div>
                   </div>

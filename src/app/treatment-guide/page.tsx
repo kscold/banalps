@@ -7,9 +7,11 @@ import GoogleMapEmbed, {
   MapButtons,
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useTreatmentGuideTranslations } from "@/hooks/useAllPagesTranslations";
 
 export default function TreatmentGuidePage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const t = useTreatmentGuideTranslations();
   console.log("[TreatmentGuidePage] 진료 안내 페이지 렌더링");
 
   return (
@@ -20,9 +22,12 @@ export default function TreatmentGuidePage() {
           {/* 왼쪽 타이틀 */}
           <div className={styles.heroLeft}>
             <h1 className={styles.heroTitle}>
-              바날
-              <br />
-              오시는 길.
+              {t.hero.title.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.hero.title.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </h1>
           </div>
 
@@ -66,9 +71,12 @@ export default function TreatmentGuidePage() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
-              We&apos;re Ready
-              <br />
-              When You Are.
+              {t.hero.subtitle.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.hero.subtitle.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </motion.h2>
           </div>
         </div>
@@ -86,31 +94,31 @@ export default function TreatmentGuidePage() {
           <div className={styles.contactInfo}>
             {/* 전화번호 */}
             <div className={styles.contactItemPhone}>
-              <h3 className={styles.contactLabel}>전화번호</h3>
-              <p className={styles.contactValue}>02.540.0700</p>
+              <h3 className={styles.contactLabel}>{t.contact.phoneLabel}</h3>
+              <p className={styles.contactValue}>{t.contact.phoneNumber}</p>
             </div>
 
             {/* 진료시간 */}
             <div className={styles.contactItem}>
-              <h3 className={styles.contactLabel}>진료시간</h3>
+              <h3 className={styles.contactLabel}>{t.contact.hoursLabel}</h3>
               <div className={styles.contactSchedule}>
-                <p>평일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Am 09:00 ~ Pm 07:00</p>
-                <p>토요일&nbsp;&nbsp;Am 09:00 ~ Pm 05:00</p>
+                <p>{t.contact.weekday}</p>
+                <p>{t.contact.saturday}</p>
               </div>
             </div>
 
             {/* 오시는길 */}
             <div className={styles.contactItem}>
-              <h3 className={styles.contactLabel}>오시는길</h3>
+              <h3 className={styles.contactLabel}>{t.contact.locationLabel}</h3>
               <div className={styles.contactAddress}>
                 <p className={styles.addressMain}>
-                  서울특별시 서초구 신반포로 47길 66
+                  {t.contact.address1}
                   <br />
-                  (잠원동 29-18)
+                  {t.contact.address2}
                 </p>
                 <div className={styles.subwayInfo}>
-                  <p>: 신사역 4번출구에서 331M</p>
-                  <p>: 논현역 8번출구에서 330M</p>
+                  <p>{t.contact.subway1}</p>
+                  <p>{t.contact.subway2}</p>
                 </div>
               </div>
             </div>

@@ -11,6 +11,9 @@ interface BeforeAfterSliderProps {
   afterAlt?: string;
   className?: string;
   isBlueBackground?: boolean;
+  isLoggedIn?: boolean;
+  onLoginClick?: () => void;
+  loginOverlayText?: string;
 }
 
 export default function BeforeAfterSlider({
@@ -20,6 +23,9 @@ export default function BeforeAfterSlider({
   afterAlt = "수술 후",
   className,
   isBlueBackground = false,
+  isLoggedIn = true,
+  onLoginClick,
+  loginOverlayText = "로그인을 하시면\n수술 전/후 사진 확인이 가능합니다.",
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50); // 정확히 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null);
@@ -174,6 +180,28 @@ export default function BeforeAfterSlider({
           <div className={styles.labelsContainerMobile}>
             <div className={styles.labelMobile}>Before</div>
             <div className={styles.labelMobile}>After</div>
+          </div>
+        )}
+
+        {/* 로그인 오버레이 */}
+        {!isLoggedIn && (
+          <div className={styles.loginOverlay}>
+            <div className={styles.loginOverlayContent}>
+              <button
+                className={styles.loginOverlayButton}
+                onClick={onLoginClick}
+              >
+                LOGIN
+              </button>
+              <p className={styles.loginOverlayText}>
+                {loginOverlayText.split("\n").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < loginOverlayText.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
+              </p>
+            </div>
           </div>
         )}
       </div>

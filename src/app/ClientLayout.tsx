@@ -8,18 +8,26 @@ import { Footer } from "@/shared/ui/Footer";
 import { FloatingButtonGroup } from "@/features/floating-button";
 import LoginModal from "@/shared/components/LoginModal/LoginModal";
 import AuthChecker from "@/components/AuthChecker";
+import ClientOnly from "@/components/ClientOnly";
 import { registerServiceWorker } from "@/utils/registerServiceWorker";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 // 내부 레이아웃 컴포넌트
 function InnerLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  
+  const { language } = useLanguageStore();
+
   // Service Worker 등록
   useEffect(() => {
     registerServiceWorker();
   }, []);
+
+  // HTML에 언어 데이터 속성 설정
+  useEffect(() => {
+    document.documentElement.setAttribute('data-language', language);
+  }, [language]);
   const handleFloatingButtonClick = (variant: string) => {
-    console.log(`[Layout] ${variant} 플로팅 버튼 클릭됨`);
+    // 플로팅 버튼 클릭 처리
     switch (variant) {
       case "naver":
         window.open("https://www.naver.com", "_blank");
@@ -38,20 +46,14 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AuthChecker />
-      {/* <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      > */}
-      <HeaderNavigation />
-      <main style={{ flex: "1" }}>{children}</main>
+      <ClientOnly fallback={<div>Loading...</div>}>
+        <AuthChecker />
+        <HeaderNavigation />
+        <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
+        <LoginModal />
+      </ClientOnly>
+      <main className="main-content">{children}</main>
       {pathname !== "/" && <Footer />}
-      {/* </div> */}
-      <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
-      <LoginModal />
     </>
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect, memo, useMemo, useCallback } from "react";
 import FloatingButton from "./FloatingButton";
 import * as styles from "./FloatingButtonGroup.css";
+import { floatingButtonValues } from "@/shared/styles/responsive.constants";
 
 export interface FloatingButtonGroupProps {
   className?: string;
@@ -47,12 +48,34 @@ function FloatingButtonGroupComponent({
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // 데스크탑에서는 더 민감하게 반응하도록 설정 (200px 전부터 올라가기 시작)
-      const threshold = isMobile ? 100 : 200;
+      // 현재 뷰포트 크기를 기준으로 반응형 값 계산
+      const viewportWidth = window.innerWidth;
 
-      // 푸터가 실제로 화면에 보이기 시작할 때만 플로팅 버튼 이동
-      const shouldMoveAboveFooter =
-        footerRect.top > 0 && footerRect.top < windowHeight - threshold;
+      // 반응형 값 계산 함수
+      const calculateResponsiveValue = (desktopPx: number, mobilePx: number) => {
+        if (viewportWidth >= 1920) {
+          return desktopPx; // 1920px+ 고정
+        } else if (viewportWidth >= 1024) {
+          return (desktopPx / 1920) * viewportWidth; // 데스크탑 비례
+        } else if (viewportWidth >= 375) {
+          return (mobilePx / 375) * viewportWidth; // 모바일 비례
+        } else {
+          return mobilePx; // 375px 미만 고정
+        }
+      };
+
+      // 반응형 계산된 값들
+      const floatingButtonHeight = calculateResponsiveValue(200, 120);
+      const bottomOffset = calculateResponsiveValue(15, 20); // 데스크탑 bottom을 15px로 조정
+      const threshold = calculateResponsiveValue(20, 20); // 푸터 만나기 전 여백 20px로 통일
+
+      // 푸터가 화면에 보이기 시작하고 플로팅 버튼과 충돌할 때 감지
+      const footerTop = footerRect.top;
+      const floatingButtonBottom = windowHeight - bottomOffset;
+      const floatingButtonTop = floatingButtonBottom - floatingButtonHeight;
+
+      // 푸터의 상단이 플로팅 버튼 영역에 접근할 때 이동
+      const shouldMoveAboveFooter = footerTop < floatingButtonBottom + threshold;
 
       setIsAboveFooter(shouldMoveAboveFooter);
     };
@@ -117,14 +140,36 @@ function FloatingButtonGroupComponent({
         isAboveFooter ? styles.aboveFooter : ""
       } ${className || ""}`}
       style={{
-        bottom: isAboveFooter
-          ? isMobile
-            ? "calc(120px + 20px)" // 모바일: 푸터 높이 120px + 여백 20px
-            : "calc(300px + 40px)" // 데스크탑: 푸터 높이 300px + 여백 40px (더 높게 설정)
-          : isMobile
-          ? "20px" // 모바일 기본 위치
-          : "40px", // 데스크탑 기본 위치
-        transition: "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1)", // 더 부드러운 애니메이션
+        bottom: (() => {
+          if (!isAboveFooter) {
+            // 기본 위치
+            return isMobile
+              ? floatingButtonValues.bottom.mobile
+              : floatingButtonValues.bottom.desktop;
+          }
+
+          // 푸터 위에 위치할 때 - 반응형 계산
+          const viewportWidth = window.innerWidth;
+
+          if (viewportWidth >= 1920) {
+            // 1920px+ 고정값
+            return isMobile ? "576px" : "220px"; // 푸터 높이(200) + 여백(20)
+          } else if (viewportWidth >= 1024) {
+            // 데스크탑 비례 (1024-1919px)
+            const footerHeight = (200 / 1920) * viewportWidth;
+            const padding = (20 / 1920) * viewportWidth; // 여백 20px
+            return `${footerHeight + padding}px`;
+          } else if (viewportWidth >= 375) {
+            // 모바일 비례 (375-1023px)
+            const footerHeight = (556 / 375) * viewportWidth;
+            const padding = (20 / 375) * viewportWidth; // 여백 20px
+            return `${footerHeight + padding}px`;
+          } else {
+            // 375px 미만 고정
+            return "576px"; // 556 + 20
+          }
+        })(),
+        transition: "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       {/* 확장 가능한 버튼 리스트 */}

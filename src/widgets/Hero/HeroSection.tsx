@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import { TextContentRenderer } from "./TextContentRenderer";
+import { useVideoPreloader } from "@/utils/videoOptimizer";
 
 import * as styles from "./HeroSection.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
@@ -26,6 +27,9 @@ export default function HeroSection({
   // 모바일 감지
   const isMobile = useMediaQuery("screen and (max-width: 1023px)");
 
+  // 동영상 최적화 적용
+  const videoConfig = useVideoPreloader("HERO_BACKGROUND");
+
   // 클라이언트 사이드 렌더링 확인
   useEffect(() => {
     setIsClient(true);
@@ -46,24 +50,26 @@ export default function HeroSection({
       let element: HTMLElement | null = target;
       while (element && element !== document.body) {
         const zIndex = window.getComputedStyle(element).zIndex;
-        if (zIndex !== 'auto' && parseInt(zIndex) >= 50) {
+        if (zIndex !== "auto" && parseInt(zIndex) >= 50) {
           return true; // 높은 z-index를 가진 요소는 통과
         }
 
         // 또한 특정 클래스를 가진 요소들도 통과
-        if (element.closest('header') ||
-            element.closest('[class*="header"]') ||
-            element.closest('[class*="Header"]') ||
-            element.closest('[class*="floating"]') ||
-            element.closest('[class*="Float"]') ||
-            element.closest('[class*="modal"]') ||
-            element.closest('[class*="Modal"]') ||
-            element.closest('[class*="dropdown"]') ||
-            element.closest('[class*="Dropdown"]') ||
-            element.closest('[class*="menu"]') ||
-            element.closest('[class*="Menu"]') ||
-            element.closest('[class*="nav"]') ||
-            element.closest('[class*="Nav"]')) {
+        if (
+          element.closest("header") ||
+          element.closest('[class*="header"]') ||
+          element.closest('[class*="Header"]') ||
+          element.closest('[class*="floating"]') ||
+          element.closest('[class*="Float"]') ||
+          element.closest('[class*="modal"]') ||
+          element.closest('[class*="Modal"]') ||
+          element.closest('[class*="dropdown"]') ||
+          element.closest('[class*="Dropdown"]') ||
+          element.closest('[class*="menu"]') ||
+          element.closest('[class*="Menu"]') ||
+          element.closest('[class*="nav"]') ||
+          element.closest('[class*="Nav"]')
+        ) {
           return true;
         }
         element = element.parentElement as HTMLElement;
@@ -84,7 +90,7 @@ export default function HeroSection({
       e.preventDefault();
       e.stopPropagation(); // 이벤트 버블링 방지
 
-      console.log("[HeroSection] 스크롤 이벤트 감지 - 전체 화면에서 작동");
+      // 스크롤 이벤트 처리
 
       const deltaY = e.deltaY;
       const scrollSpeed = isMobile ? 3.5 : 0.8; // 모바일에서는 빠르지만 균등하게
@@ -165,12 +171,7 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex);
 
-      // 디버깅 로그
-      console.log(
-        `[모바일 터치] scrollY: ${scrollY}/${totalScrollHeight}, textIndex: ${clampedIndex}/${
-          totalTexts - 1
-        }, depth: ${textScrollDepth}`
-      );
+      // 모바일 터치 스크롤 처리
 
       // 마지막 텍스트에 도달했을 때 다음 섹션으로
       if (
@@ -178,7 +179,6 @@ export default function HeroSection({
         scrollY >= totalScrollHeight - textScrollDepth / 2
       ) {
         if (onTextComplete) {
-          console.log("[모바일] 마지막 텍스트 도달 - 비디오로 전환");
           setTimeout(() => {
             onTextComplete();
           }, 300);
@@ -211,14 +211,13 @@ export default function HeroSection({
     setCurrentTextIndex(initialTextIndex);
   }, [initialTextIndex]);
 
-  console.log(
-    `[HeroSection/텍스트인덱스] ${currentTextIndex}, 스크롤: ${virtualScrollY}`
-  );
+  // 텍스트 인덱스 상태 관리
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
   // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
   const textScrollDepth = isMobile ? 300 : 2000;
-  const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100;
+  const scrollProgress =
+    (virtualScrollY / (textScrollDepth * totalTexts)) * 100;
 
   return (
     <>
@@ -243,7 +242,7 @@ export default function HeroSection({
           priority
           className={styles.backgroundImage}
           onLoad={() => {
-            console.log("[HeroSection/배경이미지로드] 배경 이미지 로드 완료");
+            // 배경 이미지 로드 완료
           }}
           onError={() => {
             console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패");
@@ -254,7 +253,7 @@ export default function HeroSection({
           {isClient && (
             <iframe
               title="vimeo-player"
-              src="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+              src={videoConfig.url}
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
               style={{
                 position: "absolute",

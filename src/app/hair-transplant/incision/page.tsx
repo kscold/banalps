@@ -1,35 +1,45 @@
 "use client";
 
+import { Suspense } from "react";
 import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
+import { useIncisionTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
-export default function IncisionPage() {
+function IncisionContent() {
+  const t = useIncisionTranslations();
+  const { language } = useLanguageStore();
   const layoutData = {
-    heroTitle: <>절개와 비절개</>,
+    heroTitle: <>{t.hero.title}</>,
     heroTitleMobile: (
       <>
-        절개와
-        <br />
-        비절개
+        {t.hero.titleMobile.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.hero.titleMobile.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
     section1: {
       number: 1,
       title: (
         <>
-          한 가지만 고집해서
-          <br />
-          훌륭한 선택지 하나를
-          <br />
-          포기할 필요는 없습니다.
+          {t.section1.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          한 가지만 고집해서
-          <br />
-          훌륭한 선택지 하나를
-          <br />
-          포기할 필요는 없습니다.
+          {t.section1.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobileSize: {
@@ -37,30 +47,24 @@ export default function IncisionPage() {
       },
       description: (
         <>
-          절개와 비절개
-          <br />
-          어느 한쪽이 더 우수한 방법이 아닙니다.
-          <br />
-          <br />
-          상황에 따라 더 효율적인 방법을
-          <br />
-          제시할 수 있어야 합니다.
-          <br />
-          훌륭한 방법 한 가지를 포기할 필요는 없습니다.
+          {t.section1.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          절개와 비절개,
-          <br />
-          어느 한쪽이 더 우수한 방법이 아닙니다.
-          <br />
-          <br />
-          상황에 따라 더 효율적인 방법을
-          <br />
-          제시할 수 있어야 합니다. 훌륭한
-          <br />
-          방법 한 가지를 포기할 필요는 없습니다.
+          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
       illustration: "/hair-transplant/incision/illustration-1.svg",
@@ -116,16 +120,22 @@ export default function IncisionPage() {
       number: 2,
       title: (
         <>
-          두피의 탄력이 부족하면
-          <br />
-          비절개를 권합니다.
+          {t.section2.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          두피의 탄력이 부족하면
-          <br />
-          비절개를 권합니다.
+          {t.section2.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobileSize: {
@@ -134,30 +144,24 @@ export default function IncisionPage() {
       },
       description: (
         <>
-          ① 두피의 탄력이 부족할 때
-          <br />
-          ② 이미 여러 번의 절개 수술을 받았을 때
-          <br />
-          ③ 절개에 대한 두려움이 클 때
-          <br />
-          ④ 통증에 민감할 때
-          <br />
-          <br />
-          비절개를 권합니다.
+          {t.section2.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          ① 두피의 탄력이 부족할 때
-          <br />
-          ② 이미 여러 번의 절개 수술을 받았을 때
-          <br />
-          ③ 절개에 대한 두려움이 클 때
-          <br />
-          ④ 통증에 민감할 때
-          <br />
-          <br />
-          비절개를 권합니다.
+          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
       images: {
@@ -192,47 +196,50 @@ export default function IncisionPage() {
       number: 3,
       title: (
         <>
-          뒷머리의 숱이 적으면
-          <br />
-          절개를 권합니다.
+          {t.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          뒷머리의 숱이 적으면
-          <br />
-          절개를 권합니다.
+          {t.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       description: (
         <>
-          ① 뒷머리가 납작하거나 볼륨감이 필요할 때
-          <br />
-          ② 이미 여러 번의 절개 수술을 받았을 때
-          <br />
-          ③ 오래 엎드려 있기 어려울 때
-          <br />
-          ④ 비용에 부담이 있을 때
-          <br />
-          <br />
-          절개를 더 권합니다.
+          {t.section3.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          ① 뒷머리가 납작하거나 볼륨감이 필요할 때
-          <br />
-          ② 이미 여러 번의 절개 수술을 받았을 때
-          <br />
-          ③ 오래 엎드려 있기 어려울 때
-          <br />
-          ④ 비용에 부담이 있을 때
-          <br />
-          <br />
-          절개를 더 권합니다.
+          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
-      illustration: "/hair-transplant/incision/illustration-3.svg",
+      illustration:
+        language === "JP"
+          ? "/hair-transplant/incision/illustration-3-jp.svg"
+          : "/hair-transplant/incision/illustration-3.svg",
       illustrationSize: {
         width: 745,
         height: 331,
@@ -266,80 +273,60 @@ export default function IncisionPage() {
       },
     },
     beforeAfterData: {
-      category: "헤어라인",
-      title: "3200모(여)_1년경과",
+      category: t.beforeAfter.category,
+      title: t.beforeAfter.title,
       beforeImage: "/hair-transplant/incision/slide/before.jpg",
       afterImage: "/hair-transplant/incision/slide/after.jpg",
-      beforeAlt: "헤어라인 수술 전",
-      afterAlt: "헤어라인 수술 후",
+      beforeAlt: t.beforeAfter.beforeAlt,
+      afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
-      text: "수술전후 더보기",
+      text: t.beforeAfter.buttonText,
       href: "/before-after",
       width: 269, // 데스크탑에서 버튼 너비 설정 (기본값: 224)
     },
     featuresTitle: (
       <>
-        독보적인 기술력과 사후 관리까지
-        <br />
-        바날은 고객에 진심을 다합니다.
+        {t.features.title.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.features.title.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        독보적인 기술력과
-        <br />
-        사후 관리까지
-        <br />
-        <br />
-        바날은 고객에
-        <br />
-        진심을 다합니다.
+        {t.features.titleMobile.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
-    featureCards: [
-      {
-        icon: "/hair-transplant/feature-1.svg",
-        title: (
-          <>
-            모발이식과 이마축소가 동시에
-            <br />
-            가능한 유일한 병원입니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-2.svg",
-        title: (
-          <>
-            고객이 원하는 디자인을
-            <br />
-            최우선으로 생각합니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-3.svg",
-        title: (
-          <>
-            모발이식과 이마축소가 동시에
-            <br />
-            가능한 유일한 병원입니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-4.svg",
-        title: (
-          <>
-            10년 이상 손발을 맞춰온
-            <br />
-            수술팀이 함께합니다.
-          </>
-        ),
-      },
-    ],
+    featureCards: t.features.cards.map((card, index) => ({
+      icon: `/hair-transplant/feature-${index + 1}.svg`,
+      title: (
+        <>
+          {card.title.split("\n").map((line, lineIndex) => (
+            <span key={lineIndex}>
+              {line}
+              {lineIndex < card.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+    })),
   };
 
-  return <HairTransplantLayout {...layoutData} />;
+  return <HairTransplantLayout {...layoutData} language={language} />;
+}
+
+export default function IncisionPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <IncisionContent />
+    </Suspense>
+  );
 }

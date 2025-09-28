@@ -5,68 +5,20 @@ import { VideoSection } from "../../widgets/Hero/VideoSection";
 import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useAboutTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function AboutPage() {
   const { videoActive, contentActive, currentSection } = useAboutScroll();
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const t = useAboutTranslations();
+  const { language } = useLanguageStore();
 
-  // 피그마 디자인에 따른 강점 데이터
-  const strengths = [
-    {
-      number: "01",
-      title: "알맞은 치료를합니다.",
-      mobileTitle: "알맞은 치료를\n합니다.",
-      description:
-        "절개, 비절개, 이마축소, 약물치료, 모든 방법에 경험이 많은 전문의가 각자의 상황에 가장 알맞은 치료를 권해드립니다.",
-      mobileDescription:
-        "절개, 비절개, 이마축소,\n약물치료, 모든 방법에 경험이\n많은 전문의가 각자의 상황에\n가장 알맞은 치료를\n권해드립니다.",
-    },
-    {
-      number: "02",
-      title: "부끄럽지 않습니다.",
-      mobileTitle: "부끄럽지않습니다.",
-      description:
-        "정직한 홍보, 투명한 가격, 정확한 모수, 최고의 스텝, 최선의 수술\n모든 과정과 결과에 부끄럽지 않습니다",
-      mobileDescription:
-        "정직한 홍보, 투명한 가격,\n정확한 모수, 최고의 스텝, 최선의 수술\n모든 과정과 결과에 부끄럽지\n않습니다",
-    },
-    {
-      number: "03",
-      title: "고객을 잘 이해합니다.",
-      mobileTitle: "고객을 잘\n이해합니다.",
-      description:
-        "먼저 불편한 점과 원하는 바를 잘 듣고, 전문가의 경험과 지식을\n바탕으로 고객이 가장 만족할 방법을 찾아갑니다.",
-      mobileDescription:
-        "먼저 불편한 점과 원하는 바를 잘\n듣고, 전문가의 경험과 지식을\n바탕으로 고객이 가장 만족할\n방법을 찾아갑니다.",
-    },
-    {
-      number: "04",
-      title: "시간을 지키겠습니다.",
-      mobileTitle: "시간을 지키겠습니다.",
-      description:
-        "약속한 시간에 기다리는 일이 없도록 한 분, 한 분의 진료 시간을\n넉넉히 잡습니다",
-      mobileDescription:
-        "약속한 시간에 기다리는 일이\n없도록 한 분, 한 분의 진료 시간을\n넉넉히 잡습니다",
-    },
-    {
-      number: "05",
-      title: "비용은 투명합니다.",
-      mobileTitle: "비용은\n투명합니다.",
-      description:
-        "상담 후에 비용을 알 수 있다는 말 대신, 사람마다 달라지는\n할인율 대신, 누구에게나 정확하고 투명한 비용을 말씀드립니다.",
-      mobileDescription:
-        "상담 후에 비용을 알 수 있다는\n말 대신, 사람마다 달라지는\n할인율 대신, 누구에게나\n정확하고 투명한 비용을\n말씀드립니다.",
-    },
-    {
-      number: "06",
-      title: "보람이 우선입니다.",
-      mobileTitle: "보람이우선입니다.",
-      description:
-        "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
-      mobileDescription:
-        "더 어렵고 힘든 수술이지만,한결\n좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터\n수술의 추가 비용을 받지\n 않습니다.",
-    },
-  ];
+  // 피그마 디자인에 따른 강점 데이터 - JSON에서 가져오기
+  const strengths = t.strengths.map((strength, index) => ({
+    number: String(index + 1).padStart(2, "0"),
+    ...strength,
+  }));
 
   // 섹션 전환 애니메이션 상태
   const videoScale = currentSection === 0 ? 1 : 0.95;
@@ -118,19 +70,19 @@ export default function AboutPage() {
               <div className={styles.heroContent}>
                 {isMobile ? (
                   <div className={styles.heroQuoteMobile}>
-                    <h1 className={styles.heroQuote}>&apos;평범한 일상을</h1>
                     <h1 className={styles.heroQuote}>
-                      새로운 일상으로 이어주는 곳&apos;
+                      &apos;{t.hero.quote.split(" ").slice(0, 2).join(" ")}
+                    </h1>
+                    <h1 className={styles.heroQuote}>
+                      {t.hero.quote.split(" ").slice(2).join(" ")}&apos;
                     </h1>
                   </div>
                 ) : (
                   <h1 className={styles.heroQuote}>
-                    &apos;평범한 일상을 새로운 일상으로 이어주는 곳&apos;
+                    &apos;{t.hero.quote}&apos;
                   </h1>
                 )}
-                <h2 className={styles.heroTitle}>
-                  바람부는날에도 성형외과의원
-                </h2>
+                <h2 className={styles.heroTitle}>{t.hero.mainTitle}</h2>
               </div>
               <div className={styles.heroIllustration}>
                 {/* 피그마의 일러스트 이미지 */}
@@ -153,21 +105,31 @@ export default function AboutPage() {
             <div className={styles.valuesContainer}>
               <div className={styles.valuesContent}>
                 <h2 className={styles.valuesMainTitle}>
-                  바날이
-                  <br />
-                  추구하는 가치.
+                  {t.values.title.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index < t.values.title.split("\n").length - 1 && <br />}
+                    </span>
+                  ))}
                 </h2>
                 <p className={styles.valuesDescription}>
-                  바날은 모발 수술에 대한
-                  <br />
-                  섬세한 기술과 감각으로 시술 그 너머
-                  <br />
-                  당신의 내일을 설계 합니다.
+                  {t.values.description.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index < t.values.description.split("\n").length - 1 && (
+                        <br />
+                      )}
+                    </span>
+                  ))}
                 </p>
               </div>
               <div className={styles.valuesCards}>
                 <img
-                  src="/about/value.svg"
+                  src={
+                    language === "JP"
+                      ? "/about/value-jp.svg"
+                      : "/about/value.svg"
+                  }
                   alt="바날 가치"
                   className={styles.valueCardsImage}
                 />
@@ -192,8 +154,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
                 <div className={styles.reYouContent}>
-                  <h2 className={styles.reYouTitle}>RE.YOU</h2>
-                  <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
+                  <h2 className={styles.reYouTitle}>{t.reYou.title}</h2>
+                  <p className={styles.reYouSubtitle}>{t.reYou.subtitle}</p>
                 </div>
               </motion.div>
 
@@ -270,9 +232,14 @@ export default function AboutPage() {
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   <h2 className={styles.strengthsTitle}>
-                    바날이
-                    <br />
-                    잘하는 일.
+                    {t.whatBanal.title.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t.whatBanal.title.split("\n").length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
                   </h2>
                   <img
                     src="/about/about-graffiti.svg"
@@ -301,7 +268,13 @@ export default function AboutPage() {
                       </div>
                       <div className={styles.strengthItemContent}>
                         <h3 className={styles.strengthItemTitle}>
-                          {strength.title}
+                          {strength.title.split("\n").map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index <
+                                strength.title.split("\n").length - 1 && <br />}
+                            </span>
+                          ))}
                         </h3>
                         <p className={styles.strengthDescription}>
                           {strength.description}
@@ -327,7 +300,18 @@ export default function AboutPage() {
                       </div>
                       <div className={styles.strengthItemContentMobile}>
                         <h3 className={styles.strengthItemTitleMobile}>
-                          {strength.mobileTitle || strength.title}
+                          {(strength.mobileTitle || strength.title)
+                            .split("\n")
+                            .map((line, index) => (
+                              <span key={index}>
+                                {line}
+                                {index <
+                                  (
+                                    strength.mobileTitle || strength.title
+                                  ).split("\n").length -
+                                    1 && <br />}
+                              </span>
+                            ))}
                         </h3>
                         <p className={styles.strengthDescriptionMobile}>
                           {strength.mobileDescription || strength.description}
@@ -347,9 +331,12 @@ export default function AboutPage() {
               <div className={styles.galleryTopSection}>
                 <div className={styles.galleryTitleSection}>
                   <h2 className={styles.galleryTitle}>
-                    바날
-                    <br />
-                    둘러보기.
+                    {t.gallery.title.split('\n').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t.gallery.title.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </h2>
                 </div>
 

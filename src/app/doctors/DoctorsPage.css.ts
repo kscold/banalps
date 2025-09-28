@@ -2,12 +2,12 @@ import { style, keyframes } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
-  mvw,
   responsiveFont,
   responsiveContainer,
   responsiveLeftContent,
   responsiveImageContainer,
 } from "../../shared/styles/responsive.css";
+import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 페이지 전체 스타일
@@ -84,8 +84,8 @@ export const medicalTeamHeader = style({
   margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
-      height: "100vh",
       maxWidth: "1920px",
+      margin: 0,
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -721,22 +721,17 @@ export const doctorTitle = style({
   position: "absolute",
   left: vw(700),
   bottom: vw(250),
-  width: vw(176),
+  width: vw(253),
   height: vw(68),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
       bottom: "250px",
-      width: "176px",
+      width: "253px",
       height: "68px",
     },
-    [breakpoints.desktop]: {
-      left: "calc(700px * (100vw / 1920))",
-      bottom: "calc(250px * (100vw / 1920))",
-      width: "calc(176px * (100vw / 1920))",
-      height: "calc(68px * (100vw / 1920))",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
@@ -783,22 +778,17 @@ export const doctorTitle3 = style({
   position: "absolute",
   left: vw(700),
   bottom: vw(250),
-  width: vw(183),
+  width: vw(205),
   height: vw(68),
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
       bottom: "250px",
-      width: "183px",
+      width: "205px",
       height: "68px",
     },
-    [breakpoints.desktop]: {
-      left: "calc(700px * (100vw / 1920))",
-      bottom: "calc(250px * (100vw / 1920))",
-      width: "calc(183px * (100vw / 1920))",
-      height: "calc(68px * (100vw / 1920))",
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       position: "relative",
       left: "auto",
@@ -1547,11 +1537,8 @@ export const historyContainer = style({
 // 연혁 헤더
 export const historyHeader = style({
   textAlign: "left",
-  marginBottom: vw(60),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      marginBottom: "60px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       marginBottom: 0,
     },
@@ -1566,12 +1553,14 @@ export const historyTitle = style({
   letterSpacing: "0",
   color: "#272727",
   margin: 0,
+  width: vw(480),
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",
       lineHeight: "72px",
     },
     [breakpoints.mobile]: {
+      width: "100%",
       fontSize: mvw(36),
       lineHeight: "120%",
       color: "#000000",

@@ -1,14 +1,19 @@
 "use client";
 
+import { Suspense } from "react";
 import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
+import { useHairlineTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
-export default function HairlinePage() {
+function HairlineContent() {
+  const t = useHairlineTranslations();
+  const { language } = useLanguageStore();
   const layoutData = {
     heroTitle: (
       <>
-        헤어라인
+        {t.hero.titleLine1}
         <br />
-        교정
+        {t.hero.titleLine2}
       </>
     ),
     heroDotPosition: {
@@ -24,38 +29,44 @@ export default function HairlinePage() {
       number: 1,
       title: (
         <>
-          얼굴 윤곽의 완성은
-          <br />
-          헤어라인입니다.
+          {t.section1.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          얼굴 윤곽의 완성은
-          <br />
-          헤어라인입니다.
+          {t.section1.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       description: (
         <>
-          헤어라인을 결정할 때는
-          <br />
-          모발이식과 이마축소 두 방법 중
-          <br />
-          <br />
-          이마의 모양과 비율에 가장 알맞은 방법으로 얼굴의 마지막 윤곽을
-          완성합니다.
+          {t.section1.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          헤어라인을 결정할 때는
-          <br />
-          모발이식과 이마축소 두 방법 중
-          <br />
-          <br />
-          이마의 모양과 비율에 가장 알맞은 방법으로 얼굴의 마지막 윤곽을
-          완성합니다.
+          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
       illustration: "/hair-transplant/hairline/illustration-1.svg",
@@ -110,48 +121,44 @@ export default function HairlinePage() {
       number: 2,
       title: (
         <>
-          빼곡하고
-          <br />
-          자연스럽게.
+          {t.section2.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          빼곡하고
-          <br />
-          자연스럽게.
+          {t.section2.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       description: (
         <>
-          자연스러움 을 만드는 일은 어렵습니다.
-          <br />
-          어색하지 않아야 하며 결과는 1년을 기다려야 합니다.
-          <b>
-            "헤어라인 교정만 10년을 하면서
-            <br />
-            자연스럽게 만드는 최적의 접점을 찾았습니다."
-          </b>
-          <br />
-          <br />
-          이제 빼곡하면서 자연스러운 헤어라인도 불가능하지 않습니다.
+          {t.section2.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          자연스러움 을 만드는 일은 어렵습니다.
-          <br />
-          어색하지 않아야 하며 결과는 1년을 기다려야 합니다.
-          <b>
-            "헤어라인 교정만 10년을 하면서
-            <br />
-            자연스럽게 만드는 최적의 접점을 찾았습니다."
-          </b>
-          <br />
-          <br />
-          이제 빼곡하면서 자연스러운 헤어라인도
-          <br />
-          불가능하지 않습니다.
+          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
       images: {
@@ -183,50 +190,44 @@ export default function HairlinePage() {
       },
       title: (
         <>
-          결국,
-          <br />
-          고객이 원하는 디자인이
-          <br />
-          좋은 디자인입니다.
+          {t.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       titleMobile: (
         <>
-          결국,
-          <br />
-          고객이 원하는 디자인이
-          <br />
-          좋은 디자인입니다.
+          {t.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       description: (
         <>
-          의사만 만족하는 디자인은
-          <br />
-          결국 두 번 수술을 하게 됩니다.
-          <br />
-          <br />
-          고객이 불편해 하는 부분을
-          <br />
-          진심으로 공감하고 고민하며
-          <br />
-          <br />
-          바날의 헤어라인 디자인은 발전합니다.
+          {t.section3.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.description.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </>
       ),
       descriptionMobile: (
         <>
-          의사만 만족하는 디자인은
-          <br />
-          결국 두 번 수술을 하게 됩니다.
-          <br />
-          <br />
-          고객이 불편해 하는 부분을
-          <br />
-          진심으로 공감하고 고민하며
-          <br />
-          <br />
-          바날의 헤어라인 디자인은 발전합니다.
+          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
+                <br />
+              )}
+            </span>
+          ))}
         </>
       ),
       illustration: "/hair-transplant/hairline/illustration-2.svg",
@@ -244,80 +245,60 @@ export default function HairlinePage() {
       },
     },
     beforeAfterData: {
-      category: "헤어라인",
-      title: "3400모(여)_1년경과",
+      category: t.beforeAfter.category,
+      title: t.beforeAfter.title,
       beforeImage: "/hair-transplant/hairline/slide/before.jpg",
       afterImage: "/hair-transplant/hairline/slide/after.jpg",
-      beforeAlt: "헤어라인 수술 전",
-      afterAlt: "헤어라인 수술 후",
+      beforeAlt: t.beforeAfter.beforeAlt,
+      afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
-      text: "수술전후 더보기",
+      text: t.beforeAfter.buttonText,
       href: "/before-after",
       width: 269,
     },
     featuresTitle: (
       <>
-        독보적인 기술력과 사후 관리까지
-        <br />
-        바날은 고객에 진심을 다합니다.
+        {t.features.title.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.features.title.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        독보적인 기술력과
-        <br />
-        사후 관리까지
-        <br />
-        <br />
-        바날은 고객에
-        <br />
-        진심을 다합니다.
+        {t.features.titleMobile.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </>
     ),
-    featureCards: [
-      {
-        icon: "/hair-transplant/feature-1.svg",
-        title: (
-          <>
-            모발이식과 이마축소가 동시에
-            <br />
-            가능한 유일한 병원입니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-2.svg",
-        title: (
-          <>
-            고객이 원하는 디자인을
-            <br />
-            최우선으로 생각합니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-3.svg",
-        title: (
-          <>
-            모발이식 경력 10년 이상의
-            <br />
-            전문의들이 진료합니다.
-          </>
-        ),
-      },
-      {
-        icon: "/hair-transplant/feature-4.svg",
-        title: (
-          <>
-            10년 이상 손발을 맞춰온
-            <br />
-            수술팀이 함께합니다.
-          </>
-        ),
-      },
-    ],
+    featureCards: t.features.cards.map((card, index) => ({
+      icon: `/hair-transplant/feature-${index + 1}.svg`,
+      title: (
+        <>
+          {card.title.split("\n").map((line, lineIndex) => (
+            <span key={lineIndex}>
+              {line}
+              {lineIndex < card.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+    })),
   };
 
-  return <HairTransplantLayout {...layoutData} />;
+  return <HairTransplantLayout {...layoutData} language={language} />;
+}
+
+export default function HairlinePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HairlineContent />
+    </Suspense>
+  );
 }

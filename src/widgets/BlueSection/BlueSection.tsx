@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import * as styles from "./BlueSection.css";
 import { ArrowButton } from "../../shared/ui/ArrowButton";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import { useBlueTranslations } from "@/hooks/useAllPagesTranslations";
 
 interface BlueSectionProps {
   isActive?: boolean;
@@ -17,56 +18,24 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
   const [isVisible] = useState(isActive);
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1023px)");
+  const blue = useBlueTranslations();
 
   useEffect(() => {
-    console.log("[BlueSection/마운트] 블루 섹션 컴포넌트 마운트");
+    // 컴포넌트 마운트 로직 (필요시 추가)
   }, []);
 
-  // 바날 로컬 서비스 항목들
-  const localServices = [
-    {
-      number: "01",
-      title: "알맞은 치료를 합니다.",
-      description:
-        "절개, 비절개, 이마축소, 약물치료, 모든 방법에 경험이 많은\n전문의가 각자의 상황에 가장 알맞은 치료를 권해드립니다. ",
-      href: "/doctors",
-    },
-    {
-      number: "02",
-      title: "부끄럽지 않습니다.",
-      description:
-        "정직한 홍보, 투명한 가격, 정확한 모수, 최고의 스텝, 최선의 수술\n모든 과정과 결과에 부끄럽지 않습니다.",
-      href: "/before-after",
-    },
-    {
-      number: "03",
-      title: "고객을 잘 이해합니다.",
-      description:
-        "먼저 불편한 점과 원하는 바를 잘 듣고, 전문가의 경험과 지식을\n바탕으로 고객이 가장 만족할 방법을 찾아갑니다.",
-      href: "/doctors",
-    },
-    {
-      number: "04",
-      title: "시간을 지키겠습니다.",
-      description:
-        "약속한 시간에 기다리는 일이 없도록 한 분, 한 분의 진료 시간을\n넉넉히 잡습니다",
-      href: "/reservation",
-    },
-    {
-      number: "05",
-      title: "비용은 투명합니다.",
-      description:
-        "상담 후에 비용을 알 수 있다는 말 대신, 사람마다 달라지는\n할인율 대신, 누구에게나 정확하고 투명한 비용을 말씀드립니다.",
-      href: "/pricing",
-    },
-    {
-      number: "06",
-      title: "보람이 우선입니다.",
-      description:
-        "더 어렵고 힘든 수술이지만, 한결 좋아진 모습을 보는 보람 값이라\n생각하고 타병원 재수술, 흉터 수술의 추가 비용을 받지 않습니다.",
-      href: "/before-after",
-    },
-  ];
+  // 바날 로컬 서비스 항목들 - JSON에서 가져오기
+  const localServices = blue.localServices.map((service, index) => ({
+    ...service,
+    href: [
+      "/doctors",
+      "/before-after",
+      "/doctors",
+      "/reservation",
+      "/pricing",
+      "/before-after",
+    ][index],
+  }));
 
   return (
     <section
@@ -172,8 +141,8 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
       {/* RE.YOU 텍스트 섹션 */}
       <div className={styles.reYouSection}>
         {/* 텍스트 콘텐츠 */}
-        <h2 className={styles.reYouTitle}>RE.YOU</h2>
-        <p className={styles.reYouSubtitle}>다시, 특별한 당신으로</p>
+        <h2 className={styles.reYouTitle}>{blue.reYou.title}</h2>
+        <p className={styles.reYouSubtitle}>{blue.reYou.subtitle}</p>
 
         {/* 그래피티 배경 이미지 - 데스크톱용 */}
         <img
@@ -194,27 +163,42 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
       <div className={styles.whatBanalSection}>
         {/* 모바일에서 제목 먼저 표시 */}
         <h2 className={styles.whatBanalTitleMobile}>
-          바날이
-          <br />
-          잘하는 일.
+          {blue.whatBanal.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < blue.whatBanal.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
         {/* 모바일에서 제목 바로 아래 표시되는 설명 텍스트 */}
         <div className={styles.whatBanalMobileTop}>
           <p className={styles.whatBanalSubDescription1Mobile}>
-            평범한 일상을 새로운 일상으로
-            <br />
-            이어주는 곳,
+            {blue.whatBanal.subDescription1Mobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    blue.whatBanal.subDescription1Mobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </p>
           <p className={styles.whatBanalDescriptionMobile}>
-            바람부는날에도 성형외과의원
+            {blue.whatBanal.description}
           </p>
           <p className={styles.whatBanalSubDescription2Mobile}>
-            바날은 모발 수술에 대한
-            <br />
-            섬세한 기술과 감각으로 시술 그 너머,
-            <br />
-            당신의 내일을 설계합니다.
+            {blue.whatBanal.subDescription2Mobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    blue.whatBanal.subDescription2Mobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </p>
         </div>
 
@@ -222,20 +206,31 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           {/* 왼쪽 텍스트 영역 */}
           <div className={styles.whatBanalText}>
             <h2 className={styles.whatBanalTitleDesktop}>
-              바날이
-              <br />
-              잘하는 일.
+              {blue.whatBanal.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < blue.whatBanal.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
             </h2>
             <p className={styles.whatBanalSubDescription1}>
-              평범한 일상을 새로운 일상으로 이어주는 곳,
+              {blue.whatBanal.subDescription1}
             </p>
             <p className={styles.whatBanalDescription}>
-              바람부는날에도 성형외과의원
+              {blue.whatBanal.description}
             </p>
             <p className={styles.whatBanalSubDescription2}>
-              바날은 모발 수술에 대한 섬세한 기술과 감각으로
-              <br />
-              시술 그 너머, 당신의 내일을 설계합니다.
+              {blue.whatBanal.subDescription2.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    blue.whatBanal.subDescription2.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
             </p>
             <div className={styles.whatBanalButtonDesktop}>
               <ArrowButton
@@ -248,7 +243,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
                 paddingLeft={true}
                 onClick={() => router.push("/doctors")}
               >
-                View More
+                {blue.whatBanal.viewMore}
               </ArrowButton>
             </div>
           </div>
@@ -302,7 +297,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             className={styles.fullWidthButton}
             onClick={() => router.push("/doctors")}
           >
-            View More
+            {blue.doctors.viewMore}
           </ArrowButton>
         </div>
       </div>
@@ -312,9 +307,12 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 모바일 상단 텍스트 영역 */}
         <div className={styles.doctorsMobileHeader}>
           <h2 className={styles.doctorsMobileTitle}>
-            모발이식
-            <br />
-            15년 전문의.
+            {blue.doctors.title.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < blue.doctors.title.split("\n").length - 1 && <br />}
+              </span>
+            ))}
           </h2>
         </div>
 
@@ -328,14 +326,16 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullNameFirst}>
+              <h3 className={`${styles.doctorMobileFullNameFirst} english-name`}>
                 Shin
                 <br />
                 Seung
                 <br />
                 gyu
               </h3>
-              <p className={styles.doctorMobileFullKorean}>대표원장 신 승규</p>
+              <p className={styles.doctorMobileFullKorean}>
+                {blue.doctors.doctorName}
+              </p>
             </div>
           </div>
 
@@ -347,12 +347,14 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullNameSecond}>
+              <h3 className={`${styles.doctorMobileFullNameSecond} english-name`}>
                 Park
                 <br />
                 Soo Ho
               </h3>
-              <p className={styles.doctorMobileFullKorean}>대표원장 박 수호</p>
+              <p className={styles.doctorMobileFullKorean}>
+                {blue.doctors.doctorPark}
+              </p>
             </div>
           </div>
 
@@ -364,12 +366,14 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3 className={styles.doctorMobileFullNameThird}>
+              <h3 className={`${styles.doctorMobileFullNameThird} english-name`}>
                 Kim
                 <br />
                 Narae
               </h3>
-              <p className={styles.doctorMobileFullKorean}>대표원장 김 나래</p>
+              <p className={styles.doctorMobileFullKorean}>
+                {blue.doctors.doctorKim}
+              </p>
             </div>
           </div>
         </div>
@@ -377,16 +381,18 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 모바일 하단 설명 텍스트 */}
         <div className={styles.doctorsMobileBottom}>
           <p className={styles.doctorsMobileDescription}>
-            모발 성형외과 전문의로서 15년.
+            {blue.doctors.subTitle}
           </p>
           <p className={styles.doctorsMobileSubDescription}>
-            수술 전에 정교한 디자인을 통해
-            <br />
-            의료진과 디테일 상담을 통해 정확한
-            <br />
-            바람으로 고객의 니즈를 정확히 이해하고
-            <br />
-            상처와 콤플 렉스를 만들어드립니다.
+            {blue.doctors.mobileDescription.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                {index <
+                  blue.doctors.mobileDescription.split("\n").length - 1 && (
+                  <br />
+                )}
+              </span>
+            ))}
           </p>
           {/* 모바일 View More 버튼 (하단) */}
           <div className={styles.doctorsMobileButtonBottom}>
@@ -400,7 +406,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.fullWidthButton}
               onClick={() => router.push("/doctors")}
             >
-              View More
+              {blue.whatBanal.viewMore}
             </ArrowButton>
           </div>
         </div>
@@ -410,23 +416,25 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           {/* 좌측 텍스트 영역 */}
           <div className={styles.doctorsTextSection}>
             <h2 className={styles.doctorsMainTitle}>
-              모발이식
-              <br />
-              15년 전문의.
+              {blue.doctors.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < blue.doctors.title.split("\n").length - 1 && <br />}
+                </span>
+              ))}
             </h2>
-            <p className={styles.doctorsSubTitle}>
-              모발 성형외과 전문의로서 15년
-            </p>
+            <p className={styles.doctorsSubTitle}>{blue.doctors.subTitle}</p>
             <p className={styles.doctorsDescription}>
-              수술 전에 정교한 디자인으로 개인별 성향에 맞는
-              <br />
-              의료진과 1대1 디테일 상담을 통해 함께
-              <br />
-              설계해주는 것은 정말히 경과를
-              <br />
-              관리하기 위한 치과의 정성과
-              <br />
-              완페밤습니다.
+              {blue.doctors.desktopDescription
+                .split("\n")
+                .map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index <
+                      blue.doctors.desktopDescription.split("\n").length -
+                        1 && <br />}
+                  </span>
+                ))}
             </p>
             <ArrowButton
               size="medium"
@@ -438,7 +446,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               paddingLeft={true}
               onClick={() => router.push("/doctors")}
             >
-              View More
+              {blue.doctors.viewMore}
             </ArrowButton>
           </div>
 
@@ -475,7 +483,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
 
             {/* 모든 텍스트 오버레이 - 그리드 컨테이너 기준 absolute */}
             <div className={styles.doctorNameOverlay1}>
-              <h3 className={styles.doctorEnglishName1}>
+              <h3 className={`${styles.doctorEnglishName1} english-name`}>
                 Shin
                 <br />
                 Seung gyu
@@ -483,11 +491,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer1}>
-              <p className={styles.doctorKoreanName}>대표원장 신 승규</p>
+              <p className={styles.doctorKoreanName}>
+                {blue.doctors.doctorName}
+              </p>
             </div>
 
             <div className={styles.doctorNameOverlay2}>
-              <h3 className={styles.doctorEnglishName2}>
+              <h3 className={`${styles.doctorEnglishName2} english-name`}>
                 Park
                 <br />
                 Soo Ho
@@ -495,11 +505,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer2}>
-              <p className={styles.doctorKoreanName}>대표원장 박 수호</p>
+              <p className={styles.doctorKoreanName}>
+                {blue.doctors.doctorPark}
+              </p>
             </div>
 
             <div className={styles.doctorNameOverlay3}>
-              <h3 className={styles.doctorEnglishName3}>
+              <h3 className={`${styles.doctorEnglishName3} english-name`}>
                 Kim
                 <br />
                 Narae
@@ -507,7 +519,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer3}>
-              <p className={styles.doctorKoreanName}>대표원장 김 나래</p>
+              <p className={styles.doctorKoreanName}>
+                {blue.doctors.doctorKim}
+              </p>
             </div>
           </div>
         </div>

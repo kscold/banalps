@@ -2,7 +2,6 @@ import { style } from "@vanilla-extract/css";
 import {
   responsiveContainer,
   vw,
-  mvw,
   responsiveFont,
   responsiveSplitContainer,
   responsiveLeftContent,
@@ -11,6 +10,7 @@ import {
   responsiveAbsoluteImage,
   breakpoints,
 } from "@/shared/styles/responsive.css";
+import { mvw } from "@/shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 페이지 전체 스타일
@@ -149,6 +149,7 @@ export const HairTransplantHeroTitle = style({
   color: "#272727",
   margin: "0",
   textAlign: "left",
+  whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",

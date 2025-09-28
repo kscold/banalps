@@ -3,10 +3,14 @@
 import React, { useState } from "react";
 import * as styles from "./Footer.css";
 import TermsModal from "@/shared/components/TermsModal/TermsModal";
+import { useFooterTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function Footer() {
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const t = useFooterTranslations();
+  const { language } = useLanguageStore();
 
   const handleTermsClick = () => {
     setIsTermsModalOpen(true);
@@ -33,50 +37,51 @@ export default function Footer() {
             {/* 첫 번째 컬럼: 클리닉 정보 */}
             <div className={styles.footerLeftFirst}>
               <div className={styles.footerCompanyInfo}>
-                <p className={styles.footerClinicName}>
-                  바람부는날에도 성형외과의원
-                </p>
+                <p className={styles.footerClinicName}>{t.clinicName}</p>
                 <p className={styles.footerRepresentative}>
-                  대표 박수호, 신승규
+                  {t.representatives}
                 </p>
               </div>
-              <p className={styles.footerCopyright}>
-                ©2025 BANAL PLASTIC SURGERY
-              </p>
+              <p className={styles.footerCopyright}>{t.copyright}</p>
             </div>
 
             {/* 두 번째 컬럼: 주소 및 링크 */}
             <div className={styles.footerRightSection}>
-              <p className={styles.footerAddress}>
-                서울시 서초구 신반포로 47길 66 바날하우스
-              </p>
+              <p className={styles.footerAddress}>{t.address}</p>
               <div className={styles.footerLinksContainer}>
                 <button
                   className={styles.footerLink}
                   onClick={handleTermsClick}
                 >
-                  이용약관
+                  {t.termsOfUse}
                 </button>
                 <button
                   className={styles.footerLink}
                   onClick={handlePrivacyClick}
                 >
-                  개인정보처리방침
+                  {t.privacyPolicy}
                 </button>
               </div>
             </div>
 
             {/* 전화번호 - 피그마에서는 주소 오른쪽에 위치 */}
             <div>
-              <p className={styles.footerPhone}>TEL 02-540-0700</p>
+              <p className={styles.footerPhone}>{t.tel}</p>
             </div>
           </div>
 
           {/* 로고 영역 */}
           <div className={styles.footerRight}>
             <div className={styles.footerLogoContainer}>
-              {/* SVG 로고가 제공되면 교체 예정 */}
-              <img src="/footer/footer-logo.svg" alt="BANAL" />
+              {/* 언어에 따라 다른 로고 사용 */}
+              <img
+                src={
+                  language === "JP"
+                    ? "/footer/footer-logo-jp.svg"
+                    : "/footer/footer-logo.svg"
+                }
+                alt="BANAL"
+              />
             </div>
           </div>
         </div>
@@ -95,18 +100,14 @@ export default function Footer() {
 
           {/* 클리닉 정보 */}
           <div className={styles.mobileInfo}>
-            <p className={styles.mobileClinicName}>
-              바람부는날에도 성형외과의원
-            </p>
-            <p className={styles.mobileRepresentative}>대표 박수호, 신승규</p>
+            <p className={styles.mobileClinicName}>{t.clinicName}</p>
+            <p className={styles.mobileRepresentative}>{t.representatives}</p>
           </div>
 
           {/* 주소 및 전화번호 */}
           <div className={styles.mobileContact}>
-            <p className={styles.mobileAddress}>
-              서울시 서초구 신반포로 47길 66 바날하우스
-            </p>
-            <p className={styles.mobilePhone}>TEL 02-540-0700</p>
+            <p className={styles.mobileAddress}>{t.address}</p>
+            <p className={styles.mobilePhone}>{t.tel}</p>
           </div>
 
           {/* 링크 */}
@@ -115,18 +116,18 @@ export default function Footer() {
               className={styles.mobileLinkItem}
               onClick={handleTermsClick}
             >
-              이용약관
+              {t.termsOfUse}
             </button>
             <button
               className={styles.mobileLinkItem}
               onClick={handlePrivacyClick}
             >
-              개인정보처리방침
+              {t.privacyPolicy}
             </button>
           </div>
 
           {/* 카피라이트 */}
-          <p className={styles.mobileCopyright}>©2025 BANAL PLASTIC SURGERY</p>
+          <p className={styles.mobileCopyright}>{t.copyright}</p>
         </div>
       </div>
 

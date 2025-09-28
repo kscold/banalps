@@ -1,28 +1,21 @@
 import { style } from "@vanilla-extract/css";
+import { breakpoints, floatingButtonValues } from "../../../shared/styles/responsive.constants";
 
-import { vw, breakpoints, mvw } from "../../../shared/styles/responsive.css";
-
-// Floating button group container - responsiveContainer(1600) 따르도록 수정
+// Floating button group container - 완전 반응형 처리
 export const floatingButtonContainer = style({
   position: "fixed",
-  bottom: vw(40), // 기본 위치: 화면 하단에서 40px
-  right: vw(160), // 1600px 컨테이너 기준 160px (좌우 여백과 일치)
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: vw(12), // 1920px 기준 12px
+  bottom: floatingButtonValues.bottom.desktop, // 기본 위치: 화면 하단에서 15px
+  right: floatingButtonValues.right.desktop, // 헤더와 동일한 오른쪽 마진
   zIndex: 10000, // 푸터보다 높은 z-index
   "@media": {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 고정
-      bottom: "40px", // 기본 위치
-      right: "160px", // 1600px 컨테이너의 우측 여백
-      gap: "12px",
+      bottom: floatingButtonValues.bottom.desktopFixed, // 기본 위치
+      right: floatingButtonValues.right.desktopFixed, // 헤더와 동일한 오른쪽 마진
     },
     [breakpoints.mobile]: {
-      right: mvw(16),
-      bottom: "20px", // 모바일 기본 위치
-      gap: "8px",
+      right: floatingButtonValues.right.mobile, // 모바일에서는 16px 마진
+      bottom: floatingButtonValues.bottom.mobile, // 모바일 기본 위치
     },
   },
 });
@@ -35,15 +28,22 @@ export const aboveFooter = style({
 // Expandable button list - 1920px 기준 적용
 export const expandableList = style({
   display: "flex",
-  flexDirection: "column",
-  gap: vw(12), // 1920px 기준 12px
+  flexDirection: "column", // 정상 순서
+  gap: floatingButtonValues.gap.desktop, // 1920px 기준 12px
   transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+  // 원래 위치에서 펼쳐지도록 설정
+  position: "absolute",
+  bottom: "calc(100% + 12px)", // 메인 버튼 위에 gap만큼 띄워서 시작
+  left: "50%",
+  transform: "translateX(-50%)",
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "12px", // 1920px 이상에서 고정
+      gap: floatingButtonValues.gap.desktopFixed, // 1920px 이상에서 고정
+      bottom: "calc(100% + 12px)", // 고정 gap
     },
     [breakpoints.mobile]: {
-      gap: "8px", // 모바일에서 더 작게
+      gap: floatingButtonValues.gap.mobile, // 모바일에서 더 작게
+      bottom: `calc(100% + ${floatingButtonValues.gap.mobile})`, // 모바일 gap
     },
   },
 });

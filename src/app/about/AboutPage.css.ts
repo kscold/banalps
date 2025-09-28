@@ -4,8 +4,8 @@ import {
   vw,
   responsiveFont,
   responsiveContainer,
-  mvw,
 } from "../../shared/styles/responsive.css";
+import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
 // 페이지 전체 스타일
@@ -638,8 +638,8 @@ export const strengthsLeftSection = style({
 });
 
 export const strengthsTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 600,
+  fontFamily: fontFamily.scdream,
+  fontWeight: 500,
   ...responsiveFont(60),
   lineHeight: "120%",
   letterSpacing: "-0.03em",
@@ -829,7 +829,7 @@ export const strengthItemTitleMobile = style({
 });
 
 export const strengthDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(16),
   lineHeight: vw(24),

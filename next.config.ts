@@ -12,8 +12,20 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // 빌드 시 ESLint 무시
   },
+  // 프로덕션에서 콘솔 로그 제거
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  // hydration 안정성 설정
+  experimental: {
+    optimizeCss: false, // CSS 최적화 비활성화로 hydration 안정성 확보
+  },
+  // 이미지 최적화 설정
   images: {
-    unoptimized: true,
+    unoptimized: false, // 이미지 최적화 활성화
+    formats: ["image/webp", "image/avif"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: "http",
@@ -26,6 +38,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "player.vimeo.com",
       },
     ],
   },
@@ -43,6 +59,40 @@ const nextConfig: NextConfig = {
             key: "Access-Control-Allow-Headers",
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
+          },
+        ],
+      },
+      // 이미지 최적화 캐싱
+      {
+        source: "/_next/image/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // 동영상 최적화 캐싱
+      {
+        source: "/:path*\\.(mp4|webm|ogg|avi|mov)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Accept-Ranges",
+            value: "bytes",
+          },
+        ],
+      },
+      // Vimeo 동영상 프리페치
+      {
+        source: "/api/video/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600",
           },
         ],
       },

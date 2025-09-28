@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +10,12 @@ import ClientLayout from "./ClientLayout";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+  variable: "--font-zen-kaku",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -64,7 +71,7 @@ export default function RootLayout({
         />
         <script src="https://player.vimeo.com/api/player.js" async></script>
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${zenKakuGothicNew.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

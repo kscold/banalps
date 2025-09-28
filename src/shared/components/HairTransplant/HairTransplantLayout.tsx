@@ -230,6 +230,7 @@ interface HairTransplantLayoutProps {
   heroTitle: React.ReactNode;
   heroTitleMobile?: React.ReactNode; // Mobile-specific hero title
   heroSubtitle?: React.ReactNode;
+  language?: "KR" | "JP"; // 언어 정보 추가
   heroDotPosition?: {
     absolute?: boolean; // Use absolute positioning for dot
     top?: number; // vw units from top (desktop)
@@ -271,6 +272,7 @@ export default function HairTransplantLayout({
   heroTitle,
   heroTitleMobile,
   heroSubtitle,
+  language = "KR", // 기본값 설정
   heroDotPosition,
   heroBackground,
   heroIllustration = "/hair-transplant/hero-illustration.svg",
@@ -2218,10 +2220,12 @@ export default function HairTransplantLayout({
                     paddingTop={12}
                     paddingBottom={10}
                     paddingRight={10}
-                    paddingLeft={28}
+                    paddingLeft={language === "JP" ? 35 : 28}
                     fontSize={24}
                     iconSize={44}
-                    width={beforeAfterButton.width || 224}
+                    width={
+                      language === "JP" ? 352 : beforeAfterButton.width || 224
+                    }
                     textAlign="left"
                   >
                     {beforeAfterButton.text}

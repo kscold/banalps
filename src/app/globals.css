@@ -1,6 +1,108 @@
 @import "tailwindcss";
 @import "../styles/breakpoints.css";
 
+/* 일본어 폰트 설정 */
+:root {
+  --font-zen-kaku: var(--font-zen-kaku);
+}
+
+/* 일본어 텍스트에만 적용되는 스타일 */
+*:lang(ja),
+[data-lang="ja"] *,
+.japanese-text,
+/* 일본어 문자 범위를 포함하는 텍스트 */
+*:has([data-japanese]) {
+  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+  font-weight: inherit !important;
+  line-height: 150% !important;
+  letter-spacing: 0% !important;
+}
+
+/* 일본어 모드일 때 번역된 텍스트에만 일본어 폰트 적용 */
+html[data-language="JP"] *:lang(ja),
+html[data-language="JP"] [data-lang="ja"],
+html[data-language="JP"] .japanese-text {
+  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+  font-weight: inherit !important;
+  line-height: 150% !important;
+  letter-spacing: 0% !important;
+}
+
+/* 일본어 모드에서 모든 텍스트에 기본적으로 일본어 폰트 적용 */
+html[data-language="JP"] * {
+  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
+}
+
+/* 영어 이름 클래스가 있는 모든 요소는 일본어 폰트 적용 제외 - 최고 우선순위 */
+html[data-language="JP"] .english-name {
+  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* 의료진 제목은 Poppins 폰트 강제 적용 */
+html[data-language="JP"] [class*="medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] [class*="medicalTeamHeroTitle"]:has(.english-name),
+html[data-language="JP"] .english-name[class*="medicalTeamHeroTitle"] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* 영어 이름과 텍스트는 기존 폰트 유지 (더 강한 우선순위로 덮어쓰기) */
+html[data-language="JP"] .english-name,
+html[data-language="JP"] .english-name *,
+html[data-language="JP"] .english-text,
+html[data-language="JP"] .english-text *,
+html[data-language="JP"] *:lang(en),
+html[data-language="JP"] [data-lang="en"],
+html[data-language="JP"] [data-lang="en"] * {
+  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
+}
+
+/* 더 구체적인 선택자로 영어 이름 강제 적용 - Vanilla Extract 클래스와 함께 */
+html[data-language="JP"] .DoctorsPage_doctorNameText__1sikzsns.english-name,
+html[data-language="JP"] *[class*="medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] [class*="medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] .DoctorsPage_doctorMobileName__1sikzsn3j.english-name,
+html[data-language="JP"] .DoctorsPage_doctorMobileName2__1sikzsn3k.english-name,
+html[data-language="JP"] h1.english-name,
+html[data-language="JP"] h2.english-name,
+html[data-language="JP"] h3.english-name,
+html[data-language="JP"] h4.english-name,
+html[data-language="JP"] h5.english-name,
+html[data-language="JP"] h6.english-name,
+html[data-language="JP"] p.english-name,
+html[data-language="JP"] span.english-name,
+html[data-language="JP"] div.english-name,
+html[data-language="JP"] motion.h2.english-name,
+html[data-language="JP"] [class*="HeroTitle"].english-name,
+html[data-language="JP"] [class*="heroTitle"].english-name,
+html[data-language="JP"] [class*="Title"].english-name:not([class*="japanese"]):not([class*="translation"]) {
+  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
+}
+
+/* 더 구체적인 DoctorsPage medicalTeamHeroTitle 강제 적용 */
+html[data-language="JP"] [class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] h2[class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] motion[class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
+html[data-language="JP"] [class*="DoctorsPage_medicalTeamHeroTitle__"].english-name {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* 절대적으로 모든 영어 제목에 Poppins 적용 - 최상위 우선순위 */
+.english-name {
+  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+html[data-language="JP"] motion.h2.english-name,
+html[data-language="JP"] h1.english-name,
+html[data-language="JP"] h2.english-name {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: inherit !important;
+}
+
 /* 스크롤바 완전히 숨기기 - 스크롤 기능은 유지 */
 html {
   overflow-x: hidden;
@@ -129,6 +231,27 @@ body {
   font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   word-break: keep-all;
   word-wrap: break-word;
+  user-select: auto; /* hydration 오류 해결을 위한 일관된 user-select 설정 */
+}
+
+/* hydration 오류 해결을 위한 일관된 스타일 설정 */
+html, body {
+  user-select: auto;
+}
+
+/* 모든 요소에 기본 user-select 설정 */
+* {
+  user-select: auto;
+}
+
+/* 버튼과 인터랙티브 요소는 텍스트 선택 비활성화 */
+button, input, textarea, select {
+  user-select: none;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+  flex: 1;
 }
 
 section {

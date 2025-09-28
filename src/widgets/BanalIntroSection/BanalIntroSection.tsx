@@ -2,8 +2,10 @@
 
 import { ArrowRight } from 'lucide-react'
 import * as styles from './BanalIntroSection.css'
+import { useBanalIntroTranslations } from '@/hooks/useAllPagesTranslations'
 
 export default function BanalIntroSection() {
+  const t = useBanalIntroTranslations()
   console.log('[BanalIntroSection/렌더링] 바날 소개 섹션 렌더링 시작')
 
   const handleViewMoreClick = () => {
@@ -15,21 +17,29 @@ export default function BanalIntroSection() {
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.mainTitle}>
-          바날이<br />
-          잘하는 일.
+          {t.title.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.title.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </h2>
         
         <p className={styles.subTitle}>
-          평범한 일상을 새로운 일상으로 이어주는 곳,
+          {t.subtitle}
         </p>
         
         <h3 className={styles.hospitalName}>
-          바람부는날에도 성형외과의원
+          {t.clinicName}
         </h3>
         
         <p className={styles.description}>
-          바날은 모발 수술에 대한 섬세한 기술과 감각으로<br />
-          시술 그 너머, 당신의 내일을 설계합니다.
+          {t.description.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.description.split('\n').length - 1 && <br />}
+            </span>
+          ))}
         </p>
         
         <button 

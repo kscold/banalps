@@ -1,5 +1,6 @@
 import { fontFamily } from "@/shared/styles/fonts.css";
-import { breakpoints, mvw, vw } from "@/shared/styles/responsive.css";
+import { breakpoints } from "@/shared/styles/responsive.css";
+import { mvw, vw } from "@/shared/styles/responsive.utils";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
@@ -212,5 +213,88 @@ export const sliderHandle = style({
   ":active": {
     backgroundColor: "rgba(255, 255, 255, 0.2)", // 클릭 시만 약간의 배경
     transform: "translate(-50%, -50%) scale(0.95)",
+  },
+});
+
+// 로그인 오버레이 스타일 (이미지 컨테이너 내부)
+export const loginOverlay = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: "rgba(0, 0, 0, 0.7)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 10,
+  borderRadius: "8px",
+});
+
+export const loginOverlayContent = style({
+  textAlign: "center",
+  color: "white",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: vw(16),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "16px",
+    },
+    [breakpoints.mobile]: {
+      gap: mvw(12),
+    },
+  },
+});
+
+export const loginOverlayButton = style({
+  fontFamily: fontFamily.poppins,
+  fontSize: vw(16),
+  fontWeight: 600,
+  color: "#272727",
+  backgroundColor: "#FFFFFF",
+  borderRadius: "24px",
+  textAlign: "center",
+  cursor: "pointer",
+  width: vw(150),
+  height: vw(42),
+  border: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  lineHeight: 1,
+  padding: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      width: "150px",
+      height: "42px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(14),
+      width: mvw(120),
+      height: mvw(36),
+      padding: 0,
+    },
+  },
+});
+
+export const loginOverlayText = style({
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(18),
+  fontWeight: 500,
+  color: "white",
+  lineHeight: "150%",
+  letterSpacing: "0%",
+  textAlign: "center",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(14),
+      lineHeight: 1.4,
+    },
   },
 });

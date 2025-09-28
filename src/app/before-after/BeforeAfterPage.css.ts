@@ -2,10 +2,10 @@ import { style, globalStyle } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
-  mvw,
   responsiveContainer,
   responsiveFont,
 } from "../../shared/styles/responsive.css";
+import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "../../shared/styles/fonts.css";
 
 // 페이지 전체 컨테이너
@@ -158,24 +158,25 @@ export const HairTransplantHeroTitle = style({
 });
 
 export const HairTransplantHeroTitleDot = style({
-  width: vw(20),
-  height: vw(20),
+  width: vw(12),
+  height: vw(12),
   backgroundColor: "#14AEFF",
   borderRadius: "50%",
-  marginLeft: vw(20),
+  marginLeft: vw(4),
   flexShrink: 0,
   alignSelf: "flex-end", // 모바일에서는 하단 정렬
-  marginBottom: vw(10), // 약간의 하단 여백
+  marginBottom: vw(12), // 약간의 하단 여백
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "20px",
-      height: "20px",
-      marginLeft: "20px",
+      width: "12px",
+      height: "12px",
+      marginLeft: "4px",
+      marginBottom: "12px",
     },
     [breakpoints.mobile]: {
-      width: mvw(15),
-      height: mvw(15),
-      marginLeft: mvw(15),
+      width: mvw(10),
+      height: mvw(10),
+      marginLeft: mvw(10),
       alignSelf: "flex-end", // 모바일에서는 하단 정렬
       marginBottom: mvw(10), // 약간의 하단 여백
     },
@@ -850,6 +851,92 @@ export const carouselDotActive = style({
     [breakpoints.mobile]: {
       width: mvw(18),
       borderRadius: mvw(3),
+    },
+  },
+});
+
+// 로그인 오버레이 스타일
+export const loginOverlay = style({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: "rgba(0, 0, 0, 0.7)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 10,
+  borderRadius: vw(12),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      borderRadius: "12px",
+    },
+    [breakpoints.mobile]: {
+      borderRadius: mvw(8),
+    },
+  },
+});
+
+export const loginOverlayContent = style({
+  textAlign: "center",
+  color: "white",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: vw(16),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "16px",
+    },
+    [breakpoints.mobile]: {
+      gap: mvw(12),
+    },
+  },
+});
+
+export const loginOverlayButton = style({
+  fontFamily: fontFamily.poppins,
+  fontSize: vw(16),
+  fontWeight: 600,
+  color: "#272727",
+  backgroundColor: "#FFFFFF",
+  borderRadius: "24px",
+  textAlign: "center",
+  cursor: "pointer",
+  width: vw(150),
+  height: vw(42),
+  padding: `${vw(9)} ${vw(16)}`,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "16px",
+      width: "150px",
+      height: "42px",
+      padding: "9px 16px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(12),
+      borderRadius: mvw(16),
+      padding: `${mvw(6)} ${mvw(16)}`,
+    },
+  },
+});
+
+export const loginOverlayText = style({
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(18),
+  fontWeight: 500,
+  color: "white",
+  lineHeight: "150%",
+  letterSpacing: "0%",
+  textAlign: "center",
+
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+    },
+    [breakpoints.mobile]: {
+      fontSize: mvw(12),
     },
   },
 });

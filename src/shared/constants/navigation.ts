@@ -1,48 +1,43 @@
 export interface NavigationItem {
-  title: string
-  href?: string // href를 선택적으로 만들어서 메인 메뉴는 클릭 불가능하게
+  titleKey: string  // 번역 키로 변경
+  href?: string
   submenu?: Array<{
-    title: string
+    titleKey: string  // 번역 키로 변경
     href: string
   }>
 }
 
 export const NAVIGATION_ITEMS: readonly NavigationItem[] = [
   {
-    title: "바날소개",
-    // href 없음 - 클릭 불가능, 서브메뉴만 사용
+    titleKey: "navigation.about.title",
     submenu: [
-      { title: "바날소개", href: "/about" },
-      { title: "의료진소개", href: "/doctors" },
-      { title: "진료안내", href: "/treatment-guide" },
+      { titleKey: "navigation.about.items.banalIntro", href: "/about" },
+      { titleKey: "navigation.about.items.doctorsIntro", href: "/doctors" },
+      { titleKey: "navigation.about.items.treatmentGuide", href: "/treatment-guide" },
     ],
   },
   {
-    title: "모발이식",
-    // href 없음 - 클릭 불가능, 서브메뉴만 사용
+    titleKey: "navigation.hairTransplant.title",
     submenu: [
-      { title: "헤어라인", href: "/hair-transplant/hairline" },
-      { title: "재수술과 흉터이식", href: "/hair-transplant/reoperation" },
-      { title: "정수리 모발이식", href: "/hair-transplant/crown" },
-      { title: "절개와 비절개", href: "/hair-transplant/incision" },
+      { titleKey: "navigation.hairTransplant.items.hairline", href: "/hair-transplant/hairline" },
+      { titleKey: "navigation.hairTransplant.items.reoperation", href: "/hair-transplant/reoperation" },
+      { titleKey: "navigation.hairTransplant.items.crown", href: "/hair-transplant/crown" },
+      { titleKey: "navigation.hairTransplant.items.incision", href: "/hair-transplant/incision" },
     ],
   },
   {
-    title: "이마축소",
-    // href 없음 - 클릭 불가능, 서브메뉴만 사용
+    titleKey: "navigation.forehead.title",
     submenu: [
-      { title: "이마축소와 모발이식", href: "/forehead/hair-transplant" },
-      { title: "이마축소 흉터 줄이는 법", href: "/forehead/scar-reduction" },
+      { titleKey: "navigation.forehead.items.withHairTransplant", href: "/forehead/hair-transplant" },
+      { titleKey: "navigation.forehead.items.scarReduction", href: "/forehead/scar-reduction" },
     ],
   },
   {
-    title: "두피치료",
+    titleKey: "navigation.scalpTreatment.title",
     href: "/scalp-treatment",
-    // 서브메뉴 없음 - 직접 클릭 가능
   },
   {
-    title: "수술전후",
+    titleKey: "navigation.beforeAfter.title",
     href: "/before-after",
-    // 서브메뉴 없음 - 직접 클릭 가능
   },
 ]

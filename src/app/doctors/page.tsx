@@ -4,298 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import * as styles from "./DoctorsPage.css";
-
-// 학술활동 데이터 타입
-interface AcademicActivity {
-  date: string;
-  type: string;
-  event: string;
-  title: string;
-}
-
-// 연도별 학술활동 데이터
-const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
-  2025: [
-    {
-      date: "2025.05.11",
-      type: "발표",
-      event: "International Congress of the KSHRS 2025",
-      title: "Hair transplantation after reduction foreheadplasty",
-    },
-
-    {
-      date: "2025.05.10",
-      type: "발표",
-      event: "International Congress of the KSHRS 2025",
-      title: "Implantation",
-    },
-
-    {
-      date: "2025.04.06",
-      type: "발표",
-      event: "대한모발이식학회 한올 심포지엄",
-      title: "헤어라인 디자인",
-    },
-  ],
-  2024: [
-    {
-      date: "2024.11.24",
-      type: "발표",
-      event: "대한모발이식학회",
-      title: "Difficult cases and Situation",
-    },
-
-    {
-      date: "2024.11.18",
-      type: "발표",
-      event: "PRS Korea 2024",
-      title: "Forehead reduction and Hairline correction",
-    },
-
-    {
-      date: "2024.11.18",
-      type: "발표",
-      event: "ISHRS Denver",
-      title: "Secondary reduction foreheadplasty",
-    },
-
-    {
-      date: "2024.11.17",
-      type: "발표",
-      event: "ISHRS Denver",
-      title: "Secondary reduction foreheadplasty",
-    },
-
-    {
-      date: "2024.10.20",
-      type: "발표",
-      event: "2024 대한성형외과의사회",
-      title: "전공의 연수강좌 ",
-    },
-
-    {
-      date: "2024.10.06",
-      type: "발표",
-      event: "대한성형외과의사회 연수강좌 ",
-      title: "이마축소술의 적응증과 실전 팁",
-    },
-
-    {
-      date: "2024.07.29",
-      type: "발표",
-      event: "제 22차 대한모발이식학회 집담회",
-      title: "옅은 눈썹에 미녹시딜",
-    },
-
-    {
-      date: "2024.06.26",
-      type: "발표",
-      event: "Kenvue Inc 임직원 사내강의",
-      title: "여성탈모, 모발이식 그리고 미녹시딜",
-    },
-    {
-      date: "2024.06.02",
-      type: "발표",
-      event: "제14차 대한모발이식학회 학술대회",
-      title: "Consideration of Scar from Reductive Foreheadplasty",
-    },
-
-    {
-      date: "2024.06.01",
-      type: "발표",
-      event: "제14차 대한모발이식학회 학술대회",
-      title: "Video session; Female hairline correction with FUSS",
-    },
-  ],
-  2023: [
-    {
-      date: "2023.11.19",
-      type: "발표",
-      event: "제13차 대한모발이식학회 학술대회",
-      title: "저온 플라즈마 소독기, 수술방에서 MZ 되기",
-    },
-
-    {
-      date: "2023.11.12",
-      type: "발표",
-      event: "PRS Korea 2023",
-      title: "Does Hair Transplant Surgery Really Need Trichophytic Sutures?",
-    },
-
-    {
-      date: "2023.10.29",
-      type: "발표",
-      event: "영성회 심포지엄",
-      title: "Female hairline correction",
-    },
-
-    {
-      date: "2023.05.14",
-      type: "발표",
-      event: "제12차 대한모발이식학회 학술대회",
-      title: "Female hairline correction",
-    },
-
-    {
-      date: "2023.11.12",
-      type: "발표",
-      event: "제12차 대한모발이식학회 학술대회",
-      title:
-        "Video (Panel Discussion) – Clinical pearls to achieve best results and happy patients:",
-    },
-    {
-      date: "2023.05.14",
-      type: "발표",
-      event: "PRS Korea 2023",
-      title: "Does Hair Transplant Surgery Really Need Trichophytic Sutures?",
-    },
-
-    {
-      date: "2023.05.14",
-      type: "발표",
-      event: "영성회 심포지엄",
-      title: "Female hairline correction",
-    },
-
-    {
-      date: "2023.05.14",
-      type: "발표",
-      event: "영성회 심포지엄",
-      title: "Female hairline correction",
-    },
-  ],
-  2022: [
-    {
-      date: "2022.11.13",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title:
-        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
-    },
-    {
-      date: "2022.08.11",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title:
-        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
-    },
-    {
-      date: "2022.08.11",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title:
-        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
-    },
-    {
-      date: "2022.08.11",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title:
-        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
-    },
-
-    {
-      date: "2022.08.11",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title:
-        "The Correlation between the Diameter of the FUE Punch Tip and the Scar",
-    },
-    {
-      date: "2022.08.11",
-      type: "발표",
-      event: "PRS Korea 2022",
-      title: "Surgical Assistant Program, 동영상강의 - 이마축소",
-    },
-    {
-      date: "2022.02.20",
-      type: "발표",
-      event: "대한성형외과학회 최소침습연구회(MIPS)",
-      title: "International Aesthetic Joint Conference",
-    },
-  ],
-  2021: [
-    {
-      date: "2021. 12. 4",
-      type: "발표",
-      event: "2021 Asia Pacific Anti-Aging Conference",
-      title:
-        "Histological Analysis for the Cause of Kinky Hair after Hair Transplantation",
-    },
-    {
-      date: "2021. 12. 4",
-      type: "발표",
-      event: "2021 제10차 대한모발이식학회 학술대회",
-      title:
-        "모발이식 수술 후 나타나는 꼬인 모발 (kinky hair)의 원인에 대한 조직학적 분석",
-    },
-    {
-      date: "2021. 12. 4",
-      type: "저널",
-      event: "ISHRS 29th World Congress, Lisbon, Portugal",
-      title: "Best Methodology CSI Presentation Award",
-    },
-    {
-      date: "2021. 12. 4",
-      type: "발표",
-      event: "제16회 부산미용성형심포지엄 (BAPS)",
-      title: "FUE(모낭단위채취술)을 이용한 여성환자의 이마라인 교정",
-    },
-    {
-      date: "2021. 12. 4",
-      type: "발표",
-      event: "Aesthetic Plastic Surgery 2021",
-      title: "Changing the Direction of Hair in Hairline Correction",
-    },
-    {
-      date: "2021. 12. 4",
-      type: "수상",
-      event: "제14차 대한모발이식학회 학술대회",
-      title: "최우수발표상",
-    },
-  ],
-  2020: [
-    {
-      date: "2020. 11. 10",
-      type: "논문",
-      event: "Korean Journal of Dermatology",
-      title: "COVID-19 팬데믹 시대의 안전한 모발이식 프로토콜",
-    },
-    {
-      date: "2020. 8. 15",
-      type: "발표",
-      event: "Virtual ISHRS World Congress",
-      title: "Minimally Invasive Hair Restoration Techniques",
-    },
-  ],
-  2019: [
-    {
-      date: "2019. 9. 20",
-      type: "발표",
-      event: "제12차 대한모발이식학회 학술대회",
-      title: "자연스러운 헤어라인 디자인을 위한 새로운 접근법",
-    },
-  ],
-  2018: [],
-  2017: [],
-  2016: [],
-  2015: [],
-  2014: [],
-  2013: [],
-  2012: [],
-  2011: [
-    {
-      date: "2011.11",
-      type: "발표",
-      event: "제69차 대한성형외과학회 학술대회",
-      title:
-        "모발이식을 시행한 후 발생한 부자연스러운 헤어라인을 제모레이저를 이용하여 교정하는 방법",
-    },
-  ],
-};
+import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { useAcademicActivities } from "@/hooks/useAcademicActivities";
 
 export default function DoctorsPage() {
   console.log("[DoctorsPage] 의료진 소개 페이지 렌더링");
+
+  // 번역 훅
+  const t = useDoctorsTranslations();
+
+  // 언어 스토어
+  const { language } = useLanguageStore();
+
+  // 학술활동 훅
+  const { getAllActivities, getAvailableYears } = useAcademicActivities();
 
   // 모바일 감지 상태
   const [isMobile, setIsMobile] = useState(false);
@@ -324,23 +47,6 @@ export default function DoctorsPage() {
     setSelectedYear(year);
   };
 
-  // 모든 연도의 학술활동 가져오기 (최신 연도부터 정렬)
-  const getAllActivities = (): AcademicActivity[] => {
-    const allActivities: AcademicActivity[] = [];
-
-    // 연도를 최신부터 정렬
-    const sortedYears = Object.keys(academicActivitiesByYear)
-      .map(Number)
-      .sort((a, b) => b - a);
-
-    // 각 연도의 활동을 추가
-    sortedYears.forEach((year) => {
-      const yearActivities = academicActivitiesByYear[year] || [];
-      allActivities.push(...yearActivities);
-    });
-
-    return allActivities;
-  };
 
   return (
     <div className={styles.doctorsPage}>
@@ -351,9 +57,12 @@ export default function DoctorsPage() {
           <div className={styles.medicalTeamHeader}>
             <div className={styles.medicalTeamTitleSection}>
               <h1 className={styles.medicalTeamMainTitle}>
-                모발이식
-                <br />
-                15년 전문의.
+                {t.hero.title.split("\n").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < t.hero.title.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
               </h1>
             </div>
             <div className={styles.medicalTeamHeroSection}>
@@ -367,7 +76,7 @@ export default function DoctorsPage() {
                 transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
               />
               <motion.h2
-                className={styles.medicalTeamHeroTitle}
+                className={`${styles.medicalTeamHeroTitle} english-name`}
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -390,9 +99,19 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileMainSection}>
                 <div className={styles.doctorMobileHeader}>
                   <h1 className={styles.doctorMobileTitle}>
-                    모발이식
-                    <br />
-                    15년 전문의.
+                    {language === "JP" ? (
+                      <>
+                        毛髪移植
+                        <br />
+                        15年の専門医。
+                      </>
+                    ) : (
+                      <>
+                        모발이식
+                        <br />
+                        15년 전문의.
+                      </>
+                    )}
                   </h1>
                 </div>
                 {/* 의사 정보 - 이미지와 텍스트 오버레이 */}
@@ -403,7 +122,7 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={styles.doctorMobileName}>
+                    <h2 className={`${styles.doctorMobileName} english-name`}>
                       Shin
                       <br />
                       Seung
@@ -411,10 +130,10 @@ export default function DoctorsPage() {
                       gyu
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      성형외과 전문의
+                      {t.doctorInfo.specialist}
                     </p>
                     <p className={styles.doctorMobileNameBold}>
-                      대표원장 신 승규
+                      {t.doctors[0].position}
                     </p>
                   </div>
                 </div>
@@ -429,30 +148,14 @@ export default function DoctorsPage() {
               </div>
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    현) 바람부는날에도 성형외과 대표원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    전) 모제림성형외과 여성센터 전담원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    전) 브라운 성형외과 원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    국제모발이식학회 (ISHRS) 정회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한성형외과학회 (KSPRS) 종신회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한미용성형외과학회 (KSAPS) 재무위원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한성형외과학회 모발성형연구회 정회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한모발이식학회 (KSHRS) 정회원
-                  </li>
+                  {t.doctors[0].credentials.map((credential, index) => (
+                    <li
+                      key={index}
+                      className={styles.doctorMobileCredentialItem}
+                    >
+                      {credential}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -460,7 +163,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
               <div className={styles.doctorName}>
-                <h3 className={styles.doctorNameText}>
+                <h3 className={`${styles.doctorNameText} english-name`}>
                   Shin
                   <br />
                   Seung gyu
@@ -468,42 +171,45 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorTitle}>
-                <p className={styles.doctorSpecialty}>성형외과 전문의</p>
-                <h4 className={styles.doctorPosition}>대표원장 신 승규</h4>
+                <p className={styles.doctorSpecialty}>
+                  {t.doctorInfo.specialist}
+                </p>
+                <h4 className={styles.doctorPosition}>
+                  {t.doctors[0].position}
+                </h4>
               </div>
 
               <div className={styles.doctorInfo}>
                 <div className={styles.doctorCredentials}>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 현) 바람부는날에도 성형외과 대표원장
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 전) 모제림성형외과 여성센터 전담원장
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 전) 브라운 성형외과 원장
-                      </li>
+                      {t.doctors[0].credentials
+                        .slice(
+                          0,
+                          Math.ceil(t.doctors[0].credentials.length / 2)
+                        )
+                        .map((credential, index) => (
+                          <li key={index} className={styles.credentialItem}>
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 국제모발이식학회 (ISHRS) 정회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한성형외과학회 (KSPRS) 종신회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한미용성형외과학회 (KSAPS) 재무위원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한성형외과학회 모발성형연구회 정회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한모발이식학회 (KSHRS) 정회원
-                      </li>
+                      {t.doctors[0].credentials
+                        .slice(Math.ceil(t.doctors[0].credentials.length / 2))
+                        .map((credential, index) => (
+                          <li
+                            key={
+                              index +
+                              Math.ceil(t.doctors[0].credentials.length / 2)
+                            }
+                            className={styles.credentialItem}
+                          >
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -517,9 +223,14 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    첫 수술부터 순서와 방법을 잘 정해야 합니다.
-                    <br />
-                    순서가 뒤바뀌면 최선의 결과를 놓칠 수도 있습니다.
+                    {t.doctors[0].quote.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t.doctors[0].quote.split("\n").length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
                   </p>
                   <img
                     src="/doctors/profile/double-quotation-end.svg"
@@ -577,20 +288,18 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={styles.doctorMobileName2}>
+                    <h2 className={`${styles.doctorMobileName2} english-name`}>
                       Park
                       <br />
                       Soo Ho
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      성형외과 전문의
+                      {t.doctorInfo.specialist}
                       <br />
-                      미국 모발이식외과 자격의
-                      <br />
-                      (ABHRS)
+                      {t.doctorInfo.abhrs}
                     </p>
                     <p className={styles.doctorMobileNameBold}>
-                      대표원장 박 수호
+                      {t.doctors[1].position}
                     </p>
                   </div>
                 </div>
@@ -605,27 +314,14 @@ export default function DoctorsPage() {
               </div>
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    현) 바람부는날에도 성형외과 대표원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    전) 모제림성형외과 여성센터 대표원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    국제모발이식학회 (ISHRS) 정회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한성형외과학회 (KSPRS) 종신회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한미용성형외과학회 (KSAPS) 학술위원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한성형외과학회 모발성형연구회 정회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한모발이식학회 (KSHRS) 상임 학술이사
-                  </li>
+                  {t.doctors[1].credentials.map((credential, index) => (
+                    <li
+                      key={index}
+                      className={styles.doctorMobileCredentialItem}
+                    >
+                      {credential}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -633,7 +329,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContentReversed}>
               <div className={styles.doctorName2}>
-                <h3 className={styles.doctorNameText}>
+                <h3 className={`${styles.doctorNameText} english-name`}>
                   Park
                   <br />
                   Soo Ho
@@ -642,42 +338,46 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorTitle2}>
                 <p className={styles.doctorSpecialty}>
-                  성형외과 전문의
+                  {t.doctorInfo.specialist}
                   <br />
-                  미국 모발이식외과 자격의 (ABHRS)
+                  {t.doctorInfo.abhrs}
                 </p>
-                <h4 className={styles.doctorPosition}>대표원장 박 수호</h4>
+                <h4 className={styles.doctorPosition}>
+                  {t.doctors[1].position}
+                </h4>
               </div>
 
               <div className={styles.doctorInfo2}>
                 <div className={styles.doctorCredentials}>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 현) 바람부는날에도 성형외과 대표원장
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 전) 모제림성형외과 여성센터 대표원장
-                      </li>
+                      {t.doctors[1].credentials
+                        .slice(
+                          0,
+                          Math.ceil(t.doctors[1].credentials.length / 2)
+                        )
+                        .map((credential, index) => (
+                          <li key={index} className={styles.credentialItem}>
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 국제모발이식학회 (ISHRS) 정회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한성형외과학회 (KSPRS) 종신회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한미용성형외과학회 (KSAPS) 학술위원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한성형외과학회 모발성형연구회 정회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한모발이식학회 (KSHRS) 상임 학술이사
-                      </li>
+                      {t.doctors[1].credentials
+                        .slice(Math.ceil(t.doctors[1].credentials.length / 2))
+                        .map((credential, index) => (
+                          <li
+                            key={
+                              index +
+                              Math.ceil(t.doctors[1].credentials.length / 2)
+                            }
+                            className={styles.credentialItem}
+                          >
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -691,9 +391,14 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    가장 중요한 건 환자가 원하는 거예요.
-                    <br />
-                    의사가 원하는 대로만 하면 결국 두 번 수술을 하게 됩니다.
+                    {t.doctors[1].quote.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t.doctors[1].quote.split("\n").length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
                   </p>
                   <img
                     src="/doctors/profile/double-quotation-end.svg"
@@ -750,16 +455,16 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={styles.doctorMobileName}>
+                    <h2 className={`${styles.doctorMobileName} english-name`}>
                       Kim
                       <br />
                       Narae
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      성형외과 전문의
+                      {t.doctorInfo.specialist}
                     </p>
                     <p className={styles.doctorMobileNameBold}>
-                      대표원장 김 나래
+                      {t.doctors[2].position}
                     </p>
                   </div>
                 </div>
@@ -773,27 +478,14 @@ export default function DoctorsPage() {
               </div>
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    현) 바람부는날에도 성형외과 대표원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    전) 다나 성형외과 여성 대표원장
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한모발이식학회 정회원
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    국제모발이식학회(ISHRS) 펜딩멤버
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    대한비만미용학회(KOAT) 학술이사
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    경희대학교 의과대학 졸업
-                  </li>
-                  <li className={styles.doctorMobileCredentialItem}>
-                    경희의료원 전문의 수료
-                  </li>
+                  {t.doctors[2].credentials.map((credential, index) => (
+                    <li
+                      key={index}
+                      className={styles.doctorMobileCredentialItem}
+                    >
+                      {credential}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -801,7 +493,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
               <div className={styles.doctorName3}>
-                <h3 className={styles.doctorNameText}>
+                <h3 className={`${styles.doctorNameText} english-name`}>
                   Kim
                   <br />
                   Narae
@@ -809,39 +501,45 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorTitle3}>
-                <p className={styles.doctorSpecialty}>성형외과 전문의</p>
-                <h4 className={styles.doctorPosition}>대표원장 김 나래</h4>
+                <p className={styles.doctorSpecialty}>
+                  {t.doctorInfo.specialist}
+                </p>
+                <h4 className={styles.doctorPosition}>
+                  {t.doctors[2].position}
+                </h4>
               </div>
 
               <div className={styles.doctorInfo}>
                 <div className={styles.doctorCredentials}>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 현) 바람부는날에도 성형외과 대표원장
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 전) 다나 성형외과 여성 대표원장
-                      </li>
+                      {t.doctors[2].credentials
+                        .slice(
+                          0,
+                          Math.ceil(t.doctors[2].credentials.length / 2)
+                        )
+                        .map((credential, index) => (
+                          <li key={index} className={styles.credentialItem}>
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
-                      <li className={styles.credentialItem}>
-                        • 대한모발이식학회 정회원
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 국제모발이식학회(ISHRS) 펜딩멤버
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 대한비만미용학회(KOAT) 학술이사
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 경희대학교 의과대학 졸업
-                      </li>
-                      <li className={styles.credentialItem}>
-                        • 경희의료원 전문의 수료
-                      </li>
+                      {t.doctors[2].credentials
+                        .slice(Math.ceil(t.doctors[2].credentials.length / 2))
+                        .map((credential, index) => (
+                          <li
+                            key={
+                              index +
+                              Math.ceil(t.doctors[2].credentials.length / 2)
+                            }
+                            className={styles.credentialItem}
+                          >
+                            • {credential}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 </div>
@@ -855,11 +553,14 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    자연스러운 아름다움과 얼굴의 조화를 중요하게 생각합니다.
-                    <br />
-                    환자 한 분 한 분에게
-                    <br />
-                    언제나 정직하고 세심한 시술을 지향합니다.
+                    {t.doctors[2].quote.split("\n").map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < t.doctors[2].quote.split("\n").length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
                   </p>
                   <img
                     src="/doctors/profile/double-quotation-end.svg"
@@ -910,9 +611,14 @@ export default function DoctorsPage() {
           {/* 연혁 타이틀 */}
           <div className={styles.historyHeader}>
             <h2 className={styles.historyTitle}>
-              의료진 학술활동
-              <br />
-              연구목록.
+              {t.academicHistory.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.academicHistory.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
             </h2>
           </div>
 
@@ -1059,7 +765,7 @@ export default function DoctorsPage() {
                         <div className={styles.categoryBadge}>-</div>
                       </div>
                       <div className={styles.academicRowEvent}>
-                        해당 연도의 학술활동이 없습니다.
+                        {t.academicHistory.noActivities}
                       </div>
                       <div className={styles.academicRowTitle}>-</div>
                     </div>
