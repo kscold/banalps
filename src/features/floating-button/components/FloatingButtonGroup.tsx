@@ -52,7 +52,10 @@ function FloatingButtonGroupComponent({
       const viewportWidth = window.innerWidth;
 
       // 반응형 값 계산 함수
-      const calculateResponsiveValue = (desktopPx: number, mobilePx: number) => {
+      const calculateResponsiveValue = (
+        desktopPx: number,
+        mobilePx: number
+      ) => {
         if (viewportWidth >= 1920) {
           return desktopPx; // 1920px+ 고정
         } else if (viewportWidth >= 1024) {
@@ -66,16 +69,42 @@ function FloatingButtonGroupComponent({
 
       // 반응형 계산된 값들
       const floatingButtonHeight = calculateResponsiveValue(200, 120);
-      const bottomOffset = calculateResponsiveValue(15, 20); // 데스크탑 bottom을 15px로 조정
+      const bottomOffset = calculateResponsiveValue(15, 20);
+
+      // 헤더 오른쪽 마진 동적 계산
+      const headerRightMargin = calculateResponsiveValue(160, 16); // 헤더와 동일한 마진 // 데스크탑 bottom을 15px로 조정
       const threshold = calculateResponsiveValue(20, 20); // 푸터 만나기 전 여백 20px로 통일
 
-      // 푸터가 화면에 보이기 시작하고 플로팅 버튼과 충돌할 때 감지
+      // 푸터가 실제로 화면에 보이고 플로팅 버튼과 충돌할 때만 감지
       const footerTop = footerRect.top;
+      const footerBottom = footerRect.bottom;
       const floatingButtonBottom = windowHeight - bottomOffset;
-      const floatingButtonTop = floatingButtonBottom - floatingButtonHeight;
 
-      // 푸터의 상단이 플로팅 버튼 영역에 접근할 때 이동
-      const shouldMoveAboveFooter = footerTop < floatingButtonBottom + threshold;
+      // 푸터가 실제로 화면에 상당 부분 나타나고 있는지 확인 (모바일 고려)
+      const footerVisibleHeight =
+        Math.min(windowHeight, footerBottom) - Math.max(0, footerTop);
+      const isFooterVisible = isMobile
+        ? footerVisibleHeight > 50 // 모바일에서는 더 민감하게 감지
+        : footerVisibleHeight > 100; // 데스크탑에서는 100px 이상
+
+      // 디버깅을 위한 로그 (개발 환경에서만)
+      if (process.env.NODE_ENV === "development") {
+        console.log("Footer Debug:", {
+          footerTop,
+          footerBottom,
+          windowHeight,
+          footerVisibleHeight,
+          isFooterVisible,
+          floatingButtonBottom,
+          threshold,
+          shouldMove:
+            isFooterVisible && footerTop < floatingButtonBottom + threshold,
+        });
+      }
+
+      // 푸터가 화면에 충분히 보이고, 플로팅 버튼 영역에 접근할 때만 이동
+      const shouldMoveAboveFooter =
+        isFooterVisible && footerTop < floatingButtonBottom + threshold;
 
       setIsAboveFooter(shouldMoveAboveFooter);
     };
@@ -169,7 +198,48 @@ function FloatingButtonGroupComponent({
             return "576px"; // 556 + 20
           }
         })(),
-        transition: "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+        right: (() => {
+          // 실제 헤더 요소를 찾아서 정확한 위치 계산
+          const header =
+            document.querySelector('[data-header="true"]') ||
+            document.querySelector("header") ||
+            document.querySelector(".header");
+
+          if (header) {
+            const headerRect = header.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const headerRightEdge = headerRect.right;
+            const rightMargin = viewportWidth - headerRightEdge;
+
+            // 디버깅 로그
+            if (process.env.NODE_ENV === "development") {
+              console.log("Header Debug:", {
+                headerRect,
+                viewportWidth,
+                headerRightEdge,
+                rightMargin,
+                calculatedRight: `${rightMargin}px`,
+              });
+            }
+
+            return `${rightMargin}px`;
+          }
+
+          // 헤더를 찾지 못한 경우 기본 계산
+          const viewportWidth = window.innerWidth;
+
+          if (viewportWidth >= 1920) {
+            return "160px";
+          } else if (viewportWidth >= 1024) {
+            const headerMargin = (160 / 1920) * viewportWidth;
+            return `${headerMargin}px`;
+          } else {
+            // 모바일은 고정값 사용
+            return "16px";
+          }
+        })(),
+        transition:
+          "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1), right 300ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       {/* 확장 가능한 버튼 리스트 */}

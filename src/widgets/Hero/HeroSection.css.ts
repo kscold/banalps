@@ -194,7 +194,7 @@ export const textContent = style({
   zIndex: tokens.zIndex.content,
   alignItems: "flex-end", // 오른쪽 정렬
   justifyContent: "center", // 중앙 정렬
-  pointerEvents: "auto", // 텍스트는 선택 가능하도록
+  pointerEvents: "none", // 스크롤 이벤트를 방해하지 않도록 수정
 
   // 기본값 (모바일 우선)
   width: vw(439),
@@ -266,6 +266,8 @@ export const storyText = style({
   textAlign: "left", // 오른쪽 정렬
   display: "block",
   width: "100%",
+  pointerEvents: "auto", // 텍스트 선택 가능하도록
+  userSelect: "text", // 텍스트 선택 허용
 
   "@media": {
     [breakpoints.mobile]: {
@@ -293,6 +295,8 @@ export const specialQuoteText = style({
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
   display: "inline",
+  pointerEvents: "auto", // 텍스트 선택 가능하도록
+  userSelect: "text", // 텍스트 선택 허용
 
   "@media": {
     [breakpoints.mobile]: {

@@ -2,6 +2,7 @@
 
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useAllPagesTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 import * as styles from "./GoogleMapEmbed.css";
 
 interface GoogleMapEmbedProps {
@@ -13,6 +14,7 @@ export default function GoogleMapEmbed({
 }: GoogleMapEmbedProps) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const t = useAllPagesTranslations();
+  const { language } = useLanguageStore();
 
   const openKakaoMap = () => {
     window.open(
@@ -30,13 +32,21 @@ export default function GoogleMapEmbed({
       <div className={styles.mapWrapper}>
         {isMobile ? (
           <img
-            src="/treatment-guide/map-mobile.png"
+            src={
+              language === "JP"
+                ? "/treatment-guide/map-jp-mobile.jpg"
+                : "/treatment-guide/map-mobile.png"
+            }
             alt={t.imageAlt.banalClinicLocation}
             className={styles.mapMobile}
           />
         ) : (
           <img
-            src="/treatment-guide/map.png"
+            src={
+              language === "JP"
+                ? "/treatment-guide/map-jp.jpg"
+                : "/treatment-guide/map.png"
+            }
             alt={t.imageAlt.banalClinicLocation}
             className={styles.mapDesktop}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}

@@ -35,10 +35,10 @@ export default function WhiteSection() {
       <div className={styles.container}>
         {/* 메인 타이틀 */}
         <h2 className={styles.mainTitle}>
-          {white.mainTitle.split('\n').map((line, index) => (
+          {white.mainTitle.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < white.mainTitle.split('\n').length - 1 && <br />}
+              {index < white.mainTitle.split("\n").length - 1 && <br />}
             </span>
           ))}
         </h2>
@@ -135,7 +135,7 @@ export default function WhiteSection() {
               size="medium"
               color="blue"
               className={styles.mobileCardButton}
-              onClick={() => router.push("/hair-transplant/revision")}
+              onClick={() => router.push("/hair-transplant/reoperation")}
             >
               {white.services.banalRevision}
             </ArrowButton>
@@ -277,12 +277,16 @@ export default function WhiteSection() {
           {/* 오른쪽 Other Medical Service 박스 */}
           <div className={styles.otherServiceBox}>
             <h3 className={styles.otherServiceTitle}>
-              {white.services.otherMedicalService.split('\n').map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < white.services.otherMedicalService.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+              {white.services.otherMedicalService
+                .split("\n")
+                .map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index <
+                      white.services.otherMedicalService.split("\n").length -
+                        1 && <br />}
+                  </span>
+                ))}
             </h3>
 
             <ArrowButton
@@ -329,27 +333,29 @@ export default function WhiteSection() {
         <div className={styles.readyTitleWrapper}>
           <div className={styles.readyTitleContainer}>
             <h2 className={styles.readyMainTitle}>
-              {white.ready.title.split('\n').map((line, index) => (
+              {white.ready.title.split("\n").map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index < white.ready.title.split('\n').length - 1 && <br />}
+                  {index < white.ready.title.split("\n").length - 1 && <br />}
                 </span>
               ))}
             </h2>
             <div className={styles.readyDescription}>
               <p className={styles.readyDescriptionText}>
-                {white.ready.description1.split('\n').map((line, index) => (
+                {white.ready.description1.split("\n").map((line, index) => (
                   <span key={index}>
                     {line}
-                    {index < white.ready.description1.split('\n').length - 1 && <br />}
+                    {index <
+                      white.ready.description1.split("\n").length - 1 && <br />}
                   </span>
                 ))}
               </p>
               <p className={styles.readyDescriptionText}>
-                {white.ready.description2.split('\n').map((line, index) => (
+                {white.ready.description2.split("\n").map((line, index) => (
                   <span key={index}>
                     {line}
-                    {index < white.ready.description2.split('\n').length - 1 && <br />}
+                    {index <
+                      white.ready.description2.split("\n").length - 1 && <br />}
                   </span>
                 ))}
               </p>
@@ -362,10 +368,10 @@ export default function WhiteSection() {
       {/* 오시는 길 섹션 */}
       <div className={styles.locationSection}>
         <h2 className={styles.locationTitle}>
-          {white.location.title.split('\n').map((line, index) => (
+          {white.location.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < white.location.title.split('\n').length - 1 && <br />}
+              {index < white.location.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </h2>
@@ -390,12 +396,18 @@ export default function WhiteSection() {
               <div className={styles.locationInfo}>
                 <div className={styles.infoBox}>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.phone}</span>
-                    <span className={styles.infoNumber}>{white.location.phoneNumber}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.phone}
+                    </span>
+                    <span className={styles.infoNumber}>
+                      {white.location.phoneNumber}
+                    </span>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.hours}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.hours}
+                    </span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.weekday}
@@ -407,7 +419,9 @@ export default function WhiteSection() {
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.directions}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.directions}
+                    </span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.address1}
@@ -450,12 +464,18 @@ export default function WhiteSection() {
               <div className={styles.locationInfo}>
                 <div className={styles.infoBox}>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.phone}</span>
-                    <span className={styles.infoNumber}>{white.location.phoneNumber}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.phone}
+                    </span>
+                    <span className={styles.infoNumber}>
+                      {white.location.phoneNumber}
+                    </span>
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.hours}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.hours}
+                    </span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.weekday}
@@ -467,7 +487,9 @@ export default function WhiteSection() {
                   </div>
 
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>{white.location.directions}</span>
+                    <span className={styles.infoLabel}>
+                      {white.location.directions}
+                    </span>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.address1}
@@ -477,7 +499,8 @@ export default function WhiteSection() {
                       </p>
                       <p className={styles.subwayInfo}>
                         {white.location.subway1}
-                        <br />{white.location.subway2}
+                        <br />
+                        {white.location.subway2}
                       </p>
                     </div>
                   </div>

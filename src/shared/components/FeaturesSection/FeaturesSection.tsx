@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import * as styles from "./FeaturesSection.css";
 
 interface FeatureCard {
@@ -22,11 +21,6 @@ export default function FeaturesSection({
   featureCards,
   isMobile = false,
 }: FeaturesSectionProps) {
-  const { ref: featuresRef, inView: featuresInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
   // Check if desktop (not mobile)
   const isDesktop = !isMobile;
 
@@ -50,47 +44,77 @@ export default function FeaturesSection({
             className={styles.quotationEnd}
           />
         </div>
-        <motion.div
-          ref={featuresRef}
-          className={styles.featuresGrid}
-          initial={{ opacity: 0, y: 50 }}
-          animate={
-            featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-          }
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          {featureCards.map((card, index) => (
-            <motion.div
-              key={index}
-              className={styles.featureCard}
-              initial={{ opacity: 0, y: 50 }}
-              animate={
-                featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-              }
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-                delay: isDesktop ? 0 : index * 0.1, // Desktop: no delay, Mobile: staggered
-              }}
-            >
-              <div className={styles.featureIconContainer}>
-                <div className={styles.featureIcon}>
-                  <img
-                    src={card.icon}
-                    alt={`특징 ${index + 1}`}
-                    className={
-                      index === 0 ? styles.featureIconFirst :
-                      index === 1 ? styles.featureIconSecond :
-                      index === 2 ? styles.featureIconThird :
-                      styles.featureIconFourth
-                    }
-                  />
+
+        {/* 데스크탑: 전체 그리드 애니메이션 */}
+        {isDesktop ? (
+          <motion.div
+            className={styles.featuresGrid}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            {featureCards.map((card, index) => (
+              <div key={index} className={styles.featureCard}>
+                <div className={styles.featureIconContainer}>
+                  <div className={styles.featureIcon}>
+                    <img
+                      src={card.icon}
+                      alt={`특징 ${index + 1}`}
+                      className={
+                        index === 0
+                          ? styles.featureIconFirst
+                          : index === 1
+                          ? styles.featureIconSecond
+                          : index === 2
+                          ? styles.featureIconThird
+                          : styles.featureIconFourth
+                      }
+                    />
+                  </div>
                 </div>
+                <h3 className={styles.featureTitle}>{card.title}</h3>
               </div>
-              <h3 className={styles.featureTitle}>{card.title}</h3>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          /* 모바일: 개별 카드 애니메이션 */
+          <div className={styles.featuresGrid}>
+            {featureCards.map((card, index) => (
+              <motion.div
+                key={index}
+                className={styles.featureCard}
+                initial={{ opacity: 0, translateY: 80 }}
+                whileInView={{ opacity: 1, translateY: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeOut",
+                  delay: index * 0.1,
+                }}
+              >
+                <div className={styles.featureIconContainer}>
+                  <div className={styles.featureIcon}>
+                    <img
+                      src={card.icon}
+                      alt={`특징 ${index + 1}`}
+                      className={
+                        index === 0
+                          ? styles.featureIconFirst
+                          : index === 1
+                          ? styles.featureIconSecond
+                          : index === 2
+                          ? styles.featureIconThird
+                          : styles.featureIconFourth
+                      }
+                    />
+                  </div>
+                </div>
+                <h3 className={styles.featureTitle}>{card.title}</h3>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

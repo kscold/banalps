@@ -163,9 +163,13 @@ export default function AboutPage() {
               <div className={styles.reYouImageCards}>
                 <motion.div
                   className={styles.reYouCard1}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  initial={{ opacity: 0, translateY: 80 }}
+                  whileInView={{ opacity: 1, translateY: 0 }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                    margin: "0px 0px -100px 0px",
+                  }}
                   transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
                 >
                   <img
@@ -177,10 +181,14 @@ export default function AboutPage() {
 
                 <motion.div
                   className={styles.reYouCard4}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                  initial={{ opacity: 0, translateY: 80 }}
+                  whileInView={{ opacity: 1, translateY: 0 }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                    margin: "0px 0px -100px 0px",
+                  }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot2.png"
@@ -190,10 +198,14 @@ export default function AboutPage() {
                 </motion.div>
                 <motion.div
                   className={styles.reYouCard2}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                  initial={{ opacity: 0, translateY: 80 }}
+                  whileInView={{ opacity: 1, translateY: 0 }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                    margin: "0px 0px -100px 0px",
+                  }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot3.svg"
@@ -204,10 +216,14 @@ export default function AboutPage() {
 
                 <motion.div
                   className={styles.reYouCard3}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                  initial={{ opacity: 0, translateY: 80 }}
+                  whileInView={{ opacity: 1, translateY: 0 }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                    margin: "0px 0px -100px 0px",
+                  }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
                 >
                   <img
                     src="/main/shot/shot4.png"
@@ -331,10 +347,12 @@ export default function AboutPage() {
               <div className={styles.galleryTopSection}>
                 <div className={styles.galleryTitleSection}>
                   <h2 className={styles.galleryTitle}>
-                    {t.gallery.title.split('\n').map((line, index) => (
+                    {t.gallery.title.split("\n").map((line, index) => (
                       <span key={index}>
                         {line}
-                        {index < t.gallery.title.split('\n').length - 1 && <br />}
+                        {index < t.gallery.title.split("\n").length - 1 && (
+                          <br />
+                        )}
                       </span>
                     ))}
                   </h2>

@@ -18,31 +18,23 @@ const TreatmentCard = ({
   alt,
   title,
   isMobile,
+  delay = 0,
 }: {
   number: string;
   image: string;
   alt: string;
   title: string;
   isMobile: boolean;
+  delay?: number;
 }) => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-    rootMargin: "0px 0px -50px 0px",
-  });
-
   if (isMobile) {
     return (
       <motion.div
-        ref={ref}
         className={styles.treatmentCard}
         initial={{ opacity: 0, translateY: 80 }}
-        animate={
-          inView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
-        }
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay }}
       >
         <div className={styles.treatmentCardImage}>
           <span className={styles.treatmentCardNumber}>{number}</span>
@@ -77,10 +69,10 @@ export default function ScalpTreatmentPage() {
     section1: {
       title: (
         <>
-          {t.section1.title.split('\n').map((line, index) => (
+          {t.section1.title.split("\n").map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split('\n').length - 1 && <br />}
+              {index < t.section1.title.split("\n").length - 1 && <br />}
             </span>
           ))}
         </>
@@ -88,20 +80,23 @@ export default function ScalpTreatmentPage() {
       description: {
         desktop: (
           <>
-            {t.section1.description.split('\n').map((line, index) => (
+            {t.section1.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.section1.description.split('\n').length - 1 && <br />}
+                {index < t.section1.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.section1.descriptionMobile.split('\n').map((line, index) => (
+            {t.section1.descriptionMobile.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
+                {index <
+                  t.section1.descriptionMobile.split("\n").length - 1 && <br />}
               </span>
             ))}
           </>
@@ -113,42 +108,54 @@ export default function ScalpTreatmentPage() {
       subtitle: {
         desktop: (
           <>
-            {t.details.section3.subtitle.split('\n').map((line, index) => (
+            {t.details.section3.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section3.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section3.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section3.subtitleMobile.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section3.subtitleMobile.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {t.details.section3.subtitleMobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section3.subtitleMobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            {t.details.section3.description.split('\n').map((line, index) => (
+            {t.details.section3.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section3.description.split('\n').length - 1 && <br />}
+                {index <
+                  t.details.section3.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section3.description.split('\n').map((line, index) => (
+            {t.details.section3.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section3.description.split('\n').length - 1 && <br />}
+                {index <
+                  t.details.section3.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
@@ -160,20 +167,24 @@ export default function ScalpTreatmentPage() {
       subtitle: {
         desktop: (
           <>
-            {t.details.section4.subtitle.split('\n').map((line, index) => (
+            {t.details.section4.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section4.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section4.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section4.subtitle.split('\n').map((line, index) => (
+            {t.details.section4.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section4.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section4.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
@@ -182,22 +193,29 @@ export default function ScalpTreatmentPage() {
       description: {
         desktop: (
           <>
-            {t.details.section4.description.split('\n').map((line, index) => (
+            {t.details.section4.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section4.description.split('\n').length - 1 && <br />}
+                {index <
+                  t.details.section4.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section4.descriptionMobile.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section4.descriptionMobile.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {t.details.section4.descriptionMobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section4.descriptionMobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
@@ -207,20 +225,24 @@ export default function ScalpTreatmentPage() {
       subtitle: {
         desktop: (
           <>
-            {t.details.section5.subtitle.split('\n').map((line, index) => (
+            {t.details.section5.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section5.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section5.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section5.subtitle.split('\n').map((line, index) => (
+            {t.details.section5.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section5.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section5.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
@@ -229,22 +251,29 @@ export default function ScalpTreatmentPage() {
       description: {
         desktop: (
           <>
-            {t.details.section5.description.split('\n').map((line, index) => (
+            {t.details.section5.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section5.description.split('\n').length - 1 && <br />}
+                {index <
+                  t.details.section5.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section5.descriptionMobile.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section5.descriptionMobile.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {t.details.section5.descriptionMobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section5.descriptionMobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
@@ -253,20 +282,24 @@ export default function ScalpTreatmentPage() {
       title: {
         desktop: (
           <>
-            {t.details.section6.title.split('\n').map((line, index) => (
+            {t.details.section6.title.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section6.title.split('\n').length - 1 && <br />}
+                {index < t.details.section6.title.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section6.title.split('\n').map((line, index) => (
+            {t.details.section6.title.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section6.title.split('\n').length - 1 && <br />}
+                {index < t.details.section6.title.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
@@ -275,44 +308,57 @@ export default function ScalpTreatmentPage() {
       subtitle: {
         desktop: (
           <>
-            {t.details.section6.subtitle.split('\n').map((line, index) => (
+            {t.details.section6.subtitle.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section6.subtitle.split('\n').length - 1 && <br />}
+                {index < t.details.section6.subtitle.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section6.subtitleMobile.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section6.subtitleMobile.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {t.details.section6.subtitleMobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section6.subtitleMobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
       description: {
         desktop: (
           <>
-            {t.details.section6.description.split('\n').map((line, index) => (
+            {t.details.section6.description.split("\n").map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.details.section6.description.split('\n').length - 1 && <br />}
+                {index <
+                  t.details.section6.description.split("\n").length - 1 && (
+                  <br />
+                )}
               </span>
             ))}
           </>
         ),
         mobile: (
           <>
-            {t.details.section6.descriptionMobile.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section6.descriptionMobile.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {t.details.section6.descriptionMobile
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section6.descriptionMobile.split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
@@ -326,42 +372,41 @@ export default function ScalpTreatmentPage() {
 
   // Hero Section 애니메이션
   const { ref: heroRef, inView: heroInView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   // Section 1 애니메이션
   const { ref: section1Ref, inView: section1InView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
-  });
-
-  // Section 2 - 치료방법 카드 애니메이션
-  const { ref: treatmentCardsRef, inView: treatmentCardsInView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-    rootMargin: "0px 0px -100px 0px",
+    rootMargin: "0px 0px -50px 0px",
   });
 
   // Section 3-6 각 치료방법 상세 애니메이션
   const { ref: section3Ref, inView: section3InView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const { ref: section4Ref, inView: section4InView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const { ref: section5Ref, inView: section5InView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const { ref: section6Ref, inView: section6InView } = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   return (
@@ -380,7 +425,7 @@ export default function ScalpTreatmentPage() {
                     justifyContent: "flex-start",
                   }}
                 >
-{t.hero.title}
+                  {t.hero.title}
                   <div className={styles.HairTransplantHeroTitleDot} />
                 </span>
               </h1>
@@ -443,9 +488,7 @@ export default function ScalpTreatmentPage() {
         <div className={styles.introContainer}>
           {/* 왼쪽 텍스트 */}
           <div className={styles.introTextContent}>
-            <h2 className={styles.introTitle}>
-              {textContent.section1.title}
-            </h2>
+            <h2 className={styles.introTitle}>{textContent.section1.title}</h2>
             <div className={styles.introImageContent}>
               <div className={styles.introImageContainer}>
                 <img
@@ -465,19 +508,7 @@ export default function ScalpTreatmentPage() {
       </section>
 
       {/* Section 2: 치료방법 카드들 */}
-      <motion.section
-        ref={treatmentCardsRef}
-        className={styles.treatmentCardsSection}
-        initial={!isMobile ? { opacity: 0, translateY: 80 } : {}}
-        animate={
-          !isMobile && treatmentCardsInView
-            ? { opacity: 1, translateY: 0 }
-            : !isMobile
-            ? { opacity: 0, translateY: 80 }
-            : {}
-        }
-        transition={{ duration: 0.6 }}
-      >
+      <section className={styles.treatmentCardsSection}>
         <div className={styles.treatmentCardsContainer}>
           <TreatmentCard
             number="1"
@@ -485,6 +516,7 @@ export default function ScalpTreatmentPage() {
             alt={t.treatments.laser}
             title={t.treatments.laser}
             isMobile={isMobile}
+            delay={0}
           />
 
           <div className={styles.treatmentArrow}>
@@ -501,6 +533,7 @@ export default function ScalpTreatmentPage() {
             alt={t.treatments.injection}
             title={t.treatments.injection}
             isMobile={isMobile}
+            delay={0.1}
           />
 
           <div className={styles.treatmentArrow}>
@@ -517,6 +550,7 @@ export default function ScalpTreatmentPage() {
             alt={t.treatments.mts}
             title={t.treatments.mts}
             isMobile={isMobile}
+            delay={0.2}
           />
 
           <div className={styles.treatmentArrow}>
@@ -533,6 +567,7 @@ export default function ScalpTreatmentPage() {
             alt={t.treatments.lllt}
             title={t.treatments.lllt}
             isMobile={isMobile}
+            delay={0.3}
           />
 
           {!isMobile && <div className={styles.treatmentArrow}></div>}
@@ -544,10 +579,11 @@ export default function ScalpTreatmentPage() {
               alt={t.treatments.iv}
               title={t.treatments.iv}
               isMobile={isMobile}
+              delay={0.4}
             />
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 3: 1550nm 어븀글라스 프락셀 레이저 */}
       <section ref={section3Ref} className={styles.treatmentDetailSection}>
@@ -773,27 +809,35 @@ export default function ScalpTreatmentPage() {
       <FeaturesSection
         featuresTitle={
           <>
-            {(isMobile ? t.features.titleMobile : t.features.title).split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < (isMobile ? t.features.titleMobile : t.features.title).split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {(isMobile ? t.features.titleMobile : t.features.title)
+              .split("\n")
+              .map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    (isMobile
+                      ? t.features.titleMobile
+                      : t.features.title
+                    ).split("\n").length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         }
         featureCards={t.features.cards.map((card, index) => ({
           icon: `/hair-transplant/feature-${index + 1}.svg`,
           title: (
             <>
-              {card.title.split('\n').map((line, cardIndex) => (
+              {card.title.split("\n").map((line, cardIndex) => (
                 <span key={cardIndex}>
                   {line}
-                  {cardIndex < card.title.split('\n').length - 1 && <br />}
+                  {cardIndex < card.title.split("\n").length - 1 && <br />}
                 </span>
               ))}
             </>
           ),
         }))}
+        isMobile={isMobile}
       />
     </div>
   );

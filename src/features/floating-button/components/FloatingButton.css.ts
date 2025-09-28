@@ -1,21 +1,25 @@
 import { style, globalStyle, keyframes } from "@vanilla-extract/css";
+import {
+  breakpoints,
+  floatingButtonValues,
+} from "../../../shared/styles/responsive.constants";
 
 // 기본 플로팅 버튼 스타일 - Figma 디자인과 100% 일치
 export const floatingButton = style({
-  // Figma 디자인: 60px × 60px 크기
-  width: "60px",
-  height: "60px",
+  // Figma 디자인: 반응형 크기 (60px 기준)
+  width: floatingButtonValues.buttonSize.desktop,
+  height: floatingButtonValues.buttonSize.desktop,
 
   // Figma 디자인: 흰색 배경
   background: "#FFFFFF",
 
-  // Figma 디자인: 30px 둥근 모서리
-  borderRadius: "30px",
+  // Figma 디자인: 둥근 모서리 (크기의 절반)
+  borderRadius: "50%",
 
   // Figma 디자인: 그림자 효과
   boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.1)",
 
-  // Figma 디자인: 10px 패딩 (상하좌우)
+  // Figma 디자인: 패딩 (크기에 비례)
   padding: "10px",
 
   // 기본 스타일
@@ -30,6 +34,18 @@ export const floatingButton = style({
 
   // 전환 효과
   transition: "all 200ms ease",
+
+  // 반응형 크기 적용
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: floatingButtonValues.buttonSize.desktopFixed, // 1920px+ 고정 크기
+      height: floatingButtonValues.buttonSize.desktopFixed, // 1920px+ 고정 크기
+    },
+    [breakpoints.mobile]: {
+      width: "50px", // 모바일 고정 크기
+      height: "50px", // 모바일 고정 크기
+    },
+  },
 
   // 활성 상태
   ":active": {

@@ -74,6 +74,7 @@ export default function HeaderNavigation() {
       {/* 메인 헤더 - 네비게이션 바 */}
       <header
         className={styles.header}
+        data-header="true"
         onMouseEnter={handleHeaderMouseEnter}
         onMouseLeave={handleHeaderMouseLeave}
       >

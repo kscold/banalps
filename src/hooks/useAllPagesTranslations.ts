@@ -9,7 +9,6 @@ export function useAllPagesTranslations() {
 
   return {
     login: translations[currentLang].login,
-    terms: translations[currentLang].terms,
     about: translations[currentLang].about,
     doctors: translations[currentLang].doctors,
     treatmentGuide: translations[currentLang].treatmentGuide,
@@ -26,7 +25,7 @@ export function useAllPagesTranslations() {
     imageAlt: translations[currentLang].imageAlt,
     doctorTitles: translations[currentLang].doctorTitles,
     mainPage: translations[currentLang].mainPage,
-    currentLanguage: currentLang
+    currentLanguage: currentLang,
   };
 }
 
@@ -89,12 +88,6 @@ export function useLoginTranslations() {
   const { language } = useLanguageStore();
   const currentLang = (language === "JP" ? "ja" : "ko") as Language;
   return translations[currentLang].login;
-}
-
-export function useTermsTranslations() {
-  const { language } = useLanguageStore();
-  const currentLang = (language === "JP" ? "ja" : "ko") as Language;
-  return translations[currentLang].terms;
 }
 
 export function useMetadataTranslations() {

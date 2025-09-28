@@ -507,13 +507,12 @@ export const locationInfo = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between", // infoBox와 MapButtons 사이 간격 최대화
-  gap: vw(20), // 요소들 사이 간격
+
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "350px",
       height: "500px", // 1920px 이상에서 500px 고정
       minHeight: "500px",
-      gap: "20px",
     },
     [`screen and (max-width: 1400px)`]: {
       width: "300px", // 중간 크기 화면에서 더 작게
@@ -564,11 +563,11 @@ export const infoBox = style({
 export const infoItem = style({
   display: "flex",
   gap: vw(20),
-  marginBottom: vw(58),
+  marginBottom: vw(55),
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
-      marginBottom: "58px",
+      marginBottom: "55px",
     },
     [breakpoints.mobile]: {
       flexDirection: "row",

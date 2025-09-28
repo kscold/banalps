@@ -587,6 +587,11 @@ export const section1Illustration = style({
   height: "auto",
   borderRadius: "8px",
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "100%", // 1920px+에서도 컨테이너에 맞춤
+      height: "auto",
+      maxWidth: "100%",
+    },
     [breakpoints.mobile]: {
       height: "100%",
     },
@@ -1123,6 +1128,12 @@ export const section2SvgImage = style({
   height: vw(188), // 피그마 디자인 정확한 크기
   maxWidth: "100%",
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "418px", // 1920px+에서 고정 크기
+      height: "188px", // 1920px+에서 고정 크기
+      maxWidth: "418px",
+      maxHeight: "188px",
+    },
     [breakpoints.mobile]: {
       width: "150px",
       height: "auto",
@@ -1137,6 +1148,16 @@ export const section2Svg2 = style({
   width: vw(200), // 피그마 디자인에 맞게 크기 설정
   height: "auto",
   "@media": {
+    // 1320px 이하에서 글자와 겹치지 않도록 조정
+    "(max-width: 1320px)": {
+      bottom: vw(-20), // 더 아래로 이동
+      right: vw(-60), // 왼쪽으로 조금 이동
+    },
+    [breakpoints.desktopLarge]: {
+      bottom: "0px",
+      right: "0px",
+      width: "200px",
+    },
     [breakpoints.mobile]: {
       bottom: "-30px",
       right: "0px",
@@ -1430,6 +1451,10 @@ export const section3Number = style({
       top: vw(-40), // section3Left의 paddingTop과 맞춤
       left: vw(650), // 피그마 x: 537 기준 위치
     },
+    // 1024px~1200px 구간에서만 더 왼쪽으로 이동
+    "(min-width: 1024px) and (max-width: 1200px)": {
+      left: vw(500), // 더 왼쪽으로 이동
+    },
     [breakpoints.mobile]: {
       position: "absolute",
       fontSize: mvw(60),
@@ -1606,12 +1631,13 @@ export const section3Image = style({
   transform: "translateY(0)", // 상단 정렬 (transform 제거)
   "@media": {
     [breakpoints.desktopLarge]: {
-      ...responsiveAbsoluteImage({
-        position: { right: "0", top: "0" }, // top을 0으로 변경하여 최상단 정렬
-        width: "80%", // 컨테이너 대비 80% 크기
-        aspectRatio: "610 / 550", // 피그마 비율 (Frame 15409)
-        maxWidth: 610, // 최대 너비 610px
-      }),
+      position: "absolute",
+      right: "0",
+      top: "0",
+      width: "610px", // 1920px+에서 고정 크기
+      height: "550px", // 1920px+에서 고정 크기
+      maxWidth: "610px",
+      maxHeight: "550px",
     },
     [breakpoints.desktop]: {
       ...responsiveAbsoluteImage({

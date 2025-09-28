@@ -394,9 +394,6 @@ export const reYouCard1 = style({
   height: vw(830),
   borderRadius: vw(15),
   overflow: "hidden",
-  opacity: 0,
-  animation: `${cardFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "0ms",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "560px",
@@ -409,9 +406,6 @@ export const reYouCard1 = style({
       height: mvw(260),
       margin: 0,
       borderRadius: 0,
-      opacity: 0,
-      animation: `${cardFadeInUp} 500ms ease-out forwards`,
-      animationDelay: "0ms",
     },
   },
 });
@@ -425,9 +419,6 @@ export const reYouCard2 = style({
   height: vw(610),
   borderRadius: vw(15),
   overflow: "hidden",
-  opacity: 0,
-  animation: `${cardFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "400ms",
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
@@ -442,9 +433,6 @@ export const reYouCard2 = style({
       height: mvw(260),
       margin: 0,
       borderRadius: 0,
-      opacity: 0,
-      animation: `${cardFadeInUp} 500ms ease-out forwards`,
-      animationDelay: "400ms",
     },
   },
 });
@@ -458,9 +446,6 @@ export const reYouCard3 = style({
   height: vw(330),
   borderRadius: vw(15),
   overflow: "hidden",
-  opacity: 0,
-  animation: `${cardFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "800ms",
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
@@ -469,9 +454,6 @@ export const reYouCard3 = style({
       height: mvw(260),
       margin: 0,
       borderRadius: 0,
-      opacity: 0,
-      animation: `${cardFadeInUp} 500ms ease-out forwards`,
-      animationDelay: "800ms",
     },
   },
 });
@@ -485,9 +467,6 @@ export const reYouCard4 = style({
   height: vw(900),
   borderRadius: vw(15),
   overflow: "hidden",
-  opacity: 0,
-  animation: `${cardFadeInUp} 500ms ease-out forwards`,
-  animationDelay: "1200ms",
   zIndex: 10, // 다른 섹션 위에 표시
   "@media": {
     [breakpoints.mobile]: {
@@ -496,9 +475,6 @@ export const reYouCard4 = style({
       height: mvw(260),
       margin: 0,
       borderRadius: 0,
-      opacity: 0,
-      animation: `${cardFadeInUp} 500ms ease-out forwards`,
-      animationDelay: "1200ms",
       zIndex: 1,
     },
   },

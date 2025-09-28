@@ -47,7 +47,6 @@ export default function DoctorsPage() {
     setSelectedYear(year);
   };
 
-
   return (
     <div className={styles.doctorsPage}>
       {/* Medical Team Section */}
@@ -67,25 +66,14 @@ export default function DoctorsPage() {
             </div>
             <div className={styles.medicalTeamHeroSection}>
               <motion.img
-                src="/doctors/intro/doctors-intro-1.png"
-                alt="의료진 소개 인트로 1"
-                className={styles.doctorsIntroImage1}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
-              />
-              <motion.h2
-                className={`${styles.medicalTeamHeroTitle} english-name`}
+                src="/doctors/intro/doctors-intro-1.svg"
+                alt="Banal Medical Team"
+                className={styles.medicalTeamHeroTitle}
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              >
-                Banal
-                <br />
-                Medical Team
-              </motion.h2>
+              />
             </div>
           </div>
         </div>

@@ -116,8 +116,8 @@ export const modalHeader = style({
     content: '""',
     position: "absolute",
     bottom: 0,
-    left: mvw(32),
-    right: mvw(32),
+    left: vw(65),
+    right: vw(65),
     height: "1px",
     backgroundColor: "#272727",
   },
@@ -125,6 +125,15 @@ export const modalHeader = style({
     [breakpoints.mobile]: {
       width: "100%",
       padding: `${mvw(28)} ${mvw(32)} ${mvw(8)} ${mvw(32)}`,
+      "::after": {
+        content: '""',
+        position: "absolute",
+        bottom: 0,
+        left: mvw(32),
+        right: mvw(32),
+        height: "1px",
+        backgroundColor: "#272727",
+      },
     },
   },
 });

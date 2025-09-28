@@ -48,4 +48,10 @@ export const floatingButtonValues = {
     desktopFixed: "200px", // 1920px+ fixed
     mobile: `${(120 / MOBILE_BASE_WIDTH) * 100}vw`, // 120px / 375px * 100vw
   },
+  // Button size (반응형 크기)
+  buttonSize: {
+    desktop: `${(60 / DESIGN_BASE_WIDTH) * 100}vw`, // 60px / 1920px * 100vw
+    desktopFixed: "60px", // 1920px+ fixed
+    mobile: `${(50 / MOBILE_BASE_WIDTH) * 100}vw`, // 50px / 375px * 100vw
+  },
 } as const;

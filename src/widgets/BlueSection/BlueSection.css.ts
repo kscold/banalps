@@ -249,9 +249,6 @@ export const imageCard1 = style({
   top: 0,
   borderRadius: "8px",
   overflow: "hidden",
-  opacity: 0,
-  animation: `${fadeInUp} 500ms ease-out forwards`,
-  animationDelay: "0ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -282,9 +279,6 @@ export const imageCard2 = style({
   left: vw(926), // 1920px 기준 926px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: "8px",
   overflow: "hidden",
-  opacity: 0,
-  animation: `${fadeInUp} 500ms ease-out forwards`,
-  animationDelay: "400ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -316,9 +310,6 @@ export const imageCard3 = style({
   left: vw(210), // 1920px 기준 210px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: "8px",
   overflow: "hidden",
-  opacity: 0,
-  animation: `${fadeInUp} 500ms ease-out forwards`,
-  animationDelay: "800ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -350,9 +341,6 @@ export const imageCard4 = style({
   left: vw(574), // 1920px 기준 574px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: "8px",
   overflow: "hidden",
-  opacity: 0,
-  animation: `${fadeInUp} 500ms ease-out forwards`,
-  animationDelay: "1200ms",
   transition: "transform 300ms ease, box-shadow 300ms ease",
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -1396,11 +1384,6 @@ export const doctorsContent = style({
     },
     [breakpoints.mobile]: {
       display: "none", // 모바일에서 숨김
-    },
-    "screen and (max-width: 1024px) and (min-width: 768px)": {
-      flexDirection: "column",
-      gap: "40px",
-      justifyContent: "flex-start",
     },
   },
 });

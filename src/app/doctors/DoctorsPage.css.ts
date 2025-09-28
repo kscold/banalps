@@ -51,9 +51,7 @@ export const medicalTeamSection = style({
   paddingTop: vw(135),
   background: "#73D5FA",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      paddingTop: "135px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       padding: 0,
       background: "#FFFFFF",
@@ -80,11 +78,11 @@ export const medicalTeamHeader = style({
   height: "100vh",
   position: "relative",
   width: "100%",
-  maxWidth: vw(1920),
+  maxWidth: vw(1760),
   margin: "0 auto",
   "@media": {
     [breakpoints.desktopLarge]: {
-      maxWidth: "1920px",
+      maxWidth: "1760px",
       margin: 0,
     },
     [breakpoints.mobile]: {
@@ -194,24 +192,20 @@ export const medicalTeamHeroTitle = style({
   position: "absolute",
   left: vw(32),
   bottom: vw(32),
-  fontFamily: "'Poppins', sans-serif",
-  fontWeight: 500,
-  ...responsiveFont(44),
-  lineHeight: vw(46),
-  letterSpacing: "0",
-  color: "#FFFFFF",
-  margin: 0,
+  width: vw(1080), // SVG 너비
+  height: vw(650), // SVG 높이
+  objectFit: "contain",
   zIndex: 2,
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "32px",
       bottom: "32px",
-      fontSize: "44px",
-      lineHeight: "46px",
+      width: "1080px", // 1920px+ 고정 크기
+      height: "650px", // 1920px+ 고정 크기
     },
     [breakpoints.mobile]: {
-      fontSize: "24px",
-      lineHeight: "28px",
+      width: mvw(300), // 모바일에서는 작게
+      height: mvw(180), // 모바일에서는 작게
     },
   },
 });

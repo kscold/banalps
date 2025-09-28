@@ -1,5 +1,8 @@
 import { style } from "@vanilla-extract/css";
-import { breakpoints, floatingButtonValues } from "../../../shared/styles/responsive.constants";
+import {
+  breakpoints,
+  floatingButtonValues,
+} from "../../../shared/styles/responsive.constants";
 
 // Floating button group container - 완전 반응형 처리
 export const floatingButtonContainer = style({
