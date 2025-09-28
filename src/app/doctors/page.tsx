@@ -172,10 +172,7 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[0].credentials
-                        .slice(
-                          0,
-                          Math.ceil(t.doctors[0].credentials.length / 2)
-                        )
+                        .slice(0, 3) // 첫 번째 컬럼에 3개
                         .map((credential, index) => (
                           <li key={index} className={styles.credentialItem}>
                             • {credential}
@@ -186,15 +183,9 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[0].credentials
-                        .slice(Math.ceil(t.doctors[0].credentials.length / 2))
+                        .slice(3) // 두 번째 컬럼에 나머지 4개
                         .map((credential, index) => (
-                          <li
-                            key={
-                              index +
-                              Math.ceil(t.doctors[0].credentials.length / 2)
-                            }
-                            className={styles.credentialItem}
-                          >
+                          <li key={index + 3} className={styles.credentialItem}>
                             • {credential}
                           </li>
                         ))}
@@ -203,7 +194,13 @@ export default function DoctorsPage() {
                 </div>
               </div>
 
-              <div className={styles.doctorQuote1}>
+              <div
+                className={`${
+                  language === "JP"
+                    ? styles.doctorQuote1JP
+                    : styles.doctorQuote1
+                }`}
+              >
                 <div className={styles.doctorQuoteText1}>
                   <img
                     src="/doctors/profile/double-quotation-start.svg"
@@ -340,10 +337,7 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[1].credentials
-                        .slice(
-                          0,
-                          Math.ceil(t.doctors[1].credentials.length / 2)
-                        )
+                        .slice(0, 2) // 첫 번째 컬럼에 2개
                         .map((credential, index) => (
                           <li key={index} className={styles.credentialItem}>
                             • {credential}
@@ -354,15 +348,9 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[1].credentials
-                        .slice(Math.ceil(t.doctors[1].credentials.length / 2))
+                        .slice(2) // 두 번째 컬럼에 나머지 5개
                         .map((credential, index) => (
-                          <li
-                            key={
-                              index +
-                              Math.ceil(t.doctors[1].credentials.length / 2)
-                            }
-                            className={styles.credentialItem}
-                          >
+                          <li key={index + 2} className={styles.credentialItem}>
                             • {credential}
                           </li>
                         ))}
@@ -502,10 +490,7 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[2].credentials
-                        .slice(
-                          0,
-                          Math.ceil(t.doctors[2].credentials.length / 2)
-                        )
+                        .slice(0, 2) // 첫 번째 컬럼에 2개
                         .map((credential, index) => (
                           <li key={index} className={styles.credentialItem}>
                             • {credential}
@@ -516,15 +501,9 @@ export default function DoctorsPage() {
                   <div className={styles.credentialColumn}>
                     <ul className={styles.credentialList}>
                       {t.doctors[2].credentials
-                        .slice(Math.ceil(t.doctors[2].credentials.length / 2))
+                        .slice(2) // 두 번째 컬럼에 나머지 5개
                         .map((credential, index) => (
-                          <li
-                            key={
-                              index +
-                              Math.ceil(t.doctors[2].credentials.length / 2)
-                            }
-                            className={styles.credentialItem}
-                          >
+                          <li key={index + 2} className={styles.credentialItem}>
                             • {credential}
                           </li>
                         ))}

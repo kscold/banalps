@@ -946,6 +946,44 @@ export const credentialItem = style({
   },
 });
 
+// 일본어일 때 의사 인용구 넓이 조정
+export const doctorQuote1JP = style({
+  position: "absolute",
+  left: vw(1240),
+  top: vw(192),
+  width: vw(560),
+  height: vw(156),
+  textAlign: "center",
+  backgroundColor: "transparent",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "transform 0.3s ease, backgroundColor 0.3s ease",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      left: "1240px",
+      top: "192px",
+      width: "560px",
+      height: "156px",
+    },
+    [breakpoints.desktop]: {
+      left: "calc(1240px * (100vw / 1920))",
+      top: "calc(192px * (100vw / 1920))",
+      width: "calc(560px * (100vw / 1920))",
+      height: "calc(156px * (100vw / 1920))",
+    },
+    [breakpoints.mobile]: {
+      position: "relative",
+      left: "auto",
+      top: "auto",
+      width: "100%",
+      height: "auto",
+      padding: "20px",
+    },
+  },
+});
+
 // 의사 인용구 - 피그마 Frame 303 위치
 export const doctorQuote1 = style({
   position: "absolute",
