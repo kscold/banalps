@@ -1,51 +1,51 @@
-"use client";
+"use client"
 
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react"
+import { motion } from "framer-motion"
 
-import * as styles from "./DoctorsPage.css";
-import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-import { useAcademicActivities } from "@/hooks/useAcademicActivities";
+import * as styles from "./DoctorsPage.css"
+import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations"
+import { useLanguageStore } from "@/shared/stores/useLanguageStore"
+import { useAcademicActivities } from "@/hooks/useAcademicActivities"
 
 export default function DoctorsPage() {
-  console.log("[DoctorsPage] 의료진 소개 페이지 렌더링");
+  console.log("[DoctorsPage] 의료진 소개 페이지 렌더링")
 
   // 번역 훅
-  const t = useDoctorsTranslations();
+  const t = useDoctorsTranslations()
 
   // 언어 스토어
-  const { language } = useLanguageStore();
+  const { language } = useLanguageStore()
 
   // 학술활동 훅
-  const { getAllActivities, getAvailableYears } = useAcademicActivities();
+  const { getAllActivities, getAvailableYears } = useAcademicActivities()
 
   // 모바일 감지 상태
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1023);
-    };
+      setIsMobile(window.innerWidth <= 1023)
+    }
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // 선택된 연도 상태
-  const [selectedYear, setSelectedYear] = useState<number>(2021);
+  const [selectedYear, setSelectedYear] = useState<number>(2021)
 
   // 스크롤 관련 ref
 
-  const academicSectionRef = useRef<HTMLElement>(null);
-  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const academicSectionRef = useRef<HTMLElement>(null)
+  const tableContainerRef = useRef<HTMLDivElement>(null)
 
   // 연도 클릭 핸들러
   const handleYearClick = (year: number) => {
-    console.log("[DoctorsPage/연도클릭] 연도 변경:", year);
-    setSelectedYear(year);
-  };
+    console.log("[DoctorsPage/연도클릭] 연도 변경:", year)
+    setSelectedYear(year)
+  }
 
   return (
     <div className={styles.doctorsPage}>
@@ -110,7 +110,7 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={`${styles.doctorMobileName} english-name`}>
+                    <h2 className={`${styles.doctorMobileName} font-exception`}>
                       Shin
                       <br />
                       Seung
@@ -151,7 +151,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
               <div className={styles.doctorName}>
-                <h3 className={`${styles.doctorNameText} english-name`}>
+                <h3 className={`${styles.doctorNameText} font-exception`}>
                   Shin
                   <br />
                   Seung gyu
@@ -273,15 +273,17 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={`${styles.doctorMobileName2} english-name`}>
+                    <h2
+                      className={`${styles.doctorMobileName2} font-exception`}
+                    >
                       Park
                       <br />
                       Soo Ho
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      {t.doctorInfo.specialist}
+                      {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
                       <br />
-                      {t.doctorInfo.abhrs}
+                      {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                     </p>
                     <p className={styles.doctorMobileNameBold}>
                       {t.doctors[1].position}
@@ -314,7 +316,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContentReversed}>
               <div className={styles.doctorName2}>
-                <h3 className={`${styles.doctorNameText} english-name`}>
+                <h3 className={`${styles.doctorNameText} font-exception`}>
                   Park
                   <br />
                   Soo Ho
@@ -323,9 +325,9 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorTitle2}>
                 <p className={styles.doctorSpecialty}>
-                  {t.doctorInfo.specialist}
+                  {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
                   <br />
-                  {t.doctorInfo.abhrs}
+                  {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                 </p>
                 <h4 className={styles.doctorPosition}>
                   {t.doctors[1].position}
@@ -431,7 +433,7 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={`${styles.doctorMobileName} english-name`}>
+                    <h2 className={`${styles.doctorMobileName} font-exception`}>
                       Kim
                       <br />
                       Narae
@@ -469,7 +471,7 @@ export default function DoctorsPage() {
             /* 데스크탑 컨텐츠 */
             <div className={styles.doctorContent}>
               <div className={styles.doctorName3}>
-                <h3 className={`${styles.doctorNameText} english-name`}>
+                <h3 className={`${styles.doctorNameText} font-exception`}>
                   Kim
                   <br />
                   Narae
@@ -696,8 +698,8 @@ export default function DoctorsPage() {
                 >
                   {getAllActivities().length > 0 ? (
                     getAllActivities().map((activity, index) => {
-                      const isFirst = index === 0;
-                      const isLast = index === getAllActivities().length - 1;
+                      const isFirst = index === 0
+                      const isLast = index === getAllActivities().length - 1
 
                       return (
                         <div
@@ -721,7 +723,7 @@ export default function DoctorsPage() {
                             {activity.title}
                           </div>
                         </div>
-                      );
+                      )
                     })
                   ) : (
                     <div
@@ -757,5 +759,5 @@ export default function DoctorsPage() {
         />
       </section>
     </div>
-  );
+  )
 }

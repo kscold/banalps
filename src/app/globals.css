@@ -34,74 +34,81 @@ html[data-language="JP"] * {
   /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
 }
 
-/* 영어 이름 클래스가 있는 모든 요소는 일본어 폰트 적용 제외 - 최고 우선순위 */
-html[data-language="JP"] .english-name {
-  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+/* 예외처리 클래스: 일본어 모드에서도 한국어 버전의 원본 폰트 스타일을 강제 적용 */
+html[data-language="JP"] .font-exception {
+  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
-/* 의료진 제목은 Poppins 폰트 강제 적용 */
-html[data-language="JP"] [class*="medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] [class*="medicalTeamHeroTitle"]:has(.english-name),
-html[data-language="JP"] .english-name[class*="medicalTeamHeroTitle"] {
+/* 의료진 제목 예외처리 - 기존 Poppins 스타일 유지 */
+html[data-language="JP"] [class*="medicalTeamHeroTitle"].font-exception,
+html[data-language="JP"] [class*="medicalTeamHeroTitle"]:has(.font-exception),
+html[data-language="JP"] .font-exception[class*="medicalTeamHeroTitle"] {
   font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
+  font-weight: inherit !important;
 }
 
-/* 영어 이름과 텍스트는 기존 폰트 유지 (더 강한 우선순위로 덮어쓰기) */
-html[data-language="JP"] .english-name,
-html[data-language="JP"] .english-name *,
+/* 영어, 숫자, 특수문자 영역 예외처리 - 한국어 버전 원본 스타일 강제 적용 */
+html[data-language="JP"] .font-exception,
+html[data-language="JP"] .font-exception *,
 html[data-language="JP"] .english-text,
 html[data-language="JP"] .english-text *,
 html[data-language="JP"] *:lang(en),
 html[data-language="JP"] [data-lang="en"],
 html[data-language="JP"] [data-lang="en"] * {
   font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
 }
 
-/* 더 구체적인 선택자로 영어 이름 강제 적용 - Vanilla Extract 클래스와 함께 */
-html[data-language="JP"] .DoctorsPage_doctorNameText__1sikzsns.english-name,
-html[data-language="JP"] *[class*="medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] [class*="medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] .DoctorsPage_doctorMobileName__1sikzsn3j.english-name,
-html[data-language="JP"] .DoctorsPage_doctorMobileName2__1sikzsn3k.english-name,
-html[data-language="JP"] h1.english-name,
-html[data-language="JP"] h2.english-name,
-html[data-language="JP"] h3.english-name,
-html[data-language="JP"] h4.english-name,
-html[data-language="JP"] h5.english-name,
-html[data-language="JP"] h6.english-name,
-html[data-language="JP"] p.english-name,
-html[data-language="JP"] span.english-name,
-html[data-language="JP"] div.english-name,
-html[data-language="JP"] motion.h2.english-name,
-html[data-language="JP"] [class*="HeroTitle"].english-name,
-html[data-language="JP"] [class*="heroTitle"].english-name,
-html[data-language="JP"] [class*="Title"].english-name:not([class*="japanese"]):not([class*="translation"]) {
-  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
-}
-
-/* 더 구체적인 DoctorsPage medicalTeamHeroTitle 강제 적용 */
-html[data-language="JP"] [class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] h2[class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] motion[class^="DoctorsPage_medicalTeamHeroTitle"].english-name,
-html[data-language="JP"] [class*="DoctorsPage_medicalTeamHeroTitle__"].english-name {
+/* 영어 이름(의료진)용 Poppins 폰트 예외처리 */
+html[data-language="JP"] .font-exception.english-name,
+html[data-language="JP"] .font-exception[class*="doctorName"],
+html[data-language="JP"] [class*="doctorName"].font-exception {
   font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
 }
 
-/* 절대적으로 모든 영어 제목에 Poppins 적용 - 최상위 우선순위 */
-.english-name {
-  font-family: 'Poppins', 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+/* 더 구체적인 선택자로 예외처리 강제 적용 - 한국어 원본 스타일 */
+html[data-language="JP"] h1.font-exception,
+html[data-language="JP"] h2.font-exception,
+html[data-language="JP"] h3.font-exception,
+html[data-language="JP"] h4.font-exception,
+html[data-language="JP"] h5.font-exception,
+html[data-language="JP"] h6.font-exception,
+html[data-language="JP"] p.font-exception,
+html[data-language="JP"] span.font-exception,
+html[data-language="JP"] div.font-exception,
+html[data-language="JP"] [class*="Title"].font-exception:not([class*="japanese"]):not([class*="translation"]) {
+  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
-html[data-language="JP"] motion.h2.english-name,
-html[data-language="JP"] h1.english-name,
-html[data-language="JP"] h2.english-name {
+/* 의료진 이름 전용 Poppins 폰트 예외처리 */
+html[data-language="JP"] .DoctorsPage_doctorNameText__1sikzsns.font-exception,
+html[data-language="JP"] .DoctorsPage_doctorMobileName__1sikzsn3j.font-exception,
+html[data-language="JP"] .DoctorsPage_doctorMobileName2__1sikzsn3k.font-exception,
+html[data-language="JP"] [class*="doctorNameText"].font-exception,
+html[data-language="JP"] [class*="doctorName"].font-exception,
+html[data-language="JP"] [class*="doctorMobileName2"].font-exception,
+html[data-language="JP"] [class*="doctorMobileName"].font-exception {
   font-family: 'Poppins', sans-serif !important;
-  font-weight: inherit !important;
 }
+
+/* 더 구체적인 DoctorsPage medicalTeamHeroTitle 예외처리 */
+html[data-language="JP"] [class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
+html[data-language="JP"] h2[class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
+html[data-language="JP"] motion[class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
+html[data-language="JP"] [class*="DoctorsPage_medicalTeamHeroTitle__"].font-exception {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* 예외처리 클래스 기본 설정 - 한국어 버전 폰트 강제 적용 */
+.font-exception {
+  /* 일반적인 경우에는 한국어 폰트 스택 사용 */
+}
+
+/* 일본어 모드가 아닐 때는 font-exception이 아무 효과 없음 */
+html:not([data-language="JP"]) .font-exception {
+  /* 한국어/영어 모드에서는 기존 스타일 그대로 유지 */
+}
+
+/* 이전 english-name 규칙들은 위의 font-exception으로 통합됨 */
 
 /* 스크롤바 완전히 숨기기 - 스크롤 기능은 유지 */
 html {
@@ -117,21 +124,27 @@ body {
 /* 데스크톱에서만 스크롤바 숨기기 */
 @media (min-width: 1024px) {
   html {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
   }
 
   body {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
   }
 }
 
@@ -142,33 +155,43 @@ body {
   }
 
   * {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
 /* 모바일 터치 스크롤 최적화 */
 @media (max-width: 1023px) {
-  html, body {
-    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+
+  html,
+  body {
+    -webkit-overflow-scrolling: touch;
+    /* iOS 부드러운 스크롤 */
     overflow-scrolling: touch;
   }
 
   /* 모바일에서 스크롤 가능 영역 명시 */
   * {
-    -webkit-tap-highlight-color: transparent; /* 탭 하이라이트 제거 */
+    -webkit-tap-highlight-color: transparent;
+    /* 탭 하이라이트 제거 */
   }
 }
 
 /* 히어로 섹션에서 스크롤바 보이기 */
 .show-scrollbar {
-  scrollbar-width: thin; /* Firefox */
-  -ms-overflow-style: scrollbar; /* IE and Edge */
-  overflow-y: auto !important; /* 스크롤 강제 활성화 */
+  scrollbar-width: thin;
+  /* Firefox */
+  -ms-overflow-style: scrollbar;
+  /* IE and Edge */
+  overflow-y: auto !important;
+  /* 스크롤 강제 활성화 */
 }
 
 .show-scrollbar::-webkit-scrollbar {
-  display: block !important; /* Chrome, Safari, Opera */
+  display: block !important;
+  /* Chrome, Safari, Opera */
   width: 10px !important;
 }
 
@@ -231,11 +254,13 @@ body {
   font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   word-break: keep-all;
   word-wrap: break-word;
-  user-select: auto; /* hydration 오류 해결을 위한 일관된 user-select 설정 */
+  user-select: auto;
+  /* hydration 오류 해결을 위한 일관된 user-select 설정 */
 }
 
 /* hydration 오류 해결을 위한 일관된 스타일 설정 */
-html, body {
+html,
+body {
   user-select: auto;
 }
 
@@ -245,7 +270,10 @@ html, body {
 }
 
 /* 버튼과 인터랙티브 요소는 텍스트 선택 비활성화 */
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   user-select: none;
 }
 
