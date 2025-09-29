@@ -10,12 +10,9 @@ export default function ForeheadHairTransplantPage() {
   const layoutData = {
     heroTitle: (
       <>
-        {t.hero.title.split("\n").map((line, index) => (
-          <span key={index}>
-            {line}
-            {index < t.hero.title.split("\n").length - 1 && <br />}
-          </span>
-        ))}
+        {(t.hero as any).titleLine1 || t.hero.title.split('\n')[0]}
+        <br />
+        {(t.hero as any).titleLine2 || t.hero.title.split('\n')[1]}
       </>
     ),
     heroTitleMobile: (
@@ -177,7 +174,7 @@ export default function ForeheadHairTransplantPage() {
           top: 90, // 모바일에서만 숫자를 아래쪽으로 이동
         },
         desktop: {
-          // left: 100, // 필요시 추가
+          right: 0, // 필요시 추가
         },
       },
       title: (

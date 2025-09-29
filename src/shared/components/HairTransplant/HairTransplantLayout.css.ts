@@ -149,11 +149,12 @@ export const HairTransplantHeroTitle = style({
   color: "#272727",
   margin: "0",
   textAlign: "left",
-  whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
+  whiteSpace: "pre-line", // 줄바꿈(\n)을 인식하도록 설정
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "60px",
       lineHeight: "72px",
+      whiteSpace: "pre-line", // 데스크톱에서도 줄바꿈 인식
     },
     [breakpoints.mobile]: {
       fontSize: mvw(40),
@@ -162,6 +163,7 @@ export const HairTransplantHeroTitle = style({
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
+      whiteSpace: "normal", // 모바일에서는 기존대로
     },
   },
 })

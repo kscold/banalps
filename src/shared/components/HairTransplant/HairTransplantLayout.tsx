@@ -67,11 +67,19 @@ interface Section {
   titleMarginBottom?: number // margin-bottom for title (px units)
   mobileHeight?: number // height for mobile section (mvw units - 375 based)
   numberPosition?: {
-    // Custom position for section number (desktop only)
-    top?: number // vw units from top
-    right?: number // vw units from right
-    bottom?: number // vw units from bottom
-    left?: number // vw units from left
+    // Responsive position for section number
+    mobile?: {
+      top?: number // mvw units from top (mobile)
+      right?: number // mvw units from right (mobile)
+      bottom?: number // mvw units from bottom (mobile)
+      left?: number // mvw units from left (mobile)
+    }
+    desktop?: {
+      top?: number // vw units from top (desktop)
+      right?: number // vw units from right (desktop)
+      bottom?: number // vw units from bottom (desktop)
+      left?: number // vw units from left (desktop)
+    }
   }
   description?: React.ReactNode
   descriptionMobile?: React.ReactNode
@@ -2083,38 +2091,33 @@ export default function HairTransplantLayout({
                               section3.numberPosition
                                 ? {
                                     position: "absolute",
-                                    ...(section3.numberPosition.top !==
-                                    undefined
+                                    // Desktop positioning
+                                    ...(section3.numberPosition.desktop?.top !== undefined
                                       ? {
                                           top: isDesktopLarge
-                                            ? `${section3.numberPosition.top}px`
-                                            : vw(section3.numberPosition.top),
+                                            ? `${section3.numberPosition.desktop.top}px`
+                                            : vw(section3.numberPosition.desktop.top),
                                         }
                                       : {}),
-                                    ...(section3.numberPosition.right !==
-                                    undefined
+                                    ...(section3.numberPosition.desktop?.right !== undefined
                                       ? {
                                           right: isDesktopLarge
-                                            ? `${section3.numberPosition.right}px`
-                                            : vw(section3.numberPosition.right),
+                                            ? `${section3.numberPosition.desktop.right}px`
+                                            : vw(section3.numberPosition.desktop.right),
                                         }
                                       : {}),
-                                    ...(section3.numberPosition.bottom !==
-                                    undefined
+                                    ...(section3.numberPosition.desktop?.bottom !== undefined
                                       ? {
                                           bottom: isDesktopLarge
-                                            ? `${section3.numberPosition.bottom}px`
-                                            : vw(
-                                                section3.numberPosition.bottom
-                                              ),
+                                            ? `${section3.numberPosition.desktop.bottom}px`
+                                            : vw(section3.numberPosition.desktop.bottom),
                                         }
                                       : {}),
-                                    ...(section3.numberPosition.left !==
-                                    undefined
+                                    ...(section3.numberPosition.desktop?.left !== undefined
                                       ? {
                                           left: isDesktopLarge
-                                            ? `${section3.numberPosition.left}px`
-                                            : vw(section3.numberPosition.left),
+                                            ? `${section3.numberPosition.desktop.left}px`
+                                            : vw(section3.numberPosition.desktop.left),
                                         }
                                       : {}),
                                   }
