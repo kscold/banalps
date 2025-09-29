@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
-import * as styles from "./HeaderDesign.css";
-import { useHeaderState } from "../../features/header/hooks/useHeaderState";
-import { useAuthStore } from "@/shared/stores/useAuthStore";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-import DesktopNav from "../../features/header/components/DesktopNav";
-import MobileMenu from "../../features/header/components/MobileMenu";
-import MenuToggleButton from "../../features/header/components/MenuToggleButton";
-import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations";
+import Link from "next/link"
+import { useState, useRef, useEffect } from "react"
+import { useSession, signOut } from "next-auth/react"
+import * as styles from "./HeaderDesign.css"
+import { useHeaderState } from "../../features/header/hooks/useHeaderState"
+import { useAuthStore } from "@/shared/stores/useAuthStore"
+import { useLanguageStore } from "@/shared/stores/useLanguageStore"
+import DesktopNav from "../../features/header/components/DesktopNav"
+import MobileMenu from "../../features/header/components/MobileMenu"
+import MenuToggleButton from "../../features/header/components/MenuToggleButton"
+import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations"
 
 export default function HeaderNavigation() {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession()
   const {
     isMenuOpen,
     isHeaderHovered,
@@ -22,32 +22,32 @@ export default function HeaderNavigation() {
     handleHeaderMouseEnter,
     handleHeaderMouseLeave,
     closeMenu,
-  } = useHeaderState();
+  } = useHeaderState()
 
-  const { openLoginModal } = useAuthStore();
-  const { language, setLanguage } = useLanguageStore();
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const languageDropdownRef = useRef<HTMLDivElement>(null);
-  const t = useHeaderTranslations();
+  const { openLoginModal } = useAuthStore()
+  const { language, setLanguage } = useLanguageStore()
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+  const languageDropdownRef = useRef<HTMLDivElement>(null)
+  const t = useHeaderTranslations()
 
   // 클라이언트 사이드 렌더링 확인
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    setIsClient(true)
+  }, [])
 
   const handleLogout = async () => {
-    await signOut({ redirect: false });
-  };
+    await signOut({ redirect: false })
+  }
 
   const toggleLanguageDropdown = () => {
-    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
-  };
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+  }
 
   const selectLanguage = (lang: "KR" | "JP") => {
-    setLanguage(lang);
-    setIsLanguageDropdownOpen(false);
-  };
+    setLanguage(lang)
+    setIsLanguageDropdownOpen(false)
+  }
 
   // 외부 클릭 감지하여 드롭다운 닫기
   useEffect(() => {
@@ -56,18 +56,18 @@ export default function HeaderNavigation() {
         languageDropdownRef.current &&
         !languageDropdownRef.current.contains(event.target as Node)
       ) {
-        setIsLanguageDropdownOpen(false);
+        setIsLanguageDropdownOpen(false)
       }
-    };
+    }
 
     if (isLanguageDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside)
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isLanguageDropdownOpen]);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isLanguageDropdownOpen])
 
   return (
     <>
@@ -86,8 +86,8 @@ export default function HeaderNavigation() {
                 <img
                   src={
                     language === "JP"
-                      ? "/main/logo/Logo-jp.svg"
-                      : "/main/logo/Logo.svg"
+                      ? "/main/logo/logo-jp.svg"
+                      : "/main/logo/logo.svg"
                   }
                   alt="바람부는날에도"
                   className={styles.logoImage}
@@ -235,5 +235,5 @@ export default function HeaderNavigation() {
       {/* 모바일 메뉴 */}
       <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
     </>
-  );
+  )
 }
