@@ -30,7 +30,7 @@ export default function AboutPage() {
   const videoOpacity = videoActive ? 1 : 0;
 
   return (
-    <div className={styles.aboutPage}>
+    <div className={styles.aboutPage} style={{ overflow: videoActive ? "hidden" : "auto" }}>
       {/* Video Section - 모션 애니메이션 적용 */}
       <motion.div
         className="fixed top-0 left-0 w-full h-screen"
@@ -53,7 +53,7 @@ export default function AboutPage() {
       </motion.div>
 
       {/* Main Content - 모션 애니메이션 적용 */}
-      {contentActive && (
+      {!videoActive && contentActive && (
         <motion.div
           className="relative"
           initial={{ opacity: 0, y: 100, scale: 0.98 }}

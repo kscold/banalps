@@ -969,10 +969,11 @@ export const section2Image = style({
 
 export const section2ImageContent = style({
   height: "100%",
-  borderRadius: "8px",
+
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
+      borderRadius: "8px",
       objectFit: "cover",
       width: "100%",
       // overflow: "hidden",

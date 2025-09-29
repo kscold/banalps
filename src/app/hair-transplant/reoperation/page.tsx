@@ -166,11 +166,18 @@ function ReoperationContent() {
           // bottom과 left도 선택적으로 설정 가능
         },
       },
+
+      images: {
+        main: "/hair-transplant/reoperation/reoperation-3.jpg",
+      },
+      imagesSize: {
+        main: {
+          width: 830,
+          height: 600,
+        },
+      },
       mobileImages: {
         illustration: ["/hair-transplant/reoperation/mobile-3.svg"],
-      },
-      images: {
-        main: "/hair-transplant/reoperation/mobile-2.png",
       },
       imagesMobile: {
         main: "/hair-transplant/reoperation/mobile/reoperation-3.jpg",
