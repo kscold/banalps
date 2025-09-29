@@ -824,6 +824,7 @@ export const section2Content = style({
       textAlign: "center",
       padding: `0 ${mvw(16)}`,
       minHeight: "auto",
+      overflow: "visible",
     },
   },
 })
@@ -853,6 +854,7 @@ export const section2Left = style({
       marginLeft: 0,
       maxWidth: "100%",
       maxHeight: "100%",
+      overflow: "visible",
     },
   },
 })
@@ -947,10 +949,8 @@ export const section2MobileIllustration = style({
       alignItems: "center",
       justifyContent: "center",
       position: "relative",
-      borderRadius: mvw(12),
       width: "100%", // Default width
       maxWidth: "none", // Allow full width expansion
-      overflow: "hidden", // Prevent overflow
     },
   },
 })

@@ -947,7 +947,7 @@ export const galleryMainImage = style({
     [breakpoints.mobile]: {
       maxWidth: "100%",
       width: "100%",
-      height: mvw(200),
+      height: mvw(251), // 첫 번째: 251px
       borderRadius: mvw(8),
       flex: "none",
     },
@@ -1015,7 +1015,7 @@ export const galleryRow1 = style({
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: `${mvw(250)} ${mvw(150)} ${mvw(150)}`,
+      gridTemplateRows: `${mvw(400)} ${mvw(197)} ${mvw(197)}`, // 피그마 스펙에 맞게 수정
       height: "auto",
       gap: mvw(16),
     },
@@ -1039,7 +1039,7 @@ export const galleryRow2 = style({
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: `${mvw(250)} ${mvw(250)}`,
+      gridTemplateRows: `${mvw(400)} ${mvw(400)}`, // 5-6번째: 400px
       height: "auto",
       gap: mvw(16),
     },
@@ -1063,7 +1063,7 @@ export const galleryRow3 = style({
     },
     [breakpoints.mobile]: {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: `repeat(4, ${mvw(180)})`,
+      gridTemplateRows: `${mvw(400)} ${mvw(197)} ${mvw(197)} ${mvw(400)}`, // 7-8-9-10번째: 400-197-197-400
       height: "auto",
       gap: mvw(16),
     },
@@ -1227,7 +1227,7 @@ export const gallerySmallImage = style({
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      height: mvw(180),
+      height: mvw(400), // 7번째: 작은 이미지를 400px로 변경
       borderRadius: mvw(8),
     },
   },
@@ -1250,7 +1250,7 @@ export const galleryLargeImage = style({
       borderRadius: "16px",
     },
     [breakpoints.mobile]: {
-      height: mvw(180),
+      height: mvw(197), // 8-9번째: 큰 이미지를 197px로 변경
       borderRadius: mvw(8),
     },
   },

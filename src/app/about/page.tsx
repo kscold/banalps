@@ -357,7 +357,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
+                  transition={{ duration: 0.5, delay: 0 }}
                 >
                   <img
                     src="/about/gallery/gallery-1.png"
@@ -424,7 +424,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+                    transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-5.png"
@@ -438,7 +438,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, y: 80 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                    transition={{ duration: 0.5, delay: 2.0, ease: "easeOut" }}
                   >
                     <img
                       src="/about/gallery/gallery-6.png"
@@ -448,79 +448,131 @@ export default function AboutPage() {
                   </motion.div>
                 </div>
 
-                {/* Row 3: Frame 223 - 왼쪽 2개 스택 + 오른쪽 2개 스택 */}
+                {/* Row 3: Frame 223 - 데스크탑/모바일 다른 순서 */}
                 <div className={styles.galleryRow3}>
-                  {/* 왼쪽 컬럼 */}
-                  <div className={styles.galleryLeftColumn}>
-                    <motion.div
-                      className={styles.gallerySmallImage}
-                      initial={{ opacity: 0, y: 80 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
-                    >
-                      <img
-                        src="/about/gallery/gallery-7.png"
-                        alt="바날 갤러리 7"
-                        className={styles.galleryImage}
-                      />
-                    </motion.div>
-                    <motion.div
-                      className={styles.galleryLargeImage}
-                      initial={{ opacity: 0, y: 80 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{
-                        duration: 0.5,
-                        delay: 0.4,
-                        ease: "easeOut",
-                      }}
-                    >
-                      <img
-                        src="/about/gallery/gallery-9.png"
-                        alt="바날 갤러리 추가 1"
-                        className={styles.galleryImage}
-                      />
-                    </motion.div>
-                  </div>
+                  {isMobile ? (
+                    // 모바일 순서: 추가2(400px), 7(197px), 추가3(197px), 추가1(400px)
+                    <>
+                      <motion.div
+                        className={styles.gallerySmallImage}
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                      >
+                        <img
+                          src="/about/gallery/gallery-8.png"
+                          alt="바날 갤러리 추가 2"
+                          className={styles.galleryImage}
+                        />
+                      </motion.div>
 
-                  {/* 오른쪽 컬럼 */}
-                  <div className={styles.galleryRightColumn}>
-                    <motion.div
-                      className={styles.galleryLargeImage}
-                      initial={{ opacity: 0, y: 80 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{
-                        duration: 0.5,
-                        delay: 0.8,
-                        ease: "easeOut",
-                      }}
-                    >
-                      <img
-                        src="/about/gallery/gallery-8.png"
-                        alt="바날 갤러리 추가 2"
-                        className={styles.galleryImage}
-                      />
-                    </motion.div>
-                    <motion.div
-                      className={styles.gallerySmallImage}
-                      initial={{ opacity: 0, y: 80 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{
-                        duration: 0.5,
-                        delay: 1.2,
-                        ease: "easeOut",
-                      }}
-                    >
-                      <img
-                        src="/about/gallery/gallery-10.png"
-                        alt="바날 갤러리 추가 3"
-                        className={styles.galleryImage}
-                      />
-                    </motion.div>
-                  </div>
+                      <motion.div
+                        className={styles.galleryLargeImage}
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                      >
+                        <img
+                          src="/about/gallery/gallery-7.png"
+                          alt="바날 갤러리 7"
+                          className={styles.galleryImage}
+                        />
+                      </motion.div>
+
+                      <motion.div
+                        className={styles.galleryLargeImage}
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                      >
+                        <img
+                          src="/about/gallery/gallery-10.png"
+                          alt="바날 갤러리 추가 3"
+                          className={styles.galleryImage}
+                        />
+                      </motion.div>
+
+                      <motion.div
+                        className={styles.gallerySmallImage}
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                      >
+                        <img
+                          src="/about/gallery/gallery-9.png"
+                          alt="바날 갤러리 추가 1"
+                          className={styles.galleryImage}
+                        />
+                      </motion.div>
+                    </>
+                  ) : (
+                    // 데스크탑 순서: 기존 그리드 레이아웃 (7, 9 | 8, 10)
+                    <>
+                      {/* 왼쪽 컬럼 */}
+                      <div className={styles.galleryLeftColumn}>
+                        <motion.div
+                          className={styles.gallerySmallImage}
+                          initial={{ opacity: 0, y: 80 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                        >
+                          <img
+                            src="/about/gallery/gallery-7.png"
+                            alt="바날 갤러리 7"
+                            className={styles.galleryImage}
+                          />
+                        </motion.div>
+                        <motion.div
+                          className={styles.galleryLargeImage}
+                          initial={{ opacity: 0, y: 80 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                        >
+                          <img
+                            src="/about/gallery/gallery-9.png"
+                            alt="바날 갤러리 추가 1"
+                            className={styles.galleryImage}
+                          />
+                        </motion.div>
+                      </div>
+
+                      {/* 오른쪽 컬럼 */}
+                      <div className={styles.galleryRightColumn}>
+                        <motion.div
+                          className={styles.galleryLargeImage}
+                          initial={{ opacity: 0, y: 80 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                        >
+                          <img
+                            src="/about/gallery/gallery-8.png"
+                            alt="바날 갤러리 추가 2"
+                            className={styles.galleryImage}
+                          />
+                        </motion.div>
+                        <motion.div
+                          className={styles.gallerySmallImage}
+                          initial={{ opacity: 0, y: 80 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                        >
+                          <img
+                            src="/about/gallery/gallery-10.png"
+                            alt="바날 갤러리 추가 3"
+                            className={styles.galleryImage}
+                          />
+                        </motion.div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

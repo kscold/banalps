@@ -1,272 +1,272 @@
-"use client";
+"use client"
 
-import React from "react";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import Link from "next/link";
-import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
-import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton";
-import FeaturesSection from "@/shared/components/FeaturesSection/FeaturesSection";
-import * as styles from "./HairTransplantLayout.css";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
-import { vw, mvw } from "@/shared/styles/responsive.utils";
+import React from "react"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import Link from "next/link"
+import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider"
+import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton"
+import FeaturesSection from "@/shared/components/FeaturesSection/FeaturesSection"
+import * as styles from "./HairTransplantLayout.css"
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery"
+import { vw, mvw } from "@/shared/styles/responsive.utils"
 
 // Helper function to process description and apply quote style to <b> tags
 const processDescription = (
   description: React.ReactNode,
   quoteClassName: string
 ): React.ReactNode => {
-  if (!description) return null;
+  if (!description) return null
 
   // If description is a string, return as is
-  if (typeof description === "string") return description;
+  if (typeof description === "string") return description
 
   // If it's a React element, check for <b> tags
   if (React.isValidElement(description)) {
-    const descElement = description as React.ReactElement<any>;
-    const children = React.Children.toArray(descElement.props.children);
+    const descElement = description as React.ReactElement<any>
+    const children = React.Children.toArray(descElement.props.children)
 
-    const result: React.ReactNode[] = [];
-    let hasQuote = false;
+    const result: React.ReactNode[] = []
+    let hasQuote = false
 
     children.forEach((child, index) => {
       if (React.isValidElement(child) && child.type === "b") {
-        const bElement = child as React.ReactElement<any>;
+        const bElement = child as React.ReactElement<any>
         // Add line breaks before quote if not the first element and not already has quote
         if (result.length > 0 && !hasQuote) {
-          result.push(<br key={`br1-${index}`} />);
-          result.push(<br key={`br2-${index}`} />);
+          result.push(<br key={`br1-${index}`} />)
+          result.push(<br key={`br2-${index}`} />)
         }
         // Replace <b> tag with span with quote class
         result.push(
           <span key={index} className={quoteClassName}>
             {bElement.props.children}
           </span>
-        );
-        hasQuote = true;
+        )
+        hasQuote = true
       } else {
-        result.push(child);
+        result.push(child)
       }
-    });
+    })
 
-    return <>{result}</>;
+    return <>{result}</>
   }
 
-  return description;
-};
+  return description
+}
 
 interface Section {
-  number: number;
-  title: React.ReactNode;
-  titleMobile?: React.ReactNode;
+  number: number
+  title: React.ReactNode
+  titleMobile?: React.ReactNode
   titleMobileSize?: {
     // Optional custom size for mobile title
-    width?: number; // mvw units
-    height?: number; // mvw units
-  };
-  titleMarginBottom?: number; // margin-bottom for title (px units)
-  mobileHeight?: number; // height for mobile section (mvw units - 375 based)
+    width?: number // mvw units
+    height?: number // mvw units
+  }
+  titleMarginBottom?: number // margin-bottom for title (px units)
+  mobileHeight?: number // height for mobile section (mvw units - 375 based)
   numberPosition?: {
     // Custom position for section number (desktop only)
-    top?: number; // vw units from top
-    right?: number; // vw units from right
-    bottom?: number; // vw units from bottom
-    left?: number; // vw units from left
-  };
-  description?: React.ReactNode;
-  descriptionMobile?: React.ReactNode;
-  descriptionWidth?: number; // Optional width for description (vw units)
-  descriptionMarginBottom?: number; // Optional margin-bottom for description (0 to remove margin on mobile)
-  sectionPaddingBottom?: number; // Optional padding-bottom for section (0 to remove padding on mobile)
-  quote?: React.ReactNode;
-  quoteMobile?: React.ReactNode;
-  conclusion?: React.ReactNode;
-  illustration?: string;
+    top?: number // vw units from top
+    right?: number // vw units from right
+    bottom?: number // vw units from bottom
+    left?: number // vw units from left
+  }
+  description?: React.ReactNode
+  descriptionMobile?: React.ReactNode
+  descriptionWidth?: number // Optional width for description (vw units)
+  descriptionMarginBottom?: number // Optional margin-bottom for description (0 to remove margin on mobile)
+  sectionPaddingBottom?: number // Optional padding-bottom for section (0 to remove padding on mobile)
+  quote?: React.ReactNode
+  quoteMobile?: React.ReactNode
+  conclusion?: React.ReactNode
+  illustration?: string
   illustrationSize?: {
-    width: number;
-    height: number;
-  };
+    width: number
+    height: number
+  }
   illustrationPosition?: {
     // Optional absolute positioning for desktop
-    top?: number; // vw units from top
-    right?: number; // vw units from right
-    bottom?: number; // vw units from bottom
-    left?: number; // vw units from left
-  };
-  illustrationMobile?: string; // Mobile-specific illustration for section 1
+    top?: number // vw units from top
+    right?: number // vw units from right
+    bottom?: number // vw units from bottom
+    left?: number // vw units from left
+  }
+  illustrationMobile?: string // Mobile-specific illustration for section 1
   illustrationMobileSize?: {
     // Optional custom size for mobile illustration
-    width?: number; // mvw units
-    height?: number; // mvw units
-    fullWidth?: boolean; // If true, takes full viewport width (100vw)
-  };
+    width?: number // mvw units
+    height?: number // mvw units
+    fullWidth?: boolean // If true, takes full viewport width (100vw)
+  }
   illustrationMobileMargin?: {
     // Optional margins for mobile illustration
-    top?: number; // mvw units
-    right?: number; // mvw units
-    bottom?: number; // mvw units
-    left?: number; // mvw units
-  };
+    top?: number // mvw units
+    right?: number // mvw units
+    bottom?: number // mvw units
+    left?: number // mvw units
+  }
   images?: {
-    main?: string;
-    secondary?: string;
-  };
+    main?: string
+    secondary?: string
+  }
   imagesSize?: {
     // Optional size configuration for desktop images
     main?: {
-      width: number; // vw units
-      height: number; // vw units
-    };
+      width: number // vw units
+      height: number // vw units
+    }
     secondary?: {
-      width: number; // vw units
-      height: number; // vw units
-    };
-  };
+      width: number // vw units
+      height: number // vw units
+    }
+  }
   imagesPosition?: {
     // Optional absolute positioning for images
     main?: {
-      top?: number; // vw units
-      right?: number; // vw units
-      bottom?: number; // vw units
-      left?: number; // vw units
-    };
+      top?: number // vw units
+      right?: number // vw units
+      bottom?: number // vw units
+      left?: number // vw units
+    }
     secondary?: {
-      top?: number; // vw units
-      right?: number; // vw units
-      bottom?: number; // vw units
-      left?: number; // vw units
-    };
-  };
+      top?: number // vw units
+      right?: number // vw units
+      bottom?: number // vw units
+      left?: number // vw units
+    }
+  }
   section1RightSize?: {
     // Optional size for section1Right container
-    width?: number; // vw units
-    height?: number; // vw units
-  };
+    width?: number // vw units
+    height?: number // vw units
+  }
   imagesMobile?: {
     // Mobile-specific images
-    main?: string;
-    secondary?: string;
-  };
+    main?: string
+    secondary?: string
+  }
   imagesMobileSize?: {
     // Customizable size for mobile images
-    mainMaxWidth?: boolean; // true = 100vw for main image, false/undefined = 100% (default)
-    secondaryMaxWidth?: boolean; // true = 100vw for secondary image, false/undefined = 100% (default)
-    height?: number; // mvw units (applies to both if specific heights not set)
-    mainHeight?: number; // Specific height for main image
-    secondaryHeight?: number; // Specific height for secondary image
-  };
-  mobileIllustration?: string;
+    mainMaxWidth?: boolean // true = 100vw for main image, false/undefined = 100% (default)
+    secondaryMaxWidth?: boolean // true = 100vw for secondary image, false/undefined = 100% (default)
+    height?: number // mvw units (applies to both if specific heights not set)
+    mainHeight?: number // Specific height for main image
+    secondaryHeight?: number // Specific height for secondary image
+  }
+  mobileIllustration?: string
   svgElements?: {
-    container?: string; // SVG in container between title and description
-    absolute?: string; // Absolute positioned SVG
-  };
+    container?: string // SVG in container between title and description
+    absolute?: string // Absolute positioned SVG
+  }
   svgElementsSize?: {
     container?: {
-      width: number; // vw units
-      height: number; // vw units
-    };
+      width: number // vw units
+      height: number // vw units
+    }
     absolute?: {
-      width: number; // vw units
-      height: number; // vw units
-    };
-  };
+      width: number // vw units
+      height: number // vw units
+    }
+  }
   svgElementsPosition?: {
     absolute?: {
-      top?: number; // vw units
-      right?: number; // vw units
-      bottom?: number; // vw units
-      left?: number; // vw units
-    };
-  };
+      top?: number // vw units
+      right?: number // vw units
+      bottom?: number // vw units
+      left?: number // vw units
+    }
+  }
   mobileImages?: {
-    illustration?: string | string[]; // Mobile-specific illustration(s)
+    illustration?: string | string[] // Mobile-specific illustration(s)
     illustrationSize?: {
       // Optional custom size for mobile illustration
-      width: number; // mvw units
-      height: number; // mvw units
-    };
-  };
+      width: number // mvw units
+      height: number // mvw units
+    }
+  }
 }
 
 interface BeforeAfterData {
-  category: string;
-  title?: string;
-  beforeImage: string;
-  afterImage: string;
-  beforeAlt: string;
-  afterAlt: string;
+  category: string
+  title?: string
+  beforeImage: string
+  afterImage: string
+  beforeAlt: string
+  afterAlt: string
 }
 
 interface BeforeAfterButton {
-  text: string;
-  href?: string;
-  onClick?: () => void;
-  width?: number | string; // Optional width for desktop version
+  text: string
+  href?: string
+  onClick?: () => void
+  width?: number | string // Optional width for desktop version
 }
 
 interface FeatureCard {
-  icon: string; // SVG image path
-  title: React.ReactNode; // Support for line breaks
+  icon: string // SVG image path
+  title: React.ReactNode // Support for line breaks
 }
 
 interface SidePreviewData {
-  beforeImage: string;
-  afterImage: string;
-  beforeAlt?: string;
-  afterAlt?: string;
-  title?: string;
-  subtitle?: string;
-  description?: React.ReactNode;
+  beforeImage: string
+  afterImage: string
+  beforeAlt?: string
+  afterAlt?: string
+  title?: string
+  subtitle?: string
+  description?: React.ReactNode
 }
 
 interface ButtonCard {
-  image: string;
-  alt: string;
-  title?: string;
-  href?: string; // Optional link URL
-  onClick?: () => void; // Optional click handler
+  image: string
+  alt: string
+  title?: string
+  href?: string // Optional link URL
+  onClick?: () => void // Optional click handler
 }
 
 interface HairTransplantLayoutProps {
-  heroTitle: React.ReactNode;
-  heroTitleMobile?: React.ReactNode; // Mobile-specific hero title
-  heroSubtitle?: React.ReactNode;
-  language?: "KR" | "JP"; // 언어 정보 추가
+  heroTitle: React.ReactNode
+  heroTitleMobile?: React.ReactNode // Mobile-specific hero title
+  heroSubtitle?: React.ReactNode
+  language?: "KR" | "JP" // 언어 정보 추가
   heroDotPosition?: {
-    absolute?: boolean; // Use absolute positioning for dot
-    top?: number; // vw units from top (desktop)
-    right?: number; // vw units from right (desktop)
-    bottom?: number; // vw units from bottom (desktop)
-    left?: number; // vw units from left (desktop)
+    absolute?: boolean // Use absolute positioning for dot
+    top?: number // vw units from top (desktop)
+    right?: number // vw units from right (desktop)
+    bottom?: number // vw units from bottom (desktop)
+    left?: number // vw units from left (desktop)
     // Mobile-specific positioning
-    mobileTop?: number; // mvw units from top (mobile)
-    mobileRight?: number; // mvw units from right (mobile)
-    mobileBottom?: number; // mvw units from bottom (mobile)
-    mobileLeft?: number; // mvw units from left (mobile)
-  };
-  heroBackground?: string;
-  heroIllustration?: string;
-  heroIllustrationMobile?: string;
+    mobileTop?: number // mvw units from top (mobile)
+    mobileRight?: number // mvw units from right (mobile)
+    mobileBottom?: number // mvw units from bottom (mobile)
+    mobileLeft?: number // mvw units from left (mobile)
+  }
+  heroBackground?: string
+  heroIllustration?: string
+  heroIllustrationMobile?: string
   heroIllustrationSize?: {
-    width: number; // px units for desktop
-    height: number; // px units for desktop
-  };
+    width: number // px units for desktop
+    height: number // px units for desktop
+  }
   heroIllustrationPosition?: {
-    left?: number; // px units from left for desktop
-    right?: number; // px units from right for desktop
-  };
-  section1: Section;
-  section2: Section;
-  section3?: Section; // Optional for scarReduction mode
-  beforeAfterData: BeforeAfterData;
-  beforeAfterButton?: BeforeAfterButton; // Optional button for before/after section
-  featuresTitle?: React.ReactNode;
-  featuresTitleMobile?: React.ReactNode;
-  featureCards?: FeatureCard[];
-  sidePreviewData?: SidePreviewData;
-  buttonCards?: ButtonCard[]; // Optional button cards section
-  scarReduction?: boolean; // Special mode for scar reduction pages
-  customMiddleSection?: React.ReactNode; // Custom section between section1 and section2
+    left?: number // px units from left for desktop
+    right?: number // px units from right for desktop
+  }
+  section1: Section
+  section2: Section
+  section3?: Section // Optional for scarReduction mode
+  beforeAfterData: BeforeAfterData
+  beforeAfterButton?: BeforeAfterButton // Optional button for before/after section
+  featuresTitle?: React.ReactNode
+  featuresTitleMobile?: React.ReactNode
+  featureCards?: FeatureCard[]
+  sidePreviewData?: SidePreviewData
+  buttonCards?: ButtonCard[] // Optional button cards section
+  scarReduction?: boolean // Special mode for scar reduction pages
+  customMiddleSection?: React.ReactNode // Custom section between section1 and section2
 }
 
 export default function HairTransplantLayout({
@@ -293,15 +293,15 @@ export default function HairTransplantLayout({
   scarReduction = false,
   customMiddleSection,
 }: HairTransplantLayoutProps) {
-  const isMobile = useMediaQuery("(max-width: 1023px)");
-  const isDesktopLarge = useMediaQuery("(min-width: 1920px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)")
+  const isDesktopLarge = useMediaQuery("(min-width: 1920px)")
 
-  const section1ImagesRef = useRef(null);
-  const section1ImagesInView = useInView(section1ImagesRef, { once: true });
-  const section2ImagesRef = useRef(null);
-  const section2ImagesInView = useInView(section2ImagesRef, { once: true });
-  const section3ImagesRef = useRef(null);
-  const section3ImagesInView = useInView(section3ImagesRef, { once: true });
+  const section1ImagesRef = useRef(null)
+  const section1ImagesInView = useInView(section1ImagesRef, { once: true })
+  const section2ImagesRef = useRef(null)
+  const section2ImagesInView = useInView(section2ImagesRef, { once: true })
+  const section3ImagesRef = useRef(null)
+  const section3ImagesInView = useInView(section3ImagesRef, { once: true })
 
   return (
     <>
@@ -314,69 +314,90 @@ export default function HairTransplantLayout({
               <h1 className={styles.HairTransplantHeroTitle}>
                 <span
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
+                    display: isMobile ? "block" : "flex",
+                    alignItems: isMobile ? undefined : "center",
+                    justifyContent: isMobile ? undefined : "flex-start",
                     position: heroDotPosition?.absolute
                       ? "relative"
                       : undefined,
                   }}
                 >
-                  {isMobile && heroTitleMobile ? heroTitleMobile : heroTitle}
-                  <div
-                    className={
-                      heroDotPosition?.absolute
-                        ? styles.HairTransplantHeroTitleDotAbsolute
-                        : styles.HairTransplantHeroTitleDot
-                    }
-                    style={
-                      heroDotPosition?.absolute
-                        ? {
-                            // Use mobile values if mobile, fixed px for 1920px+, vw for medium screens
-                            ...(isMobile &&
-                            heroDotPosition.mobileTop !== undefined
-                              ? { top: mvw(heroDotPosition.mobileTop) }
-                              : heroDotPosition.top !== undefined
-                              ? {
-                                  top: isDesktopLarge
-                                    ? `${heroDotPosition.top}px`
-                                    : vw(heroDotPosition.top),
-                                }
-                              : {}),
-                            ...(isMobile &&
-                            heroDotPosition.mobileRight !== undefined
-                              ? { right: mvw(heroDotPosition.mobileRight) }
-                              : heroDotPosition.right !== undefined
-                              ? {
-                                  right: isDesktopLarge
-                                    ? `${heroDotPosition.right}px`
-                                    : vw(heroDotPosition.right),
-                                }
-                              : {}),
-                            ...(isMobile &&
-                            heroDotPosition.mobileBottom !== undefined
-                              ? { bottom: mvw(heroDotPosition.mobileBottom) }
-                              : heroDotPosition.bottom !== undefined
-                              ? {
-                                  bottom: isDesktopLarge
-                                    ? `${heroDotPosition.bottom}px`
-                                    : vw(heroDotPosition.bottom),
-                                }
-                              : {}),
-                            ...(isMobile &&
-                            heroDotPosition.mobileLeft !== undefined
-                              ? { left: mvw(heroDotPosition.mobileLeft) }
-                              : heroDotPosition.left !== undefined
-                              ? {
-                                  left: isDesktopLarge
-                                    ? `${heroDotPosition.left}px`
-                                    : vw(heroDotPosition.left),
-                                }
-                              : {}),
-                          }
-                        : undefined
-                    }
-                  />
+                  {isMobile ? (
+                    <div style={{ position: "relative", display: "block" }}>
+                      {heroTitleMobile}
+                      <div
+                        className={
+                          heroDotPosition?.absolute
+                            ? styles.HairTransplantHeroTitleDotAbsolute
+                            : styles.HairTransplantHeroTitleDot
+                        }
+                        style={{ 
+                          position: "absolute", 
+                          bottom: "0px", 
+                          right: "-24px",
+                          marginLeft: 0 
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      {heroTitle}
+                      <div
+                        className={
+                          heroDotPosition?.absolute
+                            ? styles.HairTransplantHeroTitleDotAbsolute
+                            : styles.HairTransplantHeroTitleDot
+                        }
+                        style={
+                          heroDotPosition?.absolute
+                            ? {
+                                // Use mobile values if mobile, fixed px for 1920px+, vw for medium screens
+                                ...(isMobile &&
+                                heroDotPosition.mobileTop !== undefined
+                                  ? { top: mvw(heroDotPosition.mobileTop) }
+                                  : heroDotPosition.top !== undefined
+                                  ? {
+                                      top: isDesktopLarge
+                                        ? `${heroDotPosition.top}px`
+                                        : vw(heroDotPosition.top),
+                                    }
+                                  : {}),
+                                ...(isMobile &&
+                                heroDotPosition.mobileRight !== undefined
+                                  ? { right: mvw(heroDotPosition.mobileRight) }
+                                  : heroDotPosition.right !== undefined
+                                  ? {
+                                      right: isDesktopLarge
+                                        ? `${heroDotPosition.right}px`
+                                        : vw(heroDotPosition.right),
+                                    }
+                                  : {}),
+                                ...(isMobile &&
+                                heroDotPosition.mobileBottom !== undefined
+                                  ? { bottom: mvw(heroDotPosition.mobileBottom) }
+                                  : heroDotPosition.bottom !== undefined
+                                  ? {
+                                      bottom: isDesktopLarge
+                                        ? `${heroDotPosition.bottom}px`
+                                        : vw(heroDotPosition.bottom),
+                                    }
+                                  : {}),
+                                ...(isMobile &&
+                                heroDotPosition.mobileLeft !== undefined
+                                  ? { left: mvw(heroDotPosition.mobileLeft) }
+                                  : heroDotPosition.left !== undefined
+                                  ? {
+                                      left: isDesktopLarge
+                                        ? `${heroDotPosition.left}px`
+                                        : vw(heroDotPosition.left),
+                                    }
+                                  : {}),
+                              }
+                            : undefined
+                        }
+                      />
+                    </>
+                  )}
                 </span>
               </h1>
             </div>
@@ -1144,7 +1165,9 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {isMobile && section2.titleMobile ? section2.titleMobile : section2.title}
+                    {isMobile && section2.titleMobile
+                      ? section2.titleMobile
+                      : section2.title}
                   </h2>
 
                   {/* 모바일: 메인 이미지 */}
@@ -1207,7 +1230,7 @@ export default function HairTransplantLayout({
                             const quoteText =
                               isMobile && section2.quoteMobile
                                 ? section2.quoteMobile
-                                : section2.quote;
+                                : section2.quote
 
                             if (typeof quoteText === "string") {
                               return quoteText
@@ -1220,10 +1243,10 @@ export default function HairTransplantLayout({
                                       <br />
                                     )}
                                   </span>
-                                ));
+                                ))
                             }
 
-                            return quoteText;
+                            return quoteText
                           })()}
                         </span>
                       </>
@@ -1238,8 +1261,8 @@ export default function HairTransplantLayout({
                               section2.conclusion &&
                               typeof section2.conclusion === "string"
                             ) {
-                              const conclusionText = section2.conclusion;
-                              const lines = conclusionText.split("\n");
+                              const conclusionText = section2.conclusion
+                              const lines = conclusionText.split("\n")
 
                               return lines.map(
                                 (line: string, index: number) => (
@@ -1248,10 +1271,10 @@ export default function HairTransplantLayout({
                                     {index < lines.length - 1 && <br />}
                                   </span>
                                 )
-                              );
+                              )
                             }
 
-                            return section2.conclusion;
+                            return section2.conclusion
                           })()}
                         </span>
                       </>
@@ -1273,8 +1296,6 @@ export default function HairTransplantLayout({
                               ...(section2.illustrationMobileSize.fullWidth
                                 ? {
                                     width: "100vw",
-                                    marginLeft: mvw(-16),
-                                    marginRight: mvw(-16),
                                   }
                                 : {
                                     width: "100%",
@@ -1524,7 +1545,9 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {isMobile && section2.titleMobile ? section2.titleMobile : section2.title}
+                    {isMobile && section2.titleMobile
+                      ? section2.titleMobile
+                      : section2.title}
                   </h2>
                   {section2.svgElements?.container && (
                     <div
@@ -1578,7 +1601,7 @@ export default function HairTransplantLayout({
                             const quoteText =
                               isMobile && section2.quoteMobile
                                 ? section2.quoteMobile
-                                : section2.quote;
+                                : section2.quote
 
                             if (typeof quoteText === "string") {
                               return quoteText
@@ -1591,10 +1614,10 @@ export default function HairTransplantLayout({
                                       <br />
                                     )}
                                   </span>
-                                ));
+                                ))
                             }
 
-                            return quoteText;
+                            return quoteText
                           })()}
                         </span>
                       </>
@@ -1609,8 +1632,8 @@ export default function HairTransplantLayout({
                               section2.conclusion &&
                               typeof section2.conclusion === "string"
                             ) {
-                              const conclusionText = section2.conclusion;
-                              const lines = conclusionText.split("\n");
+                              const conclusionText = section2.conclusion
+                              const lines = conclusionText.split("\n")
 
                               return lines.map(
                                 (line: string, index: number) => (
@@ -1619,10 +1642,10 @@ export default function HairTransplantLayout({
                                     {index < lines.length - 1 && <br />}
                                   </span>
                                 )
-                              );
+                              )
                             }
 
-                            return section2.conclusion;
+                            return section2.conclusion
                           })()}
                         </span>
                       </>
@@ -1733,7 +1756,50 @@ export default function HairTransplantLayout({
               <>
                 {/* 모바일: 제목 → 이미지 → 설명 순서 */}
                 {!scarReduction && section3.number && (
-                  <div className={styles.section3Number}>{section3.number}</div>
+                  <div 
+                    className={styles.section3Number}
+                    style={
+                      section3.numberPosition
+                        ? {
+                            position: "absolute",
+                            ...(() => {
+                              const numberPos = section3.numberPosition as any;
+                              const position = isMobile 
+                                ? numberPos.mobile || numberPos
+                                : numberPos.desktop || numberPos;
+                              
+                              return position.top !== undefined
+                                ? {
+                                    top: isMobile
+                                      ? mvw(position.top * 0.2)
+                                      : isDesktopLarge
+                                      ? `${position.top}px`
+                                      : vw(position.top),
+                                  }
+                                : {};
+                            })(),
+                            ...(() => {
+                              const numberPos = section3.numberPosition as any;
+                              const position = isMobile 
+                                ? numberPos.mobile || numberPos
+                                : numberPos.desktop || numberPos;
+                              
+                              return position.right !== undefined
+                                ? {
+                                    right: isMobile
+                                      ? mvw(position.right * 0.2)
+                                      : isDesktopLarge
+                                      ? `${position.right}px`
+                                      : vw(position.right),
+                                  }
+                                : {};
+                            })(),
+                          }
+                        : undefined
+                    }
+                  >
+                    {section3.number}
+                  </div>
                 )}
                 <div className={styles.section3Left}>
                   <div className={styles.section3Text}>
@@ -1834,36 +1900,56 @@ export default function HairTransplantLayout({
                             section3.numberPosition
                               ? {
                                   position: "absolute",
-                                  ...(section3.numberPosition.top !== undefined
-                                    ? {
-                                        top: isDesktopLarge
-                                          ? `${section3.numberPosition.top}px`
-                                          : vw(section3.numberPosition.top),
-                                      }
-                                    : {}),
-                                  ...(section3.numberPosition.right !==
-                                  undefined
-                                    ? {
-                                        right: isDesktopLarge
-                                          ? `${section3.numberPosition.right}px`
-                                          : vw(section3.numberPosition.right),
-                                      }
-                                    : {}),
-                                  ...(section3.numberPosition.bottom !==
-                                  undefined
-                                    ? {
-                                        bottom: isDesktopLarge
-                                          ? `${section3.numberPosition.bottom}px`
-                                          : vw(section3.numberPosition.bottom),
-                                      }
-                                    : {}),
-                                  ...(section3.numberPosition.left !== undefined
-                                    ? {
-                                        left: isDesktopLarge
-                                          ? `${section3.numberPosition.left}px`
-                                          : vw(section3.numberPosition.left),
-                                      }
-                                    : {}),
+                                  ...(() => {
+                                    const numberPos = section3.numberPosition as any;
+                                    const position = isMobile 
+                                      ? numberPos.mobile || numberPos
+                                      : numberPos.desktop || numberPos;
+                                    
+                                    return position.top !== undefined
+                                      ? {
+                                          top: isDesktopLarge
+                                            ? `${position.top}px`
+                                            : isMobile
+                                            ? mvw(position.top * 0.2)
+                                            : vw(position.top),
+                                        }
+                                      : {};
+                                  })(),
+                                  ...(() => {
+                                    const numberPos = section3.numberPosition as any;
+                                    const position = isMobile 
+                                      ? numberPos.mobile || numberPos
+                                      : numberPos.desktop || numberPos;
+                                    
+                                    const result: any = {};
+                                    
+                                    if (position.right !== undefined) {
+                                      result.right = isDesktopLarge
+                                        ? `${position.right}px`
+                                        : isMobile
+                                        ? mvw(position.right * 0.2)
+                                        : vw(position.right);
+                                    }
+                                    
+                                    if (position.bottom !== undefined) {
+                                      result.bottom = isDesktopLarge
+                                        ? `${position.bottom}px`
+                                        : isMobile
+                                        ? mvw(position.bottom * 0.2)
+                                        : vw(position.bottom);
+                                    }
+                                    
+                                    if (position.left !== undefined) {
+                                      result.left = isDesktopLarge
+                                        ? `${position.left}px`
+                                        : isMobile
+                                        ? mvw(position.left * 0.2)
+                                        : vw(position.left);
+                                    }
+                                    
+                                    return result;
+                                  })(),
                                 }
                               : undefined
                           }
@@ -2194,7 +2280,66 @@ export default function HairTransplantLayout({
                         <div className={styles.section3Left}>
                           <div className={styles.section3Text}>
                             {!scarReduction && (
-                              <div className={styles.section3Number}>
+                              <div 
+                                className={styles.section3Number}
+                                style={
+                                  section3.numberPosition
+                                    ? {
+                                        position: "absolute",
+                                        ...(() => {
+                                          const numberPos = section3.numberPosition as any;
+                                          const position = isMobile 
+                                            ? numberPos.mobile || numberPos
+                                            : numberPos.desktop || numberPos;
+                                          
+                                          return position.top !== undefined
+                                            ? {
+                                                top: isMobile
+                                                  ? mvw(position.top * 0.2)
+                                                  : isDesktopLarge
+                                                  ? `${position.top}px`
+                                                  : vw(position.top),
+                                              }
+                                            : {};
+                                        })(),
+                                        ...(() => {
+                                          const numberPos = section3.numberPosition as any;
+                                          const position = isMobile 
+                                            ? numberPos.mobile || numberPos
+                                            : numberPos.desktop || numberPos;
+                                          
+                                          const result: any = {};
+                                          
+                                          if (position.right !== undefined) {
+                                            result.right = isDesktopLarge
+                                              ? `${position.right}px`
+                                              : isMobile
+                                              ? mvw(position.right * 0.2)
+                                              : vw(position.right);
+                                          }
+                                          
+                                          if (position.bottom !== undefined) {
+                                            result.bottom = isDesktopLarge
+                                              ? `${position.bottom}px`
+                                              : isMobile
+                                              ? mvw(position.bottom * 0.2)
+                                              : vw(position.bottom);
+                                          }
+                                          
+                                          if (position.left !== undefined) {
+                                            result.left = isDesktopLarge
+                                              ? `${position.left}px`
+                                              : isMobile
+                                              ? mvw(position.left * 0.2)
+                                              : vw(position.left);
+                                          }
+                                          
+                                          return result;
+                                        })(),
+                                      }
+                                    : undefined
+                                }
+                              >
                                 {section3.number}
                               </div>
                             )}
@@ -2350,5 +2495,5 @@ export default function HairTransplantLayout({
         />
       )}
     </>
-  );
+  )
 }
