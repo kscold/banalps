@@ -180,41 +180,6 @@ export const mobileFeatureContent = style({
   },
 });
 
-// 모바일 피처 제목
-export const mobileFeatureTitle = style({
-  display: "none", // 기본적으로 숨김 (데스크탑)
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500,
-  fontSize: mvw(16), // 375px 기준 16px
-  lineHeight: "150%",
-  letterSpacing: "0",
-  color: "#272727",
-  margin: "0 0 8px 0",
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "block", // 모바일에서만 표시
-    },
-  },
-});
-
-// 모바일 피처 설명
-export const mobileFeatureDescription = style({
-  display: "none", // 기본적으로 숨김 (데스크탑)
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 300,
-  fontSize: mvw(14), // 375px 기준 14px
-  lineHeight: "160%",
-  letterSpacing: "0",
-  color: "#272727",
-  margin: "0",
-  whiteSpace: "pre-line",
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "block", // 모바일에서만 표시
-    },
-  },
-});
-
 // 이미지 카드 섹션 - 중앙 컨테이너 (1920px 기준)
 export const imageCardsSection = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
@@ -890,6 +855,12 @@ export const featureNumber = style({
       fontSize: mvw(18), // 375px 기준 18px로 더 크게
       fontWeight: 500,
       marginBottom: 0, // 하단 마진 제거
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -940,6 +911,13 @@ export const featureTitle = style({
       marginBottom: mvw(24), // 모바일에서 8px 아래 마진
       lineHeight: "140%",
       width: "100%",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+          whiteSpace: "pre-line",
+        },
+      },
     },
   },
 });
@@ -962,10 +940,18 @@ export const featureDescription = style({
     [breakpoints.mobile]: {
       fontSize: mvw(16), // 375px 기준 14px
       lineHeight: "150%",
-      fontWeight: 300,
+      fontWeight: 400,
       whiteSpace: "normal", // 모바일에서는 자연스러운 줄바꿈
       opacity: 1, // 투명도 제거
       margin: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(16),
+          lineHeight: "150%",
+          whiteSpace: "pre-line !important",
+          maxWidth: "100%",
+        },
+      },
     },
   },
 });
@@ -1579,6 +1565,11 @@ export const doctorEnglishName1 = style({
   margin: 0,
   width: vw(740),
   height: vw(224),
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: "'Poppins', sans-serif",
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "140px",
@@ -1602,6 +1593,11 @@ export const doctorEnglishName2 = style({
   letterSpacing: vw(-2.4), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: "'Poppins', sans-serif",
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "140px",
@@ -1623,6 +1619,11 @@ export const doctorEnglishName3 = style({
   letterSpacing: vw(-2.8), // 1920px 기준 -2.4px
   color: "#FFFFFF",
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: "'Poppins', sans-serif",
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "140px",

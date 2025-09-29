@@ -124,6 +124,14 @@ export const buttonText = style({
   },
 });
 
+export const japaneseText = style({
+  fontFamily: "'Zen Kaku Gothic New', sans-serif",
+  fontWeight: 700,
+  letterSpacing: "0",
+  whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
+  lineHeight: "100%",
+});
+
 // 영문 텍스트용 스타일 (Poppins 폰트 적용)
 export const englishText = style({
   fontFamily: "'Poppins', sans-serif",

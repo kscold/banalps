@@ -47,6 +47,12 @@ html[data-language="JP"] .font-exception[class*="medicalTeamHeroTitle"] {
   font-weight: inherit !important;
 }
 
+/* View More 버튼 예외처리 - 일본어일 때도 Poppins 폰트 사용 */
+html[data-language="JP"] span[data-font="poppins"] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: inherit !important;
+}
+
 /* 영어, 숫자, 특수문자 영역 예외처리 - 한국어 버전 원본 스타일 강제 적용 */
 html[data-language="JP"] .font-exception,
 html[data-language="JP"] .font-exception *,

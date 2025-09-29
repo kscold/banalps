@@ -20,7 +20,7 @@ const FullPageMain = () => {
   const [videoMinTimeElapsed, setVideoMinTimeElapsed] = useState(false);
   const [hasSeenHero, setHasSeenHero] = useState(false); // Hero를 한번 봤는지 추적
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery("screen and (max-width: 1023px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   // 초기 스크롤 위치를 0으로 설정 및 비디오 프리로딩
   useEffect(() => {

@@ -273,9 +273,19 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
                   >
                     <div className={styles.featureNumber}>{service.number}</div>
                     <div className={styles.featureContent}>
-                      <h3 className={styles.featureTitle}>{service.title}</h3>
+                      <h3 className={styles.featureTitle}>
+                        {isMobile &&
+                        "titleMobile" in service &&
+                        service.titleMobile
+                          ? service.titleMobile
+                          : service.title}
+                      </h3>
                       <p className={styles.featureDescription}>
-                        {service.description}
+                        {isMobile &&
+                        "descriptionMobile" in service &&
+                        service.descriptionMobile
+                          ? service.descriptionMobile
+                          : service.description}
                       </p>
                     </div>
                   </div>

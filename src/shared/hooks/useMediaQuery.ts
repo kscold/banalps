@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'react';
 
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  // SSR에서도 안전하도록 초기값을 쿼리에 따라 설정
+  const getInitialValue = () => {
+    if (typeof window === 'undefined') {
+      // SSR 환경에서는 쿼리에 따라 기본값 설정
+      if (query.includes('max-width: 1023px')) {
+        return false; // 데스크탑 기본값
+      }
+      if (query.includes('min-width: 1920px')) {
+        return false; // 데스크탑라지가 아닌 것을 기본값으로
+      }
+      return false;
+    }
+    return window.matchMedia(query).matches;
+  };
+
+  const [matches, setMatches] = useState(getInitialValue);
 
   useEffect(() => {
-    setMounted(true);
-
     const media = window.matchMedia(query);
 
-    // 초기값 설정
+    // 클라이언트에서 정확한 값으로 업데이트
     setMatches(media.matches);
 
     // 리스너 함수
@@ -36,6 +48,5 @@ export function useMediaQuery(query: string): boolean {
     };
   }, [query]);
 
-  // 서버사이드 렌더링에서는 false 반환, 클라이언트에서 마운트된 후에만 실제 값 반환
-  return mounted ? matches : false;
+  return matches;
 }

@@ -9,12 +9,14 @@ import GoogleMapEmbed, {
 } from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useWhiteTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function WhiteSection() {
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const white = useWhiteTranslations();
+  const { language } = useLanguageStore();
 
   return (
     <section className={styles.whiteSection}>
@@ -56,6 +58,7 @@ export default function WhiteSection() {
               variant="primary"
               color="blue"
               size="medium"
+              fontSizeMobile={16}
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/crown")}
             >
@@ -73,6 +76,7 @@ export default function WhiteSection() {
             <ArrowButton
               variant="primary"
               size="medium"
+              fontSizeMobile={16}
               color="blue"
               className={styles.mobileCardButton}
               onClick={() => router.push("/forehead/hair-transplant")}
@@ -91,6 +95,7 @@ export default function WhiteSection() {
             <ArrowButton
               variant="primary"
               size="medium"
+              fontSizeMobile={16}
               color="blue"
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/hairline")}
@@ -110,6 +115,7 @@ export default function WhiteSection() {
               variant="primary"
               size="medium"
               color="blue"
+              fontSizeMobile={16}
               className={styles.mobileCardButton}
               onClick={() => router.push("/hair-transplant/reoperation")}
             >
@@ -129,6 +135,7 @@ export default function WhiteSection() {
               variant="primary"
               width="100%"
               textAlign="center"
+              fontSizeMobile={16}
               className={styles.mobileViewMoreButton}
               onClick={() => router.push("/before-after")}
             >
@@ -157,8 +164,8 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButtonWide}
-                  width={160}
-                  fontSize={18}
+                  width={language === "JP" ? 182 : 164}
+                  fontSize={20}
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
@@ -180,8 +187,8 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButtonWide}
-                  width={180}
-                  fontSize={18}
+                  width={language === "JP" ? 202 : 184}
+                  fontSize={20}
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
@@ -206,8 +213,8 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButton}
-                  width={180}
-                  fontSize={18}
+                  width={language === "JP" ? 162 : 189}
+                  fontSize={20}
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
@@ -231,8 +238,8 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButtonWide}
-                  width={160}
-                  fontSize={18}
+                  width={166}
+                  fontSize={20}
                   fontSizeMobile={14}
                   height={44}
                   paddingLeft={true}
@@ -265,7 +272,7 @@ export default function WhiteSection() {
               fontSize={20}
               height={44}
               width={166}
-              paddingLeft={true}
+              paddingLeft={16}
               className={styles.viewMoreButton}
               onClick={() => router.push("/before-after")}
             >

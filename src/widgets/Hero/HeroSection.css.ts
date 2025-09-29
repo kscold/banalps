@@ -246,7 +246,7 @@ export const textBlock = style({
       display: "flex",
       flexDirection: "column",
       gap: "20px",
-      padding: "0 20px", // 좌우 패딩 추가
+      // padding: "0 20px", // 좌우 패딩 추가
     },
   },
 });
