@@ -1075,14 +1075,12 @@ export const section2Title = style({
       margin: "0 0 40px 0", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
-      display: "flex", // Enable flexbox
-      alignItems: "center", // Vertical center alignment
-      justifyContent: "left", // Horizontal center alignment
+      display: "block", // Changed from flex to block to allow line breaks
       fontSize: mvw(20),
       lineHeight: "150%",
       margin: `0 0 ${mvw(40)} 0`,
-      textAlign: "left", // Center text alignment
-      width: "100%", // Full width instead of fixed
+      textAlign: "left",
+      width: "100%",
       whiteSpace: "pre-line", // Allow line breaks from \n
     },
   },

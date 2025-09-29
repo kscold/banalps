@@ -1144,19 +1144,7 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {typeof section2.title === "string"
-                      ? (() => {
-                          const titleText = section2.title;
-                          return titleText.split("\n").map((line, index) => (
-                            <span key={index}>
-                              {line}
-                              {index < titleText.split("\n").length - 1 && (
-                                <br />
-                              )}
-                            </span>
-                          ));
-                        })()
-                      : section2.title}
+                    {isMobile && section2.titleMobile ? section2.titleMobile : section2.title}
                   </h2>
 
                   {/* 모바일: 메인 이미지 */}
@@ -1536,19 +1524,7 @@ export default function HairTransplantLayout({
                         : {}),
                     }}
                   >
-                    {typeof section2.title === "string"
-                      ? (() => {
-                          const titleText = section2.title;
-                          return titleText.split("\n").map((line, index) => (
-                            <span key={index}>
-                              {line}
-                              {index < titleText.split("\n").length - 1 && (
-                                <br />
-                              )}
-                            </span>
-                          ));
-                        })()
-                      : section2.title}
+                    {isMobile && section2.titleMobile ? section2.titleMobile : section2.title}
                   </h2>
                   {section2.svgElements?.container && (
                     <div
