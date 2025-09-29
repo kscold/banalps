@@ -177,9 +177,7 @@ export const HairTransplantHeroTitle = style({
       fontSize: mvw(40),
       lineHeight: mvw(48),
       textAlign: "left",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
+      display: "block",
       whiteSpace: "normal", // 모바일에서는 기존대로
     },
   },
@@ -204,9 +202,8 @@ export const HairTransplantHeroTitleDot = style({
     [breakpoints.mobile]: {
       width: mvw(10),
       height: mvw(10),
-      marginLeft: mvw(10),
-      alignSelf: "flex-end", // 모바일에서는 하단 정렬
-      marginBottom: mvw(10), // 약간의 하단 여백
+      marginLeft: mvw(4),
+      marginBottom: "0", // 하단 여백 제거
     },
   },
 });
@@ -230,8 +227,8 @@ export const HairTransplantHeroTitleDotAbsolute = style({
     [breakpoints.mobile]: {
       width: mvw(10),
       height: mvw(10),
-      left: mvw(160),
-      bottom: mvw(10),
+      left: mvw(0),
+      bottom: mvw(0),
     },
   },
 });

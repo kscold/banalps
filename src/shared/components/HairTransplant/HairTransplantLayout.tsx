@@ -8,7 +8,6 @@ import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
 import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton";
 import FeaturesSection from "@/shared/components/FeaturesSection/FeaturesSection";
 import * as styles from "./HairTransplantLayout.css";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { vw, mvw } from "@/shared/styles/responsive.utils";
 
 // Helper function to process description and apply quote style to <b> tags
@@ -301,19 +300,8 @@ export default function HairTransplantLayout({
   scarReduction = false,
   customMiddleSection,
 }: HairTransplantLayoutProps) {
-  const isMobile = useMediaQuery("(max-width: 1023px)");
-  const isDesktopLarge = useMediaQuery("(min-width: 1920px)");
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // 하이드레이션이 완료되기 전까지는 opacity로 숨김
-  const containerStyle = {
-    opacity: mounted ? 1 : 0,
-    transition: "opacity 0.3s ease-in-out",
-  };
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
 
   const section1ImagesRef = useRef(null);
   const section1ImagesInView = useInView(section1ImagesRef, { once: true });
@@ -322,8 +310,21 @@ export default function HairTransplantLayout({
   const section3ImagesRef = useRef(null);
   const section3ImagesInView = useInView(section3ImagesRef, { once: true });
 
+  React.useEffect(() => {
+    // 클라이언트에서만 미디어 쿼리 체크
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1023);
+      setIsDesktopLarge(window.innerWidth >= 1920);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   return (
-    <div style={containerStyle}>
+    <>
       {/* Hero Section */}
       <section className={styles.HairTransplantHeroSection}>
         <div className={styles.HairTransplantHeroContainer}>
@@ -342,8 +343,15 @@ export default function HairTransplantLayout({
                   }}
                 >
                   {isMobile ? (
-                    <div style={{ position: "relative", display: "block" }}>
-                      {heroTitleMobile || heroTitle}
+                    <div
+                      style={{
+                        display: "inline-block",
+                        position: "relative",
+                      }}
+                    >
+                      <span style={{ display: "inline" }}>
+                        {heroTitleMobile || heroTitle}
+                      </span>
                       <div
                         className={
                           heroDotPosition?.absolute
@@ -351,10 +359,10 @@ export default function HairTransplantLayout({
                             : styles.HairTransplantHeroTitleDot
                         }
                         style={{
-                          position: "absolute",
-                          bottom: "0px",
-                          right: "-24px",
-                          marginLeft: 0,
+                          display: "inline-block",
+                          marginLeft: mvw(8),
+                          verticalAlign: "baseline",
+                          position: "relative",
                         }}
                       />
                     </div>
@@ -546,7 +554,11 @@ export default function HairTransplantLayout({
                       }
                       initial={{ opacity: 0, y: 80 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                        delay: 0.4,
+                      }}
                       style={{
                         ...(section1.imagesMobileSize?.mainMaxWidth
                           ? {
@@ -746,7 +758,7 @@ export default function HairTransplantLayout({
                     }
                     initial={{ opacity: 0, y: 80 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
                     style={{
                       ...(section1.imagesMobileSize?.secondaryMaxWidth
                         ? {
@@ -909,7 +921,7 @@ export default function HairTransplantLayout({
                         ? { opacity: 1, y: 0 }
                         : { opacity: 0, y: 80 }
                     }
-                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
                     style={
                       isMobile && section1.imagesMobileSize
                         ? {
@@ -1016,7 +1028,7 @@ export default function HairTransplantLayout({
                         ? { opacity: 1, y: 0 }
                         : { opacity: 0, y: 80 }
                     }
-                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
                     style={
                       isMobile && section1.imagesMobileSize
                         ? {
@@ -1188,13 +1200,31 @@ export default function HairTransplantLayout({
                   >
                     {isMobile && section2.titleMobile
                       ? section2.titleMobile
+                      : typeof section2.title === "string"
+                      ? (() => {
+                          const titleText = section2.title as string;
+                          const lines = titleText.split("\n");
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
                       : section2.title}
                   </h2>
 
                   {/* 모바일: 메인 이미지 */}
                   {(section2.imagesMobile?.main || section2.images?.main) && (
-                    <div
+                    <motion.div
                       className={styles.section2Image}
+                      initial={{ opacity: 0, y: 80 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                        delay: 0.4,
+                      }}
                       style={
                         section2.imagesMobileSize
                           ? {
@@ -1224,7 +1254,7 @@ export default function HairTransplantLayout({
                         alt="이미지"
                         className={styles.section2ImageContent}
                       />
-                    </div>
+                    </motion.div>
                   )}
 
                   <div
@@ -1568,6 +1598,17 @@ export default function HairTransplantLayout({
                   >
                     {isMobile && section2.titleMobile
                       ? section2.titleMobile
+                      : typeof section2.title === "string"
+                      ? (() => {
+                          const titleText = section2.title as string;
+                          const lines = titleText.split("\n");
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
                       : section2.title}
                   </h2>
                   {section2.svgElements?.container && (
@@ -1862,7 +1903,11 @@ export default function HairTransplantLayout({
                         className={styles.section3Image}
                         initial={{ opacity: 0, y: 80 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          delay: 0.8,
+                        }}
                       >
                         <img
                           src={
@@ -2530,6 +2575,6 @@ export default function HairTransplantLayout({
           isMobile={isMobile}
         />
       )}
-    </div>
+    </>
   );
 }

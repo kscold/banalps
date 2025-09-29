@@ -143,11 +143,6 @@ export const featureCard = style({
   padding: vw(40), // 내부 패딩
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
 
-  ":hover": {
-    transform: "translateY(-8px)",
-    boxShadow: "0 20px 40px rgba(213, 254, 255, 0.6)",
-  },
-
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "400px",

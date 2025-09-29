@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
+import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayoutClient";
 import { useReoperationTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 

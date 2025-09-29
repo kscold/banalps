@@ -25,7 +25,7 @@ export default function ForeheadHairTransplantPage() {
         ))}
       </>
     ),
-
+    heroDotAbsolute: true, // Use absolute positioned dot for this page
     heroDotPosition: {
       absolute: true,
       // 언어에 따른 데스크탑 위치
@@ -33,7 +33,7 @@ export default function ForeheadHairTransplantPage() {
       bottom: 12,
       // 언어에 따른 모바일 위치
       mobileLeft: language === "JP" ? 107 : 157,
-      mobileBottom: 8,
+      mobileBottom: 40,
     },
     heroIllustration: "/forehead/hero-illustration.svg",
     heroIllustrationMobile: "/forehead/mobile/hero-illustration.svg",
@@ -44,8 +44,6 @@ export default function ForeheadHairTransplantPage() {
     heroIllustrationPosition: {
       left: 0, // Stick to the far left
     },
-
-    heroDotAbsolute: true, // Use absolute positioned dot for this page
     section1: {
       number: 1,
       title: (

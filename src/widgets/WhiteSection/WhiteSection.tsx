@@ -46,13 +46,7 @@ export default function WhiteSection() {
         {/* 모바일 전용 카드 리스트 */}
         <div className={styles.mobileCardList}>
           {/* 정수리 이식 카드 */}
-          <motion.div
-            className={styles.mobileServiceCard}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, delay: 0 }}
-          >
+          <div className={styles.mobileServiceCard}>
             <img
               src="/main/white-section/white_section_2.jpg"
               alt="정수리 이식"
@@ -67,16 +61,10 @@ export default function WhiteSection() {
             >
               {white.services.crownTransplant}
             </ArrowButton>
-          </motion.div>
+          </div>
 
           {/* 이마 축소 수술 카드 */}
-          <motion.div
-            className={styles.mobileServiceCard}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
+          <div className={styles.mobileServiceCard}>
             <img
               src="/main/white-section/white_section_4.jpg"
               alt="이마 축소 수술"
@@ -91,16 +79,10 @@ export default function WhiteSection() {
             >
               {white.services.foreheadReduction}
             </ArrowButton>
-          </motion.div>
+          </div>
 
           {/* 헤어라인 교정 카드 */}
-          <motion.div
-            className={styles.mobileServiceCard}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
+          <div className={styles.mobileServiceCard}>
             <img
               src="/main/white-section/white_section_3.jpg"
               alt="헤어라인 교정"
@@ -115,16 +97,10 @@ export default function WhiteSection() {
             >
               {white.services.hairlineCorrection}
             </ArrowButton>
-          </motion.div>
+          </div>
 
           {/* 바날 재수술 카드 */}
-          <motion.div
-            className={styles.mobileServiceCard}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-          >
+          <div className={styles.mobileServiceCard}>
             <img
               src="/main/white-section/white_section_5.jpg"
               alt="바날 재수술"
@@ -139,16 +115,10 @@ export default function WhiteSection() {
             >
               {white.services.banalRevision}
             </ArrowButton>
-          </motion.div>
+          </div>
 
           {/* Other Medical Service 모바일 박스 */}
-          <motion.div
-            className={styles.mobileOtherServiceBox}
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          >
+          <div className={styles.mobileOtherServiceBox}>
             <img
               src="/main/white-section/mobile/white-section-mobile-2.png"
               alt="Other Medical Service"
@@ -164,7 +134,7 @@ export default function WhiteSection() {
             >
               {white.viewMore}
             </ArrowButton>
-          </motion.div>
+          </div>
         </div>
 
         {/* 메인 콘텐츠 영역 */}
