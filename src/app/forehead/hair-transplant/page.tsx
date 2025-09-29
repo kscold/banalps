@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout"
-import { useForeheadHairTransplantTranslations } from "@/hooks/useAllPagesTranslations"
-import { useLanguageStore } from "@/shared/stores/useLanguageStore"
+import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
+import { useForeheadHairTransplantTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function ForeheadHairTransplantPage() {
-  const t = useForeheadHairTransplantTranslations()
-  const { language } = useLanguageStore()
+  const t = useForeheadHairTransplantTranslations();
+  const { language } = useLanguageStore();
   const layoutData = {
     heroTitle: (
       <>
-        {(t.hero as any).titleLine1 || t.hero.title.split('\n')[0]}
+        {(t.hero as any).titleLine1 || t.hero.title.split("\n")[0]}
         <br />
-        {(t.hero as any).titleLine2 || t.hero.title.split('\n')[1]}
+        {(t.hero as any).titleLine2 || t.hero.title.split("\n")[1]}
       </>
     ),
     heroTitleMobile: (
@@ -277,7 +277,7 @@ export default function ForeheadHairTransplantPage() {
       ),
     })),
     language: language,
-  }
+  };
 
-  return <HairTransplantLayout {...layoutData} />
+  return <HairTransplantLayout {...layoutData} />;
 }

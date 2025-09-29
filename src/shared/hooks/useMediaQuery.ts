@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const media = window.matchMedia(query);
 
     // 초기값 설정
@@ -33,5 +36,6 @@ export function useMediaQuery(query: string): boolean {
     };
   }, [query]);
 
-  return matches;
+  // 서버사이드 렌더링에서는 false 반환, 클라이언트에서 마운트된 후에만 실제 값 반환
+  return mounted ? matches : false;
 }

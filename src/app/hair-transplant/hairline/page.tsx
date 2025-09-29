@@ -188,9 +188,13 @@ function HairlineContent() {
     section3: {
       number: 3,
       numberPosition: {
-        top: -40, // 위에서 50px (데스크탑: vw로 변환, 모바일: mvw로 변환)
-        left: 540, // 왼쪽에서 100px
-        // right, bottom도 설정 가능
+        mobile: {
+          top: -40, // 모바일에서 위에서 40px
+        },
+        desktop: {
+          top: -40, // 데스크탑에서 위에서 40px
+          left: 540, // 데스크탑에서 왼쪽에서 540px
+        },
       },
       title: (
         <>
