@@ -1,51 +1,51 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
-import * as styles from "./DoctorsPage.css"
-import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations"
-import { useLanguageStore } from "@/shared/stores/useLanguageStore"
-import { useAcademicActivities } from "@/hooks/useAcademicActivities"
+import * as styles from "./DoctorsPage.css";
+import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { useAcademicActivities } from "@/hooks/useAcademicActivities";
 
 export default function DoctorsPage() {
-  console.log("[DoctorsPage] 의료진 소개 페이지 렌더링")
+  console.log("[DoctorsPage] 의료진 소개 페이지 렌더링");
 
   // 번역 훅
-  const t = useDoctorsTranslations()
+  const t = useDoctorsTranslations();
 
   // 언어 스토어
-  const { language } = useLanguageStore()
+  const { language } = useLanguageStore();
 
   // 학술활동 훅
-  const { getAllActivities, getAvailableYears } = useAcademicActivities()
+  const { getAllActivities, getAvailableYears } = useAcademicActivities();
 
   // 모바일 감지 상태
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1023)
-    }
+      setIsMobile(window.innerWidth <= 1023);
+    };
 
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // 선택된 연도 상태
-  const [selectedYear, setSelectedYear] = useState<number>(2021)
+  const [selectedYear, setSelectedYear] = useState<number>(2021);
 
   // 스크롤 관련 ref
 
-  const academicSectionRef = useRef<HTMLElement>(null)
-  const tableContainerRef = useRef<HTMLDivElement>(null)
+  const academicSectionRef = useRef<HTMLElement>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // 연도 클릭 핸들러
   const handleYearClick = (year: number) => {
-    console.log("[DoctorsPage/연도클릭] 연도 변경:", year)
-    setSelectedYear(year)
-  }
+    console.log("[DoctorsPage/연도클릭] 연도 변경:", year);
+    setSelectedYear(year);
+  };
 
   return (
     <div className={styles.doctorsPage}>
@@ -89,9 +89,9 @@ export default function DoctorsPage() {
                   <h1 className={styles.doctorMobileTitle}>
                     {language === "JP" ? (
                       <>
-                        毛髪移植
+                        植毛
                         <br />
-                        15年の専門医。
+                        15年の専門医
                       </>
                     ) : (
                       <>
@@ -128,7 +128,11 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg"
+                    src={
+                      language === "JP"
+                        ? "/doctors/mobile/doctor-shinseunggyu-talk-mobile-jp.svg"
+                        : "/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg"
+                    }
                     alt="신승규 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -281,7 +285,8 @@ export default function DoctorsPage() {
                       Soo Ho
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
+                      {(t.doctorInfo as any).parkSpecialist ||
+                        t.doctorInfo.specialist}
                       <br />
                       {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                     </p>
@@ -293,7 +298,11 @@ export default function DoctorsPage() {
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-parksoohyo-talk-mobile.svg"
+                    src={
+                      language === "JP"
+                        ? "/doctors/mobile/doctor-parksoohyo-talk-mobile-jp.svg"
+                        : "/doctors/mobile/doctor-parksoohyo-talk-mobile.svg"
+                    }
                     alt="박수호 원장 명언"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -325,7 +334,8 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorTitle2}>
                 <p className={styles.doctorSpecialty}>
-                  {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
+                  {(t.doctorInfo as any).parkSpecialist ||
+                    t.doctorInfo.specialist}
                   <br />
                   {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                 </p>
@@ -448,7 +458,11 @@ export default function DoctorsPage() {
                 </div>
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
-                    src="/doctors/mobile/doctor-kimnarae-talk-mobile.svg"
+                    src={
+                      language === "JP"
+                        ? "/doctors/mobile/doctor-kimnarae-talk-mobile-jp.svg"
+                        : "/doctors/mobile/doctor-kimnarae-talk-mobile.svg"
+                    }
                     alt="김나래 원장 quote"
                     className={styles.doctorMobileQuoteImage}
                   />
@@ -688,7 +702,9 @@ export default function DoctorsPage() {
             {/* 오른쪽 학술활동 콘텐츠 */}
             <div className={styles.academicContent}>
               {/* 제목 */}
-              <h2 className={styles.academicContentTitle}>학회 발표 및 논문</h2>
+              <h2 className={styles.academicContentTitle}>
+                {language === "JP" ? "学会発表及び論文" : "학회 발표 및 논문"}
+              </h2>
 
               {/* 학술활동 목록 테이블 */}
               <div className={styles.academicTable}>
@@ -698,8 +714,8 @@ export default function DoctorsPage() {
                 >
                   {getAllActivities().length > 0 ? (
                     getAllActivities().map((activity, index) => {
-                      const isFirst = index === 0
-                      const isLast = index === getAllActivities().length - 1
+                      const isFirst = index === 0;
+                      const isLast = index === getAllActivities().length - 1;
 
                       return (
                         <div
@@ -723,7 +739,7 @@ export default function DoctorsPage() {
                             {activity.title}
                           </div>
                         </div>
-                      )
+                      );
                     })
                   ) : (
                     <div
@@ -759,5 +775,5 @@ export default function DoctorsPage() {
         />
       </section>
     </div>
-  )
+  );
 }

@@ -217,6 +217,9 @@ export const HairTransplantHeroTitleDotAbsolute = style({
   borderRadius: "50%",
   left: vw(235),
   bottom: vw(12),
+  selectors: {
+    'html[data-language="JP"] &': {},
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "12px",
@@ -229,6 +232,12 @@ export const HairTransplantHeroTitleDotAbsolute = style({
       height: mvw(10),
       left: mvw(0),
       bottom: mvw(0),
+      selectors: {
+        'html[data-language="JP"] &': {
+          left: mvw(-3),
+          bottom: mvw(-4),
+        },
+      },
     },
   },
 });
@@ -574,6 +583,12 @@ export const section1Title = style({
       margin: `0 0 ${mvw(40)} 0`,
       lineHeight: mvw(28), // Better line height for mobile
       letterSpacing: "0",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -660,13 +675,18 @@ export const section1Description = style({
       width: "100%",
       fontWeight: 400,
       marginBottom: mvw(40),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
 
 export const section1Number = style({
   position: "absolute",
-  fontFamily: "'Nordnet Sans Mono', monospace",
+  fontFamily: fontFamily.nordnet,
   fontStyle: "Regular",
   fontWeight: 400,
   letterSpacing: "0%",
@@ -674,6 +694,12 @@ export const section1Number = style({
   zIndex: 3,
   fontSize: vw(200),
   lineHeight: vw(240),
+
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.nordnet,
+    },
+  },
 
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -1004,12 +1030,17 @@ export const section2NumberBg = style({
   position: "absolute",
   top: vw(-40), // section2Right의 paddingTop과 일치 (제목과 같은 높이)
   right: vw(0), // responsiveRightContent() 내에서 오른쪽으로 살짝 나가도록
-  fontFamily: "'Nordnet Sans Mono', monospace",
+  fontFamily: fontFamily.nordnet,
   fontWeight: 400,
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
   lineHeight: vw(240), // 1920px 기준 240px (피그마 스펙)
   color: "#272727", // 피그마 스펙: 일반 색상, opacity 없음
   zIndex: 3, // 배경 뒤가 아닌 앞으로
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.nordnet,
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "-40px",
@@ -1099,6 +1130,12 @@ export const section2Title = style({
       textAlign: "left",
       width: "100%",
       whiteSpace: "pre-line", // Allow line breaks from \n
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -1137,7 +1174,12 @@ export const section2Description = style({
       lineHeight: mvw(28),
       textAlign: "left",
       fontWeight: 400,
-      marginBottom: mvw(40),
+      margin: `${mvw(40)} 0`,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -1253,6 +1295,13 @@ export const section2Quote = style({
         display: "none",
       },
       lineHeight: "28px",
+      whiteSpace: "pre-line",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -1465,6 +1514,12 @@ export const section3Title = style({
       margin: `0 0 ${mvw(30)} 0`,
       lineHeight: "150%",
       letterSpacing: "0%",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -1494,7 +1549,7 @@ export const section3Description = style({
 
 export const section3Number = style({
   zIndex: 3, // 앞에 표시
-  fontFamily: "'Nordnet Sans Mono', monospace", // 피그마 스펙
+  fontFamily: fontFamily.nordnet, // 피그마 스펙
   position: "absolute",
   fontWeight: 400, // 피그마 스펙: Regular
   ...responsiveFont(200), // 1920px 기준 200px 반응형 폰트 (피그마 스펙)
@@ -1502,6 +1557,11 @@ export const section3Number = style({
   color: "#272727", // 피그마 스펙: #272727
   textAlign: "right", // 피그마 스펙: 우측 정렬
   width: vw(118), // 피그마 너비
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.nordnet,
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "-40px",

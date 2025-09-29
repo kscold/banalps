@@ -19,8 +19,8 @@ function HairlineContent() {
     heroDotPosition: {
       absolute: true,
       // 데스크탑 위치
-      left: 120,
-      bottom: 12,
+      left: language === "JP" ? 130 : 120,
+      bottom: language === "JP" ? 5 : 12,
       // 모바일 위치 (다른 값 설정 가능)
       mobileLeft: 80,
       mobileBottom: 8,
@@ -141,7 +141,7 @@ function HairlineContent() {
       ),
       titleMarginBottom: 120,
       quote: t.section2.quote,
-      quoteMobile: t.section2.quote,
+      quoteMobile: (t.section2 as any).quoteMobile || t.section2.quote,
       conclusion: t.section2.conclusion,
       description: (
         <>

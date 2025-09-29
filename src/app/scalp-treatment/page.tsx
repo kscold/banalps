@@ -31,8 +31,8 @@ const TreatmentCard = ({
     return (
       <motion.div
         className={styles.treatmentCard}
-        initial={{ opacity: 0, translateY: 80 }}
-        whileInView={{ opacity: 1, translateY: 0 }}
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.4, ease: "easeOut", delay }}
       >
@@ -40,7 +40,9 @@ const TreatmentCard = ({
           <span className={styles.treatmentCardNumber}>{number}</span>
           <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
         </div>
-        <h3 className={styles.treatmentCardTitle}>{title}</h3>
+        <h3 className={styles.treatmentCardTitle} suppressHydrationWarning>
+          {title}
+        </h3>
       </motion.div>
     );
   }
@@ -52,7 +54,9 @@ const TreatmentCard = ({
         <span className={styles.treatmentCardNumber}>{number}</span>
         <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
       </div>
-      <h3 className={styles.treatmentCardTitle}>{title}</h3>
+      <h3 className={styles.treatmentCardTitle} suppressHydrationWarning>
+        {title}
+      </h3>
     </div>
   );
 };
@@ -63,6 +67,11 @@ export default function ScalpTreatmentPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const t = useScalpTreatmentTranslations();
   const { language } = useLanguageStore();
+
+  // 번역이 로딩 중인지 확인
+  if (!t || !t.hero || !t.section1) {
+    return <div>Loading...</div>;
+  }
 
   // 텍스트 컨텐츠 설정 - 번역 시스템 사용
   const textContent = {
@@ -370,7 +379,7 @@ export default function ScalpTreatmentPage() {
           {/* Hero Title - 중앙에 배치 */}
           <div className={styles.HairTransplantHeroTitleWrapper}>
             <div className={styles.HairTransplantHeroTitleContainer}>
-              <h1 className={styles.HairTransplantHeroTitle}>
+              <h1 className={styles.HairTransplantHeroTitle} suppressHydrationWarning>
                 <span
                   style={{
                     display: "flex",
@@ -405,11 +414,11 @@ export default function ScalpTreatmentPage() {
       <motion.section
         ref={heroRef}
         className={styles.heroSection}
-        initial={{ opacity: 0, translateY: 80 }}
+        initial={{ opacity: 0, y: 80 }}
         animate={
           heroInView
-            ? { opacity: 1, translateY: 0 }
-            : { opacity: 0, translateY: 80 }
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 80 }
         }
         transition={{ duration: 0.6 }}
       >
@@ -441,7 +450,9 @@ export default function ScalpTreatmentPage() {
         <div className={styles.introContainer}>
           {/* 왼쪽 텍스트 */}
           <div className={styles.introTextContent}>
-            <h2 className={styles.introTitle}>{textContent.section1.title}</h2>
+            <h2 className={styles.introTitle} suppressHydrationWarning>
+              {textContent.section1.title}
+            </h2>
             <div className={styles.introImageContent}>
               <div className={styles.introImageContainer}>
                 <img
@@ -451,7 +462,7 @@ export default function ScalpTreatmentPage() {
                 />
               </div>
             </div>
-            <p className={styles.introDescription}>
+            <p className={styles.introDescription} suppressHydrationWarning>
               {isMobile
                 ? textContent.section1.description.mobile
                 : textContent.section1.description.desktop}
@@ -782,7 +793,7 @@ export default function ScalpTreatmentPage() {
       {/* Footer Features Section */}
       <FeaturesSection
         featuresTitle={
-          <>
+          <div suppressHydrationWarning>
             {(isMobile ? t.features.titleMobile : t.features.title)
               .split("\n")
               .map((line, index) => (
@@ -796,19 +807,19 @@ export default function ScalpTreatmentPage() {
                       1 && <br />}
                 </span>
               ))}
-          </>
+          </div>
         }
         featureCards={t.features.cards.map((card, index) => ({
           icon: `/hair-transplant/feature-${index + 1}.svg`,
           title: (
-            <>
+            <div suppressHydrationWarning>
               {card.title.split("\n").map((line, cardIndex) => (
                 <span key={cardIndex}>
                   {line}
                   {cardIndex < card.title.split("\n").length - 1 && <br />}
                 </span>
               ))}
-            </>
+            </div>
           ),
         }))}
         isMobile={isMobile}

@@ -518,6 +518,11 @@ export const reYouTitle = style({
   lineHeight: "100%",
   color: "#FFFFFF", // 흰색으로 변경
   margin: `0 0 ${vw(20)} 0`,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: "'Poppins', sans-serif",
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       margin: "0 0 20px 0",
@@ -527,6 +532,11 @@ export const reYouTitle = style({
       textAlign: "left",
       color: "#FFFFFF", // 흰색으로 변경
       margin: `0 0 ${mvw(12)} 0`,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontFamily: "'Poppins', sans-serif",
+        },
+      },
     },
   },
 });
@@ -847,7 +857,7 @@ export const strengthDescriptionMobile = style({
       fontWeight: 400,
       lineHeight: "150%",
       color: "#272727",
-      whiteSpace: "pre-line",
+      whiteSpace: "pre-line !important",
       wordBreak: "keep-all",
       overflowWrap: "break-word",
     },
@@ -901,7 +911,7 @@ export const galleryTopSection = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       height: "auto",
-      gap: mvw(30),
+      gap: mvw(80),
     },
   },
 });

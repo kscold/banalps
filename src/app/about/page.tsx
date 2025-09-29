@@ -14,6 +14,11 @@ export default function AboutPage() {
   const t = useAboutTranslations();
   const { language } = useLanguageStore();
 
+  // 번역이 로딩 중인지 확인
+  if (!t || !t.hero || !t.values) {
+    return <div>Loading...</div>;
+  }
+
   // 피그마 디자인에 따른 강점 데이터 - JSON에서 가져오기
   const strengths = t.strengths.map((strength, index) => ({
     number: String(index + 1).padStart(2, "0"),
@@ -71,15 +76,19 @@ export default function AboutPage() {
                 {isMobile ? (
                   <div className={styles.heroQuoteMobile}>
                     <h1 className={styles.heroQuote}>
-                      &apos;{t.hero.quote.split(" ").slice(0, 2).join(" ")}
+                      {language === "KR" && "\u2018"}
+                      {t.hero.quote.split(" ").slice(0, 2).join(" ")}
                     </h1>
                     <h1 className={styles.heroQuote}>
-                      {t.hero.quote.split(" ").slice(2).join(" ")}&apos;
+                      {t.hero.quote.split(" ").slice(2).join(" ")}
+                      {language === "KR" && "\u2019"}
                     </h1>
                   </div>
                 ) : (
                   <h1 className={styles.heroQuote}>
-                    &apos;{t.hero.quote}&apos;
+                    {language === "KR" && "\u2018"}
+                    {t.hero.quote}
+                    {language === "KR" && "\u2019"}
                   </h1>
                 )}
                 <h2 className={styles.heroTitle}>{t.hero.mainTitle}</h2>
@@ -112,15 +121,23 @@ export default function AboutPage() {
                     </span>
                   ))}
                 </h2>
-                <p className={styles.valuesDescription}>
-                  {t.values.description.split("\n").map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      {index < t.values.description.split("\n").length - 1 && (
-                        <br />
-                      )}
-                    </span>
-                  ))}
+                <p
+                  className={styles.valuesDescription}
+                  suppressHydrationWarning
+                >
+                  {(() => {
+                    const text =
+                      isMobile && t.values.mobileDescription
+                        ? t.values.mobileDescription
+                        : t.values.description;
+                    const lines = text.split("\n");
+                    return lines.map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < lines.length - 1 && <br />}
+                      </span>
+                    ));
+                  })()}
                 </p>
               </div>
               <div className={styles.valuesCards}>
@@ -134,7 +151,11 @@ export default function AboutPage() {
                   className={styles.valueCardsImage}
                 />
                 <img
-                  src="/about/mobile/value-mobile.svg"
+                  src={
+                    language === "JP"
+                      ? "/about/mobile/value-mobile-jp.svg"
+                      : "/about/mobile/value-mobile.svg"
+                  }
                   alt="바날 가치"
                   className={styles.valueCardsImageMobile}
                 />
@@ -163,8 +184,8 @@ export default function AboutPage() {
               <div className={styles.reYouImageCards}>
                 <motion.div
                   className={styles.reYouCard1}
-                  initial={{ opacity: 0, translateY: 80 }}
-                  whileInView={{ opacity: 1, translateY: 0 }}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{
                     once: true,
                     amount: 0.2,
@@ -181,8 +202,8 @@ export default function AboutPage() {
 
                 <motion.div
                   className={styles.reYouCard4}
-                  initial={{ opacity: 0, translateY: 80 }}
-                  whileInView={{ opacity: 1, translateY: 0 }}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{
                     once: true,
                     amount: 0.2,
@@ -198,8 +219,8 @@ export default function AboutPage() {
                 </motion.div>
                 <motion.div
                   className={styles.reYouCard2}
-                  initial={{ opacity: 0, translateY: 80 }}
-                  whileInView={{ opacity: 1, translateY: 0 }}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{
                     once: true,
                     amount: 0.2,
@@ -323,8 +344,22 @@ export default function AboutPage() {
                               </span>
                             ))}
                         </h3>
-                        <p className={styles.strengthDescriptionMobile}>
-                          {strength.mobileDescription || strength.description}
+                        <p
+                          className={styles.strengthDescriptionMobile}
+                          suppressHydrationWarning
+                        >
+                          {(() => {
+                            const text =
+                              strength.mobileDescription ||
+                              strength.description;
+                            const lines = text.split("\n");
+                            return lines.map((line, index) => (
+                              <span key={index}>
+                                {line}
+                                {index < lines.length - 1 && <br />}
+                              </span>
+                            ));
+                          })()}
                         </p>
                       </div>
                     </motion.div>
@@ -458,7 +493,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.4,
+                          ease: "easeOut",
+                        }}
                       >
                         <img
                           src="/about/gallery/gallery-8.png"
@@ -472,7 +511,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.8,
+                          ease: "easeOut",
+                        }}
                       >
                         <img
                           src="/about/gallery/gallery-7.png"
@@ -486,7 +529,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 1.2,
+                          ease: "easeOut",
+                        }}
                       >
                         <img
                           src="/about/gallery/gallery-10.png"
@@ -500,7 +547,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 1.6,
+                          ease: "easeOut",
+                        }}
                       >
                         <img
                           src="/about/gallery/gallery-9.png"
@@ -519,7 +570,11 @@ export default function AboutPage() {
                           initial={{ opacity: 0, y: 80 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 0.4,
+                            ease: "easeOut",
+                          }}
                         >
                           <img
                             src="/about/gallery/gallery-7.png"
@@ -532,7 +587,11 @@ export default function AboutPage() {
                           initial={{ opacity: 0, y: 80 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 1.2,
+                            ease: "easeOut",
+                          }}
                         >
                           <img
                             src="/about/gallery/gallery-9.png"
@@ -549,7 +608,11 @@ export default function AboutPage() {
                           initial={{ opacity: 0, y: 80 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 0.8,
+                            ease: "easeOut",
+                          }}
                         >
                           <img
                             src="/about/gallery/gallery-8.png"
@@ -562,7 +625,11 @@ export default function AboutPage() {
                           initial={{ opacity: 0, y: 80 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 1.6,
+                            ease: "easeOut",
+                          }}
                         >
                           <img
                             src="/about/gallery/gallery-10.png"

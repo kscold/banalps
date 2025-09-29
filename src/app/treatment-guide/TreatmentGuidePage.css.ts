@@ -434,6 +434,11 @@ export const contactValue = style({
   fontSize: vw(32),
   lineHeight: vw(32),
   color: "#272727",
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "32px",
@@ -443,6 +448,12 @@ export const contactValue = style({
     [breakpoints.mobile]: {
       fontSize: mvw(24),
       lineHeight: mvw(32),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontFamily: fontFamily.poppins,
+          fontSize: mvw(24),
+        },
+      },
     },
   },
 });
