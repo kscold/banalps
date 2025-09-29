@@ -1057,7 +1057,7 @@ export const doctorQuote3 = style({
   position: "absolute",
   right: vw(108),
   top: vw(225),
-  width: vw(501),
+  width: vw(516),
   height: vw(180),
   textAlign: "center",
   backgroundColor: "transparent",
@@ -1070,13 +1070,13 @@ export const doctorQuote3 = style({
     [breakpoints.desktopLarge]: {
       right: "108px",
       top: "225px",
-      width: "501px",
+      width: "516px",
       height: "156px",
     },
     [breakpoints.desktop]: {
       right: "calc(108px * (100vw / 1920))",
       top: "calc(225px * (100vw / 1920))",
-      width: "calc(501px * (100vw / 1920))",
+      width: "calc(516px * (100vw / 1920))",
       height: "calc(156px * (100vw / 1920))",
     },
     [breakpoints.mobile]: {
@@ -2166,11 +2166,8 @@ export const academicActivitiesLayout = style({
 // 오른쪽 학술활동 콘텐츠
 export const academicContent = style({
   width: "100%",
-  padding: `0 ${vw(135)}`,
   "@media": {
-    [breakpoints.desktopLarge]: {
-      padding: "0 135px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       padding: 0,
@@ -2475,6 +2472,7 @@ export const academicRowTitle = style({
   letterSpacing: "0%",
   color: "#272727",
   textAlign: "left",
+  alignContent: "center",
   whiteSpace: "wrap",
   paddingRight: vw(100),
 

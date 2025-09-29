@@ -160,7 +160,7 @@ function CrownContent() {
       },
       svgElementsPosition: {
         absolute: {
-          bottom: 90,
+          bottom: 97,
           right: 0,
         },
       },
@@ -282,7 +282,9 @@ function CrownContent() {
     })),
   };
 
-  return <HairTransplantLayout {...layoutData} language={language} />;
+  return (
+    <HairTransplantLayout {...layoutData} language={language} isCrown={true} />
+  );
 }
 
 export default function CrownPage() {

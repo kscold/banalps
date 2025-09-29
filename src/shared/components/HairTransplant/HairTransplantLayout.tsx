@@ -239,6 +239,8 @@ interface HairTransplantLayoutProps {
   heroTitleMobile?: React.ReactNode; // Mobile-specific hero title
   heroSubtitle?: React.ReactNode;
   language?: "KR" | "JP"; // 언어 정보 추가
+  isCrown?: boolean; // Crown 페이지 여부
+  isHairline?: boolean; // Hairline 페이지 여부
   heroDotPosition?: {
     absolute?: boolean; // Use absolute positioning for dot
     top?: number; // vw units from top (desktop)
@@ -281,6 +283,8 @@ export default function HairTransplantLayout({
   heroTitleMobile,
   heroSubtitle,
   language = "KR", // 기본값 설정
+  isCrown = false, // 기본값 설정
+  isHairline = false, // 기본값 설정
   heroDotPosition,
   heroBackground,
   heroIllustration = "/hair-transplant/hero-illustration.svg",
@@ -720,7 +724,11 @@ export default function HairTransplantLayout({
                 {/* 모바일 이미지 (기존) */}
                 {section1.mobileImages?.illustration && (
                   <div
-                    className={styles.section1Image}
+                    className={
+                      isHairline
+                        ? styles.section1ImageHairline
+                        : styles.section1Image
+                    }
                     style={
                       section1.mobileImages?.illustrationSize
                         ? {
@@ -834,7 +842,13 @@ export default function HairTransplantLayout({
                       : section1.title}
                   </h2>
                   {section1.illustration && (
-                    <div className={styles.section1Image}>
+                    <div
+                      className={
+                        isHairline
+                          ? styles.section1ImageHairline
+                          : styles.section1Image
+                      }
+                    >
                       <img
                         src={section1.illustration}
                         alt="일러스트"
@@ -1284,17 +1298,23 @@ export default function HairTransplantLayout({
                                 : section2.quote;
 
                             if (typeof quoteText === "string") {
-                              return quoteText
-                                .split("\n")
-                                .map((line: string, index: number) => (
-                                  <span key={index}>
-                                    {line}
-                                    {index <
-                                      quoteText.split("\n").length - 1 && (
-                                      <br />
-                                    )}
-                                  </span>
-                                ));
+                              return (
+                                <>
+                                  {language === "KR" && "\u201C"}
+                                  {quoteText
+                                    .split("\n")
+                                    .map((line: string, index: number) => (
+                                      <span key={index}>
+                                        {line}
+                                        {index <
+                                          quoteText.split("\n").length - 1 && (
+                                          <br />
+                                        )}
+                                      </span>
+                                    ))}
+                                  {language === "KR" && "\u201D"}
+                                </>
+                              );
                             }
 
                             return quoteText;
@@ -1497,7 +1517,11 @@ export default function HairTransplantLayout({
                   </motion.div>
                 )}
               </div>
-              <div className={styles.section2Right}>
+              <div
+                className={
+                  isCrown ? styles.section2RightCrown : styles.section2Right
+                }
+              >
                 {!scarReduction && (
                   <div className={styles.section2NumberBg}>
                     {section2.number}
@@ -1666,17 +1690,23 @@ export default function HairTransplantLayout({
                                 : section2.quote;
 
                             if (typeof quoteText === "string") {
-                              return quoteText
-                                .split("\n")
-                                .map((line: string, index: number) => (
-                                  <span key={index}>
-                                    {line}
-                                    {index <
-                                      quoteText.split("\n").length - 1 && (
-                                      <br />
-                                    )}
-                                  </span>
-                                ));
+                              return (
+                                <>
+                                  {language === "KR" && "\u201C"}
+                                  {quoteText
+                                    .split("\n")
+                                    .map((line: string, index: number) => (
+                                      <span key={index}>
+                                        {line}
+                                        {index <
+                                          quoteText.split("\n").length - 1 && (
+                                          <br />
+                                        )}
+                                      </span>
+                                    ))}
+                                  {language === "KR" && "\u201D"}
+                                </>
+                              );
                             }
 
                             return quoteText;

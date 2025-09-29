@@ -168,7 +168,9 @@ export default function WhiteSection() {
                   fontSize={20}
                   fontSizeMobile={14}
                   height={44}
-                  paddingLeft={true}
+                  paddingLeft={16}
+                  paddingTop={10}
+                  paddingBottom={10}
                   onClick={() => router.push("/hair-transplant/crown")}
                 >
                   {white.services.crownTransplant}
@@ -191,7 +193,9 @@ export default function WhiteSection() {
                   fontSize={20}
                   fontSizeMobile={14}
                   height={44}
-                  paddingLeft={true}
+                  paddingLeft={16}
+                  paddingTop={10}
+                  paddingBottom={10}
                   onClick={() => router.push("/hair-transplant/hairline")}
                 >
                   {white.services.hairlineCorrection}
@@ -217,7 +221,9 @@ export default function WhiteSection() {
                   fontSize={20}
                   fontSizeMobile={14}
                   height={44}
-                  paddingLeft={true}
+                  paddingLeft={16}
+                  paddingTop={10}
+                  paddingBottom={10}
                   onClick={() => router.push("/forehead/hair-transplant")}
                 >
                   {white.services.foreheadReduction}
@@ -242,7 +248,9 @@ export default function WhiteSection() {
                   fontSize={20}
                   fontSizeMobile={14}
                   height={44}
-                  paddingLeft={true}
+                  paddingLeft={16}
+                  paddingTop={10}
+                  paddingBottom={10}
                   onClick={() => router.push("/hair-transplant/revision")}
                 >
                   {white.services.banalRevision}
@@ -273,6 +281,8 @@ export default function WhiteSection() {
               height={44}
               width={166}
               paddingLeft={16}
+              paddingTop={12}
+              paddingBottom={12}
               className={styles.viewMoreButton}
               onClick={() => router.push("/before-after")}
             >

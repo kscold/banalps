@@ -186,6 +186,7 @@ export const imageCardsSection = style({
   ...responsiveCaptureContainer(1600, 950), // 1600x950 캡처 컨테이너
   marginTop: vw(240), // 1920px 기준 240px
   marginBottom: vw(240),
+  height: vw(1220),
   "@media": {
     [breakpoints.desktopLarge]: {
       marginTop: "240px", // 1920px 이상에서 고정
@@ -339,7 +340,6 @@ export const cardImage = style({
 export const reYouSection = style({
   position: "relative",
   ...responsiveContainer(1600), // 헤더와 동일한 컨테이너 시스템만 사용
-  marginTop: vw(120), // 1920px 기준 120px
   marginBottom: vw(240), // 1920px 기준 240px
   minHeight: vw(748), // 최소 높이 설정 (이미지 컨테이너 대체)
   display: "flex",
@@ -361,13 +361,6 @@ export const reYouSection = style({
       minHeight: mvw(400), // 375px 기준 400px가 비례적으로 커짐
       paddingTop: mvw(40), // 375px 기준 40px 패딩
       paddingBottom: mvw(40), // 375px 기준 40px 패딩
-    },
-    "screen and (max-width: 374px)": {
-      width: "calc(100% - 32px)", // 375px 미만에서는 고정 32px 마진
-      margin: "60px auto 80px auto", // 고정 마진
-      minHeight: "400px", // 고정 높이
-      paddingTop: "40px", // 고정 패딩
-      paddingBottom: "40px", // 고정 패딩
     },
   },
 });
@@ -446,10 +439,10 @@ export const graffitiBackgroundMobile = style({
 // What Banal Does 섹션 (1920px 기준)
 export const whatBanalSection = style({
   ...responsiveContainer(1600), // 1920px 기준 1600px 최대 너비 (패딩 포함)
-  marginBottom: vw(120), // 1920px 기준 120px
+  marginBottom: vw(240),
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginBottom: "120px", // 1920px 이상에서 고정
+      marginBottom: "240px", // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
       width: "100%", // 모바일에서 전체 너비
@@ -1086,17 +1079,17 @@ export const doctorCard1 = style({
 export const doctorCard2 = style({
   position: "absolute",
   width: vw(423), // 1920px 기준 332px
-  height: vw(626),
-  aspectRatio: "423 / 626",
+  height: vw(542),
+  aspectRatio: "423 / 542",
   top: vw(350), // 1920px 기준 190px
   right: "0", // 1920px 기준 컨테이너 오른쪽 맞춤
   borderRadius: vw(12),
   overflow: "hidden",
-  zIndex: 2,
+  zIndex: 4,
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "423px", // 1920px 이상에서 고정
-      height: "626px",
+      height: "542px",
       top: "350px",
       right: "0",
       borderRadius: "12px",
@@ -1344,7 +1337,7 @@ export const doctorsContent = style({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between", // 양쪽 끝에 붙이기
-  gap: vw(40), // 간격 추가
+  // gap: vw(40), // 간격 추가
   // minHeight: "50vw", // 최소 높이도 비례적으로
   "@media": {
     "screen and (min-width: 1600px)": {
@@ -1407,14 +1400,16 @@ export const doctorsSubTitle = style({
 });
 
 export const doctorsDescription = style({
-  fontFamily: fontFamily.pretendard,
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(24), // 1920px 기준 18px, vw로 스케일링
-  lineHeight: "35px",
+  lineHeight: "150%",
   letterSpacing: "0",
   color: "#272727",
   margin: "0",
   marginBottom: vw(80),
+
+  whiteSpace: "pre-line",
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "24px", // 1920px 이상에서 18px 고정
@@ -1487,13 +1482,13 @@ export const doctorNameOverlay2 = style({
   position: "absolute",
   zIndex: 10,
   left: vw(416),
-  top: vw(750),
+  top: vw(668),
   width: vw(490),
   height: vw(224),
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "416px",
-      top: "750px",
+      top: "668px",
       width: "490px",
       height: "224px",
     },
@@ -1654,13 +1649,13 @@ export const doctorKoreanNameContainer1 = style({
 // 박수호 원장 한국어 이름 - 1920px 기준
 export const doctorKoreanNameContainer2 = style({
   position: "absolute",
-  right: vw(120), // 1920px 기준 155px
-  top: vw(800), // 1920px 기준 800px로 수정
+  right: vw(74), // 1920px 기준 155px
+  top: vw(739), // 1920px 기준 800px로 수정
   zIndex: 10,
   "@media": {
     [breakpoints.desktopLarge]: {
-      right: "120px",
-      top: "800px",
+      right: "74px",
+      top: "739px",
     },
     [breakpoints.mobile]: {
       position: "static",
@@ -1704,14 +1699,14 @@ export const doctorDivider1 = style({
   position: "absolute",
   left: "0",
   top: vw(565), // 1920px 기준 557px
-  width: vw(778), // 1920px 기준 700px
-  height: vw(2),
+  width: vw(1050), // 1920px 기준 700px
+  height: "2px",
   backgroundColor: "#FFFFFF",
-  zIndex: 5,
+  zIndex: 2,
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "565px",
-      width: "778px",
+      width: "1050px",
       height: "2px",
     },
   },
@@ -1721,15 +1716,15 @@ export const doctorDivider1 = style({
 export const doctorDivider2 = style({
   position: "absolute",
   right: "0",
-  top: vw(976), // 1920px 기준 610px
-  width: vw(718), // 1920px 기준 400px
-  height: vw(2),
+  top: vw(890), // 1920px 기준 610px
+  width: vw(730), // 1920px 기준 400px
+  height: "2px",
   backgroundColor: "#FFFFFF",
   zIndex: 5,
   "@media": {
     [breakpoints.desktopLarge]: {
-      top: "976px",
-      width: "718px",
+      top: "890px",
+      width: "730px",
       height: "2px",
     },
   },

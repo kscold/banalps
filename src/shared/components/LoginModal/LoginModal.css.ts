@@ -119,7 +119,7 @@ export const modalHeader = style({
     left: "3rem", // 패딩과 동일하게 설정하여 LOGIN 텍스트 시작점에 맞춤
     right: "3rem", // 패딩과 동일하게 설정하여 X 버튼 끝점에 맞춤
     height: "1px",
-    backgroundColor: "#272727",
+    backgroundColor: "#C6C6C6",
   },
   "@media": {
     [breakpoints.mobile]: {
@@ -272,7 +272,6 @@ export const iconSquare = style({
     [breakpoints.mobile]: {
       width: mvw(50),
       height: mvw(50),
-      borderRadius: mvw(6),
     },
   },
 });
@@ -280,7 +279,7 @@ export const iconSquare = style({
 export const loginButton = style({
   flex: 1,
   height: vw(60),
-  backgroundColor: "#FFFDF7",
+  backgroundColor: "#FFFFFF",
   border: "1px solid #E5E5E5",
   display: "flex",
   alignItems: "center",
@@ -310,12 +309,15 @@ export const iconImage = style({
 });
 
 export const socialText = style({
-  color: "#666666",
+  color: "#707070",
+  fontFamily: fontFamily.scdream,
   fontSize: vw(14),
-  fontWeight: 500,
+  lineHeight: "140%",
+  fontWeight: 400,
   "@media": {
     [breakpoints.mobile]: {
       fontSize: mvw(14),
+      lineHeight: "140%",
     },
   },
 });

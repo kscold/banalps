@@ -77,7 +77,7 @@ export const HairTransplantHeroIllustration = style({
   position: "absolute",
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   width: vw(1750), // 기본 width 설정
-  top: "50%",
+  top: "50%", // 일반 이미지일 때는 43%
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
@@ -125,7 +125,7 @@ export const HairTransplantHeroTitleWrapper = style({
 
 export const HairTransplantHeroTitleContainer = style({
   position: "absolute",
-  top: "50%",
+  top: "46%",
   left: "0",
   transform: "translateY(-50%)",
   textAlign: "left",
@@ -285,7 +285,30 @@ export const heroIllustration = style({
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   width: "1750px", // 헤더와 완전히 동일한 최대 너비
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: "50%",
+  top: "43%", // 일반 이미지일 때는 43%
+  transform: "translateY(-50%)",
+  height: vw(765), // 1920px 기준 762px 높이
+  zIndex: 1,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 고정 너비
+      height: "765px", // 고정 높이
+      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
+      maxWidth: "none", // maxWidth 제거
+    },
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
+// SVG 전용 heroIllustration 스타일 (top: 50%)
+export const heroIllustrationSvg = style({
+  position: "absolute",
+  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
+  width: "1750px", // 헤더와 완전히 동일한 최대 너비
+  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  top: "50%", // SVG일 때는 50%
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
@@ -597,8 +620,8 @@ export const section1Image = style({
   // 피그마 디자인에 맞게 텍스트 아래에 자연스럽게 배치
   width: "auto", // 너비를 auto로 설정하여 이미지 크기에 따라 조정
   height: "auto", // 비율 유지
-  marginTop: vw(40), // 제목과의 간격
-  marginBottom: vw(40), // 설명과의 간격
+  marginTop: vw(80), // 제목과의 간격
+  marginBottom: vw(80), // 설명과의 간격
   "@media": {
     [breakpoints.desktopLarge]: {
       marginTop: "40px",
@@ -754,6 +777,25 @@ export const section1Right = style({
   },
 });
 
+// 헤어라인 페이지 전용 section1Image 스타일 (marginTop: 67)
+export const section1ImageHairline = style({
+  // 피그마 디자인에 맞게 텍스트 아래에 자연스럽게 배치
+  width: "auto", // 너비를 auto로 설정하여 이미지 크기에 따라 조정
+  height: "auto", // 비율 유지
+  marginTop: vw(67), // 헤어라인에서만 67로 설정
+  marginBottom: vw(80), // 설명과의 간격
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginTop: "33.5px", // 67의 절반 (1920px 기준)
+      marginBottom: "40px",
+    },
+    [breakpoints.mobile]: {
+      marginTop: mvw(67), // 모바일에서도 67 적용
+      marginBottom: mvw(40),
+    },
+  },
+});
+
 // 피그마 Frame 2463 (600x660) - 대형 이미지 (오른쪽 상단)
 export const section1Image1 = style({
   ...responsiveAbsoluteImage({
@@ -822,8 +864,8 @@ export const section1Image2 = style({
 export const section1ImageContent = style({
   width: "100%",
   height: "100%",
-  borderRadius: "8px",
   objectFit: "cover",
+  borderRadius: "8px",
   "@media": {
     [breakpoints.mobile]: {
       objectFit: "cover",
@@ -1021,6 +1063,37 @@ export const section2Right = style({
       padding: "0",
       alignItems: "center",
       textAlign: "center",
+    },
+  },
+});
+
+// Crown 페이지 전용 section2Right 사이즈 제한
+export const section2RightCrown = style({
+  ...responsiveRightContent(),
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  padding: 0,
+  marginLeft: vw(160),
+  maxWidth: vw(655), // 크라운 페이지에서만 최대 너비 제한
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      paddingTop: "0",
+      paddingBottom: "0",
+      paddingLeft: "0",
+      paddingRight: "0",
+      maxWidth: "655px", // 1920px+에서도 고정 크기
+    },
+    [breakpoints.mobile]: {
+      order: 1,
+      position: "static",
+      paddingTop: "0",
+      width: "100%",
+      padding: "0",
+      alignItems: "center",
+      textAlign: "center",
+      maxWidth: "none", // 모바일에서는 제한 없음
     },
   },
 });
@@ -1230,10 +1303,14 @@ export const section2Svg2 = style({
   width: vw(200), // 피그마 디자인에 맞게 크기 설정
   height: "auto",
   "@media": {
-    // 1320px 이하에서 글자와 겹치지 않도록 조정
-    "(max-width: 1320px)": {
+    "(max-width: 1500px)": {
       bottom: vw(-20), // 더 아래로 이동
       right: vw(-60), // 왼쪽으로 조금 이동
+    },
+    // 1320px 이하에서 글자와 겹치지 않도록 조정
+    "(max-width: 1200px)": {
+      bottom: vw(-20), // 더 아래로 이동
+      right: vw(-100), // 왼쪽으로 조금 이동
     },
     [breakpoints.desktopLarge]: {
       bottom: "0px",
@@ -1249,8 +1326,8 @@ export const section2Svg2 = style({
 });
 
 export const section2Quote = style({
-  fontFamily: fontFamily.pretendard,
-  fontWeight: 700, // 피그마 스펙: Regular = 400 (동일)
+  fontFamily: fontFamily.scdream,
+  fontWeight: 500, // 피그마 스펙: Regular = 400 (동일)
   fontSize: vw(20), // 1920px 기준 20px 반응형 (피그마 스펙, 동일)
   lineHeight: "150%", // 1920px 기준 30px (피그마 스펙, 동일)
   letterSpacing: "0", // 피그마 스펙: 0 (동일)

@@ -300,7 +300,13 @@ function HairlineContent() {
     })),
   };
 
-  return <HairTransplantLayout {...layoutData} language={language} />;
+  return (
+    <HairTransplantLayout
+      {...layoutData}
+      language={language}
+      isHairline={true}
+    />
+  );
 }
 
 export default function HairlinePage() {

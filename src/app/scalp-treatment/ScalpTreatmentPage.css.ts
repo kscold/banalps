@@ -96,7 +96,7 @@ export const HairTransplantHeroTitleWrapper = style({
 
 export const HairTransplantHeroTitleContainer = style({
   position: "absolute",
-  top: "50%",
+  top: "43%",
   left: "0",
   transform: "translateY(-50%)",
   textAlign: "left",
@@ -593,12 +593,12 @@ export const introImage = style({
 export const smallVideoContainer = style({
   width: "100%",
   height: "100%",
-  borderRadius: vw(8),
+  borderRadius: "0 0 8px 8px",
   overflow: "hidden",
   position: "relative",
   "@media": {
     [breakpoints.desktopLarge]: {
-      borderRadius: "8px",
+      borderRadius: "0 8px 8px 0",
     },
     [breakpoints.mobile]: {
       width: "100vw",

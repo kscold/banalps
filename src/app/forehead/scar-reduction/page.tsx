@@ -69,7 +69,7 @@ export default function ScarReductionPage() {
         </>
       ),
       images: {
-        main: "/forehead/scar-reduction/scar-reduction-1.png",
+        main: "/forehead/scar-reduction/scar-reduction-1.jpg",
       },
       imagesSize: {
         main: {

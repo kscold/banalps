@@ -94,10 +94,10 @@ export const heroQuote = style({
   lineHeight: "140%",
   letterSpacing: "0%",
   color: "#000000",
-  margin: `0 0 ${vw(30)} 0`,
+  margin: `0 0 ${vw(8)} 0`,
   "@media": {
     [breakpoints.desktopLarge]: {
-      margin: "0 0 30px 0",
+      margin: "0 0 8px 0",
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
@@ -179,11 +179,11 @@ export const illustrationImage = style({
 
 // Values Section - 가치 섹션
 export const valuesSection = style({
-  padding: `${vw(120)} 0`,
+  padding: `${vw(240)} 0`,
   background: "#73D5FA",
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "120px 0",
+      padding: "240px 0",
     },
     [breakpoints.mobile]: {
       padding: 0,
@@ -559,12 +559,11 @@ export const reYouSubtitle = style({
 
 // 바날이 잘하는 일 섹션 - 피그마 디자인 정확히 매칭
 export const strengthsSection = style({
-  paddingTop: vw(240),
-
+  paddingTop: vw(480),
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "240px",
+      paddingTop: "480px",
     },
     [breakpoints.mobile]: {
       width: "100%",
@@ -745,7 +744,7 @@ export const strengthItemMobile = style({
 
 export const strengthNumber = style({
   flex: "0 0 auto",
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(24),
   lineHeight: vw(29),
@@ -765,7 +764,7 @@ export const strengthNumberMobile = style({
   "@media": {
     [breakpoints.mobile]: {
       flex: "0 0 auto",
-      fontFamily: "'S-Core Dream', sans-serif",
+      fontFamily: fontFamily.scdream,
       fontWeight: 500,
       color: "#000000",
       fontSize: mvw(18),
@@ -803,7 +802,7 @@ export const strengthItemContentMobile = style({
 
 export const strengthItemTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 600,
+  fontWeight: 500,
   fontSize: vw(20),
   lineHeight: vw(28),
   color: "#272727",
@@ -943,7 +942,6 @@ export const galleryMainImage = style({
   flex: "1 1 50%",
   maxWidth: `calc(50% - ${vw(10)})`,
   height: vw(580),
-  borderRadius: vw(16),
   overflow: "hidden",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -952,13 +950,12 @@ export const galleryMainImage = style({
     [breakpoints.desktopLarge]: {
       maxWidth: "calc(50% - 10px)",
       height: "580px",
-      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
       maxWidth: "100%",
       width: "100%",
       height: mvw(251), // 첫 번째: 251px
-      borderRadius: mvw(8),
+      borderRadius: "8px",
       flex: "none",
     },
   },
@@ -1084,22 +1081,19 @@ export const galleryRow3 = style({
 export const galleryLeftLarge = style({
   gridColumn: "1",
   gridRow: "1",
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  // boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
   // },
   "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       gridColumn: "1",
       gridRow: "1",
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
@@ -1110,10 +1104,9 @@ export const galleryRightTop = style({
   gridRow: "1",
   height: vw(455),
   alignSelf: "start",
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  // boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
@@ -1121,14 +1114,13 @@ export const galleryRightTop = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
-      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
       gridColumn: "1",
       gridRow: "2",
       height: "auto",
       alignSelf: "stretch",
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
@@ -1139,10 +1131,9 @@ export const galleryRightBottom = style({
   gridRow: "1",
   height: vw(455),
   alignSelf: "end",
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  // boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
@@ -1150,34 +1141,30 @@ export const galleryRightBottom = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
-      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
       gridColumn: "1",
       gridRow: "3",
       height: "auto",
       alignSelf: "stretch",
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
 
 // 일반 그리드 아이템 (Frame 220)
 export const galleryGridItem = style({
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  // boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
   // },
   "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "16px",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
@@ -1223,10 +1210,9 @@ export const galleryRightColumn = style({
 // Frame 223 - 작은 이미지 (790x455)
 export const gallerySmallImage = style({
   height: vw(455),
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
@@ -1234,11 +1220,10 @@ export const gallerySmallImage = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "455px",
-      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
       height: mvw(400), // 7번째: 작은 이미지를 400px로 변경
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
@@ -1246,10 +1231,8 @@ export const gallerySmallImage = style({
 // Frame 223 - 큰 이미지 (790x925)
 export const galleryLargeImage = style({
   height: vw(925),
-  borderRadius: vw(16),
   overflow: "hidden",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  // transition: "transform 0.3s ease, box-shadow 0.3s ease",
   // ":hover": {
   //   transform: "translateY(-8px)",
   //   boxShadow: "0 12px 48px rgba(0, 0, 0, 0.15)",
@@ -1257,11 +1240,10 @@ export const galleryLargeImage = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       height: "925px",
-      borderRadius: "16px",
     },
     [breakpoints.mobile]: {
       height: mvw(197), // 8-9번째: 큰 이미지를 197px로 변경
-      borderRadius: mvw(8),
+      borderRadius: "8px",
     },
   },
 });
@@ -1276,27 +1258,4 @@ export const galleryImage = style({
   // ":hover": {
   //   transform: "scale(1.05)",
   // },
-});
-
-export const galleryPlaceholder = style({
-  width: "100%",
-  height: vw(400),
-  backgroundColor: "#E5E7EB",
-  borderRadius: vw(16),
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "#9CA3AF",
-  fontSize: vw(18),
-  fontWeight: 500,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      height: "400px",
-      borderRadius: "16px",
-      fontSize: "18px",
-    },
-    [breakpoints.mobile]: {
-      height: "250px",
-    },
-  },
 });

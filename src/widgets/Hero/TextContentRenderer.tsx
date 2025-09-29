@@ -32,12 +32,12 @@ export function TextContentRenderer({
     // 스크롤 진행에 따라 0~5 범위로 변환 (5개 텍스트)
     const scrollPosition = scrollProgress * 5;
 
-    // 모바일에서는 균등한 간격으로 텍스트 전환
-    const fadeInRange = isMobile ? 0.1 : 0.3; // 페이드인: 모바일 0.1, 데스크톱 0.3
-    const fadeOutRange = isMobile ? 0.1 : 0.3; // 페이드아웃: 모바일 0.1, 데스크톱 0.3
-    const visibleRange = isMobile ? 0.3 : 0.3; // 완전히 보이는 구간: 모바일 0.3 (균등), 데스크톱 0.3
+    // KB 사이트처럼 더 매끄러운 전환을 위한 범위 조정
+    const fadeInRange = isMobile ? 0.2 : 0.4; // 페이드인 범위 증가
+    const fadeOutRange = isMobile ? 0.3 : 0.5; // 페이드아웃 범위 증가
+    const visibleRange = isMobile ? 0.2 : 0.3; // 완전히 보이는 구간
 
-    // 각 텍스트가 보이는 구간 설정 (균등한 간격)
+    // 각 텍스트가 보이는 구간 설정
     const startFadeIn = textIndex - fadeInRange;
     const fullVisible = textIndex;
     const startFadeOut = textIndex + visibleRange;
@@ -45,24 +45,37 @@ export function TextContentRenderer({
 
     if (scrollPosition < startFadeIn) return 0;
     if (scrollPosition >= startFadeIn && scrollPosition < fullVisible) {
-      return (scrollPosition - startFadeIn) / fadeInRange;
+      // 더 부드러운 ease-out 곡선 적용
+      const progress = (scrollPosition - startFadeIn) / fadeInRange;
+      return progress * progress * (3 - 2 * progress); // smooth step function
     }
     if (scrollPosition >= fullVisible && scrollPosition <= startFadeOut) {
       return 1;
     }
     if (scrollPosition > startFadeOut && scrollPosition < fullyHidden) {
-      return 1 - (scrollPosition - startFadeOut) / fadeOutRange;
+      // 페이드아웃도 더 자연스럽게
+      const progress = (scrollPosition - startFadeOut) / fadeOutRange;
+      const smoothProgress = progress * progress * (3 - 2 * progress);
+      return 1 - smoothProgress;
     }
     return 0;
   };
 
-  // 텍스트 Y 위치 계산 (스크롤에 따라 부드럽게 이동)
+  // 텍스트 Y 위치 계산 - KB 사이트처럼 페이드인만 적용
   const getTextTransform = (textIndex: number) => {
-    const opacity = getTextOpacity(textIndex);
-    // 텍스트가 나타날 때는 아래에서 위로, 사라질 때는 위로 올라감
-    if (opacity === 0) return 30;
-    if (opacity === 1) return 0;
-    return (1 - opacity) * 30;
+    const scrollPosition = scrollProgress * 5;
+    const fadeInRange = isMobile ? 0.1 : 0.3;
+    const startFadeIn = textIndex - fadeInRange;
+    const fullVisible = textIndex;
+
+    // 페이드인 시에만 아래에서 위로 올라오는 효과
+    if (scrollPosition < startFadeIn) return 20;
+    if (scrollPosition >= startFadeIn && scrollPosition < fullVisible) {
+      const progress = (scrollPosition - startFadeIn) / fadeInRange;
+      return (1 - progress) * 20; // 20px에서 0px로
+    }
+    // 완전히 보이거나 사라질 때는 Y축 변경 없이 그 자리에 유지
+    return 0;
   };
 
   // JSON에서 텍스트 가져오기
@@ -71,13 +84,15 @@ export function TextContentRenderer({
     const lines = text.content.split("\n");
     let content;
 
-    if (index === 1) {
-      // text-1은 특별한 스타일 적용 + 일반 따옴표 사용
+    if (index === 1 || text.content.includes("이제 바람부는 날도 좋아요")) {
+      // text-1 또는 "이제 바람부는 날도 좋아요" 텍스트는 특별한 스타일 적용 + 이중 따옴표 사용
       const firstLine = lines[0].replace(/[""](.+?)[""]/, '"$1"');
       content = (
         <>
           <span className={styles.specialQuoteText}>
-            "{firstLine.replace(/[""]/g, "")}"
+            {"\u201C"}
+            {firstLine.replace(/[""]/g, "")}
+            {"\u201D"}
           </span>
           {lines[1] && (
             <>
@@ -122,8 +137,8 @@ export function TextContentRenderer({
               opacity: opacity,
               transform: `translateY(${translateY}px)`,
               transition: isMobile
-                ? "opacity 0.1s ease-out, transform 0.1s ease-out" // 모바일: 0.1초 (즉시 전환)
-                : "opacity 0.4s ease-out, transform 0.4s ease-out", // 데스크톱: 0.4초
+                ? "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)" // 모바일: 0.3초 + 부드러운 곡선
+                : "opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)", // 데스크톱: 0.6초 + 부드러운 곡선
               pointerEvents: opacity > 0 ? "auto" : "none",
             }}
           >

@@ -389,10 +389,10 @@ export default function AboutPage() {
 
                 <motion.div
                   className={styles.galleryMainImage}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <img
                     src="/about/gallery/gallery-1.png"
@@ -409,10 +409,14 @@ export default function AboutPage() {
                   {/* 왼쪽 큰 이미지 */}
                   <motion.div
                     className={styles.galleryLeftLarge}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-200px" }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    viewport={{ once: true, margin: "-150px" }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.1,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <img
                       src="/about/gallery/gallery-2.png"
@@ -424,10 +428,14 @@ export default function AboutPage() {
                   {/* 오른쪽 위 이미지 */}
                   <motion.div
                     className={styles.galleryRightTop}
-                    initial={{ opacity: 0, y: 80 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.2,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <img
                       src="/about/gallery/gallery-3.png"
@@ -439,10 +447,14 @@ export default function AboutPage() {
                   {/* 오른쪽 아래 이미지 */}
                   <motion.div
                     className={styles.galleryRightBottom}
-                    initial={{ opacity: 0, y: 80 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.3,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <img
                       src="/about/gallery/gallery-4.png"
@@ -456,10 +468,14 @@ export default function AboutPage() {
                 <div className={styles.galleryRow2}>
                   <motion.div
                     className={styles.galleryGridItem}
-                    initial={{ opacity: 0, y: 80 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <img
                       src="/about/gallery/gallery-5.png"
@@ -470,10 +486,14 @@ export default function AboutPage() {
 
                   <motion.div
                     className={styles.galleryGridItem}
-                    initial={{ opacity: 0, y: 80 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: 2.0, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.5,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <img
                       src="/about/gallery/gallery-6.png"
@@ -490,13 +510,13 @@ export default function AboutPage() {
                     <>
                       <motion.div
                         className={styles.gallerySmallImage}
-                        initial={{ opacity: 0, y: 80 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         transition={{
-                          duration: 0.5,
-                          delay: 0.4,
-                          ease: "easeOut",
+                          duration: 0.6,
+                          delay: 0.1,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }}
                       >
                         <img
@@ -508,13 +528,13 @@ export default function AboutPage() {
 
                       <motion.div
                         className={styles.galleryLargeImage}
-                        initial={{ opacity: 0, y: 80 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         transition={{
-                          duration: 0.5,
-                          delay: 0.8,
-                          ease: "easeOut",
+                          duration: 0.6,
+                          delay: 0.2,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }}
                       >
                         <img
@@ -526,13 +546,13 @@ export default function AboutPage() {
 
                       <motion.div
                         className={styles.galleryLargeImage}
-                        initial={{ opacity: 0, y: 80 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         transition={{
-                          duration: 0.5,
-                          delay: 1.2,
-                          ease: "easeOut",
+                          duration: 0.6,
+                          delay: 0.3,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }}
                       >
                         <img
@@ -544,13 +564,13 @@ export default function AboutPage() {
 
                       <motion.div
                         className={styles.gallerySmallImage}
-                        initial={{ opacity: 0, y: 80 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         transition={{
-                          duration: 0.5,
-                          delay: 1.6,
-                          ease: "easeOut",
+                          duration: 0.6,
+                          delay: 0.4,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }}
                       >
                         <img
@@ -567,13 +587,13 @@ export default function AboutPage() {
                       <div className={styles.galleryLeftColumn}>
                         <motion.div
                           className={styles.gallerySmallImage}
-                          initial={{ opacity: 0, y: 80 }}
+                          initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
+                          viewport={{ once: true, amount: 0.2 }}
                           transition={{
-                            duration: 0.5,
-                            delay: 0.4,
-                            ease: "easeOut",
+                            duration: 0.6,
+                            delay: 0.1,
+                            ease: [0.25, 0.46, 0.45, 0.94],
                           }}
                         >
                           <img
@@ -584,13 +604,13 @@ export default function AboutPage() {
                         </motion.div>
                         <motion.div
                           className={styles.galleryLargeImage}
-                          initial={{ opacity: 0, y: 80 }}
+                          initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
+                          viewport={{ once: true, amount: 0.2 }}
                           transition={{
-                            duration: 0.5,
-                            delay: 1.2,
-                            ease: "easeOut",
+                            duration: 0.6,
+                            delay: 0.3,
+                            ease: [0.25, 0.46, 0.45, 0.94],
                           }}
                         >
                           <img
@@ -605,13 +625,13 @@ export default function AboutPage() {
                       <div className={styles.galleryRightColumn}>
                         <motion.div
                           className={styles.galleryLargeImage}
-                          initial={{ opacity: 0, y: 80 }}
+                          initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
+                          viewport={{ once: true, amount: 0.2 }}
                           transition={{
-                            duration: 0.5,
-                            delay: 0.8,
-                            ease: "easeOut",
+                            duration: 0.6,
+                            delay: 0.2,
+                            ease: [0.25, 0.46, 0.45, 0.94],
                           }}
                         >
                           <img
@@ -622,13 +642,13 @@ export default function AboutPage() {
                         </motion.div>
                         <motion.div
                           className={styles.gallerySmallImage}
-                          initial={{ opacity: 0, y: 80 }}
+                          initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, amount: 0.3 }}
+                          viewport={{ once: true, amount: 0.2 }}
                           transition={{
-                            duration: 0.5,
-                            delay: 1.6,
-                            ease: "easeOut",
+                            duration: 0.6,
+                            delay: 0.4,
+                            ease: [0.25, 0.46, 0.45, 0.94],
                           }}
                         >
                           <img

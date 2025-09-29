@@ -240,7 +240,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
                 fontSizeMobile={16}
                 height={44}
                 width={180}
-                paddingLeft={true}
+                paddingLeft={16}
+                paddingTop={10}
+                paddingBottom={10}
                 onClick={() => router.push("/doctors")}
               >
                 {blue.whatBanal.viewMore}
@@ -459,7 +461,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               fontSizeMobile={16}
               height={44}
               width={180}
-              paddingLeft={true}
+              paddingLeft={16}
+              paddingTop={10}
+              paddingBottom={10}
               onClick={() => router.push("/doctors")}
             >
               {blue.doctors.viewMore}
