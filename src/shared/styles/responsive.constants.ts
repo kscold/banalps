@@ -4,8 +4,8 @@
  */
 
 // Design base sizes
-export const DESIGN_BASE_WIDTH = 1920;
-export const MOBILE_BASE_WIDTH = 375;
+export const DESIGN_BASE_WIDTH = 1920
+export const MOBILE_BASE_WIDTH = 375
 
 // Common breakpoints
 export const breakpoints = {
@@ -14,13 +14,13 @@ export const breakpoints = {
   tablet: "screen and (min-width: 768px) and (max-width: 1023px)",
   desktop: "screen and (min-width: 1024px) and (max-width: 1919px)",
   desktopLarge: "screen and (min-width: 1920px)",
-} as const;
+} as const
 
 // Header margins for alignment (calculated from header component)
 export const headerMargins = {
   desktop: "160px", // Fixed margin for 1920px+
   mobile: "16px", // Fixed margin for mobile
-} as const;
+} as const
 
 // Pre-calculated responsive values for floating button positioning
 export const floatingButtonValues = {
@@ -32,9 +32,9 @@ export const floatingButtonValues = {
   },
   // Bottom positioning
   bottom: {
-    desktop: `${(15 / DESIGN_BASE_WIDTH) * 100}vw`, // 15px / 1920px * 100vw (더 낮춤)
-    desktopFixed: "15px", // 1920px+ fixed (더 낮춤)
-    mobile: `${(20 / MOBILE_BASE_WIDTH) * 100}vw`, // 20px / 375px * 100vw
+    desktop: `${(80 / DESIGN_BASE_WIDTH) * 100}vw`, // 40px / 1920px * 100vw (높이 증가)
+    desktopFixed: "80px", // 1920px+ fixed (높이 증가)
+    mobile: `${(40 / MOBILE_BASE_WIDTH) * 100}vw`, // 40px / 375px * 100vw
   },
   // Gap between buttons
   gap: {
@@ -54,4 +54,4 @@ export const floatingButtonValues = {
     desktopFixed: "60px", // 1920px+ fixed
     mobile: `${(50 / MOBILE_BASE_WIDTH) * 100}vw`, // 50px / 375px * 100vw
   },
-} as const;
+} as const
