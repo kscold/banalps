@@ -143,7 +143,7 @@ const buttonBase = style({
       height: mvw(40),
       lineHeight: mvw(24),
       flex: 1,
-      fontWeight: 700,
+      fontWeight: 600,
     },
   },
 });

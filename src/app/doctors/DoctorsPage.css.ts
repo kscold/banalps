@@ -2693,31 +2693,48 @@ export const doctorMobileInfoOverlay = style({
 
 // 모바일 의사 이름
 export const doctorMobileName = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: mvw(60),
-  lineHeight: mvw(48),
+  lineHeight: "90%",
   letterSpacing: "0%",
   color: "#FFFFFF",
   margin: 0,
   textAlign: "right",
-  width: mvw(192),
-  height: mvw(182),
-  marginBottom: mvw(40),
+  width: "100%",
+  marginBottom: mvw(56),
+  wordBreak: "keep-all",
+  whiteSpace: "normal",
 });
 
 export const doctorMobileName2 = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: mvw(60),
-  lineHeight: mvw(48),
+  lineHeight: "90%",
   letterSpacing: "0%",
   color: "#FFFFFF",
   margin: 0,
   textAlign: "right",
-  width: mvw(209),
-  height: mvw(108),
-  marginBottom: mvw(71),
+  width: "100%",
+  marginBottom: mvw(84),
+  wordBreak: "keep-all",
+  whiteSpace: "normal",
+});
+
+export const doctorMobileName3 = style({
+  fontFamily: fontFamily.poppins,
+  fontWeight: 500,
+  fontSize: mvw(60),
+  lineHeight: "90%",
+  letterSpacing: "0%",
+  color: "#FFFFFF",
+  margin: 0,
+  textAlign: "right",
+  width: "100%",
+  marginBottom: mvw(111),
+  wordBreak: "keep-all",
+  whiteSpace: "normal",
 });
 
 export const doctorMobilePosition = style({

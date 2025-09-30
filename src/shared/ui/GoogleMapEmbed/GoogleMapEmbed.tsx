@@ -34,8 +34,8 @@ export default function GoogleMapEmbed({
           <img
             src={
               language === "JP"
-                ? "/treatment-guide/map-jp-mobile.jpg"
-                : "/treatment-guide/map-mobile.png"
+                ? "/treatment-guide/map-jp-mobile.svg"
+                : "/treatment-guide/map-mobile.svg"
             }
             alt={t.imageAlt.banalClinicLocation}
             className={styles.mapMobile}

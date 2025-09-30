@@ -250,18 +250,18 @@ export const cardButton = style({
   },
 });
 
-// 넓은 카드용 버튼 (오른쪽 정렬)
+// 넓은 카드용 버튼 (왼쪽 정렬)
 export const cardButtonWide = style({
   position: "absolute",
   bottom: vw(20), // 1920px 기준 20px
-  right: vw(20), // 오른쪽 정렬
-  left: "auto", // 왼쪽 초기화
+  left: vw(20), // 왼쪽 정렬
+  right: "auto", // 오른쪽 초기화
   textDecoration: "none",
   display: "inline-block",
   "@media": {
     [breakpoints.desktopLarge]: {
       bottom: "20px",
-      right: "20px",
+      left: "20px",
     },
     [breakpoints.mobile]: {
       bottom: "20px",

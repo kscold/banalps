@@ -1,10 +1,11 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 import { vw, mvw } from "../../styles/responsive.utils";
 import {
   breakpoints,
   responsiveContainer,
   responsiveFont,
 } from "../../styles/responsive.css";
+import { fontFamily } from "@/shared/styles/fonts.css";
 
 // Features Section
 export const featuresSection = style({
@@ -269,23 +270,48 @@ export const featureIconFourth = style([
 ]);
 
 export const featureTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400, // 피그마 스펙: 4 Regular = 200
-  ...responsiveFont(20, 12), // 피그마 정확한 크기, 모바일 12px
+  ...responsiveFont(20, 16), // 피그마 정확한 크기, 모바일 12px
   lineHeight: "150%",
-
   letterSpacing: "0", // 피그마 스펙
   color: "#272727", // 피그마 정확한 색상
   textAlign: "center", // 피그마 스펙: CENTER
   margin: "0",
+  wordBreak: "keep-all",
+  whiteSpace: "normal",
 
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px",
     },
     [breakpoints.mobile]: {
+      fontWeight: 200, // S-Core Dream 4 Regular
       fontSize: mvw(16),
-      lineHeight: mvw(18),
+      minHeight: mvw(48),
+      lineHeight: "150%",
+      whiteSpace: "normal",
+      wordBreak: "keep-all",
+      padding: 0,
+      margin: 0,
+    },
+  },
+});
+
+// Add spacing between lines in mobile feature titles
+globalStyle(`${featureTitle} span`, {
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "inline-block",
+      marginBottom: mvw(8),
+    },
+  },
+});
+
+globalStyle(`${featureTitle} span:last-child`, {
+  "@media": {
+    [breakpoints.mobile]: {
+      marginBottom: 0,
     },
   },
 });

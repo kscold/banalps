@@ -84,6 +84,8 @@ export default function BeforeAfterSlider({
       isDragging.current = true;
       const touch = e.touches[0];
       updateSliderPosition(touch.clientX);
+      // 터치 시작 시 스크롤 방지
+      e.preventDefault();
     },
     [updateSliderPosition]
   );
@@ -91,6 +93,7 @@ export default function BeforeAfterSlider({
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
       if (!isDragging.current) return;
+      e.preventDefault(); // 가로 드래그 중 세로 스크롤 방지
       const touch = e.touches[0];
       updateSliderPosition(touch.clientX);
     },
@@ -105,7 +108,8 @@ export default function BeforeAfterSlider({
   React.useEffect(() => {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("touchmove", handleTouchMove);
+    // passive: false로 설정하여 preventDefault() 사용 가능하도록
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
     document.addEventListener("touchend", handleTouchEnd);
 
     return () => {

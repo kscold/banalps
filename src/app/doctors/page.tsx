@@ -105,7 +105,7 @@ export default function DoctorsPage() {
                 {/* 의사 정보 - 이미지와 텍스트 오버레이 */}
                 <div className={styles.doctorMobileInfoSection}>
                   <img
-                    src="/doctors/mobile/doctor-shinseunggyu-mobile.png"
+                    src="/doctors/mobile/doctor-shinseunggyu-mobile.svg"
                     alt="신승규 원장 모바일"
                     className={styles.doctorMobileInfoImage}
                   />
@@ -272,7 +272,7 @@ export default function DoctorsPage() {
                 {/* 의사 정보 - 이미지와 텍스트 오버레이 */}
                 <div className={styles.doctorMobileInfoSection}>
                   <img
-                    src="/doctors/mobile/doctor-parksoohyo-mobile.png"
+                    src="/doctors/mobile/doctor-parksoohyo-mobile.svg"
                     alt="박수호 원장 모바일"
                     className={styles.doctorMobileInfoImage}
                   />
@@ -438,12 +438,14 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileMainSection}>
                 <div className={styles.doctorMobileInfoSection}>
                   <img
-                    src="/doctors/mobile/doctor-kimnarae-mobile.png"
+                    src="/doctors/mobile/doctor-kimnarae-mobile.svg"
                     alt="김나래 원장 모바일"
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2 className={`${styles.doctorMobileName} font-exception`}>
+                    <h2
+                      className={`${styles.doctorMobileName3} font-exception`}
+                    >
                       Kim
                       <br />
                       Narae

@@ -175,7 +175,7 @@ export const contentWrapper = style({
     // mobile: max-width 1023px
     [breakpoints.mobile]: {
       position: "absolute",
-      top: "30%",
+      top: "40%",
       left: mvw(16),
       right: "auto",
       maxWidth: "none",
@@ -214,7 +214,7 @@ export const textContent = style({
     // mobile: max-width 1023px
     [breakpoints.mobile]: {
       width: "auto",
-      height: "auto",
+      height: mvw(88),
       maxWidth: "none",
       alignItems: "center",
       justifyContent: "center",

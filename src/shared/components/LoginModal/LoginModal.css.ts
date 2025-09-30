@@ -119,7 +119,7 @@ export const modalHeader = style({
     left: "3rem", // 패딩과 동일하게 설정하여 LOGIN 텍스트 시작점에 맞춤
     right: "3rem", // 패딩과 동일하게 설정하여 X 버튼 끝점에 맞춤
     height: "1px",
-    backgroundColor: "#C6C6C6",
+    backgroundColor: "#272727",
   },
   "@media": {
     [breakpoints.mobile]: {
@@ -192,7 +192,7 @@ export const loginSection = style({
   flexDirection: "column",
   // gap: vw(32),
   gap: "1.5rem",
-  padding: "7.5rem 5rem",
+  padding: `${vw(124)} ${vw(80)}`,
   flex: "1",
   height: vw(648),
   minHeight: vw(648),
@@ -239,7 +239,7 @@ export const userIcon = style({
 export const socialButtons = style({
   display: "flex",
   flexDirection: "column",
-  gap: vw(12),
+  gap: vw(5),
   "@media": {
     [breakpoints.mobile]: {
       gap: mvw(4),
@@ -250,8 +250,7 @@ export const socialButtons = style({
 export const loginRow = style({
   display: "flex",
   alignItems: "center",
-  gap: vw(12),
-  marginBottom: vw(12),
+  gap: vw(3),
   "@media": {
     [breakpoints.mobile]: {
       marginBottom: 0,
@@ -261,8 +260,8 @@ export const loginRow = style({
 });
 
 export const iconSquare = style({
-  width: vw(60),
-  height: vw(60),
+  width: vw(45),
+  height: vw(45),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -277,7 +276,7 @@ export const iconSquare = style({
 
 export const loginButton = style({
   flex: 1,
-  height: vw(60),
+  height: vw(45),
   backgroundColor: "#FFFFFF",
   border: "1px solid #E5E5E5",
   display: "flex",

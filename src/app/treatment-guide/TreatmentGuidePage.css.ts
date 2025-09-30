@@ -15,7 +15,7 @@ export const heroSection = style({
   paddingTop: vw(255),
   minHeight: vw(1511),
   overflow: "visible",
-  height: "100vh",
+  height: "auto",
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "255px",
@@ -367,7 +367,7 @@ export const contactItem = style({
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flexDirection: "row",
-      gap: mvw(20),
+      gap: mvw(12),
       marginBottom: mvw(40),
       alignItems: "flex-start",
       selectors: {
@@ -420,9 +420,10 @@ export const contactLabel = style({
       width: vw(115),
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
+      whiteSpace: "nowrap",
+      fontSize: mvw(14),
       lineHeight: mvw(24),
-      width: mvw(70),
+      width: mvw(106),
       flexShrink: 0,
     },
   },
@@ -509,7 +510,7 @@ export const addressMain = style({
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
+      fontSize: mvw(14),
       lineHeight: mvw(24),
       marginBottom: mvw(12),
     },

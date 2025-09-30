@@ -593,19 +593,14 @@ export const introImage = style({
 export const smallVideoContainer = style({
   width: "100%",
   height: "100%",
-  borderRadius: "0 0 8px 8px",
   overflow: "hidden",
   position: "relative",
   "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "0 8px 8px 0",
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
-      width: "100vw",
-      height: mvw(537),
+      width: "100%",
+      height: "100%",
       borderRadius: 0,
-      marginLeft: mvw(-16), // Offset parent padding
-      marginRight: mvw(-16), // Offset parent padding
     },
   },
 });
@@ -872,14 +867,14 @@ export const treatmentDetailContainer = style({
   maxWidth: vw(1920),
   margin: "0 auto",
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "stretch",
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1920px",
     },
     [breakpoints.mobile]: {
       flexDirection: "column",
-      padding: `0 ${mvw(16)}`,
+      padding: `0 ${mvw(16)} ${mvw(120)} ${mvw(16)}`,
       gap: 0,
       alignItems: "flex-start",
     },
@@ -894,15 +889,21 @@ export const treatmentVideoContent = style({
   alignItems: "flex-start",
   justifyContent: "flex-start",
   marginTop: 0,
+  borderRadius: "0 8px 8px 0",
+  overflow: "hidden",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "950px",
       height: "660px",
+      borderRadius: "8px",
     },
     [breakpoints.mobile]: {
-      width: "100%",
+      width: "100vw",
       height: mvw(537),
       order: -1,
+      marginLeft: mvw(-16),
+      marginRight: mvw(-16),
+      borderRadius: 0,
     },
   },
 });
@@ -911,26 +912,27 @@ export const treatmentTextContent = style({
   flex: 1,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start",
-  gap: vw(40),
+  justifyContent: "space-between",
+  gap: 0,
   paddingLeft: vw(140),
   paddingRight: vw(160),
+  paddingTop: 0,
+  paddingBottom: 0,
   "@media": {
     [breakpoints.desktopLarge]: {
-      gap: "40px",
+      gap: 0,
       paddingLeft: "140px",
       paddingRight: "160px",
-      height: vw(660),
     },
     [breakpoints.desktop]: {
-      gap: "40px",
-      height: vw(660),
+      gap: 0,
     },
     [breakpoints.mobile]: {
       gap: "30px",
       marginTop: "40px",
       paddingLeft: 0,
       paddingRight: 0,
+      justifyContent: "flex-start",
     },
   },
 });
@@ -1004,12 +1006,12 @@ export const treatmentSubtitleCustomMargin = style({
   lineHeight: vw(56),
   color: "#272727",
   margin: 0,
-  marginBottom: "var(--margin-bottom)",
+  // marginBottom: "var(--margin-bottom)",
   whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "56px",
-      marginBottom: "var(--margin-bottom-desktop)",
+      // marginBottom: "var(--margin-bottom-desktop)",
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),

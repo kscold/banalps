@@ -69,6 +69,10 @@ function CrownContent() {
         width: 459,
         height: 114,
       },
+      illustrationMobile:
+        language === "JP"
+          ? "/hair-transplant/crown/mobile/illustration-1-mobile-jp.svg"
+          : "/hair-transplant/crown/mobile/illustration-1-mobile.svg",
       images: {
         main: "/hair-transplant/crown/crown-2.png",
         secondary: "/hair-transplant/crown/crown-1.png",
