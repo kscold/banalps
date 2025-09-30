@@ -38,10 +38,10 @@ export const scarSection1Left = style({
   paddingLeft: "0",
   flexDirection: "column",
   justifyContent: "flex-start", // 위에서부터 시작 (피그마 레이아웃에 맞게)
-  // paddingTop: vw(80), // 제목이 오른쪽 이미지와 수평 맞춤을 위해 상단 패딩 추가
+  paddingTop: vw(80), // 제목이 오른쪽 이미지와 수평 맞춤을 위해 상단 패딩 추가
   "@media": {
     [breakpoints.desktopLarge]: {
-      // paddingTop: "80px", // 1920px+ 고정
+      paddingTop: "80px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       padding: "0 20px",
@@ -107,11 +107,11 @@ export const scarSection1Description = style({
   ...responsiveFont(20),
   lineHeight: vw(30),
   color: "#272727",
-  maxWidth: vw(400),
+  maxWidth: vw(540),
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "30px",
-      maxWidth: "400px",
+      maxWidth: "540px",
     },
     [breakpoints.mobile]: {
       maxWidth: "100%",

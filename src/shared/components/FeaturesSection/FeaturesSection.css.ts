@@ -9,12 +9,12 @@ import { fontFamily } from "@/shared/styles/fonts.css";
 
 // Features Section
 export const featuresSection = style({
-  paddingTop: vw(280), // 1920px 기준 120px 상단 패딩
+  paddingTop: vw(320), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(240),
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "280px",
+      paddingTop: "320px",
       paddingBottom: "240px",
     },
     [breakpoints.mobile]: {

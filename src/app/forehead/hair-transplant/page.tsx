@@ -29,8 +29,8 @@ export default function ForeheadHairTransplantPage() {
     heroDotPosition: {
       absolute: true,
       // 언어에 따른 데스크탑 위치
-      left: language === "JP" ? 160 : 235,
-      bottom: 12,
+      left: language === "JP" ? 365 : 235,
+      bottom: language === "JP" ? 6 : 12,
       // 언어에 따른 모바일 위치
       mobileLeft: language === "JP" ? 107 : 157,
       mobileBottom: 40,

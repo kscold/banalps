@@ -27,6 +27,9 @@ export const scarProcessContent = style({
   flexDirection: "column",
   gap: vw(240),
   padding: `0 ${vw(135)}`,
+  wordWrap: "break-word",
+  overflowWrap: "break-word",
+  whiteSpace: "pre-line",
   "@media": {
     [breakpoints.desktopLarge]: {
       maxWidth: "1600px",
@@ -44,7 +47,7 @@ export const scarProcessContent = style({
 // 모든 step - 이미지가 왼쪽, 콘텐츠가 오른쪽
 export const processStepOdd = style({
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "stretch", // 높이를 맞춰서 양쪽 요소가 같은 높이가 되도록
   gap: vw(380),
   position: "relative",
   width: "100%",
@@ -84,7 +87,7 @@ export const stepCategoryMobile = style({
 // 짝수 step (2, 4, 6) - 콘텐츠가 왼쪽, 숫자가 오른쪽
 export const processStepEven = style({
   display: "flex",
-  alignItems: "flex-start",
+  alignItems: "stretch", // 높이를 맞춰서 양쪽 요소가 같은 높이가 되도록
   gap: vw(140),
   position: "relative",
   flexDirection: "row-reverse", // 순서 뒤바꿈
@@ -220,8 +223,11 @@ export const stepContent = style({
   justifyContent: "center", // 수직 중앙 정렬
   gap: vw(32),
   width: vw(655),
-  height: vw(406),
+  height: "auto", // 고정 높이 대신 자동 높이로 변경
   minHeight: vw(288), // 이미지 높이와 비슷하게 최소 높이 설정
+  wordWrap: "break-word",
+  overflowWrap: "break-word",
+  whiteSpace: "pre-line",
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "32px",

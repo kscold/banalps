@@ -41,7 +41,12 @@ const TreatmentCard = ({
           <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
         </div>
         <h3 className={styles.treatmentCardTitle} suppressHydrationWarning>
-          {title}
+          {title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
         </h3>
       </motion.div>
     );
@@ -55,7 +60,12 @@ const TreatmentCard = ({
         <img src={image} alt={alt} className={styles.treatmentCardImageImg} />
       </div>
       <h3 className={styles.treatmentCardTitle} suppressHydrationWarning>
-        {title}
+        {title.split("\n").map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < title.split("\n").length - 1 && <br />}
+          </span>
+        ))}
       </h3>
     </div>
   );
@@ -379,7 +389,10 @@ export default function ScalpTreatmentPage() {
           {/* Hero Title - 중앙에 배치 */}
           <div className={styles.HairTransplantHeroTitleWrapper}>
             <div className={styles.HairTransplantHeroTitleContainer}>
-              <h1 className={styles.HairTransplantHeroTitle} suppressHydrationWarning>
+              <h1
+                className={styles.HairTransplantHeroTitle}
+                suppressHydrationWarning
+              >
                 <span
                   style={{
                     display: "flex",
@@ -415,11 +428,7 @@ export default function ScalpTreatmentPage() {
         ref={heroRef}
         className={styles.heroSection}
         initial={{ opacity: 0, y: 80 }}
-        animate={
-          heroInView
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 80 }
-        }
+        animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
         transition={{ duration: 0.6 }}
       >
         <div className={styles.heroContainer}>

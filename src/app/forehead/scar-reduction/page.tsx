@@ -3,8 +3,11 @@
 import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
 import ProcessSection from "./ProcessSection";
 import { useScarReductionTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function ScarReductionPage() {
+  const { language } = useLanguageStore();
+
   const t = useScarReductionTranslations();
   const layoutData = {
     heroTitle: (
@@ -151,7 +154,7 @@ export default function ScarReductionPage() {
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
       href: "/before-after",
-      width: 269,
+      width: language === "JP" ? 352 : 269,
     },
     featuresTitle: (
       <>

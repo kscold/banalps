@@ -96,6 +96,13 @@ function CrownContent() {
           left: 0,
         },
       },
+      imagesMobileSize: {
+        mainMaxWidth: false, // main 이미지는 100vw
+        secondaryMaxWidth: true, // secondary 이미지도 100vw
+        mainHeight: 305,
+        secondaryHeight: 382,
+      },
+
       section1RightSize: {
         width: 1085,
         height: 767,

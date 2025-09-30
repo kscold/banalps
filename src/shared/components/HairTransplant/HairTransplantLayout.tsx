@@ -1202,7 +1202,11 @@ export default function HairTransplantLayout({
                   }
                 >
                   <h2
-                    className={styles.section2Title}
+                    className={`${styles.section2Title} ${
+                      scarReduction && !isMobile
+                        ? styles.section2TitleScarReduction
+                        : ""
+                    }`}
                     style={{
                       ...(isMobile && section2.titleMobileSize
                         ? {
@@ -1610,7 +1614,11 @@ export default function HairTransplantLayout({
                   }
                 >
                   <h2
-                    className={styles.section2Title}
+                    className={`${styles.section2Title} ${
+                      scarReduction && !isMobile
+                        ? styles.section2TitleScarReduction
+                        : ""
+                    }`}
                     style={{
                       ...(isMobile && section2.titleMobileSize
                         ? {

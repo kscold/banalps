@@ -693,12 +693,12 @@ export const section1Description = style({
   letterSpacing: "0",
   margin: "0",
   color: "#272727",
-  maxWidth: vw(500), // 텍스트 최대 너비 설정 (가독성 향상)
+  maxWidth: vw(540), // 텍스트 최대 너비 설정 (가독성 향상)
   "@media": {
     [breakpoints.desktopLarge]: {
       fontSize: "20px", // 1920px+ 고정
       lineHeight: "30px", // 1920px+ 고정
-      maxWidth: "500px", // 1920px+ 고정
+      maxWidth: "540px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       fontFamily: fontFamily.scdream,
@@ -899,14 +899,14 @@ export const section1ImageContent2 = style({
 
 // Section 2: 빼곡하고 자연스럽게
 export const section2 = style({
-  paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
-  paddingBottom: vw(120),
+  paddingTop: vw(200), // 1920px 기준 120px 상단 패딩
+  paddingBottom: vw(200),
 
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "120px", // 1920px+ 고정
-      paddingBottom: "120px", // 1920px+ 고정
+      paddingTop: "200px", // 1920px+ 고정
+      paddingBottom: "200px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       paddingTop: mvw(60),
@@ -1238,6 +1238,19 @@ export const section2Title = style({
   },
 });
 
+// scar-reduction 페이지 전용 section2Title (데스크탑 marginBottom: 120px)
+export const section2TitleScarReduction = style({
+  margin: `0 0 ${vw(120)} 0`, // 데스크탑 하단 120px 간격
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      margin: "0 0 120px 0", // 1920px+ 고정
+    },
+    [breakpoints.mobile]: {
+      margin: `0 0 ${mvw(40)} 0`, // 모바일은 기본값 유지
+    },
+  },
+});
+
 export const section2AccentDescription = style({
   fontFamily: "'Pretendard', sans-serif", // 피그마 스펙: Pretendard
   fontWeight: 400, // 피그마 스펙: Regular = 400
@@ -1435,12 +1448,12 @@ export const section2Conclusion = style({
 // Section 3: 결국, 고객이 원하는 디자인이 좋은 디자인입니다
 export const section3 = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
-  paddingBottom: vw(120),
+  paddingBottom: vw(60),
   backgroundColor: "#FFFDF7", // 흰색 배경
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingTop: "120px",
-      paddingBottom: "120px",
+      paddingBottom: "60px",
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -1668,7 +1681,7 @@ export const section3Number = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "-40px",
-      left: "750px", // 피그마 x: 537 기준 위치
+      left: "650px", // 피그마 x: 537 기준 위치
       fontSize: "200px", // 고정 폰트 크기
       lineHeight: "240px", // 고정 라인 높이
       width: "118px", // 고정 너비
@@ -1904,13 +1917,13 @@ export const section3ImageContent = style({
 
 // Before & After Section
 export const beforeAfterSection = style({
-  paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
-  paddingBottom: vw(120),
+  // paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
+  // paddingBottom: vw(120),
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "120px", // 1920px+ 고정
-      paddingBottom: "120px", // 1920px+ 고정
+      // paddingTop: "120px", // 1920px+ 고정
+      // paddingBottom: "120px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       padding: `${mvw(120)} ${mvw(16)}`,

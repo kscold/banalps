@@ -67,13 +67,18 @@ function IncisionContent() {
           ))}
         </>
       ),
-      illustration: "/hair-transplant/incision/illustration-1.svg",
+      illustration:
+        language === "JP"
+          ? "/hair-transplant/incision/illustration-1-jp.svg"
+          : "/hair-transplant/incision/illustration-1.svg",
       illustrationSize: {
         width: 459,
         height: 190,
       },
       illustrationMobile:
-        "/hair-transplant/incision/mobile/illustration-1-mobile.svg",
+        language === "JP"
+          ? "/hair-transplant/incision/mobile/illustration-1-mobile-jp.svg"
+          : "/hair-transplant/incision/mobile/illustration-1-mobile.svg",
       illustrationMobileSize: {
         width: 324,
         height: 252,
@@ -237,10 +242,7 @@ function IncisionContent() {
           ))}
         </>
       ),
-      illustration:
-        language === "JP"
-          ? "/hair-transplant/incision/illustration-3-jp.svg"
-          : "/hair-transplant/incision/illustration-3.svg",
+      illustration: "/hair-transplant/incision/illustration-3.svg",
       illustrationSize: {
         width: 745,
         height: 331,
