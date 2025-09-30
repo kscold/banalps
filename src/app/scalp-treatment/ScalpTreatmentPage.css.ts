@@ -16,11 +16,90 @@ export const scalpTreatmentPage = style({
   backgroundColor: "#FFFDF7", // 헤어라인 페이지는 흰색 배경
 });
 
+// export const HairTransplantHeroSection = style({
+//   position: "relative",
+//   width: "100%",
+//   minHeight: "100vh",
+//   overflow: "hidden",
+//   backgroundColor: "#FFFDF7",
+//   "@media": {
+//     [breakpoints.mobile]: {
+//       minHeight: "100vh",
+//       display: "flex",
+//       flexDirection: "column",
+//       justifyContent: "flex-start",
+//       alignItems: "center",
+//       paddingTop: mvw(90),
+//     },
+//   },
+// });
+
+// export const HairTransplantHeroContainer = style({
+//   position: "relative",
+//   width: "100%",
+//   maxWidth: "1920px",
+//   margin: "0 auto",
+//   height: "100vh",
+//   "@media": {
+//     [breakpoints.mobile]: {
+//       padding: `0 ${mvw(20)}`,
+//       height: "100%",
+//       display: "flex",
+//       flexDirection: "column",
+//       justifyContent: "flex-start",
+//       alignItems: "flex-start",
+//     },
+//   },
+// });
+
+// export const HairTransplantHeroIllustration = style({
+//   position: "absolute",
+//   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
+//   width: "1750px", // 헤더와 완전히 동일한 최대 너비
+//   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+//   top: "50%",
+//   transform: "translateY(-50%)",
+//   height: vw(765), // 1920px 기준 762px 높이
+//   zIndex: 1,
+//   "@media": {
+//     [breakpoints.mobile]: {
+//       display: "none",
+//     },
+//   },
+// });
+
+// export const HairTransplantHeroTitleWrapper = style({
+//   ...responsiveContainer(1600),
+//   position: "absolute",
+//   top: "0",
+//   right: "0",
+//   left: "0",
+//   bottom: "0",
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "flex-end",
+//   paddingRight: vw(60),
+//   zIndex: 2,
+//   "@media": {
+//     [breakpoints.desktopLarge]: {
+//       paddingRight: "60px",
+//     },
+//     [breakpoints.mobile]: {
+//       position: "relative",
+//       display: "block",
+//       padding: "0",
+//       marginTop: mvw(80),
+//       width: "100%",
+//     },
+//   },
+// });
+
+// Hero Section Styles
 export const HairTransplantHeroSection = style({
   position: "relative",
   width: "100%",
   minHeight: "100vh",
-  overflow: "hidden",
+  overflow: "visible",
   backgroundColor: "#FFFDF7",
   "@media": {
     [breakpoints.mobile]: {
@@ -49,6 +128,23 @@ export const HairTransplantHeroContainer = style({
       justifyContent: "flex-start",
       alignItems: "flex-start",
     },
+    // 추가적인 모바일 브레이크포인트들
+    "screen and (max-width: 768px)": {
+      padding: `0 ${mvw(20)}`,
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
+    "screen and (max-width: 480px)": {
+      padding: `0 ${mvw(20)}`,
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
   },
 });
 
@@ -57,11 +153,17 @@ export const HairTransplantHeroIllustration = style({
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   width: "1750px", // 헤더와 완전히 동일한 최대 너비
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: "50%",
+  top: "50%", // SVG일 때는 50%
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 고정 너비
+      height: "765px", // 고정 높이
+      left: "0", // 왼쪽부터 시작
+      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
+    },
     [breakpoints.mobile]: {
       display: "none",
     },
@@ -83,6 +185,10 @@ export const HairTransplantHeroTitleWrapper = style({
   "@media": {
     [breakpoints.desktopLarge]: {
       paddingRight: "60px",
+      width: "1600px", // 고정 너비
+      left: "50%", // 중앙 정렬
+      transform: "translateX(-50%)", // 중앙 정렬
+      right: "auto", // right 제거
     },
     [breakpoints.mobile]: {
       position: "relative",
@@ -216,11 +322,17 @@ export const heroIllustration = style({
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
   width: "1750px", // 헤더와 완전히 동일한 최대 너비
   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: "50%",
+  top: "43%",
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "1750px", // 고정 너비
+      height: "765px", // 고정 높이
+      left: "0", // 왼쪽부터 시작
+      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
+    },
     [breakpoints.mobile]: {
       display: "none",
     },

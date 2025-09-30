@@ -42,8 +42,8 @@ export const floatingButton = style({
       height: floatingButtonValues.buttonSize.desktopFixed, // 1920px+ 고정 크기
     },
     [breakpoints.mobile]: {
-      width: "50px", // 모바일 고정 크기
-      height: "50px", // 모바일 고정 크기
+      width: "clamp(60px, 12vw, 80px)", // 모바일: 60px 기준, 최대 80px
+      height: "clamp(60px, 12vw, 80px)", // 모바일: 60px 기준, 최대 80px
     },
   },
 
@@ -83,6 +83,27 @@ export const iconContainer = style({
 
   // Figma 디자인: 10px 간격
   gap: "10px",
+
+  // 반응형 크기
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "clamp(40px, 8vw, 54px)", // 모바일: 40px 기준, 최대 54px
+      height: "clamp(40px, 8vw, 54px)", // 모바일: 40px 기준, 최대 54px
+    },
+  },
+});
+
+// 아이콘 이미지 스타일
+globalStyle(`${iconContainer} img`, {
+  width: "30px",
+  height: "30px",
+  objectFit: "contain",
+  "@media": {
+    [breakpoints.mobile]: {
+      width: "clamp(30px, 6vw, 40px)", // 모바일: 30px 기준, 최대 40px
+      height: "clamp(30px, 6vw, 40px)", // 모바일: 30px 기준, 최대 40px
+    },
+  },
 });
 
 // 플로팅 버튼 그룹 컨테이너

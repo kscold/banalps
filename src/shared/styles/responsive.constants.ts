@@ -26,9 +26,9 @@ export const headerMargins = {
 export const floatingButtonValues = {
   // Right positioning (matches header right margin)
   right: {
-    desktop: `${(160 / DESIGN_BASE_WIDTH) * 100}vw`, // 160px / 1920px * 100vw
+    desktop: "160px", // 1024~1919px: 헤더와 동일하게 고정 160px
     desktopFixed: "160px", // 1920px+ fixed
-    mobile: `${(16 / MOBILE_BASE_WIDTH) * 100}vw`, // 16px / 375px * 100vw
+    mobile: `${(16 / MOBILE_BASE_WIDTH) * 100}vw`, // 모바일: mvw(16) 헤더와 동일
   },
   // Bottom positioning
   bottom: {

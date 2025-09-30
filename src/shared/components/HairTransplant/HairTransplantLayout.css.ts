@@ -41,8 +41,6 @@ export const HairTransplantHeroSection = style({
 export const HairTransplantHeroContainer = style({
   position: "relative",
   width: "100%",
-  maxWidth: "1920px",
-  margin: "0 auto",
   height: "100vh",
   "@media": {
     [breakpoints.mobile]: {
@@ -76,16 +74,21 @@ export const HairTransplantHeroContainer = style({
 export const HairTransplantHeroIllustration = style({
   position: "absolute",
   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: vw(1750), // 기본 width 설정
-  top: "50%", // 일반 이미지일 때는 43%
+  width: "1750px", // 헤더와 완전히 동일한 최대 너비
+  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
+  top: "50%", // SVG일 때는 50%
   transform: "translateY(-50%)",
   height: vw(765), // 1920px 기준 762px 높이
   zIndex: 1,
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: "1750px", // 헤더와 완전히 동일한 최대 너비
+      width: "1750px", // 고정 너비
       height: "765px", // 고정 높이
-      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
+      left: "0 !important", // 왼쪽부터 시작 (강제 적용)
+      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
+    },
+    [breakpoints.desktop]: {
+      left: "0 !important", // 데스크탑에서도 왼쪽부터 시작
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -293,8 +296,8 @@ export const heroIllustration = style({
     [breakpoints.desktopLarge]: {
       width: "1750px", // 고정 너비
       height: "765px", // 고정 높이
-      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
-      maxWidth: "none", // maxWidth 제거
+      left: "0", // 왼쪽부터 시작
+      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -316,8 +319,8 @@ export const heroIllustrationSvg = style({
     [breakpoints.desktopLarge]: {
       width: "1750px", // 고정 너비
       height: "765px", // 고정 높이
-      left: "calc(50% - 800px)", // 1600px 컨테이너 기준 왼쪽 위치 고정
-      maxWidth: "none", // maxWidth 제거
+      left: "0", // 왼쪽부터 시작
+      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
     },
     [breakpoints.mobile]: {
       display: "none",
@@ -624,8 +627,8 @@ export const section1Image = style({
   marginBottom: vw(80), // 설명과의 간격
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginTop: "40px",
-      marginBottom: "40px",
+      marginTop: "80px",
+      marginBottom: "80px",
     },
     [breakpoints.mobile]: {
       width: "100%", // Changed to be responsive

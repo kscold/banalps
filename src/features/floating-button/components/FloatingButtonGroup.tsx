@@ -208,22 +208,6 @@ function FloatingButtonGroupComponent({
         //   // 최대값을 넘지 않도록 제한 (GNB와 겹치지 않도록)
         //   return `${Math.min(calculatedBottom, maxBottom)}px`
         // })(),
-        right: (() => {
-          // 헤더와 동일한 마진 계산 로직 사용
-          const viewportWidth = window.innerWidth;
-
-          if (viewportWidth >= 1920) {
-            // 1920px 이상: 고정 160px
-            return "160px";
-          } else if (viewportWidth >= 1024) {
-            // 1024~1919px: 헤더와 동일한 계산 방식
-            // 헤더는 width: calc(100% - 320px)이므로 양쪽에 160px씩 마진
-            return "160px";
-          } else {
-            // 모바일: 16px (헤더의 모바일 마진과 동일)
-            return "16px";
-          }
-        })(),
         transition:
           "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1), right 300ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
