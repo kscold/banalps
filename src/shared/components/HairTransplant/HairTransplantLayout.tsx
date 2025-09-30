@@ -808,7 +808,18 @@ export default function HairTransplantLayout({
                 {!scarReduction && (
                   <div className={styles.section1Number}>{section1.number}</div>
                 )}
-                <div className={styles.section1Text}>
+                <div
+                  className={styles.section1Text}
+                  style={{
+                    ...(section1.section1RightSize?.height && !isMobile
+                      ? {
+                          height: isDesktopLarge
+                            ? `${section1.section1RightSize.height}px`
+                            : `${section1.section1RightSize.height / 19.2}vw`,
+                        }
+                      : {}),
+                  }}
+                >
                   <h2
                     className={styles.section1Title}
                     style={{
@@ -833,6 +844,12 @@ export default function HairTransplantLayout({
                               : `${
                                   (section1.titleMarginBottom / 1920) * 100
                                 }vw`,
+                          }
+                        : {}),
+                      // 일러스트가 있을 때는 marginBottom 제거 (space-between으로 배치)
+                      ...(section1.illustration && !isMobile
+                        ? {
+                            marginBottom: "0",
                           }
                         : {}),
                     }}
@@ -1140,7 +1157,7 @@ export default function HairTransplantLayout({
                           : section1.images?.secondary
                       }
                       alt="이미지 2"
-                      className={styles.section1ImageContent}
+                      className={styles.section1ImageContent2}
                     />
                   </motion.div>
                 )}

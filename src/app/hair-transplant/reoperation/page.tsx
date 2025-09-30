@@ -87,7 +87,7 @@ function ReoperationContent() {
       },
       imagesPosition: {
         main: {
-          top: 60,
+          top: 0,
         },
         secondary: {
           bottom: 0,
@@ -96,7 +96,7 @@ function ReoperationContent() {
       },
       section1RightSize: {
         width: 1085, // section1Right 컨테이너 너비 800 vw 단위
-        height: 800, // section1Right 컨테이너 높이 700 vw 단위
+        height: 767, // section1Right 컨테이너 높이 700 vw 단위
       },
     },
     section2: {

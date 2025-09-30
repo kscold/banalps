@@ -105,7 +105,7 @@ function HairlineContent() {
       },
       imagesPosition: {
         main: {
-          top: 60,
+          top: 0,
         },
         secondary: {
           bottom: 0,
@@ -114,7 +114,7 @@ function HairlineContent() {
       },
       section1RightSize: {
         width: 1085, // section1Right 컨테이너 너비 800 vw 단위
-        height: 810, // section1Right 컨테이너 높이 700 vw 단위
+        height: 770, // section1Right 컨테이너 높이 700 vw 단위
       },
     },
     section2: {
@@ -305,6 +305,7 @@ function HairlineContent() {
       {...layoutData}
       language={language}
       isHairline={true}
+      isCrown={true}
     />
   );
 }

@@ -89,7 +89,7 @@ function CrownContent() {
       },
       imagesPosition: {
         main: {
-          top: 60,
+          top: 0,
         },
         secondary: {
           bottom: 0,
@@ -98,7 +98,7 @@ function CrownContent() {
       },
       section1RightSize: {
         width: 1085,
-        height: 800,
+        height: 767,
       },
     },
     section2: {

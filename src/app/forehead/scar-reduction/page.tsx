@@ -77,6 +77,11 @@ export default function ScarReductionPage() {
           height: 660,
         },
       },
+      imagesPosition: {
+        main: {
+          top: 0,
+        },
+      },
     },
     section2: {
       number: 2,

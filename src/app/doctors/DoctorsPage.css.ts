@@ -2399,6 +2399,9 @@ export const categoryBadge = style({
   lineHeight: vw(20),
   color: "#00AFFF",
   flexShrink: 0,
+  whiteSpace: "pre-line",
+  wordWrap: "break-word",
+  textAlign: "center",
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "70px",
@@ -2416,6 +2419,9 @@ export const categoryBadge = style({
       lineHeight: mvw(20),
       display: "flex",
       padding: 0,
+      whiteSpace: "pre-line",
+      wordWrap: "break-word",
+      textAlign: "center",
     },
   },
 });

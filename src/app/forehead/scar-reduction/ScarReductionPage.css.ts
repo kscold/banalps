@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style } from "@vanilla-extract/css";
 import {
   breakpoints,
   vw,
@@ -9,7 +9,7 @@ import {
   responsiveAbsoluteImageContainer,
   responsiveAbsoluteImage,
   responsiveRightContent,
-} from "../../../shared/styles/responsive.css"
+} from "../../../shared/styles/responsive.css";
 
 // Section 1: 피그마 디자인에 맞는 레이아웃
 export const scarSection1 = style({
@@ -23,11 +23,11 @@ export const scarSection1 = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const scarSection1Content = style({
   ...responsiveSplitContainer(), // 1920px 기준 좌우 분할 레이아웃 (전체 너비 사용)
-})
+});
 
 export const scarSection1Left = style({
   ...responsiveLeftContent(), // 헤더와 완벽한 정렬
@@ -38,16 +38,16 @@ export const scarSection1Left = style({
   paddingLeft: "0",
   flexDirection: "column",
   justifyContent: "flex-start", // 위에서부터 시작 (피그마 레이아웃에 맞게)
-  paddingTop: vw(80), // 제목이 오른쪽 이미지와 수평 맞춤을 위해 상단 패딩 추가
+  // paddingTop: vw(80), // 제목이 오른쪽 이미지와 수평 맞춤을 위해 상단 패딩 추가
   "@media": {
     [breakpoints.desktopLarge]: {
-      paddingTop: "80px", // 1920px+ 고정
+      // paddingTop: "80px", // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       padding: "0 20px",
     },
   },
-})
+});
 
 export const scarSection1Number = style({
   fontFamily: "'Nordnet Sans Mono', monospace",
@@ -67,7 +67,7 @@ export const scarSection1Number = style({
       marginBottom: "-24px",
     },
   },
-})
+});
 
 export const scarSection1Text = style({
   display: "flex",
@@ -81,7 +81,7 @@ export const scarSection1Text = style({
       gap: "24px",
     },
   },
-})
+});
 
 export const scarSection1Title = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -99,7 +99,7 @@ export const scarSection1Title = style({
       marginBottom: "24px",
     },
   },
-})
+});
 
 export const scarSection1Description = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -117,7 +117,7 @@ export const scarSection1Description = style({
       maxWidth: "100%",
     },
   },
-})
+});
 
 export const scarSection1Right = style({
   ...responsiveAbsoluteImageContainer(810), // 810px 높이로 설정
@@ -132,7 +132,7 @@ export const scarSection1Right = style({
       alignItems: "center",
     },
   },
-})
+});
 
 export const scarSection1Image = style({
   position: "absolute",
@@ -158,7 +158,7 @@ export const scarSection1Image = style({
       right: "auto",
     },
   },
-})
+});
 
 // Section 2: 흉터 줄이는 과정 섹션 (진단부터 봉합까지)
 export const scarProcessSection = style({
@@ -172,7 +172,7 @@ export const scarProcessSection = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const scarProcessContent = style({
   ...responsiveContainer(1600),
@@ -187,7 +187,7 @@ export const scarProcessContent = style({
       gap: "80px",
     },
   },
-})
+});
 
 export const processStep = style({
   display: "flex",
@@ -203,7 +203,7 @@ export const processStep = style({
       gap: "40px",
     },
   },
-})
+});
 
 // 홀수 step (1, 3, 5) - 숫자가 왼쪽, 콘텐츠가 오른쪽
 export const processStepOdd = style({
@@ -220,7 +220,7 @@ export const processStepOdd = style({
       gap: "40px",
     },
   },
-})
+});
 
 // 짝수 step (2, 4, 6) - 콘텐츠가 왼쪽, 숫자가 오른쪽
 export const processStepEven = style({
@@ -238,7 +238,7 @@ export const processStepEven = style({
       gap: "40px",
     },
   },
-})
+});
 
 export const stepNumber = style({
   flex: "0 0 auto",
@@ -256,7 +256,7 @@ export const stepNumber = style({
       alignItems: "flex-start",
     },
   },
-})
+});
 
 // 검은색 배경 제거하고 이미지만 사용
 export const stepImage = style({
@@ -276,7 +276,7 @@ export const stepImage = style({
       borderRadius: "4px",
     },
   },
-})
+});
 
 // 숫자 오버레이
 export const stepNumberOverlay = style({
@@ -294,7 +294,7 @@ export const stepNumberOverlay = style({
       fontSize: "40px",
     },
   },
-})
+});
 
 // 피그마 디자인에 맞는 민트색 카테고리 텍스트
 export const stepCategory = style({
@@ -312,7 +312,7 @@ export const stepCategory = style({
       marginBottom: "12px",
     },
   },
-})
+});
 
 // 숫자를 이미지 박스 위에 배치하는 스타일
 export const stepNumberText = style({
@@ -328,7 +328,7 @@ export const stepNumberText = style({
       marginBottom: "40px", // 모바일에서는 적절한 비율로 조정
     },
   },
-})
+});
 
 export const stepContent = style({
   flex: 1,
@@ -347,7 +347,7 @@ export const stepContent = style({
       minHeight: "200px",
     },
   },
-})
+});
 
 export const stepTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -361,7 +361,7 @@ export const stepTitle = style({
       lineHeight: "52px",
     },
   },
-})
+});
 
 export const stepSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -379,7 +379,7 @@ export const stepSubtitle = style({
       marginBottom: "20px",
     },
   },
-})
+});
 
 export const stepDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -393,7 +393,7 @@ export const stepDescription = style({
       lineHeight: "32px",
     },
   },
-})
+});
 
 // Section 3 스타일들
 export const scarSection3 = style({
@@ -407,11 +407,11 @@ export const scarSection3 = style({
       padding: "80px 0",
     },
   },
-})
+});
 
 export const scarSection3Content = style({
   ...responsiveSplitContainer(), // 1920px 기준 좌우 분할 레이아웃
-})
+});
 
 export const scarSection3Left = style({
   ...responsiveRightContent(), // 헤더와 완벽한 정렬
@@ -433,7 +433,7 @@ export const scarSection3Left = style({
       height: "400px", // 모바일에서 적절한 높이
     },
   },
-})
+});
 
 export const scarSection3Right = style({
   ...responsiveLeftContent(), // 헤더와 완벽한 정렬
@@ -454,7 +454,7 @@ export const scarSection3Right = style({
       justifyContent: "flex-start",
     },
   },
-})
+});
 
 export const scarSection3Image = style({
   position: "absolute",
@@ -471,7 +471,7 @@ export const scarSection3Image = style({
       left: "auto", // right에서 left로 변경
     },
   },
-})
+});
 
 export const scarSection3Text = style({
   display: "flex",
@@ -490,7 +490,7 @@ export const scarSection3Text = style({
       justifyContent: "flex-start",
     },
   },
-})
+});
 
 export const scarSection3NumberBg = style({
   fontFamily: "'Nordnet Sans Mono', monospace",
@@ -510,7 +510,7 @@ export const scarSection3NumberBg = style({
       marginBottom: "-24px",
     },
   },
-})
+});
 
 export const scarSection3Title = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -528,7 +528,7 @@ export const scarSection3Title = style({
       marginBottom: "24px",
     },
   },
-})
+});
 
 export const scarSection3Description = style({
   fontFamily: "'S-Core Dream', sans-serif",
@@ -546,7 +546,7 @@ export const scarSection3Description = style({
       maxWidth: "100%",
     },
   },
-})
+});
 
 // Section3 이미지 컨테이너 (950x660 고정 크기)
 export const scarSection3ImageContainer = style({
@@ -562,7 +562,7 @@ export const scarSection3ImageContainer = style({
       height: "300px",
     },
   },
-})
+});
 
 export const scarSection3ImageContent = style({
   width: "100%",
@@ -577,4 +577,4 @@ export const scarSection3ImageContent = style({
       borderRadius: "4px",
     },
   },
-})
+});
