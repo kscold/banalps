@@ -1,6 +1,5 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 
 import * as styles from "./HeroSection.css"
@@ -165,46 +164,44 @@ export function VideoSection({
   }, [showVideoSection, isVideoLoaded])
 
   return (
-    <AnimatePresence>
-      {showVideoSection && (
-        <motion.section
-          key="video-section"
-          className={styles.videoSection}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-        >
-          <div className={styles.vimeoContainer}>
-            <iframe
-              ref={iframeRef}
-              src="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
-              className={styles.vimeoIframe}
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "max(177.77vh, 100vw)", // 화면 꽉 채우기
-                height: "max(56.25vw, 100vh)", // 화면 꽉 채우기
-                transform: "translate(-50%, -50%)",
-                border: "none",
-                pointerEvents: "none",
-              }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              loading="eager"
-              onLoad={handleVimeoLoad}
-              onError={() => {
-                console.error("[VideoSection/Vimeo에러] iframe 로드 실패")
-              }}
-            />
-          </div>
-          {/* <div
-            className={styles.videoOverlay}
-            style={{ pointerEvents: "auto" }}
-          /> */}
-        </motion.section>
-      )}
-    </AnimatePresence>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#000",
+        opacity: showVideoSection ? 1 : 0,
+        pointerEvents: showVideoSection ? "auto" : "none",
+      }}
+    >
+      <div className={styles.vimeoContainer}>
+        <iframe
+          ref={iframeRef}
+          src="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
+          className={styles.vimeoIframe}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "max(177.77vh, 100vw)",
+            height: "max(56.25vw, 100vh)",
+            transform: "translate(-50%, -50%)",
+            border: "none",
+            pointerEvents: "none",
+          }}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          loading="eager"
+          onLoad={handleVimeoLoad}
+          onError={() => {
+            console.error("[VideoSection/Vimeo에러] iframe 로드 실패")
+          }}
+        />
+      </div>
+    </div>
   )
 }
