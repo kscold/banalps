@@ -242,7 +242,7 @@ export const socialButtons = style({
   gap: vw(12),
   "@media": {
     [breakpoints.mobile]: {
-      gap: mvw(10),
+      gap: mvw(4),
     },
   },
 });
@@ -254,9 +254,8 @@ export const loginRow = style({
   marginBottom: vw(12),
   "@media": {
     [breakpoints.mobile]: {
-      gap: mvw(10),
-      marginBottom: mvw(8),
-      // marginBottom: 0,
+      marginBottom: 0,
+      gap: mvw(4),
     },
   },
 });
@@ -270,8 +269,8 @@ export const iconSquare = style({
   flexShrink: 0,
   "@media": {
     [breakpoints.mobile]: {
-      width: mvw(50),
-      height: mvw(50),
+      width: mvw(44),
+      height: mvw(44),
     },
   },
 });
@@ -285,14 +284,9 @@ export const loginButton = style({
   alignItems: "center",
   justifyContent: "center",
   cursor: "pointer",
-  fontFamily: "'Pretendard', sans-serif",
-  fontSize: vw(14),
-  fontWeight: 500,
   "@media": {
     [breakpoints.mobile]: {
-      height: mvw(50),
-      borderRadius: mvw(6),
-      fontSize: mvw(14),
+      height: mvw(44),
     },
   },
 });
@@ -332,8 +326,7 @@ export const illustrationSection = style({
   width: "100%",
   "@media": {
     [breakpoints.mobile]: {
-      height: mvw(120),
-      // marginBottom: mvw(30),
+      height: mvw(162),
       marginBottom: 0,
     },
   },
@@ -395,7 +388,8 @@ export const signupSection = style({
   "@media": {
     [breakpoints.mobile]: {
       gap: mvw(24),
-      // padding: mvw(24),
+
+      padding: 0,
     },
   },
 });

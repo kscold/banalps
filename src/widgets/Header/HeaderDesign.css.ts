@@ -193,6 +193,8 @@ export const logoWrapper = style({
   height: "100%",
   flexShrink: 0, // 로고가 줄어들지 않도록
   minWidth: vw(150), // 최소 너비 보장
+  position: "relative",
+  zIndex: 10, // 다른 요소보다 위에 표시
   "@media": {
     [breakpoints.desktopLarge]: {
       minWidth: "150px", // 1920px 이상에서 고정
@@ -208,6 +210,8 @@ export const logoLink = style({
   display: "flex",
   alignItems: "center",
   height: "100%",
+  pointerEvents: "auto", // 클릭 가능하도록 명시
+  cursor: "pointer",
 });
 
 // 로고 이미지 스타일 추가

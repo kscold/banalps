@@ -374,7 +374,7 @@ export const locationSection = style({
   "@media": {
     [breakpoints.mobile]: {
       width: "100%",
-      padding: `0 ${mvw(20)} 0 ${mvw(20)}`, // 상단 40px, 좌우 20px, 하단 120px
+      padding: `0 ${mvw(16)} 0 ${mvw(16)}`, // 상단 40px, 좌우 20px, 하단 120px
     },
   },
 });

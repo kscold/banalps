@@ -1228,27 +1228,6 @@ export const locationDetail = style({
   },
 });
 
-// 새로운 간결한 위치 섹션 - 피그마 디자인 기반
-export const locationSection = style({
-  width: "100%",
-  maxWidth: "1600px",
-  margin: "0 auto 120px",
-  padding: "120px 160px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-  "@media": {
-    "screen and (max-width: 1600px)": {
-      padding: "80px 80px",
-    },
-    "screen and (max-width: 1024px)": {
-      padding: "60px 20px",
-      margin: "0 auto 80px",
-    },
-  },
-});
-
 export const locationContent = style({
   width: "100%",
   display: "flex",

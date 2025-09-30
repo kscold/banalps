@@ -39,8 +39,8 @@ export default function HeroSection({
   useEffect(() => {
     if (!isActive) return;
 
-    // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환
-    const textScrollDepth = isMobile ? 300 : 2000; // 모바일: 300px (더 빠른 전환), 데스크톱: 2000px
+    // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환 (Android 환경 최적화)
+    const textScrollDepth = isMobile ? 200 : 2000; // 모바일: 200px (Android 환경 고려), 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts; // 전체 스크롤 높이
     let scrollY = virtualScrollY;
 
@@ -91,9 +91,8 @@ export default function HeroSection({
       e.stopPropagation(); // 이벤트 버블링 방지
 
       // 스크롤 이벤트 처리
-
       const deltaY = e.deltaY;
-      const scrollSpeed = isMobile ? 3.5 : 0.8; // 모바일에서는 빠르지만 균등하게
+      const scrollSpeed = isMobile ? 4.5 : 0.8; // 모바일에서는 더 빠르게 (Android 최적화)
       scrollY += deltaY * scrollSpeed;
 
       // 스크롤 범위 제한
@@ -107,10 +106,10 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex);
 
-      // 마지막 텍스트에 도달했을 때 다음 섹션으로
+      // 마지막 텍스트에 도달했을 때 다음 섹션으로 (Android 환경 최적화)
       if (
         clampedIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth / 2
+        scrollY >= totalScrollHeight - textScrollDepth * 0.7 // 70% 지점에서 전환 (더 빠른 섹션 이동)
       ) {
         if (onTextComplete) {
           setTimeout(() => {
@@ -155,9 +154,9 @@ export default function HeroSection({
       const currentY = e.touches[0].clientY;
       const deltaY = touchStartY - currentY;
 
-      // 모바일에서 드래그처럼 즉각적인 반응
+      // 모바일에서 드래그처럼 즉각적인 반응 (Android 환경 최적화)
       // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환
-      const sensitivity = isMobile ? 5.0 : 2.5; // 모바일 감도 균등하게 조정
+      const sensitivity = isMobile ? 6.0 : 2.5; // Android에서 더 빠른 전환을 위해 증가
       const newScrollY = touchStartScrollY + deltaY * sensitivity;
 
       // 스크롤 범위 제한
@@ -171,12 +170,11 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex);
 
-      // 모바일 터치 스크롤 처리
-
+      // 모바일 터치 스크롤 처리 (Android 환경 최적화)
       // 마지막 텍스트에 도달했을 때 다음 섹션으로
       if (
         clampedIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth / 2
+        scrollY >= totalScrollHeight - textScrollDepth * 0.7 // 70% 지점에서 전환 (더 빠른 섹션 이동)
       ) {
         if (onTextComplete) {
           setTimeout(() => {

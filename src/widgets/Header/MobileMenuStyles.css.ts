@@ -68,7 +68,6 @@ export const mobileLoginBtn = style({
   backgroundColor: "transparent",
   border: "none",
   borderRadius: "8px",
-  padding: mvw(8),
   cursor: "pointer",
   transition: "opacity 200ms ease",
   display: "flex",
@@ -139,8 +138,8 @@ export const mobileNavArrow = style({
 export const mobileNavSub = style({
   display: "flex",
   flexDirection: "column",
-  gap: mvw(20),
-  marginTop: "20px",
+  gap: mvw(16),
+  marginTop: mvw(20),
   paddingLeft: "0",
   // animation: "slideDown 200ms ease-out", // 애니메이션 임시 비활성화
 });

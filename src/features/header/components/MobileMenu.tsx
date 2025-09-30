@@ -45,12 +45,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     setHasOpened(true);
   }
 
-  // 메뉴 아이템 토글
+  // 메뉴 아이템 토글 - 한 번에 하나의 대메뉴만 열리도록 수정
   const toggleMenuItem = (titleKey: string) => {
     setExpandedItems((prev) =>
       prev.includes(titleKey)
-        ? prev.filter((item) => item !== titleKey)
-        : [...prev, titleKey]
+        ? [] // 현재 열려있는 메뉴를 클릭하면 닫기
+        : [titleKey] // 다른 메뉴를 클릭하면 기존 메뉴 닫고 새 메뉴만 열기
     );
   };
 
