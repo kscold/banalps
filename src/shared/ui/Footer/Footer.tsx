@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import * as styles from "./Footer.css"
-import TermsModal from "@/shared/components/TermsModal/TermsModal"
-import { useFooterTranslations } from "@/hooks/useAllPagesTranslations"
-import { useLanguageStore } from "@/shared/stores/useLanguageStore"
+import React, { useState } from "react";
+import * as styles from "./Footer.css";
+import TermsModal from "@/shared/components/TermsModal/TermsModal";
+import { useFooterTranslations } from "@/hooks/useAllPagesTranslations";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function Footer() {
-  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false)
-  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false)
-  const t = useFooterTranslations()
-  const { language } = useLanguageStore()
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const t = useFooterTranslations();
+  const { language } = useLanguageStore();
 
   const handleTermsClick = () => {
-    setIsTermsModalOpen(true)
-  }
+    setIsTermsModalOpen(true);
+  };
 
   const handlePrivacyClick = () => {
-    setIsPrivacyModalOpen(true)
-  }
+    setIsPrivacyModalOpen(true);
+  };
 
   const closeTermsModal = () => {
-    setIsTermsModalOpen(false)
-  }
+    setIsTermsModalOpen(false);
+  };
 
   const closePrivacyModal = () => {
-    setIsPrivacyModalOpen(false)
-  }
+    setIsPrivacyModalOpen(false);
+  };
   return (
     <footer className={styles.footerSection} data-footer="true">
       <div className={styles.footerContent}>
@@ -92,7 +92,11 @@ export default function Footer() {
           <div className={styles.mobileLogo}>
             {/* SVG 로고가 제공되면 교체 예정 */}
             <img
-              src="/footer/footer-logo-mobile.svg"
+              src={
+                language === "JP"
+                  ? "/footer/footer-logo-mobile-jp.svg"
+                  : "/footer/footer-logo-mobile.svg"
+              }
               alt="BANAL"
               style={{ width: "100%", height: "100%" }}
             />
@@ -143,5 +147,5 @@ export default function Footer() {
         type="privacy"
       />
     </footer>
-  )
+  );
 }
