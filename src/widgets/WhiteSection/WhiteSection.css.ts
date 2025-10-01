@@ -680,6 +680,10 @@ export const infoValueParagraph = style({
   margin: 0,
   marginBottom: 0,
   lineHeight: "inherit",
+  fontWeight: 400,
+  fontFamily: fontFamily.scdream,
+  fontSize: vw(20),
+  color: "#272727",
   "@media": {
     [breakpoints.desktopLarge]: {
       marginBottom: 0,

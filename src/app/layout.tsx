@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
-
-export const dynamic = "force-dynamic";
 import "../shared/styles/global.css";
 import ClientLayout from "./ClientLayout";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -71,7 +72,7 @@ export default function RootLayout({
         />
         <script src="https://player.vimeo.com/api/player.js" async></script>
       </head>
-      <body className={`${inter.variable} ${zenKakuGothicNew.variable} antialiased`}>
+      <body className={`${inter.variable} ${zenKakuGothicNew.variable} antialiased`} suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

@@ -53,7 +53,11 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
         <LoginModal />
       </ClientOnly>
       <main className="main-content">{children}</main>
-      {pathname !== "/" && <Footer />}
+      {pathname !== "/" && (
+        <ClientOnly>
+          <Footer />
+        </ClientOnly>
+      )}
     </>
   );
 }

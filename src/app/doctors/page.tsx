@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 import * as styles from "./DoctorsPage.css";
 import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 import { useAcademicActivities } from "@/hooks/useAcademicActivities";
+import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 
 export default function DoctorsPage() {
   console.log("[DoctorsPage] 의료진 소개 페이지 렌더링");
@@ -20,18 +21,8 @@ export default function DoctorsPage() {
   // 학술활동 훅
   const { getAllActivities, getAvailableYears } = useAcademicActivities();
 
-  // 모바일 감지 상태
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1023);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  // 모바일 감지 - useMediaQuery 사용 (hydration safe)
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   // 선택된 연도 상태
   const [selectedYear, setSelectedYear] = useState<number>(2021);
