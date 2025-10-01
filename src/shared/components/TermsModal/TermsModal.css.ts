@@ -34,6 +34,7 @@ export const modal = style({
   overflow: "hidden",
   display: "flex",
   flexDirection: "column",
+  zIndex: 10000, // 헤더(9999)보다 높게 설정
   "@media": {
     [breakpoints.mobile]: {
       width: "90%",
@@ -190,7 +191,7 @@ globalStyle(`${termsContent} h5`, {
 
 globalStyle(`${termsContent} p`, {
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: "160%",
   letterSpacing: "0%",
@@ -266,7 +267,7 @@ globalStyle(`${privacyContent} h5`, {
 
 globalStyle(`${privacyContent} p`, {
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: "160%",
   letterSpacing: "0%",

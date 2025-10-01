@@ -1441,6 +1441,12 @@ export const section2Conclusion = style({
       textAlign: "left",
       fontWeight: 400,
       marginBottom: mvw(40),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 400,
+        },
+      },
     },
   },
 });
@@ -1634,6 +1640,7 @@ export const section3Title = style({
         'html[data-language="JP"] &': {
           fontSize: mvw(24),
           fontWeight: 700,
+          width: mvw(287),
         },
       },
     },
@@ -1659,6 +1666,12 @@ export const section3Description = style({
       textAlign: "left",
       fontWeight: 400,
       marginBottom: mvw(40),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 400,
+        },
+      },
     },
   },
 });

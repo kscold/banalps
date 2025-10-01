@@ -73,6 +73,12 @@ export const featuresMainTitle = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -286,7 +292,7 @@ export const featureTitle = style({
       fontSize: "20px",
     },
     [breakpoints.mobile]: {
-      fontWeight: 200, // S-Core Dream 4 Regular
+      fontWeight: 400, // S-Core Dream 4 Regular
       fontSize: mvw(16),
       minHeight: mvw(48),
       lineHeight: "150%",
@@ -294,26 +300,25 @@ export const featureTitle = style({
       wordBreak: "keep-all",
       padding: 0,
       margin: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 400,
+          whiteSpace: "normal",
+        },
+      },
     },
   },
 });
 
-// Add spacing between lines in mobile feature titles
+// Add spacing between lines in feature titles
 globalStyle(`${featureTitle} span`, {
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "inline-block",
-      marginBottom: mvw(8),
-    },
-  },
+  display: "inline",
 });
 
-globalStyle(`${featureTitle} span:last-child`, {
-  "@media": {
-    [breakpoints.mobile]: {
-      marginBottom: 0,
-    },
-  },
+globalStyle(`${featureTitle} br`, {
+  display: "block",
+  content: '""',
+  marginTop: "0.5em",
 });
 
 export const featureText = style({

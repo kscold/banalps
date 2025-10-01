@@ -301,14 +301,22 @@ function CategoryCarousel({
         width: "100%",
       }}
     >
-      <div className={styles.carouselHeader}>
+      <div
+        className={
+          items[currentIndex]?.title
+            ? styles.carouselHeader
+            : styles.carouselHeaderNoSubtitle
+        }
+      >
         <span className={styles.categoryBadge}>{category}</span>
-        <span className={styles.itemTitle}>
-          {translateTitle(
-            items[currentIndex]?.title,
-            items[currentIndex]?.category
-          )}
-        </span>
+        {items[currentIndex]?.title && (
+          <span className={styles.itemTitle}>
+            {translateTitle(
+              items[currentIndex]?.title,
+              items[currentIndex]?.category
+            )}
+          </span>
+        )}
       </div>
 
       <div className={styles.carouselContainer}>

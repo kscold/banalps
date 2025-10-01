@@ -206,7 +206,16 @@ function HairlineContent() {
           ))}
         </>
       ),
-      titleMobile: (
+      titleMobile: t.section3.titleMobile ? (
+        <>
+          {t.section3.titleMobile.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.section3.titleMobile.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ) : (
         <>
           {t.section3.title.split("\n").map((line, index) => (
             <span key={index}>
@@ -287,16 +296,7 @@ function HairlineContent() {
     ),
     featureCards: t.features.cards.map((card, index) => ({
       icon: `/hair-transplant/feature-${index + 1}.svg`,
-      title: (
-        <>
-          {card.title.split("\n").map((line, lineIndex) => (
-            <span key={lineIndex}>
-              {line}
-              {lineIndex < card.title.split("\n").length - 1 && <br />}
-            </span>
-          ))}
-        </>
-      ),
+      title: card.title,
     })),
   };
 

@@ -2295,12 +2295,20 @@ export const academicTableRow = style({
     "&:last-child": {
       borderBottom: "none",
     },
+    'html[data-language="JP"] &': {
+      alignItems: "flex-start",
+    },
   },
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "60px",
       padding: "28px 0",
       minHeight: "90px",
+      selectors: {
+        'html[data-language="JP"] &': {
+          alignItems: "flex-start",
+        },
+      },
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
@@ -2317,6 +2325,12 @@ export const academicTableRow = style({
       borderBottom: "1px solid #707070",
       borderTop: "none",
       margin: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          gridTemplateRows: "auto auto",
+          minHeight: "auto",
+        },
+      },
     },
   },
 });
@@ -2333,6 +2347,11 @@ export const academicRowDate = style({
   whiteSpace: "nowrap",
   lineHeight: "150%",
   letterSpacing: "0%",
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.scdream,
+    },
+  },
 
   "@media": {
     [breakpoints.desktopLarge]: {
@@ -2402,12 +2421,27 @@ export const categoryBadge = style({
   whiteSpace: "pre-line",
   wordWrap: "break-word",
   textAlign: "center",
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+      height: "auto",
+      minHeight: vw(70),
+      padding: `${vw(10)} ${vw(5)}`,
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "70px",
       height: "70px",
       fontSize: "20px",
       lineHeight: "20px",
+      selectors: {
+        'html[data-language="JP"] &': {
+          height: "auto",
+          minHeight: "70px",
+          padding: "10px 5px",
+        },
+      },
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
@@ -2422,6 +2456,15 @@ export const categoryBadge = style({
       whiteSpace: "pre-line",
       wordWrap: "break-word",
       textAlign: "center",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+          height: "auto",
+          minHeight: mvw(70),
+          padding: `${mvw(10)} ${mvw(5)}`,
+        },
+      },
     },
   },
 });
@@ -2462,6 +2505,11 @@ export const academicRowEvent = style({
       height: mvw(70),
       display: "flex",
       alignItems: "center",
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+        },
+      },
     },
   },
 });

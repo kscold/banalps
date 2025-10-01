@@ -416,15 +416,36 @@ export const carouselHeader = style({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: vw(24),
+  marginBottom: vw(48),
   gap: vw(40),
   "@media": {
     [breakpoints.desktopLarge]: {
-      marginBottom: "24px",
+      marginBottom: "48px",
+      gap: "40px",
     },
     [breakpoints.mobile]: {
       marginBottom: mvw(48),
       gap: mvw(24),
+    },
+  },
+});
+
+// 서브타이틀이 없을 때 사용 (gap 없음)
+export const carouselHeaderNoSubtitle = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  marginBottom: vw(48),
+  gap: 0,
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      marginBottom: "48px",
+      gap: 0,
+    },
+    [breakpoints.mobile]: {
+      marginBottom: mvw(48),
+      gap: 0,
     },
   },
 });

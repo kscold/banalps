@@ -1950,7 +1950,18 @@ export default function HairTransplantLayout({
                       }}
                     >
                       {isMobile && section3.titleMobile
-                        ? section3.titleMobile
+                        ? typeof section3.titleMobile === "string"
+                          ? (() => {
+                              const titleText = section3.titleMobile as string;
+                              const lines = titleText.split("\n");
+                              return lines.map((line, index) => (
+                                <span key={index}>
+                                  {line}
+                                  {index < lines.length - 1 && <br />}
+                                </span>
+                              ));
+                            })()
+                          : section3.titleMobile
                         : section3.title}
                     </h2>
                     {(section3.imagesMobile?.main || section3.images?.main) && (
@@ -2100,7 +2111,19 @@ export default function HairTransplantLayout({
                           }
                         >
                           {isMobile && section3.titleMobile
-                            ? section3.titleMobile
+                            ? typeof section3.titleMobile === "string"
+                              ? (() => {
+                                  const titleText =
+                                    section3.titleMobile as string;
+                                  const lines = titleText.split("\n");
+                                  return lines.map((line, index) => (
+                                    <span key={index}>
+                                      {line}
+                                      {index < lines.length - 1 && <br />}
+                                    </span>
+                                  ));
+                                })()
+                              : section3.titleMobile
                             : section3.title}
                         </h2>
                         <div className={styles.section3Description}>
@@ -2284,7 +2307,19 @@ export default function HairTransplantLayout({
                           }
                         >
                           {isMobile && section3.titleMobile
-                            ? section3.titleMobile
+                            ? typeof section3.titleMobile === "string"
+                              ? (() => {
+                                  const titleText =
+                                    section3.titleMobile as string;
+                                  const lines = titleText.split("\n");
+                                  return lines.map((line, index) => (
+                                    <span key={index}>
+                                      {line}
+                                      {index < lines.length - 1 && <br />}
+                                    </span>
+                                  ));
+                                })()
+                              : section3.titleMobile
                             : section3.title}
                         </h2>
                         <div
@@ -2402,7 +2437,19 @@ export default function HairTransplantLayout({
                           <div className={styles.section3Text}>
                             <h2 className={styles.section3Title}>
                               {isMobile && section3.titleMobile
-                                ? section3.titleMobile
+                                ? typeof section3.titleMobile === "string"
+                                  ? (() => {
+                                      const titleText =
+                                        section3.titleMobile as string;
+                                      const lines = titleText.split("\n");
+                                      return lines.map((line, index) => (
+                                        <span key={index}>
+                                          {line}
+                                          {index < lines.length - 1 && <br />}
+                                        </span>
+                                      ));
+                                    })()
+                                  : section3.titleMobile
                                 : section3.title}
                             </h2>
                             <div className={styles.section3Description}>
@@ -2506,7 +2553,19 @@ export default function HairTransplantLayout({
                               }
                             >
                               {isMobile && section3.titleMobile
-                                ? section3.titleMobile
+                                ? typeof section3.titleMobile === "string"
+                                  ? (() => {
+                                      const titleText =
+                                        section3.titleMobile as string;
+                                      const lines = titleText.split("\n");
+                                      return lines.map((line, index) => (
+                                        <span key={index}>
+                                          {line}
+                                          {index < lines.length - 1 && <br />}
+                                        </span>
+                                      ));
+                                    })()
+                                  : section3.titleMobile
                                 : section3.title}
                             </h2>
                             <div className={styles.section3Description}>

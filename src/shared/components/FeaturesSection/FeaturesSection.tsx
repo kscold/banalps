@@ -24,6 +24,27 @@ export default function FeaturesSection({
   // Check if desktop (not mobile)
   const isDesktop = !isMobile;
 
+  // Helper function to render title with line breaks
+  const renderTitle = (title: React.ReactNode, cardIndex?: number) => {
+    if (typeof title === "string") {
+      console.log(`[Card ${cardIndex}] Title type: string, value:`, title);
+      const lines = title.split("\n");
+      console.log(`[Card ${cardIndex}] Lines after split:`, lines);
+      return (
+        <>
+          {lines.map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < lines.length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      );
+    }
+    console.log(`[Card ${cardIndex}] Title type: ReactNode`);
+    return title;
+  };
+
   return (
     <section className={styles.featuresSection}>
       <div className={styles.featuresContent}>
@@ -73,7 +94,7 @@ export default function FeaturesSection({
                     />
                   </div>
                 </div>
-                <h3 className={styles.featureTitle}>{card.title}</h3>
+                <h3 className={styles.featureTitle}>{renderTitle(card.title, index)}</h3>
               </div>
             ))}
           </motion.div>
@@ -110,7 +131,7 @@ export default function FeaturesSection({
                     />
                   </div>
                 </div>
-                <h3 className={styles.featureTitle}>{card.title}</h3>
+                <h3 className={styles.featureTitle}>{renderTitle(card.title, index)}</h3>
               </motion.div>
             ))}
           </div>

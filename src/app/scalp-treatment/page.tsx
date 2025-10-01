@@ -135,17 +135,17 @@ export default function ScalpTreatmentPage() {
       ),
       titleMobile: (
         <>
-          {t.details.section3.titleMobile
-            ? t.details.section3.titleMobile.split("\n").map((line, index) => (
+          {(t.details.section3 as any).titleMobile
+            ? (t.details.section3 as any).titleMobile.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index <
-                    t.details.section3.titleMobile.split("\n").length - 1 && (
+                    (t.details.section3 as any).titleMobile.split("\n").length - 1 && (
                     <br />
                   )}
                 </span>
               ))
-            : t.details.section3.title.split("\n").map((line, index) => (
+            : t.details.section3.title.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index < t.details.section3.title.split("\n").length - 1 && (
@@ -199,17 +199,17 @@ export default function ScalpTreatmentPage() {
       ),
       titleMobile: (
         <>
-          {t.details.section4.titleMobile
-            ? t.details.section4.titleMobile.split("\n").map((line, index) => (
+          {(t.details.section4 as any).titleMobile
+            ? (t.details.section4 as any).titleMobile.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index <
-                    t.details.section4.titleMobile.split("\n").length - 1 && (
+                    (t.details.section4 as any).titleMobile.split("\n").length - 1 && (
                     <br />
                   )}
                 </span>
               ))
-            : t.details.section4.title.split("\n").map((line, index) => (
+            : t.details.section4.title.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index < t.details.section4.title.split("\n").length - 1 && (
@@ -288,17 +288,17 @@ export default function ScalpTreatmentPage() {
       ),
       titleMobile: (
         <>
-          {t.details.section5.titleMobile
-            ? t.details.section5.titleMobile.split("\n").map((line, index) => (
+          {(t.details.section5 as any).titleMobile
+            ? (t.details.section5 as any).titleMobile.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index <
-                    t.details.section5.titleMobile.split("\n").length - 1 && (
+                    (t.details.section5 as any).titleMobile.split("\n").length - 1 && (
                     <br />
                   )}
                 </span>
               ))
-            : t.details.section5.title.split("\n").map((line, index) => (
+            : t.details.section5.title.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index < t.details.section5.title.split("\n").length - 1 && (
@@ -377,17 +377,17 @@ export default function ScalpTreatmentPage() {
       ),
       titleMobile: (
         <>
-          {t.details.section6.titleMobile
-            ? t.details.section6.titleMobile.split("\n").map((line, index) => (
+          {(t.details.section6 as any).titleMobile
+            ? (t.details.section6 as any).titleMobile.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index <
-                    t.details.section6.titleMobile.split("\n").length - 1 && (
+                    (t.details.section6 as any).titleMobile.split("\n").length - 1 && (
                     <br />
                   )}
                 </span>
               ))
-            : t.details.section6.title.split("\n").map((line, index) => (
+            : t.details.section6.title.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
                   {index < t.details.section6.title.split("\n").length - 1 && (

@@ -252,24 +252,24 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: "2022.08.11",
       type: "저널",
       event: {
-        ko: "Hair Transplant Forum Int'l.",
-        jp: "Hair Transplant Forum Int'l.",
-      },
-      title: {
         ko: "Histological Analysis for the Cause of Kinky Hair after Hair Transplantation",
         jp: "Histological Analysis for the Cause of Kinky Hair after Hair Transplantation",
+      },
+      title: {
+        ko: "Hair Transplant Forum Int'l.",
+        jp: "Hair Transplant Forum Int'l.",
       },
     },
     {
       date: "2022.02.20",
       type: "발표",
       event: {
-        ko: "대한성형외과학회 최소침습연구회(MIPS) International Aesthetic Joint Conference",
-        jp: "大韓整形外科学会 最小侵襲研究会(MIPS) International Aesthetic Joint Conference",
+        ko: "대한성형외과학회 최소침습연구회(MIPS)",
+        jp: "大韓整形外科学会 最小侵襲研究会(MIPS)",
       },
       title: {
-        ko: "Female hairline correction with hair implanter",
-        jp: "Female hairline correction with hair implanter",
+        ko: "International Aesthetic Joint Conference Female hairline correction with hair implanter",
+        jp: "International Aesthetic Joint Conference Female hairline correction with hair implanter",
       },
     },
   ],
@@ -731,7 +731,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
 export const activityTypeTranslations = {
   발표: { ko: "발표", jp: "発表" },
   논문: { ko: "논문", jp: "論文" },
-  저널: { ko: "저널", jp: "ジャーナル" },
+  저널: { ko: "저널", jp: "ジャ\nーナル" },
   수상: { ko: "수상", jp: "受賞" },
   연구: { ko: "연구", jp: "研究" },
   역서: { ko: "역서", jp: "暦書" },
