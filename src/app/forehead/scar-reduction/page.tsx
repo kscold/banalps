@@ -85,6 +85,13 @@ export default function ScarReductionPage() {
           top: 0,
         },
       },
+      imagesMobile: {
+        main: "/forehead/scar-reduction/mobile/scar-reduction-1-mobile.svg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
+      },
     },
     section2: {
       number: 2,
@@ -141,13 +148,20 @@ export default function ScarReductionPage() {
           height: 660,
         },
       },
+      imagesMobile: {
+        main: "/forehead/scar-reduction/mobile/scar-reduction-8-mobile.svg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
+      },
     },
 
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
       beforeImage: "/forehead/scar-reduction/slide/before.jpg",
-      afterImage: "/forehead/scar-reduction/slide/after.jpg",
+      afterImage: "/forehead/scar-reduction/slide/after.png",
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },

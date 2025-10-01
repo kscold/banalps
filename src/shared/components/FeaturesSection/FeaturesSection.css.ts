@@ -61,18 +61,18 @@ export const featuresIcon = style({
 export const featuresMainTitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  ...responsiveFont(32, 24), // 피그마 정확한 크기, 모바일 24px
-  lineHeight: vw(48), // 1.5 line height
+  ...responsiveFont(32, 20), // 피그마 정확한 크기, 모바일 24px
+  lineHeight: "150%",
   color: "#272727",
   margin: "0",
   textAlign: "center",
+  letterSpacing: "0",
   "@media": {
     [breakpoints.desktopLarge]: {
       lineHeight: "48px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(24),
-      lineHeight: mvw(36),
+      fontSize: mvw(20),
     },
   },
 });

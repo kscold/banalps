@@ -61,18 +61,19 @@ export default function BeforeAfterSlider({
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
+      if (!isLoggedIn) return; // 로그인하지 않았으면 드래그 비활성화
       isDragging.current = true;
       updateSliderPosition(e.clientX);
     },
-    [updateSliderPosition]
+    [updateSliderPosition, isLoggedIn]
   );
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (!isDragging.current) return;
+      if (!isDragging.current || !isLoggedIn) return; // 로그인 체크 추가
       updateSliderPosition(e.clientX);
     },
-    [updateSliderPosition]
+    [updateSliderPosition, isLoggedIn]
   );
 
   const handleMouseUp = useCallback(() => {
@@ -81,23 +82,24 @@ export default function BeforeAfterSlider({
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
+      if (!isLoggedIn) return; // 로그인하지 않았으면 터치 비활성화
       isDragging.current = true;
       const touch = e.touches[0];
       updateSliderPosition(touch.clientX);
       // 터치 시작 시 스크롤 방지
       e.preventDefault();
     },
-    [updateSliderPosition]
+    [updateSliderPosition, isLoggedIn]
   );
 
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
-      if (!isDragging.current) return;
+      if (!isDragging.current || !isLoggedIn) return; // 로그인 체크 추가
       e.preventDefault(); // 가로 드래그 중 세로 스크롤 방지
       const touch = e.touches[0];
       updateSliderPosition(touch.clientX);
     },
-    [updateSliderPosition]
+    [updateSliderPosition, isLoggedIn]
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -121,13 +123,17 @@ export default function BeforeAfterSlider({
   }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div className={`${styles.container} ${className || ""}`}>
+    <div
+      className={`${styles.container} ${className || ""}`}
+      style={{ cursor: isLoggedIn ? "ew-resize" : "default" }}
+    >
       {/* 이미지 컨테이너 */}
       <div
         ref={containerRef}
         className={styles.imageContainer}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        style={{ cursor: isLoggedIn ? "ew-resize" : "default" }}
       >
         {/* After 이미지 (전체) */}
         <div className={styles.afterImageWrapper}>

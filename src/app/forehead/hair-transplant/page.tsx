@@ -114,8 +114,9 @@ export default function ForeheadHairTransplantPage() {
         },
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-1.jpg",
-        secondary: "/forehead/hair-transplant/mobile/hair-transplant-2.jpg",
+        main: "/forehead/hair-transplant/mobile/hair-transplant-1-mobile.svg",
+        secondary:
+          "/forehead/hair-transplant/mobile/hair-transplant-2-mobile.svg",
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -158,7 +159,7 @@ export default function ForeheadHairTransplantPage() {
         main: "/forehead/hair-transplant/hair-transplant-3.png",
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-3.jpg",
+        main: "/forehead/hair-transplant/mobile/hair-transplant-3-mobile.svg",
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -221,7 +222,7 @@ export default function ForeheadHairTransplantPage() {
         main: "/forehead/hair-transplant/hair-transplant-4.png",
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-4.jpg",
+        main: "/forehead/hair-transplant/mobile/hair-transplant-4-mobile.svg",
       },
       imagesMobileSize: {
         mainMaxWidth: false,

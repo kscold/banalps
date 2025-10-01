@@ -27,10 +27,18 @@ export default function SidePreviewSlider({
   // showBefore가 true면 Before 라벨, false면 After 라벨
   const displayLabel = showBefore ? "Before" : "After"
 
+  // showBefore가 true면 오른쪽 프리뷰 (오른쪽만 둥글게), false면 왼쪽 프리뷰 (왼쪽만 둥글게)
+  const imageContainerClass = showBefore ? styles.imageContainerRight : styles.imageContainerLeft
+
+  // 라벨 컨테이너도 동일하게 적용
+  const labelsContainerClass = isBlueBackground
+    ? (showBefore ? styles.labelsContainerBlueRight : styles.labelsContainerBlueLeft)
+    : styles.labelsContainer
+
   return (
     <div className={`${isBlueBackground ? styles.containerBlue : styles.container} ${className || ""}`} onClick={onClick}>
       {/* 이미지 컨테이너 */}
-      <div className={styles.imageContainer}>
+      <div className={imageContainerClass}>
         {/* showBefore가 true면 Before 이미지 전체, false면 After 이미지 전체 표시 */}
         {showBefore ? (
           <img src={beforeImage} alt={beforeAlt} className={styles.fullImage} />
@@ -40,7 +48,7 @@ export default function SidePreviewSlider({
       </div>
 
       {/* Before/After 라벨 - 이미지 아래 */}
-      <div className={isBlueBackground ? styles.labelsContainerBlue : styles.labelsContainer}>
+      <div className={labelsContainerClass}>
         <div className={styles.label}>{displayLabel}</div>
       </div>
     </div>

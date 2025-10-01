@@ -9,7 +9,7 @@ export const overlay = style({
   right: 0,
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.6)",
-  zIndex: 9998,
+  zIndex: 10000, // 헤더(9999)보다 높게 설정
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

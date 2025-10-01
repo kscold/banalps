@@ -1988,6 +1988,9 @@ export default function HairTransplantLayout({
                           width: "100vw",
                           marginLeft: mvw(-16), // 부모의 패딩 상쇄
                           marginRight: mvw(-16), // 부모의 패딩 상쇄
+                          height: section3.illustrationMobileSize?.height
+                            ? mvw(section3.illustrationMobileSize.height)
+                            : undefined,
                           aspectRatio:
                             section3.illustrationMobileSize?.width &&
                             section3.illustrationMobileSize?.height

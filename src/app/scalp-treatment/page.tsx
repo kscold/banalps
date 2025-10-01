@@ -123,8 +123,38 @@ export default function ScalpTreatmentPage() {
       },
     },
     section3: {
-      title: t.details.section3.title,
-
+      title: (
+        <>
+          {t.details.section3.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.details.section3.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+      titleMobile: (
+        <>
+          {t.details.section3.titleMobile
+            ? t.details.section3.titleMobile.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section3.titleMobile.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))
+            : t.details.section3.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.details.section3.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
+        </>
+      ),
       subtitle: t.details.section3.subtitle,
       subtitleMobile: t.details.section3.subtitleMobile,
       description: {
@@ -157,8 +187,38 @@ export default function ScalpTreatmentPage() {
       },
     },
     section4: {
-      title: t.details.section4.title,
-
+      title: (
+        <>
+          {t.details.section4.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.details.section4.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+      titleMobile: (
+        <>
+          {t.details.section4.titleMobile
+            ? t.details.section4.titleMobile.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section4.titleMobile.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))
+            : t.details.section4.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.details.section4.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
+        </>
+      ),
       subtitle: {
         desktop: (
           <>
@@ -216,8 +276,38 @@ export default function ScalpTreatmentPage() {
       },
     },
     section5: {
-      title: t.details.section5.title,
-
+      title: (
+        <>
+          {t.details.section5.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.details.section5.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+      titleMobile: (
+        <>
+          {t.details.section5.titleMobile
+            ? t.details.section5.titleMobile.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section5.titleMobile.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))
+            : t.details.section5.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.details.section5.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
+        </>
+      ),
       subtitle: {
         desktop: (
           <>
@@ -275,8 +365,38 @@ export default function ScalpTreatmentPage() {
       },
     },
     section6: {
-      title: t.details.section6.title,
-
+      title: (
+        <>
+          {t.details.section6.title.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < t.details.section6.title.split("\n").length - 1 && <br />}
+            </span>
+          ))}
+        </>
+      ),
+      titleMobile: (
+        <>
+          {t.details.section6.titleMobile
+            ? t.details.section6.titleMobile.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    t.details.section6.titleMobile.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))
+            : t.details.section6.title.split("\n").map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < t.details.section6.title.split("\n").length - 1 && (
+                    <br />
+                  )}
+                </span>
+              ))}
+        </>
+      ),
       subtitle: {
         desktop: (
           <>
@@ -465,7 +585,11 @@ export default function ScalpTreatmentPage() {
             <div className={styles.introImageContent}>
               <div className={styles.introImageContainer}>
                 <img
-                  src="/scalp-treatment/scalp-treatment-1.png"
+                  src={
+                    isMobile
+                      ? "/scalp-treatment/mobile/scalp-treatment-1-mobile.svg"
+                      : "/scalp-treatment/scalp-treatment-1.png"
+                  }
                   alt="두피치료 의료진"
                   className={styles.introImage}
                 />
@@ -485,7 +609,11 @@ export default function ScalpTreatmentPage() {
         <div className={styles.treatmentCardsContainer}>
           <TreatmentCard
             number="1"
-            image="/scalp-treatment/scalp-treatment-2.png"
+            image={
+              isMobile
+                ? "/scalp-treatment/mobile/scalp-treatment-2-mobile.svg"
+                : "/scalp-treatment/scalp-treatment-2.png"
+            }
             alt={t.treatments.laser}
             title={t.treatments.laser}
             isMobile={isMobile}
@@ -502,7 +630,11 @@ export default function ScalpTreatmentPage() {
 
           <TreatmentCard
             number="2"
-            image="/scalp-treatment/scalp-treatment-3.png"
+            image={
+              isMobile
+                ? "/scalp-treatment/mobile/scalp-treatment-3-mobile.svg"
+                : "/scalp-treatment/scalp-treatment-3.png"
+            }
             alt={t.treatments.injection}
             title={t.treatments.injection}
             isMobile={isMobile}
@@ -519,7 +651,11 @@ export default function ScalpTreatmentPage() {
 
           <TreatmentCard
             number="3"
-            image="/scalp-treatment/scalp-treatment-4.png"
+            image={
+              isMobile
+                ? "/scalp-treatment/mobile/scalp-treatment-4-mobile.svg"
+                : "/scalp-treatment/scalp-treatment-4.png"
+            }
             alt={t.treatments.mts}
             title={t.treatments.mts}
             isMobile={isMobile}
@@ -536,7 +672,11 @@ export default function ScalpTreatmentPage() {
 
           <TreatmentCard
             number="4"
-            image="/scalp-treatment/scalp-treatment-5.png"
+            image={
+              isMobile
+                ? "/scalp-treatment/mobile/scalp-treatment-5-mobile.svg"
+                : "/scalp-treatment/scalp-treatment-5.png"
+            }
             alt={t.treatments.lllt}
             title={t.treatments.lllt}
             isMobile={isMobile}
@@ -548,7 +688,11 @@ export default function ScalpTreatmentPage() {
           <div style={isMobile ? { marginTop: mvw(31) } : {}}>
             <TreatmentCard
               number="5"
-              image="/scalp-treatment/scalp-treatment-6.png"
+              image={
+                isMobile
+                  ? "/scalp-treatment/mobile/scalp-treatment-6-mobile.svg"
+                  : "/scalp-treatment/scalp-treatment-6.png"
+              }
               alt={t.treatments.iv}
               title={t.treatments.iv}
               isMobile={isMobile}
@@ -579,9 +723,9 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>
+            <h2 className={styles.treatmentTitle} suppressHydrationWarning>
               {isMobile
-                ? textContent.section3.title
+                ? textContent.section3.titleMobile
                 : textContent.section3.title}
             </h2>
             <h3
@@ -646,8 +790,10 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>
-              {textContent.section4.title}
+            <h2 className={styles.treatmentTitle} suppressHydrationWarning>
+              {isMobile
+                ? textContent.section4.titleMobile
+                : textContent.section4.title}
             </h2>
             <h3 className={styles.treatmentSubtitle}>
               {isMobile
@@ -704,8 +850,10 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>
-              {textContent.section5.title}
+            <h2 className={styles.treatmentTitle} suppressHydrationWarning>
+              {isMobile
+                ? textContent.section5.titleMobile
+                : textContent.section5.title}
             </h2>
             <h3 className={styles.treatmentSubtitle}>
               {isMobile
@@ -772,9 +920,9 @@ export default function ScalpTreatmentPage() {
 
           {/* 오른쪽 텍스트 */}
           <div className={styles.treatmentTextContent}>
-            <h2 className={styles.treatmentTitle}>
+            <h2 className={styles.treatmentTitle} suppressHydrationWarning>
               {isMobile
-                ? textContent.section6.title
+                ? textContent.section6.titleMobile
                 : textContent.section6.title}
             </h2>
             <h3

@@ -430,8 +430,11 @@ export const carouselHeader = style({
 });
 
 export const categoryBadge = style({
-  display: "inline-block",
-  padding: `${vw(10)} ${vw(32)}`,
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: vw(228),
+  height: vw(44),
   backgroundColor: "#73D5FA",
   color: "#FFFFFF",
   background: "#14AEFF",
@@ -441,12 +444,14 @@ export const categoryBadge = style({
   fontWeight: 500,
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "10px 32px",
+      width: "228px",
+      height: "44px",
       borderRadius: "30px",
       fontSize: "18px",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(8)} ${mvw(24)}`,
+      width: mvw(170),
+      height: mvw(36),
       borderRadius: mvw(20),
       fontSize: mvw(16),
     },
@@ -551,8 +556,7 @@ export const sidePreview = style({
   width: vw(275),
   height: vw(474),
   position: "relative",
-  transition: "opacity 0.3s ease",
-  borderRadius: vw(12),
+  // transition: "opacity 0.3s ease",
   overflow: "hidden",
   backgroundColor: "transparent",
   display: "flex",
@@ -562,7 +566,6 @@ export const sidePreview = style({
     [breakpoints.desktopLarge]: {
       width: "275px",
       height: "474px",
-      borderRadius: "12px",
     },
     [breakpoints.mobile]: {
       display: "none", // Hide side previews on mobile
@@ -570,65 +573,13 @@ export const sidePreview = style({
   },
 });
 
-export const sidePreviewLeft = style({
-  "::after": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background: "#FFFDF7",
-    opacity: 0.4,
-    pointerEvents: "none",
-    zIndex: 1,
-  },
-});
+export const sidePreviewLeft = style({});
 
-export const sidePreviewLeftBlue = style({
-  "::after": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    background: "#D5FEFF",
-    opacity: 0.4,
-    pointerEvents: "none",
-    zIndex: 1,
-  },
-});
+export const sidePreviewLeftBlue = style({});
 
-export const sidePreviewRight = style({
-  "::after": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    background: "#FFFDF7",
-    opacity: 0.4,
-    pointerEvents: "none",
-    zIndex: 1,
-  },
-});
+export const sidePreviewRight = style({});
 
-export const sidePreviewRightBlue = style({
-  "::after": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    background: "#D5FEFF",
-    opacity: 0.4,
-    pointerEvents: "none",
-    zIndex: 1,
-  },
-});
+export const sidePreviewRightBlue = style({});
 
 export const sidePreviewImage = style({
   position: "absolute",

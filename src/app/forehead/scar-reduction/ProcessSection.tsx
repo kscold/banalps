@@ -7,7 +7,6 @@ import * as styles from "./ProcessSection.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useScarReductionTranslations } from "@/hooks/useAllPagesTranslations";
 
-
 // 별도의 컴포넌트로 분리하여 Hook 규칙 준수
 function ProcessStep({ step, index }: { step: any; index: number }) {
   const ref = React.useRef(null);
@@ -27,7 +26,13 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
           <div className={styles.stepCategory}>{step.category}</div>
         </div>
         <motion.img
-          src={`/forehead/scar-reduction/scar-reduction-${index + 2}.png`}
+          src={
+            isMobile
+              ? `/forehead/scar-reduction/mobile/scar-reduction-${
+                  index + 2
+                }-mobile.svg`
+              : `/forehead/scar-reduction/scar-reduction-${index + 2}.png`
+          }
           alt={`${step.category} 단계`}
           className={styles.stepImage}
           initial={{ opacity: 0, y: 80 }}
@@ -43,19 +48,21 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
         <h3 className={styles.stepTitle}>
           {isMobile && step.titleMobile ? (
             <>
-              {step.titleMobile.split('\n').map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < step.titleMobile.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+              {step.titleMobile
+                .split("\n")
+                .map((line: string, index: number) => (
+                  <span key={index}>
+                    {line}
+                    {index < step.titleMobile.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
             </>
           ) : (
             <>
-              {step.title.split('\n').map((line: string, index: number) => (
+              {step.title.split("\n").map((line: string, index: number) => (
                 <span key={index}>
                   {line}
-                  {index < step.title.split('\n').length - 1 && <br />}
+                  {index < step.title.split("\n").length - 1 && <br />}
                 </span>
               ))}
             </>
@@ -64,21 +71,27 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
         <p className={styles.stepDescription}>
           {isMobile && step.descriptionMobile ? (
             <>
-              {step.descriptionMobile.split('\n').map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < step.descriptionMobile.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+              {step.descriptionMobile
+                .split("\n")
+                .map((line: string, index: number) => (
+                  <span key={index}>
+                    {line}
+                    {index < step.descriptionMobile.split("\n").length - 1 && (
+                      <br />
+                    )}
+                  </span>
+                ))}
             </>
           ) : (
             <>
-              {step.description.split('\n').map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < step.description.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+              {step.description
+                .split("\n")
+                .map((line: string, index: number) => (
+                  <span key={index}>
+                    {line}
+                    {index < step.description.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
             </>
           )}
         </p>

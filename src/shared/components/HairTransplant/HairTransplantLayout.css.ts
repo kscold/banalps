@@ -879,7 +879,7 @@ export const section1ImageContent = style({
   "@media": {
     [breakpoints.mobile]: {
       objectFit: "cover",
-      borderRadius: "8px",
+      borderRadius: 0,
     },
   },
 });

@@ -89,7 +89,7 @@ export const arrowButton = style({
       paddingBottom: `${mvw(8)}`, // 상하 패딩
       paddingLeft: `${mvw(16)}`, // 좌측 패딩
       paddingRight: `${mvw(44)}`, // 우측 패딩 (화살표 공간 확보)
-      fontSize: mvw(14), // 폰트 크기
+      fontSize: mvw(16), // 폰트 크기
       gap: `${mvw(8)}`, // 간격
       minHeight: mvw(44), // 높이
       borderRadius: mvw(100), // 완전 둥근 모서리
@@ -119,7 +119,7 @@ export const buttonText = style({
       lineHeight: "100%",
     },
     [breakpoints.mobile]: {
-      fontSize: "var(--mobile-font-size, " + mvw(14) + ")", // CSS 변수를 통한 모바일 폰트 크기
+      fontSize: "var(--mobile-font-size, " + mvw(16) + ")", // CSS 변수를 통한 모바일 폰트 크기
     },
   },
 });
@@ -290,7 +290,7 @@ export const medium = style({
       padding: "0 48px 0 20px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
+      fontSize: mvw(16),
       minHeight: mvw(44), // 모바일에서는 44px
       height: "auto",
       padding: `${mvw(8)} ${mvw(44)} ${mvw(8)} ${mvw(16)}`, // 모바일 패딩
@@ -313,7 +313,7 @@ export const large = style({
     [breakpoints.mobile]: {
       padding: `${mvw(18)} ${mvw(60)} ${mvw(18)} ${mvw(28)}`, // 오른쪽에 원 공간 확보
       fontSize: mvw(16),
-      gap: mvw(14),
+      gap: mvw(16),
       position: "relative",
       justifyContent: "center", // 텍스트 가운데 정렬
     },

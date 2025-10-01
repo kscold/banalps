@@ -96,6 +96,10 @@ function CrownContent() {
           left: 0,
         },
       },
+      imagesMobile: {
+        main: "/hair-transplant/crown/mobile/crown-2-mobile.svg",
+        secondary: "/hair-transplant/crown/mobile/crown-1-mobile.svg",
+      },
       imagesMobileSize: {
         mainMaxWidth: false, // main 이미지는 100vw
         secondaryMaxWidth: true, // secondary 이미지도 100vw
@@ -190,6 +194,13 @@ function CrownContent() {
       images: {
         main: "/hair-transplant/crown/crown-3.png",
       },
+      imagesMobile: {
+        main: "/hair-transplant/crown/mobile/crown-3-mobile.svg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
+      },
     },
     section3: {
       number: 3,
@@ -219,6 +230,10 @@ function CrownContent() {
         height: 223,
       },
       illustrationMobile: "/hair-transplant/crown/illustration-4.svg",
+      illustrationMobileSize: {
+        width: 278,
+        height: 226,
+      },
       description: (
         <>
           {t.section3.description.split("\n").map((line, index) => (
@@ -244,12 +259,19 @@ function CrownContent() {
       images: {
         main: "/hair-transplant/crown/crown-4.png",
       },
+      imagesMobile: {
+        main: "/hair-transplant/crown/mobile/crown-4-mobile.svg",
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
+      },
     },
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/hair-transplant/crown/slide/before.jpg",
-      afterImage: "/hair-transplant/crown/slide/after.jpg",
+      beforeImage: "/hair-transplant/crown/slide/before.png",
+      afterImage: "/hair-transplant/crown/slide/after.png",
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },

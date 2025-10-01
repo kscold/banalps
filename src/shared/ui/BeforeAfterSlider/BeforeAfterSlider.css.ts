@@ -224,11 +224,14 @@ export const loginOverlay = style({
   right: 0,
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.7)",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)", // Safari 지원
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   zIndex: 10,
   borderRadius: "8px",
+  pointerEvents: "auto", // 오버레이가 클릭을 막도록
 });
 
 export const loginOverlayContent = style({

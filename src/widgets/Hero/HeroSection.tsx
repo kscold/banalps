@@ -40,7 +40,7 @@ export default function HeroSection({
     if (!isActive) return
 
     // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환 (Android 환경 최적화)
-    const textScrollDepth = isMobile ? 200 : 2000 // 모바일: 200px (Android 환경 고려), 데스크톱: 400px (모바일과 유사)
+    const textScrollDepth = isMobile ? 500 : 2000 // 모바일: 500px (충분한 텍스트 전환 시간), 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts // 전체 스크롤 높이
     let scrollY = virtualScrollY
 
@@ -219,7 +219,7 @@ export default function HeroSection({
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
   // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
-  const textScrollDepth = isMobile ? 300 : 2000
+  const textScrollDepth = isMobile ? 500 : 2000
   const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100
 
   return (

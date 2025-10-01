@@ -953,7 +953,7 @@ export const treatmentDetailSection = style({
       padding: "120px 0",
     },
     [breakpoints.mobile]: {
-      padding: `${mvw(60)} 0`,
+      padding: 0,
     },
   },
 });
@@ -1074,7 +1074,8 @@ export const treatmentSubtitle = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   ...responsiveFont(40),
-  lineHeight: vw(56),
+  lineHeight: "150%",
+  letterSpacing: "0",
   color: "#272727",
   margin: 0,
   whiteSpace: "normal", // 줄바꿈이 제대로 작동하도록 설정
@@ -1084,7 +1085,6 @@ export const treatmentSubtitle = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
-      lineHeight: mvw(32),
     },
   },
 });
@@ -1116,7 +1116,8 @@ export const treatmentSubtitleCustomMargin = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
   ...responsiveFont(40),
-  lineHeight: vw(56),
+  lineHeight: "150%",
+  letterSpacing: "0",
   color: "#272727",
   margin: 0,
   // marginBottom: "var(--margin-bottom)",
@@ -1128,7 +1129,6 @@ export const treatmentSubtitleCustomMargin = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
-      lineHeight: mvw(32),
       marginBottom: "var(--margin-bottom-mobile)",
     },
   },
@@ -1138,7 +1138,8 @@ export const treatmentDescription = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
   ...responsiveFont(24),
-  lineHeight: vw(36),
+  lineHeight: "150%",
+  letterSpacing: "0",
   color: "#272727",
   margin: 0,
   "@media": {
@@ -1147,7 +1148,6 @@ export const treatmentDescription = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
-      lineHeight: mvw(32),
     },
   },
 });
