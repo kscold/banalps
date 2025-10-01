@@ -7,6 +7,7 @@ import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useAboutTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 import { useState, useEffect, useRef } from "react";
+import Footer from "@/shared/ui/Footer/Footer";
 
 export default function AboutPage() {
   const [currentSection, setCurrentSection] = useState<0 | 1>(0);
@@ -778,6 +779,7 @@ export default function AboutPage() {
                 </div>
               </div>
             </section>
+            <Footer />
           </motion.div>
         )}
       </div>

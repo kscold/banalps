@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import * as styles from "./TermsModal.css";
 import Image from "next/image";
@@ -27,9 +28,8 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
   if (!isOpen) return null;
 
   const title = type === "terms" ? "이용약관" : "개인정보처리방침";
-  const subtitle = type === "terms" ? "회원가입약관" : "개인정보처리방침";
 
-  return (
+  const modalContent = (
     <motion.div
       className={styles.overlay}
       onClick={onClose}
@@ -56,8 +56,6 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
         </div>
 
         <div className={styles.modalBody}>
-          <h3 className={styles.subtitle}>{subtitle}</h3>
-
           <div className={styles.content}>
             {type === "terms" ? (
               <div className={styles.termsContent}>
@@ -630,4 +628,6 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
       </motion.div>
     </motion.div>
   );
+
+  return createPortal(modalContent, document.body);
 }

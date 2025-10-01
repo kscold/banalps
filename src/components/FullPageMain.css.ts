@@ -9,6 +9,7 @@ export const container = style({
   scrollBehavior: "smooth",
   WebkitOverflowScrolling: "touch",
   backgroundColor: "#000",
+  zIndex: 1, // 낮은 z-index로 설정하여 모달이 위에 표시되도록
   "@media": {
     [breakpoints.mobile]: {
       scrollSnapType: "none", // 모바일에서는 스크롤 스냅 비활성화

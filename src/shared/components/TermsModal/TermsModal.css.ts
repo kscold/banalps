@@ -9,7 +9,7 @@ export const overlay = style({
   right: 0,
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.6)",
-  zIndex: 10000, // 헤더(9999)보다 높게 설정
+  zIndex: 99999, // fullpage 스크롤 컨테이너보다 높게 설정
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -34,7 +34,7 @@ export const modal = style({
   overflow: "hidden",
   display: "flex",
   flexDirection: "column",
-  zIndex: 10000, // 헤더(9999)보다 높게 설정
+  zIndex: 99999, // fullpage 스크롤 컨테이너보다 높게 설정
   "@media": {
     [breakpoints.mobile]: {
       width: "90%",
