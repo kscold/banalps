@@ -2,17 +2,103 @@
 
 import { motion } from "framer-motion";
 import { VideoSection } from "../../widgets/Hero/VideoSection";
-import { useAboutScroll } from "../../shared/hooks/useAboutScroll";
 import * as styles from "./AboutPage.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useAboutTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { useState, useEffect, useRef } from "react";
 
 export default function AboutPage() {
-  const { videoActive, contentActive, currentSection } = useAboutScroll();
+  const [currentSection, setCurrentSection] = useState<0 | 1>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const t = useAboutTranslations();
   const { language } = useLanguageStore();
+
+  // 초기 설정 - 비디오 섹션으로 스크롤
+  useEffect(() => {
+    if (containerRef.current && videoRef.current) {
+      containerRef.current.scrollTop = 0;
+      videoRef.current.scrollIntoView({ behavior: "instant" });
+    }
+  }, []);
+
+  // 스크롤 스냅 기능 - 메인 페이지와 동일
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+
+      scrollTimeout = setTimeout(() => {
+        snapToNearestSection();
+      }, 200);
+    };
+
+    const snapToNearestSection = () => {
+      if (!videoRef.current || !contentRef.current) return;
+
+      const scrollTop = container.scrollTop;
+      const videoTop = videoRef.current.offsetTop;
+      const contentTop = contentRef.current.offsetTop;
+
+      // Content 영역에 도달했으면 스냅 비활성화 (자유 스크롤)
+      if (scrollTop >= contentTop) {
+        return;
+      }
+
+      // Video와 Content 사이
+      const midPoint = (videoTop + contentTop) / 2;
+      const targetSection = scrollTop < midPoint ? videoRef.current : contentRef.current;
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
+  // Intersection Observer로 현재 섹션 추적
+  useEffect(() => {
+    const options = {
+      root: containerRef.current,
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0,
+    };
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === videoRef.current) {
+            setCurrentSection(0);
+          } else if (entry.target === contentRef.current) {
+            setCurrentSection(1);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    if (videoRef.current) observer.observe(videoRef.current);
+    if (contentRef.current) observer.observe(contentRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   // 번역이 로딩 중인지 확인
   if (!t || !t.hero || !t.values) {
@@ -25,53 +111,35 @@ export default function AboutPage() {
     ...strength,
   }));
 
-  // 섹션 전환 애니메이션 상태
-  const videoScale = currentSection === 0 ? 1 : 0.95;
-  const videoOpacity = videoActive ? 1 : 0;
-
   return (
-    <div
-      className={styles.aboutPage}
-      style={{ overflow: videoActive ? "hidden" : "auto" }}
-    >
-      {/* Video Section - 모션 애니메이션 적용 */}
-      <motion.div
-        className="fixed top-0 left-0 w-full h-screen"
-        initial={{ opacity: 1, scale: 1 }}
-        animate={{
-          opacity: videoOpacity,
-          scale: videoScale,
-        }}
-        transition={{
-          duration: 0.6,
-          ease: [0.43, 0.13, 0.23, 0.96], // cubic-bezier
-        }}
-        style={{
-          zIndex: videoActive ? 2 : 1,
-          backgroundColor: "#000",
-          transformOrigin: "center center",
-        }}
-      >
-        {videoActive && <VideoSection showVideoSection={true} />}
-      </motion.div>
+    <div ref={containerRef} className={styles.aboutPage} suppressHydrationWarning>
+      {/* Video Section */}
+      <div ref={videoRef} className={styles.videoSection} suppressHydrationWarning>
+        {currentSection >= 0 && (
+          <VideoSection
+            showVideoSection={true}
+            onVideoEnd={() => {}}
+            onVideoReady={() => {}}
+          />
+        )}
+      </div>
 
-      {/* Main Content - 모션 애니메이션 적용 */}
-      {contentActive && (
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 0.8,
-            ease: [0.43, 0.13, 0.23, 0.96],
-            delay: 0.1,
-          }}
-          style={{
-            zIndex: 10,
-            backgroundColor: "white",
-            paddingTop: 0,
-          }}
-        >
+      {/* Content Section */}
+      <div ref={contentRef} className={styles.contentSection} suppressHydrationWarning>
+        {currentSection >= 1 && (
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: [0.43, 0.13, 0.23, 0.96],
+            }}
+            style={{
+              backgroundColor: "white",
+              paddingTop: 0,
+            }}
+          >
           {/* Hero Section */}
           <section className={styles.heroSection}>
             <div className={styles.heroContainer}>
@@ -683,8 +751,9 @@ export default function AboutPage() {
               </div>
             </div>
           </section>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 }

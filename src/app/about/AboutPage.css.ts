@@ -8,13 +8,48 @@ import {
 import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
-// 페이지 전체 스타일
+// 페이지 전체 스타일 - 스크롤 컨테이너
 export const aboutPage = style({
-  minHeight: "100vh",
-  backgroundColor: "#FFFDF7",
+  height: "100vh",
+  overflowY: "scroll",
+  scrollSnapType: "y proximity",
+  scrollBehavior: "smooth",
+  WebkitOverflowScrolling: "touch",
+  backgroundColor: "#000",
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapType: "none",
+    },
+  },
+});
+
+// Video Section
+export const videoSection = style({
+  height: "100vh",
   width: "100%",
-  maxWidth: "100vw",
-  overflowX: "hidden",
+  scrollSnapAlign: "start",
+  position: "relative",
+  zIndex: 1,
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapAlign: "none",
+    },
+  },
+});
+
+// Content Section
+export const contentSection = style({
+  minHeight: "100vh",
+  width: "100%",
+  scrollSnapAlign: "start",
+  position: "relative",
+  backgroundColor: "#FFFDF7",
+  zIndex: 1,
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapAlign: "none",
+    },
+  },
 });
 
 // 페이드 인 애니메이션 키프레임
