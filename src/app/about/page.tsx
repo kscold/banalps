@@ -30,7 +30,10 @@ export default function AboutPage() {
   const videoOpacity = videoActive ? 1 : 0;
 
   return (
-    <div className={styles.aboutPage} style={{ overflow: videoActive ? "hidden" : "auto" }}>
+    <div
+      className={styles.aboutPage}
+      style={{ overflow: videoActive ? "hidden" : "auto" }}
+    >
       {/* Video Section - 모션 애니메이션 적용 */}
       <motion.div
         className="fixed top-0 left-0 w-full h-screen"
@@ -40,7 +43,7 @@ export default function AboutPage() {
           scale: videoScale,
         }}
         transition={{
-          duration: 0.8,
+          duration: 0.6,
           ease: [0.43, 0.13, 0.23, 0.96], // cubic-bezier
         }}
         style={{
@@ -53,15 +56,15 @@ export default function AboutPage() {
       </motion.div>
 
       {/* Main Content - 모션 애니메이션 적용 */}
-      {!videoActive && contentActive && (
+      {contentActive && (
         <motion.div
           className="relative"
-          initial={{ opacity: 0, y: 100, scale: 0.98 }}
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
-            duration: 1,
+            duration: 0.8,
             ease: [0.43, 0.13, 0.23, 0.96],
-            delay: 0.2,
+            delay: 0.1,
           }}
           style={{
             zIndex: 10,
@@ -194,7 +197,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
                 >
                   <img
-                    src="/main/shot/shot1.png"
+                    src={
+                      isMobile
+                        ? "/main/shot/mobile/shot1-mobile.svg"
+                        : "/main/shot/shot1.png"
+                    }
                     alt="Shin Seung gyu"
                     className={styles.reYouCardImage}
                   />
@@ -212,7 +219,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
                 >
                   <img
-                    src="/main/shot/shot2.png"
+                    src={
+                      isMobile
+                        ? "/main/shot/mobile/shot2-mobile.svg"
+                        : "/main/shot/shot2.png"
+                    }
                     alt="의료진 4"
                     className={styles.reYouCardImage}
                   />
@@ -229,7 +240,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
                 >
                   <img
-                    src="/main/shot/shot3.svg"
+                    src={
+                      isMobile
+                        ? "/main/shot/mobile/shot3-mobile.svg"
+                        : "/main/shot/shot3.svg"
+                    }
                     alt="Park Soo Ho"
                     className={styles.reYouCardImage}
                   />
@@ -247,7 +262,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.4, delay: 0, ease: "easeOut" }}
                 >
                   <img
-                    src="/main/shot/shot4.png"
+                    src={
+                      isMobile
+                        ? "/main/shot/mobile/shot4-mobile.svg"
+                        : "/main/shot/shot4.png"
+                    }
                     alt="Kim Narae"
                     className={styles.reYouCardImage}
                   />

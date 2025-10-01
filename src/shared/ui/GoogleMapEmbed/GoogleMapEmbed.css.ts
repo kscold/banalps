@@ -90,7 +90,7 @@ export const mapButtons = style({
     },
     [breakpoints.mobile]: {
       gap: mvw(20),
-      marginTop: mvw(60),
+      marginTop: 0,
       width: "100%",
     },
   },

@@ -938,7 +938,8 @@ export const treatmentCardTitle = style({
     [breakpoints.mobile]: {
       width: "100%",
       fontSize: mvw(20),
-      lineHeight: mvw(20),
+      lineHeight: "150%",
+      letterSpacing: "0%",
     },
   },
 });

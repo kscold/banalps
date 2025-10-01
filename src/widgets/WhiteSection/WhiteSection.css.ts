@@ -309,6 +309,11 @@ export const otherServiceTitle = style({
   color: "#272727",
   margin: "0",
   zIndex: 2,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   "@media": {
     [breakpoints.desktopLarge]: {
       top: "40px",
@@ -417,7 +422,6 @@ export const locationContent = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      padding: "0", // 모바일 패딩 제거 (상위 컨테이너에서 처리)
       flexDirection: "column",
       height: "auto",
       gap: mvw(40),
@@ -524,8 +528,7 @@ export const locationInfo = style({
       height: "auto", // 모바일에서는 자동 높이
       minHeight: "auto",
       justifyContent: "flex-start", // 모바일에서는 위쪽 정렬
-      gap: mvw(40), // 모바일에서 간격
-      paddingTop: mvw(20), // 상단 패딩 추가
+      gap: 0, // gap 제거
     },
   },
 });
@@ -563,15 +566,37 @@ export const infoBox = style({
 export const infoItem = style({
   display: "flex",
   gap: vw(20),
-  marginBottom: vw(55),
+  marginBottom: vw(58),
   "@media": {
     [breakpoints.desktopLarge]: {
       gap: "20px",
-      marginBottom: "55px",
+      marginBottom: "58px",
     },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       flexDirection: "row",
-      gap: mvw(20),
+      gap: mvw(12),
+      marginBottom: mvw(40),
+      alignItems: "flex-start",
+    },
+  },
+});
+
+export const infoItemPhone = style({
+  display: "flex",
+  gap: vw(20),
+  marginBottom: vw(58),
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      gap: "20px",
+      marginBottom: "58px",
+    },
+    [breakpoints.desktop]: {
+      gap: vw(20),
+      marginBottom: vw(58),
+    },
+    [breakpoints.mobile]: {
+      gap: mvw(12),
       marginBottom: mvw(40),
       alignItems: "flex-start",
     },
@@ -594,10 +619,11 @@ export const infoLabel = style({
       lineHeight: "28px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
+      fontSize: mvw(14),
       lineHeight: mvw(24),
-      width: mvw(70),
+      width: mvw(106),
       flexShrink: 0,
+      whiteSpace: "nowrap",
     },
   },
 });
@@ -642,9 +668,10 @@ export const infoValue = style({
       gap: "12px",
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
+      fontSize: mvw(14),
+      lineHeight: "130%",
       gap: 0,
+      fontWeight: 400,
     },
   },
 });
@@ -658,8 +685,9 @@ export const infoValueParagraph = style({
       marginBottom: 0,
     },
     [breakpoints.mobile]: {
-      marginBottom: 0,
+      fontSize: mvw(14),
       lineHeight: mvw(24),
+      marginBottom: 0,
     },
   },
 });
@@ -678,12 +706,13 @@ export const subwayInfo = style({
       lineHeight: "30px",
     },
     [breakpoints.mobile]: {
-      marginTop: mvw(20),
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
+      marginTop: mvw(12),
+      fontSize: mvw(14),
+      lineHeight: mvw(20),
       display: "flex",
       flexDirection: "column",
       gap: 0,
+      fontWeight: 400,
     },
   },
 });

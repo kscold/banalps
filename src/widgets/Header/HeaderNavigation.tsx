@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 import { useSession, signOut } from "next-auth/react"
+import { usePathname } from "next/navigation"
 import * as styles from "./HeaderDesign.css"
 import { useHeaderState } from "../../features/header/hooks/useHeaderState"
 import { useAuthStore } from "@/shared/stores/useAuthStore"
@@ -14,6 +15,7 @@ import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations"
 
 export default function HeaderNavigation() {
   const { data: session, status } = useSession()
+  const pathname = usePathname()
   const {
     isMenuOpen,
     isHeaderHovered,
@@ -82,7 +84,17 @@ export default function HeaderNavigation() {
           <div className={styles.headerContent}>
             {/* 로고 영역 */}
             <div className={styles.logoWrapper}>
-              <Link href="/" className={styles.logoLink}>
+              <Link
+                href="/"
+                className={styles.logoLink}
+                onClick={(e) => {
+                  // 메인 페이지에서 클릭 시 새로고침
+                  if (pathname === "/") {
+                    e.preventDefault()
+                    window.location.reload()
+                  }
+                }}
+              >
                 <img
                   src={
                     language === "JP"

@@ -206,7 +206,7 @@ export const HairTransplantHeroTitleDot = style({
       width: mvw(10),
       height: mvw(10),
       marginLeft: mvw(4),
-      marginBottom: "0", // 하단 여백 제거
+      marginBottom: 0, // 하단 여백 제거
     },
   },
 });
@@ -879,7 +879,7 @@ export const section1ImageContent = style({
   "@media": {
     [breakpoints.mobile]: {
       objectFit: "cover",
-      borderRadius: 0,
+      borderRadius: "8px",
     },
   },
 });
@@ -1910,7 +1910,7 @@ export const section3ImageContent = style({
   objectFit: "cover",
   "@media": {
     [breakpoints.mobile]: {
-      borderRadius: 0,
+      borderRadius: "8px",
     },
   },
 });

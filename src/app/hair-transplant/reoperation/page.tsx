@@ -66,8 +66,8 @@ function ReoperationContent() {
         secondary: "/hair-transplant/reoperation/reoperation-1.png",
       },
       imagesMobile: {
-        main: "/hair-transplant/reoperation/mobile/reoperation-2.jpg",
-        secondary: "/hair-transplant/reoperation/mobile/reoperation-1.jpg",
+        main: "/hair-transplant/reoperation/mobile/reoperation-2.svg",
+        secondary: "/hair-transplant/reoperation/mobile/reoperation-1.svg",
       },
       imagesMobileSize: {
         mainMaxWidth: false, // main 이미지는 100vw
@@ -180,7 +180,7 @@ function ReoperationContent() {
         illustration: ["/hair-transplant/reoperation/mobile-3.svg"],
       },
       imagesMobile: {
-        main: "/hair-transplant/reoperation/mobile/reoperation-3.jpg",
+        main: "/hair-transplant/reoperation/mobile/reoperation-3.svg",
       },
     },
     section3: {
@@ -230,12 +230,15 @@ function ReoperationContent() {
       images: {
         main: "/hair-transplant/reoperation/reoperation-4.png",
       },
+      imagesMobile: {
+        main: "/hair-transplant/reoperation/mobile/reoperation-4.svg",
+      },
     },
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/hair-transplant/reoperation/slide/before.jpg",
-      afterImage: "/hair-transplant/reoperation/slide/after.jpg",
+      beforeImage: "/hair-transplant/reoperation/slide/before.png",
+      afterImage: "/hair-transplant/reoperation/slide/after.png",
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },

@@ -1530,7 +1530,7 @@ export const doctorImage3 = style({
 
 // 신승규 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName1 = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: vw(140), // 1920px 기준 80px
   lineHeight: "80%",
@@ -1541,7 +1541,7 @@ export const doctorEnglishName1 = style({
   height: vw(224),
   selectors: {
     'html[data-language="JP"] &': {
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: fontFamily.poppins,
     },
   },
   "@media": {
@@ -1560,7 +1560,7 @@ export const doctorEnglishName1 = style({
 
 // 박수호 원장 영어 이름 - 1920px 기준
 export const doctorEnglishName2 = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: vw(140), // 1920px 기준 80px
   lineHeight: "80%",
@@ -1961,10 +1961,10 @@ export const doctorMobileOverlay = style({
       justifyContent: "start",
       alignItems: "flex-start",
       position: "absolute",
-      right: mvw(20),
+      right: mvw(16),
       height: mvw(290),
-      width: mvw(165),
-      top: "50%",
+      width: mvw(169),
+      top: "40%",
       transform: "translateY(-50%)",
       zIndex: 10, // 텍스트가 가장 앞에
     },
@@ -1977,14 +1977,13 @@ export const doctorMobileFullName = style({
     [breakpoints.mobile]: {
       display: "block",
       fontFamily: fontFamily.poppins,
-      fontWeight: 600,
-      fontSize: mvw(42),
-      lineHeight: "90%",
-      letterSpacing: "-1px",
+      fontWeight: 500,
+      fontSize: mvw(48),
       color: "#FFFFFF",
       marginBottom: mvw(40),
       position: "relative",
-      zIndex: 10, // 텍스트가 항상 앞에
+      lineHeight: "110.00000000000001%",
+      letterSpacing: "-1%",
     },
   },
 });
@@ -2008,7 +2007,7 @@ export const doctorMobileFullNameSecond = style([
   {
     "@media": {
       [breakpoints.mobile]: {
-        marginTop: mvw(40),
+        marginTop: mvw(70),
         marginBottom: mvw(40),
       },
     },
@@ -2021,7 +2020,7 @@ export const doctorMobileFullNameThird = style([
   {
     "@media": {
       [breakpoints.mobile]: {
-        marginTop: mvw(50),
+        marginTop: mvw(70),
         marginBottom: mvw(40),
       },
     },
@@ -2035,9 +2034,9 @@ export const doctorMobileFullKorean = style({
       display: "block",
       fontFamily: fontFamily.scdream,
       fontWeight: 400,
-      fontSize: mvw(14),
+      fontSize: mvw(16),
       lineHeight: "150%",
-      letterSpacing: "0.02em",
+      letterSpacing: "0%",
       color: "#272727",
       margin: 0,
       position: "relative",

@@ -176,9 +176,9 @@ export const HairTransplantHeroTitleDot = style({
     [breakpoints.mobile]: {
       width: mvw(10),
       height: mvw(10),
-      marginLeft: mvw(10),
+      marginLeft: mvw(4),
       alignSelf: "flex-end", // 모바일에서는 하단 정렬
-      marginBottom: mvw(10), // 약간의 하단 여백
+      marginBottom: mvw(6), // 약간의 하단 여백
     },
   },
 });

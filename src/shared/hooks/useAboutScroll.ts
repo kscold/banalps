@@ -87,15 +87,15 @@ export function useAboutScroll(): UseAboutScrollReturn {
         // 먼저 섹션 변경 (scale 애니메이션 시작)
         setCurrentSection(1);
 
-        // 부드러운 전환 효과
-        setTimeout(() => {
-          setContentActive(true);
-        }, 100);
-
+        // 메인 페이지와 동일한 부드러운 전환 효과
         setTimeout(() => {
           setVideoActive(false);
+        }, 300);
+
+        setTimeout(() => {
+          setContentActive(true);
           setShowMainContent(true);
-        }, 400);
+        }, 500);
       }
 
       // 이전 타이머가 있으면 취소
@@ -154,13 +154,13 @@ export function useAboutScroll(): UseAboutScrollReturn {
         setCurrentSection(1);
 
         setTimeout(() => {
-          setContentActive(true);
-        }, 100);
+          setVideoActive(false);
+        }, 300);
 
         setTimeout(() => {
-          setVideoActive(false);
+          setContentActive(true);
           setShowMainContent(true);
-        }, 400);
+        }, 500);
 
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
@@ -205,13 +205,13 @@ export function useAboutScroll(): UseAboutScrollReturn {
           setCurrentSection(1);
 
           setTimeout(() => {
-            setContentActive(true);
-          }, 100);
+            setVideoActive(false);
+          }, 300);
 
           setTimeout(() => {
-            setVideoActive(false);
+            setContentActive(true);
             setShowMainContent(true);
-          }, 400);
+          }, 500);
 
           if (scrollTimeout) {
             clearTimeout(scrollTimeout);

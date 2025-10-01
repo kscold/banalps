@@ -48,14 +48,22 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 1 */}
         <motion.div
           className={styles.imageCard1}
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
-          transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
+          viewport={{
+            once: true,
+            amount: isMobile ? 0.2 : 0.3,
+            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+          }}
+          transition={{
+            duration: isMobile ? 0.6 : 0.5,
+            delay: 0,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           {isMobile ? (
             <img
-              src="/main/shot/mobile/shot1.jpg"
+              src="/main/shot/mobile/shot1-mobile.svg"
               alt="Shin Seung gyu"
               className={styles.cardImage}
             />
@@ -71,14 +79,22 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 2 */}
         <motion.div
           className={styles.imageCard2}
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          viewport={{
+            once: true,
+            amount: isMobile ? 0.2 : 0.3,
+            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+          }}
+          transition={{
+            duration: isMobile ? 0.6 : 0.5,
+            delay: isMobile ? 0.1 : 0.4,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           {isMobile ? (
             <img
-              src="/main/shot/mobile/shot2.jpg"
+              src="/main/shot/mobile/shot2-mobile.svg"
               alt="Park Soo Ho"
               className={styles.cardImage}
             />
@@ -94,14 +110,22 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 3 */}
         <motion.div
           className={styles.imageCard3}
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
-          transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+          viewport={{
+            once: true,
+            amount: isMobile ? 0.2 : 0.3,
+            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+          }}
+          transition={{
+            duration: isMobile ? 0.6 : 0.5,
+            delay: isMobile ? 0.2 : 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           {isMobile ? (
             <img
-              src="/main/shot/mobile/shot3.jpg"
+              src="/main/shot/mobile/shot3-mobile.svg"
               alt="Kim Narae"
               className={styles.cardImage}
             />
@@ -117,14 +141,22 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 4 */}
         <motion.div
           className={styles.imageCard4}
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
-          transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+          viewport={{
+            once: true,
+            amount: isMobile ? 0.2 : 0.3,
+            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+          }}
+          transition={{
+            duration: isMobile ? 0.6 : 0.5,
+            delay: isMobile ? 0.3 : 1.2,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           {isMobile ? (
             <img
-              src="/main/shot/mobile/shot4.jpg"
+              src="/main/shot/mobile/shot4-mobile.svg"
               alt="의료진 4"
               className={styles.cardImage}
             />

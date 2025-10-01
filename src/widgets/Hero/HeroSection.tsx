@@ -109,7 +109,7 @@ export default function HeroSection({
       // 마지막 텍스트에 도달했을 때 다음 섹션으로 (Android 환경 최적화)
       if (
         clampedIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth * 0.7 // 70% 지점에서 전환 (더 빠른 섹션 이동)
+        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.3 : 0.7) // 모바일: 30%, 데스크톱: 70%
       ) {
         if (onTextComplete) {
           setTimeout(() => {
@@ -174,7 +174,7 @@ export default function HeroSection({
       // 마지막 텍스트에 도달했을 때 다음 섹션으로
       if (
         clampedIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth * 0.7 // 70% 지점에서 전환 (더 빠른 섹션 이동)
+        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.3 : 0.7) // 모바일: 30%, 데스크톱: 70%
       ) {
         if (onTextComplete) {
           setTimeout(() => {

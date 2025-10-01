@@ -62,8 +62,8 @@ export const labelsContainerMobile = style({
 
 export const labelMobile = style({
   fontFamily: fontFamily.poppins,
-  fontWeight: 400,
-  fontSize: "18px",
+  fontWeight: 500,
+  fontSize: mvw(20),
   lineHeight: "20px",
   color: "#FFFFFF",
   margin: "0",

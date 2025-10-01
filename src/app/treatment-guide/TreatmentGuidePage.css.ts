@@ -294,7 +294,7 @@ export const contactContainer = style({
     [breakpoints.mobile]: {
       flexDirection: "column",
       gap: mvw(40),
-      padding: `0 ${mvw(20)}`,
+      padding: `0 ${mvw(16)}`,
       paddingTop: "0",
       paddingBottom: mvw(120),
     },
@@ -343,7 +343,7 @@ export const contactInfo = style({
     },
     [breakpoints.mobile]: {
       width: "100%",
-      paddingTop: mvw(20),
+      paddingTop: 0,
     },
   },
 });
@@ -393,9 +393,9 @@ export const contactItemPhone = style({
       marginBottom: vw(58),
     },
     [breakpoints.mobile]: {
-      gap: mvw(20),
+      gap: mvw(12),
       marginBottom: mvw(40),
-      alignItems: "center",
+      alignItems: "flex-start",
     },
   },
 });
@@ -472,8 +472,8 @@ export const contactSchedule = style({
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
+      fontSize: mvw(14),
+      lineHeight: "130%",
       fontWeight: 400,
     },
   },

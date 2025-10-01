@@ -126,7 +126,7 @@ export default function WhiteSection() {
           {/* Other Medical Service 모바일 박스 */}
           <div className={styles.mobileOtherServiceBox}>
             <img
-              src="/main/white-section/mobile/white-section-mobile-2.png"
+              src="/main/white-section/mobile/white-section-mobile-2.svg"
               alt="Other Medical Service"
               className={styles.mobileOtherServiceImage}
             />
@@ -379,22 +379,24 @@ export default function WhiteSection() {
                 <GoogleMapEmbed showButtons={false} />
               </div>
 
-              {/* 모바일: 정보 영역 */}
+              {/* 모바일: 정보 영역 - TreatmentGuidePage와 동일한 구조 */}
               <div className={styles.locationInfo}>
                 <div className={styles.infoBox}>
-                  <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>
+                  {/* 전화번호 */}
+                  <div className={styles.infoItemPhone}>
+                    <h3 className={styles.infoLabel}>
                       {white.location.phone}
-                    </span>
-                    <span className={styles.infoNumber}>
+                    </h3>
+                    <p className={styles.infoNumber}>
                       {white.location.phoneNumber}
-                    </span>
+                    </p>
                   </div>
 
+                  {/* 진료시간 */}
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>
+                    <h3 className={styles.infoLabel}>
                       {white.location.hours}
-                    </span>
+                    </h3>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.weekday}
@@ -405,10 +407,11 @@ export default function WhiteSection() {
                     </div>
                   </div>
 
+                  {/* 오시는길 */}
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>
+                    <h3 className={styles.infoLabel}>
                       {white.location.directions}
-                    </span>
+                    </h3>
                     <div className={styles.infoValue}>
                       <p className={styles.infoValueParagraph}>
                         {white.location.address1}

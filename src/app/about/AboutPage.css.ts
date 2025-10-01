@@ -955,7 +955,6 @@ export const galleryMainImage = style({
       maxWidth: "100%",
       width: "100%",
       height: mvw(251), // 첫 번째: 251px
-      borderRadius: "8px",
       flex: "none",
     },
   },
@@ -1093,7 +1092,6 @@ export const galleryLeftLarge = style({
     [breakpoints.mobile]: {
       gridColumn: "1",
       gridRow: "1",
-      borderRadius: "8px",
     },
   },
 });
@@ -1120,7 +1118,6 @@ export const galleryRightTop = style({
       gridRow: "2",
       height: "auto",
       alignSelf: "stretch",
-      borderRadius: "8px",
     },
   },
 });
@@ -1147,7 +1144,6 @@ export const galleryRightBottom = style({
       gridRow: "3",
       height: "auto",
       alignSelf: "stretch",
-      borderRadius: "8px",
     },
   },
 });
@@ -1163,9 +1159,7 @@ export const galleryGridItem = style({
   // },
   "@media": {
     [breakpoints.desktopLarge]: {},
-    [breakpoints.mobile]: {
-      borderRadius: "8px",
-    },
+    [breakpoints.mobile]: {},
   },
 });
 
@@ -1223,7 +1217,6 @@ export const gallerySmallImage = style({
     },
     [breakpoints.mobile]: {
       height: mvw(400), // 7번째: 작은 이미지를 400px로 변경
-      borderRadius: "8px",
     },
   },
 });
@@ -1243,7 +1236,6 @@ export const galleryLargeImage = style({
     },
     [breakpoints.mobile]: {
       height: mvw(197), // 8-9번째: 큰 이미지를 197px로 변경
-      borderRadius: "8px",
     },
   },
 });

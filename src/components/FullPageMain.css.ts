@@ -9,6 +9,11 @@ export const container = style({
   scrollBehavior: "smooth",
   WebkitOverflowScrolling: "touch",
   backgroundColor: "#000",
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapType: "none", // 모바일에서는 스크롤 스냅 비활성화
+    },
+  },
 });
 
 // 각 섹션 - 풀스크린 스냅
@@ -17,6 +22,11 @@ export const section = style({
   width: "100%",
   scrollSnapAlign: "start",
   position: "relative",
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapAlign: "none", // 모바일에서는 스냅 비활성화
+    },
+  },
 });
 
 // Hero 섹션
@@ -43,4 +53,9 @@ export const contentSection = style({
   position: "relative",
   backgroundColor: "white",
   zIndex: 1,
+  "@media": {
+    [breakpoints.mobile]: {
+      scrollSnapAlign: "none", // 모바일에서는 스냅 비활성화
+    },
+  },
 });
