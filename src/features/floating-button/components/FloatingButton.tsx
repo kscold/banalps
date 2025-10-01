@@ -49,16 +49,12 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/wave.svg"
               alt="Brand"
-              width={30}
-              height={30}
             />
           )}
           {variant === "close" && (
             <img
               src="/main/floating-button/cancel.svg"
               alt="Close"
-              width={20}
-              height={20}
             />
           )}
         </div>
@@ -69,8 +65,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/navercalender.svg"
               alt="Naver"
-              width={30}
-              height={30}
             />
           )}
 
@@ -78,8 +72,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/kakao.svg"
               alt="Kakao"
-              width={30}
-              height={30}
             />
           )}
 
@@ -87,8 +79,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/naverblog.svg"
               alt="Naver Blog"
-              width={30}
-              height={30}
             />
           )}
 
@@ -96,8 +86,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/youtube.svg"
               alt="YouTube"
-              width={30}
-              height={30}
             />
           )}
 
@@ -105,8 +93,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/line.svg"
               alt="Line"
-              width={30}
-              height={30}
             />
           )}
 
@@ -114,8 +100,6 @@ export default function FloatingButton({
             <img
               src="/main/floating-button/instargram.svg"
               alt="Instagram"
-              width={30}
-              height={30}
             />
           )}
         </div>

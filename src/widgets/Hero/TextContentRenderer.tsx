@@ -134,15 +134,15 @@ export function TextContentRenderer({
             className={styles.textBlock}
             style={{
               position: "absolute",
-              opacity: opacity,
+              opacity,
               transform: `translateY(${translateY}px)`,
-              transition: isMobile
-                ? "opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)" // 모바일: 0.3초 + 부드러운 곡선
-                : "opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)", // 데스크톱: 0.6초 + 부드러운 곡선
-              pointerEvents: opacity > 0 ? "auto" : "none",
+              transition: `opacity ${isMobile ? "0.3s" : "0.6s"} cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${isMobile ? "0.3s" : "0.6s"} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
             }}
+            suppressHydrationWarning
           >
-            <p className={styles.storyText}>{text.content}</p>
+            <p className={styles.storyText} suppressHydrationWarning>
+              {text.content}
+            </p>
           </div>
         );
       })}

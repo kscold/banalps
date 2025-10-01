@@ -1,15 +1,10 @@
 import { style, globalStyle, keyframes } from "@vanilla-extract/css";
 import {
   breakpoints,
-  floatingButtonValues,
 } from "../../../shared/styles/responsive.constants";
 
 // 기본 플로팅 버튼 스타일 - Figma 디자인과 100% 일치
 export const floatingButton = style({
-  // Figma 디자인: 반응형 크기 (60px 기준)
-  width: floatingButtonValues.buttonSize.desktop,
-  height: floatingButtonValues.buttonSize.desktop,
-
   // Figma 디자인: 흰색 배경
   background: "#FFFFFF",
 
@@ -38,8 +33,12 @@ export const floatingButton = style({
   // 반응형 크기 적용
   "@media": {
     [breakpoints.desktopLarge]: {
-      width: floatingButtonValues.buttonSize.desktopFixed, // 1920px+ 고정 크기
-      height: floatingButtonValues.buttonSize.desktopFixed, // 1920px+ 고정 크기
+      width: "60px", // 1920px+ 고정 크기
+      height: "60px", // 1920px+ 고정 크기
+    },
+    [breakpoints.desktop]: {
+      width: "60px", // 데스크톱: 60px 고정
+      height: "60px", // 데스크톱: 60px 고정
     },
     [breakpoints.mobile]: {
       width: "clamp(60px, 12vw, 80px)", // 모바일: 60px 기준, 최대 80px
@@ -72,10 +71,6 @@ export const floatingButtonActive = style({
 
 // 아이콘 컨테이너
 export const iconContainer = style({
-  // Figma 디자인: 40px × 40px 아이콘 영역
-  width: "40px",
-  height: "40px",
-
   // 중앙 정렬
   display: "flex",
   alignItems: "center",
@@ -86,6 +81,14 @@ export const iconContainer = style({
 
   // 반응형 크기
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "40px", // 1920px+ 고정 크기
+      height: "40px", // 1920px+ 고정 크기
+    },
+    [breakpoints.desktop]: {
+      width: "40px", // 데스크톱: 40px 고정
+      height: "40px", // 데스크톱: 40px 고정
+    },
     [breakpoints.mobile]: {
       width: "clamp(40px, 8vw, 54px)", // 모바일: 40px 기준, 최대 54px
       height: "clamp(40px, 8vw, 54px)", // 모바일: 40px 기준, 최대 54px
@@ -95,10 +98,16 @@ export const iconContainer = style({
 
 // 아이콘 이미지 스타일
 globalStyle(`${iconContainer} img`, {
-  width: "30px",
-  height: "30px",
   objectFit: "contain",
   "@media": {
+    [breakpoints.desktopLarge]: {
+      width: "30px", // 1920px+ 고정 크기
+      height: "30px", // 1920px+ 고정 크기
+    },
+    [breakpoints.desktop]: {
+      width: "30px", // 데스크톱: 30px 고정
+      height: "30px", // 데스크톱: 30px 고정
+    },
     [breakpoints.mobile]: {
       width: "clamp(30px, 6vw, 40px)", // 모바일: 30px 기준, 최대 40px
       height: "clamp(30px, 6vw, 40px)", // 모바일: 30px 기준, 최대 40px

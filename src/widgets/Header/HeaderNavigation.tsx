@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useRef, useEffect } from "react"
-import { useSession, signOut } from "next-auth/react"
-import { usePathname } from "next/navigation"
-import * as styles from "./HeaderDesign.css"
-import { useHeaderState } from "../../features/header/hooks/useHeaderState"
-import { useAuthStore } from "@/shared/stores/useAuthStore"
-import { useLanguageStore } from "@/shared/stores/useLanguageStore"
-import DesktopNav from "../../features/header/components/DesktopNav"
-import MobileMenu from "../../features/header/components/MobileMenu"
-import MenuToggleButton from "../../features/header/components/MenuToggleButton"
-import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations"
+import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import * as styles from "./HeaderDesign.css";
+import { useHeaderState } from "../../features/header/hooks/useHeaderState";
+import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import DesktopNav from "../../features/header/components/DesktopNav";
+import MobileMenu from "../../features/header/components/MobileMenu";
+import MenuToggleButton from "../../features/header/components/MenuToggleButton";
+import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations";
 
 export default function HeaderNavigation() {
-  const { data: session, status } = useSession()
-  const pathname = usePathname()
+  const { data: session, status } = useSession();
+  const pathname = usePathname();
   const {
     isMenuOpen,
     isHeaderHovered,
@@ -24,32 +24,32 @@ export default function HeaderNavigation() {
     handleHeaderMouseEnter,
     handleHeaderMouseLeave,
     closeMenu,
-  } = useHeaderState()
+  } = useHeaderState();
 
-  const { openLoginModal } = useAuthStore()
-  const { language, setLanguage } = useLanguageStore()
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
-  const [isClient, setIsClient] = useState(false)
-  const languageDropdownRef = useRef<HTMLDivElement>(null)
-  const t = useHeaderTranslations()
+  const { openLoginModal } = useAuthStore();
+  const { language, setLanguage } = useLanguageStore();
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
+  const t = useHeaderTranslations();
 
   // 클라이언트 사이드 렌더링 확인
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   const handleLogout = async () => {
-    await signOut({ redirect: false })
-  }
+    await signOut({ redirect: false });
+  };
 
   const toggleLanguageDropdown = () => {
-    setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
-  }
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
 
   const selectLanguage = (lang: "KR" | "JP") => {
-    setLanguage(lang)
-    setIsLanguageDropdownOpen(false)
-  }
+    setLanguage(lang);
+    setIsLanguageDropdownOpen(false);
+  };
 
   // 외부 클릭 감지하여 드롭다운 닫기
   useEffect(() => {
@@ -58,18 +58,18 @@ export default function HeaderNavigation() {
         languageDropdownRef.current &&
         !languageDropdownRef.current.contains(event.target as Node)
       ) {
-        setIsLanguageDropdownOpen(false)
+        setIsLanguageDropdownOpen(false);
       }
-    }
+    };
 
     if (isLanguageDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [isLanguageDropdownOpen])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLanguageDropdownOpen]);
 
   return (
     <>
@@ -90,8 +90,8 @@ export default function HeaderNavigation() {
                 onClick={(e) => {
                   // 메인 페이지에서 클릭 시 새로고침
                   if (pathname === "/") {
-                    e.preventDefault()
-                    window.location.reload()
+                    e.preventDefault();
+                    window.location.reload();
                   }
                 }}
               >
@@ -171,19 +171,6 @@ export default function HeaderNavigation() {
                     onClick={() => selectLanguage("KR")}
                   >
                     <span>KR</span>
-                    {(!isClient || language === "KR") && (
-                      <svg
-                        className={styles.languageCheckIcon}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
                   </button>
                   <button
                     className={`${styles.languageOption} ${
@@ -196,19 +183,6 @@ export default function HeaderNavigation() {
                     onClick={() => selectLanguage("JP")}
                   >
                     <span>JP</span>
-                    {isClient && language === "JP" && (
-                      <svg
-                        className={styles.languageCheckIcon}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
                   </button>
                 </div>
               </div>
@@ -247,5 +221,5 @@ export default function HeaderNavigation() {
       {/* 모바일 메뉴 */}
       <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
     </>
-  )
+  );
 }

@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
+      <head suppressHydrationWarning>
         <link
           rel="stylesheet"
           as="style"

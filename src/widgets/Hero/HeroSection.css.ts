@@ -266,8 +266,8 @@ export const storyText = style({
   textAlign: "left", // 오른쪽 정렬
   display: "block",
   width: "100%",
-  pointerEvents: "auto", // 텍스트 선택 가능하도록
-  userSelect: "text", // 텍스트 선택 허용
+  pointerEvents: "none", // 스크롤 이벤트가 페이지로 전달되지 않도록
+  userSelect: "text", // 텍스트 선택은 여전히 허용
 
   "@media": {
     [breakpoints.mobile]: {
@@ -295,8 +295,8 @@ export const specialQuoteText = style({
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
   display: "inline",
-  pointerEvents: "auto", // 텍스트 선택 가능하도록
-  userSelect: "text", // 텍스트 선택 허용
+  pointerEvents: "none", // 스크롤 이벤트가 페이지로 전달되지 않도록
+  userSelect: "text", // 텍스트 선택은 여전히 허용
 
   "@media": {
     [breakpoints.mobile]: {

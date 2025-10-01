@@ -81,6 +81,12 @@ export default function HeroSection({
       // HeroSection이 활성화되어 있고, 실제로 스크롤 영역 내에 있을 때만 preventDefault
       if (!isActive) return
 
+      // 텍스트 선택 중인지 확인
+      const selection = window.getSelection()
+      if (selection && selection.toString().length > 0) {
+        return // 텍스트 선택 중에는 스크롤 처리하지 않음
+      }
+
       // 터치 대상이 헤더나 플로팅 버튼이 아닌 경우에만 처리
       const target = e.target as HTMLElement
       if (shouldPassThrough(target)) {
@@ -92,7 +98,7 @@ export default function HeroSection({
 
       // 스크롤 이벤트 처리
       const deltaY = e.deltaY
-      const scrollSpeed = isMobile ? 4.5 : 2.0 // 모바일: 4.5 (Android 최적화), 데스크톱: 2.0 (모바일과 유사)
+      const scrollSpeed = isMobile ? 4.5 : 1.0 // 모바일: 4.5 (Android 최적화), 데스크톱: 1.0 (더 느리게)
       scrollY += deltaY * scrollSpeed
 
       // 스크롤 범위 제한
@@ -109,7 +115,7 @@ export default function HeroSection({
       // 마지막 텍스트에 도달했을 때 다음 섹션으로 (Android 환경 최적화)
       if (
         clampedIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.3 : 0.7) // 모바일: 30%, 데스크톱: 70%
+        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.2 : 0.5) // 모바일: 20%, 데스크톱: 50% (더 많이 스크롤해야 넘어감)
       ) {
         if (onTextComplete) {
           setTimeout(() => {
@@ -190,14 +196,14 @@ export default function HeroSection({
 
     window.addEventListener("wheel", handleWheel, {
       passive: false,
-      capture: true, // capture를 true로 변경하여 이벤트를 먼저 받음
+      capture: false, // capture를 false로 변경하여 버블링 단계에서 처리
     })
     window.addEventListener("touchstart", handleTouchStart, { passive: false })
     window.addEventListener("touchmove", handleTouchMove, { passive: false })
     window.addEventListener("touchend", handleTouchEnd, { passive: true })
 
     return () => {
-      window.removeEventListener("wheel", handleWheel, { capture: true })
+      window.removeEventListener("wheel", handleWheel, { capture: false })
       window.removeEventListener("touchstart", handleTouchStart)
       window.removeEventListener("touchmove", handleTouchMove)
       window.removeEventListener("touchend", handleTouchEnd)
@@ -222,16 +228,17 @@ export default function HeroSection({
       {isActive && (
         <div
           style={{
-            height: `${totalTexts * 100}vh`, // 각 텍스트당 100vh씩
+            height: `${totalTexts * 100}vh`,
             position: "absolute",
             width: "1px",
             pointerEvents: "none",
             opacity: 0,
           }}
+          suppressHydrationWarning
         />
       )}
 
-      <section className={styles.heroContainer}>
+      <section className={styles.heroContainer} suppressHydrationWarning>
         {/* <Image
           src="/main/background/bg_sky.jpg"
           alt="바날 성형외과 배경"

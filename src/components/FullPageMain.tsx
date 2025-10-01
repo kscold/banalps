@@ -27,6 +27,68 @@ const FullPageMain = () => {
     }
   }, []);
 
+  // 스크롤 스냅 기능
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    let isScrolling = false;
+
+    const handleScroll = () => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+
+      // 스크롤이 멈춘 후 200ms 대기
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+        snapToNearestSection();
+      }, 200);
+    };
+
+    const snapToNearestSection = () => {
+      if (!heroRef.current || !videoRef.current || !contentRef.current) return;
+
+      const scrollTop = container.scrollTop;
+
+      // 각 섹션의 위치 계산
+      const heroTop = heroRef.current.offsetTop;
+      const videoTop = videoRef.current.offsetTop;
+      const contentTop = contentRef.current.offsetTop;
+
+      // Content(블루섹션) 영역에 도달했으면 스냅 비활성화
+      if (scrollTop >= contentTop) {
+        return; // 블루섹션/화이트섹션에서는 자유 스크롤
+      }
+
+      // 현재 스크롤 위치 기준으로 가장 가까운 섹션 찾기
+      let targetSection: HTMLDivElement | null = null;
+
+      // Hero와 Video 사이
+      if (scrollTop < videoTop) {
+        const midPoint = (heroTop + videoTop) / 2;
+        targetSection = scrollTop < midPoint ? heroRef.current : videoRef.current;
+      }
+      // Video와 Content 사이 (블루섹션 진입 전)
+      else if (scrollTop >= videoTop && scrollTop < contentTop) {
+        const midPoint = (videoTop + contentTop) / 2;
+        targetSection = scrollTop < midPoint ? videoRef.current : contentRef.current;
+      }
+
+      // 가장 가까운 섹션으로 스크롤
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   // Intersection Observer로 현재 섹션 추적
   useEffect(() => {
     const options = {
@@ -80,8 +142,8 @@ const FullPageMain = () => {
   };
 
   return (
-    <div ref={containerRef} className={styles.container}>
-      <div ref={heroRef} className={styles.heroSection}>
+    <div ref={containerRef} className={styles.container} suppressHydrationWarning>
+      <div ref={heroRef} className={styles.heroSection} suppressHydrationWarning>
         <HeroSection
           onTextComplete={handleHeroComplete}
           isActive={currentSection === 0}
@@ -89,7 +151,7 @@ const FullPageMain = () => {
         />
       </div>
 
-      <div ref={videoRef} className={styles.videoSection}>
+      <div ref={videoRef} className={styles.videoSection} suppressHydrationWarning>
         {currentSection >= 1 && (
           <VideoSection
             showVideoSection={true}
@@ -99,7 +161,7 @@ const FullPageMain = () => {
         )}
       </div>
 
-      <div ref={contentRef} className={styles.contentSection}>
+      <div ref={contentRef} className={styles.contentSection} suppressHydrationWarning>
         {currentSection >= 2 && (
           <>
             <BlueSection isActive={true} />

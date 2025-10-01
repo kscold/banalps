@@ -983,15 +983,21 @@ export const languageDropdownContainer = style({
   boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
   zIndex: 1000,
-  minWidth: "120px",
+  width: vw(120),
+  height: vw(102),
+  maxWidth: "120px",
+  maxHeight: "102px",
   opacity: 0,
   visibility: "hidden",
   transform: "translateY(-10px)",
   transition: "all 0.2s ease",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: vw(8),
   "@media": {
-    [breakpoints.desktopLarge]: {
-      minWidth: "120px",
-    },
+    [breakpoints.desktopLarge]: {},
   },
 });
 
@@ -1007,10 +1013,10 @@ export const languageOption = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: `${vw(12)} ${vw(16)}`,
+  padding: `${vw(8)} ${vw(16)}`,
   cursor: "pointer",
-  fontSize: vw(16),
-  fontFamily: fontFamily.scdream,
+  fontSize: vw(18),
+  fontFamily: fontFamily.poppins,
   fontWeight: 400,
   color: "#272727",
   backgroundColor: "transparent",
@@ -1023,7 +1029,7 @@ export const languageOption = style({
   },
   "@media": {
     [breakpoints.desktopLarge]: {
-      padding: "12px 16px",
+      padding: "8px 16px",
       fontSize: "16px",
     },
   },
@@ -1031,7 +1037,18 @@ export const languageOption = style({
 
 // 언어 옵션 활성 상태
 export const languageOptionActive = style({
-  fontWeight: 500,
+  fontFamily: fontFamily.poppins,
+  fontWeight: 400,
+  fontStyle: "Regular",
+  fontSize: vw(18),
+  lineHeight: "100%",
+  letterSpacing: "0%",
+  color: "#000000",
+  "@media": {
+    [breakpoints.desktopLarge]: {
+      fontSize: "18px",
+    },
+  },
 });
 
 // 체크 아이콘
