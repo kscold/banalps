@@ -336,6 +336,35 @@ export const cardImage = style({
   objectFit: "cover",
 });
 
+<<<<<<< Updated upstream
+=======
+// 데스크탑 전용 이미지 (SSR-safe)
+export const cardImageDesktop = style([
+  cardImage,
+  {
+    display: "block",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "none",
+      },
+    },
+  },
+]);
+
+// 모바일 전용 이미지 (SSR-safe)
+export const cardImageMobile = style([
+  cardImage,
+  {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
+]);
+
+>>>>>>> Stashed changes
 // RE.YOU 텍스트 섹션 (1920px 기준) - 헤더와 완전 일치
 export const reYouSection = style({
   position: "relative",

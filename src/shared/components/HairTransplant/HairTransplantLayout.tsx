@@ -1,8 +1,13 @@
 "use client";
 
+<<<<<<< Updated upstream
 import React from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+=======
+import React, { useRef, useCallback, useMemo } from "react";
+import { motion, useInView } from "framer-motion";
+>>>>>>> Stashed changes
 import Link from "next/link";
 import BeforeAfterSlider from "@/shared/ui/BeforeAfterSlider/BeforeAfterSlider";
 import ArrowButton from "@/shared/ui/ArrowButton/ArrowButton";
@@ -314,6 +319,7 @@ export default function HairTransplantLayout({
   const section3ImagesRef = useRef(null);
   const section3ImagesInView = useInView(section3ImagesRef, { once: true });
 
+<<<<<<< Updated upstream
   React.useEffect(() => {
     // 클라이언트에서만 미디어 쿼리 체크
     const checkScreenSize = () => {
@@ -321,11 +327,25 @@ export default function HairTransplantLayout({
       setIsDesktopLarge(window.innerWidth >= 1920);
     };
 
+=======
+  // 화면 크기 체크 함수 - useCallback으로 메모이제이션
+  const checkScreenSize = useCallback(() => {
+    setIsMobile(window.innerWidth <= 1023);
+    setIsDesktopLarge(window.innerWidth >= 1920);
+  }, []);
+
+  React.useEffect(() => {
+    // 클라이언트에서만 미디어 쿼리 체크
+>>>>>>> Stashed changes
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
 
     return () => window.removeEventListener("resize", checkScreenSize);
+<<<<<<< Updated upstream
   }, []);
+=======
+  }, [checkScreenSize]);
+>>>>>>> Stashed changes
 
   return (
     <>

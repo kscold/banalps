@@ -1,6 +1,10 @@
 "use client";
 
+<<<<<<< Updated upstream
 import { useState, useRef } from "react";
+=======
+import { useState, useRef, useCallback, useMemo } from "react";
+>>>>>>> Stashed changes
 import { motion } from "framer-motion";
 
 import * as styles from "./DoctorsPage.css";
@@ -28,6 +32,7 @@ export default function DoctorsPage() {
   const [selectedYear, setSelectedYear] = useState<number>(2021);
 
   // 스크롤 관련 ref
+<<<<<<< Updated upstream
 
   const academicSectionRef = useRef<HTMLElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -37,6 +42,20 @@ export default function DoctorsPage() {
     console.log("[DoctorsPage/연도클릭] 연도 변경:", year);
     setSelectedYear(year);
   };
+=======
+  const academicSectionRef = useRef<HTMLElement>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
+
+  // 연도 클릭 핸들러 - useCallback으로 메모이제이션
+  const handleYearClick = useCallback((year: number) => {
+    console.log("[DoctorsPage/연도클릭] 연도 변경:", year);
+    setSelectedYear(year);
+  }, []);
+
+  // 학술활동 데이터 - useMemo로 메모이제이션
+  const academicActivities = useMemo(() => getAllActivities(), [getAllActivities]);
+  const availableYears = useMemo(() => getAvailableYears(), [getAvailableYears]);
+>>>>>>> Stashed changes
 
   return (
     <div className={styles.doctorsPage}>
@@ -705,10 +724,17 @@ export default function DoctorsPage() {
                   ref={tableContainerRef}
                   className={styles.academicTableContainer}
                 >
+<<<<<<< Updated upstream
                   {getAllActivities().length > 0 ? (
                     getAllActivities().map((activity, index) => {
                       const isFirst = index === 0;
                       const isLast = index === getAllActivities().length - 1;
+=======
+                  {academicActivities.length > 0 ? (
+                    academicActivities.map((activity, index) => {
+                      const isFirst = index === 0;
+                      const isLast = index === academicActivities.length - 1;
+>>>>>>> Stashed changes
 
                       return (
                         <div

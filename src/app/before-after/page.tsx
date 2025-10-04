@@ -267,6 +267,7 @@ function CategoryCarousel({
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+<<<<<<< Updated upstream
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
   };
@@ -280,6 +281,22 @@ function CategoryCarousel({
     index === 0 ? items.length - 1 : index - 1;
   const getNextIndex = (index: number) =>
     index === items.length - 1 ? 0 : index + 1;
+=======
+  // 핸들러 함수들 - useCallback으로 메모이제이션
+  const handlePrevious = React.useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  }, [items.length]);
+
+  const handleNext = React.useCallback(() => {
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+  }, [items.length]);
+
+  // Get previous and next indices for side images - useMemo로 메모이제이션
+  const getPrevIndex = React.useCallback((index: number) =>
+    index === 0 ? items.length - 1 : index - 1, [items.length]);
+  const getNextIndex = React.useCallback((index: number) =>
+    index === items.length - 1 ? 0 : index + 1, [items.length]);
+>>>>>>> Stashed changes
 
   // Check if mobile
   const [isMobile, setIsMobile] = useState(false);
@@ -414,6 +431,7 @@ export default function BeforeAfterPage() {
   // 로그인 상태 확인
   const isLoggedIn = status === "authenticated" && !!session;
 
+<<<<<<< Updated upstream
   // 카테고리별로 그룹화
   const groupedData = beforeAfterData.reduce((acc, item) => {
     if (!acc[item.category]) {
@@ -425,15 +443,37 @@ export default function BeforeAfterPage() {
 
   // 카테고리 순서 정의 (번역 키로 매핑)
   const categoryOrder: Category[] = [
+=======
+  // 카테고리별로 그룹화 - useMemo로 메모이제이션
+  const groupedData = React.useMemo(() => {
+    return beforeAfterData.reduce((acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    }, {} as Record<Category, BeforeAfterItem[]>);
+  }, []);
+
+  // 카테고리 순서 정의 (번역 키로 매핑) - useMemo로 메모이제이션
+  const categoryOrder: Category[] = React.useMemo(() => [
+>>>>>>> Stashed changes
     "이마축소",
     "흉터&재수술",
     "헤어라인(남성)",
     "헤어라인(여성)",
     "정수리",
+<<<<<<< Updated upstream
   ];
 
   // 카테고리 번역 매핑
   const getCategoryName = (category: Category): string => {
+=======
+  ], []);
+
+  // 카테고리 번역 매핑 - useCallback으로 메모이제이션
+  const getCategoryName = React.useCallback((category: Category): string => {
+>>>>>>> Stashed changes
     switch (category) {
       case "이마축소":
         return t.categories.foreheadReduction;
@@ -448,10 +488,17 @@ export default function BeforeAfterPage() {
       default:
         return category;
     }
+<<<<<<< Updated upstream
   };
 
   // 타이틀 번역 함수 (필요시 특정 케이스 번역)
   const translateTitle = (
+=======
+  }, [t.categories]);
+
+  // 타이틀 번역 함수 - useCallback으로 메모이제이션
+  const translateTitle = React.useCallback((
+>>>>>>> Stashed changes
     title: string | undefined,
     _category: Category
   ): string => {
@@ -486,7 +533,11 @@ export default function BeforeAfterPage() {
     );
 
     return translatedTitle;
+<<<<<<< Updated upstream
   };
+=======
+  }, [t.cases]);
+>>>>>>> Stashed changes
 
   return (
     <div className={styles.beforeAfterPage}>

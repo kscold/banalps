@@ -10,10 +10,20 @@ import {
 import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
+<<<<<<< Updated upstream
 // 페이지 전체 스타일
 export const doctorsPage = style({
   minHeight: "100vh",
   background: "#73D5FA",
+=======
+// 페이지 전체 스타일 - 성능 최적화
+export const doctorsPage = style({
+  minHeight: "100vh",
+  background: "#73D5FA",
+  transform: "translateZ(0)", // GPU 가속
+  backfaceVisibility: "hidden", // 깜빡임 방지
+  willChange: "transform, opacity", // 애니메이션 최적화
+>>>>>>> Stashed changes
 });
 
 // 로딩 스타일

@@ -472,7 +472,11 @@ export const locationImageArea = style({
   },
 });
 
+<<<<<<< Updated upstream
 // 왼쪽 이미지
+=======
+// 왼쪽 이미지 (공통)
+>>>>>>> Stashed changes
 export const locationImage = style({
   width: "100%",
   height: "100%",
@@ -480,6 +484,33 @@ export const locationImage = style({
   display: "block",
 });
 
+<<<<<<< Updated upstream
+=======
+// 데스크탑 전용 이미지 (SSR-safe)
+export const locationImageDesktop = style({
+  width: "100%",
+  height: "100%",
+  display: "block",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
+// 모바일 전용 이미지 (SSR-safe)
+export const locationImageMobile = style({
+  width: "100%",
+  height: "100%",
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+    },
+  },
+});
+
+>>>>>>> Stashed changes
 // Mask group - 지도 영역 (724.29 x 500)
 export const mapArea = style({
   width: vw(724.29),
@@ -816,6 +847,35 @@ export const readyIllustrationImage = style({
   },
 });
 
+<<<<<<< Updated upstream
+=======
+// 데스크탑 전용 이미지 (SSR-safe)
+export const readyIllustrationImageDesktop = style([
+  readyIllustrationImage,
+  {
+    display: "block",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "none",
+      },
+    },
+  },
+]);
+
+// 모바일 전용 이미지 (SSR-safe)
+export const readyIllustrationImageMobile = style([
+  readyIllustrationImage,
+  {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
+]);
+
+>>>>>>> Stashed changes
 // 타이틀 래퍼 - 1600px 컨테이너 내부에서 헤더 왼쪽 시작점에 정렬
 export const readyTitleWrapper = style({
   ...responsiveContainer(1600), // 헤더와 동일한 1600px 컨테이너
@@ -1030,3 +1090,26 @@ export const mobileViewMoreButton = style({
     },
   },
 });
+<<<<<<< Updated upstream
+=======
+
+// 모바일 전용 지도 버튼 컨테이너 (SSR-safe)
+export const mapButtonsMobileOnly = style({
+  display: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "block",
+    },
+  },
+});
+
+// 데스크탑 전용 지도 버튼 컨테이너 (SSR-safe)
+export const mapButtonsDesktopOnly = style({
+  display: "block",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+>>>>>>> Stashed changes

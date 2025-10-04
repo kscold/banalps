@@ -8,11 +8,21 @@ import {
 import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "../../shared/styles/fonts.css";
 
+<<<<<<< Updated upstream
 // 페이지 전체 컨테이너
+=======
+// 페이지 전체 컨테이너 - 성능 최적화
+>>>>>>> Stashed changes
 export const beforeAfterPage = style({
   minHeight: "100vh",
   backgroundColor: "#FFFDF7",
   padding: 0,
+<<<<<<< Updated upstream
+=======
+  transform: "translateZ(0)", // GPU 가속
+  backfaceVisibility: "hidden", // 깜빡임 방지
+  willChange: "transform, opacity", // 애니메이션 최적화
+>>>>>>> Stashed changes
 });
 
 // ========== 메인 섹션 ==========

@@ -8,6 +8,13 @@ import { useVideoPreloader } from "@/utils/videoOptimizer"
 import * as styles from "./HeroSection.css"
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery"
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+export default function HeroSection() {
+  const { currentTextIndex, showVideoSection } = useHeroScroll()
+=======
+>>>>>>> Stashed changes
 interface HeroSectionProps {
   onTextComplete?: () => void
   initialTextIndex?: number
@@ -22,6 +29,10 @@ export default function HeroSection({
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex)
   const [virtualScrollY, setVirtualScrollY] = useState(0)
   const [isClient, setIsClient] = useState(false)
+<<<<<<< Updated upstream
+=======
+  const [isTransitioning, setIsTransitioning] = useState(false) // 전환 중 플래그
+>>>>>>> Stashed changes
   const totalTexts = 5 // 텍스트 개수 5개로 변경
 
   // 모바일 감지
@@ -112,12 +123,24 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex)
 
+<<<<<<< Updated upstream
       // 마지막 텍스트에 도달했을 때 다음 섹션으로 (Android 환경 최적화)
       if (
         clampedIndex === totalTexts - 1 &&
         scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.2 : 0.5) // 모바일: 20%, 데스크톱: 50% (더 많이 스크롤해야 넘어감)
       ) {
         if (onTextComplete) {
+=======
+      // 마지막 텍스트에 도달했을 때 다음 섹션으로 (중복 호출 방지)
+      if (
+        !isTransitioning &&
+        clampedIndex === totalTexts - 1 &&
+        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.1 : 0.3) && // 더 엄격한 조건
+        deltaY > 0 // 아래로 스크롤할 때만
+      ) {
+        if (onTextComplete) {
+          setIsTransitioning(true)
+>>>>>>> Stashed changes
           setTimeout(() => {
             onTextComplete()
           }, 300)
@@ -161,8 +184,13 @@ export default function HeroSection({
       const deltaY = touchStartY - currentY
 
       // 모바일에서 드래그처럼 즉각적인 반응 (Android 환경 최적화)
+<<<<<<< Updated upstream
       // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환
       const sensitivity = isMobile ? 6.0 : 2.5 // Android에서 더 빠른 전환을 위해 증가
+=======
+      // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환 (Galaxy21 최적화)
+      const sensitivity = isMobile ? 10.0 : 2.5 // 모바일 감도 대폭 증가 (6.0 → 10.0)
+>>>>>>> Stashed changes
       const newScrollY = touchStartScrollY + deltaY * sensitivity
 
       // 스크롤 범위 제한
@@ -176,6 +204,7 @@ export default function HeroSection({
       // 텍스트 인덱스 업데이트
       setCurrentTextIndex(clampedIndex)
 
+<<<<<<< Updated upstream
       // 모바일 터치 스크롤 처리 (Android 환경 최적화)
       // 마지막 텍스트에 도달했을 때 다음 섹션으로
       if (
@@ -183,6 +212,18 @@ export default function HeroSection({
         scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.3 : 0.7) // 모바일: 30%, 데스크톱: 70%
       ) {
         if (onTextComplete) {
+=======
+      // 모바일 터치 스크롤 처리 (중복 호출 방지)
+      // 마지막 텍스트에 도달했을 때 다음 섹션으로
+      if (
+        !isTransitioning &&
+        clampedIndex === totalTexts - 1 &&
+        scrollY >= totalScrollHeight - textScrollDepth * (isMobile ? 0.1 : 0.3) && // 더 엄격한 조건
+        deltaY > 0 // 아래로 스크롤할 때만
+      ) {
+        if (onTextComplete) {
+          setIsTransitioning(true)
+>>>>>>> Stashed changes
           setTimeout(() => {
             onTextComplete()
           }, 300)
@@ -221,6 +262,10 @@ export default function HeroSection({
   // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
   const textScrollDepth = isMobile ? 500 : 2000
   const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
   return (
     <>

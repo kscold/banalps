@@ -12,7 +12,10 @@ import { useWhiteTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
 
 export default function WhiteSection() {
+<<<<<<< Updated upstream
   console.log("[WhiteSection/렌더링] WhiteSection 렌더링 시작");
+=======
+>>>>>>> Stashed changes
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const white = useWhiteTranslations();
@@ -301,6 +304,7 @@ export default function WhiteSection() {
         {/* <div className={styles.readySectionContainer}> */}
         {/* Hero Illustration - 왼쪽에 붙도록 */}
         <div className={styles.readyHeroIllustration}>
+<<<<<<< Updated upstream
           {isMobile ? (
             <img
               src="/main/white-section/mobile/banal_graffiti-mobile.svg"
@@ -314,6 +318,18 @@ export default function WhiteSection() {
               className={styles.readyIllustrationImage}
             />
           )}
+=======
+          <img
+            src="/hair-transplant/hero-illustration.svg"
+            alt="메인 페이지 일러스트"
+            className={styles.readyIllustrationImageDesktop}
+          />
+          <img
+            src="/main/white-section/mobile/banal_graffiti-mobile.svg"
+            alt="메인 페이지 일러스트"
+            className={styles.readyIllustrationImageMobile}
+          />
+>>>>>>> Stashed changes
         </div>
 
         {/* Ready Title - 중앙에 배치 */}
@@ -364,6 +380,7 @@ export default function WhiteSection() {
         </h2>
 
         <div className={styles.locationContent}>
+<<<<<<< Updated upstream
           {/* 모바일과 데스크탑 레이아웃 분기 */}
           {isMobile ? (
             <>
@@ -501,6 +518,83 @@ export default function WhiteSection() {
               </div>
             </>
           )}
+=======
+          {/* 왼쪽 콘텐츠 영역 */}
+          <div className={styles.leftContentArea}>
+            {/* 이미지 영역 */}
+            <div className={styles.locationImageArea}>
+              <img
+                src="/treatment-guide/hero-image-mobile.svg"
+                alt="바날 성형외과 건물 이미지"
+                className={styles.locationImageMobile}
+              />
+              <img
+                src="/main/map/banal-house.svg"
+                alt="바날 성형외과 건물 이미지"
+                className={styles.locationImageDesktop}
+              />
+            </div>
+
+            {/* 지도 영역 */}
+            <div className={styles.mapArea}>
+              <GoogleMapEmbed showButtons={false} />
+            </div>
+          </div>
+
+          {/* 정보 영역 */}
+          <div className={styles.locationInfo}>
+            <div className={styles.infoBox}>
+              {/* 전화번호 */}
+              <div className={styles.infoItemPhone}>
+                <h3 className={styles.infoLabel}>
+                  {white.location.phone}
+                </h3>
+                <p className={styles.infoNumber}>
+                  {white.location.phoneNumber}
+                </p>
+              </div>
+
+              {/* 진료시간 */}
+              <div className={styles.infoItem}>
+                <h3 className={styles.infoLabel}>
+                  {white.location.hours}
+                </h3>
+                <div className={styles.infoValue}>
+                  <p className={styles.infoValueParagraph}>
+                    {white.location.weekday}
+                  </p>
+                  <p className={styles.infoValueParagraph}>
+                    {white.location.saturday}
+                  </p>
+                </div>
+              </div>
+
+              {/* 오시는길 */}
+              <div className={styles.infoItem}>
+                <h3 className={styles.infoLabel}>
+                  {white.location.directions}
+                </h3>
+                <div className={styles.infoValue}>
+                  <p className={styles.infoValueParagraph}>
+                    {white.location.address1}
+                  </p>
+                  <p className={styles.infoValueParagraph}>
+                    {white.location.address2}
+                  </p>
+                  <div className={styles.subwayInfo}>
+                    <p>{white.location.subway1}</p>
+                    <p>{white.location.subway2}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 카카오맵/네이버맵 버튼 - 모바일에서만 표시 */}
+            <div className={styles.mapButtonsMobileOnly}>
+              <MapButtons />
+            </div>
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
     </section>

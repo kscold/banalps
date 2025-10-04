@@ -2,10 +2,20 @@ import { style } from "@vanilla-extract/css";
 import { breakpoints, mvw, vw } from "../../shared/styles/responsive.css";
 import { fontFamily } from "../../shared/styles/fonts.css";
 
+<<<<<<< Updated upstream
 // 페이지 전체 스타일
 export const treatmentGuidePage = style({
   minHeight: "100vh",
   backgroundColor: "#FFFDF7",
+=======
+// 페이지 전체 스타일 - 성능 최적화
+export const treatmentGuidePage = style({
+  minHeight: "100vh",
+  backgroundColor: "#FFFDF7",
+  transform: "translateZ(0)", // GPU 가속
+  backfaceVisibility: "hidden", // 깜빡임 방지
+  willChange: "transform, opacity", // 애니메이션 최적화
+>>>>>>> Stashed changes
 });
 
 // Hero Section
