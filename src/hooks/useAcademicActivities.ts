@@ -1,5 +1,5 @@
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-import { academicActivitiesByYear, activityTypeTranslations, type AcademicActivity } from "@/data/academicActivities";
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import { academicActivitiesByYear, activityTypeTranslations, type AcademicActivity } from '@/data/academicActivities';
 
 export interface LocalizedAcademicActivity {
   date: string;
@@ -10,7 +10,7 @@ export interface LocalizedAcademicActivity {
 
 export function useAcademicActivities() {
   const { language } = useLanguageStore();
-  const currentLang = language === "JP" ? "jp" : "ko";
+  const currentLang = language === 'JP' ? 'jp' : 'ko';
 
   // 모든 연도의 활동을 가져와서 날짜순으로 정렬
   const getAllActivities = (): LocalizedAcademicActivity[] => {
@@ -19,14 +19,14 @@ export function useAcademicActivities() {
     // 모든 연도의 데이터를 수집
     Object.keys(academicActivitiesByYear)
       .sort((a, b) => parseInt(b) - parseInt(a)) // 최신 연도부터
-      .forEach(year => {
+      .forEach((year) => {
         const yearActivities = academicActivitiesByYear[parseInt(year)];
-        yearActivities.forEach(activity => {
+        yearActivities.forEach((activity) => {
           allActivities.push({
             date: activity.date,
             type: activityTypeTranslations[activity.type][currentLang],
             event: activity.event[currentLang],
-            title: activity.title[currentLang]
+            title: activity.title[currentLang],
           });
         });
       });
@@ -42,18 +42,18 @@ export function useAcademicActivities() {
   // 특정 연도의 활동만 가져오기
   const getActivitiesByYear = (year: number): LocalizedAcademicActivity[] => {
     const activities = academicActivitiesByYear[year] || [];
-    return activities.map(activity => ({
+    return activities.map((activity) => ({
       date: activity.date,
       type: activityTypeTranslations[activity.type][currentLang],
       event: activity.event[currentLang],
-      title: activity.title[currentLang]
+      title: activity.title[currentLang],
     }));
   };
 
   // 사용 가능한 연도 목록
   const getAvailableYears = (): number[] => {
     return Object.keys(academicActivitiesByYear)
-      .map(year => parseInt(year))
+      .map((year) => parseInt(year))
       .sort((a, b) => b - a); // 최신 연도부터
   };
 
@@ -61,6 +61,6 @@ export function useAcademicActivities() {
     getAllActivities,
     getActivitiesByYear,
     getAvailableYears,
-    currentLanguage: currentLang
+    currentLanguage: currentLang,
   };
 }

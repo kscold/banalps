@@ -1,54 +1,54 @@
-import { style, keyframes } from "@vanilla-extract/css";
+import { style, keyframes } from '@vanilla-extract/css';
 
-import { breakpoints, vw, mvw } from "../../styles/responsive.css";
+import { breakpoints, vw, mvw } from '../../styles/responsive.css';
 
 // 화살표 순환 애니메이션 - 오른쪽으로 사라진 후 왼쪽에서 다시 나타나며 원래 위치로 돌아옴
 const arrowSlide = keyframes({
-  "0%": {
-    transform: "translateX(0)",
-    opacity: "1",
+  '0%': {
+    transform: 'translateX(0)',
+    opacity: '1',
   },
-  "40%": {
+  '40%': {
     transform: `translateX(${vw(20)})`,
-    opacity: "0",
+    opacity: '0',
   },
-  "50%": {
+  '50%': {
     transform: `translateX(-${vw(20)})`,
-    opacity: "0",
+    opacity: '0',
   },
-  "90%": {
-    transform: "translateX(0)",
-    opacity: "1",
+  '90%': {
+    transform: 'translateX(0)',
+    opacity: '1',
   },
-  "100%": {
-    transform: "translateX(0)",
-    opacity: "1",
+  '100%': {
+    transform: 'translateX(0)',
+    opacity: '1',
   },
 });
 
 // 기본 버튼 스타일 (1920px 기준 반응형) - 텍스트 길이에 따라 자동 조정
 export const arrowButton = style({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  border: "none",
-  backgroundColor: "#FFFFFF",
-  cursor: "pointer",
-  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  border: 'none',
+  backgroundColor: '#FFFFFF',
+  cursor: 'pointer',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  letterSpacing: "0",
-  textDecoration: "none",
-  outline: "none",
-  position: "relative",
-  overflow: "visible", // 화살표가 버튼 밖으로 나갈 수 있도록
-  color: "#272727",
-  pointerEvents: "auto", // 클릭 이벤트 활성화
+  letterSpacing: '0',
+  textDecoration: 'none',
+  outline: 'none',
+  position: 'relative',
+  overflow: 'visible', // 화살표가 버튼 밖으로 나갈 수 있도록
+  color: '#272727',
+  pointerEvents: 'auto', // 클릭 이벤트 활성화
   boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
-  lineHeight: "100%",
+  lineHeight: '100%',
   // width 제거 - 텍스트 길이에 따라 자동 조정
-  minWidth: "auto", // 최소 너비 자동
-  width: "auto", // 자동 너비
+  minWidth: 'auto', // 최소 너비 자동
+  width: 'auto', // 자동 너비
   gap: `${vw(10)}`, // 텍스트와 화살표 간격 10px
   // 기본 패딩 - 커스텀 값으로 오버라이드 가능
   paddingTop: vw(10),
@@ -58,33 +58,33 @@ export const arrowButton = style({
   borderRadius: vw(100), // 1920px 기준 100px
   fontSize: vw(20), // 1920px 기준 20px
 
-  ":active": {
+  ':active': {
     boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   },
 
-  ":disabled": {
+  ':disabled': {
     opacity: 0.4,
-    cursor: "not-allowed",
+    cursor: 'not-allowed',
     boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
   },
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
     [breakpoints.desktopLarge]: {
-      fontSize: "var(--desktop-font-size, 20px)",
-      height: "var(--desktop-height, auto)",
-      width: "var(--desktop-width, auto)",
-      paddingLeft: "var(--desktop-padding-left, 20px)",
-      paddingRight: "var(--desktop-padding-right, 48px)",
-      paddingTop: "var(--desktop-padding-top, 10px)",
-      paddingBottom: "var(--desktop-padding-bottom, 10px)",
-      gap: "12px", // gap도 고정값으로
-      borderRadius: "100px", // borderRadius도 고정값으로
-      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)", // boxShadow도 고정값으로
+      fontSize: 'var(--desktop-font-size, 20px)',
+      height: 'var(--desktop-height, auto)',
+      width: 'var(--desktop-width, auto)',
+      paddingLeft: 'var(--desktop-padding-left, 20px)',
+      paddingRight: 'var(--desktop-padding-right, 48px)',
+      paddingTop: 'var(--desktop-padding-top, 10px)',
+      paddingBottom: 'var(--desktop-padding-bottom, 10px)',
+      gap: '12px', // gap도 고정값으로
+      borderRadius: '100px', // borderRadius도 고정값으로
+      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)', // boxShadow도 고정값으로
     },
     [breakpoints.mobile]: {
       // 모바일에서 자동 너비 (position: absolute일 때는 width: auto로)
-      width: "auto", // 기본값은 auto
+      width: 'auto', // 기본값은 auto
       paddingTop: `${mvw(8)}`, // 상하 패딩
       paddingBottom: `${mvw(8)}`, // 상하 패딩
       paddingLeft: `${mvw(16)}`, // 좌측 패딩
@@ -93,33 +93,33 @@ export const arrowButton = style({
       gap: `${mvw(8)}`, // 간격
       minHeight: mvw(44), // 높이
       borderRadius: mvw(100), // 완전 둥근 모서리
-      justifyContent: "flex-start", // 텍스트 왼쪽 정렬
+      justifyContent: 'flex-start', // 텍스트 왼쪽 정렬
       boxShadow: `0 ${mvw(4)} ${mvw(16)} rgba(0, 0, 0, 0.08)`,
-      position: "relative", // 화살표 absolute 포지셔닝을 위해
+      position: 'relative', // 화살표 absolute 포지셔닝을 위해
     },
   },
 });
 
 // 버튼 텍스트 (1920px 기준 반응형)
 export const buttonText = style({
-  color: "#272727",
-  transition: "color 0.3s ease",
+  color: '#272727',
+  transition: 'color 0.3s ease',
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 500,
-  letterSpacing: "0",
-  whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-  lineHeight: "100%",
+  letterSpacing: '0',
+  whiteSpace: 'nowrap', // 텍스트 줄바꿈 방지
+  lineHeight: '100%',
   flexShrink: 0, // 텍스트가 줄어들지 않도록
   fontSize: vw(20), // 1920px 기준 20px
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
     [breakpoints.desktopLarge]: {
-      fontSize: "var(--desktop-font-size, 20px)",
-      lineHeight: "100%",
+      fontSize: 'var(--desktop-font-size, 20px)',
+      lineHeight: '100%',
     },
     [breakpoints.mobile]: {
-      fontSize: "var(--mobile-font-size, " + mvw(16) + ")", // CSS 변수를 통한 모바일 폰트 크기
+      fontSize: 'var(--mobile-font-size, ' + mvw(16) + ')', // CSS 변수를 통한 모바일 폰트 크기
     },
   },
 });
@@ -127,9 +127,9 @@ export const buttonText = style({
 export const japaneseText = style({
   fontFamily: "'Zen Kaku Gothic New', sans-serif",
   fontWeight: 700,
-  letterSpacing: "0",
-  whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-  lineHeight: "100%",
+  letterSpacing: '0',
+  whiteSpace: 'nowrap', // 텍스트 줄바꿈 방지
+  lineHeight: '100%',
 });
 
 // 영문 텍스트용 스타일 (Poppins 폰트 적용)
@@ -140,36 +140,36 @@ export const englishText = style({
 
 // 화살표 컨테이너 (1920px 기준 반응형)
 export const arrowContainer = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "50%",
-  background: "#14AEFF",
-  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '50%',
+  background: '#14AEFF',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   flexShrink: 0,
   boxShadow: `0 ${vw(4)} ${vw(12)} rgba(20, 174, 255, 0.25)`,
   width: vw(28), // 데스크탑에서 42px로 증가
   height: vw(28), // 데스크탑에서 42px로 증가
-  position: "absolute", // 데스크탑에서도 absolute
+  position: 'absolute', // 데스크탑에서도 absolute
   right: vw(12), // 오른쪽에서 12px 떨어진 위치
-  top: "50%",
-  transform: "translateY(-50%)",
+  top: '50%',
+  transform: 'translateY(-50%)',
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 고정값 사용
     [breakpoints.desktopLarge]: {
-      width: "var(--desktop-icon-size, 28px)",
-      height: "var(--desktop-icon-size, 28px)",
-      right: "12px",
-      boxShadow: "0 4px 12px rgba(20, 174, 255, 0.25)",
+      width: 'var(--desktop-icon-size, 28px)',
+      height: 'var(--desktop-icon-size, 28px)',
+      right: '12px',
+      boxShadow: '0 4px 12px rgba(20, 174, 255, 0.25)',
     },
     [breakpoints.mobile]: {
       width: mvw(28),
       height: mvw(28),
-      position: "absolute",
+      position: 'absolute',
       right: mvw(8),
-      top: "50%",
-      transform: "translateY(-50%)",
+      top: '50%',
+      transform: 'translateY(-50%)',
       boxShadow: `0 ${mvw(4)} ${mvw(12)} rgba(20, 174, 255, 0.25)`,
       zIndex: 1, // 화살표가 버튼 내부에 표시되도록
     },
@@ -178,9 +178,9 @@ export const arrowContainer = style({
 
 // 화살표 아이콘 (1920px 기준 반응형)
 export const arrowIcon = style({
-  color: "#FFFFFF",
-  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-  strokeWidth: "2",
+  color: '#FFFFFF',
+  transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  strokeWidth: '2',
   width: vw(24), // 데스크탑에서 24px로 증가
   height: vw(24), // 데스크탑에서 24px로 증가
 
@@ -191,7 +191,7 @@ export const arrowIcon = style({
     },
   },
 
-  "@media": {
+  '@media': {
     [breakpoints.mobile]: {
       width: mvw(13),
       height: mvw(13),
@@ -201,58 +201,58 @@ export const arrowIcon = style({
 
 // Color Variant 스타일들
 export const white = style({
-  backgroundColor: "#FFFFFF",
-  color: "#272727",
+  backgroundColor: '#FFFFFF',
+  color: '#272727',
 });
 
 export const blue = style({
-  backgroundColor: "#14AEFF",
-  color: "#FFFFFF",
+  backgroundColor: '#14AEFF',
+  color: '#FFFFFF',
 });
 
 // Style Variant 스타일들
 export const primary = style({
-  borderColor: "#8B5CF6",
-  color: "#272727",
+  borderColor: '#8B5CF6',
+  color: '#272727',
 });
 
 export const secondary = style({
-  borderColor: "#6B7280",
-  color: "#6B7280",
+  borderColor: '#6B7280',
+  color: '#6B7280',
 });
 
 // Color별 텍스트 스타일
 export const whiteText = style({
-  color: "#272727",
+  color: '#272727',
 });
 
 export const blueText = style({
-  color: "#FFFFFF",
+  color: '#FFFFFF',
 });
 
 // Color별 화살표 컨테이너 스타일
 export const whiteArrowContainer = style({
-  backgroundColor: "#14AEFF", // 흰색 버튼에는 파란 동그라미
+  backgroundColor: '#14AEFF', // 흰색 버튼에는 파란 동그라미
   // 호버 시 배경색 변화 제거
 });
 
 export const blueArrowContainer = style({
-  backgroundColor: "#FFFFFF", // 파란색 버튼에는 흰 동그라미
+  backgroundColor: '#FFFFFF', // 파란색 버튼에는 흰 동그라미
   // 호버 시 배경색 변화 제거
 });
 
 // Color별 화살표 아이콘 스타일
 export const whiteArrowIcon = style({
-  color: "#FFFFFF", // 파란 동그라미 안에 흰 화살표
+  color: '#FFFFFF', // 파란 동그라미 안에 흰 화살표
 });
 
 export const blueArrowIcon = style({
-  color: "#14AEFF", // 흰 동그라미 안에 파란 화살표
+  color: '#14AEFF', // 흰 동그라미 안에 파란 화살표
 });
 
 // Secondary variant의 화살표 컨테이너 스타일 (기존)
 export const secondaryArrowContainer = style({
-  backgroundColor: "#6B7280",
+  backgroundColor: '#6B7280',
 });
 
 // Size 스타일들
@@ -261,12 +261,12 @@ export const small = style({
   fontSize: vw(14),
   gap: vw(8),
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 고정값 사용
     [breakpoints.desktopLarge]: {
-      padding: "12px 20px",
-      fontSize: "14px",
-      gap: "8px",
+      padding: '12px 20px',
+      fontSize: '14px',
+      gap: '8px',
     },
     [breakpoints.mobile]: {
       padding: `${mvw(10)} ${mvw(16)}`,
@@ -280,19 +280,19 @@ export const medium = style({
   fontSize: vw(22), // 1920px 기준 22px
   height: vw(44), // 명시적 높이 44px로 설정
   padding: `0 ${vw(48)} 0 ${vw(20)}`, // 좌측 20px, 우측 48px 패딩 (화살표 공간)
-  justifyContent: "flex-start", // 텍스트 왼쪽 정렬
+  justifyContent: 'flex-start', // 텍스트 왼쪽 정렬
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 고정값 사용
     [breakpoints.desktopLarge]: {
-      fontSize: "22px",
-      height: "44px",
-      padding: "0 48px 0 20px",
+      fontSize: '22px',
+      height: '44px',
+      padding: '0 48px 0 20px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       minHeight: mvw(44), // 모바일에서는 44px
-      height: "auto",
+      height: 'auto',
       padding: `${mvw(8)} ${mvw(44)} ${mvw(8)} ${mvw(16)}`, // 모바일 패딩
     },
   },
@@ -303,19 +303,19 @@ export const large = style({
   fontSize: vw(18),
   gap: vw(16),
 
-  "@media": {
+  '@media': {
     // 1920px 이상에서 고정값 사용
     [breakpoints.desktopLarge]: {
-      padding: "20px 32px",
-      fontSize: "18px",
-      gap: "16px",
+      padding: '20px 32px',
+      fontSize: '18px',
+      gap: '16px',
     },
     [breakpoints.mobile]: {
       padding: `${mvw(18)} ${mvw(60)} ${mvw(18)} ${mvw(28)}`, // 오른쪽에 원 공간 확보
       fontSize: mvw(16),
       gap: mvw(16),
-      position: "relative",
-      justifyContent: "center", // 텍스트 가운데 정렬
+      position: 'relative',
+      justifyContent: 'center', // 텍스트 가운데 정렬
     },
   },
 });
@@ -324,10 +324,10 @@ export const large = style({
 export const smallArrowContainer = style({
   width: vw(22),
   height: vw(22),
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      width: "22px",
-      height: "22px",
+      width: '22px',
+      height: '22px',
     },
     [breakpoints.mobile]: {
       width: mvw(22),
@@ -339,10 +339,10 @@ export const smallArrowContainer = style({
 export const smallArrowIcon = style({
   width: vw(11),
   height: vw(11),
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      width: "11px",
-      height: "11px",
+      width: '11px',
+      height: '11px',
     },
     [breakpoints.mobile]: {
       width: mvw(11),
@@ -354,19 +354,19 @@ export const smallArrowIcon = style({
 export const largeArrowContainer = style({
   width: vw(40),
   height: vw(40),
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      width: "40px",
-      height: "40px",
+      width: '40px',
+      height: '40px',
     },
     [breakpoints.mobile]: {
       width: mvw(32),
       height: mvw(32),
-      position: "absolute",
+      position: 'absolute',
       right: mvw(8), // 오른쪽 여백
       top: mvw(8), // 상단 여백
       bottom: mvw(8), // 하단 여백
-      margin: "auto 0", // 세로 중앙
+      margin: 'auto 0', // 세로 중앙
     },
   },
 });
@@ -374,10 +374,10 @@ export const largeArrowContainer = style({
 export const largeArrowIcon = style({
   width: vw(18),
   height: vw(18),
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      width: "18px",
-      height: "18px",
+      width: '18px',
+      height: '18px',
     },
     [breakpoints.mobile]: {
       width: mvw(18),

@@ -1,12 +1,12 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import KakaoProvider from "next-auth/providers/kakao";
-import NaverProvider from "next-auth/providers/naver";
-import connectDB from "@/lib/mongodb";
-import User from "@/models/User";
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import KakaoProvider from 'next-auth/providers/kakao';
+import NaverProvider from 'next-auth/providers/naver';
+import connectDB from '@/lib/mongodb';
+import User from '@/models/User';
 
 // 환경변수 확인
-console.log("[NextAuth] Kakao Config:", {
+console.log('[NextAuth] Kakao Config:', {
   clientId: process.env.KAKAO_CLIENT_ID,
   clientSecret: process.env.KAKAO_CLIENT_SECRET,
 });
@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
       profile(profile: any) {
         return {
           id: String(profile.id),
-          name: profile.properties?.nickname || profile.kakao_account?.profile?.nickname || "카카오사용자",
+          name: profile.properties?.nickname || profile.kakao_account?.profile?.nickname || '카카오사용자',
           email: profile.kakao_account?.email || `kakao_${profile.id}@kakao.local`,
           image: profile.properties?.profile_image || profile.kakao_account?.profile?.profile_image_url || null,
         };
@@ -46,25 +46,25 @@ const authOptions: NextAuthOptions = {
         await connectDB();
 
         // 디버깅용 로그
-        console.log("[OAuth] Provider:", account.provider);
-        console.log("[OAuth] User data:", user);
-        console.log("[OAuth] Profile data:", profile);
+        console.log('[OAuth] Provider:', account.provider);
+        console.log('[OAuth] User data:', user);
+        console.log('[OAuth] Profile data:', profile);
 
         // 사용자 정보 추출
-        let email = user.email || "";
-        let name = user.name || "";
+        let email = user.email || '';
+        let name = user.name || '';
 
         // 네이버의 경우 profile.response에서 이름 가져오기
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (account.provider === "naver" && (profile as any).response) {
+        if (account.provider === 'naver' && (profile as any).response) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          console.log("[OAuth/Naver] Response data:", (profile as any).response);
+          console.log('[OAuth/Naver] Response data:', (profile as any).response);
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          name = (profile as any).response.name || (profile as any).response.nickname || email.split("@")[0];
+          name = (profile as any).response.name || (profile as any).response.nickname || email.split('@')[0];
         }
 
         // 카카오의 경우 이메일이 없을 수 있음
-        if (account.provider === "kakao") {
+        if (account.provider === 'kakao') {
           // 카카오는 이메일이 없으면 kakao_id@kakao.user로 생성
           if (!email) {
             email = `${account.providerAccountId}@kakao.user`;
@@ -73,19 +73,19 @@ const authOptions: NextAuthOptions = {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if (!name && (profile as any).properties) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            name = (profile as any).properties.nickname || "카카오사용자";
+            name = (profile as any).properties.nickname || '카카오사용자';
           }
         }
 
         // 이름이 여전히 없으면 이메일의 앞부분 사용
         if (!name) {
-          name = email.split("@")[0];
+          name = email.split('@')[0];
         }
 
-        console.log("[OAuth] Final data - email:", email, "name:", name);
+        console.log('[OAuth] Final data - email:', email, 'name:', name);
 
-        const image = user.image || "";
-        const provider = account.provider as "google" | "kakao" | "naver";
+        const image = user.image || '';
+        const provider = account.provider as 'google' | 'kakao' | 'naver';
         const providerId = account.providerAccountId;
 
         // 기존 사용자 확인
@@ -100,7 +100,7 @@ const authOptions: NextAuthOptions = {
               image,
               provider,
               providerId,
-            }
+            },
           );
           console.log(`[OAuth/${provider}] Existing user ${email} logged in`);
         } else {
@@ -119,7 +119,7 @@ const authOptions: NextAuthOptions = {
 
         return true;
       } catch (error) {
-        console.error("[OAuth] Error saving user:", error);
+        console.error('[OAuth] Error saving user:', error);
         return false;
       }
     },
@@ -151,16 +151,16 @@ const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/login",
-    error: "/login",
+    signIn: '/login',
+    error: '/login',
   },
   events: {
     signIn: async (message) => {
-      console.log("[NextAuth Event] Sign in:", message);
+      console.log('[NextAuth Event] Sign in:', message);
     },
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

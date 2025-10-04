@@ -49,8 +49,8 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                 top: isMobile
                                   ? mvw(position.top * 0.2)
                                   : isDesktopLarge
-                                  ? `${position.top}px`
-                                  : vw(position.top),
+                                    ? `${position.top}px`
+                                    : vw(position.top),
                               }
                             : {};
                         })(),
@@ -63,8 +63,8 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                 right: isMobile
                                   ? mvw(position.right * 0.2)
                                   : isDesktopLarge
-                                  ? `${position.right}px`
-                                  : vw(position.right),
+                                    ? `${position.right}px`
+                                    : vw(position.right),
                               }
                             : {};
                         })(),
@@ -191,8 +191,8 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                       top: isDesktopLarge
                                         ? `${position.top}px`
                                         : isMobile
-                                        ? mvw(position.top * 0.2)
-                                        : vw(position.top),
+                                          ? mvw(position.top * 0.2)
+                                          : vw(position.top),
                                     }
                                   : {};
                               })(),
@@ -208,24 +208,24 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                   result.right = isDesktopLarge
                                     ? `${position.right}px`
                                     : isMobile
-                                    ? mvw(position.right * 0.2)
-                                    : vw(position.right);
+                                      ? mvw(position.right * 0.2)
+                                      : vw(position.right);
                                 }
 
                                 if (position.bottom !== undefined) {
                                   result.bottom = isDesktopLarge
                                     ? `${position.bottom}px`
                                     : isMobile
-                                    ? mvw(position.bottom * 0.2)
-                                    : vw(position.bottom);
+                                      ? mvw(position.bottom * 0.2)
+                                      : vw(position.bottom);
                                 }
 
                                 if (position.left !== undefined) {
                                   result.left = isDesktopLarge
                                     ? `${position.left}px`
                                     : isMobile
-                                    ? mvw(position.left * 0.2)
-                                    : vw(position.left);
+                                      ? mvw(position.left * 0.2)
+                                      : vw(position.left);
                                 }
 
                                 return result;
@@ -292,7 +292,7 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                       section3.illustrationSize,
                       section3.illustrationPosition,
                       isMobile,
-                      isDesktopLarge
+                      isDesktopLarge,
                     ),
                     zIndex: 2,
                   }}
@@ -503,8 +503,8 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                             top: isMobile
                                               ? mvw(position.top * 0.2)
                                               : isDesktopLarge
-                                              ? `${position.top}px`
-                                              : vw(position.top),
+                                                ? `${position.top}px`
+                                                : vw(position.top),
                                           }
                                         : {};
                                     })(),
@@ -520,24 +520,24 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                                         result.right = isDesktopLarge
                                           ? `${position.right}px`
                                           : isMobile
-                                          ? mvw(position.right * 0.2)
-                                          : vw(position.right);
+                                            ? mvw(position.right * 0.2)
+                                            : vw(position.right);
                                       }
 
                                       if (position.bottom !== undefined) {
                                         result.bottom = isDesktopLarge
                                           ? `${position.bottom}px`
                                           : isMobile
-                                          ? mvw(position.bottom * 0.2)
-                                          : vw(position.bottom);
+                                            ? mvw(position.bottom * 0.2)
+                                            : vw(position.bottom);
                                       }
 
                                       if (position.left !== undefined) {
                                         result.left = isDesktopLarge
                                           ? `${position.left}px`
                                           : isMobile
-                                          ? mvw(position.left * 0.2)
-                                          : vw(position.left);
+                                            ? mvw(position.left * 0.2)
+                                            : vw(position.left);
                                       }
 
                                       return result;

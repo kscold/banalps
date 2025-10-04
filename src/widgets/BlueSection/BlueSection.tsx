@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
-import * as styles from "./BlueSection.css";
-import { ArrowButton } from "../../shared/ui/ArrowButton";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
-import { useBlueTranslations } from "@/hooks/useAllPagesTranslations";
+import * as styles from './BlueSection.css';
+import { ArrowButton } from '../../shared/ui/ArrowButton';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
+import { useBlueTranslations } from '@/hooks/useAllPagesTranslations';
 
 interface BlueSectionProps {
   isActive?: boolean;
@@ -17,7 +17,7 @@ interface BlueSectionProps {
 export default function BlueSection({ isActive = false }: BlueSectionProps) {
   const [isVisible] = useState(isActive);
   const router = useRouter();
-  const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   const blue = useBlueTranslations();
 
   useEffect(() => {
@@ -27,22 +27,11 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
   // 바날 로컬 서비스 항목들 - JSON에서 가져오기
   const localServices = blue.localServices.map((service, index) => ({
     ...service,
-    href: [
-      "/doctors",
-      "/before-after",
-      "/doctors",
-      "/reservation",
-      "/pricing",
-      "/before-after",
-    ][index],
+    href: ['/doctors', '/before-after', '/doctors', '/reservation', '/pricing', '/before-after'][index],
   }));
 
   return (
-    <section
-      className={`${styles.blueSection} ${
-        isVisible || isActive ? styles.visible : ""
-      }`}
-    >
+    <section className={`${styles.blueSection} ${isVisible || isActive ? styles.visible : ''}`}>
       {/* 이미지 카드 섹션 - Figma 정확 반영 */}
       <div className={styles.imageCardsSection}>
         {/* 이미지 카드 1 */}
@@ -53,7 +42,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{
             once: true,
             amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
           }}
           transition={{
             duration: isMobile ? 0.6 : 0.5,
@@ -62,17 +51,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           }}
         >
           {isMobile ? (
-            <img
-              src="/main/shot/mobile/shot1-mobile.svg"
-              alt="Shin Seung gyu"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/mobile/shot1-mobile.svg" alt="Shin Seung gyu" className={styles.cardImage} />
           ) : (
-            <img
-              src="/main/shot/shot1.png"
-              alt="Shin Seung gyu"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/shot1.png" alt="Shin Seung gyu" className={styles.cardImage} />
           )}
         </motion.div>
 
@@ -84,7 +65,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{
             once: true,
             amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
           }}
           transition={{
             duration: isMobile ? 0.6 : 0.5,
@@ -93,17 +74,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           }}
         >
           {isMobile ? (
-            <img
-              src="/main/shot/mobile/shot2-mobile.svg"
-              alt="Park Soo Ho"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/mobile/shot2-mobile.svg" alt="Park Soo Ho" className={styles.cardImage} />
           ) : (
-            <img
-              src="/main/shot/shot2.png"
-              alt="Park Soo Ho"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/shot2.png" alt="Park Soo Ho" className={styles.cardImage} />
           )}
         </motion.div>
 
@@ -115,7 +88,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{
             once: true,
             amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
           }}
           transition={{
             duration: isMobile ? 0.6 : 0.5,
@@ -124,17 +97,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           }}
         >
           {isMobile ? (
-            <img
-              src="/main/shot/mobile/shot3-mobile.svg"
-              alt="Kim Narae"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/mobile/shot3-mobile.svg" alt="Kim Narae" className={styles.cardImage} />
           ) : (
-            <img
-              src="/main/shot/shot3.png"
-              alt="Kim Narae"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/shot3.png" alt="Kim Narae" className={styles.cardImage} />
           )}
         </motion.div>
 
@@ -146,7 +111,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           viewport={{
             once: true,
             amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? "-50px 0px -50px 0px" : "0px",
+            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
           }}
           transition={{
             duration: isMobile ? 0.6 : 0.5,
@@ -155,17 +120,9 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           }}
         >
           {isMobile ? (
-            <img
-              src="/main/shot/mobile/shot4-mobile.svg"
-              alt="의료진 4"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/mobile/shot4-mobile.svg" alt="의료진 4" className={styles.cardImage} />
           ) : (
-            <img
-              src="/main/shot/shot4.png"
-              alt="의료진 4"
-              className={styles.cardImage}
-            />
+            <img src="/main/shot/shot4.png" alt="의료진 4" className={styles.cardImage} />
           )}
         </motion.div>
       </div>
@@ -177,11 +134,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         <p className={styles.reYouSubtitle}>{blue.reYou.subtitle}</p>
 
         {/* 그래피티 배경 이미지 - 데스크톱용 */}
-        <img
-          src="/main/banal_graffiti.svg"
-          alt="Banal Graffiti"
-          className={styles.graffitiBackground}
-        />
+        <img src="/main/banal_graffiti.svg" alt="Banal Graffiti" className={styles.graffitiBackground} />
 
         {/* 그래피티 배경 이미지 - 모바일용 */}
         <img
@@ -195,10 +148,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
       <div className={styles.whatBanalSection}>
         {/* 모바일에서 제목 먼저 표시 */}
         <h2 className={styles.whatBanalTitleMobile}>
-          {blue.whatBanal.title.split("\n").map((line, index) => (
+          {blue.whatBanal.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < blue.whatBanal.title.split("\n").length - 1 && <br />}
+              {index < blue.whatBanal.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </h2>
@@ -206,31 +159,21 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 모바일에서 제목 바로 아래 표시되는 설명 텍스트 */}
         <div className={styles.whatBanalMobileTop}>
           <p className={styles.whatBanalSubDescription1Mobile}>
-            {blue.whatBanal.subDescription1Mobile
-              .split("\n")
-              .map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index <
-                    blue.whatBanal.subDescription1Mobile.split("\n").length -
-                      1 && <br />}
-                </span>
-              ))}
+            {blue.whatBanal.subDescription1Mobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < blue.whatBanal.subDescription1Mobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </p>
-          <p className={styles.whatBanalDescriptionMobile}>
-            {blue.whatBanal.description}
-          </p>
+          <p className={styles.whatBanalDescriptionMobile}>{blue.whatBanal.description}</p>
           <p className={styles.whatBanalSubDescription2Mobile}>
-            {blue.whatBanal.subDescription2Mobile
-              .split("\n")
-              .map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index <
-                    blue.whatBanal.subDescription2Mobile.split("\n").length -
-                      1 && <br />}
-                </span>
-              ))}
+            {blue.whatBanal.subDescription2Mobile.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < blue.whatBanal.subDescription2Mobile.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </p>
         </div>
 
@@ -238,29 +181,20 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           {/* 왼쪽 텍스트 영역 */}
           <div className={styles.whatBanalText}>
             <h2 className={styles.whatBanalTitleDesktop}>
-              {blue.whatBanal.title.split("\n").map((line, index) => (
+              {blue.whatBanal.title.split('\n').map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index < blue.whatBanal.title.split("\n").length - 1 && (
-                    <br />
-                  )}
+                  {index < blue.whatBanal.title.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </h2>
-            <p className={styles.whatBanalSubDescription1}>
-              {blue.whatBanal.subDescription1}
-            </p>
-            <p className={styles.whatBanalDescription}>
-              {blue.whatBanal.description}
-            </p>
+            <p className={styles.whatBanalSubDescription1}>{blue.whatBanal.subDescription1}</p>
+            <p className={styles.whatBanalDescription}>{blue.whatBanal.description}</p>
             <p className={styles.whatBanalSubDescription2}>
-              {blue.whatBanal.subDescription2.split("\n").map((line, index) => (
+              {blue.whatBanal.subDescription2.split('\n').map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index <
-                    blue.whatBanal.subDescription2.split("\n").length - 1 && (
-                    <br />
-                  )}
+                  {index < blue.whatBanal.subDescription2.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </p>
@@ -275,7 +209,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
                 paddingLeft={16}
                 paddingTop={10}
                 paddingBottom={10}
-                onClick={() => router.push("/doctors")}
+                onClick={() => router.push('/doctors')}
               >
                 {blue.whatBanal.viewMore}
               </ArrowButton>
@@ -302,22 +236,16 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div
-                    className={`${styles.featureItem} ${styles.featureItemAnimated} ${delayClass}`}
-                  >
+                  <div className={`${styles.featureItem} ${styles.featureItemAnimated} ${delayClass}`}>
                     <div className={styles.featureNumber}>{service.number}</div>
                     <div className={styles.featureContent}>
                       <h3 className={styles.featureTitle}>
-                        {isMobile &&
-                        "titleMobile" in service &&
-                        service.titleMobile
+                        {isMobile && 'titleMobile' in service && service.titleMobile
                           ? service.titleMobile
                           : service.title}
                       </h3>
                       <p className={styles.featureDescription}>
-                        {isMobile &&
-                        "descriptionMobile" in service &&
-                        service.descriptionMobile
+                        {isMobile && 'descriptionMobile' in service && service.descriptionMobile
                           ? service.descriptionMobile
                           : service.description}
                       </p>
@@ -339,7 +267,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             width="100%"
             textAlign="center"
             className={styles.fullWidthButton}
-            onClick={() => router.push("/doctors")}
+            onClick={() => router.push('/doctors')}
           >
             {blue.doctors.viewMore}
           </ArrowButton>
@@ -351,10 +279,10 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 모바일 상단 텍스트 영역 */}
         <div className={styles.doctorsMobileHeader}>
           <h2 className={styles.doctorsMobileTitle}>
-            {blue.doctors.title.split("\n").map((line, index) => (
+            {blue.doctors.title.split('\n').map((line, index) => (
               <span key={index}>
                 {line}
-                {index < blue.doctors.title.split("\n").length - 1 && <br />}
+                {index < blue.doctors.title.split('\n').length - 1 && <br />}
               </span>
             ))}
           </h2>
@@ -370,77 +298,52 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               className={styles.doctorMobileFullImage}
             />
             <div className={styles.doctorMobileOverlay}>
-              <h3
-                className={`${styles.doctorMobileFullNameFirst} english-name`}
-              >
+              <h3 className={`${styles.doctorMobileFullNameFirst} english-name`}>
                 Shin
                 <br />
                 Seung
                 <br />
                 gyu
               </h3>
-              <p className={styles.doctorMobileFullKorean}>
-                {blue.doctors.doctorName}
-              </p>
+              <p className={styles.doctorMobileFullKorean}>{blue.doctors.doctorName}</p>
             </div>
           </div>
 
           {/* 박수호 원장 */}
           <div className={styles.doctorMobileFullCard}>
-            <img
-              src="/main/person/doctor-parksooho.png"
-              alt="박수호 원장"
-              className={styles.doctorMobileFullImage}
-            />
+            <img src="/main/person/doctor-parksooho.png" alt="박수호 원장" className={styles.doctorMobileFullImage} />
             <div className={styles.doctorMobileOverlay}>
-              <h3
-                className={`${styles.doctorMobileFullNameSecond} english-name`}
-              >
+              <h3 className={`${styles.doctorMobileFullNameSecond} english-name`}>
                 Park
                 <br />
                 Soo Ho
               </h3>
-              <p className={styles.doctorMobileFullKorean}>
-                {blue.doctors.doctorPark}
-              </p>
+              <p className={styles.doctorMobileFullKorean}>{blue.doctors.doctorPark}</p>
             </div>
           </div>
 
           {/* 김나래 원장 */}
           <div className={styles.doctorMobileFullCard}>
-            <img
-              src="/main/person/doctor-kimnarae.png"
-              alt="김나래 원장"
-              className={styles.doctorMobileFullImage}
-            />
+            <img src="/main/person/doctor-kimnarae.png" alt="김나래 원장" className={styles.doctorMobileFullImage} />
             <div className={styles.doctorMobileOverlay}>
-              <h3
-                className={`${styles.doctorMobileFullNameThird} english-name`}
-              >
+              <h3 className={`${styles.doctorMobileFullNameThird} english-name`}>
                 Kim
                 <br />
                 Narae
               </h3>
-              <p className={styles.doctorMobileFullKorean}>
-                {blue.doctors.doctorKim}
-              </p>
+              <p className={styles.doctorMobileFullKorean}>{blue.doctors.doctorKim}</p>
             </div>
           </div>
         </div>
 
         {/* 모바일 하단 설명 텍스트 */}
         <div className={styles.doctorsMobileBottom}>
-          <p className={styles.doctorsMobileDescription}>
-            {blue.doctors.subTitleMobile}
-          </p>
+          <p className={styles.doctorsMobileDescription}>{blue.doctors.subTitleMobile}</p>
           <p className={styles.doctorsMobileSubDescription}>
-            {blue.doctors.mobileDescription.split("\n").map((line, index) => (
+            {blue.doctors.mobileDescription.split('\n').map((line, index) => (
               <span key={index}>
                 {line}
-                {index <
-                  blue.doctors.mobileDescription.split("\n").length - 1 && (
-                  <br />
-                )}
+                {index < blue.doctors.mobileDescription.split('\n').length - 1 && <br />}
               </span>
             ))}
           </p>
@@ -454,7 +357,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               width="100%"
               textAlign="center"
               className={styles.fullWidthButton}
-              onClick={() => router.push("/doctors")}
+              onClick={() => router.push('/doctors')}
             >
               {blue.whatBanal.viewMore}
             </ArrowButton>
@@ -466,25 +369,21 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           {/* 좌측 텍스트 영역 */}
           <div className={styles.doctorsTextSection}>
             <h2 className={styles.doctorsMainTitle}>
-              {blue.doctors.title.split("\n").map((line, index) => (
+              {blue.doctors.title.split('\n').map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index < blue.doctors.title.split("\n").length - 1 && <br />}
+                  {index < blue.doctors.title.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </h2>
             <p className={styles.doctorsSubTitle}>{blue.doctors.subTitle}</p>
             <p className={styles.doctorsDescription}>
-              {blue.doctors.desktopDescription
-                .split("\n")
-                .map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index <
-                      blue.doctors.desktopDescription.split("\n").length -
-                        1 && <br />}
-                  </span>
-                ))}
+              {blue.doctors.desktopDescription.split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < blue.doctors.desktopDescription.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </p>
             <ArrowButton
               size="medium"
@@ -496,7 +395,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
               paddingLeft={16}
               paddingTop={10}
               paddingBottom={10}
-              onClick={() => router.push("/doctors")}
+              onClick={() => router.push('/doctors')}
             >
               {blue.doctors.viewMore}
             </ArrowButton>
@@ -506,27 +405,15 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           <div className={styles.doctorsImageGrid}>
             {/* 이미지들 */}
             <div className={styles.doctorCard1}>
-              <img
-                src="/main/person/doctor-shinseunggyu.png"
-                alt="신승규 원장"
-                className={styles.doctorImage1}
-              />
+              <img src="/main/person/doctor-shinseunggyu.png" alt="신승규 원장" className={styles.doctorImage1} />
             </div>
 
             <div className={styles.doctorCard2}>
-              <img
-                src="/main/person/doctor-parksooho.png"
-                alt="박수호 원장"
-                className={styles.doctorImage2}
-              />
+              <img src="/main/person/doctor-parksooho.png" alt="박수호 원장" className={styles.doctorImage2} />
             </div>
 
             <div className={styles.doctorCard3}>
-              <img
-                src="/main/person/doctor-kimnarae.png"
-                alt="김나래 원장"
-                className={styles.doctorImage3}
-              />
+              <img src="/main/person/doctor-kimnarae.png" alt="김나래 원장" className={styles.doctorImage3} />
             </div>
 
             {/* 구분선들 - 신승규, 박수호 사진 아래 */}
@@ -543,9 +430,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer1}>
-              <p className={styles.doctorKoreanName}>
-                {blue.doctors.doctorName}
-              </p>
+              <p className={styles.doctorKoreanName}>{blue.doctors.doctorName}</p>
             </div>
 
             <div className={styles.doctorNameOverlay2}>
@@ -557,9 +442,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer2}>
-              <p className={styles.doctorKoreanName}>
-                {blue.doctors.doctorPark}
-              </p>
+              <p className={styles.doctorKoreanName}>{blue.doctors.doctorPark}</p>
             </div>
 
             <div className={styles.doctorNameOverlay3}>
@@ -571,9 +454,7 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
             </div>
 
             <div className={styles.doctorKoreanNameContainer3}>
-              <p className={styles.doctorKoreanName}>
-                {blue.doctors.doctorKim}
-              </p>
+              <p className={styles.doctorKoreanName}>{blue.doctors.doctorKim}</p>
             </div>
           </div>
         </div>

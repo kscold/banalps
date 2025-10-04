@@ -1,89 +1,89 @@
-import { style } from "@vanilla-extract/css";
-import { breakpoints, vw, mvw } from "../../../shared/styles/responsive.css";
-import { fontFamily } from "@/shared/styles/fonts.css";
+import { style } from '@vanilla-extract/css';
+import { breakpoints, vw, mvw } from '../../../shared/styles/responsive.css';
+import { fontFamily } from '@/shared/styles/fonts.css';
 
 export const mapWrapper = style({
-  position: "relative",
-  width: "100%",
-  height: "100%",
+  position: 'relative',
+  width: '100%',
+  height: '100%',
   minHeight: vw(500),
-  backgroundColor: "#F5F5F5",
+  backgroundColor: '#F5F5F5',
   borderRadius: vw(20),
-  overflow: "hidden",
-  "@media": {
+  overflow: 'hidden',
+  '@media': {
     [breakpoints.desktopLarge]: {
-      minHeight: "500px",
-      borderRadius: "20px",
+      minHeight: '500px',
+      borderRadius: '20px',
     },
     [breakpoints.desktop]: {
-      minHeight: "450px",
-      borderRadius: "16px",
+      minHeight: '450px',
+      borderRadius: '16px',
     },
     [breakpoints.mobile]: {
       height: mvw(404),
-      width: "100%",
+      width: '100%',
       borderRadius: 0,
-      minHeight: "auto",
+      minHeight: 'auto',
     },
   },
 });
 
 export const mapDesktop = style({
-  width: "100%",
-  height: "100%",
-  display: "block",
-  "@media": {
+  width: '100%',
+  height: '100%',
+  display: 'block',
+  '@media': {
     [breakpoints.mobile]: {
-      display: "none",
+      display: 'none',
     },
   },
 });
 
 export const mapMobile = style({
-  display: "none",
-  "@media": {
+  display: 'none',
+  '@media': {
     [breakpoints.mobile]: {
-      display: "block",
-      width: "100%",
+      display: 'block',
+      width: '100%',
       height: mvw(404),
-      objectFit: "cover",
+      objectFit: 'cover',
     },
   },
 });
 
 export const mapIframe = style({
-  width: "100%",
-  height: "100%",
-  display: "block",
-  border: "none",
+  width: '100%',
+  height: '100%',
+  display: 'block',
+  border: 'none',
 });
 
 export const loadingOverlay = style({
-  position: "absolute",
+  position: 'absolute',
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "#F5F5F5",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#F5F5F5',
   zIndex: 1,
 });
 
 export const loadingText = style({
   fontFamily: "'S-Core Dream', sans-serif",
-  fontSize: "16px",
-  color: "#666",
+  fontSize: '16px',
+  color: '#666',
 });
 
 export const mapButtons = style({
-  display: "flex",
+  display: 'flex',
   gap: vw(12),
-  marginTop: "auto",
-  "@media": {
+  marginTop: 'auto',
+  '@media': {
     [breakpoints.desktopLarge]: {
-      gap: "12px",
+      gap: '12px',
     },
     [breakpoints.desktop]: {
       gap: vw(12),
@@ -91,41 +91,41 @@ export const mapButtons = style({
     [breakpoints.mobile]: {
       gap: mvw(20),
       marginTop: 0,
-      width: "100%",
+      width: '100%',
     },
   },
 });
 
 const buttonBase = style({
-  position: "relative",
+  position: 'relative',
   padding: `${vw(10)} ${vw(20)}`,
   fontSize: vw(14),
   fontFamily: fontFamily.poppins,
   fontWeight: 600,
-  border: "none",
+  border: 'none',
   borderRadius: vw(20),
-  cursor: "pointer",
-  transition: "opacity 0.3s ease, transform 0.3s ease",
+  cursor: 'pointer',
+  transition: 'opacity 0.3s ease, transform 0.3s ease',
   minWidth: vw(120),
   height: vw(40),
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   letterSpacing: 0,
-  lineHeight: "100%",
+  lineHeight: '100%',
 
-  ":hover": {
+  ':hover': {
     opacity: 0.85, // dim 효과
   },
 
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      padding: "10px 20px",
-      fontSize: "14px",
-      borderRadius: "20px",
-      minWidth: "120px",
-      height: "40px",
-      lineHeight: "20px",
+      padding: '10px 20px',
+      fontSize: '14px',
+      borderRadius: '20px',
+      minWidth: '120px',
+      height: '40px',
+      lineHeight: '20px',
     },
     [breakpoints.desktop]: {
       padding: `${vw(10)} ${vw(20)}`,
@@ -139,7 +139,7 @@ const buttonBase = style({
       padding: `${mvw(16)} ${mvw(24)}`,
       fontSize: mvw(16),
       borderRadius: mvw(30),
-      minWidth: "auto",
+      minWidth: 'auto',
       height: mvw(40),
       lineHeight: mvw(24),
       flex: 1,
@@ -151,26 +151,26 @@ const buttonBase = style({
 export const kakaoButton = style([
   buttonBase,
   {
-    backgroundColor: "#F3E362",
-    color: "#272727",
+    backgroundColor: '#F3E362',
+    color: '#272727',
 
-    "@media": {
+    '@media': {
       [breakpoints.desktopLarge]: {
-        minWidth: "120px",
+        minWidth: '120px',
       },
       [breakpoints.desktop]: {
         minWidth: vw(120),
-        ":hover": {
+        ':hover': {
           opacity: 0.8, // PC에서 hover시 dim 효과
         },
       },
       [breakpoints.mobile]: {
         fontSize: mvw(16),
         flex: 1,
-        minWidth: "auto",
-        ":hover": {
+        minWidth: 'auto',
+        ':hover': {
           opacity: 1, // 모바일에서는 hover 효과 제거
-          transform: "none",
+          transform: 'none',
         },
       },
     },
@@ -180,25 +180,25 @@ export const kakaoButton = style([
 export const naverButton = style([
   buttonBase,
   {
-    backgroundColor: "#58A54B",
-    color: "#272727",
+    backgroundColor: '#58A54B',
+    color: '#272727',
 
-    "@media": {
+    '@media': {
       [breakpoints.desktopLarge]: {
-        minWidth: "120px",
+        minWidth: '120px',
       },
       [breakpoints.desktop]: {
         minWidth: vw(120),
-        ":hover": {
+        ':hover': {
           opacity: 0.8, // PC에서 hover시 dim 효과
         },
       },
       [breakpoints.mobile]: {
         flex: 1,
-        minWidth: "auto",
-        ":hover": {
+        minWidth: 'auto',
+        ':hover': {
           opacity: 1, // 모바일에서는 hover 효과 제거
-          transform: "none",
+          transform: 'none',
         },
       },
     },

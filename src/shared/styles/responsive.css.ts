@@ -36,7 +36,7 @@ export const mvw = (pixelValue: number): string => {
  */
 export const responsiveProperty = (property: string, pixelValue: number) => ({
   [property]: vw(pixelValue), // 1024px-1920px 비례 스케일링
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
       [property]: `${pixelValue}px`, // 1920px+ 전역 고정
     },
@@ -54,14 +54,14 @@ export const responsiveFont = (desktopValue: number, mobileValue?: number) => {
 
   return {
     fontSize: vw(desktopValue), // 1024px-1920px에서 데스크탑 기준 비례 스케일링
-    "@media": {
+    '@media': {
       [breakpoints.desktopLarge]: {
         fontSize: `${desktopValue}px`, // 1920px 이상에서는 고정
       },
       [breakpoints.mobile]: {
         fontSize: mvw(mobileFontSize), // 375px-1023px에서 모바일 기준 비례 스케일링
       },
-      "screen and (max-width: 374px)": {
+      'screen and (max-width: 374px)': {
         fontSize: `${mobileFontSize}px`, // 375px 미만에서는 고정
       },
     },
@@ -75,7 +75,7 @@ export const responsiveFont = (desktopValue: number, mobileValue?: number) => {
  */
 export const responsiveSize = (pixelValue: number) => ({
   width: `${(pixelValue / DESIGN_BASE_WIDTH) * 100}vw`,
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
       width: `${pixelValue}px`, // 1920px+ 전역 고정
     },
@@ -89,8 +89,8 @@ export const responsiveSize = (pixelValue: number) => ({
  */
 export const responsiveHeight = (pixelValue: number) => ({
   height: vw(pixelValue),
-  "@media": {
-    "screen and (min-width: 1920px)": {
+  '@media': {
+    'screen and (min-width: 1920px)': {
       height: `${pixelValue}px`, // 1920px 이상에서는 고정
     },
   },
@@ -103,11 +103,11 @@ export const responsiveHeight = (pixelValue: number) => ({
  */
 export const responsiveSpacing = (pixelValue: number) => ({
   padding: vw(pixelValue),
-  "@media": {
-    "screen and (min-width: 1920px)": {
+  '@media': {
+    'screen and (min-width: 1920px)': {
       padding: `${pixelValue}px`, // 1920px 이상에서는 고정
     },
-    "screen and (max-width: 1024px)": {
+    'screen and (max-width: 1024px)': {
       padding: `${Math.max(pixelValue * 0.5, 8)}px`, // 모바일에서는 최소 8px
     },
   },
@@ -128,22 +128,22 @@ export const responsivePosition = (pixelValue: number): string => {
  * @returns 1920px 기준으로 일관되게 동작하는 컨테이너 스타일
  */
 export const responsiveContainer = (maxWidth: number = 1600) => ({
-  width: "calc(100% - 320px)", // 1024px 이상에서 양쪽 160px 마진
+  width: 'calc(100% - 320px)', // 1024px 이상에서 양쪽 160px 마진
   maxWidth: `${maxWidth}px`, // 모든 해상도에서 완전 고정
-  margin: "0 auto",
-  "@media": {
+  margin: '0 auto',
+  '@media': {
     [breakpoints.mobile]: {
       // 모바일: 375px~1023px - 16px 고정 마진
-      width: "100%",
-      maxWidth: "none",
-      padding: "0 16px", // 양쪽 16px 패딩
-      margin: "0", // 마진 제거
+      width: '100%',
+      maxWidth: 'none',
+      padding: '0 16px', // 양쪽 16px 패딩
+      margin: '0', // 마진 제거
     },
-    "screen and (max-width: 374px)": {
-      width: "100%",
-      maxWidth: "none",
-      padding: "0 16px", // 375px 미만에서도 16px 패딩
-      margin: "0",
+    'screen and (max-width: 374px)': {
+      width: '100%',
+      maxWidth: 'none',
+      padding: '0 16px', // 375px 미만에서도 16px 패딩
+      margin: '0',
     },
   },
 });
@@ -158,7 +158,7 @@ export const responsiveImageContainer = (width: number, height: number) => ({
   width: vw(width), // 1024px-1920px 비례 스케일링
   height: vw(height), // 높이도 비례 스케일링
   aspectRatio: `${width} / ${height}`,
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 헤더처럼 완전 고정
       width: `${width}px`, // 고정
@@ -166,9 +166,9 @@ export const responsiveImageContainer = (width: number, height: number) => ({
       maxWidth: `${width}px`, // 최대 너비도 고정
     },
     [breakpoints.mobile]: {
-      width: "100%", // 모바일에서 전체 너비
-      height: "auto", // 높이는 자동
-      aspectRatio: "auto", // 모바일에서는 자동 높이
+      width: '100%', // 모바일에서 전체 너비
+      height: 'auto', // 높이는 자동
+      aspectRatio: 'auto', // 모바일에서는 자동 높이
     },
   },
 });
@@ -183,11 +183,11 @@ export const responsiveImageContainer = (width: number, height: number) => ({
  * @returns 절대 위치 요소들을 감싸는 캡처 컨테이너 스타일
  */
 export const responsiveCaptureContainer = (width: number, height: number) => ({
-  position: "relative" as const,
+  position: 'relative' as const,
   width: vw(width), // 1024px-1920px에서 컨테이너만 비례 스케일링
   height: vw(height), // 높이도 비례 스케일링
   aspectRatio: `${width} / ${height}`, // 비율 유지
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 완전 고정 (헤더와 동일한 방식)
       width: `${width}px`,
@@ -195,11 +195,11 @@ export const responsiveCaptureContainer = (width: number, height: number) => ({
     },
     [breakpoints.mobile]: {
       // 모바일에서는 일반적인 flex 레이아웃으로 전환
-      display: "flex",
-      flexDirection: "column" as const,
-      gap: "30px",
-      overflow: "visible" as const,
-      aspectRatio: "auto", // 모바일에서는 자동 높이
+      display: 'flex',
+      flexDirection: 'column' as const,
+      gap: '30px',
+      overflow: 'visible' as const,
+      aspectRatio: 'auto', // 모바일에서는 자동 높이
     },
   },
 });
@@ -212,15 +212,15 @@ export const responsiveCaptureContainer = (width: number, height: number) => ({
  * @returns 1920px 기준 좌우 분할 컨테이너 스타일
  */
 export const responsiveSplitContainer = () => ({
-  width: "100%", // 전체 뷰포트 너비 사용
-  position: "relative" as const,
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr", // 50:50 분할
-  alignItems: "center",
-  "@media": {
+  width: '100%', // 전체 뷰포트 너비 사용
+  position: 'relative' as const,
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr', // 50:50 분할
+  alignItems: 'center',
+  '@media': {
     [breakpoints.mobile]: {
-      gridTemplateColumns: "1fr", // 단일 컬럼
-      gap: "30px",
+      gridTemplateColumns: '1fr', // 단일 컬럼
+      gap: '30px',
     },
   },
 });
@@ -233,19 +233,19 @@ export const responsiveSplitContainer = () => ({
  */
 export const responsiveLeftContent = () => ({
   // responsiveContainer와 완전히 동일한 마진 계산
-  marginLeft: "max(calc((100vw - 1600px) / 2), 160px)",
+  marginLeft: 'max(calc((100vw - 1600px) / 2), 160px)',
   paddingLeft: vw(60), // 헤더와 동일한 패딩
   paddingRight: vw(80), // 오른쪽 여백을 더 크게 (80px)
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      marginLeft: "160px", // 1920px+ 고정 마진
-      paddingLeft: "60px", // 헤더와 동일한 고정 패딩
-      paddingRight: "80px", // 더 큰 여백으로 조화롭게
+      marginLeft: '160px', // 1920px+ 고정 마진
+      paddingLeft: '60px', // 헤더와 동일한 고정 패딩
+      paddingRight: '80px', // 더 큰 여백으로 조화롭게
     },
     [breakpoints.mobile]: {
-      marginLeft: "20px", // 모바일 마진
-      paddingLeft: "0",
-      paddingRight: "20px",
+      marginLeft: '20px', // 모바일 마진
+      paddingLeft: '0',
+      paddingRight: '20px',
     },
   },
 });
@@ -258,19 +258,19 @@ export const responsiveLeftContent = () => ({
  */
 export const responsiveRightContent = () => ({
   // responsiveContainer와 완전히 동일한 마진 계산 (오른쪽 적용)
-  marginRight: "max(calc((100vw - 1600px) / 2), 160px)",
+  marginRight: 'max(calc((100vw - 1600px) / 2), 160px)',
   paddingLeft: vw(80), // 왼쪽 여백을 더 크게 (80px)
   paddingRight: vw(60), // 헤더와 동일한 패딩
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
-      marginRight: "160px", // 1920px+ 고정 마진
-      paddingLeft: "80px", // 더 큰 여백으로 텍스트 오버플로우 방지
-      paddingRight: "60px", // 헤더와 동일한 고정 패딩
+      marginRight: '160px', // 1920px+ 고정 마진
+      paddingLeft: '80px', // 더 큰 여백으로 텍스트 오버플로우 방지
+      paddingRight: '60px', // 헤더와 동일한 고정 패딩
     },
     [breakpoints.mobile]: {
-      marginRight: "20px", // 모바일 마진
-      paddingLeft: "20px",
-      paddingRight: "0",
+      marginRight: '20px', // 모바일 마진
+      paddingLeft: '20px',
+      paddingRight: '0',
     },
   },
 });
@@ -283,22 +283,22 @@ export const responsiveRightContent = () => ({
  * @returns 절대 위치 이미지들을 담는 컨테이너 스타일
  */
 export const responsiveAbsoluteImageContainer = (minHeight: number) => ({
-  position: "relative" as const,
-  width: "100%",
+  position: 'relative' as const,
+  width: '100%',
   height: vw(minHeight), // minHeight → height로 변경하여 정확한 높이 제어
-  overflow: "hidden" as const, // 컨테이너 밖으로 나가는 요소 숨김
-  "@media": {
+  overflow: 'hidden' as const, // 컨테이너 밖으로 나가는 요소 숨김
+  '@media': {
     [breakpoints.desktopLarge]: {
       height: `${minHeight}px`, // 1920px+ 완전 고정
-      maxWidth: "100%", // 최대 너비도 제한
+      maxWidth: '100%', // 최대 너비도 제한
     },
     [breakpoints.mobile]: {
-      position: "static" as const, // 모바일에서는 일반 레이아웃
-      height: "auto",
-      overflow: "visible" as const,
-      display: "flex",
-      flexDirection: "column" as const,
-      gap: "20px",
+      position: 'static' as const, // 모바일에서는 일반 레이아웃
+      height: 'auto',
+      overflow: 'visible' as const,
+      display: 'flex',
+      flexDirection: 'column' as const,
+      gap: '20px',
     },
   },
 });
@@ -325,21 +325,21 @@ export const responsiveAbsoluteImage = ({
   aspectRatio: string; // "600 / 660" 등
   maxWidth: number; // 1920px 기준 최대 너비
 }) => ({
-  position: "absolute" as const,
+  position: 'absolute' as const,
   ...position,
   width,
   aspectRatio,
   maxWidth: vw(maxWidth), // 최대 너비 제한으로 오버플로우 방지
-  "@media": {
+  '@media': {
     [breakpoints.desktopLarge]: {
       maxWidth: `${maxWidth}px`, // 1920px+ 완전 고정
       width: `${maxWidth}px`, // 너비도 고정하여 스케일링 방지
     },
     [breakpoints.mobile]: {
-      position: "static" as const, // 모바일에서는 일반 레이아웃
-      width: "100%",
-      maxWidth: "none",
-      aspectRatio: "auto",
+      position: 'static' as const, // 모바일에서는 일반 레이아웃
+      width: '100%',
+      maxWidth: 'none',
+      aspectRatio: 'auto',
     },
   },
 });
@@ -352,26 +352,26 @@ export const responsiveAbsoluteImage = ({
  * @returns 3컬럼 레이아웃 컨테이너 스타일
  */
 export const responsiveThreeColumnContainer = (maxWidth: number = 1920) => ({
-  width: "100%",
+  width: '100%',
   maxWidth: `${maxWidth}px`, // 전체 컨테이너 최대 너비
-  margin: "0 auto",
-  display: "grid",
-  gridTemplateColumns: "1fr auto 1fr", // 왼쪽 텍스트, 중앙 일러스트, 오른쪽 이미지
-  alignItems: "center",
-  "@media": {
+  margin: '0 auto',
+  display: 'grid',
+  gridTemplateColumns: '1fr auto 1fr', // 왼쪽 텍스트, 중앙 일러스트, 오른쪽 이미지
+  alignItems: 'center',
+  '@media': {
     [breakpoints.mobile]: {
-      gridTemplateColumns: "1fr", // 모바일에서는 단일 컬럼
-      gap: "30px",
-      padding: "0 20px", // 좌우 20px 마진
+      gridTemplateColumns: '1fr', // 모바일에서는 단일 컬럼
+      gap: '30px',
+      padding: '0 20px', // 좌우 20px 마진
     },
   },
 });
 
 // 공통 반응형 브레이크포인트 (사용자 요청 기준)
 export const breakpoints = {
-  mobile: "screen and (max-width: 1023px)", // 375px ~ 1023px (tablet 통합)
-  mobileSmall: "screen and (max-width: 767px)", // 375px ~ 767px (phone only)
-  tablet: "screen and (min-width: 768px) and (max-width: 1023px)", // 768px ~ 1023px (tablet only)
-  desktop: "screen and (min-width: 1024px) and (max-width: 1919px)", // 1024px ~ 1919px (1920px 기준 비례 스케일링)
-  desktopLarge: "screen and (min-width: 1920px)", // 1920px 이상 (고정 크기)
+  mobile: 'screen and (max-width: 1023px)', // 375px ~ 1023px (tablet 통합)
+  mobileSmall: 'screen and (max-width: 767px)', // 375px ~ 767px (phone only)
+  tablet: 'screen and (min-width: 768px) and (max-width: 1023px)', // 768px ~ 1023px (tablet only)
+  desktop: 'screen and (min-width: 1024px) and (max-width: 1919px)', // 1024px ~ 1919px (1920px 기준 비례 스케일링)
+  desktopLarge: 'screen and (min-width: 1920px)', // 1920px 이상 (고정 크기)
 } as const;

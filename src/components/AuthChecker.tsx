@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import { useSession } from "next-auth/react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useEffect, useRef } from 'react';
+import { useSession } from 'next-auth/react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useAuthStore } from '@/shared/stores/useAuthStore';
 
 export default function AuthChecker() {
   const { data: session, status } = useSession();
@@ -14,12 +14,12 @@ export default function AuthChecker() {
 
   useEffect(() => {
     // localStorage에서 로그인 진행 중 플래그 확인
-    const loginInProgress = localStorage.getItem("loginInProgress");
+    const loginInProgress = localStorage.getItem('loginInProgress');
 
     // 세션이 있고 로그인 진행 중이었다면
-    if (status === "authenticated" && session && loginInProgress && !hasCheckedRef.current) {
+    if (status === 'authenticated' && session && loginInProgress && !hasCheckedRef.current) {
       hasCheckedRef.current = true;
-      localStorage.removeItem("loginInProgress");
+      localStorage.removeItem('loginInProgress');
 
       // 로그인 성공 모달 표시
       openLoginModal();
@@ -31,9 +31,9 @@ export default function AuthChecker() {
     }
 
     // 에러 처리
-    const error = searchParams.get("error");
-    if (error === "AccessDenied") {
-      localStorage.removeItem("loginInProgress");
+    const error = searchParams.get('error');
+    if (error === 'AccessDenied') {
+      localStorage.removeItem('loginInProgress');
       openLoginModal();
     }
   }, [session, status, searchParams, openLoginModal, showSignupSuccess, showLoginSuccess]);

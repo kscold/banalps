@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
-import { useIncisionTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { Suspense } from 'react';
+import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
+import { useIncisionTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 function IncisionContent() {
   const t = useIncisionTranslations();
@@ -12,10 +12,10 @@ function IncisionContent() {
     heroTitle: <>{t.hero.title}</>,
     heroTitleMobile: (
       <>
-        {t.hero.titleMobile.split("\n").map((line, index) => (
+        {t.hero.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.hero.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.hero.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -24,20 +24,20 @@ function IncisionContent() {
       number: 1,
       title: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -47,45 +47,43 @@ function IncisionContent() {
       },
       description: (
         <>
-          {t.section1.description.split("\n").map((line, index) => (
+          {t.section1.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split("\n").length - 1 && <br />}
+              {index < t.section1.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+          {t.section1.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       illustration:
-        language === "JP"
-          ? "/hair-transplant/incision/illustration-1-jp.svg"
-          : "/hair-transplant/incision/illustration-1.svg",
+        language === 'JP'
+          ? '/hair-transplant/incision/illustration-1-jp.svg'
+          : '/hair-transplant/incision/illustration-1.svg',
       illustrationSize: {
         width: 459,
         height: 190,
       },
       illustrationMobile:
-        language === "JP"
-          ? "/hair-transplant/incision/mobile/illustration-1-mobile-jp.svg"
-          : "/hair-transplant/incision/mobile/illustration-1-mobile.svg",
+        language === 'JP'
+          ? '/hair-transplant/incision/mobile/illustration-1-mobile-jp.svg'
+          : '/hair-transplant/incision/mobile/illustration-1-mobile.svg',
       illustrationMobileSize: {
         width: 324,
         height: 252,
       },
       images: {
-        main: "/hair-transplant/incision/incision-1.png",
-        secondary: "/hair-transplant/incision/incision-2.png",
+        main: '/hair-transplant/incision/incision-1.png',
+        secondary: '/hair-transplant/incision/incision-2.png',
       },
       imagesSize: {
         main: {
@@ -107,8 +105,8 @@ function IncisionContent() {
         },
       },
       imagesMobile: {
-        main: "/hair-transplant/incision/mobile/incision-1.jpg",
-        secondary: "/hair-transplant/incision/mobile/incision-2.jpg",
+        main: '/hair-transplant/incision/mobile/incision-1.jpg',
+        secondary: '/hair-transplant/incision/mobile/incision-2.jpg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -125,20 +123,20 @@ function IncisionContent() {
       number: 2,
       title: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -150,30 +148,28 @@ function IncisionContent() {
       titleMarginBottom: 120,
       description: (
         <>
-          {t.section2.description.split("\n").map((line, index) => (
+          {t.section2.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split("\n").length - 1 && <br />}
+              {index < t.section2.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+          {t.section2.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/hair-transplant/incision/incision-3.png",
+        main: '/hair-transplant/incision/incision-3.png',
       },
-      illustration: "/hair-transplant/incision/illustration-2.svg",
+      illustration: '/hair-transplant/incision/illustration-2.svg',
       illustrationSize: {
         width: 566,
         height: 326,
@@ -183,15 +179,14 @@ function IncisionContent() {
         bottom: -370, // Position at the bottom
         right: -190, // Position at the right
       },
-      illustrationMobile:
-        "/hair-transplant/incision/mobile/illustration-2-mobile.svg",
+      illustrationMobile: '/hair-transplant/incision/mobile/illustration-2-mobile.svg',
       illustrationMobileSize: {
         width: 375,
         height: 336,
         fullWidth: true,
       },
       imagesMobile: {
-        main: "/hair-transplant/incision/mobile/incision-3.jpg",
+        main: '/hair-transplant/incision/mobile/incision-3.jpg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -202,47 +197,45 @@ function IncisionContent() {
       number: 3,
       title: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section3.description.split("\n").map((line, index) => (
+          {t.section3.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.description.split("\n").length - 1 && <br />}
+              {index < t.section3.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+          {t.section3.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section3.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
-      illustration: "/hair-transplant/incision/illustration-3.svg",
+      illustration: '/hair-transplant/incision/illustration-3.svg',
       illustrationSize: {
         width: 745,
         height: 331,
@@ -252,14 +245,13 @@ function IncisionContent() {
         top: 500, // Position from top
         left: -170, // Position from left
       },
-      illustrationMobile:
-        "/hair-transplant/incision/mobile/illustration-3-mobile.svg",
+      illustrationMobile: '/hair-transplant/incision/mobile/illustration-3-mobile.svg',
       illustrationMobileSize: {
         width: 375,
         height: 336,
       },
       images: {
-        main: "/hair-transplant/incision/incision-4.png",
+        main: '/hair-transplant/incision/incision-4.png',
       },
       imagesSize: {
         main: {
@@ -268,7 +260,7 @@ function IncisionContent() {
         },
       },
       imagesMobile: {
-        main: "/hair-transplant/incision/mobile/incision-4.jpg",
+        main: '/hair-transplant/incision/mobile/incision-4.jpg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -278,32 +270,32 @@ function IncisionContent() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/hair-transplant/incision/slide/before.jpg",
-      afterImage: "/hair-transplant/incision/slide/after.jpg",
+      beforeImage: '/hair-transplant/incision/slide/before.jpg',
+      afterImage: '/hair-transplant/incision/slide/after.jpg',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
-      href: "/before-after",
+      href: '/before-after',
       width: 269, // 데스크탑에서 버튼 너비 설정 (기본값: 224)
     },
     featuresTitle: (
       <>
-        {t.features.title.split("\n").map((line, index) => (
+        {t.features.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split("\n").length - 1 && <br />}
+            {index < t.features.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split("\n").map((line, index) => (
+        {t.features.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -312,10 +304,10 @@ function IncisionContent() {
       icon: `/hair-transplant/feature-${index + 1}.svg`,
       title: (
         <>
-          {card.title.split("\n").map((line, lineIndex) => (
+          {card.title.split('\n').map((line, lineIndex) => (
             <span key={lineIndex}>
               {line}
-              {lineIndex < card.title.split("\n").length - 1 && <br />}
+              {lineIndex < card.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>

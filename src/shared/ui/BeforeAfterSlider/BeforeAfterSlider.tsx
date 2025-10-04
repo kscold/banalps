@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useRef, useCallback } from "react";
-import * as styles from "./BeforeAfterSlider.css";
-import { vw, mvw } from "@/shared/styles/responsive.utils";
+import React, { useState, useRef, useCallback } from 'react';
+import * as styles from './BeforeAfterSlider.css';
+import { vw, mvw } from '@/shared/styles/responsive.utils';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -19,13 +19,13 @@ interface BeforeAfterSliderProps {
 export default function BeforeAfterSlider({
   beforeImage,
   afterImage,
-  beforeAlt = "수술 전",
-  afterAlt = "수술 후",
+  beforeAlt = '수술 전',
+  afterAlt = '수술 후',
   className,
   isBlueBackground = false,
   isLoggedIn = true,
   onLoginClick,
-  loginOverlayText = "로그인을 하시면\n수술 전/후 사진 확인이 가능합니다.",
+  loginOverlayText = '로그인을 하시면\n수술 전/후 사진 확인이 가능합니다.',
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50); // 정확히 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,8 +38,8 @@ export default function BeforeAfterSlider({
       setIsMobile(window.innerWidth <= 1023);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // 초기화 시 정확히 50%로 설정
@@ -65,7 +65,7 @@ export default function BeforeAfterSlider({
       isDragging.current = true;
       updateSliderPosition(e.clientX);
     },
-    [updateSliderPosition, isLoggedIn]
+    [updateSliderPosition, isLoggedIn],
   );
 
   const handleMouseMove = useCallback(
@@ -73,7 +73,7 @@ export default function BeforeAfterSlider({
       if (!isDragging.current || !isLoggedIn) return; // 로그인 체크 추가
       updateSliderPosition(e.clientX);
     },
-    [updateSliderPosition, isLoggedIn]
+    [updateSliderPosition, isLoggedIn],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -89,7 +89,7 @@ export default function BeforeAfterSlider({
       // 터치 시작 시 스크롤 방지
       e.preventDefault();
     },
-    [updateSliderPosition, isLoggedIn]
+    [updateSliderPosition, isLoggedIn],
   );
 
   const handleTouchMove = useCallback(
@@ -99,7 +99,7 @@ export default function BeforeAfterSlider({
       const touch = e.touches[0];
       updateSliderPosition(touch.clientX);
     },
-    [updateSliderPosition, isLoggedIn]
+    [updateSliderPosition, isLoggedIn],
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -108,32 +108,29 @@ export default function BeforeAfterSlider({
 
   // 글로벌 마우스 이벤트 리스너
   React.useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
     // passive: false로 설정하여 preventDefault() 사용 가능하도록
-    document.addEventListener("touchmove", handleTouchMove, { passive: false });
-    document.addEventListener("touchend", handleTouchEnd);
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
   }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div
-      className={`${styles.container} ${className || ""}`}
-      style={{ cursor: isLoggedIn ? "ew-resize" : "default" }}
-    >
+    <div className={`${styles.container} ${className || ''}`} style={{ cursor: isLoggedIn ? 'ew-resize' : 'default' }}>
       {/* 이미지 컨테이너 */}
       <div
         ref={containerRef}
         className={styles.imageContainer}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
-        style={{ cursor: isLoggedIn ? "ew-resize" : "default" }}
+        style={{ cursor: isLoggedIn ? 'ew-resize' : 'default' }}
       >
         {/* After 이미지 (전체) */}
         <div className={styles.afterImageWrapper}>
@@ -143,20 +140,14 @@ export default function BeforeAfterSlider({
         </div>
 
         {/* Before 이미지 (클립 마스크) */}
-        <div
-          className={styles.beforeImageWrapper}
-          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-        >
+        <div className={styles.beforeImageWrapper} style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
           <img src={beforeImage} alt={beforeAlt} className={styles.image} />
           {/* 왼쪽 페이드 아웃 효과 */}
           <div className={styles.leftFadeOverlay} />
         </div>
 
         {/* 슬라이더 라인 - 상하 두 부분으로 나눔 */}
-        <div
-          className={styles.sliderLineContainer}
-          style={{ left: `${sliderPosition}%` }}
-        >
+        <div className={styles.sliderLineContainer} style={{ left: `${sliderPosition}%` }}>
           {/* 위쪽 선 (원 위) */}
           <div className={styles.sliderLineTop} />
           {/* 아래쪽 선 (원 아래) */}
@@ -167,7 +158,7 @@ export default function BeforeAfterSlider({
                 width: isMobile ? mvw(15) : vw(38),
                 height: isMobile ? mvw(10) : vw(16),
               }}
-              viewBox={isMobile ? "0 0 20 10" : "0 0 38 16"}
+              viewBox={isMobile ? '0 0 20 10' : '0 0 38 16'}
               fill="none"
             >
               {isMobile ? (
@@ -197,17 +188,14 @@ export default function BeforeAfterSlider({
         {!isLoggedIn && (
           <div className={styles.loginOverlay}>
             <div className={styles.loginOverlayContent}>
-              <button
-                className={styles.loginOverlayButton}
-                onClick={onLoginClick}
-              >
+              <button className={styles.loginOverlayButton} onClick={onLoginClick}>
                 LOGIN
               </button>
               <p className={styles.loginOverlayText}>
-                {loginOverlayText.split("\n").map((line, index) => (
+                {loginOverlayText.split('\n').map((line, index) => (
                   <span key={index}>
                     {line}
-                    {index < loginOverlayText.split("\n").length - 1 && <br />}
+                    {index < loginOverlayText.split('\n').length - 1 && <br />}
                   </span>
                 ))}
               </p>
@@ -218,13 +206,7 @@ export default function BeforeAfterSlider({
 
       {/* 데스크탑: 라벨을 이미지 아래 위치 */}
       {!isMobile && (
-        <div
-          className={
-            isBlueBackground
-              ? styles.labelsContainerDesktopBlue
-              : styles.labelsContainerDesktop
-          }
-        >
+        <div className={isBlueBackground ? styles.labelsContainerDesktopBlue : styles.labelsContainerDesktop}>
           <div className={styles.labelDesktop}>Before</div>
           <div className={styles.labelDesktop}>After</div>
         </div>

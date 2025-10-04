@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "../styles/breakpoints.css";
+@import 'tailwindcss';
+@import '../styles/breakpoints.css';
 
 /* 일본어 폰트 설정 */
 :root {
@@ -12,95 +12,149 @@
 .japanese-text,
 /* 일본어 문자 범위를 포함하는 텍스트 */
 *:has([data-japanese]) {
-  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+  font-family:
+    var(--font-zen-kaku),
+    'Zen Kaku Gothic New',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji' !important;
   font-weight: inherit !important;
   line-height: 150% !important;
   letter-spacing: 0% !important;
 }
 
 /* 일본어 모드일 때 번역된 텍스트에만 일본어 폰트 적용 */
-html[data-language="JP"] *:lang(ja),
-html[data-language="JP"] [data-lang="ja"],
-html[data-language="JP"] .japanese-text {
-  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+html[data-language='JP'] *:lang(ja),
+html[data-language='JP'] [data-lang='ja'],
+html[data-language='JP'] .japanese-text {
+  font-family:
+    var(--font-zen-kaku),
+    'Zen Kaku Gothic New',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji' !important;
   font-weight: inherit !important;
   line-height: 150% !important;
   letter-spacing: 0% !important;
 }
 
 /* 일본어 모드에서 모든 텍스트에 기본적으로 일본어 폰트 적용 */
-html[data-language="JP"] * {
-  font-family: var(--font-zen-kaku), "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+html[data-language='JP'] * {
+  font-family:
+    var(--font-zen-kaku),
+    'Zen Kaku Gothic New',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji';
   /* font-weight, line-height, letter-spacing은 원래 설정 유지 */
 }
 
 /* 예외처리 클래스: 일본어 모드에서도 한국어 버전의 원본 폰트 스타일을 강제 적용 */
-html[data-language="JP"] .font-exception {
-  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+html[data-language='JP'] .font-exception {
+  font-family:
+    'S-Core Dream',
+    'Pretendard',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif !important;
 }
 
 /* 의료진 제목 예외처리 - 기존 Poppins 스타일 유지 */
-html[data-language="JP"] [class*="medicalTeamHeroTitle"].font-exception,
-html[data-language="JP"] [class*="medicalTeamHeroTitle"]:has(.font-exception),
-html[data-language="JP"] .font-exception[class*="medicalTeamHeroTitle"] {
+html[data-language='JP'] [class*='medicalTeamHeroTitle'].font-exception,
+html[data-language='JP'] [class*='medicalTeamHeroTitle']:has(.font-exception),
+html[data-language='JP'] .font-exception[class*='medicalTeamHeroTitle'] {
   font-family: 'Poppins', sans-serif !important;
   font-weight: inherit !important;
 }
 
 /* View More 버튼 예외처리 - 일본어일 때도 Poppins 폰트 사용 */
-html[data-language="JP"] span[data-font="poppins"] {
+html[data-language='JP'] span[data-font='poppins'] {
   font-family: 'Poppins', sans-serif !important;
   font-weight: inherit !important;
 }
 
 /* 영어, 숫자, 특수문자 영역 예외처리 - 한국어 버전 원본 스타일 강제 적용 */
-html[data-language="JP"] .font-exception,
-html[data-language="JP"] .font-exception *,
-html[data-language="JP"] .english-text,
-html[data-language="JP"] .english-text *,
-html[data-language="JP"] *:lang(en),
-html[data-language="JP"] [data-lang="en"],
-html[data-language="JP"] [data-lang="en"] * {
-  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+html[data-language='JP'] .font-exception,
+html[data-language='JP'] .font-exception *,
+html[data-language='JP'] .english-text,
+html[data-language='JP'] .english-text *,
+html[data-language='JP'] *:lang(en),
+html[data-language='JP'] [data-lang='en'],
+html[data-language='JP'] [data-lang='en'] * {
+  font-family:
+    'S-Core Dream',
+    'Pretendard',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif !important;
 }
 
 /* 영어 이름(의료진)용 Poppins 폰트 예외처리 */
-html[data-language="JP"] .font-exception.english-name,
-html[data-language="JP"] .font-exception[class*="doctorName"],
-html[data-language="JP"] [class*="doctorName"].font-exception {
+html[data-language='JP'] .font-exception.english-name,
+html[data-language='JP'] .font-exception[class*='doctorName'],
+html[data-language='JP'] [class*='doctorName'].font-exception {
   font-family: 'Poppins', sans-serif !important;
 }
 
 /* 더 구체적인 선택자로 예외처리 강제 적용 - 한국어 원본 스타일 */
-html[data-language="JP"] h1.font-exception,
-html[data-language="JP"] h2.font-exception,
-html[data-language="JP"] h3.font-exception,
-html[data-language="JP"] h4.font-exception,
-html[data-language="JP"] h5.font-exception,
-html[data-language="JP"] h6.font-exception,
-html[data-language="JP"] p.font-exception,
-html[data-language="JP"] span.font-exception,
-html[data-language="JP"] div.font-exception,
-html[data-language="JP"] [class*="Title"].font-exception:not([class*="japanese"]):not([class*="translation"]) {
-  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+html[data-language='JP'] h1.font-exception,
+html[data-language='JP'] h2.font-exception,
+html[data-language='JP'] h3.font-exception,
+html[data-language='JP'] h4.font-exception,
+html[data-language='JP'] h5.font-exception,
+html[data-language='JP'] h6.font-exception,
+html[data-language='JP'] p.font-exception,
+html[data-language='JP'] span.font-exception,
+html[data-language='JP'] div.font-exception,
+html[data-language='JP'] [class*='Title'].font-exception:not([class*='japanese']):not([class*='translation']) {
+  font-family:
+    'S-Core Dream',
+    'Pretendard',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif !important;
 }
 
 /* 의료진 이름 전용 Poppins 폰트 예외처리 */
-html[data-language="JP"] .DoctorsPage_doctorNameText__1sikzsns.font-exception,
-html[data-language="JP"] .DoctorsPage_doctorMobileName__1sikzsn3j.font-exception,
-html[data-language="JP"] .DoctorsPage_doctorMobileName2__1sikzsn3k.font-exception,
-html[data-language="JP"] [class*="doctorNameText"].font-exception,
-html[data-language="JP"] [class*="doctorName"].font-exception,
-html[data-language="JP"] [class*="doctorMobileName2"].font-exception,
-html[data-language="JP"] [class*="doctorMobileName"].font-exception {
+html[data-language='JP'] .DoctorsPage_doctorNameText__1sikzsns.font-exception,
+html[data-language='JP'] .DoctorsPage_doctorMobileName__1sikzsn3j.font-exception,
+html[data-language='JP'] .DoctorsPage_doctorMobileName2__1sikzsn3k.font-exception,
+html[data-language='JP'] [class*='doctorNameText'].font-exception,
+html[data-language='JP'] [class*='doctorName'].font-exception,
+html[data-language='JP'] [class*='doctorMobileName2'].font-exception,
+html[data-language='JP'] [class*='doctorMobileName'].font-exception {
   font-family: 'Poppins', sans-serif !important;
 }
 
 /* 더 구체적인 DoctorsPage medicalTeamHeroTitle 예외처리 */
-html[data-language="JP"] [class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
-html[data-language="JP"] h2[class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
-html[data-language="JP"] motion[class^="DoctorsPage_medicalTeamHeroTitle"].font-exception,
-html[data-language="JP"] [class*="DoctorsPage_medicalTeamHeroTitle__"].font-exception {
+html[data-language='JP'] [class^='DoctorsPage_medicalTeamHeroTitle'].font-exception,
+html[data-language='JP'] h2[class^='DoctorsPage_medicalTeamHeroTitle'].font-exception,
+html[data-language='JP'] motion[class^='DoctorsPage_medicalTeamHeroTitle'].font-exception,
+html[data-language='JP'] [class*='DoctorsPage_medicalTeamHeroTitle__'].font-exception {
   font-family: 'Poppins', sans-serif !important;
 }
 
@@ -110,7 +164,7 @@ html[data-language="JP"] [class*="DoctorsPage_medicalTeamHeroTitle__"].font-exce
 }
 
 /* 일본어 모드가 아닐 때는 font-exception이 아무 효과 없음 */
-html:not([data-language="JP"]) .font-exception {
+html:not([data-language='JP']) .font-exception {
   /* 한국어/영어 모드에서는 기존 스타일 그대로 유지 */
 }
 
@@ -170,7 +224,6 @@ body {
 
 /* 모바일 터치 스크롤 최적화 */
 @media (max-width: 1023px) {
-
   html,
   body {
     -webkit-overflow-scrolling: touch;
@@ -233,10 +286,10 @@ body {
 }
 
 :root {
-  --background: #FFFDF7;
+  --background: #fffdf7;
   --foreground: #171717;
-  --color-ivory: #FDFCF8;
-  --color-blue: #1E3A8A;
+  --color-ivory: #fdfcf8;
+  --color-blue: #1e3a8a;
 }
 
 @theme inline {
@@ -257,7 +310,14 @@ body {
 body {
   background: var(--color-ivory);
   color: var(--foreground);
-  font-family: 'S-Core Dream', 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    'S-Core Dream',
+    'Pretendard',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
   word-break: keep-all;
   word-wrap: break-word;
 }
@@ -310,9 +370,9 @@ section {
 }
 
 .blue-section {
-  background: #73D5FA;
+  background: #73d5fa;
 }
 
 .white-section {
-  background: #FFFDF7;
+  background: #fffdf7;
 }

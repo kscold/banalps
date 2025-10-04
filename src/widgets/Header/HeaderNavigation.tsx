@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
-import * as styles from "./HeaderDesign.css";
-import { useHeaderState } from "../../features/header/hooks/useHeaderState";
-import { useAuthStore } from "@/shared/stores/useAuthStore";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-import DesktopNav from "../../features/header/components/DesktopNav";
-import MobileMenu from "../../features/header/components/MobileMenu";
-import MenuToggleButton from "../../features/header/components/MenuToggleButton";
-import { useHeaderTranslations } from "@/hooks/useAllPagesTranslations";
+import Link from 'next/link';
+import { useState, useRef, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
+import * as styles from './HeaderDesign.css';
+import { useHeaderState } from '../../features/header/hooks/useHeaderState';
+import { useAuthStore } from '@/shared/stores/useAuthStore';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import DesktopNav from '../../features/header/components/DesktopNav';
+import MobileMenu from '../../features/header/components/MobileMenu';
+import MenuToggleButton from '../../features/header/components/MenuToggleButton';
+import { useHeaderTranslations } from '@/hooks/useAllPagesTranslations';
 
 export default function HeaderNavigation() {
   const { data: session, status } = useSession();
@@ -46,7 +46,7 @@ export default function HeaderNavigation() {
     setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
   };
 
-  const selectLanguage = (lang: "KR" | "JP") => {
+  const selectLanguage = (lang: 'KR' | 'JP') => {
     setLanguage(lang);
     setIsLanguageDropdownOpen(false);
   };
@@ -54,20 +54,17 @@ export default function HeaderNavigation() {
   // 외부 클릭 감지하여 드롭다운 닫기
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        languageDropdownRef.current &&
-        !languageDropdownRef.current.contains(event.target as Node)
-      ) {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
         setIsLanguageDropdownOpen(false);
       }
     };
 
     if (isLanguageDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isLanguageDropdownOpen]);
 
@@ -89,18 +86,14 @@ export default function HeaderNavigation() {
                 className={styles.logoLink}
                 onClick={(e) => {
                   // 메인 페이지에서 클릭 시 새로고침
-                  if (pathname === "/") {
+                  if (pathname === '/') {
                     e.preventDefault();
                     window.location.reload();
                   }
                 }}
               >
                 <img
-                  src={
-                    language === "JP"
-                      ? "/main/logo/logo-jp.svg"
-                      : "/main/logo/logo.svg"
-                  }
+                  src={language === 'JP' ? '/main/logo/logo-jp.svg' : '/main/logo/logo.svg'}
                   alt="바람부는날에도"
                   className={styles.logoImage}
                 />
@@ -108,10 +101,7 @@ export default function HeaderNavigation() {
             </div>
 
             {/* 데스크톱 네비게이션 */}
-            <DesktopNav
-              showSubmenu={showSubmenu}
-              isHeaderHovered={isHeaderHovered}
-            />
+            <DesktopNav showSubmenu={showSubmenu} isHeaderHovered={isHeaderHovered} />
 
             {/* 액션 버튼들 */}
             <div className={styles.actionButtons}>
@@ -119,7 +109,7 @@ export default function HeaderNavigation() {
                 <button className={styles.loginButton} disabled>
                   {t.login}
                 </button>
-              ) : status === "loading" ? (
+              ) : status === 'loading' ? (
                 <button className={styles.loginButton} disabled>
                   {t.login}
                 </button>
@@ -134,21 +124,11 @@ export default function HeaderNavigation() {
               )}
 
               {/* 언어 선택 버튼 */}
-              <div
-                className={styles.languageButtonWrapper}
-                ref={languageDropdownRef}
-              >
-                <button
-                  className={styles.consultButton}
-                  onClick={toggleLanguageDropdown}
-                >
-                  <span>
-                    {!isClient ? "KR" : language === "KR" ? "KR" : "JP"}
-                  </span>
+              <div className={styles.languageButtonWrapper} ref={languageDropdownRef}>
+                <button className={styles.consultButton} onClick={toggleLanguageDropdown}>
+                  <span>{!isClient ? 'KR' : language === 'KR' ? 'KR' : 'JP'}</span>
                   <span
-                    className={`${styles.dropdownArrow} ${
-                      isLanguageDropdownOpen ? styles.dropdownArrowRotated : ""
-                    }`}
+                    className={`${styles.dropdownArrow} ${isLanguageDropdownOpen ? styles.dropdownArrowRotated : ''}`}
                   >
                     ▼
                   </span>
@@ -157,30 +137,22 @@ export default function HeaderNavigation() {
                 {/* 언어 드롭다운 */}
                 <div
                   className={`${styles.languageDropdownContainer} ${
-                    isLanguageDropdownOpen ? styles.languageDropdownActive : ""
+                    isLanguageDropdownOpen ? styles.languageDropdownActive : ''
                   }`}
                 >
                   <button
                     className={`${styles.languageOption} ${
-                      !isClient
-                        ? styles.languageOptionActive
-                        : language === "KR"
-                        ? styles.languageOptionActive
-                        : ""
+                      !isClient ? styles.languageOptionActive : language === 'KR' ? styles.languageOptionActive : ''
                     }`}
-                    onClick={() => selectLanguage("KR")}
+                    onClick={() => selectLanguage('KR')}
                   >
                     <span>KR</span>
                   </button>
                   <button
                     className={`${styles.languageOption} ${
-                      !isClient
-                        ? ""
-                        : language === "JP"
-                        ? styles.languageOptionActive
-                        : ""
+                      !isClient ? '' : language === 'JP' ? styles.languageOptionActive : ''
                     }`}
-                    onClick={() => selectLanguage("JP")}
+                    onClick={() => selectLanguage('JP')}
                   >
                     <span>JP</span>
                   </button>
@@ -200,15 +172,15 @@ export default function HeaderNavigation() {
         style={
           isHeaderHovered
             ? {
-                height: "auto",
-                maxHeight: "410px",
+                height: 'auto',
+                maxHeight: '410px',
                 opacity: 1,
-                visibility: "visible",
-                pointerEvents: "auto",
+                visibility: 'visible',
+                pointerEvents: 'auto',
               }
             : {
-                height: "0",
-                maxHeight: "0",
+                height: '0',
+                maxHeight: '0',
               }
         }
         onMouseEnter={() => handleHeaderMouseEnter()}

@@ -29,7 +29,7 @@ interface SizeConfig {
 export const getResponsivePosition = (
   position: PositionConfig | undefined,
   isMobile: boolean,
-  isDesktopLarge: boolean
+  isDesktopLarge: boolean,
 ): CSSProperties => {
   if (!position) return {};
 
@@ -101,7 +101,7 @@ export const getResponsiveSizeAndPosition = (
   size: SizeConfig | undefined,
   position: PositionConfig | undefined,
   isMobile: boolean,
-  isDesktopLarge: boolean
+  isDesktopLarge: boolean,
 ): CSSProperties | undefined => {
   if (!size && !position) return undefined;
 
@@ -138,7 +138,7 @@ export const processDescription = (description: React.ReactNode, quoteClassName:
         result.push(
           <span key={index} className={quoteClassName}>
             {bElement.props.children}
-          </span>
+          </span>,
         );
         hasQuote = true;
       } else {

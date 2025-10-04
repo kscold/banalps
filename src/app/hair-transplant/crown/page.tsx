@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
-import { useCrownTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { Suspense } from 'react';
+import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
+import { useCrownTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 function CrownContent() {
   const t = useCrownTranslations();
@@ -21,61 +21,59 @@ function CrownContent() {
       number: 1,
       title: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section1.description.split("\n").map((line, index) => (
+          {t.section1.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split("\n").length - 1 && <br />}
+              {index < t.section1.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+          {t.section1.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       illustration:
-        language === "JP"
-          ? "/hair-transplant/crown/illustration-1-jp.svg"
-          : "/hair-transplant/crown/illustration-1.svg",
+        language === 'JP'
+          ? '/hair-transplant/crown/illustration-1-jp.svg'
+          : '/hair-transplant/crown/illustration-1.svg',
       illustrationSize: {
         width: 459,
         height: 114,
       },
       illustrationMobile:
-        language === "JP"
-          ? "/hair-transplant/crown/mobile/illustration-1-mobile-jp.svg"
-          : "/hair-transplant/crown/mobile/illustration-1-mobile.svg",
+        language === 'JP'
+          ? '/hair-transplant/crown/mobile/illustration-1-mobile-jp.svg'
+          : '/hair-transplant/crown/mobile/illustration-1-mobile.svg',
       images: {
-        main: "/hair-transplant/crown/crown-2.png",
-        secondary: "/hair-transplant/crown/crown-1.png",
+        main: '/hair-transplant/crown/crown-2.png',
+        secondary: '/hair-transplant/crown/crown-1.png',
       },
       imagesSize: {
         main: {
@@ -97,8 +95,8 @@ function CrownContent() {
         },
       },
       imagesMobile: {
-        main: "/hair-transplant/crown/mobile/crown-2-mobile.svg",
-        secondary: "/hair-transplant/crown/mobile/crown-1-mobile.svg",
+        main: '/hair-transplant/crown/mobile/crown-2-mobile.svg',
+        secondary: '/hair-transplant/crown/mobile/crown-1-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false, // main 이미지는 100vw
@@ -116,52 +114,50 @@ function CrownContent() {
       number: 2,
       title: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section2.description.split("\n").map((line, index) => (
+          {t.section2.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split("\n").length - 1 && <br />}
+              {index < t.section2.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+          {t.section2.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       svgElements: {
-        container: "/hair-transplant/crown/illustration-2.svg",
+        container: '/hair-transplant/crown/illustration-2.svg',
         absolute:
-          language === "JP"
-            ? "/hair-transplant/crown/illustration-3-jp.svg"
-            : "/hair-transplant/crown/illustration-3.svg",
+          language === 'JP'
+            ? '/hair-transplant/crown/illustration-3-jp.svg'
+            : '/hair-transplant/crown/illustration-3.svg',
       },
       svgElementsSize: {
         container: {
@@ -181,10 +177,10 @@ function CrownContent() {
       },
       mobileImages: {
         illustration: [
-          "/hair-transplant/crown/illustration-2.svg",
-          language === "JP"
-            ? "/hair-transplant/crown/illustration-3-jp.svg"
-            : "/hair-transplant/crown/illustration-3.svg",
+          '/hair-transplant/crown/illustration-2.svg',
+          language === 'JP'
+            ? '/hair-transplant/crown/illustration-3-jp.svg'
+            : '/hair-transplant/crown/illustration-3.svg',
         ],
         illustrationSize: {
           width: 375,
@@ -192,10 +188,10 @@ function CrownContent() {
         },
       },
       images: {
-        main: "/hair-transplant/crown/crown-3.png",
+        main: '/hair-transplant/crown/crown-3.png',
       },
       imagesMobile: {
-        main: "/hair-transplant/crown/mobile/crown-3-mobile.svg",
+        main: '/hair-transplant/crown/mobile/crown-3-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -206,61 +202,59 @@ function CrownContent() {
       number: 3,
       title: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
-      illustration: "/hair-transplant/crown/illustration-4.svg",
+      illustration: '/hair-transplant/crown/illustration-4.svg',
       illustrationSize: {
         width: 275,
         height: 223,
       },
-      illustrationMobile: "/hair-transplant/crown/illustration-4.svg",
+      illustrationMobile: '/hair-transplant/crown/illustration-4.svg',
       illustrationMobileSize: {
         width: 278,
         height: 226,
       },
       description: (
         <>
-          {t.section3.description.split("\n").map((line, index) => (
+          {t.section3.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.description.split("\n").length - 1 && <br />}
+              {index < t.section3.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+          {t.section3.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section3.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/hair-transplant/crown/crown-4.png",
+        main: '/hair-transplant/crown/crown-4.png',
       },
       imagesMobile: {
-        main: "/hair-transplant/crown/mobile/crown-4-mobile.svg",
+        main: '/hair-transplant/crown/mobile/crown-4-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -270,32 +264,32 @@ function CrownContent() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/hair-transplant/crown/slide/before.png",
-      afterImage: "/hair-transplant/crown/slide/after.png",
+      beforeImage: '/hair-transplant/crown/slide/before.png',
+      afterImage: '/hair-transplant/crown/slide/after.png',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
-      href: "/before-after",
+      href: '/before-after',
       width: 269,
     },
     featuresTitle: (
       <>
-        {t.features.title.split("\n").map((line, index) => (
+        {t.features.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split("\n").length - 1 && <br />}
+            {index < t.features.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split("\n").map((line, index) => (
+        {t.features.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -304,10 +298,10 @@ function CrownContent() {
       icon: `/hair-transplant/feature-${index + 1}.svg`,
       title: (
         <>
-          {card.title.split("\n").map((line, lineIndex) => (
+          {card.title.split('\n').map((line, lineIndex) => (
             <span key={lineIndex}>
               {line}
-              {lineIndex < card.title.split("\n").length - 1 && <br />}
+              {lineIndex < card.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -315,9 +309,7 @@ function CrownContent() {
     })),
   };
 
-  return (
-    <HairTransplantLayout {...layoutData} language={language} isCrown={true} />
-  );
+  return <HairTransplantLayout {...layoutData} language={language} isCrown={true} />;
 }
 
 export default function CrownPage() {

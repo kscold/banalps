@@ -75,17 +75,17 @@ export default function Section2({
                   {isMobile && section2.titleMobile
                     ? section2.titleMobile
                     : typeof section2.title === 'string'
-                    ? (() => {
-                        const titleText = section2.title as string;
-                        const lines = titleText.split('\n');
-                        return lines.map((line, index) => (
-                          <span key={index}>
-                            {line}
-                            {index < lines.length - 1 && <br />}
-                          </span>
-                        ));
-                      })()
-                    : section2.title}
+                      ? (() => {
+                          const titleText = section2.title as string;
+                          const lines = titleText.split('\n');
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
+                      : section2.title}
                 </h2>
 
                 {/* 모바일: 메인 이미지 */}
@@ -105,8 +105,8 @@ export default function Section2({
                             height: section2.imagesMobileSize.mainHeight
                               ? mvw(section2.imagesMobileSize.mainHeight)
                               : section2.imagesMobileSize.height
-                              ? mvw(section2.imagesMobileSize.height)
-                              : undefined,
+                                ? mvw(section2.imagesMobileSize.height)
+                                : undefined,
                             width: section2.imagesMobileSize.mainMaxWidth ? '100vw' : '100%',
                             marginLeft: section2.imagesMobileSize.mainMaxWidth ? `calc(-1 * ${mvw(16)})` : undefined,
                             marginRight: section2.imagesMobileSize.mainMaxWidth ? `calc(-1 * ${mvw(16)})` : undefined,
@@ -132,7 +132,7 @@ export default function Section2({
                 >
                   {processDescription(
                     isMobile && section2.descriptionMobile ? section2.descriptionMobile : section2.description,
-                    styles.section2Quote
+                    styles.section2Quote,
                   )}
                   {section2.quote && (
                     <>
@@ -331,7 +331,7 @@ export default function Section2({
                             section2.illustrationSize,
                             section2.illustrationPosition,
                             isMobile,
-                            isDesktopLarge
+                            isDesktopLarge,
                           ),
                         }
                       : getResponsiveSize(section2.illustrationSize, isDesktopLarge)
@@ -377,17 +377,17 @@ export default function Section2({
                   {isMobile && section2.titleMobile
                     ? section2.titleMobile
                     : typeof section2.title === 'string'
-                    ? (() => {
-                        const titleText = section2.title as string;
-                        const lines = titleText.split('\n');
-                        return lines.map((line, index) => (
-                          <span key={index}>
-                            {line}
-                            {index < lines.length - 1 && <br />}
-                          </span>
-                        ));
-                      })()
-                    : section2.title}
+                      ? (() => {
+                          const titleText = section2.title as string;
+                          const lines = titleText.split('\n');
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
+                      : section2.title}
                 </h2>
                 {section2.svgElements?.container && (
                   <div
@@ -423,7 +423,7 @@ export default function Section2({
                 >
                   {processDescription(
                     isMobile && section2.descriptionMobile ? section2.descriptionMobile : section2.description,
-                    styles.section2Quote
+                    styles.section2Quote,
                   )}
                   {section2.quote && (
                     <>

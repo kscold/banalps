@@ -1,20 +1,20 @@
-import type { NextConfig } from "next";
-import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
+import type { NextConfig } from 'next';
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 
 const withVanillaExtract = createVanillaExtractPlugin({
   // Vanilla Extract 최적화 설정
-  identifiers: process.env.NODE_ENV === "development" ? "debug" : "short",
+  identifiers: process.env.NODE_ENV === 'development' ? 'debug' : 'short',
 });
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  output: 'standalone',
   productionBrowserSourceMaps: false, // 프로덕션 소스맵 비활성화
   eslint: {
     ignoreDuringBuilds: true, // 빌드 시 ESLint 무시
   },
   // 프로덕션에서 콘솔 로그 제거
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   // hydration 안정성 설정
   experimental: {
@@ -23,76 +23,76 @@ const nextConfig: NextConfig = {
   // 이미지 최적화 설정
   images: {
     unoptimized: false, // 이미지 최적화 활성화
-    formats: ["image/webp", "image/avif"],
+    formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
+        protocol: 'http',
+        hostname: 'localhost',
       },
       {
-        protocol: "https",
-        hostname: "banalps.vizensoft.com",
+        protocol: 'https',
+        hostname: 'banalps.vizensoft.com',
       },
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
       {
-        protocol: "https",
-        hostname: "player.vimeo.com",
+        protocol: 'https',
+        hostname: 'player.vimeo.com',
       },
     ],
   },
   async headers() {
     return [
       {
-        source: "/api/:path*",
+        source: '/api/:path*',
         headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
           {
-            key: "Access-Control-Allow-Methods",
-            value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
           },
           {
-            key: "Access-Control-Allow-Headers",
+            key: 'Access-Control-Allow-Headers',
             value:
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization",
+              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization',
           },
         ],
       },
       // 이미지 최적화 캐싱
       {
-        source: "/_next/image/:path*",
+        source: '/_next/image/:path*',
         headers: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
       // 동영상 최적화 캐싱
       {
-        source: "/:path*\\.(mp4|webm|ogg|avi|mov)",
+        source: '/:path*\\.(mp4|webm|ogg|avi|mov)',
         headers: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
           {
-            key: "Accept-Ranges",
-            value: "bytes",
+            key: 'Accept-Ranges',
+            value: 'bytes',
           },
         ],
       },
       // Vimeo 동영상 프리페치
       {
-        source: "/api/video/:path*",
+        source: '/api/video/:path*',
         headers: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=3600",
+            key: 'Cache-Control',
+            value: 'public, max-age=3600',
           },
         ],
       },

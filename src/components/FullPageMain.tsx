@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
-import HeroSection from "../widgets/Hero/HeroSection";
-import { VideoSection } from "../widgets/Hero/VideoSection";
-import BlueSection from "../widgets/BlueSection";
-import WhiteSection from "../widgets/WhiteSection/WhiteSection";
-import Footer from "../shared/ui/Footer/Footer";
-import * as styles from "./FullPageMain.css";
+import HeroSection from '../widgets/Hero/HeroSection';
+import { VideoSection } from '../widgets/Hero/VideoSection';
+import BlueSection from '../widgets/BlueSection';
+import WhiteSection from '../widgets/WhiteSection/WhiteSection';
+import Footer from '../shared/ui/Footer/Footer';
+import * as styles from './FullPageMain.css';
 
 const FullPageMain = () => {
   const [currentSection, setCurrentSection] = useState<0 | 1 | 2>(0);
@@ -20,16 +20,19 @@ const FullPageMain = () => {
   useEffect(() => {
     if (containerRef.current && heroRef.current) {
       containerRef.current.scrollTop = 0;
-      heroRef.current.scrollIntoView({ behavior: "instant" });
+      heroRef.current.scrollIntoView({ behavior: 'instant' });
     }
   }, []);
 
   // IntersectionObserver 옵션 - useMemo로 메모이제이션
-  const observerOptions = useMemo(() => ({
-    root: containerRef.current,
-    rootMargin: "-45% 0px -45% 0px",
-    threshold: 0,
-  }), []);
+  const observerOptions = useMemo(
+    () => ({
+      root: containerRef.current,
+      rootMargin: '-45% 0px -45% 0px',
+      threshold: 0,
+    }),
+    [],
+  );
 
   // IntersectionObserver 콜백 - useCallback으로 메모이제이션
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
@@ -66,33 +69,25 @@ const FullPageMain = () => {
   // Hero 완료 핸들러 - useCallback으로 메모이제이션
   const handleHeroComplete = useCallback(() => {
     if (videoRef.current) {
-      videoRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      videoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, []);
 
   // 비디오 종료 핸들러 - useCallback으로 메모이제이션
   const handleVideoEnd = useCallback(() => {
     if (contentRef.current) {
-      contentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, []);
 
   return (
     <div ref={containerRef} className={styles.container} suppressHydrationWarning>
       <div ref={heroRef} className={styles.heroSection} suppressHydrationWarning>
-        <HeroSection
-          onTextComplete={handleHeroComplete}
-          isActive={currentSection === 0}
-          initialTextIndex={0}
-        />
+        <HeroSection onTextComplete={handleHeroComplete} isActive={currentSection === 0} initialTextIndex={0} />
       </div>
 
       <div ref={videoRef} className={styles.videoSection} suppressHydrationWarning>
-        <VideoSection
-          showVideoSection={true}
-          onVideoEnd={handleVideoEnd}
-          onVideoReady={() => {}}
-        />
+        <VideoSection showVideoSection={true} onVideoEnd={handleVideoEnd} onVideoReady={() => {}} />
       </div>
 
       <div ref={contentRef} className={styles.contentSection} suppressHydrationWarning>

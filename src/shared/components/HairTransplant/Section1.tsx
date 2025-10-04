@@ -87,8 +87,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                             height: section1.imagesMobileSize.mainHeight
                               ? mvw(section1.imagesMobileSize.mainHeight)
                               : section1.imagesMobileSize.height
-                              ? mvw(section1.imagesMobileSize.height)
-                              : 'auto',
+                                ? mvw(section1.imagesMobileSize.height)
+                                : 'auto',
                             left: '50%',
                             right: '50%',
                             marginLeft: '-50vw',
@@ -103,8 +103,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                             height: section1.imagesMobileSize?.mainHeight
                               ? mvw(section1.imagesMobileSize.mainHeight)
                               : section1.imagesMobileSize?.height
-                              ? mvw(section1.imagesMobileSize.height)
-                              : 'auto',
+                                ? mvw(section1.imagesMobileSize.height)
+                                : 'auto',
                           }),
                     }}
                   >
@@ -248,8 +248,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.imagesMobileSize.secondaryHeight
                             ? mvw(section1.imagesMobileSize.secondaryHeight)
                             : section1.imagesMobileSize.height
-                            ? mvw(section1.imagesMobileSize.height)
-                            : 'auto',
+                              ? mvw(section1.imagesMobileSize.height)
+                              : 'auto',
                         }
                       : {
                           width: '100%',
@@ -257,8 +257,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.imagesMobileSize?.secondaryHeight
                             ? mvw(section1.imagesMobileSize.secondaryHeight)
                             : section1.imagesMobileSize?.height
-                            ? mvw(section1.imagesMobileSize.height)
-                            : 'auto',
+                              ? mvw(section1.imagesMobileSize.height)
+                              : 'auto',
                         }),
                   }}
                 >
@@ -393,8 +393,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.imagesMobileSize.mainHeight
                             ? mvw(section1.imagesMobileSize.mainHeight)
                             : section1.imagesMobileSize.height
-                            ? mvw(section1.imagesMobileSize.height)
-                            : 'auto',
+                              ? mvw(section1.imagesMobileSize.height)
+                              : 'auto',
                           marginLeft: section1.imagesMobileSize.mainMaxWidth ? mvw(-20) : undefined,
                           marginRight: section1.imagesMobileSize.mainMaxWidth ? mvw(-20) : undefined,
                         }
@@ -439,8 +439,8 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.imagesMobileSize.secondaryHeight
                             ? mvw(section1.imagesMobileSize.secondaryHeight)
                             : section1.imagesMobileSize.height
-                            ? mvw(section1.imagesMobileSize.height)
-                            : 'auto',
+                              ? mvw(section1.imagesMobileSize.height)
+                              : 'auto',
                           marginLeft: section1.imagesMobileSize.secondaryMaxWidth ? mvw(-20) : undefined,
                           marginRight: section1.imagesMobileSize.secondaryMaxWidth ? mvw(-20) : undefined,
                         }

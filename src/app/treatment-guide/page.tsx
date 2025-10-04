@@ -1,18 +1,16 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import * as styles from "./TreatmentGuidePage.css";
+import { motion } from 'framer-motion';
+import * as styles from './TreatmentGuidePage.css';
 
-import GoogleMapEmbed, {
-  MapButtons,
-} from "../../shared/ui/GoogleMapEmbed/GoogleMapEmbed";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
-import { useTreatmentGuideTranslations } from "@/hooks/useAllPagesTranslations";
+import GoogleMapEmbed, { MapButtons } from '../../shared/ui/GoogleMapEmbed/GoogleMapEmbed';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
+import { useTreatmentGuideTranslations } from '@/hooks/useAllPagesTranslations';
 
 export default function TreatmentGuidePage() {
-  const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   const t = useTreatmentGuideTranslations();
-  console.log("[TreatmentGuidePage] 진료 안내 페이지 렌더링");
+  console.log('[TreatmentGuidePage] 진료 안내 페이지 렌더링');
 
   return (
     <div className={styles.treatmentGuidePage}>
@@ -69,7 +67,7 @@ export default function TreatmentGuidePage() {
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
             >
               {t.hero.subtitle.split('\n').map((line, index) => (
                 <span key={index}>

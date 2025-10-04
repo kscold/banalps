@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState, useRef, useCallback, useMemo } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useCallback, useMemo } from 'react';
+import { motion } from 'framer-motion';
 
-import * as styles from "./DoctorsPage.css";
-import { useDoctorsTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-import { useAcademicActivities } from "@/hooks/useAcademicActivities";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
+import * as styles from './DoctorsPage.css';
+import { useDoctorsTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import { useAcademicActivities } from '@/hooks/useAcademicActivities';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 export default function DoctorsPage() {
-  console.log("[DoctorsPage] 의료진 소개 페이지 렌더링");
+  console.log('[DoctorsPage] 의료진 소개 페이지 렌더링');
 
   // 번역 훅
   const t = useDoctorsTranslations();
@@ -22,7 +22,7 @@ export default function DoctorsPage() {
   const { getAllActivities, getAvailableYears } = useAcademicActivities();
 
   // 모바일 감지 - useMediaQuery 사용 (hydration safe)
-  const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   // 선택된 연도 상태
   const [selectedYear, setSelectedYear] = useState<number>(2021);
@@ -33,7 +33,7 @@ export default function DoctorsPage() {
 
   // 연도 클릭 핸들러 - useCallback으로 메모이제이션
   const handleYearClick = useCallback((year: number) => {
-    console.log("[DoctorsPage/연도클릭] 연도 변경:", year);
+    console.log('[DoctorsPage/연도클릭] 연도 변경:', year);
     setSelectedYear(year);
   }, []);
 
@@ -50,10 +50,10 @@ export default function DoctorsPage() {
           <div className={styles.medicalTeamHeader}>
             <div className={styles.medicalTeamTitleSection}>
               <h1 className={styles.medicalTeamMainTitle}>
-                {t.hero.title.split("\n").map((line, index) => (
+                {t.hero.title.split('\n').map((line, index) => (
                   <span key={index}>
                     {line}
-                    {index < t.hero.title.split("\n").length - 1 && <br />}
+                    {index < t.hero.title.split('\n').length - 1 && <br />}
                   </span>
                 ))}
               </h1>
@@ -66,7 +66,7 @@ export default function DoctorsPage() {
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileMainSection}>
                 <div className={styles.doctorMobileHeader}>
                   <h1 className={styles.doctorMobileTitle}>
-                    {language === "JP" ? (
+                    {language === 'JP' ? (
                       <>
                         植毛
                         <br />
@@ -111,21 +111,17 @@ export default function DoctorsPage() {
                       <br />
                       gyu
                     </h2>
-                    <p className={styles.doctorMobilePosition}>
-                      {t.doctorInfo.specialist}
-                    </p>
-                    <p className={styles.doctorMobileNameBold}>
-                      {t.doctors[0].position}
-                    </p>
+                    <p className={styles.doctorMobilePosition}>{t.doctorInfo.specialist}</p>
+                    <p className={styles.doctorMobileNameBold}>{t.doctors[0].position}</p>
                   </div>
                 </div>
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
                     src={
-                      language === "JP"
-                        ? "/doctors/mobile/doctor-shinseunggyu-talk-mobile-jp.svg"
-                        : "/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg"
+                      language === 'JP'
+                        ? '/doctors/mobile/doctor-shinseunggyu-talk-mobile-jp.svg'
+                        : '/doctors/mobile/doctor-shinseunggyu-talk-mobile.svg'
                     }
                     alt="신승규 원장 명언"
                     className={styles.doctorMobileQuoteImage}
@@ -135,10 +131,7 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
                   {t.doctors[0].credentials.map((credential, index) => (
-                    <li
-                      key={index}
-                      className={styles.doctorMobileCredentialItem}
-                    >
+                    <li key={index} className={styles.doctorMobileCredentialItem}>
                       {credential}
                     </li>
                   ))}
@@ -157,12 +150,8 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorTitle}>
-                <p className={styles.doctorSpecialty}>
-                  {t.doctorInfo.specialist}
-                </p>
-                <h4 className={styles.doctorPosition}>
-                  {t.doctors[0].position}
-                </h4>
+                <p className={styles.doctorSpecialty}>{t.doctorInfo.specialist}</p>
+                <h4 className={styles.doctorPosition}>{t.doctors[0].position}</h4>
               </div>
 
               <div className={styles.doctorInfo}>
@@ -192,13 +181,7 @@ export default function DoctorsPage() {
                 </div>
               </div>
 
-              <div
-                className={`${
-                  language === "JP"
-                    ? styles.doctorQuote1JP
-                    : styles.doctorQuote1
-                }`}
-              >
+              <div className={`${language === 'JP' ? styles.doctorQuote1JP : styles.doctorQuote1}`}>
                 <div className={styles.doctorQuoteText1}>
                   <img
                     src="/doctors/profile/double-quotation-start.svg"
@@ -206,12 +189,10 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    {t.doctors[0].quote.split("\n").map((line, index) => (
+                    {t.doctors[0].quote.split('\n').map((line, index) => (
                       <span key={index}>
                         {line}
-                        {index < t.doctors[0].quote.split("\n").length - 1 && (
-                          <br />
-                        )}
+                        {index < t.doctors[0].quote.split('\n').length - 1 && <br />}
                       </span>
                     ))}
                   </p>
@@ -231,7 +212,7 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
                 />
               </div>
               <div className={styles.doctorSubImage2}>
@@ -242,7 +223,7 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
                 />
               </div>
 
@@ -271,31 +252,26 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2
-                      className={`${styles.doctorMobileName2} font-exception`}
-                    >
+                    <h2 className={`${styles.doctorMobileName2} font-exception`}>
                       Park
                       <br />
                       Soo Ho
                     </h2>
                     <p className={styles.doctorMobilePosition}>
-                      {(t.doctorInfo as any).parkSpecialist ||
-                        t.doctorInfo.specialist}
+                      {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
                       <br />
                       {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                     </p>
-                    <p className={styles.doctorMobileNameBold}>
-                      {t.doctors[1].position}
-                    </p>
+                    <p className={styles.doctorMobileNameBold}>{t.doctors[1].position}</p>
                   </div>
                 </div>
                 {/* 명언 섹션 - 이미지로 대체 */}
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
                     src={
-                      language === "JP"
-                        ? "/doctors/mobile/doctor-parksoohyo-talk-mobile-jp.svg"
-                        : "/doctors/mobile/doctor-parksoohyo-talk-mobile.svg"
+                      language === 'JP'
+                        ? '/doctors/mobile/doctor-parksoohyo-talk-mobile-jp.svg'
+                        : '/doctors/mobile/doctor-parksoohyo-talk-mobile.svg'
                     }
                     alt="박수호 원장 명언"
                     className={styles.doctorMobileQuoteImage}
@@ -305,10 +281,7 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
                   {t.doctors[1].credentials.map((credential, index) => (
-                    <li
-                      key={index}
-                      className={styles.doctorMobileCredentialItem}
-                    >
+                    <li key={index} className={styles.doctorMobileCredentialItem}>
                       {credential}
                     </li>
                   ))}
@@ -328,14 +301,11 @@ export default function DoctorsPage() {
 
               <div className={styles.doctorTitle2}>
                 <p className={styles.doctorSpecialty}>
-                  {(t.doctorInfo as any).parkSpecialist ||
-                    t.doctorInfo.specialist}
+                  {(t.doctorInfo as any).parkSpecialist || t.doctorInfo.specialist}
                   <br />
                   {(t.doctorInfo as any).parkAbhrs || t.doctorInfo.abhrs}
                 </p>
-                <h4 className={styles.doctorPosition}>
-                  {t.doctors[1].position}
-                </h4>
+                <h4 className={styles.doctorPosition}>{t.doctors[1].position}</h4>
               </div>
 
               <div className={styles.doctorInfo2}>
@@ -373,12 +343,10 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    {t.doctors[1].quote.split("\n").map((line, index) => (
+                    {t.doctors[1].quote.split('\n').map((line, index) => (
                       <span key={index}>
                         {line}
-                        {index < t.doctors[1].quote.split("\n").length - 1 && (
-                          <br />
-                        )}
+                        {index < t.doctors[1].quote.split('\n').length - 1 && <br />}
                       </span>
                     ))}
                   </p>
@@ -398,7 +366,7 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: 'easeOut' }}
                 />
               </div>
               <div className={styles.doctorSubImagePark2}>
@@ -409,16 +377,12 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 1.2, ease: 'easeOut' }}
                 />
               </div>
 
               <div className={styles.doctorImageContainer2}>
-                <img
-                  src="/doctors/person/doctor-parksooho.png"
-                  alt="박수호 원장"
-                  className={styles.doctorMainImage}
-                />
+                <img src="/doctors/person/doctor-parksooho.png" alt="박수호 원장" className={styles.doctorMainImage} />
               </div>
             </div>
           )}
@@ -437,27 +401,21 @@ export default function DoctorsPage() {
                     className={styles.doctorMobileInfoImage}
                   />
                   <div className={styles.doctorMobileInfoOverlay}>
-                    <h2
-                      className={`${styles.doctorMobileName3} font-exception`}
-                    >
+                    <h2 className={`${styles.doctorMobileName3} font-exception`}>
                       Kim
                       <br />
                       Narae
                     </h2>
-                    <p className={styles.doctorMobilePosition}>
-                      {t.doctorInfo.specialist}
-                    </p>
-                    <p className={styles.doctorMobileNameBold}>
-                      {t.doctors[2].position}
-                    </p>
+                    <p className={styles.doctorMobilePosition}>{t.doctorInfo.specialist}</p>
+                    <p className={styles.doctorMobileNameBold}>{t.doctors[2].position}</p>
                   </div>
                 </div>
                 <div className={styles.doctorMobileQuoteSection}>
                   <img
                     src={
-                      language === "JP"
-                        ? "/doctors/mobile/doctor-kimnarae-talk-mobile-jp.svg"
-                        : "/doctors/mobile/doctor-kimnarae-talk-mobile.svg"
+                      language === 'JP'
+                        ? '/doctors/mobile/doctor-kimnarae-talk-mobile-jp.svg'
+                        : '/doctors/mobile/doctor-kimnarae-talk-mobile.svg'
                     }
                     alt="김나래 원장 quote"
                     className={styles.doctorMobileQuoteImage}
@@ -467,10 +425,7 @@ export default function DoctorsPage() {
               <div className={styles.doctorMobileCredentials}>
                 <ul className={styles.doctorMobileCredentialList}>
                   {t.doctors[2].credentials.map((credential, index) => (
-                    <li
-                      key={index}
-                      className={styles.doctorMobileCredentialItem}
-                    >
+                    <li key={index} className={styles.doctorMobileCredentialItem}>
                       {credential}
                     </li>
                   ))}
@@ -489,12 +444,8 @@ export default function DoctorsPage() {
               </div>
 
               <div className={styles.doctorTitle3}>
-                <p className={styles.doctorSpecialty}>
-                  {t.doctorInfo.specialist}
-                </p>
-                <h4 className={styles.doctorPosition}>
-                  {t.doctors[2].position}
-                </h4>
+                <p className={styles.doctorSpecialty}>{t.doctorInfo.specialist}</p>
+                <h4 className={styles.doctorPosition}>{t.doctors[2].position}</h4>
               </div>
 
               <div className={styles.doctorInfo}>
@@ -532,12 +483,10 @@ export default function DoctorsPage() {
                     className={styles.quotationStart}
                   />
                   <p className={styles.doctorQuoteTextParagraph}>
-                    {t.doctors[2].quote.split("\n").map((line, index) => (
+                    {t.doctors[2].quote.split('\n').map((line, index) => (
                       <span key={index}>
                         {line}
-                        {index < t.doctors[2].quote.split("\n").length - 1 && (
-                          <br />
-                        )}
+                        {index < t.doctors[2].quote.split('\n').length - 1 && <br />}
                       </span>
                     ))}
                   </p>
@@ -557,7 +506,7 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 1.6, ease: 'easeOut' }}
                 />
               </div>
               <div className={styles.doctorSubImageKim2}>
@@ -568,16 +517,12 @@ export default function DoctorsPage() {
                   initial={{ opacity: 0, y: 80 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: 2.0, ease: "easeOut" }}
+                  transition={{ duration: 0.5, delay: 2.0, ease: 'easeOut' }}
                 />
               </div>
 
               <div className={styles.doctorImageContainer3}>
-                <img
-                  src="/doctors/person/doctor-kimnarae.png"
-                  alt="김나래 원장"
-                  className={styles.doctorMainImage}
-                />
+                <img src="/doctors/person/doctor-kimnarae.png" alt="김나래 원장" className={styles.doctorMainImage} />
               </div>
             </div>
           )}
@@ -590,12 +535,10 @@ export default function DoctorsPage() {
           {/* 연혁 타이틀 */}
           <div className={styles.historyHeader}>
             <h2 className={styles.historyTitle}>
-              {t.academicHistory.title.split("\n").map((line, index) => (
+              {t.academicHistory.title.split('\n').map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index < t.academicHistory.title.split("\n").length - 1 && (
-                    <br />
-                  )}
+                  {index < t.academicHistory.title.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </h2>
@@ -608,20 +551,12 @@ export default function DoctorsPage() {
               <div className={styles.timelineFirstRow}>
                 {/* 2011년 그룹 */}
                 <div className={styles.year2011Group}>
-                  <img
-                    src="/doctors/timeline/2011.svg"
-                    alt="2011년 그룹"
-                    className={styles.year2011Image}
-                  />
+                  <img src="/doctors/timeline/2011.svg" alt="2011년 그룹" className={styles.year2011Image} />
                 </div>
 
                 {/* 화살표 */}
                 <div className={styles.timelineArrow}>
-                  <img
-                    src="/doctors/timeline/arrow.svg"
-                    alt="화살표"
-                    className={styles.timelineArrowSvg}
-                  />
+                  <img src="/doctors/timeline/arrow.svg" alt="화살표" className={styles.timelineArrowSvg} />
                 </div>
 
                 {/* 첫 번째 프로필 이미지 */}
@@ -661,11 +596,7 @@ export default function DoctorsPage() {
 
                 {/* 2024년 그룹 */}
                 <div className={styles.year2024Group}>
-                  <img
-                    src="/doctors/timeline/2024.svg"
-                    alt="2024년 그룹"
-                    className={styles.year2024Image}
-                  />
+                  <img src="/doctors/timeline/2024.svg" alt="2024년 그룹" className={styles.year2024Image} />
                 </div>
               </div>
             </div>
@@ -689,25 +620,19 @@ export default function DoctorsPage() {
       </section>
 
       {/* Academic Activities Section */}
-      <section
-        className={styles.academicActivitiesSection}
-        ref={academicSectionRef}
-      >
+      <section className={styles.academicActivitiesSection} ref={academicSectionRef}>
         <div className={styles.academicActivitiesContainer}>
           <div className={styles.academicActivitiesLayout}>
             {/* 오른쪽 학술활동 콘텐츠 */}
             <div className={styles.academicContent}>
               {/* 제목 */}
               <h2 className={styles.academicContentTitle}>
-                {language === "JP" ? "学会発表及び論文" : "학회 발표 및 논문"}
+                {language === 'JP' ? '学会発表及び論文' : '학회 발표 및 논문'}
               </h2>
 
               {/* 학술활동 목록 테이블 */}
               <div className={styles.academicTable}>
-                <div
-                  ref={tableContainerRef}
-                  className={styles.academicTableContainer}
-                >
+                <div ref={tableContainerRef} className={styles.academicTableContainer}>
                   {academicActivities.length > 0 ? (
                     academicActivities.map((activity, index) => {
                       const isFirst = index === 0;
@@ -717,37 +642,25 @@ export default function DoctorsPage() {
                         <div
                           key={index}
                           className={`${styles.academicTableRow} ${
-                            isFirst ? styles.firstRow : ""
-                          } ${isLast ? styles.lastRow : ""}`}
+                            isFirst ? styles.firstRow : ''
+                          } ${isLast ? styles.lastRow : ''}`}
                         >
-                          <div className={styles.academicRowDate}>
-                            {activity.date}
-                          </div>
+                          <div className={styles.academicRowDate}>{activity.date}</div>
                           <div className={styles.academicRowCategory}>
-                            <div className={styles.categoryBadge}>
-                              {activity.type}
-                            </div>
+                            <div className={styles.categoryBadge}>{activity.type}</div>
                           </div>
-                          <div className={styles.academicRowEvent}>
-                            {activity.event}
-                          </div>
-                          <div className={styles.academicRowTitle}>
-                            {activity.title}
-                          </div>
+                          <div className={styles.academicRowEvent}>{activity.event}</div>
+                          <div className={styles.academicRowTitle}>{activity.title}</div>
                         </div>
                       );
                     })
                   ) : (
-                    <div
-                      className={`${styles.academicTableRow} ${styles.firstRow} ${styles.lastRow}`}
-                    >
+                    <div className={`${styles.academicTableRow} ${styles.firstRow} ${styles.lastRow}`}>
                       <div className={styles.academicRowDate}>-</div>
                       <div className={styles.academicRowCategory}>
                         <div className={styles.categoryBadge}>-</div>
                       </div>
-                      <div className={styles.academicRowEvent}>
-                        {t.academicHistory.noActivities}
-                      </div>
+                      <div className={styles.academicRowEvent}>{t.academicHistory.noActivities}</div>
                       <div className={styles.academicRowTitle}>-</div>
                     </div>
                   )}
