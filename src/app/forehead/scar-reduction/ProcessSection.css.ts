@@ -62,46 +62,6 @@ export const processStepOdd = style({
   },
 });
 
-// 모바일에서 stepNumber 컨테이너 스타일
-export const stepNumberMobile = style({
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      gap: mvw(16),
-      marginBottom: mvw(20),
-    },
-  },
-});
-
-// 모바일에서 stepCategory 숨기기
-export const stepCategoryMobile = style({
-  "@media": {
-    [breakpoints.mobile]: {
-      display: "none",
-    },
-  },
-});
-
-// 짝수 step (2, 4, 6) - 콘텐츠가 왼쪽, 숫자가 오른쪽
-export const processStepEven = style({
-  display: "flex",
-  alignItems: "stretch", // 높이를 맞춰서 양쪽 요소가 같은 높이가 되도록
-  gap: vw(140),
-  position: "relative",
-  flexDirection: "row-reverse", // 순서 뒤바꿈
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      gap: "140px",
-    },
-    [breakpoints.mobile]: {
-      flexDirection: "column",
-      gap: mvw(40),
-    },
-  },
-});
-
 export const stepNumber = style({
   flex: "0 0 auto",
   width: vw(292),

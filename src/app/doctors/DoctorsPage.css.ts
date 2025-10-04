@@ -19,36 +19,6 @@ export const doctorsPage = style({
   willChange: "transform, opacity", // 애니메이션 최적화
 });
 
-// 로딩 스타일
-export const loadingContainer = style({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "100vh",
-});
-
-const spin = keyframes({
-  "0%": { transform: "rotate(0deg)" },
-  "100%": { transform: "rotate(360deg)" },
-});
-
-export const loadingSpinner = style({
-  width: vw(40),
-  height: vw(40),
-  border: `${vw(4)} solid #f3f3f3`,
-  borderTop: `${vw(4)} solid #14AEFF`,
-  borderRadius: "50%",
-  animation: `${spin} 1s linear infinite`,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "40px",
-      height: "40px",
-      border: "4px solid #f3f3f3",
-      borderTop: "4px solid #14AEFF",
-    },
-  },
-});
-
 // Medical Team Section - 피그마 의료진 소개
 export const medicalTeamSection = style({
   paddingTop: vw(135),
@@ -141,24 +111,6 @@ export const medicalTeamMainTitle = style({
   },
 });
 
-// 인트로 이미지 1
-export const doctorsIntroImage1 = style({
-  position: "relative",
-  width: "100%",
-  height: "100%",
-  borderRadius: vw(12),
-  objectFit: "cover",
-  zIndex: 1,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      borderRadius: "12px",
-    },
-    [breakpoints.mobile]: {
-      display: "none",
-    },
-  },
-});
-
 // 이미지와 텍스트를 담는 컨테이너
 export const medicalTeamHeroSection = style({
   position: "absolute",
@@ -175,18 +127,6 @@ export const medicalTeamHeroSection = style({
     },
     [breakpoints.mobile]: {
       display: "none",
-    },
-  },
-});
-
-export const medicalTeamHeroText = style({
-  padding: 0, // 패딩 제거
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      padding: 0,
-    },
-    [breakpoints.mobile]: {
-      padding: 0,
     },
   },
 });
@@ -410,33 +350,6 @@ export const doctorImageContainer2 = style({
   },
 });
 
-// 박수호 원장용 텍스트 섹션 - 오른쪽에서 왼쪽으로
-export const doctorTextSection2 = style({
-  position: "absolute",
-  right: vw(380), // reversed 레이아웃이므로 right 기준
-  top: vw(382),
-  width: vw(558),
-  height: vw(842),
-  display: "flex",
-  flexDirection: "column",
-  zIndex: 5,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      right: "380px",
-      top: "382px",
-      width: "558px",
-      height: "840px",
-    },
-    [breakpoints.mobile]: {
-      position: "relative",
-      right: "auto",
-      top: "auto",
-      width: "100%",
-      height: "auto",
-    },
-  },
-});
-
 // 박수호 원장용 인포 섹션 (자격사항)
 export const doctorInfo2 = style({
   position: "absolute",
@@ -505,62 +418,6 @@ export const doctorTextSection3 = style({
   display: "flex",
   flexDirection: "column",
   zIndex: 5,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      left: "380px",
-      top: "382px",
-      width: "859px",
-      height: "840px",
-    },
-    [breakpoints.mobile]: {
-      position: "relative",
-      left: "auto",
-      top: "auto",
-      width: "100%",
-      height: "auto",
-    },
-  },
-});
-
-export const doctorInfo3 = style({
-  position: "absolute",
-  left: vw(700),
-  bottom: vw(0),
-  width: vw(740),
-  height: vw(314),
-  display: "flex",
-  flexDirection: "column",
-  gap: vw(40),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      left: "700px",
-      bottom: "0px",
-      width: "740px",
-      height: "314px",
-      gap: "40px",
-    },
-    [breakpoints.mobile]: {
-      position: "relative",
-      left: "auto",
-      top: "auto",
-      width: "100%",
-      height: "auto",
-      gap: "20px",
-    },
-  },
-});
-
-// 텍스트 섹션 - 피그마 기준 중앙 위치
-// 텍스트 섹션 - 피그마 디자인 정확한 위치 (의사 사진과 겹치도록)
-export const doctorTextSection = style({
-  position: "absolute",
-  left: vw(380), // 의사 사진과 겹치면서 시작 (피그마 -7304 기준)
-  top: vw(382), // 1583 - 1201 = 382px from top
-  width: vw(859),
-  height: vw(840),
-  display: "flex",
-  flexDirection: "column",
-  zIndex: 5, // 의사 사진보다 낮게
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "380px",

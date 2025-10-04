@@ -288,17 +288,14 @@ export const HairTransplantHeroTitleDot = style({
 export const heroSection = style({
   position: "relative",
   width: "100%",
-  // minHeight: "100vh",
   overflow: "hidden",
-  // Hero 섹션은 전체 1920px 사용
   "@media": {
     [breakpoints.mobile]: {
-      // minHeight: mvw(600), // 모바일 전체 높이 축소
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
       alignItems: "center",
-      paddingTop: mvw(60), // 상단 여백
+      paddingTop: mvw(60),
     },
   },
 });
@@ -306,7 +303,7 @@ export const heroSection = style({
 export const heroContainer = style({
   position: "relative",
   width: "100%",
-  maxWidth: "1920px", // Hero는 1920px 전체 사용
+  maxWidth: "1920px",
   margin: "0 auto",
   height: "100vh",
   "@media": {
@@ -320,26 +317,12 @@ export const heroContainer = style({
   },
 });
 
-export const heroIllustration = style({
-  position: "absolute",
-  left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: "1750px", // 헤더와 완전히 동일한 최대 너비
-  maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: "43%",
-  transform: "translateY(-50%)",
-  height: vw(765), // 1920px 기준 762px 높이
-  zIndex: 1,
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "1750px", // 고정 너비
-      height: "765px", // 고정 높이
-      left: "0", // 왼쪽부터 시작
-      maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한
-    },
-    [breakpoints.mobile]: {
-      display: "none",
-    },
-  },
+export const heroContent = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100%",
 });
 
 export const heroIllustrationImage = style({
@@ -362,142 +345,6 @@ export const heroIllustrationImageMobile = style({
       width: "100%",
       height: "auto",
       marginTop: mvw(80),
-    },
-  },
-});
-
-export const heroTitleWrapper = style({
-  ...responsiveContainer(1600), // 헤더와 일치하는 1600px 컨테이너
-  position: "absolute",
-  top: "0",
-  right: "0",
-  left: "0",
-  bottom: "0",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end", // 오른쪽 정렬
-  paddingRight: vw(60), // 헤더와 동일한 패딩
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      paddingRight: "60px", // 헤더와 동일한 고정 패딩
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      position: "relative",
-      justifyContent: "center",
-      paddingRight: "0",
-      alignItems: "center",
-      paddingTop: "0",
-      top: "0px",
-      zIndex: 10,
-    },
-  },
-});
-
-export const heroTitleContainer = style({
-  position: "absolute",
-  top: "50%",
-  left: "0",
-  transform: "translateY(-50%)",
-  textAlign: "left",
-  zIndex: 3,
-  right: "0", // 오른쪽에서 시작
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      marginRight: "160px", // 1920px+ 고정 마진
-      paddingLeft: "40px",
-      paddingRight: "60px", // 헤더와 동일한 고정 패딩
-    },
-    [breakpoints.mobile]: {
-      width: "100%",
-      position: "static",
-      top: "0px",
-      transform: "none",
-      textAlign: "center",
-      marginRight: "0",
-      paddingLeft: "0",
-      paddingRight: "0",
-      right: "auto",
-    },
-  },
-});
-
-// Hairline Hero Title - Figma 디자인에 맞게 60px
-export const heroTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 500, // Figma에서 Medium weight
-  ...responsiveFont(60, 40), // 1920px 기준 60px, 모바일 40px
-  letterSpacing: "0", // Figma에서 0
-  lineHeight: vw(72), // Figma에서 72px
-  color: "#272727",
-  margin: "0",
-  textAlign: "left",
-
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      fontSize: "60px",
-      lineHeight: "72px", // 1920px+ 고정
-    },
-    [breakpoints.mobile]: {
-      marginTop: mvw(58),
-      lineHeight: mvw(48),
-      fontSize: mvw(40),
-    },
-  },
-});
-
-export const heroContent = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100%",
-  "@media": {
-    [breakpoints.mobile]: {
-      // padding: `0 ${mvw(20)}`,
-    },
-  },
-});
-
-export const heroSubtitle = style({
-  fontFamily: fontFamily.scdream,
-  fontWeight: 300,
-  ...responsiveFont(20, 16),
-  lineHeight: vw(30),
-  color: "#ffffff",
-  marginTop: vw(20),
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      lineHeight: "30px",
-      marginTop: "20px",
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      lineHeight: mvw(24),
-      marginTop: mvw(16),
-    },
-  },
-});
-
-export const heroTitleDot = style({
-  display: "inline-block",
-  width: vw(20),
-  height: vw(20),
-  backgroundColor: "#14AEFF",
-  borderRadius: "50%",
-  marginLeft: vw(20),
-  flexShrink: 0,
-  verticalAlign: "middle", // 텍스트와 수직 정렬
-  "@media": {
-    [breakpoints.desktopLarge]: {
-      width: "20px",
-      height: "20px",
-      marginLeft: "20px",
-    },
-    [breakpoints.mobile]: {
-      width: mvw(14),
-      height: mvw(14),
-      marginLeft: mvw(14),
     },
   },
 });
@@ -548,23 +395,6 @@ export const scalpTreatmentVideoContainer = style({
       height: mvw(537),
       margin: "0",
       borderRadius: 0,
-    },
-  },
-});
-
-export const videoText = style({
-  fontFamily: "'Pretendard', sans-serif",
-  fontWeight: 600,
-  ...responsiveFont(50),
-  color: "#666666",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  zIndex: 1,
-  "@media": {
-    [breakpoints.mobile]: {
-      fontSize: "30px",
     },
   },
 });
@@ -716,23 +546,6 @@ export const smallVideoContainer = style({
       width: "100%",
       height: "100%",
       borderRadius: 0,
-    },
-  },
-});
-
-export const smallVideoText = style({
-  fontFamily: "'Pretendard', sans-serif",
-  fontWeight: 600,
-  ...responsiveFont(24), // Hero보다 작은 폰트
-  color: "#666666",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  zIndex: 1,
-  "@media": {
-    [breakpoints.mobile]: {
-      fontSize: "18px",
     },
   },
 });
