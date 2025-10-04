@@ -15,24 +15,14 @@ const FullPageMain = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const isScrollingRef = useRef(false);
-  const lastScrollTopRef = useRef(0); // 마지막 스크롤 위치
-  const isProgrammaticScrollRef = useRef(false); // 프로그래밍 방식 스크롤 플래그
 
-  // 초기 설정 - 강제로 Hero 섹션으로 스크롤
+  // 초기 설정 - Hero 섹션으로 스크롤
   useEffect(() => {
     if (containerRef.current && heroRef.current) {
-      // 스크롤을 맨 위로 강제 이동
       containerRef.current.scrollTop = 0;
-      lastScrollTopRef.current = 0;
-
-      // 추가로 Hero 섹션으로 scrollIntoView (즉시)
       heroRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, []);
-
-  // 스크롤 스냅 비활성화 - Video와 Content는 자연스럽게 연결
 
   // IntersectionObserver 옵션 - useMemo로 메모이제이션
   const observerOptions = useMemo(() => ({

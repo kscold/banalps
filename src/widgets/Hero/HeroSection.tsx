@@ -43,7 +43,11 @@ export default function HeroSection({
     // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환 (Android 환경 최적화)
     const textScrollDepth = isMobile ? 500 : 2000 // 모바일: 500px (충분한 텍스트 전환 시간), 데스크톱: 2000px
     const totalScrollHeight = textScrollDepth * totalTexts // 전체 스크롤 높이
+
+    // 클로저 내부에서 사용할 로컬 변수들
     let scrollY = virtualScrollY
+    let localCurrentTextIndex = currentTextIndex
+    let localIsTransitioning = isTransitioning
 
     // 이벤트를 통과시킬지 확인하는 함수
     const shouldPassThrough = (target: HTMLElement): boolean => {
@@ -97,13 +101,16 @@ export default function HeroSection({
       const deltaY = e.deltaY
 
       // 마지막 텍스트에 도달했고 아래로 스크롤 시 이벤트 통과 (영역 간 스크롤 허용)
+      // 모바일에서는 더 넉넉한 임계값 적용 (0.1 → 0.3)
+      const scrollEndThreshold = isMobile ? 0.3 : 0.1
       if (
-        currentTextIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth * 0.1 &&
+        localCurrentTextIndex === totalTexts - 1 &&
+        scrollY >= totalScrollHeight - textScrollDepth * scrollEndThreshold &&
         deltaY > 0
       ) {
         // 이벤트를 통과시켜 페이지 스크롤이 일어나도록 함
-        if (onTextComplete && !isTransitioning) {
+        if (onTextComplete && !localIsTransitioning) {
+          localIsTransitioning = true
           setIsTransitioning(true)
           setTimeout(() => {
             onTextComplete()
@@ -114,7 +121,13 @@ export default function HeroSection({
       }
 
       // 첫 번째 텍스트에서 위로 스크롤 시 이벤트 통과
-      if (currentTextIndex === 0 && scrollY <= 0 && deltaY < 0) {
+      // 모바일에서는 더 넉넉한 임계값 적용
+      const scrollStartThreshold = isMobile ? textScrollDepth * 0.2 : 0
+      if (
+        localCurrentTextIndex === 0 &&
+        scrollY <= scrollStartThreshold &&
+        deltaY < 0
+      ) {
         return // preventDefault 하지 않고 리턴
       }
 
@@ -134,7 +147,10 @@ export default function HeroSection({
       const clampedIndex = Math.max(0, Math.min(newIndex, totalTexts - 1))
 
       // 텍스트 인덱스 업데이트
-      setCurrentTextIndex(clampedIndex)
+      if (localCurrentTextIndex !== clampedIndex) {
+        localCurrentTextIndex = clampedIndex
+        setCurrentTextIndex(clampedIndex)
+      }
     }
 
     // 터치 이벤트 처리 - 스크롤 위치 기반
@@ -171,13 +187,16 @@ export default function HeroSection({
       const deltaY = touchStartY - currentY
 
       // 마지막 텍스트에 도달했고 아래로 스크롤 시 이벤트 통과 (영역 간 스크롤 허용)
+      // 모바일에서는 더 넉넉한 임계값 적용 (0.1 → 0.3)
+      const scrollEndThreshold = isMobile ? 0.3 : 0.1
       if (
-        currentTextIndex === totalTexts - 1 &&
-        scrollY >= totalScrollHeight - textScrollDepth * 0.1 &&
+        localCurrentTextIndex === totalTexts - 1 &&
+        scrollY >= totalScrollHeight - textScrollDepth * scrollEndThreshold &&
         deltaY > 0
       ) {
         // 이벤트를 통과시켜 페이지 스크롤이 일어나도록 함
-        if (onTextComplete && !isTransitioning) {
+        if (onTextComplete && !localIsTransitioning) {
+          localIsTransitioning = true
           setIsTransitioning(true)
           setTimeout(() => {
             onTextComplete()
@@ -189,7 +208,13 @@ export default function HeroSection({
       }
 
       // 첫 번째 텍스트에서 위로 스크롤 시 이벤트 통과
-      if (currentTextIndex === 0 && scrollY <= 0 && deltaY < 0) {
+      // 모바일에서는 더 넉넉한 임계값 적용
+      const scrollStartThreshold = isMobile ? textScrollDepth * 0.2 : 0
+      if (
+        localCurrentTextIndex === 0 &&
+        scrollY <= scrollStartThreshold &&
+        deltaY < 0
+      ) {
         isTouching = false
         return // preventDefault 하지 않고 리턴
       }
@@ -197,8 +222,8 @@ export default function HeroSection({
       e.preventDefault() // 기본 스크롤 동작 방지
 
       // 모바일에서 드래그처럼 즉각적인 반응 (Android 환경 최적화)
-      // 모바일은 감도를 높여서 짧은 드래그로도 텍스트 전환 (Galaxy21 최적화)
-      const sensitivity = isMobile ? 10.0 : 2.5 // 모바일 감도 대폭 증가 (6.0 → 10.0)
+      // 모바일은 감도를 적절히 조절하여 자연스러운 텍스트 전환
+      const sensitivity = isMobile ? 4.0 : 3.0 // 모바일 감도 조정 (10.0 → 4.0, 스크롤 속도 감소)
       const newScrollY = touchStartScrollY + deltaY * sensitivity
 
       // 스크롤 범위 제한
@@ -210,7 +235,10 @@ export default function HeroSection({
       const clampedIndex = Math.max(0, Math.min(newIndex, totalTexts - 1))
 
       // 텍스트 인덱스 업데이트
-      setCurrentTextIndex(clampedIndex)
+      if (localCurrentTextIndex !== clampedIndex) {
+        localCurrentTextIndex = clampedIndex
+        setCurrentTextIndex(clampedIndex)
+      }
     }
 
     const handleTouchEnd = () => {
@@ -231,7 +259,7 @@ export default function HeroSection({
       window.removeEventListener("touchmove", handleTouchMove)
       window.removeEventListener("touchend", handleTouchEnd)
     }
-  }, [isActive, onTextComplete, totalTexts, virtualScrollY, isMobile, currentTextIndex, isTransitioning])
+  }, [isActive, onTextComplete, totalTexts, isMobile]) // 안정적인 의존성만 유지
 
   // initialTextIndex가 변경되면 currentTextIndex 업데이트
   useEffect(() => {
