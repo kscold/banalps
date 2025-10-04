@@ -336,8 +336,6 @@ export const cardImage = style({
   objectFit: "cover",
 });
 
-<<<<<<< Updated upstream
-=======
 // 데스크탑 전용 이미지 (SSR-safe)
 export const cardImageDesktop = style([
   cardImage,
@@ -364,7 +362,6 @@ export const cardImageMobile = style([
   },
 ]);
 
->>>>>>> Stashed changes
 // RE.YOU 텍스트 섹션 (1920px 기준) - 헤더와 완전 일치
 export const reYouSection = style({
   position: "relative",

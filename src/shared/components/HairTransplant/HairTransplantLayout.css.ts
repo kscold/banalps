@@ -19,23 +19,16 @@ export const page = style({
   backgroundColor: "#FFFDF7", // 헤어라인 페이지는 흰색 배경
 });
 
-<<<<<<< Updated upstream
-// Hero Section Styles
-=======
 // Hero Section Styles - 성능 최적화
->>>>>>> Stashed changes
 export const HairTransplantHeroSection = style({
   position: "relative",
   width: "100%",
   minHeight: "100vh",
   overflow: "visible",
   backgroundColor: "#FFFDF7",
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform, opacity", // 애니메이션 최적화
->>>>>>> Stashed changes
   "@media": {
     [breakpoints.mobile]: {
       minHeight: "100vh",

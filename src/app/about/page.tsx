@@ -1,20 +1,12 @@
 "use client";
 
-<<<<<<< Updated upstream
-import { motion } from "framer-motion";
-=======
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
->>>>>>> Stashed changes
 import { VideoSection } from "../../widgets/Hero/VideoSection";
 import * as styles from "./AboutPage.css";
 import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { useAboutTranslations } from "@/hooks/useAllPagesTranslations";
 import { useLanguageStore } from "@/shared/stores/useLanguageStore";
-<<<<<<< Updated upstream
-import { useState, useEffect, useRef } from "react";
-=======
->>>>>>> Stashed changes
 import Footer from "@/shared/ui/Footer/Footer";
 
 export default function AboutPage() {
@@ -22,28 +14,21 @@ export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-<<<<<<< Updated upstream
-=======
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
->>>>>>> Stashed changes
 
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const t = useAboutTranslations();
   const { language } = useLanguageStore();
-<<<<<<< Updated upstream
-=======
   const prefersReducedMotion = useReducedMotion(); // 애니메이션 감소 선호 확인
 
-  // 공통 애니메이션 설정 함수 - useCallback으로 메모이제이션
-  const getCardAnimation = useCallback((delay: number = 0) => ({
-    initial: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2, margin: "0px 0px -100px 0px" },
-    transition: prefersReducedMotion
+  // 공통 애니메이션 설정
+  const cardAnimationInitial = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 };
+  const cardAnimationWhileInView = { opacity: 1, y: 0 };
+  const cardAnimationViewport = { once: true, amount: 0.2, margin: "0px 0px -100px 0px" } as const;
+  const getCardTransition = (delay: number = 0) =>
+    prefersReducedMotion
       ? { duration: 0 }
-      : { duration: 0.5, delay, ease: "easeOut" },
-  }), [prefersReducedMotion]);
->>>>>>> Stashed changes
+      : { duration: 0.5, delay, ease: "easeOut" as const };
 
   // 초기 설정 - 비디오 섹션으로 스크롤
   useEffect(() => {
@@ -53,123 +38,7 @@ export default function AboutPage() {
     }
   }, []);
 
-<<<<<<< Updated upstream
-  // 스크롤 스냅 기능 - 메인 페이지와 동일
-=======
-  // 스크롤 스냅 함수 - useCallback으로 메모이제이션
-  const snapToNearestSection = useCallback(() => {
-    const container = containerRef.current;
-    if (!container || !videoRef.current || !contentRef.current) return;
-
-    const scrollTop = container.scrollTop;
-    const videoTop = videoRef.current.offsetTop;
-    const contentTop = contentRef.current.offsetTop;
-
-    // Content 영역에 도달했으면 스냅 비활성화
-    if (scrollTop >= contentTop) {
-      return;
-    }
-
-    const midPoint = (videoTop + contentTop) / 2;
-    const targetSection = scrollTop < midPoint ? videoRef.current : contentRef.current;
-
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, []);
-
-  // 스크롤 핸들러 - useCallback으로 메모이제이션
-  const handleScroll = useCallback(() => {
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-
-    scrollTimeoutRef.current = setTimeout(() => {
-      snapToNearestSection();
-    }, 150);
-  }, [snapToNearestSection]);
-
-  // 스크롤 이벤트 리스너 등록
->>>>>>> Stashed changes
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-<<<<<<< Updated upstream
-    let scrollTimeout: NodeJS.Timeout;
-
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-
-      scrollTimeout = setTimeout(() => {
-        snapToNearestSection();
-      }, 200);
-    };
-
-    const snapToNearestSection = () => {
-      if (!videoRef.current || !contentRef.current) return;
-
-      const scrollTop = container.scrollTop;
-      const videoTop = videoRef.current.offsetTop;
-      const contentTop = contentRef.current.offsetTop;
-
-      // Content 영역에 도달했으면 스냅 비활성화 (자유 스크롤)
-      if (scrollTop >= contentTop) {
-        return;
-      }
-
-      // Video와 Content 사이
-      const midPoint = (videoTop + contentTop) / 2;
-      const targetSection =
-        scrollTop < midPoint ? videoRef.current : contentRef.current;
-
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, []);
-
-  // Intersection Observer로 현재 섹션 추적
-  useEffect(() => {
-    const options = {
-      root: containerRef.current,
-      rootMargin: "-45% 0px -45% 0px",
-      threshold: 0,
-    };
-
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target === videoRef.current) {
-            setCurrentSection(0);
-          } else if (entry.target === contentRef.current) {
-            setCurrentSection(1);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-
-    if (videoRef.current) observer.observe(videoRef.current);
-    if (contentRef.current) observer.observe(contentRef.current);
-=======
-    container.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, [handleScroll]);
+  // 스크롤 스냅 비활성화 - 자연스러운 스크롤을 위해 제거
 
   // IntersectionObserver 옵션 - useMemo로 메모이제이션
   const observerOptions = useMemo(() => ({
@@ -200,16 +69,11 @@ export default function AboutPage() {
 
     if (currentVideoRef) observer.observe(currentVideoRef);
     if (currentContentRef) observer.observe(currentContentRef);
->>>>>>> Stashed changes
 
     return () => {
       observer.disconnect();
     };
-<<<<<<< Updated upstream
-  }, []);
-=======
   }, [handleIntersection, observerOptions]);
->>>>>>> Stashed changes
 
   // 번역이 로딩 중인지 확인
   if (!t || !t.hero || !t.values) {
@@ -249,20 +113,13 @@ export default function AboutPage() {
         className={styles.contentSection}
         suppressHydrationWarning
       >
-        {currentSection >= 1 && (
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.43, 0.13, 0.23, 0.96],
-            }}
-            style={{
-              backgroundColor: "white",
-              paddingTop: 0,
-            }}
-          >
+        <div
+          className="relative"
+          style={{
+            backgroundColor: "white",
+            paddingTop: 0,
+          }}
+        >
             {/* Hero Section */}
             <section className={styles.heroSection}>
               <div className={styles.heroContainer}>
@@ -387,18 +244,10 @@ export default function AboutPage() {
                 <div className={styles.reYouImageCards}>
                   <motion.div
                     className={styles.reYouCard1}
-<<<<<<< Updated upstream
-                    initial={{ opacity: 0, y: 80 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{
-                      once: true,
-                      amount: 0.2,
-                      margin: "0px 0px -100px 0px",
-                    }}
-                    transition={{ duration: 0.5, delay: 0, ease: "easeOut" }}
-=======
-                    {...getCardAnimation(0)}
->>>>>>> Stashed changes
+                    initial={cardAnimationInitial}
+                    whileInView={cardAnimationWhileInView}
+                    viewport={cardAnimationViewport}
+                    transition={getCardTransition(0)}
                   >
                     <img
                       src={
@@ -413,18 +262,10 @@ export default function AboutPage() {
 
                   <motion.div
                     className={styles.reYouCard4}
-<<<<<<< Updated upstream
-                    initial={{ opacity: 0, y: 80 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{
-                      once: true,
-                      amount: 0.2,
-                      margin: "0px 0px -100px 0px",
-                    }}
-                    transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-=======
-                    {...getCardAnimation(0.4)}
->>>>>>> Stashed changes
+                    initial={cardAnimationInitial}
+                    whileInView={cardAnimationWhileInView}
+                    viewport={cardAnimationViewport}
+                    transition={getCardTransition(0.4)}
                   >
                     <img
                       src={
@@ -438,18 +279,10 @@ export default function AboutPage() {
                   </motion.div>
                   <motion.div
                     className={styles.reYouCard2}
-<<<<<<< Updated upstream
-                    initial={{ opacity: 0, y: 80 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{
-                      once: true,
-                      amount: 0.2,
-                      margin: "0px 0px -100px 0px",
-                    }}
-                    transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
-=======
-                    {...getCardAnimation(0.8)}
->>>>>>> Stashed changes
+                    initial={cardAnimationInitial}
+                    whileInView={cardAnimationWhileInView}
+                    viewport={cardAnimationViewport}
+                    transition={getCardTransition(0.8)}
                   >
                     <img
                       src={
@@ -464,18 +297,10 @@ export default function AboutPage() {
 
                   <motion.div
                     className={styles.reYouCard3}
-<<<<<<< Updated upstream
-                    initial={{ opacity: 0, translateY: 80 }}
-                    whileInView={{ opacity: 1, translateY: 0 }}
-                    viewport={{
-                      once: true,
-                      amount: 0.1,
-                      margin: "0px 0px -200px 0px",
-                    }}
-                    transition={{ duration: 0.4, delay: 0, ease: "easeOut" }}
-=======
-                    {...getCardAnimation(0)}
->>>>>>> Stashed changes
+                    initial={cardAnimationInitial}
+                    whileInView={cardAnimationWhileInView}
+                    viewport={cardAnimationViewport}
+                    transition={getCardTransition(0)}
                   >
                     <img
                       src={
@@ -905,8 +730,7 @@ export default function AboutPage() {
               </div>
             </section>
             <Footer />
-          </motion.div>
-        )}
+        </div>
       </div>
     </div>
   );

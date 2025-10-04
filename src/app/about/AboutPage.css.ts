@@ -8,77 +8,38 @@ import {
 import { mvw } from "../../shared/styles/responsive.utils";
 import { fontFamily } from "@/shared/styles/fonts.css";
 
-<<<<<<< Updated upstream
-// 페이지 전체 스타일 - 스크롤 컨테이너
-=======
 // 페이지 전체 스타일 - 성능 최적화
->>>>>>> Stashed changes
 export const aboutPage = style({
   height: "100vh",
   overflowY: "scroll",
-  scrollSnapType: "y proximity",
   scrollBehavior: "smooth",
   WebkitOverflowScrolling: "touch",
   backgroundColor: "#000",
-<<<<<<< Updated upstream
-=======
   willChange: "scroll-position",
   contain: "layout style paint",
->>>>>>> Stashed changes
-  "@media": {
-    [breakpoints.mobile]: {
-      scrollSnapType: "none",
-    },
-  },
 });
 
-<<<<<<< Updated upstream
-// Video Section
-=======
 // Video Section - GPU 가속
->>>>>>> Stashed changes
 export const videoSection = style({
   height: "100vh",
   width: "100%",
-  scrollSnapAlign: "start",
   position: "relative",
   zIndex: 1,
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)",
   backfaceVisibility: "hidden",
   willChange: "transform, opacity",
->>>>>>> Stashed changes
-  "@media": {
-    [breakpoints.mobile]: {
-      scrollSnapAlign: "none",
-    },
-  },
 });
 
-<<<<<<< Updated upstream
-// Content Section
-=======
 // Content Section - GPU 가속
->>>>>>> Stashed changes
 export const contentSection = style({
   minHeight: "100vh",
   width: "100%",
-  scrollSnapAlign: "start",
   position: "relative",
   backgroundColor: "#FFFDF7",
   zIndex: 1,
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)",
   backfaceVisibility: "hidden",
   willChange: "transform, opacity",
->>>>>>> Stashed changes
-  "@media": {
-    [breakpoints.mobile]: {
-      scrollSnapAlign: "none",
-    },
-  },
 });
 
 // 페이드 인 애니메이션 키프레임
@@ -450,11 +411,7 @@ const cardFadeInUp = keyframes({
   },
 });
 
-<<<<<<< Updated upstream
-// 첫 번째 카드 - 왼쪽 큰 수술 이미지
-=======
 // 첫 번째 카드 - 왼쪽 큰 수술 이미지 (애니메이션 최적화)
->>>>>>> Stashed changes
 export const reYouCard1 = style({
   position: "absolute",
   left: 0,
@@ -463,12 +420,9 @@ export const reYouCard1 = style({
   height: vw(830),
   borderRadius: vw(15),
   overflow: "hidden",
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform, opacity", // 애니메이션 최적화
->>>>>>> Stashed changes
   "@media": {
     [breakpoints.desktopLarge]: {
       width: "560px",
@@ -485,11 +439,7 @@ export const reYouCard1 = style({
   },
 });
 
-<<<<<<< Updated upstream
-// 두 번째 카드 - 중앙 하단 김나래 이미지
-=======
 // 두 번째 카드 - 중앙 하단 김나래 이미지 (애니메이션 최적화)
->>>>>>> Stashed changes
 export const reYouCard2 = style({
   position: "absolute",
   left: vw(725),
@@ -498,12 +448,9 @@ export const reYouCard2 = style({
   height: vw(610),
   borderRadius: vw(15),
   overflow: "hidden",
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform, opacity", // 애니메이션 최적화
->>>>>>> Stashed changes
   "@media": {
     [breakpoints.desktopLarge]: {
       left: "700px",
@@ -522,11 +469,7 @@ export const reYouCard2 = style({
   },
 });
 
-<<<<<<< Updated upstream
-// 세 번째 카드 - 하단 작은 모발 확대 이미지
-=======
 // 세 번째 카드 - 하단 작은 모발 확대 이미지 (애니메이션 최적화)
->>>>>>> Stashed changes
 export const reYouCard3 = style({
   position: "absolute",
   left: vw(300),
@@ -535,12 +478,9 @@ export const reYouCard3 = style({
   height: vw(330),
   borderRadius: vw(15),
   overflow: "hidden",
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform, opacity", // 애니메이션 최적화
->>>>>>> Stashed changes
   "@media": {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
@@ -553,11 +493,7 @@ export const reYouCard3 = style({
   },
 });
 
-<<<<<<< Updated upstream
-// 네 번째 카드 - 오른쪽 끝 안경 쓴 의사 이미지
-=======
 // 네 번째 카드 - 오른쪽 끝 안경 쓴 의사 이미지 (애니메이션 최적화)
->>>>>>> Stashed changes
 export const reYouCard4 = style({
   position: "absolute",
   right: 0, // 완전히 오른쪽 끝에 붙임
@@ -567,12 +503,9 @@ export const reYouCard4 = style({
   borderRadius: vw(15),
   overflow: "hidden",
   zIndex: 10, // 다른 섹션 위에 표시
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform, opacity", // 애니메이션 최적화
->>>>>>> Stashed changes
   "@media": {
     [breakpoints.mobile]: {
       position: "static",
@@ -585,22 +518,15 @@ export const reYouCard4 = style({
   },
 });
 
-<<<<<<< Updated upstream
-// 공통 카드 이미지 스타일
-=======
 // 공통 카드 이미지 스타일 - 애니메이션 최적화
->>>>>>> Stashed changes
 export const reYouCardImage = style({
   width: "100%",
   height: "100%",
   objectFit: "cover",
   transition: "transform 300ms ease",
-<<<<<<< Updated upstream
-=======
   transform: "translateZ(0)", // GPU 가속
   backfaceVisibility: "hidden", // 깜빡임 방지
   willChange: "transform", // 애니메이션 최적화
->>>>>>> Stashed changes
 });
 
 // RE.YOU 텍스트 섹션 - absolute 포지셔닝
