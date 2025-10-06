@@ -20,6 +20,22 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: false, // CSS 최적화 비활성화로 hydration 안정성 확보
   },
+  // Webpack 설정 - HMR 개선
+  webpack: (config, { dev, isServer }) => {
+    if (dev && !isServer) {
+      // 파일 변경 감지 개선
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: /node_modules/,
+        poll: 1000,
+        aggregateTimeout: 300,
+      };
+
+      // 개발 환경에서 캐시 비활성화
+      config.cache = false;
+    }
+    return config;
+  },
   // 이미지 최적화 설정
   images: {
     unoptimized: false, // 이미지 최적화 활성화

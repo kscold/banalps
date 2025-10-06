@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import BeforeAfterSlider from '@/shared/ui/BeforeAfterSlider/BeforeAfterSlider';
 import SidePreviewSlider from '@/shared/ui/SidePreviewSlider/SidePreviewSlider';
+import HeroSection from '@/shared/components/HairTransplant/HeroSection';
 import * as styles from './BeforeAfterPage.css';
 import { useAuthStore } from '@/shared/stores/useAuthStore';
 import { useBeforeAfterTranslations } from '@/hooks/useAllPagesTranslations';
@@ -393,6 +394,20 @@ export default function BeforeAfterPage() {
   // 로그인 상태 확인
   const isLoggedIn = status === 'authenticated' && !!session;
 
+  // 화면 크기 체크
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1023);
+      setIsDesktopLarge(window.innerWidth >= 1920);
+    };
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   // 카테고리별로 그룹화 - useMemo로 메모이제이션
   const groupedData = React.useMemo(() => {
     return beforeAfterData.reduce(
@@ -468,32 +483,14 @@ export default function BeforeAfterPage() {
 
   return (
     <div className={styles.beforeAfterPage}>
-      <section className={styles.HairTransplantHeroSection}>
-        <div className={styles.HairTransplantHeroContainer}>
-          <div className={styles.HairTransplantHeroTitleWrapper}>
-            <div className={styles.HairTransplantHeroTitleContainer}>
-              <h1 className={styles.HairTransplantHeroTitle}>
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                  {t.hero.title}
-                  <div className={styles.HairTransplantHeroTitleDot} />
-                </span>
-              </h1>
-            </div>
-          </div>
-          <div className={styles.HairTransplantHeroIllustration}>
-            <img
-              src="/before-after/hero-illustration.svg"
-              alt={t.hero.title}
-              className={styles.heroIllustrationImage}
-            />
-          </div>
-        </div>
-        <img
-          src="/before-after/mobile/hero-illustration-mobile.svg"
-          alt={t.hero.title}
-          className={styles.heroIllustrationImageMobile}
-        />
-      </section>
+      {/* Hero Section */}
+      <HeroSection
+        heroTitle={t.hero.title}
+        heroIllustration="/before-after/hero-illustration.svg"
+        heroIllustrationMobile="/before-after/mobile/hero-illustration-mobile.svg"
+        isMobile={isMobile}
+        isDesktopLarge={isDesktopLarge}
+      />
       {/* 전후 사진 캐러셀 섹션들 */}
       <div className={styles.carouselSection}>
         {categoryOrder.map(

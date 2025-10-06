@@ -76,22 +76,22 @@ export const HairTransplantHeroContainer = style({
 
 export const HairTransplantHeroIllustration = style({
   position: 'absolute',
-  left: '0', // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: '1750px', // 헤더와 완전히 동일한 최대 너비
-  maxWidth: 'calc(100% - 160px)', // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: '50%', // SVG일 때는 50%
+  left: '0',
+  width: '1750px',
+  maxWidth: 'calc(100% - 160px)',
+  top: '50%',
   transform: 'translateY(-50%)',
-  height: vw(765), // 1920px 기준 762px 높이
+  height: vw(765),
   zIndex: 1,
   '@media': {
     [breakpoints.desktopLarge]: {
-      width: '1750px', // 고정 너비
-      height: '765px', // 고정 높이
-      left: '0 !important', // 왼쪽부터 시작 (강제 적용)
-      maxWidth: 'calc(100% - 160px)', // 헤더와 동일한 제한
+      width: '1750px',
+      height: '765px',
+      left: 'calc((100vw - 1920px) / 2)', // 1920px 이상에서 헤더 왼쪽 시작점과 동일하게
+      maxWidth: 'none',
     },
     [breakpoints.desktop]: {
-      left: '0 !important', // 데스크탑에서도 왼쪽부터 시작
+      left: '0',
     },
     [breakpoints.mobile]: {
       display: 'none',
@@ -208,8 +208,8 @@ export const HairTransplantHeroTitleDot = style({
     [breakpoints.mobile]: {
       width: mvw(10),
       height: mvw(10),
-      marginLeft: mvw(4),
-      marginBottom: 0, // 하단 여백 제거
+      marginLeft: mvw(3),
+      marginBottom: -5, // 하단 여백 제거
     },
   },
 });
@@ -760,7 +760,7 @@ export const section1Number = style({
       fontSize: mvw(60),
       width: 'auto',
       height: 'auto',
-      top: mvw(0),
+      top: mvw(-10),
       right: mvw(16),
       lineHeight: mvw(72),
       textAlign: 'center',
@@ -1155,7 +1155,7 @@ export const section2NumberBg = style({
       fontSize: mvw(60),
       width: 'auto',
       height: 'auto',
-      top: mvw(0),
+      top: mvw(-10),
       right: mvw(16),
       lineHeight: mvw(72),
       textAlign: 'center',
@@ -1637,7 +1637,7 @@ export const section3Title = style({
       // height: mvw(106),
       textAlign: 'left',
       fontSize: mvw(20),
-      margin: `0 0 ${mvw(30)} 0`,
+      margin: `0 0 ${mvw(40)} 0`,
       lineHeight: '150%',
       letterSpacing: '0%',
       selectors: {
@@ -1792,7 +1792,7 @@ export const section3MobileIllustration = style({
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      // marginTop: mvw(40),
+      marginTop: mvw(40),
       // marginBottom: mvw(40),
     },
   },
@@ -1962,6 +1962,7 @@ export const beforeAfterContent = style({
       padding: 0,
       margin: 0,
       width: '100%',
+      gap: mvw(48),
     },
   },
 });
@@ -1979,11 +1980,21 @@ export const beforeAfterHeader = style({
     },
     [breakpoints.mobile]: {
       flexDirection: 'column',
-      marginBottom: mvw(48),
+      marginBottom: 0,
       gap: '1.5rem',
       alignItems: 'center',
       textAlign: 'center',
       margin: '0 auto',
+    },
+  },
+});
+
+// beforeAfterTitle이 없을 때 사용하는 variant
+export const beforeAfterHeaderNoTitle = style({
+  '@media': {
+    [breakpoints.mobile]: {
+      gap: 0,
+      minHeight: mvw(42), // beforeAfterCategory의 높이와 동일
     },
   },
 });
@@ -2037,6 +2048,11 @@ export const beforeAfterTitle = style({
   },
 });
 
+// 빈 문자열일 때 숨기는 variant
+export const beforeAfterTitleEmpty = style({
+  display: 'none',
+});
+
 export const beforeAfterSliderWrapper = style({
   display: 'flex',
   justifyContent: 'center',
@@ -2047,6 +2063,7 @@ export const beforeAfterSliderWrapper = style({
     },
     [breakpoints.mobile]: {
       width: '100%',
+      marginBottom: 0,
     },
   },
 });

@@ -73,12 +73,15 @@ export default function HeroSection({
                           ? styles.HairTransplantHeroTitleDotAbsolute
                           : styles.HairTransplantHeroTitleDot
                       }
-                      style={{
-                        display: 'inline-block',
-                        marginLeft: mvw(4),
-                        verticalAlign: 'baseline',
-                        position: 'relative',
-                      }}
+                      style={
+                        heroDotPosition?.absolute
+                          ? getResponsivePosition(heroDotPosition, isMobile, isDesktopLarge)
+                          : {
+                              display: 'inline-block',
+                              verticalAlign: 'baseline',
+                              position: 'relative',
+                            }
+                      }
                     />
                   </div>
                 ) : (

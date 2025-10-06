@@ -32,8 +32,8 @@ export default function ForeheadHairTransplantPage() {
       left: language === 'JP' ? 365 : 235,
       bottom: language === 'JP' ? 6 : 12,
       // 언어에 따른 모바일 위치
-      mobileLeft: language === 'JP' ? 107 : 157,
-      mobileBottom: 40,
+      mobileLeft: language === 'JP' ? 107 : 156,
+      mobileBottom: 6,
     },
     heroIllustration: '/forehead/hero-illustration.svg',
     heroIllustrationMobile: '/forehead/mobile/hero-illustration.svg',

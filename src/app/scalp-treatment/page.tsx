@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
@@ -7,6 +8,7 @@ import { useScalpTreatmentTranslations } from '@/hooks/useAllPagesTranslations';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 import FeaturesSection from '../../shared/components/FeaturesSection/FeaturesSection';
+import HeroSection from '@/shared/components/HairTransplant/HeroSection';
 
 import * as styles from './ScalpTreatmentPage.css';
 import { vw, mvw } from '../../shared/styles/responsive.utils';
@@ -75,8 +77,18 @@ export default function ScalpTreatmentPage() {
   console.log('[ScalpTreatmentPage] 두피치료 페이지 렌더링');
 
   const isMobile = useMediaQuery('(max-width: 1023px)');
+  const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
   const t = useScalpTreatmentTranslations();
   const { language } = useLanguageStore();
+
+  useEffect(() => {
+    const checkDesktopLarge = () => {
+      setIsDesktopLarge(window.innerWidth >= 1920);
+    };
+    checkDesktopLarge();
+    window.addEventListener('resize', checkDesktopLarge);
+    return () => window.removeEventListener('resize', checkDesktopLarge);
+  }, []);
 
   // 번역이 로딩 중인지 확인
   if (!t || !t.hero || !t.section1) {
@@ -162,12 +174,17 @@ export default function ScalpTreatmentPage() {
         ),
         mobile: (
           <>
-            {t.details.section3.description.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section3.description.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {((t.details.section3 as any).descriptionMobile || t.details.section3.description)
+              .split('\n')
+              .map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    ((t.details.section3 as any).descriptionMobile || t.details.section3.description).split('\n')
+                      .length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
@@ -440,50 +457,16 @@ export default function ScalpTreatmentPage() {
   return (
     <div className={styles.scalpTreatmentPage}>
       {/* Hero Section */}
-      <section className={styles.HairTransplantHeroSection}>
-        <div className={styles.HairTransplantHeroContainer}>
-          {/* Hero Title - 중앙에 배치 */}
-          <div className={styles.HairTransplantHeroTitleWrapper}>
-            <div className={styles.HairTransplantHeroTitleContainer}>
-              <h1 className={styles.HairTransplantHeroTitle} suppressHydrationWarning>
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                  }}
-                >
-                  {t.hero.title}
-                  <div className={styles.HairTransplantHeroTitleDot} />
-                </span>
-              </h1>
-            </div>
-          </div>
-          {/* Hero Illustration - 왼쪽에 붙도록 (데스크탑용) */}
-          <div className={styles.HairTransplantHeroIllustration}>
-            <img
-              src="/forehead/hero-illustration.svg"
-              alt="두피치료 일러스트"
-              className={styles.heroIllustrationImage}
-            />
-          </div>
-        </div>
-        {/* 모바일 일러스트 - Hero Container 밖에 위치 */}
-        <img
-          src="/forehead/mobile/hero-illustration.svg"
-          alt="두피치료 일러스트"
-          className={styles.heroIllustrationImageMobile}
-        />
-      </section>
+      <HeroSection
+        heroTitle={t.hero.title}
+        heroIllustration="/forehead/hero-illustration.svg"
+        heroIllustrationMobile="/forehead/mobile/hero-illustration.svg"
+        isMobile={isMobile}
+        isDesktopLarge={isDesktopLarge}
+      />
 
       {/* Hero Section */}
-      <motion.section
-        ref={heroRef}
-        className={styles.heroSection}
-        initial={{ opacity: 0, y: 80 }}
-        animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-        transition={{ duration: 0.6 }}
-      >
+      <section ref={heroRef} className={styles.heroSection}>
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             {/* 영상 영역 */}
@@ -505,7 +488,7 @@ export default function ScalpTreatmentPage() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Section 1: 두피치료 소개 */}
       <section ref={section1Ref} className={styles.introSection}>

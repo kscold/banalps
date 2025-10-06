@@ -17,194 +17,6 @@ export const scalpTreatmentPage = style({
   willChange: 'transform, opacity', // 애니메이션 최적화
 });
 
-// Hero Section Styles
-export const HairTransplantHeroSection = style({
-  position: 'relative',
-  width: '100%',
-  minHeight: '100vh',
-  overflow: 'visible',
-  backgroundColor: '#FFFDF7',
-  '@media': {
-    [breakpoints.mobile]: {
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      paddingTop: mvw(90),
-    },
-  },
-});
-
-export const HairTransplantHeroContainer = style({
-  position: 'relative',
-  width: '100%',
-  maxWidth: '1920px',
-  margin: '0 auto',
-  height: '100vh',
-  '@media': {
-    [breakpoints.mobile]: {
-      padding: `0 ${mvw(20)}`,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-    },
-    // 추가적인 모바일 브레이크포인트들
-    'screen and (max-width: 768px)': {
-      padding: `0 ${mvw(20)}`,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-    },
-    'screen and (max-width: 480px)': {
-      padding: `0 ${mvw(20)}`,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-    },
-  },
-});
-
-export const HairTransplantHeroIllustration = style({
-  position: 'absolute',
-  left: '0', // 1920px 컨테이너의 맨 왼쪽부터 시작
-  width: '1750px', // 헤더와 완전히 동일한 최대 너비
-  maxWidth: 'calc(100% - 160px)', // 헤더와 동일한 제한 (양쪽 160px 마진)
-  top: '50%', // SVG일 때는 50%
-  transform: 'translateY(-50%)',
-  height: vw(765), // 1920px 기준 762px 높이
-  zIndex: 1,
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      width: '1750px', // 고정 너비
-      height: '765px', // 고정 높이
-      left: '0', // 왼쪽부터 시작
-      maxWidth: 'calc(100% - 160px)', // 헤더와 동일한 제한
-    },
-    [breakpoints.mobile]: {
-      display: 'none',
-    },
-  },
-});
-
-export const HairTransplantHeroTitleWrapper = style({
-  ...responsiveContainer(1600),
-  position: 'absolute',
-  top: '0',
-  right: '0',
-  left: '0',
-  bottom: '0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  paddingRight: vw(60),
-  zIndex: 2,
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      paddingRight: '60px',
-      width: '1600px', // 고정 너비
-      left: '50%', // 중앙 정렬
-      transform: 'translateX(-50%)', // 중앙 정렬
-      right: 'auto', // right 제거
-    },
-    [breakpoints.mobile]: {
-      position: 'relative',
-      display: 'block',
-      padding: '0',
-      marginTop: mvw(80),
-      width: '100%',
-    },
-  },
-});
-
-export const HairTransplantHeroTitleContainer = style({
-  position: 'absolute',
-  top: '43%',
-  left: '0',
-  transform: 'translateY(-50%)',
-  textAlign: 'left',
-  zIndex: 3,
-  right: '0',
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      marginRight: '160px',
-      paddingLeft: '40px',
-      paddingRight: '60px',
-    },
-    [breakpoints.desktop]: {
-      marginRight: vw(160),
-    },
-    [breakpoints.mobile]: {
-      width: '100%',
-      position: 'static',
-      top: '0px',
-      transform: 'none',
-      textAlign: 'center',
-      marginRight: '0',
-      paddingLeft: '0',
-      paddingRight: '0',
-      right: 'auto',
-    },
-  },
-});
-
-export const HairTransplantHeroTitle = style({
-  fontFamily: fontFamily.scdream,
-  fontWeight: 500,
-  ...responsiveFont(60, 40),
-  letterSpacing: '0',
-  lineHeight: vw(72),
-  color: '#272727',
-  margin: '0',
-  textAlign: 'left',
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      fontSize: '60px',
-      lineHeight: '72px',
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(40),
-      lineHeight: mvw(48),
-      textAlign: 'left',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-    },
-  },
-});
-
-export const HairTransplantHeroTitleDot = style({
-  width: vw(12),
-  height: vw(12),
-  backgroundColor: '#14AEFF',
-  borderRadius: '50%',
-  marginLeft: vw(4),
-  flexShrink: 0,
-  alignSelf: 'flex-end', // 모바일에서는 하단 정렬
-  marginBottom: vw(12), // 약간의 하단 여백
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      width: '12px',
-      height: '12px',
-      marginLeft: '4px',
-      marginBottom: '12px',
-    },
-    [breakpoints.mobile]: {
-      width: mvw(10),
-      height: mvw(10),
-      marginLeft: mvw(4),
-      marginBottom: mvw(5), // 약간의 하단 여백
-      alignSelf: 'flex-end', // 모바일에서는 하단 정렬
-    },
-  },
-});
-
 export const heroSection = style({
   position: 'relative',
   width: '100%',
@@ -522,7 +334,7 @@ export const treatmentCardsSection = style({
     },
     [breakpoints.mobile]: {
       width: '100%',
-      padding: `0 0 ${mvw(60)} 0`,
+      padding: `0 0 ${mvw(120)} 0`,
     },
   },
 });
@@ -777,8 +589,8 @@ export const treatmentTextContent = style({
       gap: 0,
     },
     [breakpoints.mobile]: {
-      gap: '30px',
-      marginTop: '40px',
+      gap: mvw(40),
+      marginTop: mvw(40),
       paddingLeft: 0,
       paddingRight: 0,
       justifyContent: 'flex-start',
@@ -801,7 +613,6 @@ export const treatmentTitle = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
-      lineHeight: mvw(32),
     },
   },
 });
@@ -878,6 +689,7 @@ export const treatmentDescription = style({
   letterSpacing: '0',
   color: '#272727',
   margin: 0,
+  whiteSpace: 'pre-line',
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '36px',
@@ -893,10 +705,11 @@ export const treatmentDescriptionCustomMargin = style({
   fontFamily: "'S-Core Dream', sans-serif",
   fontWeight: 400,
   ...responsiveFont(24),
-  lineHeight: vw(36),
+  lineHeight: '150%',
   color: '#272727',
   margin: 0,
   marginBottom: 'var(--margin-bottom)',
+  whiteSpace: 'pre-line',
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '36px',
@@ -904,7 +717,6 @@ export const treatmentDescriptionCustomMargin = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
-      lineHeight: mvw(32),
       marginBottom: 'var(--margin-bottom-mobile)',
     },
   },

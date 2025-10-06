@@ -22,8 +22,8 @@ function HairlineContent() {
       left: language === 'JP' ? 130 : 120,
       bottom: language === 'JP' ? 5 : 12,
       // 모바일 위치 (다른 값 설정 가능)
-      mobileLeft: 80,
-      mobileBottom: 8,
+      mobileLeft: 78,
+      mobileBottom: 7,
     },
     section1: {
       number: 1,
