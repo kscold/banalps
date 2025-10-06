@@ -73,11 +73,10 @@ const FullPageMain = () => {
     }
   }, []);
 
-  // 비디오 종료 핸들러 - useCallback으로 메모이제이션
+  // 비디오 종료 핸들러 - 자동 스크롤 비활성화 (사용자가 수동으로 스크롤하도록)
   const handleVideoEnd = useCallback(() => {
-    if (contentRef.current) {
-      contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // 비디오가 끝나도 자동으로 스크롤하지 않음
+    // 사용자가 원할 때 수동으로 스크롤하도록 함
   }, []);
 
   return (

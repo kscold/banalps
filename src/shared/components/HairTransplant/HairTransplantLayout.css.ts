@@ -706,7 +706,8 @@ export const section1Description = style({
     [breakpoints.mobile]: {
       fontFamily: fontFamily.scdream,
       fontSize: mvw(16),
-      lineHeight: mvw(28),
+      lineHeight: '150%',
+      letterSpacing: '0%',
       textAlign: 'left',
       maxWidth: '100%',
       width: '100%',
@@ -986,7 +987,7 @@ export const section2Image = style({
       width: `calc(100vw - ${mvw(32)})`, // Account for padding on both sides
       height: mvw(305),
       borderRadius: '8px',
-      marginBottom: mvw(20),
+      marginBottom: 0,
       display: 'block',
       overflow: 'hidden',
     },
@@ -1633,7 +1634,7 @@ export const section3Title = style({
       flexDirection: 'column',
       justifyContent: 'center',
       width: mvw(204),
-      height: mvw(106),
+      // height: mvw(106),
       textAlign: 'left',
       fontSize: mvw(20),
       margin: `0 0 ${mvw(30)} 0`,
@@ -1668,7 +1669,7 @@ export const section3Description = style({
       lineHeight: mvw(28),
       textAlign: 'left',
       fontWeight: 400,
-      marginBottom: mvw(40),
+      // marginBottom: mvw(40),
       selectors: {
         'html[data-language="JP"] &': {
           fontSize: mvw(20),
@@ -1715,7 +1716,7 @@ export const section3Number = style({
       fontSize: mvw(60),
       width: mvw(36),
       height: mvw(72),
-      top: mvw(0),
+      top: mvw(-10),
       right: mvw(16),
       lineHeight: mvw(72),
       textAlign: 'center',
@@ -1806,8 +1807,8 @@ export const section2MobileImages = style({
       flexDirection: 'column',
       gap: '2.5rem',
       width: '100%',
-      marginTop: mvw(40),
-      marginBottom: mvw(40),
+      // marginTop: mvw(40),
+      // marginBottom: mvw(40),
     },
   },
 });

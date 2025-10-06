@@ -56,17 +56,22 @@ export default function FeaturesSection({
           <img src="/hair-transplant/double-quotation-end.svg" alt="따옴표 끝" className={styles.quotationEnd} />
         </div>
 
-        {/* 데스크탑: 전체 그리드 애니메이션 */}
+        {/* 데스크탑: 순차적 카드 애니메이션 */}
         {isDesktop ? (
-          <motion.div
-            className={styles.featuresGrid}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          >
+          <div className={styles.featuresGrid}>
             {featureCards.map((card, index) => (
-              <div key={index} className={styles.featureCard}>
+              <motion.div
+                key={index}
+                className={styles.featureCard}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.4,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
                 <div className={styles.featureIconContainer}>
                   <div className={styles.featureIcon}>
                     <img
@@ -85,23 +90,23 @@ export default function FeaturesSection({
                   </div>
                 </div>
                 <h3 className={styles.featureTitle}>{renderTitle(card.title, index)}</h3>
-              </div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         ) : (
-          /* 모바일: 개별 카드 애니메이션 */
+          /* 모바일: 순차적 카드 애니메이션 */
           <div className={styles.featuresGrid}>
             {featureCards.map((card, index) => (
               <motion.div
                 key={index}
                 className={styles.featureCard}
-                initial={{ opacity: 0, translateY: 80 }}
-                whileInView={{ opacity: 1, translateY: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2, margin: '-50px 0px -50px 0px' }}
                 transition={{
-                  duration: 0.4,
-                  ease: 'easeOut',
-                  delay: index * 0.1,
+                  duration: 0.5,
+                  delay: index * 0.4,
+                  ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
                 <div className={styles.featureIconContainer}>

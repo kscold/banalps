@@ -2,9 +2,7 @@ import { style } from '@vanilla-extract/css';
 import {
   responsiveFont,
   responsiveContainer,
-  responsiveSplitContainer,
   responsiveLeftContent,
-  responsiveRightContent,
   breakpoints,
 } from '../../shared/styles/responsive.css';
 import { vw, mvw } from '../../shared/styles/responsive.utils';
@@ -18,84 +16,6 @@ export const scalpTreatmentPage = style({
   backfaceVisibility: 'hidden', // 깜빡임 방지
   willChange: 'transform, opacity', // 애니메이션 최적화
 });
-
-// export const HairTransplantHeroSection = style({
-//   position: "relative",
-//   width: "100%",
-//   minHeight: "100vh",
-//   overflow: "hidden",
-//   backgroundColor: "#FFFDF7",
-//   "@media": {
-//     [breakpoints.mobile]: {
-//       minHeight: "100vh",
-//       display: "flex",
-//       flexDirection: "column",
-//       justifyContent: "flex-start",
-//       alignItems: "center",
-//       paddingTop: mvw(90),
-//     },
-//   },
-// });
-
-// export const HairTransplantHeroContainer = style({
-//   position: "relative",
-//   width: "100%",
-//   maxWidth: "1920px",
-//   margin: "0 auto",
-//   height: "100vh",
-//   "@media": {
-//     [breakpoints.mobile]: {
-//       padding: `0 ${mvw(20)}`,
-//       height: "100%",
-//       display: "flex",
-//       flexDirection: "column",
-//       justifyContent: "flex-start",
-//       alignItems: "flex-start",
-//     },
-//   },
-// });
-
-// export const HairTransplantHeroIllustration = style({
-//   position: "absolute",
-//   left: "0", // 1920px 컨테이너의 맨 왼쪽부터 시작
-//   width: "1750px", // 헤더와 완전히 동일한 최대 너비
-//   maxWidth: "calc(100% - 160px)", // 헤더와 동일한 제한 (양쪽 160px 마진)
-//   top: "50%",
-//   transform: "translateY(-50%)",
-//   height: vw(765), // 1920px 기준 762px 높이
-//   zIndex: 1,
-//   "@media": {
-//     [breakpoints.mobile]: {
-//       display: "none",
-//     },
-//   },
-// });
-
-// export const HairTransplantHeroTitleWrapper = style({
-//   ...responsiveContainer(1600),
-//   position: "absolute",
-//   top: "0",
-//   right: "0",
-//   left: "0",
-//   bottom: "0",
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "flex-end",
-//   paddingRight: vw(60),
-//   zIndex: 2,
-//   "@media": {
-//     [breakpoints.desktopLarge]: {
-//       paddingRight: "60px",
-//     },
-//     [breakpoints.mobile]: {
-//       position: "relative",
-//       display: "block",
-//       padding: "0",
-//       marginTop: mvw(80),
-//       width: "100%",
-//     },
-//   },
-// });
 
 // Hero Section Styles
 export const HairTransplantHeroSection = style({
@@ -278,9 +198,9 @@ export const HairTransplantHeroTitleDot = style({
     [breakpoints.mobile]: {
       width: mvw(10),
       height: mvw(10),
-      marginLeft: mvw(10),
+      marginLeft: mvw(4),
+      marginBottom: mvw(5), // 약간의 하단 여백
       alignSelf: 'flex-end', // 모바일에서는 하단 정렬
-      marginBottom: mvw(10), // 약간의 하단 여백
     },
   },
 });
@@ -1030,106 +950,6 @@ export const treatmentImage = style({
       width: '100%',
       height: mvw(210),
       borderRadius: mvw(8),
-    },
-  },
-});
-
-// Footer Features Section
-export const featuresSection = style({
-  padding: `${vw(120)} 0`,
-  backgroundColor: '#FFFDF7',
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      padding: '120px 0',
-    },
-    [breakpoints.mobile]: {
-      padding: '80px 0',
-    },
-  },
-});
-
-export const featuresContainer = style({
-  ...responsiveContainer(1600),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: vw(80),
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      gap: '80px',
-    },
-    [breakpoints.mobile]: {
-      gap: '60px',
-    },
-  },
-});
-
-export const featuresTitle = style({
-  textAlign: 'center',
-});
-
-export const featuresGrid = style({
-  display: 'grid',
-  gridTemplateColumns: `repeat(4, ${vw(400)})`,
-  gap: vw(0),
-  width: '100%',
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      gridTemplateColumns: 'repeat(4, 400px)',
-    },
-    [breakpoints.mobile]: {
-      gridTemplateColumns: '1fr',
-      gap: '30px',
-    },
-  },
-});
-
-export const featureCard = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textAlign: 'center',
-  gap: vw(40),
-  padding: vw(40),
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      gap: '40px',
-      padding: '40px',
-    },
-    [breakpoints.mobile]: {
-      gap: '30px',
-      padding: '20px',
-    },
-  },
-});
-
-export const featureIcon = style({
-  width: vw(180),
-  height: vw(180),
-  backgroundColor: '#F5F5F5',
-  borderRadius: '50%',
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      width: '180px',
-      height: '180px',
-    },
-    [breakpoints.mobile]: {
-      width: '120px',
-      height: '120px',
-    },
-  },
-});
-
-export const featureTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
-  fontWeight: 400,
-  ...responsiveFont(20),
-  lineHeight: vw(30),
-  color: '#272727',
-  margin: 0,
-  '@media': {
-    [breakpoints.desktopLarge]: {
-      lineHeight: '30px',
     },
   },
 });

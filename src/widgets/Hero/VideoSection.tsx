@@ -74,6 +74,15 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
 
         player.on('ended', () => {
           videoEndedRef.current = true;
+          // 비디오가 끝나면 처음부터 다시 재생 (루프)
+          player.setCurrentTime(0).then(() => {
+            player.play().catch((error: unknown) => {
+              console.error('[VideoSection/비디오재생에러] 비디오 재생 실패:', error);
+            });
+          }).catch((error: unknown) => {
+            console.error('[VideoSection/비디오리셋에러] 비디오 리셋 실패:', error);
+          });
+
           if (onVideoEnd) {
             onVideoEnd();
           }

@@ -710,7 +710,7 @@ export const infoValueParagraph = style({
   color: '#272727',
   '@media': {
     [breakpoints.desktopLarge]: {
-      marginBottom: 0,
+      fontSize: '20px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(14),

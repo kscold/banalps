@@ -364,8 +364,9 @@ export default function WhiteSection() {
               <div className={styles.infoItem}>
                 <h3 className={styles.infoLabel}>{white.location.directions}</h3>
                 <div className={styles.infoValue}>
-                  <p className={styles.infoValueParagraph}>{white.location.address1}</p>
-                  <p className={styles.infoValueParagraph}>{white.location.address2}</p>
+                  <p className={styles.infoValueParagraph}>
+                    {white.location.address1} {white.location.address2}
+                  </p>
                   <div className={styles.subwayInfo}>
                     <p>{white.location.subway1}</p>
                     <p>{white.location.subway2}</p>

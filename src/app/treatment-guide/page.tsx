@@ -110,9 +110,7 @@ export default function TreatmentGuidePage() {
               <h3 className={styles.contactLabel}>{t.contact.locationLabel}</h3>
               <div className={styles.contactAddress}>
                 <p className={styles.addressMain}>
-                  {t.contact.address1}
-                  <br />
-                  {t.contact.address2}
+                  {t.contact.address1} {t.contact.address2}
                 </p>
                 <div className={styles.subwayInfo}>
                   <p>{t.contact.subway1}</p>

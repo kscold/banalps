@@ -75,7 +75,7 @@ export default function HeroSection({
                       }
                       style={{
                         display: 'inline-block',
-                        marginLeft: mvw(8),
+                        marginLeft: mvw(4),
                         verticalAlign: 'baseline',
                         position: 'relative',
                       }}

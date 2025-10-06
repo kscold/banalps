@@ -145,7 +145,6 @@ export const featureCard = style({
   borderRadius: '50%', // 완전한 원형
   position: 'relative',
   padding: vw(40), // 내부 패딩
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
 
   '@media': {
     [breakpoints.desktopLarge]: {
@@ -165,10 +164,6 @@ export const featureCard = style({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      ':hover': {
-        transform: 'translateY(-4px)',
-        boxShadow: '0 10px 20px rgba(213, 254, 255, 0.6)',
-      },
     },
   },
 });

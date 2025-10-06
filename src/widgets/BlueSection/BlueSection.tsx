@@ -37,17 +37,17 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 1 */}
         <motion.div
           className={styles.imageCard1}
-          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
+          initial={{ opacity: 0, y: isMobile ? 30 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
+            amount: isMobile ? 0.1 : 0.3,
+            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
           }}
           transition={{
-            duration: isMobile ? 0.6 : 0.5,
+            duration: isMobile ? 0.8 : 0.5,
             delay: 0,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -60,17 +60,17 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 2 */}
         <motion.div
           className={styles.imageCard2}
-          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
+          initial={{ opacity: 0, y: isMobile ? 30 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
+            amount: isMobile ? 0.1 : 0.3,
+            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
           }}
           transition={{
-            duration: isMobile ? 0.6 : 0.5,
-            delay: isMobile ? 0.1 : 0.4,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            duration: isMobile ? 0.8 : 0.5,
+            delay: isMobile ? 0.15 : 0.4,
+            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -83,17 +83,17 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 3 */}
         <motion.div
           className={styles.imageCard3}
-          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
+          initial={{ opacity: 0, y: isMobile ? 30 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
+            amount: isMobile ? 0.1 : 0.3,
+            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
           }}
           transition={{
-            duration: isMobile ? 0.6 : 0.5,
-            delay: isMobile ? 0.2 : 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            duration: isMobile ? 0.8 : 0.5,
+            delay: isMobile ? 0.3 : 0.8,
+            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -106,17 +106,17 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
         {/* 이미지 카드 4 */}
         <motion.div
           className={styles.imageCard4}
-          initial={{ opacity: 0, y: isMobile ? 50 : 80 }}
+          initial={{ opacity: 0, y: isMobile ? 30 : 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.2 : 0.3,
-            margin: isMobile ? '-50px 0px -50px 0px' : '0px',
+            amount: isMobile ? 0.1 : 0.3,
+            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
           }}
           transition={{
-            duration: isMobile ? 0.6 : 0.5,
-            delay: isMobile ? 0.3 : 1.2,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            duration: isMobile ? 0.8 : 0.5,
+            delay: isMobile ? 0.45 : 1.2,
+            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
