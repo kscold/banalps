@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
-import { useForeheadHairTransplantTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
+import { useForeheadHairTransplantTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 export default function ForeheadHairTransplantPage() {
   const t = useForeheadHairTransplantTranslations();
@@ -10,17 +10,17 @@ export default function ForeheadHairTransplantPage() {
   const layoutData = {
     heroTitle: (
       <>
-        {(t.hero as any).titleLine1 || t.hero.title.split("\n")[0]}
+        {(t.hero as any).titleLine1 || t.hero.title.split('\n')[0]}
         <br />
-        {(t.hero as any).titleLine2 || t.hero.title.split("\n")[1]}
+        {(t.hero as any).titleLine2 || t.hero.title.split('\n')[1]}
       </>
     ),
     heroTitleMobile: (
       <>
-        {t.hero.title.split("\n").map((line, index) => (
+        {t.hero.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.hero.title.split("\n").length - 1 && <br />}
+            {index < t.hero.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -29,14 +29,14 @@ export default function ForeheadHairTransplantPage() {
     heroDotPosition: {
       absolute: true,
       // 언어에 따른 데스크탑 위치
-      left: language === "JP" ? 365 : 235,
-      bottom: language === "JP" ? 6 : 12,
+      left: language === 'JP' ? 365 : 235,
+      bottom: language === 'JP' ? 6 : 12,
       // 언어에 따른 모바일 위치
-      mobileLeft: language === "JP" ? 107 : 157,
-      mobileBottom: 40,
+      mobileLeft: language === 'JP' ? 107 : 156,
+      mobileBottom: 6,
     },
-    heroIllustration: "/forehead/hero-illustration.svg",
-    heroIllustrationMobile: "/forehead/mobile/hero-illustration.svg",
+    heroIllustration: '/forehead/hero-illustration.svg',
+    heroIllustrationMobile: '/forehead/mobile/hero-illustration.svg',
     heroIllustrationSize: {
       width: 1760,
       height: 660,
@@ -48,10 +48,10 @@ export default function ForeheadHairTransplantPage() {
       number: 1,
       title: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -59,20 +59,20 @@ export default function ForeheadHairTransplantPage() {
       titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
       titleMobile: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section1.description.split("\n").map((line, index) => (
+          {t.section1.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split("\n").length - 1 && <br />}
+              {index < t.section1.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -80,19 +80,17 @@ export default function ForeheadHairTransplantPage() {
       descriptionWidth: 530, // section1Description 너비 600 vw 단위
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+          {t.section1.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/forehead/hair-transplant/hair-transplant-2.png",
-        secondary: "/forehead/hair-transplant/hair-transplant-1.png",
+        main: '/forehead/hair-transplant/hair-transplant-2.png',
+        secondary: '/forehead/hair-transplant/hair-transplant-1.png',
       },
       imagesSize: {
         main: {
@@ -114,9 +112,8 @@ export default function ForeheadHairTransplantPage() {
         },
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-1-mobile.svg",
-        secondary:
-          "/forehead/hair-transplant/mobile/hair-transplant-2-mobile.svg",
+        main: '/forehead/hair-transplant/mobile/hair-transplant-1-mobile.svg',
+        secondary: '/forehead/hair-transplant/mobile/hair-transplant-2-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -135,31 +132,29 @@ export default function ForeheadHairTransplantPage() {
       titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
       description: (
         <>
-          {t.section2.description.split("\n").map((line, index) => (
+          {t.section2.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split("\n").length - 1 && <br />}
+              {index < t.section2.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+          {t.section2.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/forehead/hair-transplant/hair-transplant-3.png",
+        main: '/forehead/hair-transplant/hair-transplant-3.png',
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-3-mobile.svg",
+        main: '/forehead/hair-transplant/mobile/hair-transplant-3-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -178,51 +173,49 @@ export default function ForeheadHairTransplantPage() {
       },
       title: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section3.description.split("\n").map((line, index) => (
+          {t.section3.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.description.split("\n").length - 1 && <br />}
+              {index < t.section3.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+          {t.section3.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section3.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/forehead/hair-transplant/hair-transplant-4.png",
+        main: '/forehead/hair-transplant/hair-transplant-4.png',
       },
       imagesMobile: {
-        main: "/forehead/hair-transplant/mobile/hair-transplant-4-mobile.svg",
+        main: '/forehead/hair-transplant/mobile/hair-transplant-4-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -232,32 +225,32 @@ export default function ForeheadHairTransplantPage() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/forehead/hair-transplant/slide/before.jpg",
-      afterImage: "/forehead/hair-transplant/slide/after.jpg",
+      beforeImage: '/forehead/hair-transplant/slide/before.jpg',
+      afterImage: '/forehead/hair-transplant/slide/after.jpg',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
-      href: "/before-after",
+      href: '/before-after',
       width: 269,
     },
     featuresTitle: (
       <>
-        {t.features.title.split("\n").map((line, index) => (
+        {t.features.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split("\n").length - 1 && <br />}
+            {index < t.features.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split("\n").map((line, index) => (
+        {t.features.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -266,10 +259,10 @@ export default function ForeheadHairTransplantPage() {
       icon: `/hair-transplant/feature-${index + 1}.svg`,
       title: (
         <>
-          {card.title.split("\n").map((line, cardIndex) => (
+          {card.title.split('\n').map((line, cardIndex) => (
             <span key={cardIndex}>
               {line}
-              {cardIndex < card.title.split("\n").length - 1 && <br />}
+              {cardIndex < card.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>

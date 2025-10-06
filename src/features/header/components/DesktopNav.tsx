@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import * as styles from "../../../widgets/Header/HeaderDesign.css";
-import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation";
-import { useAllPagesTranslations } from "@/hooks/useAllPagesTranslations";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import * as styles from '../../../widgets/Header/HeaderDesign.css';
+import { NAVIGATION_ITEMS } from '../../../shared/constants/navigation';
+import { useAllPagesTranslations } from '@/hooks/useAllPagesTranslations';
 
 interface DesktopNavProps {
   showSubmenu: boolean;
@@ -12,10 +12,7 @@ interface DesktopNavProps {
   renderSubmenuOnly?: boolean;
 }
 
-export default function DesktopNav({
-  showSubmenu,
-  isHeaderHovered,
-}: DesktopNavProps) {
+export default function DesktopNav({ showSubmenu, isHeaderHovered }: DesktopNavProps) {
   const pathname = usePathname();
   const t = useAllPagesTranslations();
 
@@ -30,10 +27,10 @@ export default function DesktopNav({
   };
 
   // 현재 경로가 네비게이션 아이템에 속하는지 확인
-  const isActive = (item: typeof NAVIGATION_ITEMS[0]) => {
+  const isActive = (item: (typeof NAVIGATION_ITEMS)[0]) => {
     if (item.href && pathname === item.href) return true;
     if (item.submenu) {
-      return item.submenu.some(sub => pathname === sub.href);
+      return item.submenu.some((sub) => pathname === sub.href);
     }
     return false;
   };
@@ -43,10 +40,7 @@ export default function DesktopNav({
       {NAVIGATION_ITEMS.map((item) => (
         <div key={item.titleKey} className={styles.navItemWrapper}>
           {item.href ? (
-            <Link
-              href={item.href}
-              className={`${styles.navLink} ${isActive(item) ? styles.navLinkActive : ''}`}
-            >
+            <Link href={item.href} className={`${styles.navLink} ${isActive(item) ? styles.navLinkActive : ''}`}>
               <span className={styles.navLinkText}>{getTranslation(item.titleKey)}</span>
             </Link>
           ) : (
@@ -60,22 +54,19 @@ export default function DesktopNav({
               className={styles.dropdownContent}
               style={{
                 opacity: isHeaderHovered && showSubmenu ? 1 : 0,
-                visibility:
-                  isHeaderHovered && showSubmenu ? "visible" : "hidden",
+                visibility: isHeaderHovered && showSubmenu ? 'visible' : 'hidden',
                 transition:
                   isHeaderHovered && showSubmenu
-                    ? "opacity 200ms ease 100ms, visibility 0ms" // 나타날 때: 부드럽게 페이드인
-                    : "opacity 0ms, visibility 0ms", // 사라질 때: 즉시 사라짐
-                pointerEvents: isHeaderHovered && showSubmenu ? "auto" : "none",
+                    ? 'opacity 200ms ease 100ms, visibility 0ms' // 나타날 때: 부드럽게 페이드인
+                    : 'opacity 0ms, visibility 0ms', // 사라질 때: 즉시 사라짐
+                pointerEvents: isHeaderHovered && showSubmenu ? 'auto' : 'none',
               }}
             >
               {item.submenu.map((subItem) => (
                 <Link
                   key={subItem.titleKey}
                   href={subItem.href}
-                  className={`${styles.dropdownItem} ${
-                    pathname === subItem.href ? styles.dropdownItemActive : ""
-                  }`}
+                  className={`${styles.dropdownItem} ${pathname === subItem.href ? styles.dropdownItemActive : ''}`}
                 >
                   {getTranslation(subItem.titleKey)}
                 </Link>

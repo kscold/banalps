@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
-import ProcessSection from "./ProcessSection";
-import { useScarReductionTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
+import ProcessSection from './ProcessSection';
+import { useScarReductionTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 export default function ScarReductionPage() {
   const { language } = useLanguageStore();
@@ -24,16 +24,16 @@ export default function ScarReductionPage() {
         {t.hero.titleLine2}
       </>
     ),
-    heroIllustration: "/forehead/hero-illustration.svg",
-    heroIllustrationMobile: "/forehead/mobile/hero-illustration.svg",
+    heroIllustration: '/forehead/hero-illustration.svg',
+    heroIllustrationMobile: '/forehead/mobile/hero-illustration.svg',
     section1: {
       number: 1,
       title: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -41,38 +41,36 @@ export default function ScarReductionPage() {
       titleMarginBottom: 120, // 120px (데스크탑에서는 vw로 변환)
       titleMobile: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section1.description.split("\n").map((line, index) => (
+          {t.section1.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split("\n").length - 1 && <br />}
+              {index < t.section1.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+          {t.section1.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/forehead/scar-reduction/scar-reduction-1.jpg",
+        main: '/forehead/scar-reduction/scar-reduction-1.jpg',
       },
       imagesSize: {
         main: {
@@ -86,7 +84,7 @@ export default function ScarReductionPage() {
         },
       },
       imagesMobile: {
-        main: "/forehead/scar-reduction/mobile/scar-reduction-1-mobile.svg",
+        main: '/forehead/scar-reduction/mobile/scar-reduction-1-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -97,42 +95,40 @@ export default function ScarReductionPage() {
       number: 2,
       title: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section2.description.split("\n").map((line, index) => (
+          {t.section2.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split("\n").length - 1 && <br />}
+              {index < t.section2.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+          {t.section2.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -140,7 +136,7 @@ export default function ScarReductionPage() {
       descriptionMarginBottom: 0, // Remove margin bottom on mobile
       sectionPaddingBottom: 0, // Remove padding bottom on mobile
       images: {
-        main: "/forehead/scar-reduction/scar-reduction-8.png",
+        main: '/forehead/scar-reduction/scar-reduction-8.png',
       },
       imagesSize: {
         main: {
@@ -149,7 +145,7 @@ export default function ScarReductionPage() {
         },
       },
       imagesMobile: {
-        main: "/forehead/scar-reduction/mobile/scar-reduction-8-mobile.svg",
+        main: '/forehead/scar-reduction/mobile/scar-reduction-8-mobile.svg',
       },
       imagesMobileSize: {
         mainMaxWidth: false,
@@ -160,32 +156,32 @@ export default function ScarReductionPage() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/forehead/scar-reduction/slide/before.jpg",
-      afterImage: "/forehead/scar-reduction/slide/after.png",
+      beforeImage: '/forehead/scar-reduction/slide/before.jpg',
+      afterImage: '/forehead/scar-reduction/slide/after.png',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
-      href: "/before-after",
-      width: language === "JP" ? 352 : 269,
+      href: '/before-after',
+      width: language === 'JP' ? 352 : 269,
     },
     featuresTitle: (
       <>
-        {t.features.title.split("\n").map((line, index) => (
+        {t.features.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split("\n").length - 1 && <br />}
+            {index < t.features.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split("\n").map((line, index) => (
+        {t.features.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -194,10 +190,10 @@ export default function ScarReductionPage() {
       icon: `/hair-transplant/feature-${index + 1}.svg`,
       title: (
         <>
-          {card.title.split("\n").map((line, cardIndex) => (
+          {card.title.split('\n').map((line, cardIndex) => (
             <span key={cardIndex}>
               {line}
-              {cardIndex < card.title.split("\n").length - 1 && <br />}
+              {cardIndex < card.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -205,11 +201,5 @@ export default function ScarReductionPage() {
     })),
   };
 
-  return (
-    <HairTransplantLayout
-      {...layoutData}
-      scarReduction={true}
-      customMiddleSection={<ProcessSection />}
-    />
-  );
+  return <HairTransplantLayout {...layoutData} scarReduction={true} customMiddleSection={<ProcessSection />} />;
 }

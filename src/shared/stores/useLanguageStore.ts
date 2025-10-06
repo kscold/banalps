@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
-type Language = "KR" | "JP";
+type Language = 'KR' | 'JP';
 
 interface LanguageStore {
   language: Language;
@@ -11,14 +11,14 @@ interface LanguageStore {
 export const useLanguageStore = create<LanguageStore>()(
   persist(
     (set) => ({
-      language: "KR",
+      language: 'KR',
       setLanguage: (lang) => set({ language: lang }),
     }),
     {
-      name: "language-storage",
+      name: 'language-storage',
       storage: createJSONStorage(() => {
         // SSR 환경에서는 임시 storage 사용
-        if (typeof window === "undefined") {
+        if (typeof window === 'undefined') {
           return {
             getItem: () => null,
             setItem: () => {},
@@ -27,6 +27,6 @@ export const useLanguageStore = create<LanguageStore>()(
         }
         return localStorage;
       }),
-    }
-  )
+    },
+  ),
 );

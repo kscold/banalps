@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
-import * as styles from "../../../widgets/Header/MobileMenuStyles.css";
-import { NAVIGATION_ITEMS } from "../../../shared/constants/navigation";
-import { useAuthStore } from "@/shared/stores/useAuthStore";
-import { useAllPagesTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
+import * as styles from '../../../widgets/Header/MobileMenuStyles.css';
+import { NAVIGATION_ITEMS } from '../../../shared/constants/navigation';
+import { useAuthStore } from '@/shared/stores/useAuthStore';
+import { useAllPagesTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -47,18 +47,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
   // 메뉴 아이템 토글 - 한 번에 하나의 대메뉴만 열리도록 수정
   const toggleMenuItem = (titleKey: string) => {
-    setExpandedItems((prev) =>
-      prev.includes(titleKey)
-        ? [] // 현재 열려있는 메뉴를 클릭하면 닫기
-        : [titleKey] // 다른 메뉴를 클릭하면 기존 메뉴 닫고 새 메뉴만 열기
+    setExpandedItems(
+      (prev) =>
+        prev.includes(titleKey)
+          ? [] // 현재 열려있는 메뉴를 클릭하면 닫기
+          : [titleKey], // 다른 메뉴를 클릭하면 기존 메뉴 닫고 새 메뉴만 열기
     );
   };
 
   // 메인 메뉴 클릭 핸들러
-  const handleMainMenuClick = (
-    e: React.MouseEvent,
-    item: (typeof NAVIGATION_ITEMS)[0]
-  ) => {
+  const handleMainMenuClick = (e: React.MouseEvent, item: (typeof NAVIGATION_ITEMS)[0]) => {
     e.preventDefault();
     if (item.submenu) {
       toggleMenuItem(item.titleKey);
@@ -71,13 +69,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   };
 
   // 언어 선택 핸들러
-  const handleLangSelect = (lang: "KR" | "JP") => {
+  const handleLangSelect = (lang: 'KR' | 'JP') => {
     setLanguage(lang);
     setIsLangOpen(false);
   };
 
   // 언어 옵션들
-  const languages: ("KR" | "JP")[] = ["KR", "JP"];
+  const languages: ('KR' | 'JP')[] = ['KR', 'JP'];
 
   return (
     <>
@@ -87,8 +85,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         onClick={onClose}
         style={{
           opacity: isOpen ? 1 : 0,
-          visibility: isOpen ? "visible" : "hidden",
-          pointerEvents: isOpen ? "auto" : "none",
+          visibility: isOpen ? 'visible' : 'hidden',
+          pointerEvents: isOpen ? 'auto' : 'none',
         }}
       />
 
@@ -96,8 +94,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         className={styles.mobileMenuPanel}
         style={{
-          transform: isOpen ? "translateX(0)" : "translateX(100%)",
-          visibility: hasOpened ? "visible" : "hidden", // 초기 렌더링 시 숨김
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          visibility: hasOpened ? 'visible' : 'hidden', // 초기 렌더링 시 숨김
         }}
       >
         <div className={styles.mobileMenuContent}>
@@ -135,11 +133,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <div
                   className={styles.mobileNavMain}
                   onClick={(e) => handleMainMenuClick(e, item)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 >
-                  <span className={styles.mobileNavMainText}>
-                    {getTranslation(item.titleKey)}
-                  </span>
+                  <span className={styles.mobileNavMainText}>{getTranslation(item.titleKey)}</span>
                 </div>
 
                 {/* 서브메뉴 - 토글로 표시/숨김 */}
@@ -150,9 +146,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         key={subItem.titleKey}
                         href={subItem.href}
                         className={`${styles.mobileNavSubLink} ${
-                          pathname === subItem.href
-                            ? styles.mobileNavSubLinkActive
-                            : ""
+                          pathname === subItem.href ? styles.mobileNavSubLinkActive : ''
                         }`}
                         onClick={onClose}
                       >
@@ -168,15 +162,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* 하단 언어 선택 */}
           <div className={styles.mobileMenuFooter}>
             <div className={styles.mobileLangContainer}>
-              <button
-                className={styles.mobileLangBtn}
-                onClick={() => setIsLangOpen(!isLangOpen)}
-              >
+              <button className={styles.mobileLangBtn} onClick={() => setIsLangOpen(!isLangOpen)}>
                 <span>{language}</span>
                 <span
                   className={styles.mobileLangArrow}
                   style={{
-                    transform: isLangOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    transform: isLangOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                   }}
                 >
                   ▴
@@ -187,11 +178,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   {languages.map((lang) => (
                     <button
                       key={lang}
-                      className={`${styles.mobileLangOption} ${
-                        language === lang
-                          ? styles.mobileLangOptionActive
-                          : ""
-                      }`}
+                      className={`${styles.mobileLangOption} ${language === lang ? styles.mobileLangOptionActive : ''}`}
                       onClick={() => handleLangSelect(lang)}
                     >
                       {lang}

@@ -6,8 +6,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream1.woff') format('woff'),
-       url('./SCDream1.otf') format('opentype');
+  src:
+    url('./SCDream1.woff') format('woff'),
+    url('./SCDream1.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -15,8 +16,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream2.woff') format('woff'),
-       url('./SCDream2.otf') format('opentype');
+  src:
+    url('./SCDream2.woff') format('woff'),
+    url('./SCDream2.otf') format('opentype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -24,8 +26,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream3.woff') format('woff'),
-       url('./SCDream3.otf') format('opentype');
+  src:
+    url('./SCDream3.woff') format('woff'),
+    url('./SCDream3.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -33,8 +36,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream4.woff') format('woff'),
-       url('./SCDream4.otf') format('opentype');
+  src:
+    url('./SCDream4.woff') format('woff'),
+    url('./SCDream4.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -42,8 +46,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream5.woff') format('woff'),
-       url('./SCDream5.otf') format('opentype');
+  src:
+    url('./SCDream5.woff') format('woff'),
+    url('./SCDream5.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -51,8 +56,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream6.woff') format('woff'),
-       url('./SCDream6.otf') format('opentype');
+  src:
+    url('./SCDream6.woff') format('woff'),
+    url('./SCDream6.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -60,8 +66,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream7.woff') format('woff'),
-       url('./SCDream7.otf') format('opentype');
+  src:
+    url('./SCDream7.woff') format('woff'),
+    url('./SCDream7.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -69,8 +76,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream8.woff') format('woff'),
-       url('./SCDream8.otf') format('opentype');
+  src:
+    url('./SCDream8.woff') format('woff'),
+    url('./SCDream8.otf') format('opentype');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -78,8 +86,9 @@
 
 @font-face {
   font-family: 'S-Core Dream';
-  src: url('./SCDream9.woff') format('woff'),
-       url('./SCDream9.otf') format('opentype');
+  src:
+    url('./SCDream9.woff') format('woff'),
+    url('./SCDream9.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;

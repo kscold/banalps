@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Suspense } from "react";
-import HairTransplantLayout from "@/shared/components/HairTransplant/HairTransplantLayout";
-import { useHairlineTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import { Suspense } from 'react';
+import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
+import { useHairlineTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 function HairlineContent() {
   const t = useHairlineTranslations();
@@ -19,69 +19,66 @@ function HairlineContent() {
     heroDotPosition: {
       absolute: true,
       // 데스크탑 위치
-      left: language === "JP" ? 130 : 120,
-      bottom: language === "JP" ? 5 : 12,
+      left: language === 'JP' ? 130 : 120,
+      bottom: language === 'JP' ? 5 : 12,
       // 모바일 위치 (다른 값 설정 가능)
-      mobileLeft: 80,
-      mobileBottom: 8,
+      mobileLeft: 78,
+      mobileBottom: 7,
     },
     section1: {
       number: 1,
       title: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section1.title.split("\n").map((line, index) => (
+          {t.section1.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.title.split("\n").length - 1 && <br />}
+              {index < t.section1.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section1.description.split("\n").map((line, index) => (
+          {t.section1.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.description.split("\n").length - 1 && <br />}
+              {index < t.section1.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section1.descriptionMobile.split("\n").map((line, index) => (
+          {t.section1.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section1.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section1.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
-      illustration: "/hair-transplant/hairline/illustration-1.svg",
+      illustration: '/hair-transplant/hairline/illustration-1.svg',
       illustrationSize: {
         width: 537,
         height: 366,
       },
-      illustrationMobile:
-        "/hair-transplant/hairline/mobile/illustration-1-mobile.svg",
+      illustrationMobile: '/hair-transplant/hairline/mobile/illustration-1-mobile.svg',
       illustrationMobileSize: {
         height: 290,
       },
       imagesMobile: {
-        main: "/hair-transplant/hairline/mobile/hairline-2.jpg",
-        secondary: "/hair-transplant/hairline/mobile/hairline-1.jpg",
+        main: '/hair-transplant/hairline/mobile/hairline-2.jpg',
+        secondary: '/hair-transplant/hairline/mobile/hairline-1.jpg',
       },
       imagesMobileSize: {
         mainHeight: 305,
@@ -89,8 +86,8 @@ function HairlineContent() {
         secondaryMaxWidth: true,
       },
       images: {
-        main: "/hair-transplant/hairline/hairline-2.png",
-        secondary: "/hair-transplant/hairline/hairline-1.png",
+        main: '/hair-transplant/hairline/hairline-2.png',
+        secondary: '/hair-transplant/hairline/hairline-1.png',
       },
 
       imagesSize: {
@@ -121,20 +118,20 @@ function HairlineContent() {
       number: 2,
       title: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: (
         <>
-          {t.section2.title.split("\n").map((line, index) => (
+          {t.section2.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.title.split("\n").length - 1 && <br />}
+              {index < t.section2.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
@@ -145,37 +142,34 @@ function HairlineContent() {
       conclusion: t.section2.conclusion,
       description: (
         <>
-          {t.section2.description.split("\n").map((line, index) => (
+          {t.section2.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.description.split("\n").length - 1 && <br />}
+              {index < t.section2.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section2.descriptionMobile.split("\n").map((line, index) => (
+          {t.section2.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section2.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section2.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       images: {
-        main: "/hair-transplant/hairline/hairline-3.png",
+        main: '/hair-transplant/hairline/hairline-3.png',
       },
       imagesMobile: {
-        main: "/hair-transplant/hairline/mobile/hairline-3.jpg",
+        main: '/hair-transplant/hairline/mobile/hairline-3.jpg',
       },
       imagesMobileSize: {
         mainHeight: 305,
       },
-      illustrationMobile:
-        "/hair-transplant/hairline/mobile/illustration-2-mobile.svg",
+      illustrationMobile: '/hair-transplant/hairline/mobile/illustration-2-mobile.svg',
       illustrationMobileSize: {
         width: 375,
         height: 336,
@@ -198,56 +192,54 @@ function HairlineContent() {
       },
       title: (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       titleMobile: t.section3.titleMobile ? (
         <>
-          {t.section3.titleMobile.split("\n").map((line, index) => (
+          {t.section3.titleMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.titleMobile.split("\n").length - 1 && <br />}
+              {index < t.section3.titleMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ) : (
         <>
-          {t.section3.title.split("\n").map((line, index) => (
+          {t.section3.title.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.title.split("\n").length - 1 && <br />}
+              {index < t.section3.title.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       description: (
         <>
-          {t.section3.description.split("\n").map((line, index) => (
+          {t.section3.description.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.description.split("\n").length - 1 && <br />}
+              {index < t.section3.description.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
       descriptionMobile: (
         <>
-          {t.section3.descriptionMobile.split("\n").map((line, index) => (
+          {t.section3.descriptionMobile.split('\n').map((line, index) => (
             <span key={index}>
               {line}
-              {index < t.section3.descriptionMobile.split("\n").length - 1 && (
-                <br />
-              )}
+              {index < t.section3.descriptionMobile.split('\n').length - 1 && <br />}
             </span>
           ))}
         </>
       ),
-      illustration: "/hair-transplant/hairline/illustration-2.svg",
+      illustration: '/hair-transplant/hairline/illustration-2.svg',
       illustrationSize: {
         width: 449,
         height: 286,
@@ -258,38 +250,38 @@ function HairlineContent() {
         left: 405, // Position from left
       },
       images: {
-        main: "/hair-transplant/hairline/hairline-4.png",
+        main: '/hair-transplant/hairline/hairline-4.png',
       },
     },
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: "/hair-transplant/hairline/slide/before.jpg",
-      afterImage: "/hair-transplant/hairline/slide/after.jpg",
+      beforeImage: '/hair-transplant/hairline/slide/before.jpg',
+      afterImage: '/hair-transplant/hairline/slide/after.jpg',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
-      href: "/before-after",
+      href: '/before-after',
       width: 269,
     },
     featuresTitle: (
       <>
-        {t.features.title.split("\n").map((line, index) => (
+        {t.features.title.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.title.split("\n").length - 1 && <br />}
+            {index < t.features.title.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
     ),
     featuresTitleMobile: (
       <>
-        {t.features.titleMobile.split("\n").map((line, index) => (
+        {t.features.titleMobile.split('\n').map((line, index) => (
           <span key={index}>
             {line}
-            {index < t.features.titleMobile.split("\n").length - 1 && <br />}
+            {index < t.features.titleMobile.split('\n').length - 1 && <br />}
           </span>
         ))}
       </>
@@ -300,14 +292,7 @@ function HairlineContent() {
     })),
   };
 
-  return (
-    <HairTransplantLayout
-      {...layoutData}
-      language={language}
-      isHairline={true}
-      isCrown={true}
-    />
-  );
+  return <HairTransplantLayout {...layoutData} language={language} isHairline={true} isCrown={true} />;
 }
 
 export default function HairlinePage() {

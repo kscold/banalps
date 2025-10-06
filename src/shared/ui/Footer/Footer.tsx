@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import * as styles from "./Footer.css";
-import TermsModal from "@/shared/components/TermsModal/TermsModal";
-import { useFooterTranslations } from "@/hooks/useAllPagesTranslations";
-import { useLanguageStore } from "@/shared/stores/useLanguageStore";
+import React, { useState } from 'react';
+import * as styles from './Footer.css';
+import TermsModal from '@/shared/components/TermsModal/TermsModal';
+import { useFooterTranslations } from '@/hooks/useAllPagesTranslations';
+import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 export default function Footer() {
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
@@ -38,9 +38,7 @@ export default function Footer() {
             <div className={styles.footerLeftFirst}>
               <div className={styles.footerCompanyInfo}>
                 <p className={styles.footerClinicName}>{t.clinicName}</p>
-                <p className={styles.footerRepresentative}>
-                  {t.representatives}
-                </p>
+                <p className={styles.footerRepresentative}>{t.representatives}</p>
               </div>
               <p className={styles.footerCopyright}>{t.copyright}</p>
             </div>
@@ -49,16 +47,10 @@ export default function Footer() {
             <div className={styles.footerRightSection}>
               <p className={styles.footerAddress}>{t.address}</p>
               <div className={styles.footerLinksContainer}>
-                <button
-                  className={styles.footerLink}
-                  onClick={handleTermsClick}
-                >
+                <button className={styles.footerLink} onClick={handleTermsClick}>
                   {t.termsOfUse}
                 </button>
-                <button
-                  className={styles.footerLink}
-                  onClick={handlePrivacyClick}
-                >
+                <button className={styles.footerLink} onClick={handlePrivacyClick}>
                   {t.privacyPolicy}
                 </button>
               </div>
@@ -74,14 +66,7 @@ export default function Footer() {
           <div className={styles.footerRight}>
             <div className={styles.footerLogoContainer}>
               {/* 언어에 따라 다른 로고 사용 */}
-              <img
-                src={
-                  language === "JP"
-                    ? "/footer/footer-logo-jp.svg"
-                    : "/footer/footer-logo.svg"
-                }
-                alt="BANAL"
-              />
+              <img src={language === 'JP' ? '/footer/footer-logo-jp.svg' : '/footer/footer-logo.svg'} alt="BANAL" />
             </div>
           </div>
         </div>
@@ -92,13 +77,9 @@ export default function Footer() {
           <div className={styles.mobileLogo}>
             {/* SVG 로고가 제공되면 교체 예정 */}
             <img
-              src={
-                language === "JP"
-                  ? "/footer/footer-logo-mobile-jp.svg"
-                  : "/footer/footer-logo-mobile.svg"
-              }
+              src={language === 'JP' ? '/footer/footer-logo-mobile-jp.svg' : '/footer/footer-logo-mobile.svg'}
               alt="BANAL"
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: '100%', height: '100%' }}
             />
           </div>
 
@@ -116,16 +97,10 @@ export default function Footer() {
 
           {/* 링크 */}
           <div className={styles.mobileLinks}>
-            <button
-              className={styles.mobileLinkItem}
-              onClick={handleTermsClick}
-            >
+            <button className={styles.mobileLinkItem} onClick={handleTermsClick}>
               {t.termsOfUse}
             </button>
-            <button
-              className={styles.mobileLinkItem}
-              onClick={handlePrivacyClick}
-            >
+            <button className={styles.mobileLinkItem} onClick={handlePrivacyClick}>
               {t.privacyPolicy}
             </button>
           </div>
@@ -136,16 +111,8 @@ export default function Footer() {
       </div>
 
       {/* Terms Modal */}
-      <TermsModal
-        isOpen={isTermsModalOpen}
-        onClose={closeTermsModal}
-        type="terms"
-      />
-      <TermsModal
-        isOpen={isPrivacyModalOpen}
-        onClose={closePrivacyModal}
-        type="privacy"
-      />
+      <TermsModal isOpen={isTermsModalOpen} onClose={closeTermsModal} type="terms" />
+      <TermsModal isOpen={isPrivacyModalOpen} onClose={closePrivacyModal} type="privacy" />
     </footer>
   );
 }

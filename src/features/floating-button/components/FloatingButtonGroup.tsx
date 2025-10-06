@@ -1,19 +1,16 @@
-"use client";
+'use client';
 
-import { useState, useEffect, memo, useMemo, useCallback } from "react";
-import FloatingButton from "./FloatingButton";
-import * as styles from "./FloatingButtonGroup.css";
-import { floatingButtonValues } from "@/shared/styles/responsive.constants";
+import { useState, useEffect, memo, useMemo, useCallback } from 'react';
+import FloatingButton from './FloatingButton';
+import * as styles from './FloatingButtonGroup.css';
+import { floatingButtonValues } from '@/shared/styles/responsive.constants';
 
 export interface FloatingButtonGroupProps {
   className?: string;
   onButtonClick?: (variant: string) => void;
 }
 
-function FloatingButtonGroupComponent({
-  className,
-  onButtonClick,
-}: FloatingButtonGroupProps) {
+function FloatingButtonGroupComponent({ className, onButtonClick }: FloatingButtonGroupProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isAboveFooter, setIsAboveFooter] = useState(false);
@@ -25,10 +22,10 @@ function FloatingButtonGroupComponent({
       setIsMobile(window.innerWidth <= 1023);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -51,10 +48,7 @@ function FloatingButtonGroupComponent({
       const viewportWidth = window.innerWidth;
 
       // 반응형 값 계산 함수
-      const calculateResponsiveValue = (
-        desktopPx: number,
-        mobilePx: number
-      ) => {
+      const calculateResponsiveValue = (desktopPx: number, mobilePx: number) => {
         if (viewportWidth >= 1920) {
           return desktopPx; // 1920px+ 고정
         } else if (viewportWidth >= 1024) {
@@ -80,15 +74,14 @@ function FloatingButtonGroupComponent({
       const floatingButtonBottom = windowHeight - bottomOffset;
 
       // 푸터가 실제로 화면에 상당 부분 나타나고 있는지 확인 (모바일 고려)
-      const footerVisibleHeight =
-        Math.min(windowHeight, footerBottom) - Math.max(0, footerTop);
+      const footerVisibleHeight = Math.min(windowHeight, footerBottom) - Math.max(0, footerTop);
       const isFooterVisible = isMobile
         ? footerVisibleHeight > 50 // 모바일에서는 더 민감하게 감지
         : footerVisibleHeight > 100; // 데스크탑에서는 100px 이상
 
       // 디버깅을 위한 로그 (개발 환경에서만)
-      if (process.env.NODE_ENV === "development") {
-        console.log("Footer Debug:", {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Footer Debug:', {
           footerTop,
           footerBottom,
           windowHeight,
@@ -96,14 +89,12 @@ function FloatingButtonGroupComponent({
           isFooterVisible,
           floatingButtonBottom,
           threshold,
-          shouldMove:
-            isFooterVisible && footerTop < floatingButtonBottom + threshold,
+          shouldMove: isFooterVisible && footerTop < floatingButtonBottom + threshold,
         });
       }
 
       // 푸터가 화면에 충분히 보이고, 플로팅 버튼 영역에 접근할 때만 이동
-      const shouldMoveAboveFooter =
-        isFooterVisible && footerTop < floatingButtonBottom + threshold;
+      const shouldMoveAboveFooter = isFooterVisible && footerTop < floatingButtonBottom + threshold;
 
       setIsAboveFooter(shouldMoveAboveFooter);
     };
@@ -120,13 +111,13 @@ function FloatingButtonGroupComponent({
       }
     };
 
-    window.addEventListener("scroll", throttledHandleScroll, { passive: true });
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
 
     // 초기 위치 설정
     handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
+      window.removeEventListener('scroll', throttledHandleScroll);
     };
   }, [isMobile]);
 
@@ -134,39 +125,37 @@ function FloatingButtonGroupComponent({
   const socialLinks = useMemo(
     () => ({
       navercalender:
-        "https://map.naver.com/p/entry/place/1675437206?placePath=/home?entry=plt&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509220229&locale=ko&svcName=map_pcv5&searchType=place&lng=127.0184587&lat=37.5132272&c=15.00,0,0,0,dh",
-      kakao: "https://pf.kakao.com/_vxiuTG",
-      naverBlog: "https://blog.naver.com/banal_ps",
-      youtube: "https://www.youtube.com/@banalhair",
-      line: "https://line.me/R/ti/p/@874gnnsw?oat_content=url",
-      instagram: "https://www.instagram.com/banal_official_",
+        'https://map.naver.com/p/entry/place/1675437206?placePath=/home?entry=plt&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509220229&locale=ko&svcName=map_pcv5&searchType=place&lng=127.0184587&lat=37.5132272&c=15.00,0,0,0,dh',
+      kakao: 'https://pf.kakao.com/_vxiuTG',
+      naverBlog: 'https://blog.naver.com/banal_ps',
+      youtube: 'https://www.youtube.com/@banalhair',
+      line: 'https://line.me/R/ti/p/@874gnnsw?oat_content=url',
+      instagram: 'https://www.instagram.com/banal_official_',
     }),
-    []
+    [],
   );
 
   // 버튼 클릭 핸들러 메모이제이션
   const handleButtonClick = useCallback(
     (variant: string) => {
-      if (variant === "close" || variant === "brand") {
+      if (variant === 'close' || variant === 'brand') {
         setIsAnimating(true);
         setTimeout(() => {
           setIsExpanded((prev) => !prev);
           setIsAnimating(false);
         }, 150);
       } else if (socialLinks[variant as keyof typeof socialLinks]) {
-        window.open(socialLinks[variant as keyof typeof socialLinks], "_blank");
+        window.open(socialLinks[variant as keyof typeof socialLinks], '_blank');
       }
 
       onButtonClick?.(variant);
     },
-    [onButtonClick, socialLinks]
+    [onButtonClick, socialLinks],
   );
 
   return (
     <div
-      className={`${styles.floatingButtonContainer} ${
-        isAboveFooter ? styles.aboveFooter : ""
-      } ${className || ""}`}
+      className={`${styles.floatingButtonContainer} ${isAboveFooter ? styles.aboveFooter : ''} ${className || ''}`}
       style={{
         // bottom: (() => {
         //   if (!isAboveFooter) {
@@ -208,98 +197,62 @@ function FloatingButtonGroupComponent({
         //   // 최대값을 넘지 않도록 제한 (GNB와 겹치지 않도록)
         //   return `${Math.min(calculatedBottom, maxBottom)}px`
         // })(),
-        transition:
-          "bottom 300ms cubic-bezier(0.4, 0, 0.2, 1), right 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+        transition: 'bottom 300ms cubic-bezier(0.4, 0, 0.2, 1), right 300ms cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
       {/* 확장 가능한 버튼 리스트 */}
-      <div
-        className={`${styles.expandableList} ${
-          isExpanded ? styles.visibleButtons : styles.hiddenButtons
-        }`}
-      >
+      <div className={`${styles.expandableList} ${isExpanded ? styles.visibleButtons : styles.hiddenButtons}`}>
         {/* 소셜 미디어 버튼들 - 포포퐁 애니메이션 적용 */}
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger1 : styles.buttonStaggerClose1}`}
         >
-          <FloatingButton
-            variant="navercalender"
-            onClick={() => handleButtonClick("navercalender")}
-          />
+          <FloatingButton variant="navercalender" onClick={() => handleButtonClick('navercalender')} />
         </div>
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger2 : styles.buttonStaggerClose2}`}
         >
-          <FloatingButton
-            variant="kakao"
-            onClick={() => handleButtonClick("kakao")}
-          />
+          <FloatingButton variant="kakao" onClick={() => handleButtonClick('kakao')} />
         </div>
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger3 : styles.buttonStaggerClose3}`}
         >
-          <FloatingButton
-            variant="naverBlog"
-            onClick={() => handleButtonClick("naverBlog")}
-          />
+          <FloatingButton variant="naverBlog" onClick={() => handleButtonClick('naverBlog')} />
         </div>
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger4 : styles.buttonStaggerClose4}`}
         >
-          <FloatingButton
-            variant="youtube"
-            onClick={() => handleButtonClick("youtube")}
-          />
+          <FloatingButton variant="youtube" onClick={() => handleButtonClick('youtube')} />
         </div>
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger5 : styles.buttonStaggerClose5}`}
         >
-          <FloatingButton
-            variant="line"
-            onClick={() => handleButtonClick("line")}
-          />
+          <FloatingButton variant="line" onClick={() => handleButtonClick('line')} />
         </div>
         <div
           className={`${styles.buttonWrapper} ${
-            isExpanded
-              ? styles.buttonWrapperVisible
-              : styles.buttonWrapperHidden
+            isExpanded ? styles.buttonWrapperVisible : styles.buttonWrapperHidden
           } ${isExpanded ? styles.buttonStagger6 : styles.buttonStaggerClose6}`}
         >
-          <FloatingButton
-            variant="instagram"
-            isActive={true}
-            onClick={() => handleButtonClick("instagram")}
-          />
+          <FloatingButton variant="instagram" isActive={true} onClick={() => handleButtonClick('instagram')} />
         </div>
       </div>
 
       {/* 메인 토글 버튼 (Brand 또는 Close) - 항상 흰색 배경 */}
       <FloatingButton
-        variant={isExpanded ? "close" : "brand"}
+        variant={isExpanded ? 'close' : 'brand'}
         isActive={false} // 항상 false로 설정하여 흰색 배경 유지
         isAnimating={isAnimating}
-        onClick={() => handleButtonClick(isExpanded ? "close" : "brand")}
+        onClick={() => handleButtonClick(isExpanded ? 'close' : 'brand')}
       />
     </div>
   );

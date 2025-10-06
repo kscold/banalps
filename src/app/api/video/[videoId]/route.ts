@@ -1,26 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 // 동영상 최적화 API
 export async function GET(request: NextRequest, context: { params: Promise<{ videoId: string }> }) {
   const { videoId } = await context.params;
 
-  if (!videoId || typeof videoId !== "string") {
-    return NextResponse.json({ message: "Video ID is required" }, { status: 400 });
+  if (!videoId || typeof videoId !== 'string') {
+    return NextResponse.json({ message: 'Video ID is required' }, { status: 400 });
   }
 
   try {
     // Vimeo API를 통한 동영상 정보 가져오기
-    const vimeoResponse = await fetch(
-      `https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`,
-      {
-        headers: {
-          "User-Agent": "BanalPS-Video-Optimizer/1.0",
-        },
-      }
-    );
+    const vimeoResponse = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`, {
+      headers: {
+        'User-Agent': 'BanalPS-Video-Optimizer/1.0',
+      },
+    });
 
     if (!vimeoResponse.ok) {
-      throw new Error("Failed to fetch video data");
+      throw new Error('Failed to fetch video data');
     }
 
     const videoData = await vimeoResponse.json();
@@ -43,18 +40,18 @@ export async function GET(request: NextRequest, context: { params: Promise<{ vid
     return NextResponse.json(responseData, {
       status: 200,
       headers: {
-        "Cache-Control": "public, max-age=3600, s-maxage=3600",
-        "Content-Type": "application/json",
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Content-Type': 'application/json',
       },
     });
   } catch (error) {
-    console.error("Video optimization error:", error);
+    console.error('Video optimization error:', error);
     return NextResponse.json(
       {
-        message: "Failed to optimize video",
-        error: error instanceof Error ? error.message : "Unknown error"
+        message: 'Failed to optimize video',
+        error: error instanceof Error ? error.message : 'Unknown error',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

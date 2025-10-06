@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import * as styles from "./ProcessSection.css";
-import { useMediaQuery } from "@/shared/hooks/useMediaQuery";
-import { useScarReductionTranslations } from "@/hooks/useAllPagesTranslations";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import * as styles from './ProcessSection.css';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
+import { useScarReductionTranslations } from '@/hooks/useAllPagesTranslations';
 
 // 별도의 컴포넌트로 분리하여 Hook 규칙 준수
 function ProcessStep({ step, index }: { step: any; index: number }) {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   return (
     <div ref={ref} className={styles.processStepOdd}>
@@ -28,16 +28,14 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
         <motion.img
           src={
             isMobile
-              ? `/forehead/scar-reduction/mobile/scar-reduction-${
-                  index + 2
-                }-mobile.svg`
+              ? `/forehead/scar-reduction/mobile/scar-reduction-${index + 2}-mobile.svg`
               : `/forehead/scar-reduction/scar-reduction-${index + 2}.png`
           }
           alt={`${step.category} 단계`}
           className={styles.stepImage}
           initial={{ opacity: 0, y: 80 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         />
       </div>
       <div className={styles.stepContent}>
@@ -48,21 +46,19 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
         <h3 className={styles.stepTitle}>
           {isMobile && step.titleMobile ? (
             <>
-              {step.titleMobile
-                .split("\n")
-                .map((line: string, index: number) => (
-                  <span key={index}>
-                    {line}
-                    {index < step.titleMobile.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
+              {step.titleMobile.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < step.titleMobile.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </>
           ) : (
             <>
-              {step.title.split("\n").map((line: string, index: number) => (
+              {step.title.split('\n').map((line: string, index: number) => (
                 <span key={index}>
                   {line}
-                  {index < step.title.split("\n").length - 1 && <br />}
+                  {index < step.title.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </>
@@ -71,27 +67,21 @@ function ProcessStep({ step, index }: { step: any; index: number }) {
         <p className={styles.stepDescription}>
           {isMobile && step.descriptionMobile ? (
             <>
-              {step.descriptionMobile
-                .split("\n")
-                .map((line: string, index: number) => (
-                  <span key={index}>
-                    {line}
-                    {index < step.descriptionMobile.split("\n").length - 1 && (
-                      <br />
-                    )}
-                  </span>
-                ))}
+              {step.descriptionMobile.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < step.descriptionMobile.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </>
           ) : (
             <>
-              {step.description
-                .split("\n")
-                .map((line: string, index: number) => (
-                  <span key={index}>
-                    {line}
-                    {index < step.description.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
+              {step.description.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < step.description.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </>
           )}
         </p>

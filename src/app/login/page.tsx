@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/shared/stores/useAuthStore";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/shared/stores/useAuthStore';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -10,7 +10,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     openLoginModal();
-    router.push("/");
+    router.push('/');
   }, [openLoginModal, router]);
 
   return null;

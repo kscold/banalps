@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import * as styles from "./HeroSection.css";
-import { useHeroTranslations } from "@/hooks/useAllPagesTranslations";
+import * as styles from './HeroSection.css';
+import { useHeroTranslations } from '@/hooks/useAllPagesTranslations';
 
 interface TextContentRendererProps {
   currentTextIndex: number;
@@ -15,17 +15,6 @@ export function TextContentRenderer({
   isMobile = false,
 }: TextContentRendererProps) {
   const hero = useHeroTranslations();
-  // 디버그용 - 각 텍스트의 전환 포인트 확인
-  if (isMobile) {
-    const scrollPosition = scrollProgress * 5;
-    console.log(
-      `[TextContentRenderer] 스크롤 위치: ${scrollPosition.toFixed(
-        2
-      )}, 현재 인덱스: ${currentTextIndex}, 진행율: ${(
-        scrollProgress * 100
-      ).toFixed(1)}%`
-    );
-  }
 
   // 각 텍스트의 페이드 효과를 위한 opacity 계산 (KB 스타일)
   const getTextOpacity = (textIndex: number) => {
@@ -81,18 +70,18 @@ export function TextContentRenderer({
   // JSON에서 텍스트 가져오기
   const textContents = hero.texts.map((text, index) => {
     // 줄바꿈 처리
-    const lines = text.content.split("\n");
+    const lines = text.content.split('\n');
     let content;
 
-    if (index === 1 || text.content.includes("이제 바람부는 날도 좋아요")) {
+    if (index === 1 || text.content.includes('이제 바람부는 날도 좋아요')) {
       // text-1 또는 "이제 바람부는 날도 좋아요" 텍스트는 특별한 스타일 적용 + 이중 따옴표 사용
       const firstLine = lines[0].replace(/[""](.+?)[""]/, '"$1"');
       content = (
         <>
           <span className={styles.specialQuoteText}>
-            {"\u201C"}
-            {firstLine.replace(/[""]/g, "")}
-            {"\u201D"}
+            {'\u201C'}
+            {firstLine.replace(/[""]/g, '')}
+            {'\u201D'}
           </span>
           {lines[1] && (
             <>
@@ -133,10 +122,10 @@ export function TextContentRenderer({
             key={text.key}
             className={styles.textBlock}
             style={{
-              position: "absolute",
+              position: 'absolute',
               opacity,
               transform: `translateY(${translateY}px)`,
-              transition: `opacity ${isMobile ? "0.3s" : "0.6s"} cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${isMobile ? "0.3s" : "0.6s"} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+              transition: `opacity ${isMobile ? '0.3s' : '0.6s'} cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${isMobile ? '0.3s' : '0.6s'} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
             }}
             suppressHydrationWarning
           >
