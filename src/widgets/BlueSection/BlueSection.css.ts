@@ -386,6 +386,7 @@ export const reYouSection = style({
       minHeight: mvw(400), // 375px 기준 400px가 비례적으로 커짐
       paddingTop: mvw(40), // 375px 기준 40px 패딩
       paddingBottom: mvw(40), // 375px 기준 40px 패딩
+      gap: mvw(12),
     },
   },
 });
@@ -402,11 +403,22 @@ export const reYouTitle = style({
   position: 'relative',
   zIndex: 1,
   // textShadow 제거
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
+  '@media': {
+    [breakpoints.mobile]: {
+      fontWeight: 500,
+      fontSize: mvw(48),
+    },
+  },
 });
 
 // 한글 서브타이틀 (1920px 기준)
 export const reYouSubtitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
   ...responsiveFont(20), // 1920px 기준 20px
   lineHeight: '140%',
@@ -417,6 +429,12 @@ export const reYouSubtitle = style({
   position: 'relative',
   zIndex: 1,
   // textShadow 제거
+  '@media': {
+    [breakpoints.mobile]: {
+      fontWeight: 400,
+      fontSize: mvw(14),
+    },
+  },
 });
 
 // 그래피티 배경 이미지 (1920px 기준) - 데스크톱용
@@ -445,8 +463,8 @@ export const graffitiBackground = style({
 export const graffitiBackgroundMobile = style({
   position: 'absolute',
   width: '100%',
-  height: '100%',
-  marginTop: mvw(24), // 모바일 기준 24px
+  height: mvw(248),
+  marginTop: mvw(116), // 모바일 기준 24px
   top: 0,
   left: 0,
   objectFit: 'contain',
@@ -1875,13 +1893,18 @@ export const doctorsMobileDescription = style({
   '@media': {
     [breakpoints.mobile]: {
       display: 'block',
-      fontFamily: "'S-Core Dream', sans-serif",
+      fontFamily: fontFamily.scdream,
       fontWeight: 500,
       fontSize: mvw(20),
       lineHeight: '140%',
       letterSpacing: '0',
       color: '#272727',
-      marginBottom: mvw(16),
+      marginBottom: mvw(24),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -2009,6 +2032,11 @@ export const doctorMobileFullName = style({
       position: 'relative',
       lineHeight: '110.00000000000001%',
       letterSpacing: '-1%',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontFamily: fontFamily.poppins,
+        },
+      },
     },
   },
 });

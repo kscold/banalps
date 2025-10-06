@@ -141,7 +141,10 @@ export function useWhiteTranslations() {
 export function useHeroTranslations() {
   const { language } = useLanguageStore();
   const currentLang = (language === 'JP' ? 'ja' : 'ko') as Language;
-  return translations[currentLang].mainPage.hero;
+  return {
+    ...translations[currentLang].mainPage.hero,
+    currentLanguage: currentLang,
+  };
 }
 
 export function useForeheadHairTransplantTranslations() {

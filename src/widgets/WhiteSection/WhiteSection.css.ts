@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, globalStyle } from '@vanilla-extract/css';
 
 import {
   vw,
@@ -299,8 +299,8 @@ export const otherServiceBox = style({
 // Other Service 타이틀 (1920px 기준)
 export const otherServiceTitle = style({
   position: 'absolute',
-  top: vw(40),
-  left: vw(40),
+  top: vw(20),
+  left: vw(20),
   fontFamily: "'Poppins', sans-serif",
   fontWeight: 500,
   ...responsiveFont(32), // 1920px 기준 32px
@@ -309,17 +309,17 @@ export const otherServiceTitle = style({
   color: '#272727',
   margin: '0',
   zIndex: 2,
-  selectors: {
-    'html[data-language="JP"] &': {
-      fontFamily: fontFamily.poppins,
-    },
-  },
   '@media': {
     [breakpoints.desktopLarge]: {
-      top: '40px',
-      left: '40px',
+      top: '20px',
+      left: '20px',
     },
   },
+});
+
+// span 요소에도 동일하게 적용
+globalStyle(`html[data-language="JP"] ${otherServiceTitle} span`, {
+  fontFamily: fontFamily.poppins,
 });
 
 // View More 버튼 (1920px 기준)
@@ -636,6 +636,11 @@ export const infoLabel = style({
   lineHeight: vw(28),
   letterSpacing: 0,
   fontFamily: fontFamily.scdream,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '115px',
@@ -658,9 +663,13 @@ export const infoNumber = style({
   color: '#272727',
   fontFamily: fontFamily.poppins,
   fontWeight: 500,
-  lineHeight: vw(32),
+  lineHeight: '100%',
   letterSpacing: 0,
-
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '32px',
@@ -931,6 +940,11 @@ export const readyMainTitle = style({
       textAlign: 'left',
     },
   },
+});
+
+// span 요소에도 동일하게 적용
+globalStyle(`html[data-language="JP"] ${readyMainTitle} span`, {
+  fontFamily: fontFamily.poppins,
 });
 
 // 설명 컨테이너

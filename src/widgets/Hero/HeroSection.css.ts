@@ -272,8 +272,8 @@ export const storyText = style({
   '@media': {
     [breakpoints.mobile]: {
       textAlign: 'left', // 모바일에서 중앙 정렬
-      fontSize: 'clamp(14px, 4vw, 20px)', // 반응형 폰트 크기
-      lineHeight: '1.5',
+      fontSize: mvw(16),
+      lineHeight: '150%',
       whiteSpace: 'pre-wrap', // br 태그를 사용한 줄바꿈은 허용하되 자동 줄바꿈은 방지
       wordBreak: 'keep-all', // 한글 단어 단위로 줄바꿈
     },

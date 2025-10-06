@@ -114,6 +114,12 @@ const buttonBase = style({
   letterSpacing: 0,
   lineHeight: '100%',
 
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
+
   ':hover': {
     opacity: 0.85, // dim 효과
   },

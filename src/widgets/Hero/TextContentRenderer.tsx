@@ -73,24 +73,47 @@ export function TextContentRenderer({
     const lines = text.content.split('\n');
     let content;
 
-    if (index === 1 || text.content.includes('이제 바람부는 날도 좋아요')) {
-      // text-1 또는 "이제 바람부는 날도 좋아요" 텍스트는 특별한 스타일 적용 + 이중 따옴표 사용
+    // 한국어: "이제 바람부는 날도 좋아요" 또는 index === 1
+    // 일본어: "今では風の吹く日も好きになりました" 또는 "私は風の吹く日も好きです"
+    const isKoreanQuote = text.content.includes('이제 바람부는 날도 좋아요');
+    const isJapaneseQuote =
+      text.content.includes('今では風の吹く日も好きになりました') || text.content.includes('私は風の吹く日も好きです');
+
+    if (index === 1 || isKoreanQuote || isJapaneseQuote) {
+      // 특별한 스타일 적용
       const firstLine = lines[0].replace(/[""](.+?)[""]/, '"$1"');
-      content = (
-        <>
-          <span className={styles.specialQuoteText}>
-            {'\u201C'}
-            {firstLine.replace(/[""]/g, '')}
-            {'\u201D'}
-          </span>
-          {lines[1] && (
-            <>
-              <br />
-              {lines[1]}
-            </>
-          )}
-        </>
-      );
+
+      // 일본어일 때는 「」를 유지하고 추가 quote 마크만 제거
+      if (isJapaneseQuote) {
+        content = (
+          <>
+            <span className={styles.specialQuoteText}>{firstLine.replace(/[""]/g, '')}</span>
+            {lines[1] && (
+              <>
+                <br />
+                {lines[1]}
+              </>
+            )}
+          </>
+        );
+      } else {
+        // 한국어일 때는 영문 quote 마크 추가
+        content = (
+          <>
+            <span className={styles.specialQuoteText}>
+              {'\u201C'}
+              {firstLine.replace(/[""]/g, '')}
+              {'\u201D'}
+            </span>
+            {lines[1] && (
+              <>
+                <br />
+                {lines[1]}
+              </>
+            )}
+          </>
+        );
+      }
     } else {
       content = (
         <>
@@ -125,7 +148,9 @@ export function TextContentRenderer({
               position: 'absolute',
               opacity,
               transform: `translateY(${translateY}px)`,
-              transition: `opacity ${isMobile ? '0.3s' : '0.6s'} cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${isMobile ? '0.3s' : '0.6s'} cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+              transition: `opacity ${isMobile ? '0.3s' : '0.6s'} cubic-bezier(0.25, 0.46, 0.45, 0.94), transform ${
+                isMobile ? '0.3s' : '0.6s'
+              } cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
             }}
             suppressHydrationWarning
           >

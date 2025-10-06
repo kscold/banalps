@@ -1,6 +1,7 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 import { mvw } from '@/shared/styles/responsive.css';
+import { fontFamily } from '@/shared/styles/fonts.css';
 
 // 배경 오버레이
 export const mobileMenuOverlay = style({
@@ -195,12 +196,22 @@ export const mobileLangBtn = style({
   },
 });
 
+// span 요소에도 동일하게 적용
+globalStyle(`html[data-language="JP"] ${mobileLangBtn} span`, {
+  fontFamily: fontFamily.poppins,
+});
+
 // 언어 화살표
 export const mobileLangArrow = style({
   fontSize: mvw(14),
-  color: '#6B7280',
+  color: '#272727',
   display: 'inline-block',
   transition: 'transform 200ms ease',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 // 언어 선택 컨테이너
@@ -242,6 +253,11 @@ export const mobileLangOption = style({
     backgroundColor: '#F9FAFB',
     color: '#111827',
   },
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 // 언어 옵션 활성 상태
@@ -249,4 +265,9 @@ export const mobileLangOptionActive = style({
   backgroundColor: 'transparent',
   color: '#111827',
   fontWeight: '500',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });

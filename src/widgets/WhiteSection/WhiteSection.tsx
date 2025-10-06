@@ -287,12 +287,17 @@ export default function WhiteSection() {
             </h2>
             <div className={styles.readyDescription}>
               <p className={styles.readyDescriptionText}>
-                {white.ready.description1.split('\n').map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index < white.ready.description1.split('\n').length - 1 && <br />}
-                  </span>
-                ))}
+                {(isMobile && white.ready.description1Mobile
+                  ? white.ready.description1Mobile
+                  : white.ready.description1
+                )
+                  .split('\n')
+                  .map((line, index, arr) => (
+                    <span key={index}>
+                      {line}
+                      {index < arr.length - 1 && <br />}
+                    </span>
+                  ))}
               </p>
               <p className={styles.readyDescriptionText}>
                 {white.ready.description2.split('\n').map((line, index) => (
@@ -365,7 +370,13 @@ export default function WhiteSection() {
                 <h3 className={styles.infoLabel}>{white.location.directions}</h3>
                 <div className={styles.infoValue}>
                   <p className={styles.infoValueParagraph}>
-                    {white.location.address1} {white.location.address2}
+                    {white.location.address1.split('\n').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < white.location.address1.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}{' '}
+                    {white.location.address2}
                   </p>
                   <div className={styles.subwayInfo}>
                     <p>{white.location.subway1}</p>

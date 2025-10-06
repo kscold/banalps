@@ -801,7 +801,8 @@
         },
         "ready": {
           "title": "We're Ready\nWhen You Are.",
-          "description1": "신뢰할 수 있는 전문성과 정직한 마음으로\n모든 준비를 마친 이곳에서\n 당신을 기다립니다.",
+          "description1": "신뢰할 수 있는 전문성과 정직한 마음으로\n모든 준비를 마친 이곳에서\n당신을 기다립니다.",
+          "description1Mobile": "신뢰할 수 있는 전문성과 정직한 마음으로\n모든 준비를 마친 이곳에서 당신을\n기다립니다.",
           "description2": "이제, 바람부는날에도\n기분 좋은 일상을 맞이하시길 바랍니다."
         },
         "location": {
@@ -1624,6 +1625,7 @@
         "ready": {
           "title": "We're Ready\nWhen You Are.",
           "description1": "信頼できる専門性と誠実な心で、\nすべての準備を整えたここで、あなた\nあなたをお待ちしています。",
+          "description1Mobile": "信頼できる専門性と誠実な心で、\nすべての準備を整えたここで、\nあなたをお待ちしています。",
           "description2": "もう、風の吹く日も\n心地よい日常として迎えてください。"
         },
         "location": {
