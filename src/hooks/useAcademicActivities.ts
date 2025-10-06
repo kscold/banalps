@@ -33,8 +33,17 @@ export function useAcademicActivities() {
 
     // 날짜순으로 정렬 (최신순)
     return allActivities.sort((a, b) => {
-      const dateA = new Date(a.date.replace(/\./g, '-'));
-      const dateB = new Date(b.date.replace(/\./g, '-'));
+      // 날짜 파싱: "2014.05.11" -> "2014-05-11", "2014" -> "2014-01-01"
+      const parseDate = (dateStr: string) => {
+        if (dateStr.includes('.')) {
+          return new Date(dateStr.replace(/\./g, '-'));
+        }
+        // 연도만 있는 경우 1월 1일로 처리
+        return new Date(`${dateStr}-01-01`);
+      };
+
+      const dateA = parseDate(a.date);
+      const dateB = parseDate(b.date);
       return dateB.getTime() - dateA.getTime();
     });
   };

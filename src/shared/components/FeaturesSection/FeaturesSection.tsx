@@ -56,23 +56,31 @@ export default function FeaturesSection({
           <img src="/hair-transplant/double-quotation-end.svg" alt="따옴표 끝" className={styles.quotationEnd} />
         </div>
 
-        {/* 데스크탑: 순차적 카드 애니메이션 */}
+        {/* 데스크탑: 모든 카드 동시 애니메이션 */}
         {isDesktop ? (
-          <div className={styles.featuresGrid}>
+          <motion.div
+            className={styles.featuresGrid}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+          >
             {featureCards.map((card, index) => (
-              <motion.div
-                key={index}
-                className={styles.featureCard}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.4,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <div className={styles.featureIconContainer}>
+              <div key={index} className={styles.featureCard}>
+                <div
+                  className={`${styles.featureIconContainer} ${
+                    index === 0
+                      ? styles.featureIconContainerFirst
+                      : index === 1
+                        ? styles.featureIconContainerSecond
+                        : index === 2
+                          ? styles.featureIconContainerThird
+                          : styles.featureIconContainerFourth
+                  }`}
+                >
                   <div className={styles.featureIcon}>
                     <img
                       src={card.icon}
@@ -90,11 +98,11 @@ export default function FeaturesSection({
                   </div>
                 </div>
                 <h3 className={styles.featureTitle}>{renderTitle(card.title, index)}</h3>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         ) : (
-          /* 모바일: 순차적 카드 애니메이션 */
+          /* 모바일: 카드별 순차 애니메이션 */
           <div className={styles.featuresGrid}>
             {featureCards.map((card, index) => (
               <motion.div
@@ -102,10 +110,9 @@ export default function FeaturesSection({
                 className={styles.featureCard}
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2, margin: '-50px 0px -50px 0px' }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: 0.5,
-                  delay: index * 0.4,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >

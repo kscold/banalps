@@ -649,8 +649,26 @@ export default function DoctorsPage() {
                           <div className={styles.academicRowCategory}>
                             <div className={styles.categoryBadge}>{activity.type}</div>
                           </div>
-                          <div className={styles.academicRowEvent}>{activity.event}</div>
-                          <div className={styles.academicRowTitle}>{activity.title}</div>
+                          <div className={styles.academicRowEvent}>
+                            {isMobile
+                              ? activity.event.replace(/\n/g, ' ')
+                              : activity.event.split('\n').map((line, lineIndex) => (
+                                  <span key={lineIndex}>
+                                    {line}
+                                    {lineIndex < activity.event.split('\n').length - 1 && <br />}
+                                  </span>
+                                ))}
+                          </div>
+                          <div className={styles.academicRowTitle}>
+                            {isMobile
+                              ? activity.title.replace(/\n/g, ' ')
+                              : activity.title.split('\n').map((line, lineIndex) => (
+                                  <span key={lineIndex}>
+                                    {line}
+                                    {lineIndex < activity.title.split('\n').length - 1 && <br />}
+                                  </span>
+                                ))}
+                          </div>
                         </div>
                       );
                     })

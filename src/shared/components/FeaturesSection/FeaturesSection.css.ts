@@ -23,6 +23,7 @@ export const featuresSection = style({
 
 export const featuresContent = style({
   ...responsiveContainer(1600), // 전역 1600px 컨테이너 시스템
+  boxSizing: 'border-box',
 
   '@media': {
     [breakpoints.mobile]: {
@@ -116,8 +117,9 @@ export const featuresGrid = style({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  maxWidth: vw(1600), // 피그마 Frame 346 너비와 일치
+  maxWidth: '100%',
   margin: '0 auto',
+  boxSizing: 'border-box',
   '@media': {
     [breakpoints.desktopLarge]: {
       maxWidth: '1600px',
@@ -139,22 +141,32 @@ export const featureCard = style({
   justifyContent: 'center',
   gap: vw(24), // Gap between icon and title
   textAlign: 'center',
+  flex: '1 1 auto',
   width: vw(400), // 피그마 정확한 크기
-  height: vw(400), // 피그마 정확한 크기
+  minWidth: 'min(22%, 250px)', // 최소 크기 조정
+  maxWidth: vw(400), // 최대 크기
+  height: 'auto',
+  aspectRatio: '1/1',
   backgroundColor: '#D5FEFF', // 피그마 정확한 배경색
   borderRadius: '50%', // 완전한 원형
   position: 'relative',
-  padding: vw(40), // 내부 패딩
+  padding: '10%', // 원 크기의 10% 패딩
+  boxSizing: 'border-box',
+  overflow: 'hidden',
 
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '400px',
-      height: '400px',
+      minWidth: '300px',
+      maxWidth: '400px',
+      aspectRatio: '1/1',
       padding: '40px',
       gap: '24px',
     },
     [breakpoints.mobile]: {
       width: mvw(343),
+      minWidth: mvw(343),
+      maxWidth: mvw(343),
       height: mvw(343),
       aspectRatio: '1/1',
       borderRadius: '50%',
@@ -164,6 +176,7 @@ export const featureCard = style({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      flex: '0 0 auto',
     },
   },
 });
@@ -172,12 +185,17 @@ export const featureIconContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: 'auto',
-  height: 'auto',
+  position: 'absolute',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: '100%', // 전체 너비 사용
+  maxWidth: '100%',
   '@media': {
     [breakpoints.mobile]: {
       width: 'auto',
       height: 'auto',
+      position: 'static',
+      transform: 'none',
     },
   },
 });
@@ -191,7 +209,10 @@ export const featureIcon = style({
 
 // Individual icon styles with specific heights
 export const featureIconImg = style({
-  width: 'auto',
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+  maxHeight: '100%',
   objectFit: 'contain',
 });
 
@@ -200,10 +221,15 @@ export const featureIconFirst = style([
   {
     width: vw(217),
     height: vw(174),
+    maxWidth: 'none',
     '@media': {
+      'screen and (min-width: 1024px) and (max-width: 1500px)': {
+        width: vw(160),
+        height: vw(128),
+      },
       [breakpoints.desktopLarge]: {
         width: '217px',
-        height: '141px',
+        height: '174px',
       },
       [breakpoints.mobile]: {
         width: mvw(176),
@@ -213,12 +239,26 @@ export const featureIconFirst = style([
   },
 ]);
 
+export const featureIconContainerFirst = style({
+  top: '17.5%', // 70/400 = 17.5%
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      top: '17.5%',
+    },
+  },
+});
+
 export const featureIconSecond = style([
   featureIconImg,
   {
     width: vw(262),
     height: vw(153),
+    maxWidth: 'none',
     '@media': {
+      'screen and (min-width: 1024px) and (max-width: 1500px)': {
+        width: vw(190),
+        height: vw(111),
+      },
       [breakpoints.desktopLarge]: {
         width: '262px',
         height: '153px',
@@ -231,12 +271,26 @@ export const featureIconSecond = style([
   },
 ]);
 
+export const featureIconContainerSecond = style({
+  top: '22.5%', // 90/400 = 22.5%
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      top: '22.5%',
+    },
+  },
+});
+
 export const featureIconThird = style([
   featureIconImg,
   {
     width: vw(272),
     height: vw(183),
+    maxWidth: 'none',
     '@media': {
+      'screen and (min-width: 1024px) and (max-width: 1500px)': {
+        width: vw(200),
+        height: vw(135),
+      },
       [breakpoints.desktopLarge]: {
         width: '272px',
         height: '183px',
@@ -249,12 +303,26 @@ export const featureIconThird = style([
   },
 ]);
 
+export const featureIconContainerThird = style({
+  top: '15%', // 60/400 = 15%
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      top: '15%',
+    },
+  },
+});
+
 export const featureIconFourth = style([
   featureIconImg,
   {
     width: vw(214),
     height: vw(181),
+    maxWidth: 'none',
     '@media': {
+      'screen and (min-width: 1024px) and (max-width: 1500px)': {
+        width: vw(157),
+        height: vw(133),
+      },
       [breakpoints.desktopLarge]: {
         width: '214px',
         height: '181px',
@@ -267,21 +335,38 @@ export const featureIconFourth = style([
   },
 ]);
 
+export const featureIconContainerFourth = style({
+  top: '15.75%', // 63/400 = 15.75%
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      top: '15.75%',
+    },
+  },
+});
+
 export const featureTitle = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 400, // 피그마 스펙: 4 Regular = 200
-  ...responsiveFont(20, 16), // 피그마 정확한 크기, 모바일 12px
+  fontSize: vw(20),
   lineHeight: '150%',
   letterSpacing: '0', // 피그마 스펙
   color: '#272727', // 피그마 정확한 색상
   textAlign: 'center', // 피그마 스펙: CENTER
   margin: '0',
   wordBreak: 'keep-all',
-  whiteSpace: 'normal',
+  whiteSpace: 'pre-line',
+  position: 'absolute',
+  bottom: '16%', // 64/400 = 16%
+  left: '10%',
+  right: '10%',
+  maxHeight: '35%', // 최대 높이 제한
 
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '20px',
+      bottom: '16%',
+      left: '10%',
+      right: '10%',
     },
     [breakpoints.mobile]: {
       fontWeight: 400, // S-Core Dream 4 Regular
@@ -292,6 +377,7 @@ export const featureTitle = style({
       wordBreak: 'keep-all',
       padding: 0,
       margin: 0,
+      position: 'static',
       selectors: {
         'html[data-language="JP"] &': {
           fontWeight: 400,

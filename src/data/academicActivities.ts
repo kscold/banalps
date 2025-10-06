@@ -84,15 +84,15 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: 'ISHRS Denver',
       },
       title: {
-        ko: 'Secondary reduction foreheadplasty, Analysis about the scar after reduction foreheadplasty',
-        jp: 'Secondary reduction foreheadplasty Analysis about the scar after reduction foreheadplasty',
+        ko: 'Secondary reduction foreheadplasty,\nAnalysis about the scar after reduction foreheadplasty',
+        jp: 'Secondary reduction foreheadplasty,\nAnalysis about the scar after reduction foreheadplasty',
       },
     },
     {
       date: '2024.10.20',
       type: '발표',
       event: {
-        ko: '2024 대한성형외과의사회 전공의 연수강좌',
+        ko: '2024 대한성형외과의사회\n전공의 연수강좌',
         jp: '2024 大韓整形外科医師会 専攻医研修講座',
       },
       title: {
@@ -264,12 +264,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2022.02.20',
       type: '발표',
       event: {
-        ko: '대한성형외과학회 최소침습연구회(MIPS)',
-        jp: '大韓整形外科学会 最小侵襲研究会(MIPS)',
+        ko: '대한성형외과학회 최소침습연구회\n(MIPS)',
+        jp: '大韓整形外科学会 最小侵襲研究会\n(MIPS)',
       },
       title: {
-        ko: 'International Aesthetic Joint Conference Female hairline correction with hair implanter',
-        jp: 'International Aesthetic Joint Conference Female hairline correction with hair implanter',
+        ko: 'International Aesthetic Joint Conference\nFemale hairline correction with hair implanter',
+        jp: 'International Aesthetic Joint Conference\nFemale hairline correction with hair implanter',
       },
     },
   ],
@@ -294,7 +294,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: '2021 第10次 大韓毛髪移植学会 学術集会',
       },
       title: {
-        ko: '모발이식 수술 후 나타나는 꼬인 모발 (kinky hair)의 원인에 대한 조직학적 분석',
+        ko: '모발이식 수술 후 나타나는 꼬인 모발 (kinky hair)의 원인에 대한\n조직학적 분석',
         jp: '植毛後に現れる縮れっ毛の原因に関する組織学的分析',
       },
     },
@@ -338,8 +338,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2021.07.11',
       type: '발표',
       event: {
-        ko: 'Aesthetic Plastic Surgery 2021',
-        jp: 'Aesthetic Plastic Surgery 2021',
+        ko: 'Aesthetic Plastic Surgery\n2021',
+        jp: 'Aesthetic Plastic Surgery\n2021',
       },
       title: {
         ko: 'Changing the Direction of Hair in Hairline Correction',
@@ -390,7 +390,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2018.03.06',
       type: '발표',
       event: {
-        ko: '대한성형외과학회 항노화성형연구회 세미나',
+        ko: '대한성형외과학회 항노화성형연구회\n세미나',
         jp: '大韓整形外科学会 抗老化整形研究会セミナー',
       },
       title: {
@@ -444,8 +444,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: 'The 9th Daegu Oriental Blepharoplasty and Periocular Cosmetic Surgery Symposium',
       },
       title: {
-        ko: 'Hairline Lowering with Reduction Foreheadplasty (Live surgery)',
-        jp: 'Hairline Lowering with Reduction Foreheadplasty (Live surgery)',
+        ko: 'Hairline Lowering with Reduction Foreheadplasty\n(Live surgery)',
+        jp: 'Hairline Lowering with Reduction Foreheadplasty\n(Live surgery)',
       },
     },
   ],
@@ -454,7 +454,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2016.11.18',
       type: '발표',
       event: {
-        ko: 'PRS KOREA 2016 (대한성형외과학회 창립 50주년 기념학술대회)',
+        ko: 'PRS KOREA 2016(대한성형외과학\n회 창립 50주년 기념학술대회)',
         jp: 'PRS KOREA 2016 (大韓整形外科学会創立50周年記念学術集会)',
       },
       title: {
@@ -504,12 +504,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2015.09.09',
       type: '저널',
       event: {
-        ko: 'Dermatol Surg',
-        jp: 'Dermatol Surg',
-      },
-      title: {
         ko: 'Post-traumatic neuroma after hair transplantation',
         jp: 'Post-traumatic neuroma after hair transplantation',
+      },
+      title: {
+        ko: 'Dermatol Surg',
+        jp: 'Dermatol Surg',
       },
     },
     {
@@ -614,12 +614,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2014',
       type: '저널',
       event: {
-        ko: "Hair Transplant Forum Int'l.",
-        jp: "Hair Transplant Forum Int'l.",
-      },
-      title: {
         ko: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
         jp: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
+      },
+      title: {
+        ko: "Hair Transplant Forum Int'l.",
+        jp: "Hair Transplant Forum Int'l.",
       },
     },
   ],
@@ -644,8 +644,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: '第3次 大韓毛髪移植学会 学術集会',
       },
       title: {
-        ko: '환자와 의료인 모두의 안전을 위한 수술 전 감염검사 Preoperative laboratory testing for detecting infectious diseases',
-        jp: '患者と医療関係者の両方の安全のための手術前の感染検査 Preoperative laboratory testing for detecting infectious diseases',
+        ko: '환자와 의료인 모두의 안전을 위한 수술 전 감염검사\nPreoperative laboratory testing for detecting infectious diseases',
+        jp: '患者と医療関係者の両方の安全のための手術前の感染検査\nPreoperative laboratory testing for detecting infectious diseases',
       },
     },
     {
@@ -664,12 +664,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2013',
       type: '저널',
       event: {
-        ko: "Hair Transplant Forum Int'l",
-        jp: "Hair Transplant Forum Int'l",
+        ko: "How I do it: Handy tips for slit depth control Hair Transplant Forum Int'l",
+        jp: "How I do it: Handy tips for slit depth control Hair Transplant Forum Int'l",
       },
       title: {
-        ko: 'How I do it: Handy tips for slit depth control',
-        jp: 'How I do it: Handy tips for slit depth control',
+        ko: '',
+        jp: '',
       },
     },
   ],
@@ -702,12 +702,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2012',
       type: '역서',
       event: {
-        ko: '가본의학',
-        jp: 'GABON MEDICAL BOOK',
+        ko: "Unger's 모발이식 Hair Transplantation 5th edition 가본의학",
+        jp: 'Unger‘s毛髪移植 Hair Transplantation 5thedition GABON MEDICAL BOOK',
       },
       title: {
-        ko: "Unger's 모발이식 Hair Transplantation 5th edition",
-        jp: 'Unger‘s毛髪移植 Hair Transplantation 5thedition',
+        ko: '',
+        jp: '',
       },
     },
   ],
@@ -720,8 +720,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: '第69次 大韓整形外科学会 学術集会',
       },
       title: {
-        ko: '모발이식을 시행한 후 발생한 부자연스러운 헤어라인을 제모레이저를 이용하여 교정하는 방법 Correction of unnatural hairline from hair transplantation surgery using a hair removal laser',
-        jp: '植毛後に発生した不自然なヘアラインを除毛レーザーを用いて矯正する方法 Correction of unnatural hairline from hair transplantation surgery using a hair removal laser',
+        ko: '모발이식을 시행한 후 발생한 부자연스러운 헤어라인을 제모레이저를 이용하여 교정하는 방법\nCorrection of unnatural hairline from hair transplantation surgery using a hair removal laser',
+        jp: '植毛後に発生した不自然なヘアラインを除毛レーザーを用いて矯正する方法\nCorrection of unnatural hairline from hair transplantation surgery using a hair removal laser',
       },
     },
   ],

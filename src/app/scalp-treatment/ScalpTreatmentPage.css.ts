@@ -573,27 +573,22 @@ export const treatmentTextContent = style({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-between',
-  gap: 0,
+  justifyContent: 'flex-start',
   paddingLeft: vw(140),
   paddingRight: vw(160),
   paddingTop: 0,
   paddingBottom: 0,
   '@media': {
     [breakpoints.desktopLarge]: {
-      gap: 0,
       paddingLeft: '140px',
       paddingRight: '160px',
     },
-    [breakpoints.desktop]: {
-      gap: 0,
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       gap: mvw(40),
       marginTop: mvw(40),
       paddingLeft: 0,
       paddingRight: 0,
-      justifyContent: 'flex-start',
     },
   },
 });
@@ -604,15 +599,18 @@ export const treatmentTitle = style({
   ...responsiveFont(32),
   color: '#14AEFF',
   margin: 0,
+  marginBottom: vw(40),
   lineHeight: '150%',
   letterSpacing: '0',
 
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '48px',
+      marginBottom: '40px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
+      marginBottom: 0,
     },
   },
 });
@@ -625,7 +623,7 @@ export const treatmentSubtitle = style({
   letterSpacing: '0',
   color: '#272727',
   margin: 0,
-  whiteSpace: 'normal', // 줄바꿈이 제대로 작동하도록 설정
+  whiteSpace: 'normal',
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '56px',
@@ -667,12 +665,12 @@ export const treatmentSubtitleCustomMargin = style({
   letterSpacing: '0',
   color: '#272727',
   margin: 0,
-  // marginBottom: "var(--margin-bottom)",
-  whiteSpace: 'normal', // 줄바꿈이 제대로 작동하도록 설정
+  marginBottom: 'var(--margin-bottom)',
+  whiteSpace: 'normal',
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '56px',
-      // marginBottom: "var(--margin-bottom-desktop)",
+      marginBottom: 'var(--margin-bottom-desktop)',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),

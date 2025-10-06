@@ -632,8 +632,9 @@ export default function ScalpTreatmentPage() {
               className={styles.treatmentSubtitleCustomMargin}
               style={
                 {
-                  '--margin-bottom': vw(144),
-                  '--margin-bottom-desktop': '144px',
+                  '--margin-bottom': vw(40),
+                  '--margin-bottom-desktop': '40px',
+                  flex: 1,
                 } as React.CSSProperties
               }
             >
@@ -682,18 +683,18 @@ export default function ScalpTreatmentPage() {
             <h2 className={styles.treatmentTitle} suppressHydrationWarning>
               {isMobile ? textContent.section4.titleMobile : textContent.section4.title}
             </h2>
-            <h3 className={styles.treatmentSubtitle}>
-              {isMobile ? textContent.section4.subtitle.mobile : textContent.section4.subtitle.desktop}
-            </h3>
-            <p
-              className={styles.treatmentDescriptionCustomMargin}
+            <h3
+              className={styles.treatmentSubtitleCustomMargin}
               style={
                 {
-                  '--margin-bottom': vw(108),
-                  '--margin-bottom-desktop': '108px',
+                  '--margin-bottom': vw(40),
+                  '--margin-bottom-desktop': '40px',
                 } as React.CSSProperties
               }
             >
+              {isMobile ? textContent.section4.subtitle.mobile : textContent.section4.subtitle.desktop}
+            </h3>
+            <p className={styles.treatmentDescription} style={{ flex: 1 }}>
               {isMobile ? textContent.section4.description.mobile : textContent.section4.description.desktop}
             </p>
             <div className={styles.treatmentImageContainer}>
@@ -736,18 +737,18 @@ export default function ScalpTreatmentPage() {
             <h2 className={styles.treatmentTitle} suppressHydrationWarning>
               {isMobile ? textContent.section5.titleMobile : textContent.section5.title}
             </h2>
-            <h3 className={styles.treatmentSubtitle}>
-              {isMobile ? textContent.section5.subtitle.mobile : textContent.section5.subtitle.desktop}
-            </h3>
-            <p
-              className={styles.treatmentDescriptionCustomMargin}
+            <h3
+              className={styles.treatmentSubtitleCustomMargin}
               style={
                 {
-                  '--margin-bottom': vw(36),
-                  '--margin-bottom-desktop': '36px',
+                  '--margin-bottom': vw(40),
+                  '--margin-bottom-desktop': '40px',
                 } as React.CSSProperties
               }
             >
+              {isMobile ? textContent.section5.subtitle.mobile : textContent.section5.subtitle.desktop}
+            </h3>
+            <p className={styles.treatmentDescription} style={{ flex: 1 }}>
               {isMobile ? textContent.section5.description.mobile : textContent.section5.description.desktop}
             </p>
             <div className={styles.treatmentImageContainer}>
@@ -804,8 +805,9 @@ export default function ScalpTreatmentPage() {
               className={styles.treatmentSubtitleCustomMargin}
               style={
                 {
-                  '--margin-bottom': vw(244),
-                  '--margin-bottom-desktop': '244px',
+                  '--margin-bottom': vw(40),
+                  '--margin-bottom-desktop': '40px',
+                  flex: 1,
                 } as React.CSSProperties
               }
             >
