@@ -11,11 +11,15 @@ import AuthChecker from '@/components/AuthChecker';
 import ClientOnly from '@/components/ClientOnly';
 import { registerServiceWorker } from '@/utils/registerServiceWorker';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import PopupManager from '@/components/PopupManager';
 
 // 내부 레이아웃 컴포넌트
 function InnerLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { language } = useLanguageStore();
+
+  // 관리자 페이지 여부 확인
+  const isAdminPage = pathname?.startsWith('/admin');
 
   // Service Worker 등록
   useEffect(() => {
@@ -44,12 +48,18 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // 관리자 페이지는 서비스 레이아웃 없이 순수하게 렌더링
+  if (isAdminPage) {
+    return <>{children}</>;
+  }
+
   return (
     <>
       <AuthChecker />
       <HeaderNavigation />
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
       <LoginModal />
+      <PopupManager />
       <main className="main-content">{children}</main>
       {pathname !== '/' && pathname !== '/about' && (
         <ClientOnly>

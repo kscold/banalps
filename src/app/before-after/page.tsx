@@ -17,13 +17,15 @@ interface BeforeAfterItem {
   id: number;
   category: Category;
   title?: string;
+  titleJp?: string;
   description?: string;
   beforeImage: string;
   afterImage: string;
+  order: number;
 }
 
-// 실제 데이터
-const beforeAfterData: BeforeAfterItem[] = [
+// 더미 데이터 (초기 로딩용)
+const initialData: BeforeAfterItem[] = [
   // 이마축소
   {
     id: 1,
@@ -31,213 +33,7 @@ const beforeAfterData: BeforeAfterItem[] = [
     title: '이마축소(여)_1년경과',
     beforeImage: '/before-after/이마축소/1-1.jpg',
     afterImage: '/before-after/이마축소/1-2.jpg',
-  },
-  {
-    id: 2,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/10-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/10-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 3,
-    category: '이마축소',
-    title: '이마축소(남)_6개월경과',
-    beforeImage: '/before-after/이마축소/11-1 이마축소(남) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/11-2 이마축소(남) _ 6개월경과.jpg',
-  },
-  {
-    id: 4,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/12-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/12-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 5,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/13-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/13-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 6,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/14-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/14-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 7,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/15-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/15-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 8,
-    category: '이마축소',
-    title: '이마축소(여)_6개월경과',
-    beforeImage: '/before-after/이마축소/16-1 이마축소(여) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/16-2 이마축소(여) _ 6개월경과.jpg',
-  },
-  {
-    id: 9,
-    category: '이마축소',
-    title: '이마축소(남)_1년경과',
-    beforeImage: '/before-after/이마축소/17-1 이마축소(남) _ 1년경과.jpg',
-    afterImage: '/before-after/이마축소/17-2 이마축소(남) _ 1년경과.jpg',
-  },
-  {
-    id: 10,
-    category: '이마축소',
-    title: '이마축소(남)_6개월경과',
-    beforeImage: '/before-after/이마축소/18-1 이마축소(남) _ 6개월경과.jpg',
-    afterImage: '/before-after/이마축소/18-2 이마축소(남) _ 6개월경과.jpg',
-  },
-
-  // 흉터&재수술
-  {
-    id: 11,
-    category: '흉터&재수술',
-    title: '흉터재수술',
-    beforeImage: '/before-after/흉터&재수술/1-1.jpg',
-    afterImage: '/before-after/흉터&재수술/1-2.jpg',
-  },
-  {
-    id: 12,
-    category: '흉터&재수술',
-    title: '흉터재수술',
-    beforeImage: '/before-after/흉터&재수술/10-1.jpg',
-    afterImage: '/before-after/흉터&재수술/10-2.jpg',
-  },
-  {
-    id: 13,
-    category: '흉터&재수술',
-    title: '흉터재수술',
-    beforeImage: '/before-after/흉터&재수술/11-1.jpg',
-    afterImage: '/before-after/흉터&재수술/11-2.jpg',
-  },
-  {
-    id: 14,
-    category: '흉터&재수술',
-    title: '흉터재수술',
-    beforeImage: '/before-after/흉터&재수술/12-1.jpg',
-    afterImage: '/before-after/흉터&재수술/12-2.jpg',
-  },
-  {
-    id: 15,
-    category: '흉터&재수술',
-    title: '흉터재수술',
-    beforeImage: '/before-after/흉터&재수술/13-1.jpg',
-    afterImage: '/before-after/흉터&재수술/13-2.jpg',
-  },
-
-  // 헤어라인(남성)
-  {
-    id: 21,
-    category: '헤어라인(남성)',
-    title: '4000모(남)_1년경과',
-    beforeImage: '/before-after/헤어라인(남성)/1-1 4000모(남) _ 1년경과.jpg',
-    afterImage: '/before-after/헤어라인(남성)/1-2 4000모(남) _ 1년경과.jpg',
-  },
-  {
-    id: 22,
-    category: '헤어라인(남성)',
-    title: '2800모(남)_1년경과',
-    beforeImage: '/before-after/헤어라인(남성)/10-1 2800모(남) _ 1년경과.jpg',
-    afterImage: '/before-after/헤어라인(남성)/10-2 2800모(남) _ 1년경과.jpg',
-  },
-  {
-    id: 23,
-    category: '헤어라인(남성)',
-    title: '2900모(남)_1년경과',
-    beforeImage: '/before-after/헤어라인(남성)/11-1 2900모(남) _ 1년경과.jpg',
-    afterImage: '/before-after/헤어라인(남성)/11-2 2900모(남) _ 1년경과.jpg',
-  },
-  {
-    id: 24,
-    category: '헤어라인(남성)',
-    title: '2600모(남)_1년경과',
-    beforeImage: '/before-after/헤어라인(남성)/12-1 2600모(남) _ 1년경과.jpg',
-    afterImage: '/before-after/헤어라인(남성)/12-2 2600모(남) _ 1년경과.jpg',
-  },
-  {
-    id: 25,
-    category: '헤어라인(남성)',
-    title: '2900모(남)_1년경과',
-    beforeImage: '/before-after/헤어라인(남성)/13-1 2900모(남) _ 1년경과.jpg',
-    afterImage: '/before-after/헤어라인(남성)/13-2 2900모(남) _ 1년경과.jpg',
-  },
-
-  // 헤어라인(여성)
-  {
-    id: 31,
-    category: '헤어라인(여성)',
-    title: '헤어라인(여)',
-    beforeImage: '/before-after/헤어라인(여성)/1-1.jpg',
-    afterImage: '/before-after/헤어라인(여성)/1-2.jpg',
-  },
-  {
-    id: 32,
-    category: '헤어라인(여성)',
-    title: '헤어라인(여)',
-    beforeImage: '/before-after/헤어라인(여성)/10-1.jpg',
-    afterImage: '/before-after/헤어라인(여성)/10-2.jpg',
-  },
-  {
-    id: 33,
-    category: '헤어라인(여성)',
-    title: '헤어라인(여)',
-    beforeImage: '/before-after/헤어라인(여성)/11-1.jpg',
-    afterImage: '/before-after/헤어라인(여성)/11-2.jpg',
-  },
-  {
-    id: 34,
-    category: '헤어라인(여성)',
-    title: '헤어라인(여)',
-    beforeImage: '/before-after/헤어라인(여성)/12-1.jpg',
-    afterImage: '/before-after/헤어라인(여성)/12-2.jpg',
-  },
-  {
-    id: 35,
-    category: '헤어라인(여성)',
-    title: '헤어라인(여)',
-    beforeImage: '/before-after/헤어라인(여성)/13-1.jpg',
-    afterImage: '/before-after/헤어라인(여성)/13-2.jpg',
-  },
-
-  // 정수리
-  {
-    id: 41,
-    category: '정수리',
-    beforeImage: '/before-after/정수리 /1-1.jpg',
-    afterImage: '/before-after/정수리 /1-2.jpg',
-  },
-  {
-    id: 42,
-    category: '정수리',
-    title: '5500모(남)_8개월경과',
-    beforeImage: '/before-after/정수리 /2-1 5500모(남) _ 8개월 경과.jpg',
-    afterImage: '/before-after/정수리 /2-2 5500모(남) _ 8개월 경과.jpg',
-  },
-  {
-    id: 43,
-    category: '정수리',
-    beforeImage: '/before-after/정수리 /10-1.jpg',
-    afterImage: '/before-after/정수리 /10-2.jpg',
-  },
-  {
-    id: 44,
-    category: '정수리',
-    beforeImage: '/before-after/정수리 /11-1.jpg',
-    afterImage: '/before-after/정수리 /11-2.jpg',
-  },
-  {
-    id: 45,
-    category: '정수리',
-    beforeImage: '/before-after/정수리 /12-1.jpg',
-    afterImage: '/before-after/정수리 /12-2.jpg',
+    order: 1,
   },
 ];
 
@@ -257,7 +53,7 @@ function CategoryCarousel({
   isLoggedIn: boolean;
   onLoginClick: () => void;
   translations: any;
-  translateTitle: (title: string | undefined, category: Category) => string;
+  translateTitle: (item: BeforeAfterItem) => string;
 }) {
   const isBlueBackground = index % 2 === 0;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -305,9 +101,7 @@ function CategoryCarousel({
       <div className={items[currentIndex]?.title ? styles.carouselHeader : styles.carouselHeaderNoSubtitle}>
         <span className={styles.categoryBadge}>{category}</span>
         {items[currentIndex]?.title && (
-          <span className={styles.itemTitle}>
-            {translateTitle(items[currentIndex]?.title, items[currentIndex]?.category)}
-          </span>
+          <span className={styles.itemTitle}>{translateTitle(items[currentIndex])}</span>
         )}
       </div>
 
@@ -341,12 +135,8 @@ function CategoryCarousel({
             <BeforeAfterSlider
               beforeImage={items[currentIndex].beforeImage}
               afterImage={items[currentIndex].afterImage}
-              beforeAlt={`${
-                translateTitle(items[currentIndex].title, items[currentIndex].category) || category
-              } - Before`}
-              afterAlt={`${
-                translateTitle(items[currentIndex].title, items[currentIndex].category) || category
-              } - After`}
+              beforeAlt={`${translateTitle(items[currentIndex]) || category} - Before`}
+              afterAlt={`${translateTitle(items[currentIndex]) || category} - After`}
               isBlueBackground={isBlueBackground}
               className={styles.customSliderHeight}
               isLoggedIn={isLoggedIn}
@@ -396,6 +186,10 @@ export default function BeforeAfterPage() {
   // 로그인 상태 확인
   const isLoggedIn = status === 'authenticated' && !!session;
 
+  // MongoDB에서 데이터 가져오기
+  const [beforeAfterData, setBeforeAfterData] = useState<BeforeAfterItem[]>(initialData);
+  const [dataLoading, setDataLoading] = useState(true);
+
   // 화면 크기 체크
   const [isMobile, setIsMobile] = React.useState(false);
   const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
@@ -410,6 +204,26 @@ export default function BeforeAfterPage() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  // DB에서 데이터 가져오기
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/admin/before-after');
+        const data = await response.json();
+        if (data.success && data.data && data.data.length > 0) {
+          setBeforeAfterData(data.data);
+        }
+      } catch (error) {
+        console.error('데이터 조회 실패:', error);
+        // 실패하면 초기 데이터 사용
+      } finally {
+        setDataLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   // 카테고리별로 그룹화 - useMemo로 메모이제이션
   const groupedData = React.useMemo(() => {
     return beforeAfterData.reduce(
@@ -422,7 +236,7 @@ export default function BeforeAfterPage() {
       },
       {} as Record<Category, BeforeAfterItem[]>,
     );
-  }, []);
+  }, [beforeAfterData]);
 
   // 카테고리 순서 정의 (번역 키로 매핑) - useMemo로 메모이제이션
   const categoryOrder: Category[] = React.useMemo(
@@ -451,44 +265,52 @@ export default function BeforeAfterPage() {
     [t.categories],
   );
 
-  // 타이틀 번역 함수 - 모든 조합 자동 번역
+  // 타이틀 번역 함수 - DB에서 가져온 일본어 또는 자동 번역
   const translateTitle = React.useCallback(
-    (title: string | undefined, _category: Category): string => {
+    (item: BeforeAfterItem): string => {
+      const { title, titleJp } = item;
+
       if (!title) return '';
 
-      // 한국어가 아닌 경우 그대로 반환 (yearsAgo가 "년 전"이면 한국어)
+      // 한국어가 아닌 경우 (일본어 선택 시)
       const language = t.cases.yearsAgo;
-      if (language === '년 전' || !language) {
-        // 한국어는 번역 안 함
-        return title;
+      if (language !== '년 전' && language) {
+        // DB에 일본어 타이틀이 있으면 사용
+        if (titleJp) {
+          return titleJp;
+        }
+
+        // 없으면 자동 번역
+        let translatedTitle = title;
+
+        // 1. 기간 번역 (띄어쓰기 없음)
+        translatedTitle = translatedTitle.replace(/(\d+)년경과/g, '$1年経過');
+        translatedTitle = translatedTitle.replace(/(\d+)개월경과/g, '$1カ月経過');
+        translatedTitle = translatedTitle.replace(/(\d+)일경과/g, '$1日経過');
+
+        // 2. 수술 타입 번역 (단어별로 쪼개기)
+        translatedTitle = translatedTitle.replace(/이마/g, '額');
+        translatedTitle = translatedTitle.replace(/축소/g, '縮小');
+        translatedTitle = translatedTitle.replace(/흉터/g, '傷跡');
+        translatedTitle = translatedTitle.replace(/재수술/g, '再手術');
+        translatedTitle = translatedTitle.replace(/헤어라인/g, 'ヘアライン');
+        translatedTitle = translatedTitle.replace(/정수리/g, '頭頂部');
+
+        // 3. 모(毛) 번역 - 숫자 + 모 패턴
+        translatedTitle = translatedTitle.replace(/(\d+)모/g, '$1毛');
+
+        // 4. 성별 번역
+        translatedTitle = translatedTitle.replace(/\(남\)/g, '（男）');
+        translatedTitle = translatedTitle.replace(/\(여\)/g, '（女）');
+
+        // 5. 구분자 번역 (언더스코어는 전각으로)
+        translatedTitle = translatedTitle.replace(/_/g, '＿');
+
+        return translatedTitle;
       }
 
-      let translatedTitle = title;
-
-      // 1. 기간 번역 (긴 패턴부터 먼저 처리)
-      translatedTitle = translatedTitle.replace(/(\d+)년경과/g, '$1年経過');
-      translatedTitle = translatedTitle.replace(/(\d+)개월경과/g, '$1カ月経過');
-
-      // 2. 수술 타입 번역 (단어별로 쪼개기)
-      translatedTitle = translatedTitle.replace(/이마/g, '額');
-      translatedTitle = translatedTitle.replace(/축소/g, '縮小');
-      translatedTitle = translatedTitle.replace(/흉터/g, '傷跡');
-      translatedTitle = translatedTitle.replace(/재수술/g, '再手術');
-      translatedTitle = translatedTitle.replace(/헤어라인/g, 'ヘアライン');
-      translatedTitle = translatedTitle.replace(/정수리/g, '頭頂部');
-      translatedTitle = translatedTitle.replace(/경과/g, '経過');
-
-      // 3. 모(毛) 번역 - 숫자 + 모 패턴
-      translatedTitle = translatedTitle.replace(/(\d+)모/g, '$1毛');
-
-      // 4. 성별 번역
-      translatedTitle = translatedTitle.replace(/\(남\)/g, '（男）');
-      translatedTitle = translatedTitle.replace(/\(여\)/g, '（女）');
-
-      // 5. 구분자 번역 (언더스코어는 전각으로)
-      translatedTitle = translatedTitle.replace(/_/g, '＿');
-
-      return translatedTitle;
+      // 한국어는 번역 안 함
+      return title;
     },
     [t.cases],
   );

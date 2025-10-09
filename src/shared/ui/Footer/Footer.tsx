@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import * as styles from './Footer.css';
 import TermsModal from '@/shared/components/TermsModal/TermsModal';
 import { useFooterTranslations } from '@/hooks/useAllPagesTranslations';
@@ -11,6 +13,12 @@ export default function Footer() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const t = useFooterTranslations();
   const { language } = useLanguageStore();
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  // Admin 접근을 위한 클릭 카운터
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleTermsClick = () => {
     setIsTermsModalOpen(true);
@@ -27,6 +35,37 @@ export default function Footer() {
   const closePrivacyModal = () => {
     setIsPrivacyModalOpen(false);
   };
+
+  // 대표자 이름 3번 클릭으로 admin 페이지 접근
+  const handleRepresentativeClick = () => {
+    clickCountRef.current += 1;
+
+    // 기존 타이머가 있으면 초기화
+    if (clickTimerRef.current) {
+      clearTimeout(clickTimerRef.current);
+    }
+
+    // 3번 클릭하면 admin 페이지로 이동
+    if (clickCountRef.current >= 3) {
+      clickCountRef.current = 0;
+      if (clickTimerRef.current) {
+        clearTimeout(clickTimerRef.current);
+      }
+
+      // 로그인 상태에 따라 페이지 이동
+      if (session) {
+        router.push('/admin/dashboard');
+      } else {
+        router.push('/admin/login');
+      }
+      return;
+    }
+
+    // 1초 후에 카운터 초기화
+    clickTimerRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 1000);
+  };
   return (
     <footer className={styles.footerSection} data-footer="true">
       <div className={styles.footerContent}>
@@ -38,7 +77,9 @@ export default function Footer() {
             <div className={styles.footerLeftFirst}>
               <div className={styles.footerCompanyInfo}>
                 <p className={styles.footerClinicName}>{t.clinicName}</p>
-                <p className={styles.footerRepresentative}>{t.representatives}</p>
+                <p className={styles.footerRepresentative} onClick={handleRepresentativeClick} style={{ cursor: 'pointer' }}>
+                  {t.representatives}
+                </p>
               </div>
               <p className={styles.footerCopyright}>{t.copyright}</p>
             </div>
@@ -86,7 +127,9 @@ export default function Footer() {
           {/* 클리닉 정보 */}
           <div className={styles.mobileInfo}>
             <p className={styles.mobileClinicName}>{t.clinicName}</p>
-            <p className={styles.mobileRepresentative}>{t.representatives}</p>
+            <p className={styles.mobileRepresentative} onClick={handleRepresentativeClick} style={{ cursor: 'pointer' }}>
+              {t.representatives}
+            </p>
           </div>
 
           {/* 주소 및 전화번호 */}
