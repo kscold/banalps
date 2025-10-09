@@ -3,18 +3,6 @@ import crypto from 'crypto';
 import connectDB from '@/lib/mongodb';
 import Admin from '@/models/Admin';
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-const SESSION_SECRET = process.env.JWT_ADMIN_SECRET;
-
-// 환경 변수 검증
-if (!ADMIN_USERNAME || !ADMIN_PASSWORD || !SESSION_SECRET) {
-  throw new Error(
-    '어드민 환경 변수가 설정되지 않았습니다. ' +
-    'ADMIN_USERNAME, ADMIN_PASSWORD, JWT_ADMIN_SECRET을 .env.local에 설정하세요.'
-  );
-}
-
 // 비밀번호 해싱 (SHA-256)
 function hashPassword(password: string): string {
   return crypto.createHash('sha256').update(password).digest('hex');
@@ -22,8 +10,10 @@ function hashPassword(password: string): string {
 
 // 세션 토큰 생성
 function createSessionToken(username: string): string {
+  const SESSION_SECRET = process.env.JWT_ADMIN_SECRET;
+
   if (!SESSION_SECRET) {
-    throw new Error('SESSION_SECRET이 설정되지 않았습니다.');
+    throw new Error('JWT_ADMIN_SECRET 환경 변수가 설정되지 않았습니다.');
   }
 
   const payload = JSON.stringify({
@@ -42,26 +32,17 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     // DB에서 관리자 찾기
-    let admin = await Admin.findOne({ username });
+    const admin = await Admin.findOne({ username });
 
-    // 없으면 환경변수로 체크 (초기 관리자)
+    // DB에 계정이 없으면 로그인 실패
     if (!admin) {
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        // 초기 관리자 생성
-        admin = await Admin.create({
-          username,
-          password: hashPassword(password),
-          role: 'admin',
-        });
-      } else {
-        return NextResponse.json(
-          {
-            success: false,
-            error: '아이디 또는 비밀번호가 일치하지 않습니다.',
-          },
-          { status: 401 }
-        );
-      }
+      return NextResponse.json(
+        {
+          success: false,
+          error: '아이디 또는 비밀번호가 일치하지 않습니다.',
+        },
+        { status: 401 }
+      );
     }
 
     // 비밀번호 확인
