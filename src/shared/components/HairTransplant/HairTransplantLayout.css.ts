@@ -194,16 +194,28 @@ export const HairTransplantHeroTitleDot = style({
   height: vw(12),
   backgroundColor: '#14AEFF',
   borderRadius: '50%',
-  marginLeft: vw(4),
   flexShrink: 0,
   alignSelf: 'flex-end', // 모바일에서는 하단 정렬
-  marginBottom: vw(12), // 약간의 하단 여백
+  marginLeft: vw(4),
+  marginBottom: vw(12), // 약간의 하단 여백'
+  selectors: {
+    'html[data-language="JP"] &': {
+      marginLeft: vw(7),
+      marginBottom: vw(3),
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '12px',
       height: '12px',
       marginLeft: '4px',
       marginBottom: '12px',
+      selectors: {
+        'html[data-language="JP"] &': {
+          marginLeft: '7px',
+          marginBottom: '3px',
+        },
+      },
     },
     [breakpoints.mobile]: {
       width: mvw(10),
@@ -2009,20 +2021,25 @@ export const beforeAfterCategory = style({
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙
   fontWeight: 500,
   ...responsiveFont(24), // 피그마 정확한 크기
-  lineHeight: vw(36),
+  lineHeight: '150%',
   letterSpacing: '0',
   color: '#FFFFFF', // 흰색 텍스트
   margin: '0',
   '@media': {
     [breakpoints.desktopLarge]: {
       padding: '8px 35px',
-      lineHeight: '36px',
+      fontSize: '24px',
     },
     [breakpoints.mobile]: {
       width: mvw(170),
       height: mvw(42),
       fontSize: mvw(18),
-      lineHeight: mvw(28),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -2031,19 +2048,24 @@ export const beforeAfterTitle = style({
   fontFamily: "'S-Core Dream', sans-serif", // 피그마 스펙
   fontWeight: 500,
   ...responsiveFont(24), // 피그마 정확한 크기
-  lineHeight: vw(36),
+  lineHeight: '150%',
   letterSpacing: '0',
   margin: '0',
   color: '#272727',
   whiteSpace: 'nowrap',
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '36px',
+      fontSize: '24px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(18),
-      lineHeight: mvw(28),
       whiteSpace: 'nowrap',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });

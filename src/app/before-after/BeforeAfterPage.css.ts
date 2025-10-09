@@ -264,40 +264,55 @@ export const categoryBadge = style({
   background: '#14AEFF',
   borderRadius: vw(30),
   fontFamily: fontFamily.scdream,
-  fontSize: vw(18),
+  fontSize: vw(24),
   fontWeight: 500,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '228px',
       height: '44px',
       borderRadius: '30px',
-      fontSize: '18px',
+      fontSize: '24px',
     },
     [breakpoints.mobile]: {
       width: mvw(170),
       height: mvw(36),
       borderRadius: mvw(20),
       fontSize: mvw(16),
+      textAlign: 'center',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
 
 export const itemTitle = style({
   fontFamily: fontFamily.scdream,
-  fontSize: vw(18),
+  fontSize: vw(32),
   fontWeight: 500,
   color: '#14AEFF',
   lineHeight: '150%',
   minHeight: vw(27), // 타이틀이 없어도 높이 유지
-
   '@media': {
     [breakpoints.desktopLarge]: {
-      fontSize: '18px',
+      fontSize: '32px',
       minHeight: '27px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(18),
       minHeight: mvw(27),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+        },
+      },
     },
   },
 });

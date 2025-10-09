@@ -230,12 +230,16 @@ export default function ScalpTreatmentPage() {
         ),
         mobile: (
           <>
-            {t.details.section4.subtitle.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < t.details.section4.subtitle.split('\n').length - 1 && <br />}
-              </span>
-            ))}
+            {((t.details.section4 as any).subtitleMobile || t.details.section4.subtitle)
+              .split('\n')
+              .map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index <
+                    ((t.details.section4 as any).subtitleMobile || t.details.section4.subtitle).split('\n').length -
+                      1 && <br />}
+                </span>
+              ))}
           </>
         ),
       },
@@ -338,29 +342,87 @@ export default function ScalpTreatmentPage() {
     section6: {
       title: (
         <>
-          {t.details.section6.title.split('\n').map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < t.details.section6.title.split('\n').length - 1 && <br />}
-            </span>
-          ))}
+          {t.details.section6.title.split('\n').map((line, index) => {
+            // 일본어이고 "(Low-Level Laser Therapy)" 포함된 경우
+            if (language === 'JP' && line.includes('(Low-Level Laser Therapy)')) {
+              const parts = line.split('(Low-Level Laser Therapy)');
+              return (
+                <span key={index}>
+                  {parts[0]}
+                  <span style={{ fontFamily: 'Poppins, sans-serif' }}>(Low-Level Laser Therapy)</span>
+                  {parts[1]}
+                  {index < t.details.section6.title.split('\n').length - 1 && <br />}
+                </span>
+              );
+            }
+            return (
+              <span key={index}>
+                {line}
+                {index < t.details.section6.title.split('\n').length - 1 && <br />}
+              </span>
+            );
+          })}
         </>
       ),
       titleMobile: (
         <>
           {(t.details.section6 as any).titleMobile
-            ? (t.details.section6 as any).titleMobile.split('\n').map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < (t.details.section6 as any).titleMobile.split('\n').length - 1 && <br />}
-                </span>
-              ))
-            : t.details.section6.title.split('\n').map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < t.details.section6.title.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+            ? (t.details.section6 as any).titleMobile.split('\n').map((line: string, index: number) => {
+                // 일본어이고 "低出力レーザーLLLT" 또는 "(Low-Level Laser Therapy)" 포함된 경우
+                if (
+                  language === 'JP' &&
+                  (line.includes('低出力レーザーLLLT') || line.includes('(Low-Level Laser Therapy)'))
+                ) {
+                  return (
+                    <span
+                      key={index}
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: 500,
+                        lineHeight: '110%',
+                        letterSpacing: '0%',
+                      }}
+                    >
+                      {line}
+                      {index < (t.details.section6 as any).titleMobile.split('\n').length - 1 && <br />}
+                    </span>
+                  );
+                }
+                return (
+                  <span key={index}>
+                    {line}
+                    {index < (t.details.section6 as any).titleMobile.split('\n').length - 1 && <br />}
+                  </span>
+                );
+              })
+            : t.details.section6.title.split('\n').map((line: string, index: number) => {
+                // 일본어이고 "低出力レーザーLLLT" 또는 "(Low-Level Laser Therapy)" 포함된 경우
+                if (
+                  language === 'JP' &&
+                  (line.includes('低出力レーザーLLLT') || line.includes('(Low-Level Laser Therapy)'))
+                ) {
+                  return (
+                    <span
+                      key={index}
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: 500,
+                        lineHeight: '110%',
+                        letterSpacing: '0%',
+                      }}
+                    >
+                      {line}
+                      {index < t.details.section6.title.split('\n').length - 1 && <br />}
+                    </span>
+                  );
+                }
+                return (
+                  <span key={index}>
+                    {line}
+                    {index < t.details.section6.title.split('\n').length - 1 && <br />}
+                  </span>
+                );
+              })}
         </>
       ),
       subtitle: {
@@ -694,7 +756,13 @@ export default function ScalpTreatmentPage() {
             >
               {isMobile ? textContent.section4.subtitle.mobile : textContent.section4.subtitle.desktop}
             </h3>
-            <p className={styles.treatmentDescription} style={{ flex: 1 }}>
+            <p
+              className={styles.treatmentDescription}
+              style={{
+                flex: 1,
+                ...((!isMobile && language === 'JP') ? { marginBottom: isDesktopLarge ? '40px' : vw(40) } : {}),
+              }}
+            >
               {isMobile ? textContent.section4.description.mobile : textContent.section4.description.desktop}
             </p>
             <div className={styles.treatmentImageContainer}>

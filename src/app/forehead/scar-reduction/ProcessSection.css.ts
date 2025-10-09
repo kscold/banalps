@@ -31,7 +31,7 @@ export const scarProcessContent = style({
     [breakpoints.desktopLarge]: {
       maxWidth: '1600px',
       padding: '0 135px',
-      gap: '120px',
+      gap: '240px',
     },
     [breakpoints.mobile]: {
       width: '100%',
@@ -61,17 +61,15 @@ export const processStepOdd = style({
 
 export const stepNumber = style({
   flex: '0 0 auto',
-  width: vw(292),
-  height: vw(418),
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
   position: 'relative',
+  gap: vw(100),
   '@media': {
     [breakpoints.desktopLarge]: {
-      width: '292px',
-      height: '418px',
+      gap: '100px',
     },
     [breakpoints.mobile]: {
       width: '100%',
@@ -79,6 +77,7 @@ export const stepNumber = style({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
+      gap: mvw(40),
     },
   },
 });
@@ -87,14 +86,18 @@ export const stepNumber = style({
 export const stepNumberText = style({
   fontFamily: fontFamily.nordnet,
   fontWeight: 400,
-  fontSize: vw(80),
+  fontSize: vw(100),
   lineHeight: '100%',
   color: '#272727',
-  marginBottom: vw(90), // 100px 간격으로 변경
+
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.nordnet,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
-      fontSize: '80px',
-      marginBottom: '90px',
+      fontSize: '100px',
     },
     [breakpoints.mobile]: {
       marginBottom: 0,
@@ -114,7 +117,11 @@ export const stepHeader = style({
   width: '100%',
   justifyContent: 'space-between',
   flexDirection: 'row',
+  height: vw(120),
   '@media': {
+    [breakpoints.desktopLarge]: {
+      height: '120px',
+    },
     [breakpoints.mobile]: {
       display: 'none',
     },
@@ -141,7 +148,7 @@ export const stepContentDesktop = style({
   width: '100%',
   justifyContent: 'space-between',
   flexDirection: 'row',
-  marginBottom: vw(20),
+  // marginBottom: vw(20),
   '@media': {
     [breakpoints.mobile]: {
       display: 'none',
@@ -174,11 +181,10 @@ export const stepImage = style({
 });
 
 export const stepContent = style({
-  flex: 1,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center', // 수직 중앙 정렬
-  gap: vw(32),
+  gap: vw(48),
   width: vw(655),
   height: 'auto', // 고정 높이 대신 자동 높이로 변경
   minHeight: vw(288), // 이미지 높이와 비슷하게 최소 높이 설정
@@ -187,7 +193,7 @@ export const stepContent = style({
   whiteSpace: 'pre-line',
   '@media': {
     [breakpoints.desktopLarge]: {
-      gap: '32px',
+      gap: '48px',
       minHeight: '288px',
     },
     [breakpoints.mobile]: {
@@ -204,21 +210,27 @@ export const stepCategory = style({
   fontWeight: '500',
   fontSize: vw(32),
   color: '#14AEFF', // 바날 민트색
-  marginBottom: vw(16),
+  // marginBottom: vw(16),
   textAlign: 'left',
   lineHeight: '150%',
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '32px',
-      marginBottom: '16px',
+      // marginBottom: '16px',
     },
     [breakpoints.mobile]: {
-      fontSize: '3rem',
+      fontSize: mvw(48),
       marginBottom: 0,
       lineHeight: '120%',
       fontWeight: '500',
       flex: 1,
       textAlign: 'right',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+          lineHeight: '142%',
+        },
+      },
     },
   },
 });
@@ -231,6 +243,11 @@ export const stepTitle = style({
   fontSize: vw(40),
   color: '#272727',
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      lineHeight: '140%',
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '40px',
@@ -239,6 +256,13 @@ export const stepTitle = style({
     [breakpoints.mobile]: {
       fontSize: mvw(20),
       marginBottom: mvw(32),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+          fontSize: mvw(24),
+          lineHeight: '140%',
+        },
+      },
     },
   },
 });
@@ -257,6 +281,11 @@ export const stepDescription = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });

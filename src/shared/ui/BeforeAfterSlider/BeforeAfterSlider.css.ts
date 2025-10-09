@@ -268,6 +268,11 @@ export const loginOverlayButton = style({
   justifyContent: 'center',
   lineHeight: 1,
   padding: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '16px',
@@ -275,7 +280,7 @@ export const loginOverlayButton = style({
       height: '42px',
     },
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
+      fontSize: mvw(16),
       width: mvw(120),
       height: mvw(36),
       padding: 0,
@@ -297,7 +302,11 @@ export const loginOverlayText = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(14),
-      lineHeight: 1.4,
     },
   },
+});
+
+// 일본어 bold 텍스트 스타일
+export const boldText = style({
+  fontWeight: 700,
 });

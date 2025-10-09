@@ -286,17 +286,22 @@ export const introTitle = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 500,
   fontSize: vw(40),
-  lineHeight: vw(52),
+  lineHeight: '140%',
   color: '#272727',
   margin: 0,
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '40px',
-      lineHeight: '52px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(24),
-      lineHeight: mvw(32),
+      lineHeight: '150%',
+      selectors: {
+        'html[data-language="JP"] &': {
+          lineHeight: '140%',
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -312,14 +317,17 @@ export const introDescription = style({
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '20px',
-      lineHeight: '32px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
-      lineHeight: mvw(24),
       height: mvw(232),
       display: 'block',
-      // Natural text flow with br tags to fill the height
+      lineHeight: '150%',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -478,6 +486,11 @@ export const treatmentCardTitle = style({
   color: '#272727',
   textAlign: 'center',
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '18px',
@@ -611,6 +624,13 @@ export const treatmentTitle = style({
     [breakpoints.mobile]: {
       fontSize: mvw(20),
       marginBottom: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+          lineHeight: '140%',
+        },
+      },
     },
   },
 });
@@ -626,10 +646,17 @@ export const treatmentSubtitle = style({
   whiteSpace: 'normal',
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '56px',
+      fontSize: '40px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+          lineHeight: '140%',
+        },
+      },
     },
   },
 });
@@ -652,6 +679,13 @@ export const treatmentSubtitleWithMargin = style({
       fontSize: mvw(20),
       lineHeight: mvw(32),
       marginBottom: mvw(60),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+          lineHeight: '140%',
+        },
+      },
     },
   },
 });
@@ -675,6 +709,13 @@ export const treatmentSubtitleCustomMargin = style({
     [breakpoints.mobile]: {
       fontSize: mvw(20),
       marginBottom: 'var(--margin-bottom-mobile)',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+          lineHeight: '140%',
+        },
+      },
     },
   },
 });
@@ -694,6 +735,11 @@ export const treatmentDescription = style({
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });

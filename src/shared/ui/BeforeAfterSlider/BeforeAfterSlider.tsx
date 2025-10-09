@@ -192,12 +192,26 @@ export default function BeforeAfterSlider({
                 LOGIN
               </button>
               <p className={styles.loginOverlayText}>
-                {loginOverlayText.split('\n').map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index < loginOverlayText.split('\n').length - 1 && <br />}
-                  </span>
-                ))}
+                {loginOverlayText.split('\n').map((line, index) => {
+                  // 일본어: "ログインをすると" 부분만 bold 처리
+                  if (line.includes('ログインをすると')) {
+                    const parts = line.split('ログインをすると');
+                    return (
+                      <span key={index}>
+                        {parts[0]}
+                        <strong className={styles.boldText}>ログインをすると</strong>
+                        {parts[1]}
+                        {index < loginOverlayText.split('\n').length - 1 && <br />}
+                      </span>
+                    );
+                  }
+                  return (
+                    <span key={index}>
+                      {line}
+                      {index < loginOverlayText.split('\n').length - 1 && <br />}
+                    </span>
+                  );
+                })}
               </p>
             </div>
           </div>
