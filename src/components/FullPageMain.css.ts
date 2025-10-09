@@ -7,7 +7,6 @@ export const container = style({
   overflowY: 'scroll',
   scrollBehavior: 'auto', // smooth → auto로 변경하여 스크롤 충돌 방지
   WebkitOverflowScrolling: 'touch',
-  backgroundColor: '#000',
   zIndex: 1,
   contain: 'layout style paint', // 렌더링 최적화
   overscrollBehavior: 'none', // 오버스크롤 바운스 방지 (iOS 최적화)

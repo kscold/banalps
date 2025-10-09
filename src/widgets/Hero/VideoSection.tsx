@@ -160,44 +160,29 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   }, [showVideoSection, isVideoLoaded]);
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#000',
-        opacity: showVideoSection ? 1 : 0,
-        pointerEvents: showVideoSection ? 'auto' : 'none',
-      }}
-    >
-      <div className={styles.vimeoContainer}>
-        <iframe
-          ref={iframeRef}
-          src={currentVideoUrl}
-          className={styles.vimeoIframe}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: 'max(177.77vh, 100vw)',
-            height: 'max(56.25vw, 100vh)',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-            pointerEvents: 'none',
-          }}
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          loading="eager"
-          onLoad={handleVimeoLoad}
-          onError={() => {
-            console.error('[VideoSection/Vimeo에러] iframe 로드 실패');
-          }}
-        />
-      </div>
+    <div className={styles.vimeoContainer}>
+      <iframe
+        ref={iframeRef}
+        src={currentVideoUrl}
+        className={styles.vimeoIframe}
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: 'max(177.77vh, 100vw)',
+          height: 'max(56.25vw, 100vh)',
+          transform: 'translate(-50%, -50%)',
+          border: 'none',
+          pointerEvents: 'none',
+        }}
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        loading="eager"
+        onLoad={handleVimeoLoad}
+        onError={() => {
+          console.error('[VideoSection/Vimeo에러] iframe 로드 실패');
+        }}
+      />
     </div>
   );
 }

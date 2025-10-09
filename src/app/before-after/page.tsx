@@ -8,6 +8,7 @@ import HeroSection from '@/shared/components/HairTransplant/HeroSection';
 import * as styles from './BeforeAfterPage.css';
 import { useAuthStore } from '@/shared/stores/useAuthStore';
 import { useBeforeAfterTranslations } from '@/hooks/useAllPagesTranslations';
+import { preloadImagePair } from '@/utils/imagePreloader';
 
 // 카테고리 타입 정의
 type Category = '이마축소' | '흉터&재수술' | '헤어라인(남성)' | '헤어라인(여성)' | '정수리';
@@ -24,7 +25,7 @@ interface BeforeAfterItem {
   order: number;
 }
 
-// 더미 데이터 (초기 로딩용)
+// 더미 데이터 (초기 로딩용 - 모든 카테고리 포함)
 const initialData: BeforeAfterItem[] = [
   // 이마축소
   {
@@ -33,6 +34,42 @@ const initialData: BeforeAfterItem[] = [
     title: '이마축소(여)_1년경과',
     beforeImage: '/before-after/이마축소/1-1.jpg',
     afterImage: '/before-after/이마축소/1-2.jpg',
+    order: 1,
+  },
+  // 흉터&재수술
+  {
+    id: 2,
+    category: '흉터&재수술',
+    title: '흉터재수술_6개월경과',
+    beforeImage: '/before-after/흉터&재수술/1-1.jpg',
+    afterImage: '/before-after/흉터&재수술/1-2.jpg',
+    order: 1,
+  },
+  // 헤어라인(남성)
+  {
+    id: 3,
+    category: '헤어라인(남성)',
+    title: '헤어라인(남)_1년경과',
+    beforeImage: '/before-after/헤어라인(남성)/1-1.jpg',
+    afterImage: '/before-after/헤어라인(남성)/1-2.jpg',
+    order: 1,
+  },
+  // 헤어라인(여성)
+  {
+    id: 4,
+    category: '헤어라인(여성)',
+    title: '헤어라인(여)_1년경과',
+    beforeImage: '/before-after/헤어라인(여성)/1-1.jpg',
+    afterImage: '/before-after/헤어라인(여성)/1-2.jpg',
+    order: 1,
+  },
+  // 정수리
+  {
+    id: 5,
+    category: '정수리',
+    title: '정수리_1년경과',
+    beforeImage: '/before-after/정수리/1-1.jpg',
+    afterImage: '/before-after/정수리/1-2.jpg',
     order: 1,
   },
 ];
@@ -89,6 +126,30 @@ function CategoryCarousel({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // 현재 인덱스가 변경될 때 다음/이전 이미지 미리 로드
+  React.useEffect(() => {
+    const preloadAdjacentImages = async () => {
+      const prevIdx = getPrevIndex(currentIndex);
+      const nextIdx = getNextIndex(currentIndex);
+
+      // 이전, 현재, 다음 이미지 미리 로드
+      const imagesToPreload = [
+        items[prevIdx],
+        items[currentIndex],
+        items[nextIdx],
+      ];
+
+      // 비동기로 미리 로드 (에러 무시)
+      imagesToPreload.forEach((item) => {
+        preloadImagePair(item.beforeImage, item.afterImage).catch(() => {
+          // 에러 무시 - 실패해도 브라우저가 나중에 로드함
+        });
+      });
+    };
+
+    preloadAdjacentImages();
+  }, [currentIndex, items, getPrevIndex, getNextIndex]);
 
   return (
     <div
@@ -211,11 +272,22 @@ export default function BeforeAfterPage() {
         const response = await fetch('/api/admin/before-after');
         const data = await response.json();
         if (data.success && data.data && data.data.length > 0) {
-          setBeforeAfterData(data.data);
+          // DB 데이터와 더미 데이터를 병합
+          // DB 데이터가 있는 카테고리는 DB 데이터 사용, 없는 카테고리는 더미 데이터 유지
+          const dbCategories = new Set(data.data.map((item: BeforeAfterItem) => item.category));
+          const mergedData = [
+            ...data.data,
+            ...initialData.filter((item) => !dbCategories.has(item.category)),
+          ];
+          setBeforeAfterData(mergedData);
+        } else {
+          // DB 데이터가 없으면 더미 데이터 사용
+          setBeforeAfterData(initialData);
         }
       } catch (error) {
         console.error('데이터 조회 실패:', error);
         // 실패하면 초기 데이터 사용
+        setBeforeAfterData(initialData);
       } finally {
         setDataLoading(false);
       }
@@ -327,21 +399,24 @@ export default function BeforeAfterPage() {
       />
       {/* 전후 사진 캐러셀 섹션들 */}
       <div className={styles.carouselSection}>
-        {categoryOrder.map(
-          (category, index) =>
-            groupedData[category] && (
-              <CategoryCarousel
-                key={category}
-                category={getCategoryName(category)}
-                items={groupedData[category]}
-                index={index}
-                isLoggedIn={isLoggedIn}
-                onLoginClick={openLoginModal}
-                translations={t}
-                translateTitle={translateTitle}
-              />
-            ),
-        )}
+        {categoryOrder.map((category, index) => {
+          const items = groupedData[category] || [];
+          // 데이터가 없으면 렌더링하지 않음
+          if (items.length === 0) return null;
+
+          return (
+            <CategoryCarousel
+              key={category}
+              category={getCategoryName(category)}
+              items={items}
+              index={index}
+              isLoggedIn={isLoggedIn}
+              onLoginClick={openLoginModal}
+              translations={t}
+              translateTitle={translateTitle}
+            />
+          );
+        })}
       </div>
     </div>
   );

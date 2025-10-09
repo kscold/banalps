@@ -3,6 +3,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import * as styles from './BeforeAfterSlider.css';
 import { vw, mvw } from '@/shared/styles/responsive.utils';
+import { preloadImagePair } from '@/utils/imagePreloader';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -32,6 +33,7 @@ export default function BeforeAfterSlider({
   const isDragging = useRef(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -49,6 +51,21 @@ export default function BeforeAfterSlider({
       setIsInitialized(true);
     }
   }, [isInitialized]);
+
+  // Before/After 이미지 동시 로딩
+  React.useEffect(() => {
+    setImagesLoaded(false);
+
+    preloadImagePair(beforeImage, afterImage)
+      .then(() => {
+        setImagesLoaded(true);
+      })
+      .catch((error) => {
+        console.error('[BeforeAfterSlider] 이미지 로드 실패:', error);
+        // 에러가 발생해도 이미지를 표시 (브라우저 기본 로딩)
+        setImagesLoaded(true);
+      });
+  }, [beforeImage, afterImage]);
 
   const updateSliderPosition = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -130,7 +147,11 @@ export default function BeforeAfterSlider({
         className={styles.imageContainer}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
-        style={{ cursor: isLoggedIn ? 'ew-resize' : 'default' }}
+        style={{
+          cursor: isLoggedIn ? 'ew-resize' : 'default',
+          opacity: imagesLoaded ? 1 : 0,
+          transition: 'opacity 0.3s ease-in-out'
+        }}
       >
         {/* After 이미지 (전체) */}
         <div className={styles.afterImageWrapper}>

@@ -10,6 +10,7 @@ import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 import FeaturesSection from '../../shared/components/FeaturesSection/FeaturesSection';
 import HeroSection from '@/shared/components/HairTransplant/HeroSection';
 import { useVideoPreloader } from '@/utils/videoOptimizer';
+import { useVideoLazyLoad } from '@/hooks/useVideoLazyLoad';
 
 import * as styles from './ScalpTreatmentPage.css';
 import { vw, mvw } from '../../shared/styles/responsive.utils';
@@ -100,6 +101,13 @@ export default function ScalpTreatmentPage() {
   const section4VideoUrl = isMobile ? section4MobileVideoConfig.url : section4DesktopVideoConfig.url;
   const section5VideoUrl = isMobile ? section5MobileVideoConfig.url : section5DesktopVideoConfig.url;
   const section6VideoUrl = isMobile ? section6MobileVideoConfig.url : section6DesktopVideoConfig.url;
+
+  // 비디오 Lazy Loading
+  const heroVideo = useVideoLazyLoad({ rootMargin: '0px' }); // 히어로는 즉시 로드
+  const section3Video = useVideoLazyLoad({ rootMargin: '300px' }); // 뷰포트 300px 전에 로드
+  const section4Video = useVideoLazyLoad({ rootMargin: '300px' });
+  const section5Video = useVideoLazyLoad({ rootMargin: '300px' });
+  const section6Video = useVideoLazyLoad({ rootMargin: '300px' });
 
   useEffect(() => {
     const checkDesktopLarge = () => {
@@ -552,21 +560,23 @@ export default function ScalpTreatmentPage() {
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
             {/* 영상 영역 */}
-            <div className={styles.scalpTreatmentVideoContainer}>
-              <iframe
-                title="vimeo-player"
-                src={currentVideoUrl}
-                className={styles.vimeoIframe}
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                onLoad={handleVimeoLoad}
-                onError={() => {
-                  console.error('[VideoSection/Vimeo에러] iframe 로드 실패');
-                }}
-                suppressHydrationWarning
-              />
+            <div ref={heroVideo.videoRef} className={styles.scalpTreatmentVideoContainer}>
+              {heroVideo.shouldLoad && (
+                <iframe
+                  title="vimeo-player"
+                  src={currentVideoUrl}
+                  className={styles.vimeoIframe}
+                  style={{ border: 'none' }}
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  onLoad={handleVimeoLoad}
+                  onError={() => {
+                    console.error('[VideoSection/Vimeo에러] iframe 로드 실패');
+                  }}
+                  suppressHydrationWarning
+                />
+              )}
             </div>
           </div>
         </div>
@@ -691,17 +701,19 @@ export default function ScalpTreatmentPage() {
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
-            <div className={styles.smallVideoContainer}>
-              <iframe
-                title="vimeo-player"
-                src={section3VideoUrl}
-                className={styles.vimeoIframe}
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                suppressHydrationWarning
-              />
+            <div ref={section3Video.videoRef} className={styles.smallVideoContainer}>
+              {section3Video.shouldLoad && (
+                <iframe
+                  title="vimeo-player"
+                  src={section3VideoUrl}
+                  className={styles.vimeoIframe}
+                  style={{ border: 'none' }}
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  suppressHydrationWarning
+                />
+              )}
             </div>
           </div>
 
@@ -746,17 +758,19 @@ export default function ScalpTreatmentPage() {
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
-            <div className={styles.smallVideoContainer}>
-              <iframe
-                title="vimeo-player"
-                src={section4VideoUrl}
-                className={styles.vimeoIframe}
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                suppressHydrationWarning
-              />
+            <div ref={section4Video.videoRef} className={styles.smallVideoContainer}>
+              {section4Video.shouldLoad && (
+                <iframe
+                  title="vimeo-player"
+                  src={section4VideoUrl}
+                  className={styles.vimeoIframe}
+                  style={{ border: 'none' }}
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  suppressHydrationWarning
+                />
+              )}
             </div>
           </div>
 
@@ -806,17 +820,19 @@ export default function ScalpTreatmentPage() {
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
-            <div className={styles.smallVideoContainer}>
-              <iframe
-                title="vimeo-player"
-                src={section5VideoUrl}
-                className={styles.vimeoIframe}
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                suppressHydrationWarning
-              />
+            <div ref={section5Video.videoRef} className={styles.smallVideoContainer}>
+              {section5Video.shouldLoad && (
+                <iframe
+                  title="vimeo-player"
+                  src={section5VideoUrl}
+                  className={styles.vimeoIframe}
+                  style={{ border: 'none' }}
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  suppressHydrationWarning
+                />
+              )}
             </div>
           </div>
 
@@ -870,17 +886,19 @@ export default function ScalpTreatmentPage() {
         <div className={styles.treatmentDetailContainer}>
           {/* 왼쪽 영상 */}
           <div className={styles.treatmentVideoContent}>
-            <div className={styles.smallVideoContainer}>
-              <iframe
-                title="vimeo-player"
-                src={section6VideoUrl}
-                className={styles.vimeoIframe}
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                suppressHydrationWarning
-              />
+            <div ref={section6Video.videoRef} className={styles.smallVideoContainer}>
+              {section6Video.shouldLoad && (
+                <iframe
+                  title="vimeo-player"
+                  src={section6VideoUrl}
+                  className={styles.vimeoIframe}
+                  style={{ border: 'none' }}
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  suppressHydrationWarning
+                />
+              )}
             </div>
           </div>
 
