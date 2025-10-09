@@ -21,13 +21,13 @@ export const containerBlue = style({
   flexDirection: 'column',
 });
 
-// 왼쪽 프리뷰용 (After 표시) - 왼쪽만 둥글게 (바깥쪽)
+// 왼쪽 프리뷰용 (After 표시) - 왼쪽만 둥글게 (바깥쪽) - 기본 (로그인 안함 = 블러 O)
 export const imageContainerLeft = style({
   position: 'relative',
   width: '100%',
   flexGrow: 1,
   overflow: 'hidden',
-  borderRadius: `0 8px 8px 0`, // 왼쪽 상단만 둥글게
+  borderRadius: `0 8px 8px 0`,
   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   '::before': {
     content: '""',
@@ -60,13 +60,46 @@ export const imageContainerLeft = style({
   },
 });
 
-// 오른쪽 프리뷰용 (Before 표시) - 오른쪽만 둥글게 (바깥쪽)
+// 로그인 된 상태용 - 왼쪽 (블러 효과 없음)
+export const imageContainerLeftLoggedIn = style({
+  position: 'relative',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  borderRadius: `0 8px 8px 0`,
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      borderRadius: '0 8px 8px 0',
+    },
+    [breakpoints.mobile]: {
+      borderRadius: mvw(8),
+      boxShadow: 'none',
+      '::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'rgba(0, 0, 0, 0.7)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderRadius: mvw(8),
+        zIndex: 1,
+        pointerEvents: 'none',
+      },
+    },
+  },
+});
+
+// 오른쪽 프리뷰용 (Before 표시) - 오른쪽만 둥글게 (바깥쪽) - 기본 (로그인 안함 = 블러 O)
 export const imageContainerRight = style({
   position: 'relative',
   width: '100%',
   flexGrow: 1,
   overflow: 'hidden',
-  borderRadius: `8px 0 0 8px`, // 오른쪽 상단만 둥글게
+  borderRadius: `8px 0 0 8px`,
   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
   '::before': {
     content: '""',
@@ -94,6 +127,39 @@ export const imageContainerRight = style({
       boxShadow: 'none',
       '::before': {
         borderRadius: '8px',
+      },
+    },
+  },
+});
+
+// 로그인 된 상태용 - 오른쪽 (블러 효과 없음)
+export const imageContainerRightLoggedIn = style({
+  position: 'relative',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  borderRadius: `8px 0 0 8px`,
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      borderRadius: '8px 0 0 8px',
+    },
+    [breakpoints.mobile]: {
+      borderRadius: '8px',
+      boxShadow: 'none',
+      '::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'rgba(0, 0, 0, 0.7)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderRadius: '8px',
+        zIndex: 1,
+        pointerEvents: 'none',
       },
     },
   },

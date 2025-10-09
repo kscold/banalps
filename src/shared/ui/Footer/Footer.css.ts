@@ -92,6 +92,7 @@ export const footerClinicName = style({
   color: '#ffffff',
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '14px',
       lineHeight: '20px',
     },
   },
@@ -107,6 +108,7 @@ export const footerRepresentative = style({
   color: '#ffffff',
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '14px',
       lineHeight: '20px',
     },
   },
@@ -155,6 +157,7 @@ export const footerAddress = style({
 
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '14px',
       lineHeight: '20px',
     },
   },
@@ -185,6 +188,7 @@ export const footerLink = style({
   padding: 0,
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '14px',
       lineHeight: '20px',
     },
   },
@@ -200,6 +204,7 @@ export const footerPhone = style({
   color: '#ffffff',
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '14px',
       lineHeight: '20px',
     },
   },

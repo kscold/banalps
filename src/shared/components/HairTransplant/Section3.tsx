@@ -18,6 +18,7 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
   const section3ImagesRef = useRef(null);
   const section3ImagesInView = useInView(section3ImagesRef, { once: true });
 
+
   return (
     <section
       className={styles.section3}
@@ -118,11 +119,11 @@ export default function Section3({ section3, isMobile, isDesktopLarge, scarReduc
                   <motion.div
                     className={styles.section3Image}
                     initial={{ opacity: 0, y: 80 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
                       duration: 0.5,
                       ease: 'easeOut',
-                      delay: 0.8,
                     }}
                   >
                     <img

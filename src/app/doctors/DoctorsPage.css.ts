@@ -2425,6 +2425,11 @@ export const timelineGraffitiSection = style({
   backgroundColor: '#FFFDF7',
   position: 'relative',
   clear: 'both',
+  paddingTop: vw(120),
+  paddingBottom: vw(240),
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   '@media': {
     [breakpoints.desktopLarge]: {
       paddingTop: '120px',
@@ -2447,9 +2452,13 @@ export const timelineGraffitiSection = style({
 // 타임라인 그래피티 이미지
 export const timelineGraffiti = style({
   width: '100%',
+  maxWidth: '1920px', // 이미지는 1920px 제한
   height: 'auto',
   display: 'block',
   '@media': {
+    [breakpoints.desktopLarge]: {
+      maxWidth: '1920px',
+    },
     [breakpoints.mobile]: {
       display: 'none',
     },

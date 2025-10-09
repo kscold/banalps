@@ -364,28 +364,35 @@ export const valueCardsImageMobile = style({
 export const reYouSection = style({
   width: '100%',
   background: '#73D5FA',
-  position: 'relative', // overflow 제거를 위해 relative 추가
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   '@media': {
     [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       padding: '0',
       marginBottom: '0',
+      display: 'block',
     },
   },
 });
 
 export const reYouContainer = style({
   position: 'relative',
-  width: '100%', // 전체 너비 사용
+  width: '100%',
   height: vw(1220), // 피그마 기준 높이
-  maxWidth: 'none', // 최대 너비 제한 없음
-  margin: 0, // 중앙 정렬 제거
+  maxWidth: '1920px', // 1920px로 제한
+  margin: '0 auto', // 중앙 정렬
   '@media': {
-    [breakpoints.desktopLarge]: {},
-
+    [breakpoints.desktopLarge]: {
+      maxWidth: '1920px',
+      height: '1220px', // 1920px+ 고정 높이
+    },
     [breakpoints.mobile]: {
       height: 'auto',
       overflow: 'hidden',
+      maxWidth: '100%',
     },
   },
 });
@@ -395,7 +402,6 @@ export const reYouImageCards = style({
   position: 'relative',
   width: '100%', // 전체 너비 사용
   height: '100%',
-  maxWidth: 'none', // 최대 너비 제한 없음
   '@media': {
     [breakpoints.mobile]: {
       position: 'static',
@@ -462,8 +468,8 @@ export const reYouCard2 = style({
   willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
-      left: '700px',
-      bottom: '180px',
+      left: '725px',
+      top: '318px',
       width: '410px',
       height: '610px',
       borderRadius: '15px',
@@ -491,7 +497,13 @@ export const reYouCard3 = style({
   backfaceVisibility: 'hidden', // 깜빡임 방지
   willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      left: '300px',
+      top: '1036px',
+      width: '490px',
+      height: '330px',
+      borderRadius: '15px',
+    },
     [breakpoints.mobile]: {
       position: 'static',
       width: '100vw',
@@ -516,6 +528,13 @@ export const reYouCard4 = style({
   backfaceVisibility: 'hidden', // 깜빡임 방지
   willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
+    [breakpoints.desktopLarge]: {
+      right: '0px',
+      top: '200px',
+      width: '600px',
+      height: '900px',
+      borderRadius: '15px',
+    },
     [breakpoints.mobile]: {
       position: 'static',
       width: '100vw',
@@ -545,7 +564,10 @@ export const reYouTextSection = style({
   top: vw(100),
   zIndex: 10,
   '@media': {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      left: '700px',
+      top: '100px',
+    },
     [breakpoints.mobile]: {
       padding: `0 ${mvw(20)}`,
       position: 'static',
@@ -574,6 +596,7 @@ export const reYouTitle = style({
   },
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '70px',
       margin: '0 0 20px 0',
     },
     [breakpoints.mobile]: {
@@ -598,6 +621,9 @@ export const reYouSubtitle = style({
   color: '#FFFFFF', // 흰색으로 변경
   margin: 0,
   '@media': {
+    [breakpoints.desktopLarge]: {
+      fontSize: '20px',
+    },
     [breakpoints.mobile]: {
       textAlign: 'left',
       fontSize: mvw(18),

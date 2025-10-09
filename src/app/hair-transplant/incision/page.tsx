@@ -168,8 +168,8 @@ function IncisionContent() {
       },
       illustrationPosition: {
         // Optional: absolute positioning for desktop
-        bottom: -370, // Position at the bottom
-        right: -190, // Position at the right
+        bottom: -120, // Position at the bottom
+        right: -200, // Position at the right
       },
       illustrationMobile: '/hair-transplant/incision/mobile/illustration-2-mobile.svg',
       illustrationMobileSize: {
@@ -234,7 +234,7 @@ function IncisionContent() {
       },
       illustrationPosition: {
         // Absolute positioning for section 3 desktop
-        top: 500, // Position from top
+        top: 420, // Position from top
         left: -170, // Position from left
       },
       illustrationMobile: '/hair-transplant/incision/mobile/illustration-3-mobile.svg',

@@ -80,18 +80,18 @@ function FloatingButtonGroupComponent({ className, onButtonClick }: FloatingButt
         : footerVisibleHeight > 100; // 데스크탑에서는 100px 이상
 
       // 디버깅을 위한 로그 (개발 환경에서만)
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Footer Debug:', {
-          footerTop,
-          footerBottom,
-          windowHeight,
-          footerVisibleHeight,
-          isFooterVisible,
-          floatingButtonBottom,
-          threshold,
-          shouldMove: isFooterVisible && footerTop < floatingButtonBottom + threshold,
-        });
-      }
+      // if (process.env.NODE_ENV === 'development') {
+      //   console.log('Footer Debug:', {
+      //     footerTop,
+      //     footerBottom,
+      //     windowHeight,
+      //     footerVisibleHeight,
+      //     isFooterVisible,
+      //     floatingButtonBottom,
+      //     threshold,
+      //     shouldMove: isFooterVisible && footerTop < floatingButtonBottom + threshold,
+      //   });
+      // }
 
       // 푸터가 화면에 충분히 보이고, 플로팅 버튼 영역에 접근할 때만 이동
       const shouldMoveAboveFooter = isFooterVisible && footerTop < floatingButtonBottom + threshold;
@@ -132,7 +132,7 @@ function FloatingButtonGroupComponent({ className, onButtonClick }: FloatingButt
       line: 'https://line.me/R/ti/p/@874gnnsw?oat_content=url',
       instagram: 'https://www.instagram.com/banal_official_',
     }),
-    [],
+    []
   );
 
   // 버튼 클릭 핸들러 메모이제이션
@@ -150,7 +150,7 @@ function FloatingButtonGroupComponent({ className, onButtonClick }: FloatingButt
 
       onButtonClick?.(variant);
     },
-    [onButtonClick, socialLinks],
+    [onButtonClick, socialLinks]
   );
 
   return (

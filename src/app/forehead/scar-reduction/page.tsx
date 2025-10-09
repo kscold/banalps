@@ -83,6 +83,10 @@ export default function ScarReductionPage() {
           top: 0,
         },
       },
+      section1RightSize: {
+        width: 960,
+        height: 770,
+      },
       imagesMobile: {
         main: '/forehead/scar-reduction/mobile/scar-reduction-1-mobile.svg',
       },

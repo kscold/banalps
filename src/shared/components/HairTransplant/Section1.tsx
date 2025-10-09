@@ -20,6 +20,7 @@ export default function Section1({ section1, scarReduction, isHairline, isHairTr
   const section1ImagesRef = useRef(null);
   const section1ImagesInView = useInView(section1ImagesRef, { once: true });
 
+
   return (
     <section
       className={styles.section1}
@@ -78,11 +79,11 @@ export default function Section1({ section1, scarReduction, isHairline, isHairTr
                         : styles.section1Image1
                     }
                     initial={{ opacity: 0, y: 80 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
                       duration: 0.5,
                       ease: 'easeOut',
-                      delay: 0.4,
                     }}
                     style={{
                       ...(section1.imagesMobileSize?.mainMaxWidth
@@ -243,8 +244,9 @@ export default function Section1({ section1, scarReduction, isHairline, isHairTr
                       : styles.section1Image2
                   }
                   initial={{ opacity: 0, y: 80 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: 'easeOut', delay: 0.8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
                   style={{
                     ...(section1.imagesMobileSize?.secondaryMaxWidth
                       ? {

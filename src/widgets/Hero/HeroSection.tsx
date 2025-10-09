@@ -108,10 +108,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         if (onTextComplete && !localIsTransitioning) {
           localIsTransitioning = true;
           setIsTransitioning(true);
-          setTimeout(() => {
-            onTextComplete();
-            setIsTransitioning(false);
-          }, 300);
+          // setTimeout 제거하여 즉시 전환 - 스크롤 걸림 현상 방지
+          onTextComplete();
+          setIsTransitioning(false);
         }
         return; // preventDefault 하지 않고 리턴
       }
@@ -190,10 +189,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         if (onTextComplete && !localIsTransitioning) {
           localIsTransitioning = true;
           setIsTransitioning(true);
-          setTimeout(() => {
-            onTextComplete();
-            setIsTransitioning(false);
-          }, 300);
+          // setTimeout 제거하여 즉시 전환 - 스크롤 걸림 현상 방지
+          onTextComplete();
+          setIsTransitioning(false);
         }
         isTouching = false;
         return; // preventDefault 하지 않고 리턴

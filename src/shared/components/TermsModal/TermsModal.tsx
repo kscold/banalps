@@ -59,6 +59,7 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
           <div className={styles.content}>
             {type === 'terms' ? (
               <div className={styles.termsContent}>
+                <p>회원가입약관</p>
                 <h4>제1장 총 칙</h4>
                 <p>제1조(목적)</p>
                 <p>
@@ -108,6 +109,7 @@ export default function TermsModal({ isOpen, onClose, type }: TermsModalProps) {
                 <br />
                 <p>제4조(준용규정)</p>
                 <p>이 약관에 명시되지 않은 사항은 전기통신기본법, 전기통신사업법 및 기타 관련법령의 규정에 따릅니다.</p>
+                <p>목록으로</p>
                 <br />
                 <h4>제2장 서비스 이용계약</h4>
                 <p>제5조(이용계약의 성립)</p>

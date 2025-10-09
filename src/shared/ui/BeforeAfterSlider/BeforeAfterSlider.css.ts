@@ -45,6 +45,8 @@ export const image = style({
   height: '100%',
   objectFit: 'cover',
   display: 'block',
+  transform: 'scale(1.25)',
+  objectPosition: 'center 80%', // 이미지를 위로 이동
   '@media': {
     [breakpoints.mobile]: {
       transform: 'scale(1.2)', // 모바일에서 이미지 확대
@@ -101,6 +103,11 @@ export const labelDesktop = style({
   margin: '0',
   textAlign: 'center',
   flex: '0 0 auto',
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      fontSize: '20px',
+    },
+  },
 });
 
 export const labelsContainerDesktopBlue = style({
@@ -166,6 +173,7 @@ export const sliderLineTop = style({
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
   '@media': {
     [breakpoints.mobile]: {
+      width: '1px',
       bottom: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤
     },
   },
@@ -181,6 +189,7 @@ export const sliderLineBottom = style({
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
   '@media': {
     [breakpoints.mobile]: {
+      width: '1px',
       top: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤
     },
   },
@@ -208,13 +217,16 @@ export const sliderHandle = style({
   cursor: 'ew-resize',
   pointerEvents: 'auto',
   '@media': {
+    [breakpoints.desktopLarge]: {
+      width: '64px',
+      height: '64px',
+    },
     [breakpoints.mobile]: {
       width: mvw(30),
       height: mvw(30),
       border: '2px solid #FFFFFF',
     },
   },
-
   ':hover': {
     backgroundColor: 'rgba(255, 255, 255, 0.1)', // 호버 시 아주 미세한 배경
     transform: 'translate(-50%, -50%) scale(1.05)',

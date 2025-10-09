@@ -255,62 +255,53 @@ export default function ArrowButton({
     return textStyle;
   };
 
-  // 커스텀 스타일 생성
+  // 커스텀 스타일 생성 - CSS 변수만 설정, inline style은 CSS 파일의 미디어 쿼리가 처리
   const customStyle: React.CSSProperties & Record<string, any> = {};
 
   if (fontSize) {
-    // 숫자로 전달되면 1920px 기준 vw로 변환
+    // CSS 변수로만 전달 - CSS 파일에서 미디어 쿼리로 처리
     if (typeof fontSize === 'number') {
-      customStyle.fontSize = `${(fontSize / 1920) * 100}vw`;
-      // CSS 변수로 1920px+ 고정값 전달
       customStyle['--desktop-font-size'] = `${fontSize}px`;
     } else {
       customStyle.fontSize = fontSize;
     }
   }
 
-  // 패딩 처리 - 개별 값이 우선순위가 높음
+  // 패딩 처리 - CSS 변수로만 전달
   if (paddingTop !== undefined) {
-    customStyle.paddingTop = `${(paddingTop / 1920) * 100}vw`;
     customStyle['--desktop-padding-top'] = `${paddingTop}px`;
   } else if (paddingVertical) {
-    customStyle.paddingTop = `${(paddingVertical / 1920) * 100}vw`;
     customStyle['--desktop-padding-top'] = `${paddingVertical}px`;
   }
 
   if (paddingBottom !== undefined) {
-    customStyle.paddingBottom = `${(paddingBottom / 1920) * 100}vw`;
     customStyle['--desktop-padding-bottom'] = `${paddingBottom}px`;
   } else if (paddingVertical) {
-    customStyle.paddingBottom = `${(paddingVertical / 1920) * 100}vw`;
     customStyle['--desktop-padding-bottom'] = `${paddingVertical}px`;
   }
 
   // padding 처리
   if (paddingLeft === true && calculatedPadding.left && calculatedPadding.right) {
-    // true일 때는 자동 계산된 패딩 사용
+    // true일 때는 자동 계산된 패딩 사용 (기존 로직 유지)
     customStyle.paddingLeft = calculatedPadding.left;
     customStyle.paddingRight = calculatedPadding.right;
     // 1920px+ 고정값
     customStyle['--desktop-padding-left'] = `${parseFloat(calculatedPadding.left) * 19.2}px`;
     customStyle['--desktop-padding-right'] = `${parseFloat(calculatedPadding.right) * 19.2}px`;
   } else {
-    // paddingLeft가 숫자일 때 vw로 변환
+    // paddingLeft가 숫자일 때 CSS 변수로만 전달
     if (typeof paddingLeft === 'number') {
-      customStyle.paddingLeft = `${(paddingLeft / 1920) * 100}vw`;
       customStyle['--desktop-padding-left'] = `${paddingLeft}px`;
     }
     // paddingRight 처리
     if (paddingRight) {
-      customStyle.paddingRight = `${(paddingRight / 1920) * 100}vw`;
       customStyle['--desktop-padding-right'] = `${paddingRight}px`;
     }
   }
 
   if (width) {
-    // 숫자로 전달되면 1920px 기준 vw로 변환
+    // CSS 변수로만 전달
     if (typeof width === 'number') {
-      customStyle.width = `${(width / 1920) * 100}vw`;
       customStyle['--desktop-width'] = `${width}px`;
     } else {
       customStyle.width = width;
@@ -318,9 +309,8 @@ export default function ArrowButton({
   }
 
   if (height) {
-    // 숫자로 전달되면 1920px 기준 vw로 변환
+    // CSS 변수로만 전달
     if (typeof height === 'number') {
-      customStyle.height = `${(height / 1920) * 100}vw`;
       customStyle['--desktop-height'] = `${height}px`;
     } else {
       customStyle.height = height;

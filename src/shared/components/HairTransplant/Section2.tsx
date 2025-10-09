@@ -29,6 +29,7 @@ export default function Section2({
   const section2ImagesRef = useRef(null);
   const section2ImagesInView = useInView(section2ImagesRef, { once: true });
 
+
   return (
     <section
       className={styles.section2}
@@ -109,11 +110,11 @@ export default function Section2({
                   <motion.div
                     className={styles.section2Image}
                     initial={{ opacity: 0, y: 80 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
                       duration: 0.5,
                       ease: 'easeOut',
-                      delay: 0.4,
                     }}
                     style={
                       section2.imagesMobileSize
@@ -426,10 +427,7 @@ export default function Section2({
                     className={styles.section2SvgContainer}
                     style={
                       section2.svgElementsSize?.container
-                        ? {
-                            width: vw(section2.svgElementsSize.container.width),
-                            height: vw(section2.svgElementsSize.container.height),
-                          }
+                        ? getResponsiveSize(section2.svgElementsSize.container, isDesktopLarge)
                         : undefined
                     }
                   >
@@ -510,30 +508,30 @@ export default function Section2({
                   )}
                 </div>
               </div>
+
+              {/* SVG absolute - section2Right 안에서 렌더링 */}
+              {section2.svgElements?.absolute && !isMobile && (
+                <div
+                  className={styles.section2Svg2}
+                  style={{
+                    position: 'absolute' as const,
+                    ...getResponsivePosition(section2.svgElementsPosition?.absolute, isMobile, isDesktopLarge),
+                    ...getResponsiveSize(section2.svgElementsSize?.absolute, isDesktopLarge),
+                  }}
+                >
+                  <img
+                    src={section2.svgElements.absolute}
+                    alt="일러스트 2"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </>
-        )}
-
-        {/* SVG absolute - viewport 오른쪽 기준으로 배치 (section2Content 밖에서 렌더링) */}
-        {section2.svgElements?.absolute && !isMobile && (
-          <div
-            className={styles.section2Svg2}
-            style={{
-              position: 'absolute' as const,
-              ...getResponsivePosition(section2.svgElementsPosition?.absolute, isMobile, isDesktopLarge),
-              ...getResponsiveSize(section2.svgElementsSize?.absolute, isDesktopLarge),
-            }}
-          >
-            <img
-              src={section2.svgElements.absolute}
-              alt="일러스트 2"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-              }}
-            />
-          </div>
         )}
       </div>
     </section>

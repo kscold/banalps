@@ -270,6 +270,9 @@ export const storyText = style({
   userSelect: 'text', // 텍스트 선택은 여전히 허용
 
   '@media': {
+    [breakpoints.desktopLarge]: {
+      fontSize: '20px',
+    },
     [breakpoints.mobile]: {
       textAlign: 'left', // 모바일에서 중앙 정렬
       fontSize: mvw(16),
@@ -299,6 +302,9 @@ export const specialQuoteText = style({
   userSelect: 'text', // 텍스트 선택은 여전히 허용
 
   '@media': {
+    [breakpoints.desktopLarge]: {
+      fontSize: '20px',
+    },
     [breakpoints.mobile]: {
       fontSize: 'clamp(16px, 4vw, 20px)', // 모바일에서는 조금 더 작게
       lineHeight: '1.5',

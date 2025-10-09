@@ -16,6 +16,9 @@ export const header = style({
   ...responsiveProperty('height', 85), // 1920px 기준 85px
   ...responsiveProperty('borderRadius', 128), // 1920px 기준 128px
   '@media': {
+    [breakpoints.desktopLarge]: {
+      height: '85px',
+    },
     [breakpoints.mobile]: {
       // 모바일: 365px~767px (BlueSection과 동일)
       top: '36px',
@@ -320,6 +323,13 @@ export const dropdownContent = style({
   ...responsiveProperty('paddingRight', 20), // 1920px 기준 20px
   // ...responsiveProperty("paddingBottom", 30), // 1920px 기준 30px
   ...responsiveProperty('minWidth', 160), // 1920px 기준 160px
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      top: '75px',
+
+      minWidth: '160px',
+    },
+  },
 });
 
 export const navLink = style({

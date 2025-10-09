@@ -1,0 +1,55 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Default - Allow all bots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Naver Bot (Yeti)
+User-agent: Yeti
+Allow: /
+Crawl-delay: 0
+
+# Naver Blog Bot
+User-agent: NaverBot
+Allow: /
+
+# Daum Bot
+User-agent: Daumoa
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Yahoo Bot (Global)
+User-agent: Slurp
+Allow: /
+
+# Yahoo Japan Bot
+User-agent: Y!J
+Allow: /
+
+User-agent: Yahoo-MMCrawler
+Allow: /
+
+User-agent: Yahoo! Slurp
+Allow: /
+
+# Sitemap location
+Sitemap: https://banalps.com/sitemap.xml

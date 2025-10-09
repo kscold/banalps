@@ -5,7 +5,7 @@ import { breakpoints } from '@/shared/styles/responsive.css';
 export const container = style({
   height: '100vh',
   overflowY: 'scroll',
-  scrollBehavior: 'smooth',
+  scrollBehavior: 'auto', // smooth → auto로 변경하여 스크롤 충돌 방지
   WebkitOverflowScrolling: 'touch',
   backgroundColor: '#000',
   zIndex: 1,

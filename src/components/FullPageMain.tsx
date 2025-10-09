@@ -66,11 +66,10 @@ const FullPageMain = () => {
     };
   }, [handleIntersection, observerOptions]);
 
-  // Hero 완료 핸들러 - useCallback으로 메모이제이션
+  // Hero 완료 핸들러 - 자동 스크롤 비활성화 (사용자가 수동으로 스크롤하도록)
   const handleHeroComplete = useCallback(() => {
-    if (videoRef.current) {
-      videoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // 자동 스크롤 제거 - 사용자가 자연스럽게 스크롤하도록 함
+    // 이렇게 하면 텍스트 애니메이션 후 스크롤이 걸리는 현상 방지
   }, []);
 
   // 비디오 종료 핸들러 - 자동 스크롤 비활성화 (사용자가 수동으로 스크롤하도록)

@@ -158,10 +158,14 @@ export const vimeoIframe = style({
 export const introSection = style({
   backgroundColor: '#FFFDF7',
   position: 'relative',
+  maxWidth: '1920px',
+  margin: '0 auto',
 
   '@media': {
     [breakpoints.desktopLarge]: {
       height: '660px',
+      maxWidth: '1920px',
+      margin: '0 auto',
     },
     [breakpoints.desktop]: {
       height: vw(660),
@@ -182,6 +186,7 @@ export const introContainer = style({
   height: vw(660),
   '@media': {
     [breakpoints.desktopLarge]: {
+      marginLeft: '160px',
       height: '660px',
     },
     [breakpoints.desktop]: {},
@@ -348,16 +353,17 @@ export const treatmentCardsSection = style({
 });
 
 export const treatmentCardsContainer = style({
-  maxWidth: vw(1400),
+  maxWidth: vw(1600),
   margin: '0 auto',
   padding: `0 ${vw(60)}`,
+
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
   '@media': {
     [breakpoints.desktopLarge]: {
-      maxWidth: '1400px',
-      padding: '0 60px',
+      maxWidth: '1600px',
+      padding: 0,
     },
     [breakpoints.mobile]: {
       flexDirection: 'column',
@@ -615,10 +621,9 @@ export const treatmentTitle = style({
   marginBottom: vw(40),
   lineHeight: '150%',
   letterSpacing: '0',
-
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '48px',
+      fontSize: '32px',
       marginBottom: '40px',
     },
     [breakpoints.mobile]: {
@@ -703,6 +708,7 @@ export const treatmentSubtitleCustomMargin = style({
   whiteSpace: 'normal',
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '40px',
       lineHeight: '56px',
       marginBottom: 'var(--margin-bottom-desktop)',
     },
@@ -721,7 +727,7 @@ export const treatmentSubtitleCustomMargin = style({
 });
 
 export const treatmentDescription = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: '150%',
@@ -731,7 +737,7 @@ export const treatmentDescription = style({
   whiteSpace: 'pre-line',
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '36px',
+      fontSize: '24px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(16),
@@ -746,7 +752,7 @@ export const treatmentDescription = style({
 
 // treatmentDescription with customizable margin bottom using CSS variables
 export const treatmentDescriptionCustomMargin = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 400,
   ...responsiveFont(24),
   lineHeight: '150%',
@@ -756,7 +762,7 @@ export const treatmentDescriptionCustomMargin = style({
   whiteSpace: 'pre-line',
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '36px',
+      fontSize: '24px',
       marginBottom: 'var(--margin-bottom-desktop)',
     },
     [breakpoints.mobile]: {

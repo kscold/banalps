@@ -171,8 +171,8 @@ function CrownContent() {
       },
       svgElementsPosition: {
         absolute: {
-          bottom: 97,
-          right: 0,
+          bottom: language === 'JP' ? 270 : 90,
+          right: language === 'JP' ? 0 : 0,
         },
       },
       mobileImages: {

@@ -167,7 +167,7 @@ globalStyle(`${termsContent} h4`, {
   margin: `${vw(32)} 0 ${vw(24)} 0`,
   '@media': {
     [breakpoints.mobile]: {
-      fontSize: mvw(18),
+      fontSize: mvw(16),
       margin: `${mvw(20)} 0 ${mvw(12)} 0`,
     },
   },

@@ -12,6 +12,7 @@ interface SidePreviewSliderProps {
   onClick?: () => void;
   className?: string;
   isBlueBackground?: boolean;
+  isLoggedIn?: boolean; // 로그인 상태
 }
 
 export default function SidePreviewSlider({
@@ -23,12 +24,21 @@ export default function SidePreviewSlider({
   onClick,
   className,
   isBlueBackground = false,
+  isLoggedIn = true, // 기본값 true (로그인 상태)
 }: SidePreviewSliderProps) {
   // showBefore가 true면 Before 라벨, false면 After 라벨
   const displayLabel = showBefore ? 'Before' : 'After';
 
-  // showBefore가 true면 오른쪽 프리뷰 (오른쪽만 둥글게), false면 왼쪽 프리뷰 (왼쪽만 둥글게)
-  const imageContainerClass = showBefore ? styles.imageContainerRight : styles.imageContainerLeft;
+  // showBefore가 true면 오른쪽 프리뷰, false면 왼쪽 프리뷰
+  // 로그인 상태에 따라 블러 효과 적용 여부 결정
+  // 로그인 O: LoggedIn 버전 (데스크탑 블러 X), 로그인 X: 기본 버전 (데스크탑 블러 O)
+  const imageContainerClass = showBefore
+    ? isLoggedIn
+      ? styles.imageContainerRightLoggedIn
+      : styles.imageContainerRight
+    : isLoggedIn
+      ? styles.imageContainerLeftLoggedIn
+      : styles.imageContainerLeft;
 
   // 라벨 컨테이너도 동일하게 적용
   const labelsContainerClass = isBlueBackground

@@ -32,18 +32,11 @@ export default function ForeheadHairTransplantPage() {
       left: language === 'JP' ? 365 : 235,
       bottom: language === 'JP' ? 6 : 12,
       // 언어에 따른 모바일 위치
-      mobileLeft: language === 'JP' ? 107 : 156,
-      mobileBottom: 6,
+      mobileLeft: language === 'JP' ? 243 : 155,
+      mobileBottom: language === 'JP' ? 2 : 6,
     },
     heroIllustration: '/forehead/hero-illustration.svg',
     heroIllustrationMobile: '/forehead/mobile/hero-illustration.svg',
-    heroIllustrationSize: {
-      width: 1760,
-      height: 660,
-    },
-    heroIllustrationPosition: {
-      left: 0, // Stick to the far left
-    },
     section1: {
       number: 1,
       title: (

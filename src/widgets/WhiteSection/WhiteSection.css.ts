@@ -311,6 +311,7 @@ export const otherServiceTitle = style({
   zIndex: 2,
   '@media': {
     [breakpoints.desktopLarge]: {
+      fontSize: '32px',
       top: '20px',
       left: '20px',
     },

@@ -48,15 +48,16 @@ export const arrowButton = style({
   lineHeight: '100%',
   // width 제거 - 텍스트 길이에 따라 자동 조정
   minWidth: 'auto', // 최소 너비 자동
-  width: 'auto', // 자동 너비
+  width: 'var(--desktop-width, auto)', // CSS 변수 사용 (기본값 auto)
   gap: `${vw(10)}`, // 텍스트와 화살표 간격 10px
-  // 기본 패딩 - 커스텀 값으로 오버라이드 가능
-  paddingTop: vw(10),
-  paddingBottom: vw(10),
-  paddingLeft: vw(20), // 기본 왼쪽 패딩 (오버라이드 가능)
-  paddingRight: vw(48), // 오른쪽에 화살표 공간 확보 (28px 원 + 20px 여백)
+  // 기본 패딩 - CSS 변수로 오버라이드 가능
+  paddingTop: `var(--desktop-padding-top, ${vw(10)})`, // CSS 변수 우선, 기본값 vw
+  paddingBottom: `var(--desktop-padding-bottom, ${vw(10)})`,
+  paddingLeft: `var(--desktop-padding-left, ${vw(20)})`, // CSS 변수 우선, 기본값 vw
+  paddingRight: `var(--desktop-padding-right, ${vw(48)})`, // CSS 변수 우선, 기본값 vw
   borderRadius: vw(100), // 1920px 기준 100px
-  fontSize: vw(20), // 1920px 기준 20px
+  fontSize: `var(--desktop-font-size, ${vw(20)})`, // CSS 변수 우선, 기본값 vw
+  height: 'var(--desktop-height, auto)', // CSS 변수 사용
 
   ':active': {
     boxShadow: `0 ${vw(4)} ${vw(16)} rgba(0, 0, 0, 0.08)`,
@@ -69,7 +70,7 @@ export const arrowButton = style({
   },
 
   '@media': {
-    // 1920px 이상에서 CSS 변수 사용하여 고정값 적용
+    // 1920px 이상에서 고정값 적용
     [breakpoints.desktopLarge]: {
       fontSize: 'var(--desktop-font-size, 20px)',
       height: 'var(--desktop-height, auto)',

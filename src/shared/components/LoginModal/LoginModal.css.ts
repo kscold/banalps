@@ -306,6 +306,11 @@ export const socialText = style({
   fontSize: vw(14),
   lineHeight: '140%',
   fontWeight: 400,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.mobile]: {
       fontSize: mvw(14),
@@ -400,16 +405,29 @@ export const signupTitle = style({
   letterSpacing: '0%',
   color: '#272727',
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 600,
+    },
+  },
   '@media': {
+    [breakpoints.desktopLarge]: {
+      fontSize: '24px',
+    },
     [breakpoints.mobile]: {
-      fontSize: mvw(20),
+      fontSize: mvw(16),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
 
 export const signupText = style({
   fontFamily: fontFamily.scdream,
-  fontWeight: 500,
+  fontWeight: 400,
   fontSize: vw(20),
   lineHeight: '150%',
   letterSpacing: '0%',
@@ -418,6 +436,12 @@ export const signupText = style({
   '@media': {
     [breakpoints.mobile]: {
       fontSize: mvw(20),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });

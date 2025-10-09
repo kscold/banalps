@@ -67,7 +67,7 @@ export const featuresMainTitle = style({
   letterSpacing: '0',
   '@media': {
     [breakpoints.desktopLarge]: {
-      lineHeight: '48px',
+      fontSize: '32px',
     },
     [breakpoints.mobile]: {
       fontSize: mvw(20),

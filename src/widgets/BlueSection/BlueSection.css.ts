@@ -646,7 +646,9 @@ export const whatBanalSubDescription1 = style({
   color: '#272727',
   // marginBottom: vw(80), // 1920px 기준 80px
   '@media': {
-    [breakpoints.desktopLarge]: {},
+    [breakpoints.desktopLarge]: {
+      fontSize: '24px',
+    },
     [breakpoints.mobile]: {
       display: 'none', // 모바일에서 숨김 (모바일 전용 버전 사용)
     },
@@ -664,6 +666,7 @@ export const whatBanalSubDescription2 = style({
   '@media': {
     [breakpoints.desktopLarge]: {
       lineHeight: '35px', // 1920px 이상에서 고정
+      fontSize: '23px',
       marginBottom: '40px', // 1920px 이상에서 고정
     },
     [breakpoints.mobile]: {
@@ -1359,9 +1362,16 @@ export const doctorsContent = style({
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between', // 양쪽 끝에 붙이기
+  width: '100%',
+  maxWidth: vw(1600),
+  margin: '0 auto',
   // gap: vw(40), // 간격 추가
   // minHeight: "50vw", // 최소 높이도 비례적으로
   '@media': {
+    [breakpoints.desktopLarge]: {
+      maxWidth: '1600px',
+      margin: '0 auto',
+    },
     'screen and (min-width: 1600px)': {
       minHeight: '800px',
     },
@@ -1373,8 +1383,12 @@ export const doctorsContent = style({
 
 export const doctorsTextSection = style({
   flexShrink: 0,
-  ...responsiveProperty('flexBasis', 520), // 1920px 기준 520px 고정 너비
+  flexBasis: vw(520), // 1920px 기준 520px (1024-1920px 구간)
   '@media': {
+    [breakpoints.desktopLarge]: {
+      flexBasis: '520px', // 1920px+ flexBasis 고정
+      width: '520px',
+    },
     [breakpoints.mobile]: {
       flex: 'none',
       width: '100%',

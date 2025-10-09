@@ -155,18 +155,10 @@ function ReoperationContent() {
         },
       },
       // absolute SVG의 위치 설정 (section2Content 기준)
-      // section2Content의 오른쪽 끝에서 -80px이면 컨테이너 밖으로 나감
-      // 하지만 section2Content 자체가 중앙 정렬되어 있으므로,
-      // viewport 오른쪽 끝 기준으로 배치하려면 계산이 필요
       svgElementsPosition: {
         absolute: {
-          top: 380,
-          // viewport 오른쪽에서 80px 안쪽에 배치
-          // section2Content의 max-width가 1440px이고 중앙 정렬이므로
-          // (100vw - 1440px) / 2 = 양쪽 여백
-          // right: 80px이면 section2Content 오른쪽 끝에서 80px
-          // 하지만 우리는 viewport 기준이므로... 일단 고정값 사용
-          right: 160,
+          bottom: language === 'JP' ? -40 : 0,
+          right: language === 'JP' ? -30 : -30,
         },
       },
       images: {

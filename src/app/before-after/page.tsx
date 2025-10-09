@@ -322,6 +322,7 @@ function CategoryCarousel({
             showBefore={false} // After 쪽만 보여줌
             onClick={handlePrevious}
             isBlueBackground={isBlueBackground}
+            isLoggedIn={isLoggedIn}
           />
         </div>
 
@@ -376,6 +377,7 @@ function CategoryCarousel({
             showBefore={true} // Before 쪽만 보여줌
             onClick={handleNext}
             isBlueBackground={isBlueBackground}
+            isLoggedIn={isLoggedIn}
           />
         </div>
       </div>
