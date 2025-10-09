@@ -19,6 +19,7 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const [virtualScrollY, setVirtualScrollY] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false); // 전환 중 플래그
+  const [isCompleted, setIsCompleted] = useState(false); // 히어로 섹션 완료 플래그
   const totalTexts = 5; // 텍스트 개수 5개로 변경
 
   // 모바일 감지
@@ -37,7 +38,7 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
     if (!isActive) return;
 
     // 모바일에서는 스크롤 깊이를 줄여서 빠른 전환 (Android 환경 최적화)
-    const textScrollDepth = isMobile ? 500 : 2000; // 모바일: 500px (충분한 텍스트 전환 시간), 데스크톱: 2000px
+    const textScrollDepth = isMobile ? 500 : 1200; // 모바일: 500px (충분한 텍스트 전환 시간), 데스크톱: 1200px (더 빠른 전환)
     const totalScrollHeight = textScrollDepth * totalTexts; // 전체 스크롤 높이
 
     // 클로저 내부에서 사용할 로컬 변수들
@@ -82,6 +83,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
       // HeroSection이 활성화되어 있고, 실제로 스크롤 영역 내에 있을 때만 preventDefault
       if (!isActive) return;
 
+      // 히어로 섹션이 완료되었으면 모든 이벤트 통과
+      if (isCompleted) return;
+
       // 텍스트 선택 중인지 확인
       const selection = window.getSelection();
       if (selection && selection.toString().length > 0) {
@@ -108,9 +112,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         if (onTextComplete && !localIsTransitioning) {
           localIsTransitioning = true;
           setIsTransitioning(true);
+          setIsCompleted(true); // 히어로 섹션 완료 표시
           // setTimeout 제거하여 즉시 전환 - 스크롤 걸림 현상 방지
           onTextComplete();
-          setIsTransitioning(false);
         }
         return; // preventDefault 하지 않고 리턴
       }
@@ -150,6 +154,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
     let isTouching = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      // 히어로 섹션이 완료되었으면 모든 이벤트 통과
+      if (isCompleted) return;
+
       // 터치 대상이 헤더나 플로팅 버튼이면 통과
       const target = e.target as HTMLElement;
       if (shouldPassThrough(target)) {
@@ -166,6 +173,12 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!isTouching) return;
+
+      // 히어로 섹션이 완료되었으면 모든 이벤트 통과
+      if (isCompleted) {
+        isTouching = false;
+        return;
+      }
 
       // 터치 대상이 헤더나 플로팅 버튼이면 통과
       const target = e.target as HTMLElement;
@@ -189,9 +202,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         if (onTextComplete && !localIsTransitioning) {
           localIsTransitioning = true;
           setIsTransitioning(true);
+          setIsCompleted(true); // 히어로 섹션 완료 표시
           // setTimeout 제거하여 즉시 전환 - 스크롤 걸림 현상 방지
           onTextComplete();
-          setIsTransitioning(false);
         }
         isTouching = false;
         return; // preventDefault 하지 않고 리턴
@@ -245,7 +258,22 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isActive, onTextComplete, totalTexts, isMobile]); // 안정적인 의존성만 유지
+  }, [isActive, onTextComplete, totalTexts, isMobile, isCompleted]); // 안정적인 의존성만 유지
+
+  // isActive가 true로 다시 돌아올 때 상태 초기화 (딜레이 추가)
+  useEffect(() => {
+    if (isActive && isCompleted) {
+      // 300ms 딜레이 후 초기화 (fade out 애니메이션과 동기화)
+      const timer = setTimeout(() => {
+        setIsCompleted(false);
+        setIsTransitioning(false);
+        setVirtualScrollY(0);
+        setCurrentTextIndex(0);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isActive, isCompleted]);
 
   // initialTextIndex가 변경되면 currentTextIndex 업데이트
   useEffect(() => {
@@ -256,7 +284,7 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
 
   // 가상 스크롤 진행률 계산 (텍스트 페이드용)
   // 모바일과 데스크톱에서 각각 다른 textScrollDepth 사용
-  const textScrollDepth = isMobile ? 500 : 2000;
+  const textScrollDepth = isMobile ? 500 : 1000;
   const scrollProgress = (virtualScrollY / (textScrollDepth * totalTexts)) * 100;
 
   return (
@@ -311,7 +339,13 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         </div>
 
         {/* 콘텐츠 */}
-        <div className={styles.contentWrapper}>
+        <div
+          className={styles.contentWrapper}
+          style={{
+            opacity: isActive ? 1 : 0,
+            transition: 'opacity 0.3s ease-out',
+          }}
+        >
           <TextContentRenderer
             currentTextIndex={currentTextIndex}
             scrollProgress={scrollProgress / 100}

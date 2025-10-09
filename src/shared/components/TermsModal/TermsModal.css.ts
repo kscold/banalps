@@ -165,6 +165,11 @@ globalStyle(`${termsContent} h4`, {
   letterSpacing: '0%',
   color: '#272727',
   margin: `${vw(32)} 0 ${vw(24)} 0`,
+  // selectors: {
+  //   'html[data-language="JP"] &': {
+  //     fontFamily: fontFamily.scdream,
+  //   },
+  // },
   '@media': {
     [breakpoints.mobile]: {
       fontSize: mvw(16),

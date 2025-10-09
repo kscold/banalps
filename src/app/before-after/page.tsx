@@ -451,32 +451,42 @@ export default function BeforeAfterPage() {
     [t.categories],
   );
 
-  // 타이틀 번역 함수 - useCallback으로 메모이제이션
+  // 타이틀 번역 함수 - 모든 조합 자동 번역
   const translateTitle = React.useCallback(
     (title: string | undefined, _category: Category): string => {
       if (!title) return '';
 
-      // 특정 번역이 필요한 케이스들
-      if (title.includes('이마축소(여)_1년경과')) {
-        return t.cases.foreheadWoman1Year;
-      }
-      if (title.includes('흉터재수술')) {
-        return t.cases.scarRevisionCase;
-      }
-      if (title.includes('헤어라인(여)')) {
-        return t.cases.hairlineWoman;
-      }
-      if (title.includes('헤어라인(남)')) {
-        return t.cases.hairlineMan;
-      }
-      if (title.includes('정수리')) {
-        return t.cases.crownCase;
+      // 한국어가 아닌 경우 그대로 반환 (yearsAgo가 "년 전"이면 한국어)
+      const language = t.cases.yearsAgo;
+      if (language === '년 전' || !language) {
+        // 한국어는 번역 안 함
+        return title;
       }
 
-      // 년/개월 변환
       let translatedTitle = title;
-      translatedTitle = translatedTitle.replace(/(\d+)년/g, `$1${t.cases.yearsAgo}`);
-      translatedTitle = translatedTitle.replace(/(\d+)개월/g, `$1${t.cases.monthsAgo}`);
+
+      // 1. 기간 번역 (긴 패턴부터 먼저 처리)
+      translatedTitle = translatedTitle.replace(/(\d+)년경과/g, '$1年経過');
+      translatedTitle = translatedTitle.replace(/(\d+)개월경과/g, '$1カ月経過');
+
+      // 2. 수술 타입 번역 (단어별로 쪼개기)
+      translatedTitle = translatedTitle.replace(/이마/g, '額');
+      translatedTitle = translatedTitle.replace(/축소/g, '縮小');
+      translatedTitle = translatedTitle.replace(/흉터/g, '傷跡');
+      translatedTitle = translatedTitle.replace(/재수술/g, '再手術');
+      translatedTitle = translatedTitle.replace(/헤어라인/g, 'ヘアライン');
+      translatedTitle = translatedTitle.replace(/정수리/g, '頭頂部');
+      translatedTitle = translatedTitle.replace(/경과/g, '経過');
+
+      // 3. 모(毛) 번역 - 숫자 + 모 패턴
+      translatedTitle = translatedTitle.replace(/(\d+)모/g, '$1毛');
+
+      // 4. 성별 번역
+      translatedTitle = translatedTitle.replace(/\(남\)/g, '（男）');
+      translatedTitle = translatedTitle.replace(/\(여\)/g, '（女）');
+
+      // 5. 구분자 번역 (언더스코어는 전각으로)
+      translatedTitle = translatedTitle.replace(/_/g, '＿');
 
       return translatedTitle;
     },

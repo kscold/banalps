@@ -25,9 +25,17 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const playerRef = useRef<VimeoPlayer | null>(null);
 
-  // 클라이언트 사이드에서만 실행 + 비디오 프리로드
+  // 클라이언트 사이드에서만 실행 + 비디오 프리로드 + Vimeo Player API 로드
   useEffect(() => {
     setIsClient(true);
+
+    // Vimeo Player API 스크립트 로드
+    if (!(window as Window & { Vimeo?: unknown }).Vimeo) {
+      const script = document.createElement('script');
+      script.src = 'https://player.vimeo.com/api/player.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
 
     // 비디오 iframe 프리팩치
     if (!isVideoLoaded) {
@@ -41,76 +49,87 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   }, [isVideoLoaded]);
 
   const handleVimeoLoad = () => {
-    try {
-      // 이미 비디오가 로드되었다면 재사용
-      if (isVideoLoaded && playerRef.current) {
-        const player = playerRef.current;
+    // Vimeo Player API가 로드될 때까지 재시도
+    const tryInitializePlayer = (retryCount = 0) => {
+      try {
+        // 이미 비디오가 로드되었다면 재사용
+        if (isVideoLoaded && playerRef.current) {
+          const player = playerRef.current;
 
-        // 비디오 섹션이 표시될 때 0초부터 재생
-        if (showVideoSection) {
-          player.setCurrentTime(0).catch((error: unknown) => {
-            console.error('[VideoSection/비디오리셋에러] 비디오 리셋 실패:', error);
-          });
-        }
-        return;
-      }
-
-      // Vimeo Player API를 사용하여 비디오 이벤트 리스너 등록
-      if (
-        iframeRef.current &&
-        (
-          window as Window & {
-            Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
-          }
-        ).Vimeo
-      ) {
-        const iframe = iframeRef.current;
-        const player = new (
-          window as Window & {
-            Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
-          }
-        ).Vimeo!.Player(iframe);
-        playerRef.current = player; // 플레이어 참조 저장
-
-        player.on('ended', () => {
-          videoEndedRef.current = true;
-          // 비디오가 끝나면 처음부터 다시 재생 (루프)
-          player.setCurrentTime(0).then(() => {
-            player.play().catch((error: unknown) => {
-              console.error('[VideoSection/비디오재생에러] 비디오 재생 실패:', error);
+          // 비디오 섹션이 표시될 때 0초부터 재생
+          if (showVideoSection) {
+            player.setCurrentTime(0).catch((error: unknown) => {
+              console.error('[VideoSection/비디오리셋에러] 비디오 리셋 실패:', error);
             });
-          }).catch((error: unknown) => {
-            console.error('[VideoSection/비디오리셋에러] 비디오 리셋 실패:', error);
-          });
-
-          if (onVideoEnd) {
-            onVideoEnd();
           }
-        });
-
-        player.on('play', () => {
-          videoEndedRef.current = false;
-          // 비디오 재생이 시작되면 스크롤 가능
-          if (onVideoReady) {
-            onVideoReady();
-          }
-        });
-
-        // 비디오 로드 완료 표시
-        setIsVideoLoaded(true);
-
-        // 비디오 섹션이 표시될 때 0초부터 재생
-        if (showVideoSection) {
-          player.setCurrentTime(0).catch((error: unknown) => {
-            console.error('[VideoSection/비디오리셋에러] 비디오 리셋 또는 재생 실패:', error);
-          });
+          return;
         }
-      } else {
-        console.warn('[VideoSection/Vimeo경고] Vimeo Player API가 로드되지 않음');
+
+        // Vimeo Player API를 사용하여 비디오 이벤트 리스너 등록
+        if (
+          iframeRef.current &&
+          (
+            window as Window & {
+              Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
+            }
+          ).Vimeo
+        ) {
+          const iframe = iframeRef.current;
+          const player = new (
+            window as Window & {
+              Vimeo?: { Player: new (element: HTMLElement) => VimeoPlayer };
+            }
+          ).Vimeo!.Player(iframe);
+          playerRef.current = player; // 플레이어 참조 저장
+
+          player.on('ended', () => {
+            videoEndedRef.current = true;
+            // 비디오가 끝나면 처음부터 다시 재생 (루프)
+            player
+              .setCurrentTime(0)
+              .then(() => {
+                player.play().catch((error: unknown) => {
+                  console.error('[VideoSection/비디오재생에러] 비디오 재생 실패:', error);
+                });
+              })
+              .catch((error: unknown) => {
+                console.error('[VideoSection/비디오리셋에러] 비디오 리셋 실패:', error);
+              });
+
+            if (onVideoEnd) {
+              onVideoEnd();
+            }
+          });
+
+          player.on('play', () => {
+            videoEndedRef.current = false;
+            // 비디오 재생이 시작되면 스크롤 가능
+            if (onVideoReady) {
+              onVideoReady();
+            }
+          });
+
+          // 비디오 로드 완료 표시
+          setIsVideoLoaded(true);
+
+          // 비디오 섹션이 표시될 때 0초부터 재생
+          if (showVideoSection) {
+            player.setCurrentTime(0).catch((error: unknown) => {
+              console.error('[VideoSection/비디오리셋에러] 비디오 리셋 또는 재생 실패:', error);
+            });
+          }
+        } else if (retryCount < 10) {
+          // Vimeo API가 아직 로드되지 않았으면 100ms 후 재시도
+          setTimeout(() => tryInitializePlayer(retryCount + 1), 100);
+        } else {
+          console.warn('[VideoSection/Vimeo경고] Vimeo Player API가 로드되지 않음 (최대 재시도 도달)');
+        }
+      } catch (error) {
+        console.error('[VideoSection/Vimeo에러] 비디오 로드 에러:', error);
       }
-    } catch (error) {
-      console.error('[VideoSection/Vimeo에러] 비디오 로드 에러:', error);
-    }
+    };
+
+    tryInitializePlayer();
   };
 
   // 비디오 섹션이 표시될 때마다 상태 리셋 및 0초로 리셋

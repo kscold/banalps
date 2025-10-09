@@ -565,11 +565,6 @@
         "next": "다음"
       },
       "cases": {
-        "foreheadWoman1Year": "이마축소(여)_1년경과",
-        "scarRevisionCase": "흉터재수술",
-        "hairlineWoman": "헤어라인(여)",
-        "hairlineMan": "헤어라인(남)",
-        "crownCase": "정수리",
         "yearsAgo": "년 전",
         "monthsAgo": "개월 전"
       },
@@ -1386,11 +1381,6 @@
         "next": "次へ"
       },
       "cases": {
-        "foreheadWoman1Year": "額縮小（女性）_1年経過",
-        "scarRevisionCase": "傷跡再手術",
-        "hairlineWoman": "ヘアライン（女性）",
-        "hairlineMan": "ヘアライン（男性）",
-        "crownCase": "頭頂部",
         "yearsAgo": "年前",
         "monthsAgo": "ヶ月前"
       },

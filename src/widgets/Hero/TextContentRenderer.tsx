@@ -22,9 +22,9 @@ export function TextContentRenderer({
     const scrollPosition = scrollProgress * 5;
 
     // KB 사이트처럼 더 매끄러운 전환을 위한 범위 조정
-    const fadeInRange = isMobile ? 0.2 : 0.4; // 페이드인 범위 증가
-    const fadeOutRange = isMobile ? 0.3 : 0.5; // 페이드아웃 범위 증가
-    const visibleRange = isMobile ? 0.2 : 0.3; // 완전히 보이는 구간
+    const fadeInRange = isMobile ? 0.15 : 0.25; // 페이드인 범위 (빠르게 나타남)
+    const fadeOutRange = isMobile ? 0.15 : 0.25; // 페이드아웃 범위 (빠르게 사라짐)
+    const visibleRange = isMobile ? 0.5 : 0.7; // 완전히 보이는 구간 (더 오래 보임)
 
     // 각 텍스트가 보이는 구간 설정
     const startFadeIn = textIndex - fadeInRange;
@@ -53,7 +53,7 @@ export function TextContentRenderer({
   // 텍스트 Y 위치 계산 - KB 사이트처럼 페이드인만 적용
   const getTextTransform = (textIndex: number) => {
     const scrollPosition = scrollProgress * 5;
-    const fadeInRange = isMobile ? 0.1 : 0.3;
+    const fadeInRange = isMobile ? 0.15 : 0.25; // opacity와 동일하게 설정
     const startFadeIn = textIndex - fadeInRange;
     const fullVisible = textIndex;
 

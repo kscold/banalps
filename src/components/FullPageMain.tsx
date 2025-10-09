@@ -66,10 +66,11 @@ const FullPageMain = () => {
     };
   }, [handleIntersection, observerOptions]);
 
-  // Hero 완료 핸들러 - 자동 스크롤 비활성화 (사용자가 수동으로 스크롤하도록)
+  // Hero 완료 핸들러 - 비디오 섹션으로 스크롤
   const handleHeroComplete = useCallback(() => {
-    // 자동 스크롤 제거 - 사용자가 자연스럽게 스크롤하도록 함
-    // 이렇게 하면 텍스트 애니메이션 후 스크롤이 걸리는 현상 방지
+    if (videoRef.current && containerRef.current) {
+      videoRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, []);
 
   // 비디오 종료 핸들러 - 자동 스크롤 비활성화 (사용자가 수동으로 스크롤하도록)
