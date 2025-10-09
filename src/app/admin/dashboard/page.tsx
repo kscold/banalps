@@ -178,7 +178,7 @@ function BeforeAfterManagement() {
             `- 헤어라인(남성): ${data.breakdown['헤어라인(남성)']}개\n` +
             `- 헤어라인(여성): ${data.breakdown['헤어라인(여성)']}개\n` +
             `- 정수리: ${data.breakdown.정수리}개\n\n` +
-            `일본어 번역: ${data.samples?.withTitleJp || 0}/${data.samples?.withTitle || 0}개`,
+            `일본어 번역: ${data.samples?.withTitleJp || 0}/${data.samples?.withTitle || 0}개`
         );
         fetchItems();
         setShowMigration(false);
@@ -341,9 +341,7 @@ function BeforeAfterManagement() {
         </div>
       )}
 
-      {isModalOpen && (
-        <BeforeAfterModal item={editingItem} onClose={handleCloseModal} onSuccess={fetchItems} />
-      )}
+      {isModalOpen && <BeforeAfterModal item={editingItem} onClose={handleCloseModal} onSuccess={fetchItems} />}
     </>
   );
 }
@@ -559,9 +557,7 @@ function BeforeAfterModal({
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>
-              Before 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}
-            </label>
+            <label className={styles.label}>Before 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}</label>
             <input
               type="file"
               className={styles.fileInput}
@@ -605,9 +601,7 @@ function BeforeAfterModal({
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>
-              After 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}
-            </label>
+            <label className={styles.label}>After 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}</label>
             <input
               type="file"
               className={styles.fileInput}
@@ -815,11 +809,7 @@ function PopupManagement() {
                     <td className={styles.td}>{item.title}</td>
                     <td className={styles.td}>{item.titleJp || '-'}</td>
                     <td className={styles.td}>
-                      {item.imageUrl ? (
-                        <img src={item.imageUrl} alt="Popup" className={styles.imagePreview} />
-                      ) : (
-                        '-'
-                      )}
+                      {item.imageUrl ? <img src={item.imageUrl} alt="Popup" className={styles.imagePreview} /> : '-'}
                     </td>
                     <td className={styles.td}>{item.position}</td>
                     <td className={styles.td}>{item.order}</td>
