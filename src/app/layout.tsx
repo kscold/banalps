@@ -5,6 +5,8 @@ import './globals.css';
 import '../shared/styles/global.css';
 import ClientLayout from './ClientLayout';
 
+// AuthChecker에서 useSearchParams를 사용하므로 force-dynamic 필요
+// Main 페이지 캐싱은 Vercel Edge (vercel.json)와 브라우저 HTTP 캐싱으로 최적화
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 

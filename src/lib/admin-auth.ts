@@ -1,10 +1,19 @@
 import { NextRequest } from 'next/server';
 import crypto from 'crypto';
 
-const SESSION_SECRET = process.env.JWT_ADMIN_SECRET || 'your-admin-secret-key';
+const SESSION_SECRET = process.env.JWT_ADMIN_SECRET;
+
+if (!SESSION_SECRET) {
+  throw new Error('JWT_ADMIN_SECRET 환경 변수가 설정되지 않았습니다.');
+}
 
 export async function verifyAdminToken(request: NextRequest): Promise<boolean> {
   try {
+    if (!SESSION_SECRET) {
+      console.error('[토큰 검증 에러] SESSION_SECRET이 설정되지 않음');
+      return false;
+    }
+
     const token = request.cookies.get('admin_token')?.value;
 
     if (!token) {

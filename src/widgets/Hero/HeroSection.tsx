@@ -17,7 +17,6 @@ interface HeroSectionProps {
 export default function HeroSection({ initialTextIndex = 0, onTextComplete, isActive = true }: HeroSectionProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(initialTextIndex);
   const [virtualScrollY, setVirtualScrollY] = useState(0);
-  const [isClient, setIsClient] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false); // 전환 중 플래그
   const [isCompleted, setIsCompleted] = useState(false); // 히어로 섹션 완료 플래그
   const totalTexts = 5; // 텍스트 개수 5개로 변경
@@ -33,10 +32,8 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const videoSectionDesktopConfig = useVideoPreloader('VIDEO_SECTION_BACKGROUND');
   const videoSectionMobileConfig = useVideoPreloader('VIDEO_SECTION_MOBILE_BACKGROUND');
 
-  // 클라이언트 사이드 렌더링 확인
+  // VideoSection 비디오 백그라운드 preload (Hero 로딩 후)
   useEffect(() => {
-    setIsClient(true);
-
     // VideoSection 비디오 DNS prefetch 및 preconnect 추가
     // About 페이지로 이동할 때 빠른 로딩을 위해 미리 연결
     const addVideoSectionPreload = () => {
@@ -337,40 +334,25 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
       )}
 
       <section className={styles.heroContainer} suppressHydrationWarning>
-        {/* <Image
-          src="/main/background/bg_sky.jpg"
-          alt="바날 성형외과 배경"
-          fill
-          priority
-          className={styles.backgroundImage}
-          onLoad={() => {
-            // 배경 이미지 로드 완료
-          }}
-          onError={() => {
-            console.error("[HeroSection/배경이미지에러] 배경 이미지 로드 실패");
-          }}
-        /> */}
-
         <div className={styles.backgroundVideo}>
-          {isClient && (
-            <iframe
-              title="vimeo-player"
-              src={isMobile ? mobileVideoConfig.url : desktopVideoConfig.url}
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: 'max(177.77vh, 100vw)', // 16:9 비율 유지하며 화면 꽉 채우기
-                height: 'max(56.25vw, 100vh)', // 16:9 비율 유지하며 화면 꽉 채우기
-                transform: 'translate(-50%, -50%)',
-                border: 'none',
-                pointerEvents: 'none', // iframe이 스크롤 이벤트를 차단하지 않도록
-              }}
-            />
-          )}
+          <iframe
+            title="vimeo-player"
+            src={isMobile ? mobileVideoConfig.url : desktopVideoConfig.url}
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: 'max(177.77vh, 100vw)', // 16:9 비율 유지하며 화면 꽉 채우기
+              height: 'max(56.25vw, 100vh)', // 16:9 비율 유지하며 화면 꽉 채우기
+              transform: 'translate(-50%, -50%)',
+              border: 'none',
+              pointerEvents: 'none', // iframe이 스크롤 이벤트를 차단하지 않도록
+            }}
+            loading="eager"
+            suppressHydrationWarning
+          />
         </div>
-
         {/* 콘텐츠 */}
         <div
           className={styles.contentWrapper}

@@ -8,11 +8,25 @@ import { verifyAdminToken } from '@/lib/admin-auth';
 // GET: 팝업 조회
 export async function GET(request: NextRequest) {
   try {
-    await connectDB();
-
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     const activeOnly = searchParams.get('activeOnly') === 'true';
+
+    // activeOnly가 false거나 없으면 관리자 전용 (대시보드)
+    if (!activeOnly) {
+      const isAdmin = await verifyAdminToken(request);
+      if (!isAdmin) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: '관리자 권한이 필요합니다.',
+          },
+          { status: 401 },
+        );
+      }
+    }
+
+    await connectDB();
 
     // 단일 조회
     if (id) {
