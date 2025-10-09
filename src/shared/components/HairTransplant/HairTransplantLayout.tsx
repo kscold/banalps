@@ -20,6 +20,7 @@ export default function HairTransplantLayout({
   language = 'KR', // 기본값 설정
   isCrown = false, // 기본값 설정
   isHairline = false, // 기본값 설정
+  isHairTransplant = false, // Hair Transplant 페이지 여부
   heroDotPosition,
   heroIllustration = '/hair-transplant/hero-illustration.svg',
   heroIllustrationMobile = '/hair-transplant/mobile/hero-illustration-mobile.svg',
@@ -75,6 +76,7 @@ export default function HairTransplantLayout({
         section1={section1}
         scarReduction={scarReduction}
         isHairline={isHairline}
+        isHairTransplant={isHairTransplant}
         isMobile={isMobile}
         isDesktopLarge={isDesktopLarge}
       />

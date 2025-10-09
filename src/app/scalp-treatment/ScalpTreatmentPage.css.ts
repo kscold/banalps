@@ -569,7 +569,7 @@ export const treatmentVideoContent = style({
     [breakpoints.desktopLarge]: {
       width: '950px',
       height: '660px',
-      borderRadius: '8px',
+      borderRadius: '0 8px 8px 0',
     },
     [breakpoints.mobile]: {
       width: '100vw',

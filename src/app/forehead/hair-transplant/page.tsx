@@ -165,7 +165,7 @@ export default function ForeheadHairTransplantPage() {
       number: 3,
       numberPosition: {
         mobile: {
-          top: 90, // 모바일에서만 숫자를 아래쪽으로 이동
+          top: language === 'JP' ? 0 : -40, // 필요시 추가
         },
         desktop: {
           right: 0, // 필요시 추가
@@ -271,5 +271,5 @@ export default function ForeheadHairTransplantPage() {
     language: language,
   };
 
-  return <HairTransplantLayout {...layoutData} isCrown={true} />;
+  return <HairTransplantLayout {...layoutData} isCrown={true} isHairTransplant={true} />;
 }

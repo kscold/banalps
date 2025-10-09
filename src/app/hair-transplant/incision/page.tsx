@@ -45,6 +45,7 @@ function IncisionContent() {
       titleMobileSize: {
         height: 106,
       },
+      titleMobileMinHeight: language === 'JP' ? 216 : undefined, // 일본어 긴 타이틀을 위한 최소 높이 (24mvw * 1.5 * 6줄 = 216mvw)
       description: (
         <>
           {t.section1.description.split('\n').map((line, index) => (
@@ -131,20 +132,11 @@ function IncisionContent() {
           ))}
         </>
       ),
-      titleMobile: (
-        <>
-          {t.section2.title.split('\n').map((line, index) => (
-            <span key={index}>
-              {line}
-              {index < t.section2.title.split('\n').length - 1 && <br />}
-            </span>
-          ))}
-        </>
-      ),
+      titleMobile: 'titleMobile' in t.section2 ? t.section2.titleMobile : t.section2.title,
       titleMobileSize: {
-        width: 204,
         height: 76,
       },
+      titleMobileMinHeight: language === 'JP' ? 152 : undefined, // 일본어 긴 타이틀을 위한 최소 높이 (24mvw * 1.5 * 3줄 = 108mvw)
       titleMarginBottom: 120,
       description: (
         <>

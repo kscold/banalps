@@ -45,7 +45,7 @@ export default function AboutPage() {
       rootMargin: '-45% 0px -45% 0px',
       threshold: 0,
     }),
-    [],
+    []
   );
 
   // IntersectionObserver 콜백 - useCallback으로 메모이제이션
@@ -214,7 +214,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(0)}
+                  transition={getCardTransition(isMobile ? 0 : 0)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot1-mobile.svg' : '/main/shot/shot1.png'}
@@ -228,7 +228,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(0.4)}
+                  transition={getCardTransition(isMobile ? 0.1 : 0.4)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot2-mobile.svg' : '/main/shot/shot2.png'}
@@ -241,7 +241,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(0.8)}
+                  transition={getCardTransition(isMobile ? 0.2 : 0.8)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot3-mobile.svg' : '/main/shot/shot3.svg'}
@@ -255,7 +255,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(0)}
+                  transition={getCardTransition(isMobile ? 0.3 : 1.2)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot4-mobile.svg' : '/main/shot/shot4.png'}

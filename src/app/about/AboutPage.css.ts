@@ -60,9 +60,7 @@ export const heroSection = style({
     },
     [breakpoints.mobile]: {
       display: 'flex', // 명시적으로 flex 설정
-
       padding: `${mvw(120)} 0 ${mvw(120)} 0`,
-      minHeight: '100vh', // 최소 화면 높이 설정
     },
   },
 });
@@ -72,9 +70,9 @@ export const heroContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
+  // justifyContent: 'center',
   textAlign: 'center',
-  height: '100%',
+  // height: '100%',
   gap: vw(60),
   '@media': {
     [breakpoints.desktopLarge]: {},
@@ -126,6 +124,12 @@ export const heroQuote = style({
       lineHeight: '140%',
       color: '#272727',
       margin: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          lineHeight: '150%',
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -144,6 +148,12 @@ export const heroTitle = style({
       lineHeight: '140%',
       color: '#000000',
       fontWeight: 500,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(24),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -169,7 +179,6 @@ export const heroIllustrationMobile = style({
   maxWidth: '100%',
   display: 'flex',
   justifyContent: 'center',
-  padding: `0 ${mvw(20)}`,
   '@media': {
     [breakpoints.desktopLarge]: {
       display: 'none',
@@ -291,6 +300,11 @@ export const valuesDescription = style({
       textAlign: 'left',
       color: '#000000',
       whiteSpace: 'pre-line',
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -805,6 +819,12 @@ export const strengthNumberMobile = style({
       fontSize: mvw(18),
       minWidth: mvw(106),
       marginBottom: 0,
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -864,6 +884,12 @@ export const strengthItemTitleMobile = style({
   whiteSpace: 'pre-line',
   wordBreak: 'keep-all',
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontSize: mvw(24),
+      fontWeight: 700,
+    },
+  },
 });
 
 export const strengthDescription = style({

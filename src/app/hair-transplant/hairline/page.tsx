@@ -22,8 +22,8 @@ function HairlineContent() {
       left: language === 'JP' ? 130 : 120,
       bottom: language === 'JP' ? 5 : 12,
       // 모바일 위치 (다른 값 설정 가능)
-      mobileLeft: 78,
-      mobileBottom: 7,
+      mobileLeft: language === 'JP' ? 82 : 78,
+      mobileBottom: language === 'JP' ? 1 : 7,
     },
     section1: {
       number: 1,
@@ -77,8 +77,8 @@ function HairlineContent() {
         height: 290,
       },
       imagesMobile: {
-        main: '/hair-transplant/hairline/mobile/hairline-2.jpg',
-        secondary: '/hair-transplant/hairline/mobile/hairline-1.jpg',
+        main: '/hair-transplant/hairline/mobile/hairline-2-mobile.svg',
+        secondary: '/hair-transplant/hairline/mobile/hairline-1-mobile.svg',
       },
       imagesMobileSize: {
         mainHeight: 305,
@@ -89,7 +89,6 @@ function HairlineContent() {
         main: '/hair-transplant/hairline/hairline-2.png',
         secondary: '/hair-transplant/hairline/hairline-1.png',
       },
-
       imagesSize: {
         main: {
           width: 600,
@@ -164,7 +163,7 @@ function HairlineContent() {
         main: '/hair-transplant/hairline/hairline-3.png',
       },
       imagesMobile: {
-        main: '/hair-transplant/hairline/mobile/hairline-3.jpg',
+        main: '/hair-transplant/hairline/mobile/hairline-3-mobile.svg',
       },
       imagesMobileSize: {
         mainHeight: 305,
@@ -251,6 +250,13 @@ function HairlineContent() {
       },
       images: {
         main: '/hair-transplant/hairline/hairline-4.png',
+      },
+      imagesMobile: {
+        main: '/hair-transplant/hairline/mobile/hairline-4-mobile.svg',
+      },
+      imagesMobileSize: {
+        mainMaxWidth: false,
+        mainHeight: 305,
       },
     },
     beforeAfterData: {

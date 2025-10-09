@@ -2201,6 +2201,7 @@ export const academicRowDate = style({
   whiteSpace: 'nowrap',
   lineHeight: '150%',
   letterSpacing: '0%',
+  alignSelf: 'center',
   selectors: {
     'html[data-language="JP"] &': {
       fontFamily: fontFamily.scdream,
@@ -2239,6 +2240,7 @@ export const academicRowCategory = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  alignSelf: 'center',
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '150px',
@@ -2336,6 +2338,7 @@ export const academicRowEvent = style({
   textAlign: 'left',
   overflow: 'visible',
   wordBreak: 'keep-all',
+  alignSelf: 'center',
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '320px',
@@ -2359,7 +2362,9 @@ export const academicRowEvent = style({
       height: 'auto',
       minHeight: mvw(70),
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
+      paddingTop: mvw(12),
+      textAlign: 'left',
       selectors: {
         'html[data-language="JP"] &': {
           fontWeight: 700,
@@ -2373,7 +2378,7 @@ export const academicRowTitle = style({
   // flex: "1 1 auto",
   width: vw(815),
   height: 'auto',
-  minHeight: vw(52),
+  // minHeight: vw(52),
   minWidth: 0,
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
@@ -2382,7 +2387,7 @@ export const academicRowTitle = style({
   letterSpacing: '0%',
   color: '#272727',
   textAlign: 'left',
-  alignContent: 'center',
+  alignSelf: 'center',
   whiteSpace: 'normal',
   overflow: 'visible',
   '@media': {
@@ -2391,7 +2396,7 @@ export const academicRowTitle = style({
       minWidth: 0,
       fontSize: '16px',
       height: 'auto',
-      minHeight: '52px',
+      // minHeight: '52px',
     },
     [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
@@ -2409,7 +2414,7 @@ export const academicRowTitle = style({
       paddingRight: 0,
       alignSelf: 'end',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-end',
     },
   },
 });

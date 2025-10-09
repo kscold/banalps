@@ -222,6 +222,12 @@ export const HairTransplantHeroTitleDot = style({
       height: mvw(10),
       marginLeft: mvw(3),
       marginBottom: -5, // 하단 여백 제거
+      selectors: {
+        'html[data-language="JP"] &': {
+          marginLeft: mvw(3),
+          marginBottom: mvw(-5),
+        },
+      },
     },
   },
 });
@@ -508,20 +514,17 @@ export const heroTitleDot = style({
 
 // Section 1: 얼굴 윤곽의 완성은 헤어라인입니다
 export const section1 = style({
-  marginTop: vw(120), // 1920px 기준 120px 상단 마진
-  marginBottom: vw(120), // 1920px 기준 120px 하단 마진
-  height: vw(800), // 1920px 기준 800px 높이
+  paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
+  paddingBottom: vw(120), // 1920px 기준 120px 하단 패딩
   backgroundColor: '#FFFDF7', // 흰색 배경
   '@media': {
     [breakpoints.desktopLarge]: {
-      marginTop: '120px', // 1920px+ 고정
-      marginBottom: '120px', // 1920px+ 고정
-      height: '800px', // 1920px+ 고정
+      paddingTop: '120px', // 1920px+ 고정
+      paddingBottom: '120px', // 1920px+ 고정
     },
     [breakpoints.mobile]: {
       padding: `${mvw(120)} 0  ${mvw(60)} 0`, // 모바일은 패딩 유지
       margin: 0, // 모바일 마진 제거
-      height: 'auto', // 모바일 높이 자동
     },
   },
 });
@@ -551,7 +554,7 @@ export const section1Left = style({
   position: 'relative',
 
   width: vw(655),
-  height: vw(770),
+  minHeight: vw(770), // 기본 770px
   display: 'flex',
 
   flexDirection: 'column',
@@ -561,7 +564,7 @@ export const section1Left = style({
     [breakpoints.desktopLarge]: {
       ...responsiveLeftContent(), // 헤더와 완벽한 정렬
       width: '655px',
-      height: '770px',
+      minHeight: '770px', // 기본 770px
       // paddingTop: "80px", // 1920px+ 고정
       paddingBottom: '0', // 명시적 0 패딩
       paddingLeft: '0',
@@ -575,6 +578,53 @@ export const section1Left = style({
       width: '100%',
       height: 'auto', // Changed from 100% to auto for dynamic height
       minHeight: mvw(600), // Minimum height to prevent compression
+      position: 'static',
+      paddingTop: '0',
+      padding: '0',
+      order: 2,
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+  },
+});
+
+// Hair Transplant 페이지 전용 section1Left (일본어일 때 894px)
+export const section1LeftHairTransplant = style({
+  position: 'relative',
+
+  width: vw(655),
+  minHeight: vw(770), // 기본 770px
+  display: 'flex',
+
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  selectors: {
+    'html[data-language="JP"] &': {
+      minHeight: vw(850), // 일본어일 때만 894px
+    },
+  },
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      ...responsiveLeftContent(),
+      width: '655px',
+      minHeight: '770px', // 기본 770px
+      paddingBottom: '0',
+      paddingLeft: '0',
+      paddingRight: '0',
+      selectors: {
+        'html[data-language="JP"] &': {
+          minHeight: '850px', // 일본어일 때만 894px
+        },
+      },
+    },
+    [breakpoints.desktop]: {
+      ...responsiveLeftContent(),
+      paddingLeft: '0',
+    },
+    [breakpoints.mobile]: {
+      width: '100%',
+      height: 'auto',
+      minHeight: mvw(600),
       position: 'static',
       paddingTop: '0',
       padding: '0',
@@ -627,6 +677,7 @@ export const section1Title = style({
     [breakpoints.mobile]: {
       display: 'block', // Changed to block for natural text flow
       width: '100%', // Full width
+      height: 'auto', // 높이를 내용에 맞게 자동 조정
       textAlign: 'left', // Center align text
       fontSize: mvw(20),
       margin: `0 0 ${mvw(40)} 0`,
@@ -636,6 +687,8 @@ export const section1Title = style({
         'html[data-language="JP"] &': {
           fontSize: mvw(24),
           fontWeight: 700,
+          lineHeight: '150%', // 일본어일 때 충분한 줄 높이 보장 (24 * 1.5 = 36mvw)
+          height: 'auto', // 내용에 맞게 높이 자동 조정
         },
       },
     },
@@ -786,6 +839,7 @@ export const section1Right = style({
   position: 'relative',
   width: '100%',
   maxWidth: '100%', // 1920px+ 에서도 스케일링 방지
+  alignSelf: 'flex-start', // section1Content의 최상단에서 시작
   '@media': {
     [breakpoints.desktopLarge]: {
       maxWidth: 'none', // maxWidth 제한 제거 - inline style로 제어
@@ -1243,11 +1297,14 @@ export const section2Title = style({
       margin: `0 0 ${mvw(40)} 0`,
       textAlign: 'left',
       width: '100%',
+      height: 'auto', // 높이를 내용에 맞게 자동 조정
       whiteSpace: 'pre-line', // Allow line breaks from \n
       selectors: {
         'html[data-language="JP"] &': {
           fontSize: mvw(24),
           fontWeight: 700,
+          lineHeight: '150%', // 일본어일 때 충분한 줄 높이 보장
+          height: 'auto', // 내용에 맞게 높이 자동 조정
         },
       },
     },

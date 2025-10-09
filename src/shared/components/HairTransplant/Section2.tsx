@@ -63,6 +63,11 @@ export default function Section2({
                             : undefined,
                         }
                       : {}),
+                    ...(isMobile && section2.titleMobileMinHeight !== undefined
+                      ? {
+                          minHeight: mvw(section2.titleMobileMinHeight),
+                        }
+                      : {}),
                     ...(section2.titleMarginBottom !== undefined
                       ? {
                           marginBottom: isMobile
@@ -73,7 +78,18 @@ export default function Section2({
                   }}
                 >
                   {isMobile && section2.titleMobile
-                    ? section2.titleMobile
+                    ? typeof section2.titleMobile === 'string'
+                      ? (() => {
+                          const titleText = section2.titleMobile as string;
+                          const lines = titleText.split('\n');
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
+                      : section2.titleMobile
                     : typeof section2.title === 'string'
                     ? (() => {
                         const titleText = section2.title as string;
@@ -365,6 +381,11 @@ export default function Section2({
                             : undefined,
                         }
                       : {}),
+                    ...(isMobile && section2.titleMobileMinHeight !== undefined
+                      ? {
+                          minHeight: mvw(section2.titleMobileMinHeight),
+                        }
+                      : {}),
                     ...(section2.titleMarginBottom !== undefined
                       ? {
                           marginBottom: isMobile
@@ -375,7 +396,18 @@ export default function Section2({
                   }}
                 >
                   {isMobile && section2.titleMobile
-                    ? section2.titleMobile
+                    ? typeof section2.titleMobile === 'string'
+                      ? (() => {
+                          const titleText = section2.titleMobile as string;
+                          const lines = titleText.split('\n');
+                          return lines.map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              {index < lines.length - 1 && <br />}
+                            </span>
+                          ));
+                        })()
+                      : section2.titleMobile
                     : typeof section2.title === 'string'
                     ? (() => {
                         const titleText = section2.title as string;

@@ -93,7 +93,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '2024 대한성형외과의사회\n전공의 연수강좌',
-        jp: '2024 大韓整形外科医師会 専攻医研修講座',
+        jp: '2024 大韓整形外科医師会\n専攻医研修講座',
       },
       title: {
         ko: '탈모 치료와 모발이식',
@@ -129,7 +129,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: 'Kenvue Inc 임직원 사내강의',
-        jp: 'Kenvue Inc 役員を対象に社内講演会実施',
+        jp: 'Kenvue Inc 役員を対象に社内講演会\n実施',
       },
       title: {
         ko: '여성탈모, 모발이식 그리고 미녹시딜',
@@ -206,8 +206,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: '第12次 大韓毛髪移植学会 学術集会',
       },
       title: {
-        ko: 'Video (Panel Discussion) – Clinical pearls to achieve best results and happy patients:',
-        jp: 'Video (Panel Discussion) – Clinical pearls to achieve best results and happy patients:',
+        ko: 'Video (Panel Discussion) – Clinical pearls to achieve best results and\nhappy patients:',
+        jp: 'Video (Panel Discussion) – Clinical pearls to achieve best results and\nhappy patients:',
       },
     },
   ],
@@ -220,8 +220,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: 'PRS Korea 2022',
       },
       title: {
-        ko: 'The Correlation between the Diameter of the FUE Punch Tip and the Scar',
-        jp: 'The Correlation between the Diameter of the FUE Punch Tip and the Scar',
+        ko: 'The Correlation between the Diameter of the FUE Punch Tip and\nthe Scar',
+        jp: 'The Correlation between the Diameter of the FUE Punch Tip and\nthe Scar',
       },
     },
     {
@@ -252,8 +252,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2022.08.11',
       type: '저널',
       event: {
-        ko: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
-        jp: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
+        ko: 'Histological Analysis for the\nCause of Kinky Hair after Hair\nTransplantation',
+        jp: 'Histological Analysis for the Cause\nof Kinky Hair after Hair\nTransplantation',
       },
       title: {
         ko: "Hair Transplant Forum Int'l.",
@@ -278,12 +278,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2021.12.04',
       type: '발표',
       event: {
-        ko: '2021 Asia Pacific Anti-Aging Conference',
-        jp: '2021 Asia Pacific Anti-Aging Conference',
+        ko: '2021 Asia Pacific Anti-Aging\nConference',
+        jp: '2021 Asia Pacific Anti-Aging\nConference',
       },
       title: {
         ko: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
-        jp: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
+        jp: 'Histological Analysis for the Cause of Kinky Hair after Hair\nTransplantation',
       },
     },
     {
@@ -302,8 +302,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2021.10.23',
       type: '수상',
       event: {
-        ko: 'ISHRS 29th World Congress, Lisbon, Portugal',
-        jp: 'ISHRS 29th World Congress, Lisbon, Portugal',
+        ko: 'ISHRS 29th World Congress,\nLisbon, Portugal',
+        jp: 'ISHRS 29th World Congress,\nLisbon, Portugal',
       },
       title: {
         ko: 'Best Methodology CSI Presentation Award',
@@ -314,12 +314,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2021.10.21',
       type: '발표',
       event: {
-        ko: 'ISHRS 29th World Congress, Lisbon, Portugal',
-        jp: 'ISHRS 29th World Congress, Lisbon, Portugal',
+        ko: 'ISHRS 29th World Congress,\nLisbon, Portugal',
+        jp: 'ISHRS 29th World Congress,\nLisbon, Portugal',
       },
       title: {
         ko: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
-        jp: 'Histological Analysis for the Cause of Kinky Hair after Hair Transplantation',
+        jp: 'Histological Analysis for the Cause of Kinky Hair after Hair\nTransplantation',
       },
     },
     {
@@ -327,7 +327,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '제16회 부산미용성형심포지엄 (BAPS)',
-        jp: '第16回 釜山美容整形シンポジウム(BAPS)',
+        jp: '第16回 釜山美容整形シンポジウム\n(BAPS)',
       },
       title: {
         ko: 'FUE(모낭단위채취술)을 이용한 여성환자의 이마라인 교정',
@@ -364,8 +364,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2019.05.19',
       type: '발표',
       event: {
-        ko: 'International Congress of the KSHRS 2019',
-        jp: 'International Congress of the KSHRS 2019',
+        ko: 'International Congress of the\nKSHRS 2019',
+        jp: 'International Congress of the\nKSHRS 2019',
       },
       title: {
         ko: 'Tips to Make Natural Hairline on Design and Implantation',
@@ -391,7 +391,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '대한성형외과학회 항노화성형연구회\n세미나',
-        jp: '大韓整形外科学会 抗老化整形研究会セミナー',
+        jp: '大韓整形外科学会 抗老化整形研究\n会セミナー',
       },
       title: {
         ko: '이상적인 헤어라인 디자인',
@@ -417,7 +417,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '2017년 제16회 대한성형외과의사회 추계 연수강좌',
-        jp: '2017年 第16回大韓整形外科医会 秋季研修講座',
+        jp: '2017年 第16回大韓整形外科医会 秋\n季研修講座',
       },
       title: {
         ko: 'Female hairline correction',
@@ -428,20 +428,20 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2017.10.06',
       type: '발표',
       event: {
-        ko: 'ISHRS 2017 25th World Congress, Prague, The Czech Republic',
-        jp: 'ISHRS 2017 25th World Congress, Prague, The Czech Republic',
+        ko: 'ISHRS 2017 25th World Congress, Prague, The Czech\nRepublic',
+        jp: 'ISHRS 2017 25th World Congress,\nPrague, The Czech Republic',
       },
       title: {
-        ko: 'Simultaneous Correction of Female Hairline Using Supraorbital Nerve Sparing Reduction Foreheadplasty with FUE Hair Transplantation',
-        jp: 'Simultaneous Correction of Female Hairline Using Supraorbital Nerve Sparing Reduction Foreheadplasty with FUE Hair Transplantation',
+        ko: 'Simultaneous Correction of Female Hairline Using Supraorbital Nerve Sparing Reduction Foreheadplasty\nwith FUE Hair Transplantation',
+        jp: 'Simultaneous Correction of Female Hairline Using Supraorbital\nNerve Sparing Reduction Foreheadplasty with FUE Hair\nTransplantation',
       },
     },
     {
       date: '2017.05.20',
       type: '발표',
       event: {
-        ko: 'The 9th Daegu Oriental Blepharoplasty and Periocular Cosmetic Surgery Symposium',
-        jp: 'The 9th Daegu Oriental Blepharoplasty and Periocular Cosmetic Surgery Symposium',
+        ko: 'The 9th Daegu Oriental\nBlepharoplasty and Periocular\nCosmetic Surgery Symposium',
+        jp: 'The 9th Daegu Oriental\nBlepharoplasty and Periocular\nCosmetic Surgery Symposium',
       },
       title: {
         ko: 'Hairline Lowering with Reduction Foreheadplasty\n(Live surgery)',
@@ -455,11 +455,11 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: 'PRS KOREA 2016(대한성형외과학\n회 창립 50주년 기념학술대회)',
-        jp: 'PRS KOREA 2016 (大韓整形外科学会創立50周年記念学術集会)',
+        jp: 'PRS KOREA 2016(大韓整形外科学\n会創立50周年記念学術集会)',
       },
       title: {
-        ko: 'Female hairline correction with hair transplantation and reduction foreheadplasty (simultaneously or separately)',
-        jp: 'Female hairline correction with hair transplantation and reduction foreheadplasty (simultaneously or separately)',
+        ko: 'Female hairline correction with hair transplantation and reduction foreheadplasty (simultaneously or\nseparately)',
+        jp: 'Female hairline correction with hair transplantation and reduction\nforeheadplasty (simultaneously or separately)',
       },
     },
     {
@@ -467,11 +467,11 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '제8회 대한성형외과학회 모발성형연구회 심포지움',
-        jp: '第8回大韓整形外科学会 毛髪整形研究会シンポジウム',
+        jp: '第8回大韓整形外科学会 毛髪整形研\n究会シンポジウム',
       },
       title: {
         ko: 'Reduction foreheadplasty sparing deep branch of supraorbital nerve; hair transplantation at the same time',
-        jp: 'Reduction foreheadplasty sparing deep branch of supraorbital nerve; hair transplantation at the same time',
+        jp: 'Reduction foreheadplasty sparing deep branch of supraorbital\nnerve; hair transplantation at the same time',
       },
     },
     {
@@ -495,7 +495,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       },
       title: {
         ko: 'Simultaneous hairline correction with reduction foreheadplasty and FUE hair transplantation',
-        jp: 'Simultaneous hairline correction with reduction foreheadplasty and FUE hair transplantation',
+        jp: 'Simultaneous hairline correction with reduction foreheadplasty and\nFUE hair transplantation',
       },
     },
   ],
@@ -504,8 +504,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2015.09.09',
       type: '저널',
       event: {
-        ko: 'Post-traumatic neuroma after hair transplantation',
-        jp: 'Post-traumatic neuroma after hair transplantation',
+        ko: 'Post-traumatic neuroma after\nhair transplantation',
+        jp: 'Post-traumatic neuroma after hair\ntransplantation',
       },
       title: {
         ko: 'Dermatol Surg',
@@ -554,12 +554,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2014.10.11',
       type: '발표',
       event: {
-        ko: 'ISHRS 22th Annual Scientific Meeting, Kuala Lumpur, Malaysia',
-        jp: 'ISHRS 22th Annual Scientific Meeting, Kuala Lumpur, Malaysia',
+        ko: 'ISHRS 22th Annual Scientific\nMeeting, Kuala Lumpur, Malaysia',
+        jp: 'ISHRS 22th Annual Scientific\nMeeting, Kuala Lumpur, Malaysia',
       },
       title: {
         ko: 'Various Cases of Secondary Female Hairline Corrections for Unsatisfied Results',
-        jp: 'Various Cases of Secondary Female Hairline Corrections for Unsatisfied Results',
+        jp: 'Various Cases of Secondary Female Hairline Corrections for\nUnsatisfied Results',
       },
     },
     {
@@ -594,8 +594,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
         jp: 'Aesthetic Plastic Surgery 2014',
       },
       title: {
-        ko: 'Hair: Facial Contouring by Hair Transplantation Session - Solutions for complications',
-        jp: 'Hair: Facial Contouring by Hair Transplantation Session - Solutions for complications',
+        ko: 'Hair: Facial Contouring by Hair Transplantation Session - Solution\nfor complications',
+        jp: 'Hair: Facial Contouring by Hair Transplantation Session - Solutions\nfor complications',
       },
     },
     {
@@ -603,7 +603,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       type: '발표',
       event: {
         ko: '대한모발이식학회 제9차 모발이식연구회',
-        jp: '大韓毛髪移植学会 第９次毛髪移植研究会',
+        jp: '大韓毛髪移植学会 第９次毛髪移植\n研究会',
       },
       title: {
         ko: '2013 ISHRS Morbidity & Mortality Conference Review',
@@ -614,8 +614,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2014',
       type: '저널',
       event: {
-        ko: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
-        jp: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
+        ko: 'Comparison between the\nsurvival rate of original single\nfollicular units and single follicles\ndivided from two or three-hair\nunits',
+        jp: 'Comparison between the survival\nrate of original single follicular units\nand single follicles divided from two\nor three-hair units',
       },
       title: {
         ko: "Hair Transplant Forum Int'l.",
@@ -628,12 +628,12 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2013.10.23',
       type: '발표',
       event: {
-        ko: 'ISHRS 21th Annual Scientific Meeting, San Francisco, USA',
-        jp: 'ISHRS 21th Annual Scientific Meeting, San Francisco, USA',
+        ko: 'ISHRS 21th Annual Scientific\nMeeting, San Francisco, USA',
+        jp: 'ISHRS 21th Annual Scientific\nMeeting, San Francisco, USA',
       },
       title: {
         ko: 'Using single follicles divided from multi-hair follicular unit for natural result in Asians',
-        jp: 'Using single follicles divided from multi-hair follicular unit for natural result in Asians',
+        jp: 'Using single follicles divided from multi-hair follicular unit for\nnatural result in Asians',
       },
     },
     {
@@ -645,15 +645,15 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       },
       title: {
         ko: '환자와 의료인 모두의 안전을 위한 수술 전 감염검사\nPreoperative laboratory testing for detecting infectious diseases',
-        jp: '患者と医療関係者の両方の安全のための手術前の感染検査\nPreoperative laboratory testing for detecting infectious diseases',
+        jp: '患者と医療関係者の両方の安全のための手\n術前の感染検査\nPreoperative laboratory testing for detecting infectious diseases',
       },
     },
     {
       date: '2013.03',
       type: '발표',
       event: {
-        ko: '2013년 대한외과학회 울산외과지회 - 초청강연',
-        jp: '2013年大韓外科学会 蔚山外科支会- 招請講演',
+        ko: '2013년 대한외과학회 울산외과지회\n- 초청강연',
+        jp: '2013年大韓外科学会 蔚山外科支会-\n招請講演',
       },
       title: {
         ko: '매력발산은 모(毛)에서부터',
@@ -664,8 +664,8 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2013',
       type: '저널',
       event: {
-        ko: "How I do it: Handy tips for slit depth control Hair Transplant Forum Int'l",
-        jp: "How I do it: Handy tips for slit depth control Hair Transplant Forum Int'l",
+        ko: "How I do it: Handy tips for slit\ndepth control Hair Transplant\nForum Int'l",
+        jp: "How I do it: Handy tips for slit\ndepth control Hair Transplant\nForum Int'l",
       },
       title: {
         ko: '',
@@ -678,32 +678,32 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       date: '2012.09',
       type: '발표',
       event: {
-        ko: '제6회 대한성형외과학회 모발성형연구회 정기 심포지움',
-        jp: '第６回大韓整形外科学会 毛髪整形研究会 定期シンポジウム',
+        ko: '제6회 대한성형외과학회\n모발성형연구회 정기 심포지움',
+        jp: '第６回大韓整形外科学会 毛髪整形\n研究会 定期シンポジウム',
       },
       title: {
-        ko: '자연스러운 결과를 위해 2,3개 모발 FU를 단일모로 분리하여 이식한 사례들에 대한 고찰 Using single follicles divided from multi-hair FU for natural result',
-        jp: '自然な結果のために2、3個の毛髪FUを単一毛に分離して移植する事例に対する考察 Using single follicles divided from multi-hair FU for natural result',
+        ko: '자연스러운 결과를 위해 2,3개 모발 FU를 단일모로 분리하여 이식한 사례들에 대한 고찰\nUsing single follicles divided from multi-hair FU for natural result',
+        jp: '自然な結果のために2、3個の毛髪FUを単一毛に分離して移植する\n事例に対する考察\nUsing single follicles divided from multi-hair FU for natural result',
       },
     },
     {
       date: '2012',
       type: '연구',
       event: {
-        ko: 'ISHRS (International Society of Hair Restoration Surgery) Research Grant',
-        jp: 'ISHRS (International Society of Hair Restoration Surgery) Research Grant',
+        ko: 'ISHRS (International Society of\nHair Restoration Surgery)\nResearch Grant',
+        jp: 'ISHRS (International Society of Hair\nRestoration Surgery) Research\nGrant',
       },
       title: {
-        ko: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
-        jp: 'Comparison between the survival rate of original single follicular units and single follicles divided from two or three-hair units',
+        ko: 'Comparison between the survival rate of original single follicular units and single follicles divided from two\nor three-hair units',
+        jp: 'Comparison between the survival rate of original single follicular\nunits and single follicles divided from two or three-hair units',
       },
     },
     {
       date: '2012',
       type: '역서',
       event: {
-        ko: "Unger's 모발이식 Hair Transplantation 5th edition 가본의학",
-        jp: 'Unger‘s毛髪移植 Hair Transplantation 5thedition GABON MEDICAL BOOK',
+        ko: "Unger's 모발이식 Hair\nTransplantation 5th edition,\n가본의학",
+        jp: 'Unger‘s毛髪移植 Hair\nTransplantation 5thedition GABON\nMEDICAL BOOK',
       },
       title: {
         ko: '',
@@ -721,7 +721,7 @@ export const academicActivitiesByYear: Record<number, AcademicActivity[]> = {
       },
       title: {
         ko: '모발이식을 시행한 후 발생한 부자연스러운 헤어라인을 제모레이저를 이용하여 교정하는 방법\nCorrection of unnatural hairline from hair transplantation surgery using a hair removal laser',
-        jp: '植毛後に発生した不自然なヘアラインを除毛レーザーを用いて矯正する方法\nCorrection of unnatural hairline from hair transplantation surgery using a hair removal laser',
+        jp: '植毛後に発生した不自然なヘアライン\nを除毛レーザーを用いて矯正する方法\nCorrection of unnatural hairline from hair transplantation surgery\nusing a hair removal laser',
       },
     },
   ],

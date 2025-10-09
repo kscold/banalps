@@ -45,6 +45,12 @@ export const image = style({
   height: '100%',
   objectFit: 'cover',
   display: 'block',
+  '@media': {
+    [breakpoints.mobile]: {
+      transform: 'scale(1.2)', // 모바일에서 이미지 확대
+      transformOrigin: 'center top',
+    },
+  },
 });
 
 // 모바일용 라벨 스타일
@@ -69,6 +75,11 @@ export const labelMobile = style({
   margin: '0',
   textAlign: 'center',
   flex: '0 0 auto',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 // 데스크탑용 라벨 스타일

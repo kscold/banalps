@@ -110,7 +110,13 @@ export default function TreatmentGuidePage() {
               <h3 className={styles.contactLabel}>{t.contact.locationLabel}</h3>
               <div className={styles.contactAddress}>
                 <p className={styles.addressMain}>
-                  {t.contact.address1} {t.contact.address2}
+                  {t.contact.address1.split('\n').map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index < t.contact.address1.split('\n').length - 1 && <br />}
+                    </span>
+                  ))}{' '}
+                  {t.contact.address2}
                 </p>
                 <div className={styles.subwayInfo}>
                   <p>{t.contact.subway1}</p>

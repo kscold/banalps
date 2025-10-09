@@ -51,7 +51,7 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
       <LoginModal />
       <main className="main-content">{children}</main>
-      {pathname !== '/' && (
+      {pathname !== '/' && pathname !== '/about' && (
         <ClientOnly>
           <Footer />
         </ClientOnly>

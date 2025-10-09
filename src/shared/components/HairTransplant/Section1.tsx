@@ -11,11 +11,12 @@ interface Section1Props {
   section1: Section;
   scarReduction: boolean;
   isHairline: boolean;
+  isHairTransplant?: boolean; // Hair Transplant 페이지 여부
   isMobile: boolean;
   isDesktopLarge: boolean;
 }
 
-export default function Section1({ section1, scarReduction, isHairline, isMobile, isDesktopLarge }: Section1Props) {
+export default function Section1({ section1, scarReduction, isHairline, isHairTransplant, isMobile, isDesktopLarge }: Section1Props) {
   const section1ImagesRef = useRef(null);
   const section1ImagesInView = useInView(section1ImagesRef, { once: true });
 
@@ -35,7 +36,7 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
           <>
             {/* 모바일: 숫자 → 제목 → 이미지 → 텍스트 순서 */}
 
-            <div className={styles.section1Left}>
+            <div className={isHairTransplant ? styles.section1LeftHairTransplant : styles.section1Left}>
               {!scarReduction && <div className={styles.section1Number}>{section1.number}</div>}
               <div className={styles.section1Text}>
                 <h2
@@ -49,6 +50,11 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.titleMobileSize.height
                             ? `${(section1.titleMobileSize.height / 375) * 100}vw`
                             : undefined,
+                        }
+                      : {}),
+                    ...(isMobile && section1.titleMobileMinHeight !== undefined
+                      ? {
+                          minHeight: mvw(section1.titleMobileMinHeight),
                         }
                       : {}),
                     ...(section1.titleMarginBottom !== undefined
@@ -273,7 +279,7 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
           </>
         ) : (
           <>
-            <div className={styles.section1Left}>
+            <div className={isHairTransplant ? styles.section1LeftHairTransplant : styles.section1Left}>
               {!scarReduction && <div className={styles.section1Number}>{section1.number}</div>}
               <div
                 className={styles.section1Text}
@@ -298,6 +304,11 @@ export default function Section1({ section1, scarReduction, isHairline, isMobile
                           height: section1.titleMobileSize.height
                             ? `${(section1.titleMobileSize.height / 375) * 100}vw`
                             : undefined,
+                        }
+                      : {}),
+                    ...(isMobile && section1.titleMobileMinHeight !== undefined
+                      ? {
+                          minHeight: mvw(section1.titleMobileMinHeight),
                         }
                       : {}),
                     ...(section1.titleMarginBottom !== undefined
