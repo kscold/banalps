@@ -26,7 +26,8 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const isMobile = useMediaQuery('screen and (max-width: 1023px)');
 
   // 동영상 최적화 적용
-  const videoConfig = useVideoPreloader('HERO_BACKGROUND');
+  const desktopVideoConfig = useVideoPreloader('HERO_BACKGROUND');
+  const mobileVideoConfig = useVideoPreloader('HERO_MOBILE_BACKGROUND');
 
   // 클라이언트 사이드 렌더링 확인
   useEffect(() => {
@@ -322,7 +323,7 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
           {isClient && (
             <iframe
               title="vimeo-player"
-              src={videoConfig.url}
+              src={isMobile ? mobileVideoConfig.url : desktopVideoConfig.url}
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
               style={{
                 position: 'absolute',

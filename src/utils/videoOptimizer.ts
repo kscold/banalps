@@ -77,39 +77,81 @@ export const VIDEO_CONFIGS = {
     priority: true,
     preload: true,
   },
-  HAIRLINE_HERO: {
-    id: 'hairline-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  HERO_MOBILE_BACKGROUND: {
+    id: 'hero-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
-  CROWN_HERO: {
-    id: 'crown-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  VIDEO_SECTION_BACKGROUND: {
+    id: 'video-section-background',
+    url: 'https://player.vimeo.com/video/1121423051?h=5c69b41058&autoplay=1&muted=1&loop=0&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
-  INCISION_HERO: {
-    id: 'incision-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  VIDEO_SECTION_MOBILE_BACKGROUND: {
+    id: 'video-section-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423284?h=c45022d051&autoplay=1&muted=1&loop=0&background=1&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
-  REOPERATION_HERO: {
-    id: 'reoperation-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  SCALP_TREATMENT_HERO_BACKGROUND: {
+    id: 'scalp-treatment-hero-background',
+    url: 'https://player.vimeo.com/video/1121423104?h=9505a82a8f&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
-  FOREHEAD_HAIR_TRANSPLANT_HERO: {
-    id: 'forehead-hair-transplant-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  SCALP_TREATMENT_HERO_MOBILE_BACKGROUND: {
+    id: 'scalp-treatment-hero-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423185?h=71aaec567d&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
-  SCAR_REDUCTION_HERO: {
-    id: 'scar-reduction-hero',
-    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0',
+  SCALP_TREATMENT_SECTION3_BACKGROUND: {
+    id: 'scalp-treatment-section3-background',
+    url: 'https://player.vimeo.com/video/1121423121?h=383908a6bd&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION3_MOBILE_BACKGROUND: {
+    id: 'scalp-treatment-section3-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423202?h=4ca40d5584&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION4_BACKGROUND: {
+    id: 'scalp-treatment-section4-background',
+    url: 'https://player.vimeo.com/video/1121423131?h=0371d1d722&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION4_MOBILE_BACKGROUND: {
+    id: 'scalp-treatment-section4-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423224?h=f8075aa099&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION5_BACKGROUND: {
+    id: 'scalp-treatment-section5-background',
+    url: 'https://player.vimeo.com/video/1121423150?h=ae4e69a9a3&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION5_MOBILE_BACKGROUND: {
+    id: 'scalp-treatment-section5-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423245?h=8cdcb86444&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION6_BACKGROUND: {
+    id: 'scalp-treatment-section6-background',
+    url: 'https://player.vimeo.com/video/1121423165?h=eb13c32221&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0',
+    priority: true,
+    preload: true,
+  },
+  SCALP_TREATMENT_SECTION6_MOBILE_BACKGROUND: {
+    id: 'scalp-treatment-section6-mobile-background',
+    url: 'https://player.vimeo.com/video/1121423260?h=8b00c9d78b&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0',
     priority: true,
     preload: true,
   },
@@ -127,7 +169,7 @@ export function useVideoPreloader(pageType: keyof typeof VIDEO_CONFIGS) {
       // Delay preloading to avoid blocking initial page load
       const timeoutId = setTimeout(() => {
         preloader.preloadVideo(config);
-      }, 1000);
+      }, 100);
 
       return () => clearTimeout(timeoutId);
     }

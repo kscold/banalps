@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 import * as styles from './HeroSection.css';
+import { useVideoPreloader } from '@/utils/videoOptimizer';
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
 
 interface VideoSectionProps {
   showVideoSection: boolean;
@@ -25,6 +27,16 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const playerRef = useRef<VimeoPlayer | null>(null);
 
+  // 모바일 감지
+  const isMobile = useMediaQuery('screen and (max-width: 1023px)');
+
+  // 동영상 최적화 적용
+  const desktopVideoConfig = useVideoPreloader('VIDEO_SECTION_BACKGROUND');
+  const mobileVideoConfig = useVideoPreloader('VIDEO_SECTION_MOBILE_BACKGROUND');
+
+  // 현재 디바이스에 맞는 비디오 URL
+  const currentVideoUrl = isMobile ? mobileVideoConfig.url : desktopVideoConfig.url;
+
   // 클라이언트 사이드에서만 실행 + 비디오 프리로드 + Vimeo Player API 로드
   useEffect(() => {
     setIsClient(true);
@@ -42,11 +54,10 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
       const preloadLink = document.createElement('link');
       preloadLink.rel = 'preload';
       preloadLink.as = 'document';
-      preloadLink.href =
-        'https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0';
+      preloadLink.href = currentVideoUrl;
       document.head.appendChild(preloadLink);
     }
-  }, [isVideoLoaded]);
+  }, [isVideoLoaded, currentVideoUrl]);
 
   const handleVimeoLoad = () => {
     // Vimeo Player API가 로드될 때까지 재시도
@@ -166,7 +177,7 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
       <div className={styles.vimeoContainer}>
         <iframe
           ref={iframeRef}
-          src="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
+          src={currentVideoUrl}
           className={styles.vimeoIframe}
           style={{
             position: 'absolute',

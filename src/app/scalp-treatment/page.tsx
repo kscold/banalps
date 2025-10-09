@@ -9,6 +9,7 @@ import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 import FeaturesSection from '../../shared/components/FeaturesSection/FeaturesSection';
 import HeroSection from '@/shared/components/HairTransplant/HeroSection';
+import { useVideoPreloader } from '@/utils/videoOptimizer';
 
 import * as styles from './ScalpTreatmentPage.css';
 import { vw, mvw } from '../../shared/styles/responsive.utils';
@@ -80,6 +81,25 @@ export default function ScalpTreatmentPage() {
   const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
   const t = useScalpTreatmentTranslations();
   const { language } = useLanguageStore();
+
+  // 동영상 최적화 적용
+  const desktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_HERO_BACKGROUND');
+  const mobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_HERO_MOBILE_BACKGROUND');
+  const section3DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION3_BACKGROUND');
+  const section3MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION3_MOBILE_BACKGROUND');
+  const section4DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION4_BACKGROUND');
+  const section4MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION4_MOBILE_BACKGROUND');
+  const section5DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION5_BACKGROUND');
+  const section5MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION5_MOBILE_BACKGROUND');
+  const section6DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION6_BACKGROUND');
+  const section6MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION6_MOBILE_BACKGROUND');
+
+  // 현재 디바이스에 맞는 비디오 URL
+  const currentVideoUrl = isMobile ? mobileVideoConfig.url : desktopVideoConfig.url;
+  const section3VideoUrl = isMobile ? section3MobileVideoConfig.url : section3DesktopVideoConfig.url;
+  const section4VideoUrl = isMobile ? section4MobileVideoConfig.url : section4DesktopVideoConfig.url;
+  const section5VideoUrl = isMobile ? section5MobileVideoConfig.url : section5DesktopVideoConfig.url;
+  const section6VideoUrl = isMobile ? section6MobileVideoConfig.url : section6DesktopVideoConfig.url;
 
   useEffect(() => {
     const checkDesktopLarge = () => {
@@ -535,7 +555,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.scalpTreatmentVideoContainer}>
               <iframe
                 title="vimeo-player"
-                src="https://player.vimeo.com/video/1121423104?h=9505a82a8f&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                src={currentVideoUrl}
                 className={styles.vimeoIframe}
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -674,7 +694,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.smallVideoContainer}>
               <iframe
                 title="vimeo-player"
-                src="https://player.vimeo.com/video/1121423121?h=383908a6bd&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                src={section3VideoUrl}
                 className={styles.vimeoIframe}
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -729,7 +749,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.smallVideoContainer}>
               <iframe
                 title="vimeo-player"
-                src="https://player.vimeo.com/video/1121423131?h=0371d1d722&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                src={section4VideoUrl}
                 className={styles.vimeoIframe}
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -789,7 +809,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.smallVideoContainer}>
               <iframe
                 title="vimeo-player"
-                src="https://player.vimeo.com/video/1121423150?h=ae4e69a9a3&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                src={section5VideoUrl}
                 className={styles.vimeoIframe}
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -853,7 +873,7 @@ export default function ScalpTreatmentPage() {
             <div className={styles.smallVideoContainer}>
               <iframe
                 title="vimeo-player"
-                src="https://player.vimeo.com/video/1121423165?h=eb13c32221&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0"
+                src={section6VideoUrl}
                 className={styles.vimeoIframe}
                 style={{ border: 'none' }}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"

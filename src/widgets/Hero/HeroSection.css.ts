@@ -306,7 +306,7 @@ export const specialQuoteText = style({
       fontSize: '20px',
     },
     [breakpoints.mobile]: {
-      fontSize: 'clamp(16px, 4vw, 20px)', // 모바일에서는 조금 더 작게
+      fontSize: mvw(16),
       lineHeight: '1.5',
     },
   },
