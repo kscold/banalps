@@ -21,8 +21,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const [isCompleted, setIsCompleted] = useState(false); // 히어로 섹션 완료 플래그
   const totalTexts = 5; // 텍스트 개수 5개로 변경
 
-  // 모바일 감지 (410px 이하만 모바일 비디오 사용)
-  const isMobile = useMediaQuery('screen and (max-width: 394px)');
+  // 모바일 감지 (394px 이하만 모바일 비디오 사용)
+  const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
+  const isMobile = useMediaQuery('screen and (max-width: 1023px)');
 
   // 동영상 최적화 적용
   const desktopVideoConfig = useVideoPreloader('HERO_BACKGROUND');
@@ -337,7 +338,7 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
         <div className={styles.backgroundVideo}>
           <iframe
             title="vimeo-player"
-            src={isMobile ? mobileVideoConfig.url : desktopVideoConfig.url}
+            src={isMobileVideo ? mobileVideoConfig.url : desktopVideoConfig.url}
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             style={{
               position: 'absolute',

@@ -44,7 +44,7 @@ export default function RichTextEditor({
       }),
       TextStyle,
       Color,
-      FontSize,
+      FontSize as any,
     ],
     content: value,
     immediatelyRender: false, // SSR 하이드레이션 이슈 방지

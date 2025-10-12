@@ -27,15 +27,15 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const playerRef = useRef<VimeoPlayer | null>(null);
 
-  // 모바일 감지 (410px 이하만 모바일 비디오 사용)
-  const isMobile = useMediaQuery('screen and (max-width: 410px)');
+  // 모바일 감지 (394px 이하만 모바일 비디오 사용)
+  const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
 
   // 동영상 최적화 적용
   const desktopVideoConfig = useVideoPreloader('VIDEO_SECTION_BACKGROUND');
   const mobileVideoConfig = useVideoPreloader('VIDEO_SECTION_MOBILE_BACKGROUND');
 
   // 현재 디바이스에 맞는 비디오 URL
-  const currentVideoUrl = isMobile ? mobileVideoConfig.url : desktopVideoConfig.url;
+  const currentVideoUrl = isMobileVideo ? mobileVideoConfig.url : desktopVideoConfig.url;
 
   // 클라이언트 사이드에서만 실행 + 비디오 프리로드 + Vimeo Player API 로드
   useEffect(() => {
