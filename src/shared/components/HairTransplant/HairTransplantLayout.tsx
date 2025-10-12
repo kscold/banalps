@@ -129,6 +129,7 @@ export default function HairTransplantLayout({
               beforeAlt={beforeAfterData.beforeAlt}
               afterAlt={beforeAfterData.afterAlt}
               className={styles.beforeAfterSlider}
+              imageScale={beforeAfterData.imageScale}
             />
           </div>
           {beforeAfterButton && (

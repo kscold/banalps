@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
-import { academicActivitiesByYear, activityTypeTranslations, type AcademicActivity } from '@/data/academicActivities';
+import { activityTypeTranslations } from '@/data/academicActivities';
 
 export interface LocalizedAcademicActivity {
   date: string;
@@ -8,28 +9,57 @@ export interface LocalizedAcademicActivity {
   title: string;
 }
 
+interface AcademicActivityFromDB {
+  id: number;
+  year: number;
+  date: string;
+  type: '발표' | '논문' | '저널' | '수상' | '연구' | '역서';
+  event: {
+    ko: string;
+    jp: string;
+  };
+  title: {
+    ko: string;
+    jp: string;
+  };
+  order: number;
+}
+
 export function useAcademicActivities() {
   const { language } = useLanguageStore();
   const currentLang = language === 'JP' ? 'jp' : 'ko';
+  const [activities, setActivities] = useState<AcademicActivityFromDB[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // DB에서 데이터 가져오기
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await fetch('/api/admin/academic-activity');
+        const data = await response.json();
+        if (data.success) {
+          setActivities(data.data);
+        }
+      } catch (error) {
+        console.error('[useAcademicActivities] 데이터 조회 실패:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivities();
+  }, []);
 
   // 모든 연도의 활동을 가져와서 날짜순으로 정렬
   const getAllActivities = (): LocalizedAcademicActivity[] => {
-    const allActivities: LocalizedAcademicActivity[] = [];
+    if (loading || activities.length === 0) return [];
 
-    // 모든 연도의 데이터를 수집
-    Object.keys(academicActivitiesByYear)
-      .sort((a, b) => parseInt(b) - parseInt(a)) // 최신 연도부터
-      .forEach((year) => {
-        const yearActivities = academicActivitiesByYear[parseInt(year)];
-        yearActivities.forEach((activity) => {
-          allActivities.push({
-            date: activity.date,
-            type: activityTypeTranslations[activity.type][currentLang],
-            event: activity.event[currentLang],
-            title: activity.title[currentLang],
-          });
-        });
-      });
+    const allActivities: LocalizedAcademicActivity[] = activities.map((activity) => ({
+      date: activity.date,
+      type: activityTypeTranslations[activity.type][currentLang],
+      event: activity.event[currentLang],
+      title: activity.title[currentLang],
+    }));
 
     // 날짜순으로 정렬 (최신순)
     return allActivities.sort((a, b) => {
@@ -50,8 +80,10 @@ export function useAcademicActivities() {
 
   // 특정 연도의 활동만 가져오기
   const getActivitiesByYear = (year: number): LocalizedAcademicActivity[] => {
-    const activities = academicActivitiesByYear[year] || [];
-    return activities.map((activity) => ({
+    if (loading || activities.length === 0) return [];
+
+    const yearActivities = activities.filter((activity) => activity.year === year);
+    return yearActivities.map((activity) => ({
       date: activity.date,
       type: activityTypeTranslations[activity.type][currentLang],
       event: activity.event[currentLang],
@@ -61,9 +93,10 @@ export function useAcademicActivities() {
 
   // 사용 가능한 연도 목록
   const getAvailableYears = (): number[] => {
-    return Object.keys(academicActivitiesByYear)
-      .map((year) => parseInt(year))
-      .sort((a, b) => b - a); // 최신 연도부터
+    if (loading || activities.length === 0) return [];
+
+    const years = Array.from(new Set(activities.map((activity) => activity.year)));
+    return years.sort((a, b) => b - a); // 최신 연도부터
   };
 
   return {
@@ -71,5 +104,6 @@ export function useAcademicActivities() {
     getActivitiesByYear,
     getAvailableYears,
     currentLanguage: currentLang,
+    loading,
   };
 }

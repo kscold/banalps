@@ -149,6 +149,7 @@ export interface BeforeAfterData {
   afterImage: string;
   beforeAlt: string;
   afterAlt: string;
+  imageScale?: number; // 이미지 확대 비율
 }
 
 export interface BeforeAfterButton {

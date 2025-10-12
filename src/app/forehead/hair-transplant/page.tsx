@@ -3,10 +3,12 @@
 import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
 import { useForeheadHairTransplantTranslations } from '@/hooks/useAllPagesTranslations';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import { useSlides } from '@/hooks/useSlides';
 
 export default function ForeheadHairTransplantPage() {
   const t = useForeheadHairTransplantTranslations();
   const { language } = useLanguageStore();
+  const { slides } = useSlides('forehead/hair-transplant');
   const layoutData = {
     heroTitle: (
       <>
@@ -218,10 +220,11 @@ export default function ForeheadHairTransplantPage() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: '/forehead/hair-transplant/slide/before.jpg',
-      afterImage: '/forehead/hair-transplant/slide/after.jpg',
+      beforeImage: slides[0]?.beforeImage || '/forehead/hair-transplant/slide/before.jpg',
+      afterImage: slides[0]?.afterImage || '/forehead/hair-transplant/slide/after.jpg',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
+      imageScale: slides[0]?.scale || 1.0,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,

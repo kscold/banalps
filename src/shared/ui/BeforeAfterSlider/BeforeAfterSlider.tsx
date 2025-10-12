@@ -15,6 +15,7 @@ interface BeforeAfterSliderProps {
   isLoggedIn?: boolean;
   onLoginClick?: () => void;
   loginOverlayText?: string;
+  imageScale?: number; // 이미지 확대 비율 (기본값 1.0)
 }
 
 export default function BeforeAfterSlider({
@@ -27,6 +28,7 @@ export default function BeforeAfterSlider({
   isLoggedIn = true,
   onLoginClick,
   loginOverlayText = '로그인을 하시면\n수술 전/후 사진 확인이 가능합니다.',
+  imageScale = 1.0,
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50); // 정확히 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null);
@@ -155,14 +157,30 @@ export default function BeforeAfterSlider({
       >
         {/* After 이미지 (전체) */}
         <div className={styles.afterImageWrapper}>
-          <img src={afterImage} alt={afterAlt} className={styles.image} />
+          <img
+            src={afterImage}
+            alt={afterAlt}
+            className={styles.image}
+            style={{
+              transform: `scale(${imageScale})`,
+              transformOrigin: 'center center'
+            }}
+          />
           {/* 오른쪽 페이드 아웃 효과 */}
           <div className={styles.rightFadeOverlay} />
         </div>
 
         {/* Before 이미지 (클립 마스크) */}
         <div className={styles.beforeImageWrapper} style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}>
-          <img src={beforeImage} alt={beforeAlt} className={styles.image} />
+          <img
+            src={beforeImage}
+            alt={beforeAlt}
+            className={styles.image}
+            style={{
+              transform: `scale(${imageScale})`,
+              transformOrigin: 'center center'
+            }}
+          />
           {/* 왼쪽 페이드 아웃 효과 */}
           <div className={styles.leftFadeOverlay} />
         </div>

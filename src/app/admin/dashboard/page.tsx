@@ -9,6 +9,7 @@ import * as styles from '../AdminPage.css';
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor'), { ssr: false });
 
 type Category = '이마축소' | '흉터&재수술' | '헤어라인(남성)' | '헤어라인(여성)' | '정수리';
+type ActivityType = '발표' | '논문' | '저널' | '수상' | '연구' | '역서';
 
 interface BeforeAfterItem {
   _id?: string;
@@ -47,10 +48,37 @@ interface PopupItem {
   position: PopupPosition;
 }
 
+interface AcademicActivityItem {
+  _id?: string;
+  id: number;
+  year: number;
+  date: string;
+  type: ActivityType;
+  event: {
+    ko: string;
+    jp: string;
+  };
+  title: {
+    ko: string;
+    jp: string;
+  };
+  order: number;
+}
+
+interface SlideItem {
+  _id?: string;
+  id: number;
+  category: string;
+  beforeImage: string;
+  afterImage: string;
+  scale: number;
+  order: number;
+}
+
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'before-after' | 'popup'>('before-after');
+  const [activeTab, setActiveTab] = useState<'before-after' | 'popup' | 'academic' | 'slide'>('before-after');
 
   // 인증 체크
   useEffect(() => {
@@ -92,7 +120,16 @@ export default function AdminDashboard() {
     <div className={styles.adminPage}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1 className={styles.title}>바람부는날에도 관리자</h1>
+          <div>
+            <h1 className={styles.title}>바람부는날에도 관리자</h1>
+            <div style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
+              <div style={{ marginBottom: '4px' }}>
+                <strong>버그 및 업데이트 문의</strong>
+              </div>
+              <div>개발자: 김승찬 | 010-6545-6502</div>
+              <div>카카오톡: ks_cold</div>
+            </div>
+          </div>
           <button className={styles.logoutButton} onClick={handleLogout}>
             로그아웃
           </button>
@@ -106,15 +143,35 @@ export default function AdminDashboard() {
             수술 전후 관리
           </button>
           <button
+            className={`${styles.tab} ${activeTab === 'slide' ? styles.activeTab : ''}`}
+            onClick={() => setActiveTab('slide')}
+          >
+            페이지 별 전후 관리
+          </button>
+          <button
             className={`${styles.tab} ${activeTab === 'popup' ? styles.activeTab : ''}`}
             onClick={() => setActiveTab('popup')}
           >
             팝업 관리
           </button>
+          <button
+            className={`${styles.tab} ${activeTab === 'academic' ? styles.activeTab : ''}`}
+            onClick={() => setActiveTab('academic')}
+          >
+            학술 정보 관리
+          </button>
         </div>
 
         <div className={styles.content}>
-          {activeTab === 'before-after' ? <BeforeAfterManagement /> : <PopupManagement />}
+          {activeTab === 'before-after' ? (
+            <BeforeAfterManagement />
+          ) : activeTab === 'popup' ? (
+            <PopupManagement />
+          ) : activeTab === 'academic' ? (
+            <AcademicActivityManagement />
+          ) : (
+            <SlideManagement />
+          )}
         </div>
       </div>
     </div>
@@ -278,13 +335,13 @@ function BeforeAfterManagement() {
         <button className={styles.addButton} onClick={handleAdd}>
           + 새 케이스 추가
         </button>
-        <button
+        {/* <button
           className={styles.addButton}
           style={{ backgroundColor: '#14AEFF' }}
           onClick={() => setShowMigration(true)}
         >
           데이터 마이그레이션
-        </button>
+        </button> */}
       </div>
 
       {loading ? (
@@ -1018,5 +1075,1085 @@ function PopupModal({
         </form>
       </div>
     </div>
+  );
+}
+
+// 학술 활동 관리 컴포넌트
+function AcademicActivityManagement() {
+  const [items, setItems] = useState<AcademicActivityItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<AcademicActivityItem | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
+  const [showMigration, setShowMigration] = useState(false);
+
+  // 연도 목록 생성 (2011년부터 현재+1년까지)
+  const years = Array.from({ length: new Date().getFullYear() - 2010 + 2 }, (_, i) => new Date().getFullYear() + 1 - i);
+
+  useEffect(() => {
+    fetchItems();
+  }, [selectedYear]);
+
+  const fetchItems = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/academic-activity');
+      const data = await response.json();
+      if (data.success) {
+        let filteredData = data.data;
+
+        // 선택된 연도로 필터링
+        if (selectedYear !== 'all') {
+          filteredData = data.data.filter((item: AcademicActivityItem) => item.year === selectedYear);
+        }
+
+        // 날짜순으로 정렬 (최신순)
+        const sortedItems = filteredData.sort((a: AcademicActivityItem, b: AcademicActivityItem) => {
+          const parseDate = (dateStr: string) => {
+            if (dateStr.includes('.')) {
+              return new Date(dateStr.replace(/\./g, '-'));
+            }
+            return new Date(`${dateStr}-12-31`); // 연도만 있으면 해당 연도 마지막으로
+          };
+
+          const dateA = parseDate(a.date);
+          const dateB = parseDate(b.date);
+          return dateB.getTime() - dateA.getTime(); // 최신순
+        });
+
+        setItems(sortedItems);
+      }
+    } catch (error) {
+      console.error('학술 활동 조회 실패:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('정말 삭제하시겠습니까?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/academic-activity?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('삭제되었습니다.');
+        fetchItems();
+      } else {
+        alert('삭제 실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('삭제 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleEdit = (item: AcademicActivityItem) => {
+    setEditingItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleAdd = () => {
+    const defaultYear = selectedYear === 'all' ? new Date().getFullYear() : selectedYear;
+
+    setEditingItem({
+      id: 0,
+      year: defaultYear,
+      date: `${defaultYear}.`,
+      type: '발표',
+      event: { ko: '', jp: '' },
+      title: { ko: '', jp: '' },
+      order: 0, // 날짜순 정렬로 자동 처리됨
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingItem(null);
+  };
+
+  const handleMigrate = async () => {
+    if (!confirm('기존 데이터를 모두 삭제하고 academicActivities.ts 데이터를 마이그레이션하시겠습니까?')) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/academic-migrate', {
+        method: 'POST',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(`${data.message}\n\n총 ${data.count}개의 학술 활동이 마이그레이션되었습니다.`);
+        fetchItems();
+        setShowMigration(false);
+      } else {
+        alert('마이그레이션 실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('마이그레이션 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (showMigration) {
+    return (
+      <>
+        <button className={styles.addButton} onClick={() => setShowMigration(false)}>
+          ← 목록으로 돌아가기
+        </button>
+        <h2>학술 활동 데이터 마이그레이션</h2>
+        <p style={{ marginTop: '16px', marginBottom: '24px' }}>
+          academicActivities.ts 파일의 데이터를 MongoDB에 마이그레이션합니다.
+          <br />
+          <strong>주의:</strong> 기존 데이터가 모두 삭제되고 새로 생성됩니다.
+        </p>
+        <button className={styles.submitButton} onClick={handleMigrate} disabled={loading}>
+          {loading ? '마이그레이션 중...' : '마이그레이션 실행'}
+        </button>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div style={{ marginBottom: '24px', marginTop: '24px' }}>
+        <label style={{ marginRight: '12px', fontWeight: '500' }}>연도 선택:</label>
+        <select
+          className={styles.select}
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+          style={{ padding: '8px 12px', fontSize: '14px' }}
+        >
+          <option value="all">전체</option>
+          {years.map((year) => (
+            <option key={year} value={year}>
+              {year}년
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
+        <button className={styles.addButton} onClick={handleAdd}>
+          + 새 학술 활동 추가
+        </button>
+        {/* <button
+          className={styles.addButton}
+          style={{ backgroundColor: '#14AEFF' }}
+          onClick={() => setShowMigration(true)}
+        >
+          데이터 마이그레이션
+        </button> */}
+      </div>
+
+      {loading ? (
+        <p>로딩 중...</p>
+      ) : (
+        <div style={{ overflowX: 'auto', maxHeight: '600px', overflowY: 'auto' }}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.th}>ID</th>
+                <th className={styles.th}>연도</th>
+                <th className={styles.th}>날짜</th>
+                <th className={styles.th}>타입</th>
+                <th className={styles.th}>행사명(한국어)</th>
+                <th className={styles.th}>제목(한국어)</th>
+                <th className={styles.th}>작업</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className={styles.td} style={{ textAlign: 'center', padding: '40px' }}>
+                    {selectedYear === 'all' ? '데이터가 없습니다.' : `${selectedYear}년 데이터가 없습니다.`}
+                  </td>
+                </tr>
+              ) : (
+                items.map((item) => (
+                  <tr key={item.id}>
+                    <td className={styles.td}>{item.id}</td>
+                    <td className={styles.td}>{item.year}</td>
+                    <td className={styles.td}>{item.date}</td>
+                    <td className={styles.td}>{item.type}</td>
+                    <td
+                      className={styles.td}
+                      style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    >
+                      {item.event.ko}
+                    </td>
+                    <td
+                      className={styles.td}
+                      style={{ maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    >
+                      {item.title.ko}
+                    </td>
+                    <td className={styles.td}>
+                      <div className={styles.actionButtons}>
+                        <button className={styles.editButton} onClick={() => handleEdit(item)}>
+                          수정
+                        </button>
+                        <button className={styles.deleteButton} onClick={() => handleDelete(item.id)}>
+                          삭제
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {isModalOpen && <AcademicActivityModal item={editingItem} onClose={handleCloseModal} onSuccess={fetchItems} />}
+    </>
+  );
+}
+
+// 학술 활동 모달
+function AcademicActivityModal({
+  item,
+  onClose,
+  onSuccess,
+}: {
+  item: AcademicActivityItem | null;
+  onClose: () => void;
+  onSuccess: () => void;
+}) {
+  const [formData, setFormData] = useState<Partial<AcademicActivityItem>>(item || {});
+  const [uploading, setUploading] = useState(false);
+
+  const activityTypes: ActivityType[] = ['발표', '논문', '저널', '수상', '연구', '역서'];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.year || !formData.date || !formData.type) {
+      alert('필수 항목을 모두 입력해주세요.');
+      return;
+    }
+
+    if (!formData.event?.ko || !formData.event?.jp) {
+      alert('행사명을 한국어와 일본어로 모두 입력해주세요.');
+      return;
+    }
+
+    if (!formData.title?.ko || !formData.title?.jp) {
+      alert('제목을 한국어와 일본어로 모두 입력해주세요.');
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const method = item && item.id ? 'PUT' : 'POST';
+
+      const body: any = {
+        year: formData.year,
+        date: formData.date,
+        type: formData.type,
+        event: formData.event,
+        title: formData.title,
+        order: formData.order || 0,
+      };
+
+      if (item && item.id) {
+        body.id = item.id;
+      }
+
+      const response = await fetch('/api/admin/academic-activity', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(item && item.id ? '수정되었습니다.' : '추가되었습니다.');
+        onSuccess();
+        onClose();
+      } else {
+        alert('실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('오류가 발생했습니다.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div className={styles.modal} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>
+        <h2 className={styles.modalTitle}>{item && item.id ? '학술 활동 수정' : '새 학술 활동 추가'}</h2>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>연도 *</label>
+            <input
+              type="number"
+              className={styles.input}
+              value={formData.year || new Date().getFullYear()}
+              onChange={(e) => setFormData({ ...formData, year: Number(e.target.value) })}
+              required
+              min="2011"
+              max={new Date().getFullYear() + 1}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>날짜 *</label>
+            <input
+              type="text"
+              className={styles.input}
+              value={formData.date || ''}
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              placeholder="예: 2025.05.11"
+              required
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>타입 *</label>
+            <select
+              className={styles.select}
+              value={formData.type || '발표'}
+              onChange={(e) => setFormData({ ...formData, type: e.target.value as ActivityType })}
+              required
+            >
+              {activityTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>행사명 (한국어) *</label>
+            <textarea
+              className={styles.input}
+              value={formData.event?.ko || ''}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  event: { ...formData.event!, ko: e.target.value },
+                })
+              }
+              placeholder="예: International Congress of the KSHRS 2025"
+              required
+              rows={3}
+              style={{ resize: 'vertical' }}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>행사명 (일본어) *</label>
+            <textarea
+              className={styles.input}
+              value={formData.event?.jp || ''}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  event: { ...formData.event!, jp: e.target.value },
+                })
+              }
+              placeholder="예: International Congress of the KSHRS 2025"
+              required
+              rows={3}
+              style={{ resize: 'vertical' }}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>제목 (한국어) *</label>
+            <textarea
+              className={styles.input}
+              value={formData.title?.ko || ''}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  title: { ...formData.title!, ko: e.target.value },
+                })
+              }
+              placeholder="예: Hair transplantation after reduction foreheadplasty"
+              required
+              rows={3}
+              style={{ resize: 'vertical' }}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>제목 (일본어) *</label>
+            <textarea
+              className={styles.input}
+              value={formData.title?.jp || ''}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  title: { ...formData.title!, jp: e.target.value },
+                })
+              }
+              placeholder="예: Hair transplantation after reduction foreheadplasty"
+              required
+              rows={3}
+              style={{ resize: 'vertical' }}
+            />
+          </div>
+
+          <div className={styles.modalActions}>
+            <button type="button" className={styles.cancelButton} onClick={onClose}>
+              취소
+            </button>
+            <button type="submit" className={styles.submitButton} disabled={uploading}>
+              {uploading ? '저장 중...' : '저장'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// 슬라이드 관리 컴포넌트
+function SlideManagement() {
+  const [items, setItems] = useState<SlideItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<SlideItem | null>(null);
+  const [showMigration, setShowMigration] = useState(false);
+
+  const slideCategories = [
+    { value: 'forehead/hair-transplant', label: '이마축소 - 모발이식' },
+    { value: 'forehead/scar-reduction', label: '이마축소 - 흉터축소' },
+    { value: 'scar-reduction', label: '흉터축소' },
+    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
+    { value: 'hair-transplant/hairline', label: '모발이식 - 헤어라인' },
+    { value: 'hair-transplant/incision', label: '모발이식 - 절개' },
+    { value: 'hair-transplant/reoperation', label: '모발이식 - 재수술' },
+  ];
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/slide');
+      const data = await response.json();
+      if (data.success) {
+        setItems(data.data);
+      }
+    } catch (error) {
+      console.error('슬라이드 조회 실패:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('정말 삭제하시겠습니까?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/slide?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('삭제되었습니다.');
+        fetchItems();
+      } else {
+        alert('삭제 실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('삭제 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleEdit = (item: SlideItem) => {
+    setEditingItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleAdd = () => {
+    setEditingItem({
+      id: 0,
+      category: slideCategories[0].value,
+      beforeImage: '',
+      afterImage: '',
+      scale: 1.0,
+      order: 0,
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingItem(null);
+  };
+
+  const handleMigrate = async () => {
+    if (!confirm('기존 슬라이드 데이터를 모두 삭제하고 public/slide 폴더의 이미지로 마이그레이션하시겠습니까?')) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/slide-migrate', {
+        method: 'POST',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(data.message);
+        fetchItems();
+        setShowMigration(false);
+      } else {
+        alert('마이그레이션 실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('마이그레이션 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <div style={{ marginBottom: '24px', marginTop: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <button className={styles.addButton} onClick={handleAdd}>
+          + 새 슬라이드 추가
+        </button>
+        {/* <button
+          className={styles.addButton}
+          onClick={() => setShowMigration(!showMigration)}
+          style={{ background: '#6c757d' }}
+        >
+          마이그레이션 {showMigration ? '▲' : '▼'}
+        </button> */}
+      </div>
+
+      {showMigration && (
+        <div
+          style={{
+            background: '#f8f9fa',
+            padding: '20px',
+            borderRadius: '8px',
+            marginBottom: '24px',
+            border: '1px solid #dee2e6',
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>슬라이드 데이터 마이그레이션</h3>
+          <p style={{ color: '#666', marginBottom: '16px' }}>
+            public/slide 폴더의 이미지 파일들을 MongoDB로 마이그레이션합니다.
+          </p>
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <button className={styles.addButton} onClick={handleMigrate}>
+              마이그레이션 실행
+            </button>
+            <button
+              className={styles.addButton}
+              onClick={async () => {
+                if (!confirm('기존 슬라이드 데이터의 스키마를 수정하시겠습니까?')) return;
+                setLoading(true);
+                try {
+                  const response = await fetch('/api/admin/slide-fix', { method: 'POST' });
+                  const data = await response.json();
+                  if (data.success) {
+                    alert(data.message);
+                    fetchItems();
+                  } else {
+                    alert('스키마 수정 실패: ' + data.message);
+                  }
+                } catch (error) {
+                  alert('스키마 수정 중 오류가 발생했습니다.');
+                } finally {
+                  setLoading(false);
+                }
+              }}
+              style={{ background: '#dc3545' }}
+            >
+              스키마 수정 (cropSettings → scale)
+            </button>
+          </div>
+        </div>
+      )}
+
+      {loading ? (
+        <p>로딩 중...</p>
+      ) : (
+        <div style={{ overflowX: 'auto' }}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.th}>ID</th>
+                <th className={styles.th}>카테고리</th>
+                <th className={styles.th}>Before</th>
+                <th className={styles.th}>After</th>
+                <th className={styles.th}>확대비율</th>
+                <th className={styles.th}>작업</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className={styles.td} style={{ textAlign: 'center', padding: '40px' }}>
+                    데이터가 없습니다.
+                  </td>
+                </tr>
+              ) : (
+                items.map((item) => (
+                  <tr key={item.id}>
+                    <td className={styles.td}>{item.id}</td>
+                    <td className={styles.td}>
+                      {slideCategories.find((c) => c.value === item.category)?.label || item.category}
+                    </td>
+                    <td className={styles.td}>
+                      <img src={item.beforeImage} alt="Before" className={styles.imagePreview} />
+                    </td>
+                    <td className={styles.td}>
+                      <img src={item.afterImage} alt="After" className={styles.imagePreview} />
+                    </td>
+                    <td className={styles.td}>{item.scale ? `${item.scale}x` : '1.0x'}</td>
+                    <td className={styles.td}>
+                      <div className={styles.actionButtons}>
+                        <button className={styles.editButton} onClick={() => handleEdit(item)}>
+                          수정
+                        </button>
+                        <button className={styles.deleteButton} onClick={() => handleDelete(item.id)}>
+                          삭제
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {isModalOpen && <SlideModal item={editingItem} onClose={handleCloseModal} onSuccess={fetchItems} />}
+    </>
+  );
+}
+
+// 슬라이드 모달 컴포넌트
+function SlideModal({
+  item,
+  onClose,
+  onSuccess,
+}: {
+  item: SlideItem | null;
+  onClose: () => void;
+  onSuccess: () => void;
+}) {
+  const [formData, setFormData] = useState<Partial<SlideItem>>(item || { scale: 1.0 });
+  const [beforeFile, setBeforeFile] = useState<File | null>(null);
+  const [afterFile, setAfterFile] = useState<File | null>(null);
+  const [beforePreview, setBeforePreview] = useState<string | null>(item?.beforeImage || null);
+  const [afterPreview, setAfterPreview] = useState<string | null>(item?.afterImage || null);
+  const [uploading, setUploading] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+  const [cropTarget, setCropTarget] = useState<'before' | 'after' | null>(null);
+  const [zoom, setZoom] = useState(item?.scale || 1.0);
+
+  const slideCategories = [
+    { value: 'forehead/hair-transplant', label: '이마축소 - 모발이식' },
+    { value: 'forehead/scar-reduction', label: '이마축소 - 흉터축소' },
+    { value: 'scar-reduction', label: '흉터축소' },
+    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
+    { value: 'hair-transplant/hairline', label: '모발이식 - 헤어라인' },
+    { value: 'hair-transplant/incision', label: '모발이식 - 절개' },
+    { value: 'hair-transplant/reoperation', label: '모발이식 - 재수술' },
+  ];
+
+  const handleBeforeFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setBeforeFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBeforePreview(reader.result as string);
+        setCropTarget('before');
+        setShowCropper(true);
+        setZoom(1);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAfterFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAfterFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAfterPreview(reader.result as string);
+        setCropTarget('after');
+        setShowCropper(true);
+        setZoom(1);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCropSave = () => {
+    // zoom 값을 scale로 저장
+    setFormData((prev) => ({ ...prev, scale: zoom }));
+    setShowCropper(false);
+    setCropTarget(null);
+  };
+
+  const handleCropCancel = () => {
+    // 이미지 업로드 취소
+    if (cropTarget === 'before') {
+      setBeforeFile(null);
+      setBeforePreview(item?.beforeImage || null);
+    } else {
+      setAfterFile(null);
+      setAfterPreview(item?.afterImage || null);
+    }
+    setShowCropper(false);
+    setCropTarget(null);
+    setZoom(1);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!item && !beforeFile && !formData.beforeImage) {
+      alert('Before 이미지를 업로드해주세요.');
+      return;
+    }
+    if (!item && !afterFile && !formData.afterImage) {
+      alert('After 이미지를 업로드해주세요.');
+      return;
+    }
+
+    setUploading(true);
+    try {
+      let beforeImagePath = formData.beforeImage;
+      let afterImagePath = formData.afterImage;
+
+      if (beforeFile) {
+        const fd = new FormData();
+        fd.append('file', beforeFile);
+        fd.append('category', formData.category!);
+        fd.append('type', 'before');
+        const res = await fetch('/api/admin/slide/upload', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (data.success) beforeImagePath = data.path;
+      }
+
+      if (afterFile) {
+        const fd = new FormData();
+        fd.append('file', afterFile);
+        fd.append('category', formData.category!);
+        fd.append('type', 'after');
+        const res = await fetch('/api/admin/slide/upload', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (data.success) afterImagePath = data.path;
+      }
+
+      const method = item && item.id ? 'PUT' : 'POST';
+      const body: any = {
+        category: formData.category,
+        beforeImage: beforeImagePath,
+        afterImage: afterImagePath,
+        scale: formData.scale || 1.0,
+        order: formData.order || 0,
+      };
+      if (item && item.id) body.id = item.id;
+
+      console.log('[슬라이드 저장] Method:', method);
+      console.log('[슬라이드 저장] Body:', body);
+      console.log('[슬라이드 저장] formData.scale:', formData.scale);
+
+      const response = await fetch('/api/admin/slide', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json();
+      console.log('[슬라이드 저장] Response:', data);
+
+      if (data.success) {
+        alert(item && item.id ? '수정되었습니다.' : '추가되었습니다.');
+        onSuccess();
+        onClose();
+      } else {
+        alert('실패: ' + data.message);
+      }
+    } catch (error) {
+      alert('오류가 발생했습니다.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <>
+      {showCropper && (cropTarget === 'before' ? beforePreview : afterPreview) && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.9)',
+            zIndex: 10000,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div style={{ padding: '20px', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+            <h3 style={{ margin: '0 0 12px 0' }}>이미지 확대 설정</h3>
+            <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+              <strong style={{ color: '#00ff00' }}>초록 박스</strong>는 데스크탑 표시 영역,{' '}
+              <strong style={{ color: '#ff6b00' }}>주황 박스</strong>는 모바일 표시 영역입니다.
+              <br />
+              슬라이더로 이미지 확대 비율을 조정하여 원하는 부분이 보이도록 설정하세요.
+            </p>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
+              <label style={{ fontSize: '14px', fontWeight: 500 }}>확대 비율:</label>
+              <input
+                type="range"
+                min="1"
+                max="3"
+                step="0.1"
+                value={zoom}
+                onChange={(e) => setZoom(parseFloat(e.target.value))}
+                style={{ flex: 1 }}
+              />
+              <span style={{ minWidth: '60px', fontSize: '14px' }}>{zoom.toFixed(1)}x</span>
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={handleCropCancel}
+                style={{
+                  flex: 1,
+                  padding: '10px 20px',
+                  background: '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                }}
+              >
+                취소
+              </button>
+              <button
+                onClick={handleCropSave}
+                style={{
+                  flex: 1,
+                  padding: '10px 20px',
+                  background: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                }}
+              >
+                적용
+              </button>
+            </div>
+          </div>
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              padding: '40px',
+              position: 'relative',
+            }}
+          >
+            <div
+              style={{
+                position: 'relative',
+                width: '790px',
+                maxWidth: '90%',
+                aspectRatio: '790 / 410',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {/* 격자 오버레이 - 데스크탑 뷰포트 */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  border: '3px solid #00ff00',
+                  pointerEvents: 'none',
+                  zIndex: 10,
+                  boxShadow: 'inset 0 0 0 2px rgba(0,255,0,0.3)',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-30px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: '#00ff00',
+                    color: 'black',
+                    padding: '4px 12px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  표시 영역
+                </div>
+              </div>
+
+              <img
+                src={cropTarget === 'before' ? beforePreview! : afterPreview!}
+                alt="Preview"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transform: `scale(${zoom})`,
+                  transformOrigin: 'center center',
+                  transition: 'transform 0.2s ease',
+                  display: 'block',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className={styles.modal} onClick={onClose}>
+        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+          <h2 className={styles.modalTitle}>{item && item.id ? '슬라이드 수정' : '새 슬라이드 추가'}</h2>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>카테고리 *</label>
+              <select
+                className={styles.select}
+                value={formData.category || slideCategories[0].value}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                required
+              >
+                {slideCategories.map((cat) => (
+                  <option key={cat.value} value={cat.value}>
+                    {cat.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>
+                Before 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}
+              </label>
+              <input
+                type="file"
+                className={styles.fileInput}
+                accept="image/*"
+                onChange={handleBeforeFileChange}
+                required={!item && !formData.beforeImage}
+              />
+              {beforePreview && (
+                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+                  <img
+                    src={beforePreview}
+                    alt="Before preview"
+                    style={{ maxWidth: '200px', borderRadius: '4px', display: 'block', cursor: 'pointer' }}
+                    onClick={() => {
+                      setCropTarget('before');
+                      setZoom(formData.scale || 1.0);
+                      setShowCropper(true);
+                    }}
+                  />
+                  <small style={{ display: 'block', marginTop: '4px', color: '#666' }}>클릭하여 확대 비율 조정</small>
+                </div>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>
+                After 이미지 {!item && <span style={{ color: '#ff4444' }}>*</span>}
+              </label>
+              <input
+                type="file"
+                className={styles.fileInput}
+                accept="image/*"
+                onChange={handleAfterFileChange}
+                required={!item && !formData.afterImage}
+              />
+              {afterPreview && (
+                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+                  <img
+                    src={afterPreview}
+                    alt="After preview"
+                    style={{ maxWidth: '200px', borderRadius: '4px', display: 'block', cursor: 'pointer' }}
+                    onClick={() => {
+                      setCropTarget('after');
+                      setZoom(formData.scale || 1.0);
+                      setShowCropper(true);
+                    }}
+                  />
+                  <small style={{ display: 'block', marginTop: '4px', color: '#666' }}>클릭하여 확대 비율 조정</small>
+                </div>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>이미지 확대 비율 *</label>
+              <input
+                type="number"
+                className={styles.input}
+                value={formData.scale || 1.0}
+                onChange={(e) => setFormData({ ...formData, scale: parseFloat(e.target.value) })}
+                step="0.1"
+                min="0.5"
+                max="3.0"
+                required
+              />
+              <small style={{ color: '#666', marginTop: '4px', display: 'block' }}>
+                1.0 = 100% (기본값), 범위: 0.5 ~ 3.0
+              </small>
+            </div>
+            <div className={styles.modalActions}>
+              <button type="button" className={styles.cancelButton} onClick={onClose}>
+                취소
+              </button>
+              <button type="submit" className={styles.submitButton} disabled={uploading}>
+                {uploading ? '저장 중...' : '저장'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
