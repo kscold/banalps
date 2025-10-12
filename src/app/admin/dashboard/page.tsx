@@ -1639,9 +1639,9 @@ function SlideManagement() {
   return (
     <>
       <div style={{ marginBottom: '24px', marginTop: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <button className={styles.addButton} onClick={handleAdd}>
+        {/* <button className={styles.addButton} onClick={handleAdd}>
           + 새 슬라이드 추가
-        </button>
+        </button> */}
         {/* <button
           className={styles.addButton}
           onClick={() => setShowMigration(!showMigration)}
@@ -1738,9 +1738,9 @@ function SlideManagement() {
                         <button className={styles.editButton} onClick={() => handleEdit(item)}>
                           수정
                         </button>
-                        <button className={styles.deleteButton} onClick={() => handleDelete(item.id)}>
+                        {/* <button className={styles.deleteButton} onClick={() => handleDelete(item.id)}>
                           삭제
-                        </button>
+                        </button> */}
                       </div>
                     </td>
                   </tr>
