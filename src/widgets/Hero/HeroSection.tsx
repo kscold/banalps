@@ -25,9 +25,9 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
   const isMobile = useMediaQuery('screen and (max-width: 1023px)');
 
-  // 동영상 최적화 적용
-  const desktopVideoConfig = useVideoPreloader('HERO_BACKGROUND');
-  const mobileVideoConfig = useVideoPreloader('HERO_MOBILE_BACKGROUND');
+  // 동영상 최적화 적용 - preload 제거하고 직접 사용
+  const desktopVideoConfig = { url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
+  const mobileVideoConfig = { url: 'https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
 
   // VideoSection(About 페이지) 비디오 미리 로드
   const videoSectionDesktopConfig = useVideoPreloader('VIDEO_SECTION_BACKGROUND');

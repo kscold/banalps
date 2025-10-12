@@ -178,6 +178,7 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
         loading="eager"
+        suppressHydrationWarning
         onLoad={handleVimeoLoad}
         onError={() => {
           console.error('[VideoSection/Vimeo에러] iframe 로드 실패');

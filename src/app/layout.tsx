@@ -221,12 +221,19 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
         <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
 
-        {/* 비디오 프리로드 */}
+        {/* 히어로 비디오 고우선순위 프리로드 - 데스크탑 */}
         <link
-          rel="prefetch"
+          rel="preload"
           href="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
           as="document"
         />
+        {/* 히어로 비디오 고우선순위 프리로드 - 모바일 */}
+        <link
+          rel="preload"
+          href="https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+          as="document"
+        />
+        {/* VideoSection 비디오 낮은우선순위 프리페치 */}
         <link
           rel="prefetch"
           href="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
