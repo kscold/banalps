@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 
 import { TextContentRenderer } from './TextContentRenderer';
-import { useVideoPreloader } from '@/utils/videoOptimizer';
 
 import * as styles from './HeroSection.css';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
@@ -25,44 +24,8 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
   const isMobile = useMediaQuery('screen and (max-width: 1023px)');
 
-  // 동영상 최적화 적용 - preload 제거하고 직접 사용
   const desktopVideoConfig = { url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
   const mobileVideoConfig = { url: 'https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
-
-  // VideoSection(About 페이지) 비디오 미리 로드
-  const videoSectionDesktopConfig = useVideoPreloader('VIDEO_SECTION_BACKGROUND');
-  const videoSectionMobileConfig = useVideoPreloader('VIDEO_SECTION_MOBILE_BACKGROUND');
-
-  // VideoSection 비디오 백그라운드 preload (Hero 로딩 후)
-  useEffect(() => {
-    // VideoSection 비디오 DNS prefetch 및 preconnect 추가
-    // About 페이지로 이동할 때 빠른 로딩을 위해 미리 연결
-    const addVideoSectionPreload = () => {
-      // Vimeo 도메인 preconnect (이미 추가되지 않았다면)
-      if (!document.querySelector('link[href="https://player.vimeo.com"]')) {
-        const preconnectLink = document.createElement('link');
-        preconnectLink.rel = 'preconnect';
-        preconnectLink.href = 'https://player.vimeo.com';
-        preconnectLink.crossOrigin = 'anonymous';
-        document.head.appendChild(preconnectLink);
-      }
-
-      // VideoSection iframe preload (낮은 우선순위로 백그라운드 로드)
-      const videoSectionUrl = isMobile ? videoSectionMobileConfig.url : videoSectionDesktopConfig.url;
-      if (!document.querySelector(`link[href="${videoSectionUrl}"]`)) {
-        const preloadLink = document.createElement('link');
-        preloadLink.rel = 'prefetch'; // prefetch로 변경하여 낮은 우선순위로 로드
-        preloadLink.as = 'document';
-        preloadLink.href = videoSectionUrl;
-        document.head.appendChild(preloadLink);
-      }
-    };
-
-    // 3초 후에 VideoSection 비디오 preload 시작 (Hero 비디오 로딩 후)
-    const preloadTimer = setTimeout(addVideoSectionPreload, 3000);
-
-    return () => clearTimeout(preloadTimer);
-  }, [isMobile, videoSectionDesktopConfig.url, videoSectionMobileConfig.url]);
 
   // 텍스트 스크롤 로직 - KB사이트처럼 깊이 기반 전환
   useEffect(() => {

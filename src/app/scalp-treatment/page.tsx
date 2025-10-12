@@ -82,7 +82,6 @@ export default function ScalpTreatmentPage() {
   const t = useScalpTreatmentTranslations();
   const { language } = useLanguageStore();
 
-  // 비디오 URL 직접 사용 (useVideoPreloader 제거로 더 빠른 로딩)
   const currentVideoUrl = isMobile
     ? 'https://player.vimeo.com/video/1121423185?h=71aaec567d&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
     : 'https://player.vimeo.com/video/1121423104?h=9505a82a8f&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
