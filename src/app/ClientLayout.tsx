@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import HeaderNavigation from '@/widgets/Header/HeaderNavigation';
 import { Footer } from '@/shared/ui/Footer';
@@ -55,7 +55,9 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AuthChecker />
+      <Suspense fallback={null}>
+        <AuthChecker />
+      </Suspense>
       <HeaderNavigation />
       <FloatingButtonGroup onButtonClick={handleFloatingButtonClick} />
       <LoginModal />
