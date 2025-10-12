@@ -239,6 +239,18 @@ export default function RootLayout({
           href="https://player.vimeo.com/video/1121423051?h=5c69b41058&background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=0&controls=0"
           as="document"
         />
+        {/* Scalp Treatment 히어로 비디오 프리페치 - 데스크탑 */}
+        <link
+          rel="prefetch"
+          href="https://player.vimeo.com/video/1121423104?h=9505a82a8f&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0"
+          as="document"
+        />
+        {/* Scalp Treatment 히어로 비디오 프리페치 - 모바일 */}
+        <link
+          rel="prefetch"
+          href="https://player.vimeo.com/video/1121423185?h=71aaec567d&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0"
+          as="document"
+        />
         <script src="https://player.vimeo.com/api/player.js" async></script>
 
         {/* Google Tag Manager */}

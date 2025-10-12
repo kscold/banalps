@@ -9,7 +9,6 @@ import { useLanguageStore } from '@/shared/stores/useLanguageStore';
 
 import FeaturesSection from '../../shared/components/FeaturesSection/FeaturesSection';
 import HeroSection from '@/shared/components/HairTransplant/HeroSection';
-import { useVideoPreloader } from '@/utils/videoOptimizer';
 import { useVideoLazyLoad } from '@/hooks/useVideoLazyLoad';
 
 import * as styles from './ScalpTreatmentPage.css';
@@ -83,24 +82,26 @@ export default function ScalpTreatmentPage() {
   const t = useScalpTreatmentTranslations();
   const { language } = useLanguageStore();
 
-  // 동영상 최적화 적용
-  const desktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_HERO_BACKGROUND');
-  const mobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_HERO_MOBILE_BACKGROUND');
-  const section3DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION3_BACKGROUND');
-  const section3MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION3_MOBILE_BACKGROUND');
-  const section4DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION4_BACKGROUND');
-  const section4MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION4_MOBILE_BACKGROUND');
-  const section5DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION5_BACKGROUND');
-  const section5MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION5_MOBILE_BACKGROUND');
-  const section6DesktopVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION6_BACKGROUND');
-  const section6MobileVideoConfig = useVideoPreloader('SCALP_TREATMENT_SECTION6_MOBILE_BACKGROUND');
+  // 비디오 URL 직접 사용 (useVideoPreloader 제거로 더 빠른 로딩)
+  const currentVideoUrl = isMobile
+    ? 'https://player.vimeo.com/video/1121423185?h=71aaec567d&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
+    : 'https://player.vimeo.com/video/1121423104?h=9505a82a8f&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
 
-  // 현재 디바이스에 맞는 비디오 URL
-  const currentVideoUrl = isMobile ? mobileVideoConfig.url : desktopVideoConfig.url;
-  const section3VideoUrl = isMobile ? section3MobileVideoConfig.url : section3DesktopVideoConfig.url;
-  const section4VideoUrl = isMobile ? section4MobileVideoConfig.url : section4DesktopVideoConfig.url;
-  const section5VideoUrl = isMobile ? section5MobileVideoConfig.url : section5DesktopVideoConfig.url;
-  const section6VideoUrl = isMobile ? section6MobileVideoConfig.url : section6DesktopVideoConfig.url;
+  const section3VideoUrl = isMobile
+    ? 'https://player.vimeo.com/video/1121423202?h=4ca40d5584&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
+    : 'https://player.vimeo.com/video/1121423121?h=383908a6bd&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
+
+  const section4VideoUrl = isMobile
+    ? 'https://player.vimeo.com/video/1121423224?h=f8075aa099&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
+    : 'https://player.vimeo.com/video/1121423131?h=0371d1d722&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
+
+  const section5VideoUrl = isMobile
+    ? 'https://player.vimeo.com/video/1121423245?h=8cdcb86444&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
+    : 'https://player.vimeo.com/video/1121423150?h=ae4e69a9a3&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
+
+  const section6VideoUrl = isMobile
+    ? 'https://player.vimeo.com/video/1121423260?h=8b00c9d78b&autoplay=1&muted=1&loop=1&background=1&controls=0&title=0&byline=0&portrait=0'
+    : 'https://player.vimeo.com/video/1121423165?h=eb13c32221&autoplay=1&muted=1&loop=1&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
 
   // 비디오 Lazy Loading
   const heroVideo = useVideoLazyLoad({ rootMargin: '0px' }); // 히어로는 즉시 로드
@@ -570,6 +571,7 @@ export default function ScalpTreatmentPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
+                  loading="eager"
                   onLoad={handleVimeoLoad}
                   onError={() => {
                     console.error('[VideoSection/Vimeo에러] iframe 로드 실패');

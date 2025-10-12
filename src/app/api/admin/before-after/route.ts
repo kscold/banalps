@@ -5,21 +5,9 @@ import connectDB from '@/lib/mongodb';
 import BeforeAfter from '@/models/BeforeAfter';
 import { verifyAdminToken } from '@/lib/admin-auth';
 
-// GET: 전체 조회
+// GET: 전체 조회 (공개 API - 인증 불필요)
 export async function GET(request: NextRequest) {
   try {
-    // 관리자 인증 체크
-    const isAdmin = await verifyAdminToken(request);
-    if (!isAdmin) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: '관리자 권한이 필요합니다.',
-        },
-        { status: 401 },
-      );
-    }
-
     await connectDB();
 
     const { searchParams } = new URL(request.url);

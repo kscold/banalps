@@ -73,7 +73,10 @@ export default function BeforeAfterSlider({
     if (!containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
-    const position = ((clientX - rect.left) / rect.width) * 100;
+    // 컨테이너 내부에 위치 제한
+    const constrainedX = Math.max(rect.left, Math.min(rect.right, clientX));
+    const position = ((constrainedX - rect.left) / rect.width) * 100;
+    // 0-100% 범위로 정확하게 제한
     const clampedPosition = Math.max(0, Math.min(100, position));
     setSliderPosition(clampedPosition);
   }, []);
@@ -81,6 +84,7 @@ export default function BeforeAfterSlider({
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (!isLoggedIn) return; // 로그인하지 않았으면 드래그 비활성화
+      e.preventDefault(); // 텍스트 선택 방지
       isDragging.current = true;
       updateSliderPosition(e.clientX);
     },
@@ -90,13 +94,18 @@ export default function BeforeAfterSlider({
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       if (!isDragging.current || !isLoggedIn) return; // 로그인 체크 추가
+      e.preventDefault(); // 기본 동작 방지
       updateSliderPosition(e.clientX);
     },
     [updateSliderPosition, isLoggedIn],
   );
 
   const handleMouseUp = useCallback(() => {
-    isDragging.current = false;
+    if (isDragging.current) {
+      isDragging.current = false;
+      // 드래그 종료 시 슬라이더 위치 재검증
+      setSliderPosition((prev) => Math.max(0, Math.min(100, prev)));
+    }
   }, []);
 
   const handleTouchStart = useCallback(
@@ -122,7 +131,11 @@ export default function BeforeAfterSlider({
   );
 
   const handleTouchEnd = useCallback(() => {
-    isDragging.current = false;
+    if (isDragging.current) {
+      isDragging.current = false;
+      // 터치 종료 시 슬라이더 위치 재검증
+      setSliderPosition((prev) => Math.max(0, Math.min(100, prev)));
+    }
   }, []);
 
   // 글로벌 마우스 이벤트 리스너

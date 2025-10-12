@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo, useCallback, memo } from 'react';
 import { useSession } from 'next-auth/react';
 import BeforeAfterSlider from '@/shared/ui/BeforeAfterSlider/BeforeAfterSlider';
 import SidePreviewSlider from '@/shared/ui/SidePreviewSlider/SidePreviewSlider';
@@ -24,6 +24,9 @@ interface BeforeAfterItem {
   afterImage: string;
   order: number;
 }
+
+// 카테고리 순서 정의 (상수로 외부로 이동)
+const CATEGORY_ORDER: Category[] = ['이마축소', '흉터&재수술', '헤어라인(남성)', '헤어라인(여성)', '정수리'];
 
 // 더미 데이터 (초기 로딩용 - 모든 카테고리 포함)
 const initialData: BeforeAfterItem[] = [
@@ -74,8 +77,8 @@ const initialData: BeforeAfterItem[] = [
   },
 ];
 
-// 카테고리별 캐러셀 컴포넌트
-function CategoryCarousel({
+// 카테고리별 캐러셀 컴포넌트 - React.memo로 최적화
+const CategoryCarousel = memo(function CategoryCarousel({
   category,
   items,
   index,
@@ -105,51 +108,44 @@ function CategoryCarousel({
     setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   }, [items.length]);
 
-  // Get previous and next indices for side images - useMemo로 메모이제이션
-  const getPrevIndex = React.useCallback(
-    (index: number) => (index === 0 ? items.length - 1 : index - 1),
-    [items.length],
+  // Get previous and next indices - useMemo로 계산
+  const prevIndex = useMemo(
+    () => (currentIndex === 0 ? items.length - 1 : currentIndex - 1),
+    [currentIndex, items.length],
   );
-  const getNextIndex = React.useCallback(
-    (index: number) => (index === items.length - 1 ? 0 : index + 1),
-    [items.length],
+  const nextIndex = useMemo(
+    () => (currentIndex === items.length - 1 ? 0 : currentIndex + 1),
+    [currentIndex, items.length],
   );
 
-  // Check if mobile
-  const [isMobile, setIsMobile] = useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+  // Check if mobile - CSS media query로 처리하므로 state 제거
+  const isMobile = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth <= 768;
   }, []);
 
   // 현재 인덱스가 변경될 때 다음/이전 이미지 미리 로드
   React.useEffect(() => {
     const preloadAdjacentImages = async () => {
-      const prevIdx = getPrevIndex(currentIndex);
-      const nextIdx = getNextIndex(currentIndex);
-
       // 이전, 현재, 다음 이미지 미리 로드
       const imagesToPreload = [
-        items[prevIdx],
+        items[prevIndex],
         items[currentIndex],
-        items[nextIdx],
+        items[nextIndex],
       ];
 
       // 비동기로 미리 로드 (에러 무시)
       imagesToPreload.forEach((item) => {
-        preloadImagePair(item.beforeImage, item.afterImage).catch(() => {
-          // 에러 무시 - 실패해도 브라우저가 나중에 로드함
-        });
+        if (item) {
+          preloadImagePair(item.beforeImage, item.afterImage).catch(() => {
+            // 에러 무시 - 실패해도 브라우저가 나중에 로드함
+          });
+        }
       });
     };
 
     preloadAdjacentImages();
-  }, [currentIndex, items, getPrevIndex, getNextIndex]);
+  }, [currentIndex, items, prevIndex, nextIndex]);
 
   return (
     <div
@@ -172,8 +168,8 @@ function CategoryCarousel({
           className={`${styles.sidePreview} ${isBlueBackground ? styles.sidePreviewLeftBlue : styles.sidePreviewLeft}`}
         >
           <SidePreviewSlider
-            beforeImage={items[getPrevIndex(currentIndex)].beforeImage}
-            afterImage={items[getPrevIndex(currentIndex)].afterImage}
+            beforeImage={items[prevIndex]?.beforeImage}
+            afterImage={items[prevIndex]?.afterImage}
             showBefore={false} // After 쪽만 보여줌
             onClick={handlePrevious}
             isBlueBackground={isBlueBackground}
@@ -223,8 +219,8 @@ function CategoryCarousel({
           }`}
         >
           <SidePreviewSlider
-            beforeImage={items[getNextIndex(currentIndex)].beforeImage}
-            afterImage={items[getNextIndex(currentIndex)].afterImage}
+            beforeImage={items[nextIndex]?.beforeImage}
+            afterImage={items[nextIndex]?.afterImage}
             showBefore={true} // Before 쪽만 보여줌
             onClick={handleNext}
             isBlueBackground={isBlueBackground}
@@ -234,7 +230,7 @@ function CategoryCarousel({
       </div>
     </div>
   );
-}
+});
 
 export default function BeforeAfterPage() {
   // 번역 훅 사용
@@ -244,61 +240,71 @@ export default function BeforeAfterPage() {
   const { data: session, status } = useSession();
   const { openLoginModal } = useAuthStore();
 
-  // 로그인 상태 확인
-  const isLoggedIn = status === 'authenticated' && !!session;
+  // 로그인 상태 확인 - useMemo로 최적화
+  const isLoggedIn = useMemo(() => status === 'authenticated' && !!session, [status, session]);
 
   // MongoDB에서 데이터 가져오기
   const [beforeAfterData, setBeforeAfterData] = useState<BeforeAfterItem[]>(initialData);
   const [dataLoading, setDataLoading] = useState(true);
 
-  // 화면 크기 체크
+  // 화면 크기 체크 - throttle 적용하여 리렌더링 최소화
   const [isMobile, setIsMobile] = React.useState(false);
   const [isDesktopLarge, setIsDesktopLarge] = React.useState(false);
 
   React.useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 1023);
-      setIsDesktopLarge(window.innerWidth >= 1920);
+      const width = window.innerWidth;
+      setIsMobile(width <= 1023);
+      setIsDesktopLarge(width >= 1920);
     };
+
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
-  // DB에서 데이터 가져오기
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/admin/before-after');
-        const data = await response.json();
-        if (data.success && data.data && data.data.length > 0) {
-          // DB 데이터와 더미 데이터를 병합
-          // DB 데이터가 있는 카테고리는 DB 데이터 사용, 없는 카테고리는 더미 데이터 유지
-          const dbCategories = new Set(data.data.map((item: BeforeAfterItem) => item.category));
-          const mergedData = [
-            ...data.data,
-            ...initialData.filter((item) => !dbCategories.has(item.category)),
-          ];
-          setBeforeAfterData(mergedData);
-        } else {
-          // DB 데이터가 없으면 더미 데이터 사용
-          setBeforeAfterData(initialData);
-        }
-      } catch (error) {
-        console.error('데이터 조회 실패:', error);
-        // 실패하면 초기 데이터 사용
-        setBeforeAfterData(initialData);
-      } finally {
-        setDataLoading(false);
-      }
+    // Throttle resize event to reduce re-renders
+    let timeoutId: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkScreenSize, 150); // 150ms throttle
     };
 
-    fetchData();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
-  // 카테고리별로 그룹화 - useMemo로 메모이제이션
+  // DB에서 데이터 가져오기 - useCallback으로 최적화
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch('/api/admin/before-after');
+      const data = await response.json();
+      if (data.success && data.data && data.data.length > 0) {
+        // DB 데이터와 더미 데이터를 병합
+        const dbCategories = new Set(data.data.map((item: BeforeAfterItem) => item.category));
+        const mergedData = [
+          ...data.data,
+          ...initialData.filter((item) => !dbCategories.has(item.category)),
+        ];
+        setBeforeAfterData(mergedData);
+      } else {
+        setBeforeAfterData(initialData);
+      }
+    } catch (error) {
+      console.error('데이터 조회 실패:', error);
+      setBeforeAfterData(initialData);
+    } finally {
+      setDataLoading(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // 카테고리별로 그룹화 및 정렬 - useMemo로 메모이제이션
   const groupedData = React.useMemo(() => {
-    return beforeAfterData.reduce(
+    const grouped = beforeAfterData.reduce(
       (acc, item) => {
         if (!acc[item.category]) {
           acc[item.category] = [];
@@ -308,13 +314,15 @@ export default function BeforeAfterPage() {
       },
       {} as Record<Category, BeforeAfterItem[]>,
     );
+
+    // 각 카테고리 내에서 order 순으로 정렬
+    Object.keys(grouped).forEach((category) => {
+      grouped[category as Category].sort((a, b) => a.order - b.order);
+    });
+
+    return grouped;
   }, [beforeAfterData]);
 
-  // 카테고리 순서 정의 (번역 키로 매핑) - useMemo로 메모이제이션
-  const categoryOrder: Category[] = React.useMemo(
-    () => ['이마축소', '흉터&재수술', '헤어라인(남성)', '헤어라인(여성)', '정수리'],
-    [],
-  );
 
   // 카테고리 번역 매핑 - useCallback으로 메모이제이션
   const getCategoryName = React.useCallback(
@@ -399,7 +407,7 @@ export default function BeforeAfterPage() {
       />
       {/* 전후 사진 캐러셀 섹션들 */}
       <div className={styles.carouselSection}>
-        {categoryOrder.map((category, index) => {
+        {CATEGORY_ORDER.map((category, index) => {
           const items = groupedData[category] || [];
           // 데이터가 없으면 렌더링하지 않음
           if (items.length === 0) return null;
