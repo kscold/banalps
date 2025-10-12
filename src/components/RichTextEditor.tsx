@@ -2,11 +2,12 @@
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
+import ResizableImageExtension from 'tiptap-extension-resize-image';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
+import FontSize from 'tiptap-extension-font-size';
 import { useCallback } from 'react';
 
 interface RichTextEditorProps {
@@ -25,11 +26,11 @@ export default function RichTextEditor({
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Image.configure({
-        inline: true,
+      ResizableImageExtension.configure({
+        inline: false,
         allowBase64: true,
         HTMLAttributes: {
-          style: 'max-width: 100%; height: auto; cursor: pointer;',
+          class: 'resizable-image',
         },
       }),
       Link.configure({
@@ -43,6 +44,7 @@ export default function RichTextEditor({
       }),
       TextStyle,
       Color,
+      FontSize,
     ],
     content: value,
     immediatelyRender: false, // SSR 하이드레이션 이슈 방지
@@ -121,6 +123,7 @@ export default function RichTextEditor({
             borderRadius: '4px',
             cursor: 'pointer',
             fontWeight: 'bold',
+            color: '#272727',
           }}
         >
           B
@@ -135,6 +138,7 @@ export default function RichTextEditor({
             borderRadius: '4px',
             cursor: 'pointer',
             fontStyle: 'italic',
+            color: '#272727',
           }}
         >
           I
@@ -149,6 +153,7 @@ export default function RichTextEditor({
             borderRadius: '4px',
             cursor: 'pointer',
             textDecoration: 'line-through',
+            color: '#272727',
           }}
         >
           S
@@ -158,42 +163,64 @@ export default function RichTextEditor({
 
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          onClick={() => editor.chain().focus().setColor('#FF0000').run()}
           style={{
             padding: '6px 12px',
-            background: editor.isActive('heading', { level: 1 }) ? '#73D5FA' : '#fff',
+            background: editor.isActive('textStyle', { color: '#FF0000' }) ? '#73D5FA' : '#fff',
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#FF0000',
+            fontWeight: 'bold',
           }}
         >
-          H1
+          A
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() => editor.chain().focus().setColor('#0000FF').run()}
           style={{
             padding: '6px 12px',
-            background: editor.isActive('heading', { level: 2 }) ? '#73D5FA' : '#fff',
+            background: editor.isActive('textStyle', { color: '#0000FF' }) ? '#73D5FA' : '#fff',
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#0000FF',
+            fontWeight: 'bold',
           }}
         >
-          H2
+          A
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() => editor.chain().focus().setColor('#00AA00').run()}
           style={{
             padding: '6px 12px',
-            background: editor.isActive('heading', { level: 3 }) ? '#73D5FA' : '#fff',
+            background: editor.isActive('textStyle', { color: '#00AA00' }) ? '#73D5FA' : '#fff',
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#00AA00',
+            fontWeight: 'bold',
           }}
         >
-          H3
+          A
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().unsetColor().run()}
+          style={{
+            padding: '6px 12px',
+            background: '#fff',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            color: '#272727',
+            fontWeight: 'bold',
+          }}
+          title="색상 초기화"
+        >
+          A
         </button>
 
         <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
@@ -207,6 +234,7 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
           }}
         >
           • 목록
@@ -220,6 +248,7 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
           }}
         >
           1. 목록
@@ -236,6 +265,7 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
           }}
         >
           ←
@@ -249,6 +279,7 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
           }}
         >
           ↔
@@ -262,6 +293,7 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
           }}
         >
           →
@@ -278,9 +310,11 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
+            fontWeight: '500',
           }}
         >
-          🔗 링크
+          링크
         </button>
 
         <button
@@ -292,10 +326,39 @@ export default function RichTextEditor({
             border: '1px solid #ddd',
             borderRadius: '4px',
             cursor: 'pointer',
+            color: '#272727',
+            fontWeight: '500',
           }}
         >
-          🖼️ 이미지
+          이미지
         </button>
+
+        <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
+
+        <select
+          onChange={(e) => editor.chain().focus().setFontSize(e.target.value).run()}
+          value={editor.getAttributes('textStyle').fontSize || '16px'}
+          style={{
+            padding: '6px 12px',
+            background: '#fff',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontFamily: "'S-Core Dream', sans-serif",
+            color: '#272727',
+          }}
+        >
+          <option value="12px">12px</option>
+          <option value="14px">14px</option>
+          <option value="16px">16px (기본)</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+          <option value="28px">28px</option>
+          <option value="32px">32px</option>
+          <option value="36px">36px</option>
+          <option value="48px">48px</option>
+        </select>
       </div>
 
       {/* 에디터 */}
@@ -340,6 +403,62 @@ export default function RichTextEditor({
           border-radius: 8px;
           margin: 16px 0;
           cursor: pointer;
+        }
+
+        /* 리사이징 가능한 이미지 스타일 */
+        .tiptap-editor img.resizable-image {
+          display: block;
+          margin: 16px auto;
+          border-radius: 8px;
+          cursor: nwse-resize;
+          transition: box-shadow 0.2s;
+        }
+
+        .tiptap-editor img.resizable-image:hover {
+          box-shadow: 0 0 0 3px rgba(115, 213, 250, 0.3);
+        }
+
+        .tiptap-editor img.resizable-image.ProseMirror-selectednode {
+          outline: 3px solid #73d5fa;
+          outline-offset: 2px;
+        }
+
+        /* 이미지 드래그 핸들 스타일 */
+        .tiptap-editor .image-resizer {
+          position: absolute;
+          border: 2px solid #73d5fa;
+          pointer-events: none;
+        }
+
+        .tiptap-editor .image-resizer__handle {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: #73d5fa;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          pointer-events: all;
+          cursor: nwse-resize;
+        }
+
+        .tiptap-editor .image-resizer__handle--ne {
+          top: -5px;
+          right: -5px;
+        }
+
+        .tiptap-editor .image-resizer__handle--se {
+          bottom: -5px;
+          right: -5px;
+        }
+
+        .tiptap-editor .image-resizer__handle--sw {
+          bottom: -5px;
+          left: -5px;
+        }
+
+        .tiptap-editor .image-resizer__handle--nw {
+          top: -5px;
+          left: -5px;
         }
 
         .tiptap-editor ul,

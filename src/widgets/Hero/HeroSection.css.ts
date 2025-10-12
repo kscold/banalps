@@ -90,8 +90,9 @@ export const vimeoIframe = style({
   zIndex: tokens.zIndex.video,
   '@media': {
     [breakpoints.mobile]: {
-      width: '100vw',
-      height: '56.25vw', // 모바일에서는 가로 기준
+      width: '177.77vh', // 세로 기준으로 16:9 비율 유지
+      height: '100vh',
+      minWidth: '100vw',
       minHeight: '100vh',
     },
   },

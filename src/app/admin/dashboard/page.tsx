@@ -958,7 +958,7 @@ function PopupModal({
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>팝업 위치 *</label>
+            <label className={styles.label}>팝업 위치 * (데스크탑 전용)</label>
             <select
               className={styles.select}
               value={formData.position || 'center'}
@@ -975,10 +975,13 @@ function PopupModal({
               <option value="bottom-center">중앙 아래</option>
               <option value="bottom-right">오른쪽 아래</option>
             </select>
+            <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+              모바일에서는 항상 중앙에 표시됩니다. 같은 위치의 팝업은 책처럼 겹쳐서 표시됩니다.
+            </small>
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>표시 순서</label>
+            <label className={styles.label}>표시 순서 (같은 위치 내)</label>
             <input
               type="number"
               className={styles.input}
@@ -987,6 +990,9 @@ function PopupModal({
               required
               min="1"
             />
+            <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+              숫자가 작을수록 앞에 표시됩니다 (1이 맨 앞)
+            </small>
           </div>
 
           <div className={styles.formGroup}>

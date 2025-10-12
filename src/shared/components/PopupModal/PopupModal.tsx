@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import * as styles from './PopupModal.css';
@@ -31,84 +31,130 @@ interface PopupData {
 }
 
 interface PopupModalProps {
-  popup: PopupData;
-  isOpen: boolean;
-  onClose: () => void;
-  onCloseToday: () => void;
-  index: number;
-  total: number;
+  popups: PopupData[];
+  position: PopupPosition;
+  onClose: (id: number) => void;
+  onCloseToday: (id: number) => void;
 }
 
-// 위치 계산 함수 (여러 팝업이 살짝 겹치게)
-function getPositionStyle(position: PopupPosition, index: number, total: number) {
-  const offset = total > 1 ? index * 30 : 0; // 30px씩 오프셋
-
-  const positions: Record<PopupPosition, React.CSSProperties> = {
-    'top-left': { top: `${20 + offset}px`, left: `${20 + offset}px` },
-    'top-center': { top: `${20 + offset}px`, left: '50%', transform: `translateX(-50%)` },
-    'top-right': { top: `${20 + offset}px`, right: `${20 + offset}px` },
-    'center-left': { top: '50%', left: `${20 + offset}px`, transform: `translateY(-50%)` },
-    center: {
+// 위치 계산 함수 (모바일에서는 항상 중앙, 데스크탑에서는 위치별)
+function getPositionStyle(position: PopupPosition, isMobile: boolean): React.CSSProperties {
+  // 모바일에서는 항상 중앙
+  if (isMobile) {
+    return {
+      position: 'fixed',
       top: '50%',
       left: '50%',
-      transform: total > 1 ? `translate(calc(-50% + ${offset}px), calc(-50% + ${offset}px))` : 'translate(-50%, -50%)',
-    },
-    'center-right': { top: '50%', right: `${20 + offset}px`, transform: `translateY(-50%)` },
-    'bottom-left': { bottom: `${20 + offset}px`, left: `${20 + offset}px` },
-    'bottom-center': { bottom: `${20 + offset}px`, left: '50%', transform: `translateX(-50%)` },
-    'bottom-right': { bottom: `${20 + offset}px`, right: `${20 + offset}px` },
+      transform: 'translate(-50%, -50%)',
+      zIndex: 99999,
+    };
+  }
+
+  // 데스크탑에서는 위치별 배치
+  const positions: Record<PopupPosition, React.CSSProperties> = {
+    'top-left': { position: 'fixed', top: '20px', left: '20px', zIndex: 99999 },
+    'top-center': { position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 99999 },
+    'top-right': { position: 'fixed', top: '20px', right: '20px', zIndex: 99999 },
+    'center-left': { position: 'fixed', top: '50%', left: '20px', transform: 'translateY(-50%)', zIndex: 99999 },
+    center: { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 99999 },
+    'center-right': { position: 'fixed', top: '50%', right: '20px', transform: 'translateY(-50%)', zIndex: 99999 },
+    'bottom-left': { position: 'fixed', bottom: '20px', left: '20px', zIndex: 99999 },
+    'bottom-center': { position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 99999 },
+    'bottom-right': { position: 'fixed', bottom: '20px', right: '20px', zIndex: 99999 },
   };
 
   return positions[position];
 }
 
-export default function PopupModal({
-  popup,
-  isOpen,
-  onClose,
-  onCloseToday,
-  index,
-  total,
-}: PopupModalProps) {
+export default function PopupModal({ popups, position, onClose, onCloseToday }: PopupModalProps) {
   const { language } = useLanguageStore();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      document.body.style.overflow = '';
+      window.removeEventListener('resize', checkMobile);
     };
-  }, [isOpen]);
+  }, []);
 
-  if (!isOpen) return null;
+  if (popups.length === 0) return null;
 
-  // 언어에 따라 제목과 내용 선택
-  const title = language === 'JP' && popup.titleJp ? popup.titleJp : popup.title;
-  const content = language === 'JP' && popup.contentJp ? popup.contentJp : popup.content;
+  const currentPopup = popups[currentIndex];
+  const title = language === 'JP' && currentPopup.titleJp ? currentPopup.titleJp : currentPopup.title;
+  const content = language === 'JP' && currentPopup.contentJp ? currentPopup.contentJp : currentPopup.content;
 
-  const positionStyle = getPositionStyle(popup.position, index, total);
+  const handleNext = () => {
+    if (currentIndex < popups.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const handleClose = () => {
+    onClose(currentPopup.id);
+    // 다음 팝업이 있으면 이동
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const handleCloseToday = () => {
+    onCloseToday(currentPopup.id);
+    // 다음 팝업이 있으면 이동
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  const positionStyle = getPositionStyle(position, isMobile);
 
   const modalContent = (
-    <motion.div
-      className={styles.modal}
-      style={{
-        ...positionStyle,
-        zIndex: 99999 + index, // 순서대로 쌓이게
-      }}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div style={positionStyle}>
+      {/* 책처럼 겹친 배경 팝업들 */}
+      {popups.length > 1 &&
+        popups.slice(currentIndex + 1).map((popup, idx) => (
+          <div
+            key={popup.id}
+            style={{
+              position: 'absolute',
+              top: `${(idx + 1) * 8}px`,
+              left: `${(idx + 1) * 8}px`,
+              right: `${-(idx + 1) * 8}px`,
+              height: '100%',
+              background: '#fff',
+              borderRadius: '16px',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+              zIndex: -(idx + 1),
+            }}
+          />
+        ))}
+
+      {/* 현재 팝업 */}
+      <motion.div
+        className={styles.modal}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+        style={{ position: 'relative', zIndex: 0 }}
+      >
         <div className={styles.modalHeader}>
           <div className={styles.modalHeaderContent}>
             <h2 className={styles.title}>{title}</h2>
-            <button className={styles.closeButton} onClick={onClose} aria-label="Close">
+            <button className={styles.closeButton} onClick={handleClose} aria-label="Close">
               <Image src="/main/close.svg" alt="close" width={32} height={32} />
             </button>
           </div>
@@ -116,28 +162,28 @@ export default function PopupModal({
 
         <div className={styles.modalBody}>
           {/* 이미지가 있으면 이미지 표시 */}
-          {popup.imageUrl && (
+          {currentPopup.imageUrl && (
             <div className={styles.imageContainer}>
-              <img src={popup.imageUrl} alt={title} className={styles.popupImage} />
+              <img src={currentPopup.imageUrl} alt={title} className={styles.popupImage} />
             </div>
           )}
 
           {/* 텍스트 내용이 있으면 표시 (HTML 렌더링) */}
-          {content && (
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
-          )}
+          {content && <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />}
         </div>
 
-      {/* 하단 버튼들 */}
-      <div className={styles.modalFooter}>
-        <button className={styles.closeTodayButton} onClick={onCloseToday}>
-          {language === 'JP' ? '今日は表示しない' : '오늘 하루 동안 보지 않기'}
-        </button>
-        <button className={styles.closeNowButton} onClick={onClose}>
-          {language === 'JP' ? '閉じる' : '닫기'}
-        </button>
-      </div>
-    </motion.div>
+        {/* 하단 버튼들 */}
+        <div className={styles.modalFooter}>
+          <button className={styles.closeTodayButton} onClick={handleCloseToday}>
+            {language === 'JP' ? '今日は表示しない' : '오늘 하루 동안 보지 않기'}
+          </button>
+
+          <button className={styles.closeNowButton} onClick={handleClose}>
+            {language === 'JP' ? '閉じる' : '닫기'}
+          </button>
+        </div>
+      </motion.div>
+    </div>
   );
 
   return createPortal(modalContent, document.body);

@@ -149,6 +149,10 @@ export const vimeoIframe = style({
       borderRadius: '8px',
     },
     [breakpoints.mobile]: {
+      width: '177.77vh', // 세로 기준으로 16:9 비율 유지
+      height: '100vh',
+      minWidth: '100%',
+      minHeight: '100%',
       borderRadius: mvw(8),
     },
   },

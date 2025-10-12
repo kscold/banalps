@@ -113,17 +113,32 @@ export default function PopupManager() {
     return null;
   }
 
+  // 위치별로 팝업 그룹화하고 order 순으로 정렬
+  const groupedPopups = popups.reduce(
+    (acc, popup) => {
+      if (!acc[popup.position]) {
+        acc[popup.position] = [];
+      }
+      acc[popup.position].push(popup);
+      return acc;
+    },
+    {} as Record<string, PopupData[]>
+  );
+
+  // 각 그룹 내에서 order 순으로 정렬
+  Object.keys(groupedPopups).forEach((position) => {
+    groupedPopups[position].sort((a, b) => a.order - b.order);
+  });
+
   return (
     <>
-      {popups.map((popup, index) => (
+      {Object.entries(groupedPopups).map(([position, positionPopups]) => (
         <PopupModal
-          key={popup.id}
-          popup={popup}
-          isOpen={true}
-          onClose={() => handleClose(popup.id)}
-          onCloseToday={() => handleCloseToday(popup.id)}
-          index={index}
-          total={popups.length}
+          key={position}
+          popups={positionPopups}
+          position={position as PopupPosition}
+          onClose={handleClose}
+          onCloseToday={handleCloseToday}
         />
       ))}
     </>

@@ -15,10 +15,10 @@ export const modal = style({
   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
   '@media': {
     [breakpoints.mobile]: {
-      width: '90%',
-      maxWidth: '90%',
-      maxHeight: '80vh',
-      borderRadius: mvw(12),
+      width: '90vw',
+      maxWidth: '90vw',
+      maxHeight: '85vh',
+      borderRadius: mvw(16),
     },
   },
 });
@@ -273,9 +273,11 @@ export const modalFooter = style({
   },
   '@media': {
     [breakpoints.mobile]: {
-      padding: mvw(20),
-      gap: mvw(12),
-      flexDirection: 'column',
+      padding: mvw(16),
+      gap: mvw(8),
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
     },
   },
 });
@@ -293,10 +295,12 @@ export const closeTodayButton = style({
   transition: 'all 0.2s ease',
   '@media': {
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      padding: `${mvw(10)} ${mvw(20)}`,
-      borderRadius: mvw(8),
-      width: '100%',
+      fontSize: mvw(13),
+      padding: `${mvw(8)} ${mvw(12)}`,
+      borderRadius: mvw(6),
+      flex: '1',
+      minWidth: '0',
+      whiteSpace: 'nowrap',
     },
   },
 });
@@ -313,10 +317,10 @@ export const closeNowButton = style({
   cursor: 'pointer',
   '@media': {
     [breakpoints.mobile]: {
-      fontSize: mvw(14),
-      padding: `${mvw(10)} ${mvw(20)}`,
-      borderRadius: mvw(8),
-      width: '100%',
+      fontSize: mvw(13),
+      padding: `${mvw(8)} ${mvw(12)}`,
+      borderRadius: mvw(6),
+      flex: '0 0 auto',
     },
   },
 });

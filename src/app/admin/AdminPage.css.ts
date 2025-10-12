@@ -289,6 +289,7 @@ export const select = style({
   borderRadius: '8px',
   fontSize: '16px',
   backgroundColor: 'white',
+  color: '#272727',
   ':focus': {
     outline: 'none',
     borderColor: '#73D5FA',
