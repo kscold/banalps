@@ -211,24 +211,25 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href="/fonts/SCDream-fonts.css" />
 
-        {/* Vimeo 최적화 - 캐싱 및 프리로딩 */}
-        <link rel="preconnect" href="https://player.vimeo.com" />
-        <link rel="preconnect" href="https://f.vimeocdn.com" />
-        <link rel="preconnect" href="https://i.vimeocdn.com" />
+        {/* Vimeo 최적화 - 캐싱 및 프리로딩 (최상위 우선순위) */}
+        <link rel="preconnect" href="https://player.vimeo.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://player.vimeo.com" />
         <link rel="dns-prefetch" href="https://f.vimeocdn.com" />
         <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
+        <link rel="dns-prefetch" href="https://vod-progressive.akamaized.net" />
 
-        {/* 히어로 비디오 고우선순위 프리로드 - 데스크탑 */}
+        {/* 히어로 비디오 최고우선순위 프리로드 - 데스크탑 */}
         <link
           rel="preload"
-          href="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+          href="https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0&quality=auto"
           as="document"
         />
-        {/* 히어로 비디오 고우선순위 프리로드 - 모바일 */}
+        {/* 히어로 비디오 최고우선순위 프리로드 - 모바일 */}
         <link
           rel="preload"
-          href="https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0"
+          href="https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0&quality=auto"
           as="document"
         />
         {/* VideoSection 비디오 낮은우선순위 프리페치 */}

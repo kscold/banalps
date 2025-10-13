@@ -163,7 +163,7 @@ globalStyle(`${termsContent} h4`, {
   fontSize: vw(18),
   lineHeight: '150%',
   letterSpacing: '0%',
-  color: '#272727',
+  color: '#000000',
   margin: `${vw(32)} 0 ${vw(24)} 0`,
   // selectors: {
   //   'html[data-language="JP"] &': {
@@ -178,22 +178,6 @@ globalStyle(`${termsContent} h4`, {
   },
 });
 
-globalStyle(`${termsContent} h5`, {
-  fontFamily: fontFamily.scdream,
-  fontWeight: 500,
-  fontSize: vw(18),
-  lineHeight: '150%',
-  letterSpacing: '0%',
-  color: '#272727',
-  margin: `${vw(20)} 0 ${vw(12)} 0`,
-  '@media': {
-    [breakpoints.mobile]: {
-      fontSize: mvw(18),
-      margin: `${mvw(16)} 0 ${mvw(8)} 0`,
-    },
-  },
-});
-
 globalStyle(`${termsContent} p`, {
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
@@ -204,33 +188,6 @@ globalStyle(`${termsContent} p`, {
   '@media': {
     [breakpoints.mobile]: {
       fontSize: mvw(16),
-    },
-  },
-});
-
-globalStyle(`${termsContent} ul`, {
-  margin: `0 0 ${vw(16)} 0`,
-  paddingLeft: vw(20),
-  '@media': {
-    [breakpoints.mobile]: {
-      marginBottom: mvw(12),
-      paddingLeft: mvw(16),
-    },
-  },
-});
-
-globalStyle(`${termsContent} li`, {
-  fontFamily: fontFamily.scdream,
-  fontWeight: 200,
-  fontSize: vw(16),
-  lineHeight: '160%',
-  letterSpacing: '0%',
-  color: '#272727',
-  marginBottom: vw(8),
-  '@media': {
-    [breakpoints.mobile]: {
-      fontSize: mvw(16),
-      marginBottom: mvw(6),
     },
   },
 });

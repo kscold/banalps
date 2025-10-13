@@ -24,8 +24,12 @@ export default function HeroSection({ initialTextIndex = 0, onTextComplete, isAc
   const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
   const isMobile = useMediaQuery('screen and (max-width: 1023px)');
 
-  const desktopVideoConfig = { url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
-  const mobileVideoConfig = { url: 'https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0' };
+  const desktopVideoConfig = {
+    url: 'https://player.vimeo.com/video/1121422984?h=1300c2acf1&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0&quality=auto',
+  };
+  const mobileVideoConfig = {
+    url: 'https://player.vimeo.com/video/1121423312?h=57761ea611&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0&quality=auto',
+  };
 
   // 텍스트 스크롤 로직 - KB사이트처럼 깊이 기반 전환
   useEffect(() => {

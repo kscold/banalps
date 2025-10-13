@@ -23,7 +23,7 @@ export const mobileMenuPanel = style({
   bottom: 0,
   left: 0, // 전체 화면 덮기
   width: '100%',
-  backgroundColor: '#FFFDF7',
+  backgroundColor: 'transparent',
   zIndex: 9999,
   transition: 'transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 });

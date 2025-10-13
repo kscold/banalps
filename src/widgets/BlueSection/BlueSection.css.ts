@@ -214,7 +214,9 @@ export const imageCard1 = style({
   top: 0,
   borderRadius: '8px',
   overflow: 'hidden',
-  transition: 'transform 300ms ease, box-shadow 300ms ease',
+  transform: 'translateZ(0)', // GPU 가속
+  backfaceVisibility: 'hidden', // 깜빡임 방지
+  willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '441px', // 1920px 이상에서 고정
@@ -244,7 +246,9 @@ export const imageCard2 = style({
   left: vw(926), // 1920px 기준 926px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: '8px',
   overflow: 'hidden',
-  transition: 'transform 300ms ease, box-shadow 300ms ease',
+  transform: 'translateZ(0)', // GPU 가속
+  backfaceVisibility: 'hidden', // 깜빡임 방지
+  willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '470px', // 1920px 이상에서 고정
@@ -275,7 +279,9 @@ export const imageCard3 = style({
   left: vw(210), // 1920px 기준 210px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: '8px',
   overflow: 'hidden',
-  transition: 'transform 300ms ease, box-shadow 300ms ease',
+  transform: 'translateZ(0)', // GPU 가속
+  backfaceVisibility: 'hidden', // 깜빡임 방지
+  willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '327px', // 1920px 이상에서 고정
@@ -306,7 +312,9 @@ export const imageCard4 = style({
   left: vw(574), // 1920px 기준 574px (1920 기준으로 컨테이너 중앙 맞춤)
   borderRadius: '8px',
   overflow: 'hidden',
-  transition: 'transform 300ms ease, box-shadow 300ms ease',
+  transform: 'translateZ(0)', // GPU 가속
+  backfaceVisibility: 'hidden', // 깜빡임 방지
+  willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '317px', // 1920px 이상에서 고정
@@ -333,6 +341,9 @@ export const cardImage = style({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
+  transform: 'translateZ(0)', // GPU 가속
+  backfaceVisibility: 'hidden', // 깜빡임 방지
+  willChange: 'transform', // 애니메이션 최적화
 });
 
 // 데스크탑 전용 이미지 (SSR-safe)

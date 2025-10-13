@@ -27,11 +27,13 @@ export function VideoSection({ showVideoSection, onVideoEnd, onVideoReady }: Vid
   const playerRef = useRef<VimeoPlayer | null>(null);
 
   // 모바일 감지 (394px 이하만 모바일 비디오 사용)
-  const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
+  // const isMobileVideo = useMediaQuery('screen and (max-width: 394px)');
 
-  const currentVideoUrl = isMobileVideo
-    ? 'https://player.vimeo.com/video/1121423284?h=c45022d051&autoplay=1&muted=1&loop=0&background=1&controls=0&title=0&byline=0&portrait=0'
-    : 'https://player.vimeo.com/video/1121423051?h=5c69b41058&autoplay=1&muted=1&loop=0&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
+  // const currentVideoUrl = isMobileVideo
+  //   ? 'https://player.vimeo.com/video/1121423284?h=c45022d051&autoplay=1&muted=1&loop=0&background=1&controls=0&title=0&byline=0&portrait=0'
+  //   : 'https://player.vimeo.com/video/1121423051?h=5c69b41058&autoplay=1&muted=1&loop=0&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0';
+  const currentVideoUrl =
+    'https://player.vimeo.com/video/1121423051?h=5c69b41058&autoplay=1&muted=1&loop=0&background=1&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&title=0&byline=0&portrait=0&quality=auto';
 
   // 클라이언트 사이드에서만 실행 + 비디오 프리로드 + Vimeo Player API 로드
   useEffect(() => {

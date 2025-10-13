@@ -59,10 +59,39 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'player.vimeo.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'f.vimeocdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.vimeocdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vod-progressive.akamaized.net',
+      },
     ],
   },
   async headers() {
     return [
+      // 메인 페이지 리소스 힌트 - 가장 빠른 로딩을 위해
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Link',
+            value:
+              '<https://player.vimeo.com>; rel=preconnect; crossorigin=anonymous, ' +
+              '<https://f.vimeocdn.com>; rel=preconnect; crossorigin=anonymous, ' +
+              '<https://i.vimeocdn.com>; rel=preconnect; crossorigin=anonymous, ' +
+              '<https://vod-progressive.akamaized.net>; rel=dns-prefetch, ' +
+              '<https://fonts.googleapis.com>; rel=preconnect, ' +
+              '<https://fonts.gstatic.com>; rel=preconnect; crossorigin=anonymous, ' +
+              '<https://cdn.jsdelivr.net>; rel=preconnect',
+          },
+        ],
+      },
       {
         source: '/api/:path*',
         headers: [

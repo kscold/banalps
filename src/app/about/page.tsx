@@ -241,7 +241,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(isMobile ? 0.2 : 0.8)}
+                  transition={getCardTransition(isMobile ? 0.1 : 0.2)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot3-mobile.svg' : '/about/shot/shot3.svg'}
@@ -255,7 +255,7 @@ export default function AboutPage() {
                   initial={cardAnimationInitial}
                   whileInView={cardAnimationWhileInView}
                   viewport={cardAnimationViewport}
-                  transition={getCardTransition(isMobile ? 0.3 : 1.2)}
+                  transition={getCardTransition(isMobile ? 0.2 : 0.4)}
                 >
                   <img
                     src={isMobile ? '/main/shot/mobile/shot4-mobile.svg' : '/about/shot/shot4.svg'}
