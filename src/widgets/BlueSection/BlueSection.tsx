@@ -41,13 +41,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.1 : 0.3,
-            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
+            amount: 0.2,
+            margin: '0px',
           }}
           transition={{
-            duration: isMobile ? 0.8 : 0.5,
+            duration: 0.6,
             delay: 0,
-            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -64,13 +64,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.1 : 0.3,
-            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
+            amount: 0.2,
+            margin: '0px',
           }}
           transition={{
-            duration: isMobile ? 0.8 : 0.5,
-            delay: isMobile ? 0.15 : 0.4,
-            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
+            duration: 0.6,
+            delay: 0.2,
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -87,13 +87,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.1 : 0.3,
-            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
+            amount: 0.2,
+            margin: '0px',
           }}
           transition={{
-            duration: isMobile ? 0.8 : 0.5,
-            delay: isMobile ? 0.3 : 0.8,
-            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
+            duration: 0.6,
+            delay: 0.4,
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
@@ -110,13 +110,13 @@ export default function BlueSection({ isActive = false }: BlueSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
-            amount: isMobile ? 0.1 : 0.3,
-            margin: isMobile ? '-100px 0px -100px 0px' : '0px',
+            amount: 0.2,
+            margin: '0px',
           }}
           transition={{
-            duration: isMobile ? 0.8 : 0.5,
-            delay: isMobile ? 0.45 : 1.2,
-            ease: isMobile ? [0.25, 0.1, 0.25, 1] : [0.25, 0.46, 0.45, 0.94],
+            duration: 0.6,
+            delay: 0.6,
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {isMobile ? (
