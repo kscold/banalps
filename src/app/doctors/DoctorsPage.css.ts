@@ -521,13 +521,18 @@ export const doctorName3 = style({
 });
 
 export const doctorNameText = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   ...responsiveFont(160),
   lineHeight: vw(160),
   letterSpacing: '0',
   color: '#FFFFFF', // 하얀색 텍스트
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '160px',
@@ -2484,7 +2489,7 @@ export const doctorMobileContainer = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100vw',
-  minHeight: '100vh',
+  // minHeight: '100vh',
   backgroundColor: '#73D5FA',
   position: 'relative',
 });
@@ -2630,6 +2635,11 @@ export const doctorMobileName = style({
   marginBottom: mvw(56),
   wordBreak: 'keep-all',
   whiteSpace: 'normal',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 export const doctorMobileName2 = style({
@@ -2645,6 +2655,11 @@ export const doctorMobileName2 = style({
   marginBottom: mvw(84),
   wordBreak: 'keep-all',
   whiteSpace: 'normal',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 export const doctorMobileName3 = style({
@@ -2660,6 +2675,11 @@ export const doctorMobileName3 = style({
   marginBottom: mvw(111),
   wordBreak: 'keep-all',
   whiteSpace: 'normal',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 export const doctorMobilePosition = style({

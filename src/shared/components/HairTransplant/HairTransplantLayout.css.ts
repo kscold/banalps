@@ -517,10 +517,20 @@ export const section1 = style({
   paddingTop: vw(120), // 1920px 기준 120px 상단 패딩
   paddingBottom: vw(120), // 1920px 기준 120px 하단 패딩
   backgroundColor: '#FFFDF7', // 흰색 배경
+  selectors: {
+    'html[data-language="JP"] &': {
+      paddingBottom: vw(180), // 일본어일 때 하단 패딩 증가 (텍스트 2줄 고려)
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       paddingTop: '120px', // 1920px+ 고정
       paddingBottom: '120px', // 1920px+ 고정
+      selectors: {
+        'html[data-language="JP"] &': {
+          paddingBottom: '180px', // 일본어일 때 하단 패딩 증가
+        },
+      },
     },
     [breakpoints.mobile]: {
       padding: `${mvw(120)} 0  ${mvw(60)} 0`, // 모바일은 패딩 유지
@@ -783,6 +793,15 @@ export const section1Description = style({
           fontSize: mvw(20),
         },
       },
+    },
+  },
+});
+
+// hair-transplant/incision 페이지 전용: 일본어일 때만 줄바꿈 적용
+export const section1DescriptionIncision = style({
+  selectors: {
+    'html[data-language="JP"] &': {
+      whiteSpace: 'pre-line', // 일본어일 때만 \n 줄바꿈 인식
     },
   },
 });

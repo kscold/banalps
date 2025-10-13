@@ -626,6 +626,11 @@ export const whatBanalDescription = style({
   letterSpacing: '0',
   color: '#272727',
   marginBottom: vw(40), // 1920px 기준 40px
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '24px',
@@ -713,6 +718,11 @@ export const whatBanalSubDescription1Mobile = style({
       letterSpacing: '0',
       color: '#272727',
       marginBottom: mvw(24),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -729,6 +739,12 @@ export const whatBanalDescriptionMobile = style({
       letterSpacing: '0',
       color: '#272727',
       marginBottom: mvw(24),
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+          fontWeight: 700,
+        },
+      },
     },
   },
 });
@@ -745,6 +761,11 @@ export const whatBanalSubDescription2Mobile = style({
       letterSpacing: '0',
       color: '#272727',
       marginBottom: 0, // 마지막 텍스트이므로 marginBottom 제거
+      selectors: {
+        'html[data-language="JP"] &': {
+          fontSize: mvw(20),
+        },
+      },
     },
   },
 });
@@ -887,6 +908,7 @@ export const featureNumber = style({
     [breakpoints.desktopLarge]: {
       flex: '0 0 114px', // 1920px 이상에서 114px 고정
       width: '114px',
+      fontSize: '20px',
     },
     [breakpoints.mobile]: {
       flex: 'none',
@@ -935,6 +957,11 @@ export const featureTitle = style({
   margin: 0,
   // whiteSpace: "nowrap", // 타이틀은 줄바꿈 없음
   width: vw(250),
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '24px', // 1920px 이상에서 24px 고정
@@ -970,7 +997,6 @@ export const featureDescription = style({
   color: '#272727', // 검은색
   margin: 0,
   whiteSpace: 'pre-line', // 줄바꿈 유지 (1920px 기준으로 설정된 \n 사용)
-  opacity: 0.9,
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '16px', // 1920px 이상에서 18px 고정
@@ -981,7 +1007,6 @@ export const featureDescription = style({
       lineHeight: '150%',
       fontWeight: 400,
       whiteSpace: 'normal', // 모바일에서는 자연스러운 줄바꿈
-      opacity: 1, // 투명도 제거
       margin: 0,
       selectors: {
         'html[data-language="JP"] &': {
@@ -1424,13 +1449,15 @@ export const doctorsSubTitle = style({
   color: '#272727',
   margin: '0',
   marginBottom: vw(32),
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '24px', // 1920px 이상에서 24px 고정
       marginBottom: '32px', // 1920px 이상에서 고정
-    },
-    [breakpoints.mobile]: {
-      fontSize: mvw(14.4), // 모바일 폰트 크기
     },
   },
 });
@@ -1723,6 +1750,11 @@ export const doctorKoreanName = style({
   letterSpacing: '0',
   color: '#272727',
   margin: 0,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '24px',

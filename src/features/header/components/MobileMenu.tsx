@@ -150,7 +150,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         }`}
                         onClick={onClose}
                       >
-                        {getTranslation(subItem.titleKey)}
+                        {getTranslation(subItem.titleKey).replace(/\n/g, '')}
                       </Link>
                     ))}
                   </div>

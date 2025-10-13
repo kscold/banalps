@@ -307,7 +307,7 @@ function IncisionContent() {
     })),
   };
 
-  return <HairTransplantLayout {...layoutData} language={language} />;
+  return <HairTransplantLayout {...layoutData} language={language} isIncision={true} />;
 }
 
 export default function IncisionPage() {

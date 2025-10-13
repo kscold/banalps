@@ -23,6 +23,7 @@ interface ArrowButtonProps {
   height?: number | string; // 높이 (px 단위 또는 vw 단위 문자열)
   textAlign?: 'left' | 'center' | 'right'; // 텍스트 정렬
   iconSize?: number; // 아이콘 원 크기 (px 단위)
+  beforeAfterButton?: boolean; // 브레이크 아포스 버튼 여부
 }
 
 export default function ArrowButton({
@@ -44,6 +45,7 @@ export default function ArrowButton({
   height, // 커스텀 높이
   textAlign = 'left', // 기본값은 left
   iconSize, // 커스텀 아이콘 크기
+  beforeAfterButton,
 }: ArrowButtonProps) {
   const [calculatedPadding, setCalculatedPadding] = useState<{
     left?: string;
@@ -199,16 +201,16 @@ export default function ArrowButton({
 
     // Color에 따른 스타일 추가
     if (color === 'white') {
-      iconStyle += ` ${styles.whiteArrowIcon}`;
+      iconStyle += ` ${beforeAfterButton ? styles.whiteArrowIconLarge : styles.whiteArrowIcon}`;
     } else if (color === 'blue') {
-      iconStyle += ` ${styles.blueArrowIcon}`;
+      iconStyle += ` ${beforeAfterButton ? styles.blueArrowIconLarge : styles.blueArrowIcon}`;
     }
 
-    if (size === 'small') {
-      iconStyle += ` ${styles.smallArrowIcon}`;
-    } else if (size === 'large') {
-      iconStyle += ` ${styles.largeArrowIcon}`;
-    }
+    // if (size === 'small') {
+    //   iconStyle += ` ${styles.smallArrowIcon}`;
+    // } else if (size === 'large') {
+    //   iconStyle += ` ${styles.largeArrowIcon}`;
+    // }
 
     return iconStyle;
   };
@@ -361,18 +363,27 @@ export default function ArrowButton({
       >
         <svg
           className={getArrowIconStyle()}
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
+          // width="24"
+          // height="24"
+          // viewBox="0 0 24 24"
+          // fill="none"
+          // xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
+          {/* <path
             d="M5 12H19M19 12L12 5M19 12L12 19"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+          /> */}
+          <path
+            d="M11.9336 6.00033L6.24674 11.6872L5.53971 10.9801L10.0195 6.50033H0.226562V5.50033H10.0195L5.53971 1.02051L6.24674 0.313477L11.9336 6.00033Z"
+            fill="currentColor"
           />
         </svg>
       </div>

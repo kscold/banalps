@@ -209,7 +209,7 @@ export default function WhiteSection() {
                   size="medium"
                   color="blue"
                   className={styles.cardButtonWide}
-                  width={166}
+                  width={language === 'JP' ? 182 : 166}
                   fontSize={20}
                   fontSizeMobile={14}
                   height={44}
@@ -386,10 +386,7 @@ export default function WhiteSection() {
               </div>
             </div>
 
-            {/* 카카오맵/네이버맵 버튼 - 모바일에서만 표시 */}
-            <div className={styles.mapButtonsMobileOnly}>
-              <MapButtons />
-            </div>
+            <MapButtons />
           </div>
         </div>
       </div>

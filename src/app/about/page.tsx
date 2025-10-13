@@ -217,7 +217,7 @@ export default function AboutPage() {
                   transition={getCardTransition(isMobile ? 0 : 0)}
                 >
                   <img
-                    src={isMobile ? '/main/shot/mobile/shot1-mobile.svg' : '/main/shot/shot1.png'}
+                    src={isMobile ? '/main/shot/mobile/shot1-mobile.svg' : '/about/shot/shot1.svg'}
                     alt="Shin Seung gyu"
                     className={styles.reYouCardImage}
                   />
@@ -231,7 +231,7 @@ export default function AboutPage() {
                   transition={getCardTransition(isMobile ? 0.1 : 0.4)}
                 >
                   <img
-                    src={isMobile ? '/main/shot/mobile/shot2-mobile.svg' : '/main/shot/shot2.png'}
+                    src={isMobile ? '/main/shot/mobile/shot2-mobile.svg' : '/about/shot/shot2.svg'}
                     alt="의료진 4"
                     className={styles.reYouCardImage}
                   />
@@ -244,7 +244,7 @@ export default function AboutPage() {
                   transition={getCardTransition(isMobile ? 0.2 : 0.8)}
                 >
                   <img
-                    src={isMobile ? '/main/shot/mobile/shot3-mobile.svg' : '/main/shot/shot3.svg'}
+                    src={isMobile ? '/main/shot/mobile/shot3-mobile.svg' : '/about/shot/shot3.svg'}
                     alt="Park Soo Ho"
                     className={styles.reYouCardImage}
                   />
@@ -258,7 +258,7 @@ export default function AboutPage() {
                   transition={getCardTransition(isMobile ? 0.3 : 1.2)}
                 >
                   <img
-                    src={isMobile ? '/main/shot/mobile/shot4-mobile.svg' : '/main/shot/shot4.png'}
+                    src={isMobile ? '/main/shot/mobile/shot4-mobile.svg' : '/about/shot/shot4.svg'}
                     alt="Kim Narae"
                     className={styles.reYouCardImage}
                   />

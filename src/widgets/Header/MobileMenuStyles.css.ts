@@ -59,7 +59,7 @@ export const mobileMenuHeader = style({
 
 // LOGIN 버튼
 export const mobileLoginBtn = style({
-  fontFamily: 'Poppins, sans-serif',
+  fontFamily: fontFamily.poppins,
   fontSize: mvw(20),
   fontWeight: '600',
   fontStyle: 'normal',
@@ -74,8 +74,10 @@ export const mobileLoginBtn = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  ':hover': {
-    opacity: 0.9,
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
   },
 });
 
@@ -155,8 +157,16 @@ export const mobileNavSubLink = style({
   lineHeight: '160%', // 24px
   letterSpacing: '0',
   transition: 'color 200ms ease',
+  whiteSpace: 'nowrap', // 모바일에서 줄바꿈 방지 (모든 언어)
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   ':hover': {
     color: '#14AEFF',
+  },
+  selectors: {
+    'html[data-language="JP"] &': {
+      whiteSpace: 'nowrap', // 일본어도 모바일에서는 강제로 한 줄
+    },
   },
 });
 

@@ -1,3 +1,4 @@
+import { fontFamily } from '@/shared/styles/fonts.css';
 import { responsiveContainer, responsiveFont } from './../../styles/responsive.css';
 import { breakpoints, vw, mvw } from '@/shared/styles/responsive.css';
 import { style } from '@vanilla-extract/css';
@@ -115,7 +116,7 @@ export const footerRepresentative = style({
 });
 
 export const footerCopyright = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 400,
   ...responsiveFont(14),
   margin: '0',
@@ -123,7 +124,11 @@ export const footerCopyright = style({
   fontStyle: 'Regular',
   lineHeight: '140%',
   letterSpacing: '0%',
-
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '14px',

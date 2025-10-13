@@ -12,11 +12,12 @@ interface Section1Props {
   scarReduction: boolean;
   isHairline: boolean;
   isHairTransplant?: boolean; // Hair Transplant 페이지 여부
+  isIncision?: boolean; // Incision 페이지 여부 (일본어일 때 section1 description 줄바꿈 적용)
   isMobile: boolean;
   isDesktopLarge: boolean;
 }
 
-export default function Section1({ section1, scarReduction, isHairline, isHairTransplant, isMobile, isDesktopLarge }: Section1Props) {
+export default function Section1({ section1, scarReduction, isHairline, isHairTransplant, isIncision, isMobile, isDesktopLarge }: Section1Props) {
   const section1ImagesRef = useRef(null);
   const section1ImagesInView = useInView(section1ImagesRef, { once: true });
 
@@ -124,7 +125,7 @@ export default function Section1({ section1, scarReduction, isHairline, isHairTr
                 )}
 
                 <div
-                  className={styles.section1Description}
+                  className={`${styles.section1Description} ${isIncision ? styles.section1DescriptionIncision : ''}`}
                   style={
                     section1.descriptionWidth !== undefined && !isMobile
                       ? {
@@ -352,7 +353,7 @@ export default function Section1({ section1, scarReduction, isHairline, isHairTr
                   </div>
                 )}
                 <div
-                  className={styles.section1Description}
+                  className={`${styles.section1Description} ${isIncision ? styles.section1DescriptionIncision : ''}`}
                   style={
                     section1.descriptionWidth !== undefined && !isMobile
                       ? {

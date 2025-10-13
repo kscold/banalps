@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { breakpoints, mvw, vw } from '../../shared/styles/responsive.css';
 import { fontFamily } from '../../shared/styles/fonts.css';
 
@@ -237,14 +237,20 @@ export const heroOverlayBrandText = style({
       lineHeight: '28px',
     },
   },
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
 });
 
 export const heroSubtitle = style({
-  fontFamily: 'Poppins, sans-serif',
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontSize: vw(60),
   lineHeight: vw(78),
   color: '#14AEFF',
+
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '60px',
@@ -258,6 +264,10 @@ export const heroSubtitle = style({
       display: 'none',
     },
   },
+});
+
+globalStyle(`${heroSubtitle} span`, {
+  fontFamily: fontFamily.poppins,
 });
 
 // Contact Section

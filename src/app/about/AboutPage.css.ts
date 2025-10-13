@@ -493,9 +493,6 @@ export const reYouCard3 = style({
   height: vw(330),
   borderRadius: vw(15),
   overflow: 'hidden',
-  transform: 'translateZ(0)', // GPU 가속
-  backfaceVisibility: 'hidden', // 깜빡임 방지
-  willChange: 'transform, opacity', // 애니메이션 최적화
   '@media': {
     [breakpoints.desktopLarge]: {
       left: '300px',
@@ -788,10 +785,20 @@ export const strengthItem = style({
   padding: `${vw(32)} 0`,
   borderTop: '1px solid #14AEFF',
   backgroundColor: 'transparent',
+  selectors: {
+    'html[data-language="JP"] &': {
+      gap: vw(20),
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       gap: '60px',
       padding: '32px 0',
+      selectors: {
+        'html[data-language="JP"] &': {
+          gap: '20px',
+        },
+      },
     },
     [breakpoints.mobile]: {
       display: 'none',
@@ -821,16 +828,15 @@ export const strengthNumber = style({
   flex: '0 0 auto',
   fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  fontSize: vw(24),
-  lineHeight: vw(29),
+  fontSize: vw(20),
+  lineHeight: '150%',
   color: '#272727',
-  minWidth: vw(60),
+  minWidth: vw(114),
   textAlign: 'left',
   '@media': {
     [breakpoints.desktopLarge]: {
-      fontSize: '24px',
-      lineHeight: '29px',
-      minWidth: '60px',
+      fontSize: '20px',
+      minWidth: '114px',
     },
   },
 });
@@ -882,20 +888,29 @@ export const strengthItemContentMobile = style({
 });
 
 export const strengthItemTitle = style({
-  fontFamily: "'S-Core Dream', sans-serif",
+  fontFamily: fontFamily.scdream,
   fontWeight: 500,
-  fontSize: vw(20),
-  lineHeight: vw(28),
+  fontSize: vw(24),
+  lineHeight: '150%',
   color: '#272727',
   margin: 0,
   flex: '0 0 auto',
   minWidth: vw(200),
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontWeight: 700,
+      minWidth: vw(250),
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
-      fontSize: '20px',
-      lineHeight: '28px',
-
+      fontSize: '24px',
       minWidth: '200px',
+      selectors: {
+        'html[data-language="JP"] &': {
+          minWidth: '250px',
+        },
+      },
     },
   },
 });
@@ -922,7 +937,7 @@ export const strengthDescription = style({
   fontFamily: fontFamily.scdream,
   fontWeight: 400,
   fontSize: vw(16),
-  lineHeight: vw(24),
+  lineHeight: '160%',
   letterSpacing: '0',
   color: '#272727',
   margin: 0,
@@ -931,7 +946,6 @@ export const strengthDescription = style({
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '16px',
-      lineHeight: '24px',
     },
   },
 });

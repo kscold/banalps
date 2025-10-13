@@ -77,7 +77,7 @@ export const stepNumber = style({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
-      gap: mvw(40),
+      // gap: mvw(40),
     },
   },
 });
@@ -195,6 +195,7 @@ export const stepContent = style({
     [breakpoints.desktopLarge]: {
       gap: '48px',
       minHeight: '288px',
+      width: '655px', // 1920px 이상에서도 너비 고정하여 줄바꿈 유지
     },
     [breakpoints.mobile]: {
       gap: 0,
@@ -275,6 +276,7 @@ export const stepDescription = style({
   letterSpacing: 0,
   color: '#272727',
   margin: 0,
+  whiteSpace: 'nowrap',
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '20px',

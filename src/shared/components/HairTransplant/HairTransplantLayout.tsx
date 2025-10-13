@@ -21,6 +21,7 @@ export default function HairTransplantLayout({
   isCrown = false, // 기본값 설정
   isHairline = false, // 기본값 설정
   isHairTransplant = false, // Hair Transplant 페이지 여부
+  isIncision = false, // Incision 페이지 여부
   heroDotPosition,
   heroIllustration = '/hair-transplant/hero-illustration.svg',
   heroIllustrationMobile = '/hair-transplant/mobile/hero-illustration-mobile.svg',
@@ -77,6 +78,7 @@ export default function HairTransplantLayout({
         scarReduction={scarReduction}
         isHairline={isHairline}
         isHairTransplant={isHairTransplant}
+        isIncision={isIncision}
         isMobile={isMobile}
         isDesktopLarge={isDesktopLarge}
       />
@@ -144,6 +146,7 @@ export default function HairTransplantLayout({
                       textAlign="center"
                       width={mvw(224)}
                       height={mvw(44)}
+                      beforeAfterButton={true}
                     >
                       {beforeAfterButton.text}
                     </ArrowButton>
@@ -162,6 +165,7 @@ export default function HairTransplantLayout({
                     iconSize={44}
                     width={language === 'JP' ? 352 : beforeAfterButton.width || 224}
                     textAlign="left"
+                    beforeAfterButton={true}
                   >
                     {beforeAfterButton.text}
                   </ArrowButton>

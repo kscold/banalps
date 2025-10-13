@@ -36,7 +36,6 @@ export const HairTransplantHeroSection = style({
 export const HairTransplantHeroContainer = style({
   position: 'relative',
   width: '100%',
-  maxWidth: '1920px',
   margin: '0 auto',
   height: '100vh',
   '@media': {
@@ -258,7 +257,7 @@ export const categoryBadge = style({
   alignItems: 'center',
   justifyContent: 'center',
   width: vw(228),
-  height: vw(44),
+  height: vw(60),
   backgroundColor: '#73D5FA',
   color: '#FFFFFF',
   background: '#14AEFF',
@@ -266,6 +265,7 @@ export const categoryBadge = style({
   fontFamily: fontFamily.scdream,
   fontSize: vw(24),
   fontWeight: 500,
+  textAlign: 'center',
   selectors: {
     'html[data-language="JP"] &': {
       fontWeight: 700,
@@ -274,9 +274,10 @@ export const categoryBadge = style({
   '@media': {
     [breakpoints.desktopLarge]: {
       width: '228px',
-      height: '44px',
+      height: '60px',
       borderRadius: '30px',
       fontSize: '24px',
+      textAlign: 'center',
     },
     [breakpoints.mobile]: {
       width: mvw(170),
@@ -336,7 +337,6 @@ export const carouselContainer = style({
   gap: vw(15), // 간격 15px (전체 290px - 275px 너비)
   justifyContent: 'center',
   width: '100%',
-  maxWidth: '1920px',
   margin: '0 auto',
   '@media': {
     [breakpoints.desktopLarge]: {
@@ -446,9 +446,7 @@ export const carouselArrow = style({
 export const carouselArrowLeft = style({
   left: vw(400),
   '@media': {
-    [breakpoints.desktopLarge]: {
-      left: '400px',
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       left: mvw(25),
     },
@@ -458,9 +456,7 @@ export const carouselArrowLeft = style({
 export const carouselArrowRight = style({
   right: vw(400),
   '@media': {
-    [breakpoints.desktopLarge]: {
-      right: '400px',
-    },
+    [breakpoints.desktopLarge]: {},
     [breakpoints.mobile]: {
       right: mvw(25),
     },

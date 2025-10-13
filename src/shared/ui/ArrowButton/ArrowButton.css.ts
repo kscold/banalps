@@ -244,11 +244,35 @@ export const blueArrowContainer = style({
 
 // Color별 화살표 아이콘 스타일
 export const whiteArrowIcon = style({
+  width: vw(11.71),
+  height: vw(11.37),
   color: '#FFFFFF', // 파란 동그라미 안에 흰 화살표
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      width: '11.71px',
+      height: '11.37px',
+    },
+    [breakpoints.mobile]: {
+      width: mvw(11.71),
+      height: mvw(11.37),
+    },
+  },
 });
 
 export const blueArrowIcon = style({
+  width: vw(11.71),
+  height: vw(11.37),
   color: '#14AEFF', // 흰 동그라미 안에 파란 화살표
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      width: '11.71px',
+      height: '11.37px',
+    },
+    [breakpoints.mobile]: {
+      width: mvw(11.71),
+      height: mvw(11.37),
+    },
+  },
 });
 
 // Secondary variant의 화살표 컨테이너 스타일 (기존)
@@ -383,6 +407,39 @@ export const largeArrowIcon = style({
     [breakpoints.mobile]: {
       width: mvw(18),
       height: mvw(18),
+    },
+  },
+});
+
+// beforeAfterButton용 큰 화살표 아이콘 스타일
+export const whiteArrowIconLarge = style({
+  width: vw(20.49),
+  height: vw(19.9),
+  color: '#FFFFFF',
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      width: '20.49px',
+      height: '19.9px',
+    },
+    [breakpoints.mobile]: {
+      width: mvw(20.49),
+      height: mvw(19.9),
+    },
+  },
+});
+
+export const blueArrowIconLarge = style({
+  width: vw(20.49),
+  height: vw(19.9),
+  color: '#14AEFF',
+  '@media': {
+    [breakpoints.desktopLarge]: {
+      width: '20.49px',
+      height: '19.9px',
+    },
+    [breakpoints.mobile]: {
+      width: mvw(20.49),
+      height: mvw(19.9),
     },
   },
 });

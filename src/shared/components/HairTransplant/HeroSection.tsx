@@ -3,7 +3,7 @@
 import React from 'react';
 import * as styles from './HairTransplantLayout.css';
 import { getResponsivePosition, getResponsiveSizeAndPosition } from './utils';
-import { mvw } from '@/shared/styles/responsive.utils';
+
 
 interface HeroSectionProps {
   heroTitle: React.ReactNode;

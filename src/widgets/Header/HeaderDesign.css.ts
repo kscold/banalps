@@ -112,18 +112,23 @@ export const dropdownItem = style({
   color: '#272727',
   textDecoration: 'none',
   display: 'block',
-  height: vw(26),
+  minHeight: vw(26), // 한 줄 기준 최소 높이
   textAlign: 'center',
   transition: 'color 200ms ease',
-  whiteSpace: 'nowrap',
+  whiteSpace: 'nowrap', // 기본: 한 줄로 유지 (한국어)
   ':hover': {
     color: '#14AEFF',
+  },
+  selectors: {
+    'html[data-language="JP"] &': {
+      whiteSpace: 'pre-line', // 일본어: \n 줄바꿈 적용
+    },
   },
   '@media': {
     [breakpoints.desktopLarge]: {
       // 1920px 이상에서 고정
       fontSize: '16px',
-      height: '26px',
+      minHeight: '26px',
     },
     [breakpoints.mobile]: {
       // 모바일에서 70% 크기
@@ -435,7 +440,7 @@ export const actionButtons = style({
 });
 
 export const loginButton = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   fontWeight: 500,
   fontStyle: 'Medium',
   fontSize: vw(20),
@@ -452,6 +457,11 @@ export const loginButton = style({
   position: 'relative',
   overflow: 'visible', // overflow 수정
   whiteSpace: 'nowrap', // 텍스트 줄바꿈 방지
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     // 1024-1919px 구간에서 패딩 줄임
     [breakpoints.desktop]: {},
@@ -471,11 +481,11 @@ export const loginButton = style({
 });
 
 export const consultButton = style({
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: fontFamily.poppins,
   color: '#FFFFFF',
 
   fontSize: vw(20), // 1920px 기준 16px
-  fontWeight: '500',
+  fontWeight: 500,
   fontStyle: 'Medium',
   lineHeight: vw(24), // 1920px 기준 24px
   letterSpacing: '0%',
@@ -490,6 +500,11 @@ export const consultButton = style({
   justifyContent: 'center', // 가운데 정렬
   gap: vw(4), // 1920px 기준 4px (텍스트와 화살표 간격 줄임)
   whiteSpace: 'nowrap', // 텍스트 줄바꿈 방지
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktop]: {},
     [breakpoints.desktopLarge]: {

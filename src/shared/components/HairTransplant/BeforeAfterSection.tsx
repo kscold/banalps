@@ -49,6 +49,7 @@ export default function BeforeAfterSection({
                     textAlign="center"
                     width={mvw(224)}
                     height={mvw(44)}
+                    beforeAfterButton={true}
                   >
                     {beforeAfterButton.text}
                   </ArrowButton>
@@ -67,6 +68,7 @@ export default function BeforeAfterSection({
                   iconSize={44}
                   width={language === 'JP' ? 352 : beforeAfterButton.width || 224}
                   textAlign="left"
+                  beforeAfterButton={true}
                 >
                   {beforeAfterButton.text}
                 </ArrowButton>

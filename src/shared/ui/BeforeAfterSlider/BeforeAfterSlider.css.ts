@@ -103,6 +103,11 @@ export const labelDesktop = style({
   margin: '0',
   textAlign: 'center',
   flex: '0 0 auto',
+  selectors: {
+    'html[data-language="JP"] &': {
+      fontFamily: fontFamily.poppins,
+    },
+  },
   '@media': {
     [breakpoints.desktopLarge]: {
       fontSize: '20px',
@@ -172,6 +177,9 @@ export const sliderLineTop = style({
   backgroundColor: '#FFFFFF',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
   '@media': {
+    [breakpoints.desktopLarge]: {
+      bottom: 'calc(50% + 32px)',
+    },
     [breakpoints.mobile]: {
       width: '1px',
       bottom: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤
@@ -188,6 +196,9 @@ export const sliderLineBottom = style({
   backgroundColor: '#FFFFFF',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
   '@media': {
+    [breakpoints.desktopLarge]: {
+      top: 'calc(50% + 32px)',
+    },
     [breakpoints.mobile]: {
       width: '1px',
       top: `calc(50% + ${mvw(15)})`, // 모바일 원 크기에 맞춤

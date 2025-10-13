@@ -128,11 +128,10 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const updatedItem = await BeforeAfter.findOneAndUpdate({ id: Number(id) }, updateData, {
-      new: true,
-    });
+    // 현재 아이템 정보 가져오기
+    const currentItem = await BeforeAfter.findOne({ id: Number(id) });
 
-    if (!updatedItem) {
+    if (!currentItem) {
       return NextResponse.json(
         {
           success: false,
@@ -141,6 +140,45 @@ export async function PUT(request: NextRequest) {
         { status: 404 },
       );
     }
+
+    // 순서가 변경되었는지 확인
+    if (updateData.order !== undefined && updateData.order !== currentItem.order) {
+      const oldOrder = currentItem.order;
+      const newOrder = updateData.order;
+      const category = currentItem.category;
+
+      // 같은 카테고리의 다른 아이템들 순서 조정
+      if (newOrder < oldOrder) {
+        // 순서를 앞으로 당기는 경우 (예: 16 → 1)
+        // 기존 1~15번을 2~16번으로 밀기
+        await BeforeAfter.updateMany(
+          {
+            category: category,
+            order: { $gte: newOrder, $lt: oldOrder },
+          },
+          {
+            $inc: { order: 1 },
+          }
+        );
+      } else if (newOrder > oldOrder) {
+        // 순서를 뒤로 미루는 경우 (예: 1 → 16)
+        // 기존 2~16번을 1~15번으로 당기기
+        await BeforeAfter.updateMany(
+          {
+            category: category,
+            order: { $gt: oldOrder, $lte: newOrder },
+          },
+          {
+            $inc: { order: -1 },
+          }
+        );
+      }
+    }
+
+    // 현재 아이템 업데이트
+    const updatedItem = await BeforeAfter.findOneAndUpdate({ id: Number(id) }, updateData, {
+      new: true,
+    });
 
     return NextResponse.json({
       success: true,

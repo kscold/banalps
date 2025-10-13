@@ -189,6 +189,7 @@ export interface HairTransplantLayoutProps {
   isCrown?: boolean; // Crown 페이지 여부
   isHairline?: boolean; // Hairline 페이지 여부
   isHairTransplant?: boolean; // Hair Transplant 페이지 여부 (일본어일 때 section1Left 높이 894px)
+  isIncision?: boolean; // Incision 페이지 여부 (일본어일 때 section1 description 줄바꿈 적용)
   heroDotPosition?: {
     absolute?: boolean; // Use absolute positioning for dot
     top?: number; // vw units from top (desktop)
