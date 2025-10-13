@@ -11,10 +11,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400"
-        },
-        {
-          "key": "Link",
-          "value": "<https://player.vimeo.com>; rel=preconnect; crossorigin=anonymous, <https://f.vimeocdn.com>; rel=preconnect; crossorigin=anonymous, <https://i.vimeocdn.com>; rel=preconnect; crossorigin=anonymous, <https://vod-progressive.akamaized.net>; rel=dns-prefetch"
         }
       ]
     },
@@ -64,7 +60,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:jpg|jpeg|png|gif|webp|avif|svg|ico)",
+      "source": "/(.*\\.(jpg|jpeg|png|gif|webp|avif|svg|ico))",
       "headers": [
         {
           "key": "Cache-Control",
