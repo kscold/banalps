@@ -16,6 +16,8 @@ interface BeforeAfterSliderProps {
   onLoginClick?: () => void;
   loginOverlayText?: string;
   imageScale?: number; // 이미지 확대 비율 (기본값 1.0)
+  imageOffsetX?: number; // 이미지 x 위치 offset (%)
+  imageOffsetY?: number; // 이미지 y 위치 offset (%)
 }
 
 export default function BeforeAfterSlider({
@@ -29,6 +31,8 @@ export default function BeforeAfterSlider({
   onLoginClick,
   loginOverlayText = '로그인을 하시면\n수술 전/후 사진 확인이 가능합니다.',
   imageScale = 1.0,
+  imageOffsetX = 0,
+  imageOffsetY = 0,
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50); // 정확히 50% 기본 위치
   const containerRef = useRef<HTMLDivElement>(null);
@@ -175,7 +179,7 @@ export default function BeforeAfterSlider({
             alt={afterAlt}
             className={styles.image}
             style={{
-              transform: `scale(${imageScale})`,
+              transform: `scale(${imageScale}) translate(${imageOffsetX}%, ${imageOffsetY}%)`,
               transformOrigin: 'center center'
             }}
           />
@@ -190,7 +194,7 @@ export default function BeforeAfterSlider({
             alt={beforeAlt}
             className={styles.image}
             style={{
-              transform: `scale(${imageScale})`,
+              transform: `scale(${imageScale}) translate(${imageOffsetX}%, ${imageOffsetY}%)`,
               transformOrigin: 'center center'
             }}
           />

@@ -150,6 +150,8 @@ export interface BeforeAfterData {
   beforeAlt: string;
   afterAlt: string;
   imageScale?: number; // 이미지 확대 비율
+  imageOffsetX?: number; // 이미지 x 위치 offset (%)
+  imageOffsetY?: number; // 이미지 y 위치 offset (%)
 }
 
 export interface BeforeAfterButton {

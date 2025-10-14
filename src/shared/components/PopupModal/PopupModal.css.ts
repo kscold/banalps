@@ -124,7 +124,7 @@ export const popupImage = style({
 
 export const content = style({
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: '160%',
   letterSpacing: '0%',
@@ -139,7 +139,7 @@ export const content = style({
 // content 내부의 요소들 스타일 (에디터 생성 HTML)
 globalStyle(`${content} p`, {
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: '160%',
   letterSpacing: '0%',
@@ -224,7 +224,7 @@ globalStyle(`${content} ul, ${content} ol`, {
 
 globalStyle(`${content} li`, {
   fontFamily: fontFamily.scdream,
-  fontWeight: 200,
+  fontWeight: 400,
   fontSize: vw(16),
   lineHeight: '160%',
   color: '#242424',
@@ -255,7 +255,7 @@ globalStyle(`${content} em`, {
 });
 
 export const modalFooter = style({
-  padding: vw(32),
+  padding: `${vw(32)} ${vw(60)} ${vw(60)} ${vw(60)}`,
   display: 'flex',
   gap: vw(16),
   justifyContent: 'flex-end',
@@ -266,18 +266,22 @@ export const modalFooter = style({
     content: '""',
     position: 'absolute',
     top: 0,
-    left: 0,
-    right: 0,
+    left: vw(60),
+    right: vw(60),
     height: '1px',
     backgroundColor: '#272727',
   },
   '@media': {
     [breakpoints.mobile]: {
-      padding: mvw(16),
+      padding: `${mvw(16)} ${mvw(24)} ${mvw(24)}`,
       gap: mvw(8),
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
+      '::before': {
+        left: mvw(24),
+        right: mvw(24),
+      },
     },
   },
 });

@@ -225,6 +225,8 @@ export default function ForeheadHairTransplantPage() {
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
       imageScale: slides[0]?.scale || 1.0,
+      imageOffsetX: slides[0]?.offsetX || 0,
+      imageOffsetY: slides[0]?.offsetY || 0,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,

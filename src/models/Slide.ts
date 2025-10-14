@@ -6,6 +6,8 @@ export interface ISlide extends Document {
   beforeImage: string;
   afterImage: string;
   scale: number; // 이미지 확대 비율 (1.0 = 100%)
+  offsetX?: number; // 이미지 x 위치 offset (%)
+  offsetY?: number; // 이미지 y 위치 offset (%)
   order: number;
   createdAt: Date;
   updatedAt: Date;
@@ -34,6 +36,16 @@ const SlideSchema = new Schema<ISlide>(
       type: Number,
       required: true,
       default: 1.0,
+    },
+    offsetX: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    offsetY: {
+      type: Number,
+      required: false,
+      default: 0,
     },
     order: {
       type: Number,

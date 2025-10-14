@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     await dbConnect();
 
     const body = await request.json();
-    const { category, beforeImage, afterImage, scale, order } = body;
+    const { category, beforeImage, afterImage, scale, offsetX, offsetY, order } = body;
 
     // 유효성 검사
     if (!category || !beforeImage || !afterImage) {
@@ -77,6 +77,8 @@ export async function POST(request: NextRequest) {
       beforeImage,
       afterImage,
       scale: scale || 1.0,
+      offsetX: offsetX || 0,
+      offsetY: offsetY || 0,
       order: order || 0,
     });
 
@@ -114,10 +116,12 @@ export async function PUT(request: NextRequest) {
     await dbConnect();
 
     const body = await request.json();
-    const { id, category, beforeImage, afterImage, scale, order } = body;
+    const { id, category, beforeImage, afterImage, scale, offsetX, offsetY, order } = body;
 
     console.log('[API/슬라이드/수정] 받은 데이터:', body);
     console.log('[API/슬라이드/수정] scale 값:', scale, typeof scale);
+    console.log('[API/슬라이드/수정] offsetX 값:', offsetX, typeof offsetX);
+    console.log('[API/슬라이드/수정] offsetY 값:', offsetY, typeof offsetY);
 
     if (!id) {
       return NextResponse.json(
@@ -133,7 +137,7 @@ export async function PUT(request: NextRequest) {
     const db = (Slide as any).db;
     const collection = db.collection('slides');
 
-    // 먼저 cropSettings 제거
+    // 먼저 cropSettings 제거하고 offsetX, offsetY 추가
     await collection.updateOne(
       { id },
       {
@@ -143,6 +147,8 @@ export async function PUT(request: NextRequest) {
           beforeImage,
           afterImage,
           scale: Number(scale),
+          offsetX: Number(offsetX) || 0,
+          offsetY: Number(offsetY) || 0,
           order: Number(order),
           updatedAt: new Date(),
         }

@@ -8,17 +8,14 @@ export const mapWrapper = style({
   height: '100%',
   minHeight: vw(500),
   backgroundColor: '#F5F5F5',
-  borderRadius: vw(20),
+  borderRadius: vw(8),
   overflow: 'hidden',
   '@media': {
     [breakpoints.desktopLarge]: {
       minHeight: '500px',
-      borderRadius: '20px',
+      borderRadius: '8px',
     },
-    [breakpoints.desktop]: {
-      minHeight: '450px',
-      borderRadius: '16px',
-    },
+    [breakpoints.desktop]: {},
     [breakpoints.mobile]: {
       height: mvw(404),
       width: '100%',
@@ -32,6 +29,8 @@ export const mapDesktop = style({
   width: '100%',
   height: '100%',
   display: 'block',
+  objectFit: 'cover',
+  objectPosition: 'center',
   '@media': {
     [breakpoints.mobile]: {
       display: 'none',

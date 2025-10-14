@@ -6,6 +6,8 @@ export interface Slide {
   beforeImage: string;
   afterImage: string;
   scale: number;
+  offsetX?: number;
+  offsetY?: number;
   order: number;
 }
 

@@ -93,7 +93,7 @@ export const categoryTabs = style({
 export const categoryTab = style({
   padding: '10px 20px',
   backgroundColor: 'transparent',
-  color: '#666',
+  color: '#242424',
   border: 'none',
   borderRadius: '6px',
   cursor: 'pointer',

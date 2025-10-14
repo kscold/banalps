@@ -72,6 +72,8 @@ interface SlideItem {
   beforeImage: string;
   afterImage: string;
   scale: number;
+  offsetX?: number; // 이미지 x 위치 offset (%)
+  offsetY?: number; // 이미지 y 위치 offset (%)
   order: number;
 }
 
@@ -111,7 +113,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className={styles.adminPage}>
-        <div className={styles.container}>로딩 중...</div>
+        <div className={styles.container} style={{ color: '#242424' }}>로딩 중...</div>
       </div>
     );
   }
@@ -122,7 +124,7 @@ export default function AdminDashboard() {
         <div className={styles.header}>
           <div>
             <h1 className={styles.title}>바람부는날에도 관리자</h1>
-            <div style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
+            <div style={{ marginTop: '8px', fontSize: '14px', color: '#242424' }}>
               <div style={{ marginBottom: '4px' }}>
                 <strong>버그 및 업데이트 문의</strong>
               </div>
@@ -304,7 +306,7 @@ function BeforeAfterManagement() {
           ← 목록으로 돌아가기
         </button>
         <h2>데이터 마이그레이션</h2>
-        <p style={{ marginTop: '16px', marginBottom: '24px' }}>
+        <p style={{ marginTop: '16px', marginBottom: '24px', color: '#242424' }}>
           현재 코드에 하드코딩된 데이터를 MongoDB에 마이그레이션합니다.
           <br />
           <strong>주의:</strong> 기존 데이터가 모두 삭제되고 새로 생성됩니다.
@@ -318,6 +320,28 @@ function BeforeAfterManagement() {
 
   return (
     <>
+      {/* 안내 메시지 */}
+      <div
+        style={{
+          backgroundColor: '#E8F4FD',
+          padding: '16px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          border: '1px solid #73D5FA',
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0', color: '#242424', fontSize: '16px', fontWeight: 600 }}>
+          ℹ️ 수술 전후 관리 안내
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: '20px', color: '#242424', fontSize: '14px', lineHeight: '1.6' }}>
+          <li>카테고리별로 수술 전후 사진을 관리합니다</li>
+          <li>
+            <strong>순서</strong>: 같은 카테고리 내에서 표시 순서를 지정합니다 (작은 숫자가 먼저 표시됨)
+          </li>
+          <li>제목과 설명은 선택사항이며, 일본어 번역도 입력할 수 있습니다</li>
+        </ul>
+      </div>
+
       {/* 카테고리 탭 */}
       <div className={styles.categoryTabs}>
         {categories.map((category) => (
@@ -345,7 +369,7 @@ function BeforeAfterManagement() {
       </div>
 
       {loading ? (
-        <p>로딩 중...</p>
+        <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
         <div style={{ overflowX: 'auto' }}>
           <table className={styles.table}>
@@ -711,7 +735,7 @@ function BeforeAfterModal({
               required
               min="1"
             />
-            <small style={{ color: '#666', fontSize: '12px', marginTop: '4px' }}>
+            <small style={{ color: '#242424', fontSize: '12px', marginTop: '4px' }}>
               {formData.category} 카테고리 내에서의 순서입니다.
             </small>
           </div>
@@ -785,6 +809,10 @@ function PopupManagement() {
   };
 
   const handleAdd = () => {
+    // 같은 위치의 팝업 중 가장 큰 order 값을 찾아서 +1
+    const centerPopups = items.filter((item) => item.position === 'center');
+    const maxOrder = centerPopups.length > 0 ? Math.max(...centerPopups.map((item) => item.order)) : 0;
+
     setEditingItem({
       id: 0,
       title: '',
@@ -793,7 +821,7 @@ function PopupManagement() {
       contentJp: '',
       imageUrl: '',
       isActive: true,
-      order: items.length + 1,
+      order: maxOrder + 1,
       position: 'center',
     });
     setIsModalOpen(true);
@@ -829,6 +857,31 @@ function PopupManagement() {
 
   return (
     <>
+      {/* 안내 메시지 */}
+      <div
+        style={{
+          backgroundColor: '#E8F4FD',
+          padding: '16px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          border: '1px solid #73D5FA',
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0', color: '#242424', fontSize: '16px', fontWeight: 600 }}>ℹ️ 팝업 관리 안내</h3>
+        <ul style={{ margin: 0, paddingLeft: '20px', color: '#242424', fontSize: '14px', lineHeight: '1.6' }}>
+          <li>
+            <strong>위치</strong>: 데스크탑에서 팝업이 표시될 위치 (모바일은 항상 중앙)
+          </li>
+          <li>
+            <strong>표시 순서</strong>: 같은 위치의 팝업이 여러 개일 때 순서를 지정합니다
+          </li>
+          <li>
+            <strong>순서 자동 조정</strong>: 순서를 변경하면 같은 위치의 다른 팝업들이 자동으로 밀립니다
+          </li>
+          <li>활성화된 팝업만 사용자에게 표시됩니다</li>
+        </ul>
+      </div>
+
       <div style={{ marginBottom: '24px', marginTop: '24px' }}>
         <button className={styles.addButton} onClick={handleAdd}>
           + 새 팝업 추가
@@ -836,7 +889,7 @@ function PopupManagement() {
       </div>
 
       {loading ? (
-        <p>로딩 중...</p>
+        <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
         <div style={{ overflowX: 'auto' }}>
           <table className={styles.table}>
@@ -917,6 +970,31 @@ function PopupModal({
 }) {
   const [formData, setFormData] = useState<Partial<PopupItem>>(item || {});
   const [uploading, setUploading] = useState(false);
+  const [allItems, setAllItems] = useState<PopupItem[]>([]);
+
+  // 전체 팝업 목록 불러오기
+  useEffect(() => {
+    const fetchAllItems = async () => {
+      try {
+        const response = await fetch('/api/popup');
+        const data = await response.json();
+        if (data.success) {
+          setAllItems(data.data);
+        }
+      } catch (error) {
+        console.error('팝업 목록 조회 실패:', error);
+      }
+    };
+    fetchAllItems();
+  }, []);
+
+  // position이 변경될 때 해당 위치의 권장 order 값 계산
+  const getRecommendedOrder = (position: PopupPosition) => {
+    const samePositionItems = allItems.filter(
+      (i) => i.position === position && (!item || i.id !== item.id)
+    );
+    return samePositionItems.length > 0 ? Math.max(...samePositionItems.map((i) => i.order)) + 1 : 1;
+  };
 
   // 에디터 내 이미지 업로드 핸들러
   const handleEditorImageUpload = async (file: File): Promise<string> => {
@@ -1019,7 +1097,15 @@ function PopupModal({
             <select
               className={styles.select}
               value={formData.position || 'center'}
-              onChange={(e) => setFormData({ ...formData, position: e.target.value as PopupPosition })}
+              onChange={(e) => {
+                const newPosition = e.target.value as PopupPosition;
+                const recommendedOrder = getRecommendedOrder(newPosition);
+                setFormData({
+                  ...formData,
+                  position: newPosition,
+                  order: recommendedOrder
+                });
+              }}
               required
             >
               <option value="top-left">왼쪽 위</option>
@@ -1032,7 +1118,7 @@ function PopupModal({
               <option value="bottom-center">중앙 아래</option>
               <option value="bottom-right">오른쪽 아래</option>
             </select>
-            <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+            <small style={{ color: '#242424', fontSize: '12px', marginTop: '4px', display: 'block' }}>
               모바일에서는 항상 중앙에 표시됩니다. 같은 위치의 팝업은 책처럼 겹쳐서 표시됩니다.
             </small>
           </div>
@@ -1047,8 +1133,16 @@ function PopupModal({
               required
               min="1"
             />
-            <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
-              숫자가 작을수록 앞에 표시됩니다 (1이 맨 앞)
+            <small style={{ color: '#242424', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+              숫자가 작을수록 앞에 표시됩니다 (1이 맨 앞). 순서를 변경하면 같은 위치의 다른 팝업들이 자동으로 밀립니다.
+              {!item && formData.position && (
+                <>
+                  <br />
+                  <strong>
+                    현재 "{formData.position}" 위치의 권장 순서: {getRecommendedOrder(formData.position)}
+                  </strong>
+                </>
+              )}
             </small>
           </div>
 
@@ -1212,7 +1306,7 @@ function AcademicActivityManagement() {
           ← 목록으로 돌아가기
         </button>
         <h2>학술 활동 데이터 마이그레이션</h2>
-        <p style={{ marginTop: '16px', marginBottom: '24px' }}>
+        <p style={{ marginTop: '16px', marginBottom: '24px', color: '#242424' }}>
           academicActivities.ts 파일의 데이터를 MongoDB에 마이그레이션합니다.
           <br />
           <strong>주의:</strong> 기존 데이터가 모두 삭제되고 새로 생성됩니다.
@@ -1226,8 +1320,36 @@ function AcademicActivityManagement() {
 
   return (
     <>
+      {/* 안내 메시지 */}
+      <div
+        style={{
+          backgroundColor: '#E8F4FD',
+          padding: '16px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          border: '1px solid #73D5FA',
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0', color: '#242424', fontSize: '16px', fontWeight: 600 }}>
+          ℹ️ 학술 정보 관리 안내
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: '20px', color: '#242424', fontSize: '14px', lineHeight: '1.6' }}>
+          <li>
+            <strong>자동 정렬</strong>: 학술 활동은 날짜를 기준으로 자동으로 최신순(내림차순)으로 정렬됩니다
+          </li>
+          <li>
+            <strong>날짜 형식</strong>: "2025.05.11" 형식으로 입력합니다 (YYYY.MM.DD)
+          </li>
+          <li>
+            <strong>연도만 입력</strong>: 연도만 입력하면 해당 연도의 가장 마지막(12월 31일)으로 표시됩니다
+          </li>
+          <li>한국어와 일본어 번역을 모두 입력해야 합니다</li>
+          <li>타입: 발표, 논문, 저널, 수상, 연구, 역서 중 선택 가능</li>
+        </ul>
+      </div>
+
       <div style={{ marginBottom: '24px', marginTop: '24px' }}>
-        <label style={{ marginRight: '12px', fontWeight: '500' }}>연도 선택:</label>
+        <label style={{ marginRight: '12px', fontWeight: '500', color: '#242424' }}>연도 선택:</label>
         <select
           className={styles.select}
           value={selectedYear}
@@ -1257,7 +1379,7 @@ function AcademicActivityManagement() {
       </div>
 
       {loading ? (
-        <p>로딩 중...</p>
+        <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
         <div style={{ overflowX: 'auto', maxHeight: '600px', overflowY: 'auto' }}>
           <table className={styles.table}>
@@ -1638,6 +1760,34 @@ function SlideManagement() {
 
   return (
     <>
+      {/* 안내 메시지 */}
+      <div
+        style={{
+          backgroundColor: '#E8F4FD',
+          padding: '16px',
+          borderRadius: '8px',
+          marginBottom: '20px',
+          border: '1px solid #73D5FA',
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0', color: '#242424', fontSize: '16px', fontWeight: 600 }}>
+          ℹ️ 페이지 별 전후 관리 안내
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: '20px', color: '#242424', fontSize: '14px', lineHeight: '1.6' }}>
+          <li>각 카테고리별로 Before/After 슬라이드 이미지를 관리합니다</li>
+          <li>
+            <strong>확대 비율(Scale)</strong>: 이미지의 표시 크기를 조정합니다 (1.0 = 100%, 범위: 0.5 ~ 3.0)
+          </li>
+          <li>
+            <strong>표시 영역 (초록 박스)</strong>: 이미지를 클릭하면 실제 표시될 영역을 확인할 수 있습니다
+          </li>
+          <li>
+            <strong>이미지 조정</strong>: 슬라이더로 확대 비율을 조절하고, 이미지를 드래그하여 위치를 조정할 수 있습니다
+          </li>
+          <li>초록 박스 안에 중요한 부분이 잘 보이도록 확대와 위치를 설정하세요</li>
+        </ul>
+      </div>
+
       <div style={{ marginBottom: '24px', marginTop: '24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
         {/* <button className={styles.addButton} onClick={handleAdd}>
           + 새 슬라이드 추가
@@ -1662,7 +1812,7 @@ function SlideManagement() {
           }}
         >
           <h3 style={{ marginTop: 0 }}>슬라이드 데이터 마이그레이션</h3>
-          <p style={{ color: '#666', marginBottom: '16px' }}>
+          <p style={{ color: '#242424', marginBottom: '16px' }}>
             public/slide 폴더의 이미지 파일들을 MongoDB로 마이그레이션합니다.
           </p>
           <div style={{ display: 'flex', gap: '12px' }}>
@@ -1698,7 +1848,7 @@ function SlideManagement() {
       )}
 
       {loading ? (
-        <p>로딩 중...</p>
+        <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
         <div style={{ overflowX: 'auto' }}>
           <table className={styles.table}>
@@ -1766,7 +1916,7 @@ function SlideModal({
   onClose: () => void;
   onSuccess: () => void;
 }) {
-  const [formData, setFormData] = useState<Partial<SlideItem>>(item || { scale: 1.0 });
+  const [formData, setFormData] = useState<Partial<SlideItem>>(item || { scale: 1.0, offsetX: 0, offsetY: 0 });
   const [beforeFile, setBeforeFile] = useState<File | null>(null);
   const [afterFile, setAfterFile] = useState<File | null>(null);
   const [beforePreview, setBeforePreview] = useState<string | null>(item?.beforeImage || null);
@@ -1775,6 +1925,10 @@ function SlideModal({
   const [showCropper, setShowCropper] = useState(false);
   const [cropTarget, setCropTarget] = useState<'before' | 'after' | null>(null);
   const [zoom, setZoom] = useState(item?.scale || 1.0);
+  const [offsetX, setOffsetX] = useState(item?.offsetX || 0);
+  const [offsetY, setOffsetY] = useState(item?.offsetY || 0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   const slideCategories = [
     { value: 'forehead/hair-transplant', label: '이마축소 - 모발이식' },
@@ -1796,6 +1950,8 @@ function SlideModal({
         setCropTarget('before');
         setShowCropper(true);
         setZoom(1);
+        setOffsetX(0);
+        setOffsetY(0);
       };
       reader.readAsDataURL(file);
     }
@@ -1811,14 +1967,47 @@ function SlideModal({
         setCropTarget('after');
         setShowCropper(true);
         setZoom(1);
+        setOffsetX(0);
+        setOffsetY(0);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - dragStart.x;
+    const deltaY = e.clientY - dragStart.y;
+
+    // 이동량을 퍼센트로 변환 (뷰포트 크기 기준)
+    const container = e.currentTarget as HTMLElement;
+    const rect = container.getBoundingClientRect();
+    const percentX = (deltaX / rect.width) * 100;
+    const percentY = (deltaY / rect.height) * 100;
+
+    setOffsetX((prev) => prev + percentX);
+    setOffsetY((prev) => prev + percentY);
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   const handleCropSave = () => {
-    // zoom 값을 scale로 저장
-    setFormData((prev) => ({ ...prev, scale: zoom }));
+    // zoom과 offset 값을 저장
+    setFormData((prev) => ({
+      ...prev,
+      scale: zoom,
+      offsetX: offsetX,
+      offsetY: offsetY
+    }));
     setShowCropper(false);
     setCropTarget(null);
   };
@@ -1834,7 +2023,9 @@ function SlideModal({
     }
     setShowCropper(false);
     setCropTarget(null);
-    setZoom(1);
+    setZoom(item?.scale || 1);
+    setOffsetX(item?.offsetX || 0);
+    setOffsetY(item?.offsetY || 0);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -1879,6 +2070,8 @@ function SlideModal({
         beforeImage: beforeImagePath,
         afterImage: afterImagePath,
         scale: formData.scale || 1.0,
+        offsetX: formData.offsetX || 0,
+        offsetY: formData.offsetY || 0,
         order: formData.order || 0,
       };
       if (item && item.id) body.id = item.id;
@@ -1927,11 +2120,10 @@ function SlideModal({
         >
           <div style={{ padding: '20px', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
             <h3 style={{ margin: '0 0 12px 0' }}>이미지 확대 설정</h3>
-            <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
-              <strong style={{ color: '#00ff00' }}>초록 박스</strong>는 데스크탑 표시 영역,{' '}
-              <strong style={{ color: '#ff6b00' }}>주황 박스</strong>는 모바일 표시 영역입니다.
+            <p style={{ margin: '0 0 16px 0', color: '#242424', fontSize: '14px' }}>
+              <strong style={{ color: '#00ff00' }}>초록 박스</strong>는 실제 표시 영역입니다.
               <br />
-              슬라이더로 이미지 확대 비율을 조정하여 원하는 부분이 보이도록 설정하세요.
+              슬라이더로 확대 비율을 조정하고, 이미지를 드래그하여 위치를 조정하세요.
             </p>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
               <label style={{ fontSize: '14px', fontWeight: 500 }}>확대 비율:</label>
@@ -2001,6 +2193,7 @@ function SlideModal({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                overflow: 'hidden',
               }}
             >
               {/* 격자 오버레이 - 데스크탑 뷰포트 */}
@@ -2032,7 +2225,7 @@ function SlideModal({
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  표시 영역
+                  표시 영역 (드래그로 위치 조정)
                 </div>
               </div>
 
@@ -2043,11 +2236,18 @@ function SlideModal({
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  transform: `scale(${zoom})`,
+                  transform: `scale(${zoom}) translate(${offsetX}%, ${offsetY}%)`,
                   transformOrigin: 'center center',
-                  transition: 'transform 0.2s ease',
+                  transition: isDragging ? 'none' : 'transform 0.2s ease',
                   display: 'block',
+                  cursor: isDragging ? 'grabbing' : 'grab',
+                  userSelect: 'none',
                 }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                draggable={false}
               />
             </div>
           </div>
@@ -2093,10 +2293,12 @@ function SlideModal({
                     onClick={() => {
                       setCropTarget('before');
                       setZoom(formData.scale || 1.0);
+                      setOffsetX(formData.offsetX || 0);
+                      setOffsetY(formData.offsetY || 0);
                       setShowCropper(true);
                     }}
                   />
-                  <small style={{ display: 'block', marginTop: '4px', color: '#666' }}>클릭하여 확대 비율 조정</small>
+                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>클릭하여 확대 비율 조정</small>
                 </div>
               )}
             </div>
@@ -2120,10 +2322,12 @@ function SlideModal({
                     onClick={() => {
                       setCropTarget('after');
                       setZoom(formData.scale || 1.0);
+                      setOffsetX(formData.offsetX || 0);
+                      setOffsetY(formData.offsetY || 0);
                       setShowCropper(true);
                     }}
                   />
-                  <small style={{ display: 'block', marginTop: '4px', color: '#666' }}>클릭하여 확대 비율 조정</small>
+                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>클릭하여 확대 비율 조정</small>
                 </div>
               )}
             </div>
@@ -2139,7 +2343,7 @@ function SlideModal({
                 max="3.0"
                 required
               />
-              <small style={{ color: '#666', marginTop: '4px', display: 'block' }}>
+              <small style={{ color: '#242424', marginTop: '4px', display: 'block' }}>
                 1.0 = 100% (기본값), 범위: 0.5 ~ 3.0
               </small>
             </div>

@@ -147,11 +147,9 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const updatedItem = await Popup.findOneAndUpdate({ id: Number(id) }, updateData, {
-      new: true,
-    });
-
-    if (!updatedItem) {
+    // 기존 아이템 조회
+    const existingItem = await Popup.findOne({ id: Number(id) });
+    if (!existingItem) {
       return NextResponse.json(
         {
           success: false,
@@ -160,6 +158,33 @@ export async function PUT(request: NextRequest) {
         { status: 404 },
       );
     }
+
+    // 순서가 변경되었는지 확인
+    const oldOrder = existingItem.order;
+    const newOrder = updateData.order;
+    const oldPosition = existingItem.position;
+    const newPosition = updateData.position || oldPosition;
+
+    // 순서 또는 위치가 변경된 경우 다른 항목들의 순서 재조정
+    if (oldOrder !== newOrder || oldPosition !== newPosition) {
+      // 같은 위치의 팝업들 조회
+      const itemsInSamePosition = await Popup.find({
+        position: newPosition,
+        id: { $ne: Number(id) }, // 현재 수정 중인 항목 제외
+      }).sort({ order: 1 });
+
+      // 새 순서에 맞춰 다른 항목들 재정렬
+      for (const item of itemsInSamePosition) {
+        if (item.order >= newOrder) {
+          await Popup.findOneAndUpdate({ id: item.id }, { order: item.order + 1 });
+        }
+      }
+    }
+
+    // 현재 항목 업데이트
+    const updatedItem = await Popup.findOneAndUpdate({ id: Number(id) }, updateData, {
+      new: true,
+    });
 
     return NextResponse.json({
       success: true,
