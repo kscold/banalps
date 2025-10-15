@@ -116,10 +116,18 @@ export const activeCategoryTab = style({
   },
 });
 
+export const tableWrapper = style({
+  maxHeight: '600px',
+  overflowY: 'auto',
+  marginTop: '24px',
+  border: '1px solid #E5E5E5',
+  borderRadius: '8px',
+  overscrollBehavior: 'contain',
+});
+
 export const table = style({
   width: '100%',
   borderCollapse: 'collapse',
-  marginTop: '24px',
 });
 
 export const th = style({
@@ -128,7 +136,10 @@ export const th = style({
   color: '#272727',
   fontWeight: 600,
   textAlign: 'left',
-  borderBottom: '2px solid #272727',
+  position: 'sticky',
+  top: 0,
+  zIndex: 10,
+  boxShadow: '0 2px 0 0 #272727',
 });
 
 export const td = style({

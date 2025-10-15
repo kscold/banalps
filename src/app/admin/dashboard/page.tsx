@@ -374,7 +374,7 @@ function BeforeAfterManagement() {
       {loading ? (
         <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
+        <div className={styles.tableWrapper}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -904,7 +904,7 @@ function PopupManagement() {
       {loading ? (
         <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
+        <div className={styles.tableWrapper}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -1191,12 +1191,12 @@ function AcademicActivityManagement() {
   const [editingItem, setEditingItem] = useState<AcademicActivityItem | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   const [showMigration, setShowMigration] = useState(false);
+  const [allData, setAllData] = useState<AcademicActivityItem[]>([]);
 
-  // 연도 목록 생성 (2011년부터 현재+10년까지)
-  const years = Array.from(
-    { length: new Date().getFullYear() - 2010 + 11 },
-    (_, i) => new Date().getFullYear() + 10 - i
-  );
+  // 실제 데이터가 있는 연도만 추출
+  const years = Array.from(new Set(allData.map((item) => item.year)))
+    .filter((year) => year) // undefined 제거
+    .sort((a, b) => b - a); // 최신순
 
   useEffect(() => {
     fetchItems();
@@ -1208,6 +1208,9 @@ function AcademicActivityManagement() {
       const response = await fetch('/api/admin/academic-activity');
       const data = await response.json();
       if (data.success) {
+        // 전체 데이터 저장 (연도 목록 생성용)
+        setAllData(data.data);
+
         let filteredData = data.data;
 
         // 선택된 연도로 필터링
@@ -1352,17 +1355,28 @@ function AcademicActivityManagement() {
             <strong>자동 정렬</strong>: 학술 활동은 날짜를 기준으로 자동으로 최신순(내림차순)으로 정렬됩니다
           </li>
           <li>
-            <strong>날짜 형식</strong>: 반드시 <strong style={{ color: '#ff4444' }}>yyyy.mm.dd</strong> 형식으로
-            입력해야 합니다
+            <strong>날짜 형식</strong>: <strong style={{ color: '#ff4444' }}>yyyy</strong> 혹은{' '}
+            <strong style={{ color: '#ff4444' }}>yyyy.mm.dd</strong> 형식만 입력 가능합니다
             <br />
-            - 예시: 2025.05.11 (⭕ 올바른 형식)
+            - 예시: 2030 (연도만) 또는 2025.05.11 (전체 날짜)
             <br />- 연도는 날짜에서 자동으로 추출됩니다
           </li>
           <li>
-            <strong>연도 선택</strong>: 위 드롭다운에서 연도를 선택하면 해당 연도의 활동만 필터링하여 볼 수 있습니다
+            <strong>📅 입력 방법</strong>:
+            <br />
+            &nbsp;&nbsp;• <strong>연도만</strong>: 2030 입력 → 결과: 2030
+            <br />
+            &nbsp;&nbsp;• <strong>전체 날짜</strong>: 20250511 입력 → 결과: 2025.05.11 (자동으로 . 추가)
+            <br />
+            &nbsp;&nbsp;* 숫자만 입력하세요 (4자리: 연도만, 8자리: 전체 날짜)
+            <br />
+            &nbsp;&nbsp;* 월: 01-12, 일: 01-31 범위로 입력
           </li>
           <li>
-            <strong>입력 가능 연도</strong>: 2011년부터 미래 10년(현재+10년)까지 입력 가능
+            <strong>연도 선택</strong>: 위 드롭다운에는 실제 데이터가 있는 연도만 표시됩니다
+          </li>
+          <li>
+            <strong>입력 가능 연도</strong>: 2000년부터 2099년까지 입력 가능
           </li>
           <li>한국어와 일본어 번역을 모두 입력해야 합니다</li>
           <li>타입: 발표, 논문, 저널, 수상, 연구, 역서 중 선택 가능</li>
@@ -1402,7 +1416,7 @@ function AcademicActivityManagement() {
       {loading ? (
         <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
-        <div style={{ overflowX: 'auto', maxHeight: '600px', overflowY: 'auto' }}>
+        <div className={styles.tableWrapper}>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -1479,17 +1493,39 @@ function AcademicActivityModal({
 
   const activityTypes: ActivityType[] = ['발표', '논문', '저널', '수상', '연구', '역서'];
 
+  // item이 변경될 때마다 formData 초기화
+  useEffect(() => {
+    if (item) {
+      // 날짜에서 끝에 있는 점 제거 (yyyy. → yyyy)
+      const cleanedItem = { ...item };
+      if (cleanedItem.date && cleanedItem.date.endsWith('.')) {
+        cleanedItem.date = cleanedItem.date.slice(0, -1);
+      }
+      setFormData(cleanedItem);
+    } else {
+      setFormData({});
+    }
+  }, [item]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 날짜 형식 검증 (yyyy.mm.dd)
-    if (!formData.date || !/^\d{4}\.\d{2}\.\d{2}$/.test(formData.date)) {
-      alert('날짜를 yyyy.mm.dd 형식으로 입력해주세요 (예: 2025.05.11)');
+    // 날짜 형식 검증 (yyyy 또는 yyyy.mm.dd)
+    if (!formData.date) {
+      alert('날짜를 입력해주세요');
       return;
     }
 
-    // 날짜에서 연도 자동 추출
-    const yearMatch = formData.date.match(/^(\d{4})\./);
+    const isYearOnly = /^\d{4}$/.test(formData.date);
+    const isFullDate = /^\d{4}\.\d{2}\.\d{2}$/.test(formData.date);
+
+    if (!isYearOnly && !isFullDate) {
+      alert('날짜를 yyyy 또는 yyyy.mm.dd 형식으로 입력해주세요\n예시: 2030 또는 2025.05.11');
+      return;
+    }
+
+    // 날짜에서 연도 자동 추출 (yyyy 또는 yyyy.mm.dd)
+    const yearMatch = formData.date.match(/^(\d{4})/);
     if (yearMatch) {
       formData.year = Number(yearMatch[1]);
     }
@@ -1499,10 +1535,9 @@ function AcademicActivityModal({
       return;
     }
 
-    // 연도 범위 검증 (2011년 ~ 현재+10년)
-    const currentYear = new Date().getFullYear();
-    if (formData.year < 2011 || formData.year > currentYear + 10) {
-      alert(`연도는 2011년부터 ${currentYear + 10}년까지만 입력 가능합니다.`);
+    // 연도 범위 검증 (2000년 ~ 2099년)
+    if (formData.year < 2000 || formData.year > 2099) {
+      alert('연도는 2000년부터 2099년까지만 입력 가능합니다.');
       return;
     }
 
@@ -1521,9 +1556,15 @@ function AcademicActivityModal({
     try {
       const method = item && item.id ? 'PUT' : 'POST';
 
+      // 날짜 정리 (끝에 점이 있으면 제거: yyyy. → yyyy)
+      let cleanedDate = formData.date || '';
+      if (cleanedDate.endsWith('.')) {
+        cleanedDate = cleanedDate.slice(0, -1);
+      }
+
       const body: any = {
         year: formData.year,
-        date: formData.date,
+        date: cleanedDate,
         type: formData.type,
         event: formData.event,
         title: formData.title,
@@ -1571,60 +1612,79 @@ function AcademicActivityModal({
               onChange={(e) => {
                 let value = e.target.value;
 
-                // 숫자와 점(.)만 허용
+                // 숫자와 점만 허용
                 value = value.replace(/[^\d.]/g, '');
 
-                // 이전 값
-                const prevValue = formData.date || '';
+                // 점 제거 후 숫자만 추출
+                const numbersOnly = value.replace(/\./g, '');
 
-                // 자동으로 . 추가 (yyyy -> yyyy. / yyyy.mm -> yyyy.mm.)
-                if (value.length === 4 && prevValue.length === 3) {
-                  value = value + '.';
-                } else if (value.length === 7 && prevValue.length === 6 && value[4] === '.') {
-                  value = value + '.';
+                // 길이 제한 (최대 8자리: yyyymmdd)
+                if (numbersOnly.length > 8) {
+                  return;
                 }
 
-                // yyyy.mm.dd 형식 제한 (최대 10자)
-                if (value.length > 10) {
-                  value = value.slice(0, 10);
+                // 자동으로 점 추가
+                let formatted = numbersOnly;
+
+                // 5자리 이상일 때만 첫 번째 점 추가
+                if (numbersOnly.length > 4) {
+                  formatted = numbersOnly.slice(0, 4) + '.' + numbersOnly.slice(4);
                 }
 
-                // 월 검증 (01-12)
-                if (value.length >= 7) {
-                  const month = value.slice(5, 7);
-                  if (month && (parseInt(month) < 1 || parseInt(month) > 12)) {
+                // 7자리 이상일 때 두 번째 점 추가
+                if (numbersOnly.length > 6) {
+                  formatted = numbersOnly.slice(0, 4) + '.' + numbersOnly.slice(4, 6) + '.' + numbersOnly.slice(6);
+                }
+
+                // 월 검증 (5-6번째 자리)
+                if (numbersOnly.length >= 6) {
+                  const month = parseInt(numbersOnly.slice(4, 6));
+                  if (month < 1 || month > 12) {
                     return; // 유효하지 않은 월이면 입력 무시
                   }
                 }
 
-                // 일 검증 (01-31)
-                if (value.length >= 10) {
-                  const day = value.slice(8, 10);
-                  if (day && (parseInt(day) < 1 || parseInt(day) > 31)) {
+                // 일 검증 (7-8번째 자리)
+                if (numbersOnly.length >= 8) {
+                  const day = parseInt(numbersOnly.slice(6, 8));
+                  if (day < 1 || day > 31) {
                     return; // 유효하지 않은 일이면 입력 무시
                   }
                 }
 
-                setFormData({ ...formData, date: value });
+                setFormData({ ...formData, date: formatted });
 
-                // yyyy.mm.dd 형식에서 연도 자동 추출
-                const yearMatch = value.match(/^(\d{4})\./);
-                if (yearMatch) {
-                  setFormData({ ...formData, date: value, year: Number(yearMatch[1]) });
+                // 연도 자동 추출
+                if (numbersOnly.length >= 4) {
+                  const year = parseInt(numbersOnly.slice(0, 4));
+                  setFormData({ ...formData, date: formatted, year });
                 }
               }}
-              placeholder="yyyy.mm.dd 형식 (예: 2025.05.11)"
+              placeholder="2030 또는 20250511"
               required
-              pattern="\d{4}\.\d{2}\.\d{2}"
-              maxLength={10}
             />
-            <div style={{ marginTop: '4px', fontSize: '12px', color: '#666' }}>
-              ⚠️ <strong>yyyy.mm.dd</strong> 형식으로 입력해주세요 (예: 2025.05.11)
-              <br />
-              - 연도 4자리 입력 시 자동으로 . 추가됩니다
-              <br />
-              - 월은 01-12, 일은 01-31 범위 내에서 입력 가능합니다
-              <br />- 월과 날짜를 입력하지 않으면 자동적으로 연도만 설정되고 해당 연도 중 가장 아래에 위치합니다
+            <div
+              style={{
+                marginTop: '8px',
+                padding: '8px 12px',
+                backgroundColor: '#f0f7ff',
+                border: '1px solid #b3d9ff',
+                borderRadius: '4px',
+                fontSize: '12px',
+                color: '#0066cc',
+              }}
+            >
+              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>📅 입력 방법</div>
+              <div style={{ marginLeft: '8px' }}>
+                • <strong>연도만:</strong> 2030 → 결과: 2030
+                <br />
+                • <strong>전체 날짜:</strong> 20250511 → 결과: 2025.05.11 (자동으로 . 추가)
+                <br />
+                <span style={{ fontSize: '11px', color: '#666' }}>
+                  * 숫자만 입력하세요 (4자리: 연도만, 8자리: 전체 날짜)
+                  <br />* 월: 01-12, 일: 01-31 범위로 입력
+                </span>
+              </div>
             </div>
           </div>
 
@@ -1937,7 +1997,7 @@ function SlideManagement() {
       {loading ? (
         <p style={{ color: '#242424' }}>로딩 중...</p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
+        <div className={styles.tableWrapper}>
           <table className={styles.table}>
             <thead>
               <tr>
