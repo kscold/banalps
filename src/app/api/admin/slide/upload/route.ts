@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 import { verifyAdminToken } from '@/lib/admin-auth';
 
 export async function POST(request: NextRequest) {
@@ -32,29 +31,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    // 파일 확장자 추출
-    const ext = path.extname(file.name);
-
-    // 저장 경로: public/{category}/slide/{type}.{ext}
-    const dirPath = path.join(process.cwd(), 'public', category, 'slide');
-    const fileName = `${type}${ext}`;
-    const filePath = path.join(dirPath, fileName);
-
-    // 디렉토리 생성 (없으면)
-    await mkdir(dirPath, { recursive: true });
-
-    // 파일 저장
-    await writeFile(filePath, buffer);
-
-    // 반환 경로
-    const publicPath = `/${category}/slide/${fileName}`;
+    // Vercel Blob Storage에 업로드
+    const blob = await put(`slide/${category}/${type}-${Date.now()}-${file.name}`, file, {
+      access: 'public',
+    });
 
     return NextResponse.json({
       success: true,
-      path: publicPath,
+      path: blob.url,
       message: '파일이 업로드되었습니다.',
     });
   } catch (error) {
