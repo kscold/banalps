@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 import dbConnect from '@/lib/dbConnect';
 import Slide from '@/models/Slide';
@@ -81,6 +82,15 @@ export async function POST(request: NextRequest) {
       offsetY: offsetY || 0,
       order: order || 0,
     });
+
+    // 관련 페이지 캐시 무효화
+    revalidatePath('/forehead/hair-transplant');
+    revalidatePath('/forehead/scar-reduction');
+    revalidatePath('/hair-transplant/hairline');
+    revalidatePath('/hair-transplant/crown');
+    revalidatePath('/hair-transplant/incision');
+    revalidatePath('/hair-transplant/reoperation');
+    revalidatePath('/scar-reduction');
 
     return NextResponse.json({
       success: true,
@@ -169,6 +179,15 @@ export async function PUT(request: NextRequest) {
         { status: 404 },
       );
     }
+
+    // 관련 페이지 캐시 무효화
+    revalidatePath('/forehead/hair-transplant');
+    revalidatePath('/forehead/scar-reduction');
+    revalidatePath('/hair-transplant/hairline');
+    revalidatePath('/hair-transplant/crown');
+    revalidatePath('/hair-transplant/incision');
+    revalidatePath('/hair-transplant/reoperation');
+    revalidatePath('/scar-reduction');
 
     return NextResponse.json({
       success: true,

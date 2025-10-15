@@ -17,8 +17,6 @@ interface BeforeAfterItem {
   category: Category;
   title?: string;
   titleJp?: string;
-  description?: string;
-  descriptionJp?: string;
   beforeImage: string;
   afterImage: string;
   order: number;
@@ -113,7 +111,9 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className={styles.adminPage}>
-        <div className={styles.container} style={{ color: '#242424' }}>로딩 중...</div>
+        <div className={styles.container} style={{ color: '#242424' }}>
+          로딩 중...
+        </div>
       </div>
     );
   }
@@ -285,8 +285,6 @@ function BeforeAfterManagement() {
       category: selectedCategory,
       title: '',
       titleJp: '',
-      description: '',
-      descriptionJp: '',
       beforeImage: '',
       afterImage: '',
       order: items.length + 1,
@@ -337,6 +335,11 @@ function BeforeAfterManagement() {
           <li>카테고리별로 수술 전후 사진을 관리합니다</li>
           <li>
             <strong>순서</strong>: 같은 카테고리 내에서 표시 순서를 지정합니다 (작은 숫자가 먼저 표시됨)
+          </li>
+          <li>
+            <strong>이미지 형식</strong>: JPG, JPEG, PNG, WebP 형식만 업로드 가능합니다
+            <br />- 권장 크기: 최소 800x800px 이상
+            <br />- 최대 파일 크기: 10MB
           </li>
           <li>제목과 설명은 선택사항이며, 일본어 번역도 입력할 수 있습니다</li>
         </ul>
@@ -448,6 +451,22 @@ function BeforeAfterModal({
   const handleBeforeFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // 파일 타입 검증
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('JPG, JPEG, PNG, WebP 형식의 이미지만 업로드 가능합니다.');
+        e.target.value = ''; // input 초기화
+        return;
+      }
+
+      // 파일 크기 검증 (10MB)
+      const maxSize = 10 * 1024 * 1024;
+      if (file.size > maxSize) {
+        alert('파일 크기는 10MB 이하여야 합니다.');
+        e.target.value = ''; // input 초기화
+        return;
+      }
+
       setBeforeFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -461,6 +480,22 @@ function BeforeAfterModal({
   const handleAfterFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // 파일 타입 검증
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('JPG, JPEG, PNG, WebP 형식의 이미지만 업로드 가능합니다.');
+        e.target.value = ''; // input 초기화
+        return;
+      }
+
+      // 파일 크기 검증 (10MB)
+      const maxSize = 10 * 1024 * 1024;
+      if (file.size > maxSize) {
+        alert('파일 크기는 10MB 이하여야 합니다.');
+        e.target.value = ''; // input 초기화
+        return;
+      }
+
       setAfterFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -537,22 +572,20 @@ function BeforeAfterModal({
         }
       }
 
-      const method = item && item.id ? 'PUT' : 'POST';
+      const method = item && item.id && item.id > 0 ? 'PUT' : 'POST';
 
       // 새 케이스 추가 시에는 id 제외
       const body: any = {
         category: formData.category,
         title: formData.title,
         titleJp: formData.titleJp,
-        description: formData.description,
-        descriptionJp: formData.descriptionJp,
         beforeImage: beforeImagePath,
         afterImage: afterImagePath,
         order: formData.order,
       };
 
-      // 수정 시에만 id 포함
-      if (item && item.id) {
+      // 수정 시에만 id 포함 (id가 0보다 큰 경우에만)
+      if (item && item.id && item.id > 0) {
         body.id = item.id;
       }
 
@@ -602,7 +635,7 @@ function BeforeAfterModal({
               className={styles.input}
               value={formData.title || ''}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="예: 2800모(남)_1년경과"
+              placeholder="예: 이마축소(남)_1년경과"
             />
           </div>
 
@@ -613,27 +646,7 @@ function BeforeAfterModal({
               className={styles.input}
               value={formData.titleJp || ''}
               onChange={(e) => setFormData({ ...formData, titleJp: e.target.value })}
-              placeholder="예: 2800毛（男）＿1年経過"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.label}>설명 (한국어)</label>
-            <input
-              type="text"
-              className={styles.input}
-              value={formData.description || ''}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.label}>설명 (일본어)</label>
-            <input
-              type="text"
-              className={styles.input}
-              value={formData.descriptionJp || ''}
-              onChange={(e) => setFormData({ ...formData, descriptionJp: e.target.value })}
+              placeholder="예: 額縮小(男)＿1年経過"
             />
           </div>
 
@@ -647,7 +660,7 @@ function BeforeAfterModal({
               required={!item && !formData.beforeImage}
             />
             {beforePreview && (
-              <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+              <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px', width: 'fit-content' }}>
                 <img
                   src={beforePreview}
                   alt="Before preview"
@@ -691,7 +704,7 @@ function BeforeAfterModal({
               required={!item && !formData.afterImage}
             />
             {afterPreview && (
-              <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+              <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px', width: 'fit-content' }}>
                 <img
                   src={afterPreview}
                   alt="After preview"
@@ -990,9 +1003,7 @@ function PopupModal({
 
   // position이 변경될 때 해당 위치의 권장 order 값 계산
   const getRecommendedOrder = (position: PopupPosition) => {
-    const samePositionItems = allItems.filter(
-      (i) => i.position === position && (!item || i.id !== item.id)
-    );
+    const samePositionItems = allItems.filter((i) => i.position === position && (!item || i.id !== item.id));
     return samePositionItems.length > 0 ? Math.max(...samePositionItems.map((i) => i.order)) + 1 : 1;
   };
 
@@ -1103,7 +1114,7 @@ function PopupModal({
                 setFormData({
                   ...formData,
                   position: newPosition,
-                  order: recommendedOrder
+                  order: recommendedOrder,
                 });
               }}
               required
@@ -1181,8 +1192,11 @@ function AcademicActivityManagement() {
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
   const [showMigration, setShowMigration] = useState(false);
 
-  // 연도 목록 생성 (2011년부터 현재+1년까지)
-  const years = Array.from({ length: new Date().getFullYear() - 2010 + 2 }, (_, i) => new Date().getFullYear() + 1 - i);
+  // 연도 목록 생성 (2011년부터 현재+10년까지)
+  const years = Array.from(
+    { length: new Date().getFullYear() - 2010 + 11 },
+    (_, i) => new Date().getFullYear() + 10 - i
+  );
 
   useEffect(() => {
     fetchItems();
@@ -1338,10 +1352,17 @@ function AcademicActivityManagement() {
             <strong>자동 정렬</strong>: 학술 활동은 날짜를 기준으로 자동으로 최신순(내림차순)으로 정렬됩니다
           </li>
           <li>
-            <strong>날짜 형식</strong>: "2025.05.11" 형식으로 입력합니다 (YYYY.MM.DD)
+            <strong>날짜 형식</strong>: 반드시 <strong style={{ color: '#ff4444' }}>yyyy.mm.dd</strong> 형식으로
+            입력해야 합니다
+            <br />
+            - 예시: 2025.05.11 (⭕ 올바른 형식)
+            <br />- 연도는 날짜에서 자동으로 추출됩니다
           </li>
           <li>
-            <strong>연도만 입력</strong>: 연도만 입력하면 해당 연도의 가장 마지막(12월 31일)으로 표시됩니다
+            <strong>연도 선택</strong>: 위 드롭다운에서 연도를 선택하면 해당 연도의 활동만 필터링하여 볼 수 있습니다
+          </li>
+          <li>
+            <strong>입력 가능 연도</strong>: 2011년부터 미래 10년(현재+10년)까지 입력 가능
           </li>
           <li>한국어와 일본어 번역을 모두 입력해야 합니다</li>
           <li>타입: 발표, 논문, 저널, 수상, 연구, 역서 중 선택 가능</li>
@@ -1461,8 +1482,27 @@ function AcademicActivityModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.year || !formData.date || !formData.type) {
+    // 날짜 형식 검증 (yyyy.mm.dd)
+    if (!formData.date || !/^\d{4}\.\d{2}\.\d{2}$/.test(formData.date)) {
+      alert('날짜를 yyyy.mm.dd 형식으로 입력해주세요 (예: 2025.05.11)');
+      return;
+    }
+
+    // 날짜에서 연도 자동 추출
+    const yearMatch = formData.date.match(/^(\d{4})\./);
+    if (yearMatch) {
+      formData.year = Number(yearMatch[1]);
+    }
+
+    if (!formData.year || !formData.type) {
       alert('필수 항목을 모두 입력해주세요.');
+      return;
+    }
+
+    // 연도 범위 검증 (2011년 ~ 현재+10년)
+    const currentYear = new Date().getFullYear();
+    if (formData.year < 2011 || formData.year > currentYear + 10) {
+      alert(`연도는 2011년부터 ${currentYear + 10}년까지만 입력 가능합니다.`);
       return;
     }
 
@@ -1523,28 +1563,69 @@ function AcademicActivityModal({
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>연도 *</label>
-            <input
-              type="number"
-              className={styles.input}
-              value={formData.year || new Date().getFullYear()}
-              onChange={(e) => setFormData({ ...formData, year: Number(e.target.value) })}
-              required
-              min="2011"
-              max={new Date().getFullYear() + 1}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
             <label className={styles.label}>날짜 *</label>
             <input
               type="text"
               className={styles.input}
               value={formData.date || ''}
-              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-              placeholder="예: 2025.05.11"
+              onChange={(e) => {
+                let value = e.target.value;
+
+                // 숫자와 점(.)만 허용
+                value = value.replace(/[^\d.]/g, '');
+
+                // 이전 값
+                const prevValue = formData.date || '';
+
+                // 자동으로 . 추가 (yyyy -> yyyy. / yyyy.mm -> yyyy.mm.)
+                if (value.length === 4 && prevValue.length === 3) {
+                  value = value + '.';
+                } else if (value.length === 7 && prevValue.length === 6 && value[4] === '.') {
+                  value = value + '.';
+                }
+
+                // yyyy.mm.dd 형식 제한 (최대 10자)
+                if (value.length > 10) {
+                  value = value.slice(0, 10);
+                }
+
+                // 월 검증 (01-12)
+                if (value.length >= 7) {
+                  const month = value.slice(5, 7);
+                  if (month && (parseInt(month) < 1 || parseInt(month) > 12)) {
+                    return; // 유효하지 않은 월이면 입력 무시
+                  }
+                }
+
+                // 일 검증 (01-31)
+                if (value.length >= 10) {
+                  const day = value.slice(8, 10);
+                  if (day && (parseInt(day) < 1 || parseInt(day) > 31)) {
+                    return; // 유효하지 않은 일이면 입력 무시
+                  }
+                }
+
+                setFormData({ ...formData, date: value });
+
+                // yyyy.mm.dd 형식에서 연도 자동 추출
+                const yearMatch = value.match(/^(\d{4})\./);
+                if (yearMatch) {
+                  setFormData({ ...formData, date: value, year: Number(yearMatch[1]) });
+                }
+              }}
+              placeholder="yyyy.mm.dd 형식 (예: 2025.05.11)"
               required
+              pattern="\d{4}\.\d{2}\.\d{2}"
+              maxLength={10}
             />
+            <div style={{ marginTop: '4px', fontSize: '12px', color: '#666' }}>
+              ⚠️ <strong>yyyy.mm.dd</strong> 형식으로 입력해주세요 (예: 2025.05.11)
+              <br />
+              - 연도 4자리 입력 시 자동으로 . 추가됩니다
+              <br />
+              - 월은 01-12, 일은 01-31 범위 내에서 입력 가능합니다
+              <br />- 월과 날짜를 입력하지 않으면 자동적으로 연도만 설정되고 해당 연도 중 가장 아래에 위치합니다
+            </div>
           </div>
 
           <div className={styles.formGroup}>
@@ -1660,9 +1741,9 @@ function SlideManagement() {
   const slideCategories = [
     { value: 'forehead/hair-transplant', label: '이마축소 - 모발이식' },
     { value: 'forehead/scar-reduction', label: '이마축소 - 흉터축소' },
-    { value: 'scar-reduction', label: '흉터축소' },
-    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
+    { value: 'scar-reduction', label: '흉터축소 & 재수술' },
     { value: 'hair-transplant/hairline', label: '모발이식 - 헤어라인' },
+    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
     { value: 'hair-transplant/incision', label: '모발이식 - 절개' },
     { value: 'hair-transplant/reoperation', label: '모발이식 - 재수술' },
   ];
@@ -1677,7 +1758,9 @@ function SlideManagement() {
       const response = await fetch('/api/admin/slide');
       const data = await response.json();
       if (data.success) {
-        setItems(data.data);
+        // order 순서대로 정렬
+        const sortedData = [...data.data].sort((a, b) => a.order - b.order);
+        setItems(sortedData);
       }
     } catch (error) {
       console.error('슬라이드 조회 실패:', error);
@@ -1784,6 +1867,10 @@ function SlideManagement() {
           <li>
             <strong>이미지 조정</strong>: 슬라이더로 확대 비율을 조절하고, 이미지를 드래그하여 위치를 조정할 수 있습니다
           </li>
+          <li>
+            <strong>주의</strong>: 이미지는 녹색 박스 영역 내에서만 표시됩니다. 영역을 벗어난 부분은 크롭되어 보이지
+            않습니다
+          </li>
           <li>초록 박스 안에 중요한 부분이 잘 보이도록 확대와 위치를 설정하세요</li>
         </ul>
       </div>
@@ -1854,7 +1941,7 @@ function SlideManagement() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th className={styles.th}>ID</th>
+                <th className={styles.th}>순서</th>
                 <th className={styles.th}>카테고리</th>
                 <th className={styles.th}>Before</th>
                 <th className={styles.th}>After</th>
@@ -1872,7 +1959,7 @@ function SlideManagement() {
               ) : (
                 items.map((item) => (
                   <tr key={item.id}>
-                    <td className={styles.td}>{item.id}</td>
+                    <td className={styles.td}>{item.order}</td>
                     <td className={styles.td}>
                       {slideCategories.find((c) => c.value === item.category)?.label || item.category}
                     </td>
@@ -1933,9 +2020,9 @@ function SlideModal({
   const slideCategories = [
     { value: 'forehead/hair-transplant', label: '이마축소 - 모발이식' },
     { value: 'forehead/scar-reduction', label: '이마축소 - 흉터축소' },
-    { value: 'scar-reduction', label: '흉터축소' },
-    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
+    { value: 'scar-reduction', label: '흉터축소 & 재수술' },
     { value: 'hair-transplant/hairline', label: '모발이식 - 헤어라인' },
+    { value: 'hair-transplant/crown', label: '모발이식 - 정수리' },
     { value: 'hair-transplant/incision', label: '모발이식 - 절개' },
     { value: 'hair-transplant/reoperation', label: '모발이식 - 재수술' },
   ];
@@ -1991,8 +2078,21 @@ function SlideModal({
     const percentX = (deltaX / rect.width) * 100;
     const percentY = (deltaY / rect.height) * 100;
 
-    setOffsetX((prev) => prev + percentX);
-    setOffsetY((prev) => prev + percentY);
+    // 새로운 offset 값 계산
+    const newOffsetX = offsetX + percentX;
+    const newOffsetY = offsetY + percentY;
+
+    // 이미지가 확대된 비율에 따라 이동 가능한 최대 범위 계산
+    // zoom이 1보다 크면 이미지가 확대되어 이동 가능
+    // zoom이 1이면 이동 불가 (이미지가 박스에 딱 맞음)
+    const maxOffset = ((zoom - 1) / zoom) * 50; // 퍼센트 단위
+
+    // offset 범위 제한 (-maxOffset ~ +maxOffset)
+    const clampedOffsetX = Math.max(-maxOffset, Math.min(maxOffset, newOffsetX));
+    const clampedOffsetY = Math.max(-maxOffset, Math.min(maxOffset, newOffsetY));
+
+    setOffsetX(clampedOffsetX);
+    setOffsetY(clampedOffsetY);
     setDragStart({ x: e.clientX, y: e.clientY });
   };
 
@@ -2006,7 +2106,7 @@ function SlideModal({
       ...prev,
       scale: zoom,
       offsetX: offsetX,
-      offsetY: offsetY
+      offsetY: offsetY,
     }));
     setShowCropper(false);
     setCropTarget(null);
@@ -2030,6 +2130,16 @@ function SlideModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 수정 시 이미지가 삭제되었는지 확인
+    if (item && (!beforePreview || !afterPreview)) {
+      alert(
+        '슬라이드는 Before와 After 이미지가 모두 필요합니다.\n이미지를 삭제한 경우 새로운 이미지를 업로드해주세요.'
+      );
+      return;
+    }
+
+    // 새로 추가 시 이미지 확인
     if (!item && !beforeFile && !formData.beforeImage) {
       alert('Before 이미지를 업로드해주세요.');
       return;
@@ -2179,11 +2289,30 @@ function SlideModal({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              overflow: 'hidden',
+              overflow: 'visible',
               padding: '40px',
               position: 'relative',
             }}
           >
+            {/* 확대된 전체 이미지 (흐림 효과) - 박스 밖으로 나갈 수 있음 */}
+            <img
+              src={cropTarget === 'before' ? beforePreview! : afterPreview!}
+              alt="Full Preview Background"
+              style={{
+                position: 'absolute',
+                width: '790px',
+                maxWidth: '90%',
+                aspectRatio: '790 / 410',
+                objectFit: 'cover',
+                transform: `scale(${zoom}) translate(${offsetX}%, ${offsetY}%)`,
+                transformOrigin: 'center center',
+                filter: 'blur(8px)',
+                opacity: 0.4,
+                zIndex: 1,
+                pointerEvents: 'none',
+              }}
+            />
+
             <div
               style={{
                 position: 'relative',
@@ -2194,9 +2323,10 @@ function SlideModal({
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
+                zIndex: 5,
               }}
             >
-              {/* 격자 오버레이 - 데스크탑 뷰포트 */}
+              {/* 표시 영역 테두리 */}
               <div
                 style={{
                   position: 'absolute',
@@ -2204,6 +2334,7 @@ function SlideModal({
                   left: 0,
                   right: 0,
                   bottom: 0,
+                  backgroundColor: 'transparent',
                   border: '3px solid #00ff00',
                   pointerEvents: 'none',
                   zIndex: 10,
@@ -2229,10 +2360,12 @@ function SlideModal({
                 </div>
               </div>
 
+              {/* 메인 이미지 (확대/이동 가능) - 박스 안에서만 보임 */}
               <img
                 src={cropTarget === 'before' ? beforePreview! : afterPreview!}
                 alt="Preview"
                 style={{
+                  position: 'relative',
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
@@ -2242,6 +2375,7 @@ function SlideModal({
                   display: 'block',
                   cursor: isDragging ? 'grabbing' : 'grab',
                   userSelect: 'none',
+                  zIndex: 5,
                 }}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -2256,7 +2390,28 @@ function SlideModal({
 
       <div className={styles.modal} onClick={onClose}>
         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-          <h2 className={styles.modalTitle}>{item && item.id ? '슬라이드 수정' : '새 슬라이드 추가'}</h2>
+          <h2 className={styles.modalTitle}>{item && item.id ? '페이지 별 전후 이미지 수정' : '새 슬라이드 추가'}</h2>
+
+          {/* 이미지 필수 안내 */}
+          {item && (!beforePreview || !afterPreview) && (
+            <div
+              style={{
+                backgroundColor: '#fff5f5',
+                border: '2px solid #ff4444',
+                borderRadius: '8px',
+                padding: '12px 16px',
+                marginBottom: '16px',
+              }}
+            >
+              <div style={{ color: '#ff4444', fontWeight: 'bold', marginBottom: '4px' }}>⚠️ 중요</div>
+              <div style={{ color: '#242424', fontSize: '14px', lineHeight: '1.6' }}>
+                슬라이드는 Before와 After 이미지가 <strong>모두 필수</strong>입니다.
+                <br />
+                이미지를 삭제한 경우, 반드시 <strong>새로운 이미지를 업로드</strong>한 후 저장해주세요.
+              </div>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.label}>카테고리 *</label>
@@ -2285,7 +2440,7 @@ function SlideModal({
                 required={!item && !formData.beforeImage}
               />
               {beforePreview && (
-                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px', width: 'fit-content' }}>
                   <img
                     src={beforePreview}
                     alt="Before preview"
@@ -2298,7 +2453,38 @@ function SlideModal({
                       setShowCropper(true);
                     }}
                   />
-                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>클릭하여 확대 비율 조정</small>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setBeforePreview(null);
+                      setBeforeFile(null);
+                      setFormData({ ...formData, beforeImage: '' });
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      color: 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                    }}
+                    title="이미지 제거"
+                  >
+                    ×
+                  </button>
+                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>
+                    클릭하여 확대 비율 조정
+                  </small>
                 </div>
               )}
             </div>
@@ -2314,7 +2500,7 @@ function SlideModal({
                 required={!item && !formData.afterImage}
               />
               {afterPreview && (
-                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px' }}>
+                <div style={{ position: 'relative', display: 'inline-block', marginTop: '8px', width: 'fit-content' }}>
                   <img
                     src={afterPreview}
                     alt="After preview"
@@ -2327,7 +2513,38 @@ function SlideModal({
                       setShowCropper(true);
                     }}
                   />
-                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>클릭하여 확대 비율 조정</small>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setAfterPreview(null);
+                      setAfterFile(null);
+                      setFormData({ ...formData, afterImage: '' });
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      color: 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                    }}
+                    title="이미지 제거"
+                  >
+                    ×
+                  </button>
+                  <small style={{ display: 'block', marginTop: '4px', color: '#242424' }}>
+                    클릭하여 확대 비율 조정
+                  </small>
                 </div>
               )}
             </div>

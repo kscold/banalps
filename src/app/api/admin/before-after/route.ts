@@ -240,8 +240,22 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    const deletedOrder = item.order;
+    const deletedCategory = item.category;
+
     // DB에서 삭제
     await BeforeAfter.findOneAndDelete({ id: Number(id) });
+
+    // 같은 카테고리에서 삭제된 순서보다 뒤에 있는 아이템들의 순서를 1씩 감소
+    await BeforeAfter.updateMany(
+      {
+        category: deletedCategory,
+        order: { $gt: deletedOrder },
+      },
+      {
+        $inc: { order: -1 },
+      }
+    );
 
     // 실제 파일 삭제 시도
     try {

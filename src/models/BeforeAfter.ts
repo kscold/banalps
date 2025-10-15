@@ -6,9 +6,7 @@ export interface IBeforeAfter extends Document {
   id: number;
   category: Category;
   title?: string;
-  titleJp?: string; // 일본어 타이틀
-  description?: string;
-  descriptionJp?: string; // 일본어 설명
+  titleJp?: string;
   beforeImage: string;
   afterImage: string;
   order: number; // 카테고리 내 순서
@@ -33,14 +31,6 @@ const BeforeAfterSchema = new Schema<IBeforeAfter>(
       required: false,
     },
     titleJp: {
-      type: String,
-      required: false,
-    },
-    description: {
-      type: String,
-      required: false,
-    },
-    descriptionJp: {
       type: String,
       required: false,
     },

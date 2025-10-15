@@ -8,7 +8,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { Color } from '@tiptap/extension-color';
 import FontSize from 'tiptap-extension-font-size';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 interface RichTextEditorProps {
   value: string;
@@ -57,6 +57,13 @@ export default function RichTextEditor({
       onChange(editor.getHTML());
     },
   });
+
+  // value prop이 변경될 때 에디터 내용 업데이트
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value);
+    }
+  }, [editor, value]);
 
   // 이미지 업로드 핸들러
   const handleImageUpload = useCallback(() => {
