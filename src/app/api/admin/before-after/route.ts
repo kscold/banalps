@@ -76,9 +76,25 @@ export async function POST(request: NextRequest) {
     const lastItem = await BeforeAfter.findOne().sort({ id: -1 });
     const newId = lastItem ? lastItem.id + 1 : 1;
 
+    // 순서 관리: 새 항목이 삽입될 위치부터 뒤의 항목들을 1씩 밀기
+    const newOrder = body.order || 1;
+    const category = body.category;
+
+    // 같은 카테고리에서 newOrder 이상인 항목들의 순서를 1씩 증가
+    await BeforeAfter.updateMany(
+      {
+        category: category,
+        order: { $gte: newOrder },
+      },
+      {
+        $inc: { order: 1 },
+      }
+    );
+
     const newItem = await BeforeAfter.create({
       ...body,
       id: newId,
+      order: newOrder,
     });
 
     return NextResponse.json({

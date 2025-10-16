@@ -198,28 +198,35 @@ globalStyle(`${content} h3`, {
   },
 });
 
-globalStyle(`${content} img`, {
+globalStyle(`${content} img, ${content} .resizable-image`, {
   maxWidth: '100%',
   height: 'auto',
   borderRadius: vw(8),
-  margin: `${vw(16)} 0`,
   '@media': {
     [breakpoints.mobile]: {
       borderRadius: mvw(8),
-      margin: `${mvw(12)} 0`,
     },
   },
 });
 
 globalStyle(`${content} ul, ${content} ol`, {
-  paddingLeft: vw(24),
+  paddingLeft: vw(32),
   margin: `${vw(12)} 0`,
+  listStylePosition: 'outside',
   '@media': {
     [breakpoints.mobile]: {
-      paddingLeft: mvw(20),
+      paddingLeft: mvw(24),
       margin: `${mvw(10)} 0`,
     },
   },
+});
+
+globalStyle(`${content} ul`, {
+  listStyleType: 'disc',
+});
+
+globalStyle(`${content} ol`, {
+  listStyleType: 'decimal',
 });
 
 globalStyle(`${content} li`, {
@@ -229,12 +236,27 @@ globalStyle(`${content} li`, {
   lineHeight: '160%',
   color: '#242424',
   margin: `${vw(4)} 0`,
+  display: 'list-item',
   '@media': {
     [breakpoints.mobile]: {
       fontSize: mvw(16),
       margin: `${mvw(3)} 0`,
     },
   },
+});
+
+// 리스트 마커의 폰트 크기 상속
+globalStyle(`${content} li::marker`, {
+  fontSize: vw(16),
+  '@media': {
+    [breakpoints.mobile]: {
+      fontSize: mvw(16),
+    },
+  },
+});
+
+globalStyle(`${content} li p`, {
+  margin: '0',
 });
 
 globalStyle(`${content} a`, {

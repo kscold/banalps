@@ -17,15 +17,33 @@ interface RichTextEditorProps {
   onImageUpload?: (file: File) => Promise<string>;
 }
 
-export default function RichTextEditor({
-  value,
-  onChange,
-  placeholder,
-  onImageUpload,
-}: RichTextEditorProps) {
+export default function RichTextEditor({ value, onChange, placeholder, onImageUpload }: RichTextEditorProps) {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        // 리스트 기능 명시적 활성화
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: false,
+          HTMLAttributes: {
+            class: 'bullet-list',
+          },
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: false,
+          HTMLAttributes: {
+            class: 'ordered-list',
+          },
+        },
+        listItem: {
+          // keepMarks: true,
+          // keepAttributes: false,
+          HTMLAttributes: {
+            class: 'list-item',
+          },
+        },
+      }),
       ResizableImageExtension.configure({
         inline: false,
         allowBase64: true,
@@ -40,7 +58,7 @@ export default function RichTextEditor({
         },
       }),
       TextAlign.configure({
-        types: ['heading', 'paragraph'],
+        types: ['heading', 'paragraph', 'listItem'], // listItem에도 정렬 적용
       }),
       TextStyle,
       Color,
@@ -77,14 +95,33 @@ export default function RichTextEditor({
       if (file && onImageUpload && editor) {
         try {
           const imageUrl = await onImageUpload(file);
+
+          // 현재 텍스트 정렬 상태 가져오기
+          const currentAlign = editor.isActive({ textAlign: 'center' })
+            ? 'center'
+            : editor.isActive({ textAlign: 'right' })
+            ? 'right'
+            : 'left';
+
+          // 이미지 삽입
           editor.chain().focus().setImage({ src: imageUrl }).run();
+
+          // 삽입된 이미지에 data-align 속성 추가
+          setTimeout(() => {
+            const imgElement = editor.view.dom.querySelector(`img[src="${imageUrl}"]`);
+            if (imgElement) {
+              imgElement.setAttribute('data-align', currentAlign);
+              // HTML 업데이트
+              onChange(editor.getHTML());
+            }
+          }, 100);
         } catch (error) {
           console.error('이미지 업로드 실패:', error);
           alert('이미지 업로드에 실패했습니다.');
         }
       }
     };
-  }, [editor, onImageUpload]);
+  }, [editor, onImageUpload, onChange]);
 
   // 링크 추가
   const handleAddLink = useCallback(() => {
@@ -102,6 +139,80 @@ export default function RichTextEditor({
 
     editor?.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }, [editor]);
+
+  // 텍스트 정렬 핸들러 (이미지 정렬도 함께 처리)
+  const handleTextAlign = useCallback(
+    (alignment: 'left' | 'center' | 'right') => {
+      editor?.chain().focus().setTextAlign(alignment).run();
+
+      // 선택된 요소에 이미지가 있으면 containerstyle 속성 수정
+      setTimeout(() => {
+        const { from, to } = editor?.state.selection || {};
+        if (from !== undefined && to !== undefined && editor) {
+          // 에디터 내 모든 이미지 찾기
+          const allImages = editor.view.dom.querySelectorAll('img.resizable-image');
+
+          allImages.forEach((img) => {
+            // 이미지가 선택된 영역에 있는지 확인
+            const imgPos = editor.view.posAtDOM(img, 0);
+            if (imgPos >= from && imgPos <= to) {
+              img.setAttribute('data-align', alignment);
+
+              // containerstyle 속성 수정 (ResizableImageExtension이 사용)
+              const currentContainerStyle = img.getAttribute('containerstyle') || '';
+              let newContainerStyle = currentContainerStyle;
+
+              // 기존 margin 스타일 제거
+              newContainerStyle = newContainerStyle.replace(/margin:\s*[^;]+;?/g, '');
+              newContainerStyle = newContainerStyle.replace(/margin-left:\s*[^;]+;?/g, '');
+              newContainerStyle = newContainerStyle.replace(/margin-right:\s*[^;]+;?/g, '');
+
+              // 새 정렬 스타일 추가
+              if (alignment === 'center') {
+                newContainerStyle += ' margin: 0 auto;';
+              } else if (alignment === 'right') {
+                newContainerStyle += ' margin: 0 0 0 auto;';
+              } else {
+                newContainerStyle += ' margin: 0 auto 0 0;';
+              }
+
+              img.setAttribute('containerstyle', newContainerStyle.trim());
+            }
+          });
+
+          // 현재 선택된 이미지도 확인
+          const currentNode = editor.view.dom.querySelector('.ProseMirror-selectednode');
+          if (currentNode && currentNode.tagName === 'IMG' && currentNode.classList.contains('resizable-image')) {
+            const img = currentNode as HTMLImageElement;
+            img.setAttribute('data-align', alignment);
+
+            const currentContainerStyle = img.getAttribute('containerstyle') || '';
+            let newContainerStyle = currentContainerStyle;
+
+            newContainerStyle = newContainerStyle.replace(/margin:\s*[^;]+;?/g, '');
+            newContainerStyle = newContainerStyle.replace(/margin-left:\s*[^;]+;?/g, '');
+            newContainerStyle = newContainerStyle.replace(/margin-right:\s*[^;]+;?/g, '');
+
+            if (alignment === 'center') {
+              newContainerStyle += ' margin: 0 auto;';
+            } else if (alignment === 'right') {
+              newContainerStyle += ' margin: 0 0 0 auto;';
+            } else {
+              newContainerStyle += ' margin: 0 auto 0 0;';
+            }
+
+            img.setAttribute('containerstyle', newContainerStyle.trim());
+          }
+
+          // HTML 업데이트
+          setTimeout(() => {
+            onChange(editor.getHTML());
+          }, 100);
+        }
+      }, 100);
+    },
+    [editor, onChange]
+  );
 
   if (!editor) {
     return null;
@@ -265,7 +376,7 @@ export default function RichTextEditor({
 
         <button
           type="button"
-          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          onClick={() => handleTextAlign('left')}
           style={{
             padding: '6px 12px',
             background: editor.isActive({ textAlign: 'left' }) ? '#73D5FA' : '#fff',
@@ -279,7 +390,7 @@ export default function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          onClick={() => handleTextAlign('center')}
           style={{
             padding: '6px 12px',
             background: editor.isActive({ textAlign: 'center' }) ? '#73D5FA' : '#fff',
@@ -293,7 +404,7 @@ export default function RichTextEditor({
         </button>
         <button
           type="button"
-          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          onClick={() => handleTextAlign('right')}
           style={{
             padding: '6px 12px',
             background: editor.isActive({ textAlign: 'right' }) ? '#73D5FA' : '#fff',
@@ -430,6 +541,25 @@ export default function RichTextEditor({
           outline-offset: 2px;
         }
 
+        /* 이미지 정렬 지원 */
+        .tiptap-editor p[style*='text-align: center'] img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .tiptap-editor p[style*='text-align: right'] img {
+          display: block;
+          margin-left: auto;
+          margin-right: 0;
+        }
+
+        .tiptap-editor p[style*='text-align: left'] img {
+          display: block;
+          margin-left: 0;
+          margin-right: auto;
+        }
+
         /* 이미지 드래그 핸들 스타일 */
         .tiptap-editor .image-resizer {
           position: absolute;
@@ -470,12 +600,30 @@ export default function RichTextEditor({
 
         .tiptap-editor ul,
         .tiptap-editor ol {
-          padding-left: 24px;
+          padding-left: 12px;
           margin: 12px 0;
+          list-style-position: outside;
+        }
+
+        .tiptap-editor ul {
+          list-style-type: disc;
+        }
+
+        .tiptap-editor ol {
+          list-style-type: decimal;
         }
 
         .tiptap-editor li {
           margin: 4px 0;
+          display: list-item;
+        }
+
+        .tiptap-editor li::marker {
+          font-size: inherit;
+        }
+
+        .tiptap-editor li p {
+          margin: 0;
         }
 
         .tiptap-editor a {

@@ -4,9 +4,11 @@ import HairTransplantLayout from '@/shared/components/HairTransplant/HairTranspl
 import ProcessSection from './ProcessSection';
 import { useScarReductionTranslations } from '@/hooks/useAllPagesTranslations';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import { useSlides } from '@/hooks/useSlides';
 
 export default function ScarReductionPage() {
   const { language } = useLanguageStore();
+  const { slides } = useSlides('scar-reduction');
 
   const t = useScarReductionTranslations();
   const layoutData = {
@@ -160,10 +162,13 @@ export default function ScarReductionPage() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: '/forehead/scar-reduction/slide/before.jpg',
-      afterImage: '/forehead/scar-reduction/slide/after.png',
+      beforeImage: slides[0]?.beforeImage || '/forehead/scar-reduction/slide/before.jpg',
+      afterImage: slides[0]?.afterImage || '/forehead/scar-reduction/slide/after.png',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
+      imageScale: slides[0]?.scale || 1.0,
+      imageOffsetX: slides[0]?.offsetX || 0,
+      imageOffsetY: slides[0]?.offsetY || 0,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,

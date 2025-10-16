@@ -35,10 +35,11 @@ interface PopupModalProps {
   position: PopupPosition;
   onClose: (id: number) => void;
   onCloseToday: (id: number) => void;
+  baseZIndex?: number; // 기본 z-index (order에 따라 설정됨)
 }
 
 // 위치 계산 함수 (모바일에서는 항상 중앙, 데스크탑에서는 위치별)
-function getPositionStyle(position: PopupPosition, isMobile: boolean): React.CSSProperties {
+function getPositionStyle(position: PopupPosition, isMobile: boolean, zIndex: number): React.CSSProperties {
   // 모바일에서는 항상 중앙
   if (isMobile) {
     return {
@@ -46,27 +47,64 @@ function getPositionStyle(position: PopupPosition, isMobile: boolean): React.CSS
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      zIndex: 99999,
+      zIndex: zIndex,
     };
   }
 
   // 데스크탑에서는 위치별 배치
   const positions: Record<PopupPosition, React.CSSProperties> = {
-    'top-left': { position: 'fixed', top: '20px', left: '20px', zIndex: 99999 },
-    'top-center': { position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 99999 },
-    'top-right': { position: 'fixed', top: '20px', right: '20px', zIndex: 99999 },
-    'center-left': { position: 'fixed', top: '50%', left: '20px', transform: 'translateY(-50%)', zIndex: 99999 },
-    center: { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 99999 },
-    'center-right': { position: 'fixed', top: '50%', right: '20px', transform: 'translateY(-50%)', zIndex: 99999 },
-    'bottom-left': { position: 'fixed', bottom: '20px', left: '20px', zIndex: 99999 },
-    'bottom-center': { position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 99999 },
-    'bottom-right': { position: 'fixed', bottom: '20px', right: '20px', zIndex: 99999 },
+    'top-left': { position: 'fixed', top: '20px', left: '20px', zIndex: zIndex },
+    'top-center': { position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: zIndex },
+    'top-right': { position: 'fixed', top: '20px', right: '20px', zIndex: zIndex },
+    'center-left': { position: 'fixed', top: '50%', left: '20px', transform: 'translateY(-50%)', zIndex: zIndex },
+    center: { position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: zIndex },
+    'center-right': { position: 'fixed', top: '50%', right: '20px', transform: 'translateY(-50%)', zIndex: zIndex },
+    'bottom-left': { position: 'fixed', bottom: '20px', left: '20px', zIndex: zIndex },
+    'bottom-center': { position: 'fixed', bottom: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: zIndex },
+    'bottom-right': { position: 'fixed', bottom: '20px', right: '20px', zIndex: zIndex },
   };
 
   return positions[position];
 }
 
-export default function PopupModal({ popups, position, onClose, onCloseToday }: PopupModalProps) {
+// containerstyle 속성을 style 속성으로 변환하는 함수
+function processImageStyles(html: string): string {
+  if (!html) return html;
+
+  // containerstyle 속성을 가진 img 태그를 찾아서 style 속성으로 변환
+  return html.replace(
+    /<img([^>]*?)containerstyle="([^"]*)"([^>]*?)>/gi,
+    (match, before, containerStyle, after) => {
+      // 기존 style 속성이 있는지 확인
+      const styleMatch = (before + after).match(/style="([^"]*)"/i);
+      const existingStyle = styleMatch ? styleMatch[1] : '';
+
+      // containerstyle에서 margin 값만 추출
+      const marginMatch = containerStyle.match(/margin:\s*([^;]+);?/i);
+      const marginValue = marginMatch ? marginMatch[1] : '';
+
+      // 새로운 style 속성 생성
+      let newStyle = existingStyle;
+      if (marginValue) {
+        // 기존 margin 제거
+        newStyle = newStyle.replace(/margin:\s*[^;]+;?/gi, '');
+        newStyle = newStyle.replace(/margin-left:\s*[^;]+;?/gi, '');
+        newStyle = newStyle.replace(/margin-right:\s*[^;]+;?/gi, '');
+        // 새 margin 추가
+        newStyle += ` margin: ${marginValue};`;
+      }
+      newStyle += ' display: block;';
+
+      // style 속성 제거
+      let cleanedAttrs = (before + after).replace(/style="[^"]*"/gi, '');
+      // containerstyle은 제거됨 (replace에서 제외)
+
+      return `<img${cleanedAttrs} style="${newStyle.trim()}">`;
+    }
+  );
+}
+
+export default function PopupModal({ popups, position, onClose, onCloseToday, baseZIndex = 99999 }: PopupModalProps) {
   const { language } = useLanguageStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -88,7 +126,8 @@ export default function PopupModal({ popups, position, onClose, onCloseToday }: 
 
   const currentPopup = popups[currentIndex];
   const title = language === 'JP' && currentPopup.titleJp ? currentPopup.titleJp : currentPopup.title;
-  const content = language === 'JP' && currentPopup.contentJp ? currentPopup.contentJp : currentPopup.content;
+  const rawContent = language === 'JP' && currentPopup.contentJp ? currentPopup.contentJp : currentPopup.content;
+  const content = processImageStyles(rawContent || '');
 
   const handleNext = () => {
     if (currentIndex < popups.length - 1) {
@@ -118,7 +157,7 @@ export default function PopupModal({ popups, position, onClose, onCloseToday }: 
     }
   };
 
-  const positionStyle = getPositionStyle(position, isMobile);
+  const positionStyle = getPositionStyle(position, isMobile, baseZIndex);
 
   const modalContent = (
     <div style={positionStyle}>

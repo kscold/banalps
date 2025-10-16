@@ -20,10 +20,17 @@ export async function GET(request: NextRequest) {
 
     const slides = await Slide.find(query).sort({ category: 1, order: 1 }).lean();
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       data: slides,
     });
+
+    // 캐시 비활성화 헤더 추가
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+
+    return response;
   } catch (error) {
     console.error('[API/슬라이드/조회에러]', error);
     return NextResponse.json(

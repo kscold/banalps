@@ -132,15 +132,23 @@ export default function PopupManager() {
 
   return (
     <>
-      {Object.entries(groupedPopups).map(([position, positionPopups]) => (
-        <PopupModal
-          key={position}
-          popups={positionPopups}
-          position={position as PopupPosition}
-          onClose={handleClose}
-          onCloseToday={handleCloseToday}
-        />
-      ))}
+      {Object.entries(groupedPopups).map(([position, positionPopups]) => {
+        // 현재 위치의 첫 번째 팝업의 order를 기준으로 z-index 설정
+        // order가 낮을수록 z-index가 높게 설정 (20000 - order * 10)
+        // 예: order=1 → z-index=19990, order=15 → z-index=19850
+        const baseZIndex = 20000 - (positionPopups[0]?.order || 0) * 10;
+
+        return (
+          <PopupModal
+            key={position}
+            popups={positionPopups}
+            position={position as PopupPosition}
+            onClose={handleClose}
+            onCloseToday={handleCloseToday}
+            baseZIndex={baseZIndex}
+          />
+        );
+      })}
     </>
   );
 }

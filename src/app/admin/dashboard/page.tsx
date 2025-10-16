@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import * as styles from '../AdminPage.css';
+import { adminFetchJSON } from '@/utils/adminAuth';
 
 // RichTextEditor를 dynamic import (SSR 이슈 방지)
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor'), { ssr: false });
@@ -84,28 +85,34 @@ export default function AdminDashboard() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/admin/before-after');
-        const data = await response.json();
+        // adminFetch는 401/403 에러 시 자동으로 로그인 페이지로 리다이렉트
+        const data = await adminFetchJSON('/api/admin/before-after');
 
-        if (!data.success && response.status === 401) {
-          // 인증 실패 - 로그인 페이지로
-          router.push('/admin/login');
-          return;
+        if (data.success) {
+          setLoading(false);
         }
-
-        setLoading(false);
       } catch (error) {
-        router.push('/admin/login');
+        console.error('인증 체크 실패:', error);
+        // adminFetch에서 이미 리다이렉트 처리되므로 추가 작업 불필요
       }
     };
 
     checkAuth();
   }, [router]);
 
-  const handleLogout = () => {
-    // 쿠키 삭제
-    document.cookie = 'admin_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    router.push('/admin/login');
+  const handleLogout = async () => {
+    try {
+      // 로그아웃 API 호출
+      await fetch('/api/admin/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } catch (error) {
+      console.error('로그아웃 에러:', error);
+    } finally {
+      // API 호출 성공 여부와 관계없이 로그인 페이지로 이동
+      router.push('/admin/login');
+    }
   };
 
   if (loading) {
@@ -280,21 +287,46 @@ function BeforeAfterManagement() {
   };
 
   const handleAdd = () => {
-    setEditingItem({
-      id: 0,
-      category: selectedCategory,
-      title: '',
-      titleJp: '',
-      beforeImage: '',
-      afterImage: '',
-      order: items.length + 1,
-    });
+    setEditingItem(null); // 새 케이스 추가 시 null로 설정
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingItem(null);
+  };
+
+  const handleReorder = async () => {
+    if (
+      !confirm(`${selectedCategory} 카테고리의 순서를 재정렬하시겠습니까?\n중복된 순서가 있다면 자동으로 정리됩니다.`)
+    ) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch('/api/admin/before-after/reorder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ category: selectedCategory }),
+        credentials: 'include',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('순서가 재정렬되었습니다.');
+        fetchItems();
+      } else {
+        alert('재정렬 실패: ' + data.error);
+      }
+    } catch (error) {
+      alert('재정렬 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (showMigration) {
@@ -338,7 +370,7 @@ function BeforeAfterManagement() {
           </li>
           <li>
             <strong>이미지 형식</strong>: JPG, JPEG, PNG, WebP 형식만 업로드 가능합니다
-            <br />- 권장 크기: 최소 800x800px 이상
+            <br />- 권장 크기: 500x300px
             <br />- 최대 파일 크기: 10MB
           </li>
           <li>제목과 설명은 선택사항이며, 일본어 번역도 입력할 수 있습니다</li>
@@ -358,17 +390,26 @@ function BeforeAfterManagement() {
         ))}
       </div>
 
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', marginTop: '24px' }}>
-        <button className={styles.addButton} onClick={handleAdd}>
-          + 새 케이스 추가
-        </button>
-        {/* <button
-          className={styles.addButton}
-          style={{ backgroundColor: '#14AEFF' }}
-          onClick={() => setShowMigration(true)}
-        >
-          데이터 마이그레이션
-        </button> */}
+      <div style={{ marginBottom: '24px', marginTop: '24px' }}>
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+          <button className={styles.addButton} onClick={handleAdd}>
+            + 새 케이스 추가
+          </button>
+          <button
+            className={styles.addButton}
+            style={{ backgroundColor: '#14AEFF' }}
+            onClick={handleReorder}
+            disabled={loading || items.length === 0}
+          >
+            순서 재정렬
+          </button>
+        </div>
+        <p style={{ fontSize: '12px', color: '#666', margin: 0, paddingLeft: '4px', lineHeight: '1.5' }}>
+          💡 순서가 중복되거나 불규칙한 경우 "순서 재정렬" 버튼을 클릭하세요.
+          <br />
+          <span style={{ color: '#14AEFF', fontWeight: 500 }}>예시:</span> 순서가 [1, 1, 3, 5, 5, 7]로 중복된 경우 → [1,
+          2, 3, 4, 5, 6]으로 자동 정리됩니다.
+        </p>
       </div>
 
       {loading ? (
@@ -425,7 +466,15 @@ function BeforeAfterManagement() {
         </div>
       )}
 
-      {isModalOpen && <BeforeAfterModal item={editingItem} onClose={handleCloseModal} onSuccess={fetchItems} />}
+      {isModalOpen && (
+        <BeforeAfterModal
+          item={editingItem}
+          selectedCategory={selectedCategory}
+          currentItemsCount={items.length}
+          onClose={handleCloseModal}
+          onSuccess={fetchItems}
+        />
+      )}
     </>
   );
 }
@@ -433,14 +482,23 @@ function BeforeAfterManagement() {
 // 수술 전후 모달
 function BeforeAfterModal({
   item,
+  selectedCategory,
+  currentItemsCount,
   onClose,
   onSuccess,
 }: {
   item: BeforeAfterItem | null;
+  selectedCategory: Category;
+  currentItemsCount: number;
   onClose: () => void;
   onSuccess: () => void;
 }) {
-  const [formData, setFormData] = useState<Partial<BeforeAfterItem>>(item || {});
+  const [formData, setFormData] = useState<Partial<BeforeAfterItem>>(
+    item || {
+      category: selectedCategory,
+      order: currentItemsCount + 1,
+    }
+  );
   const [beforeFile, setBeforeFile] = useState<File | null>(null);
   const [afterFile, setAfterFile] = useState<File | null>(null);
   const [beforePreview, setBeforePreview] = useState<string | null>(item?.beforeImage || null);
@@ -1677,8 +1735,7 @@ function AcademicActivityModal({
               <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>📅 입력 방법</div>
               <div style={{ marginLeft: '8px' }}>
                 • <strong>연도만:</strong> 2030 → 결과: 2030
-                <br />
-                • <strong>전체 날짜:</strong> 20250511 → 결과: 2025.05.11 (자동으로 . 추가)
+                <br />• <strong>전체 날짜:</strong> 20250511 → 결과: 2025.05.11 (자동으로 . 추가)
                 <br />
                 <span style={{ fontSize: '11px', color: '#666' }}>
                   * 숫자만 입력하세요 (4자리: 연도만, 8자리: 전체 날짜)
@@ -2095,7 +2152,8 @@ function SlideModal({
       reader.onloadend = () => {
         setBeforePreview(reader.result as string);
         setCropTarget('before');
-        setShowCropper(true);
+        // 이미지 선택 시에는 슬라이더를 표시하지 않음
+        setShowCropper(false);
         setZoom(1);
         setOffsetX(0);
         setOffsetY(0);
@@ -2112,7 +2170,8 @@ function SlideModal({
       reader.onloadend = () => {
         setAfterPreview(reader.result as string);
         setCropTarget('after');
-        setShowCropper(true);
+        // 이미지 선택 시에는 슬라이더를 표시하지 않음
+        setShowCropper(false);
         setZoom(1);
         setOffsetX(0);
         setOffsetY(0);
@@ -2620,9 +2679,16 @@ function SlideModal({
                 max="3.0"
                 required
               />
-              <small style={{ color: '#242424', marginTop: '4px', display: 'block' }}>
-                1.0 = 100% (기본값), 범위: 0.5 ~ 3.0
-              </small>
+              <div style={{ marginTop: '8px' }}>
+                <small style={{ color: '#666', display: 'block', lineHeight: '1.5' }}>
+                  1.0 = 100% (기본값), 범위: 0.5 ~ 3.0
+                </small>
+                <small
+                  style={{ color: '#14AEFF', fontWeight: 500, display: 'block', marginTop: '4px', lineHeight: '1.5' }}
+                >
+                  ℹ️ 비율 설정은 <strong>Before/After 이미지 모두에 동시에 적용</strong>됩니다.
+                </small>
+              </div>
             </div>
             <div className={styles.modalActions}>
               <button type="button" className={styles.cancelButton} onClick={onClose}>

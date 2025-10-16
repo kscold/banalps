@@ -46,6 +46,7 @@ export const mobileMenuContent = style({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
+  backgroundColor: '#FFFDF7',
   padding: `${mvw(36)} ${mvw(16)} ${mvw(26)} ${mvw(24)}`,
 });
 

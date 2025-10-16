@@ -4,10 +4,12 @@ import { Suspense } from 'react';
 import HairTransplantLayout from '@/shared/components/HairTransplant/HairTransplantLayout';
 import { useCrownTranslations } from '@/hooks/useAllPagesTranslations';
 import { useLanguageStore } from '@/shared/stores/useLanguageStore';
+import { useSlides } from '@/hooks/useSlides';
 
 function CrownContent() {
   const t = useCrownTranslations();
   const { language } = useLanguageStore();
+  const { slides } = useSlides('hair-transplant/crown');
 
   const layoutData = {
     heroTitle: (
@@ -264,10 +266,13 @@ function CrownContent() {
     beforeAfterData: {
       category: t.beforeAfter.category,
       title: t.beforeAfter.title,
-      beforeImage: '/hair-transplant/crown/slide/before.png',
-      afterImage: '/hair-transplant/crown/slide/after.png',
+      beforeImage: slides[0]?.beforeImage || '/hair-transplant/crown/slide/before.png',
+      afterImage: slides[0]?.afterImage || '/hair-transplant/crown/slide/after.png',
       beforeAlt: t.beforeAfter.beforeAlt,
       afterAlt: t.beforeAfter.afterAlt,
+      imageScale: slides[0]?.scale || 1.0,
+      imageOffsetX: slides[0]?.offsetX || 0,
+      imageOffsetY: slides[0]?.offsetY || 0,
     },
     beforeAfterButton: {
       text: t.beforeAfter.buttonText,
